@@ -2952,9 +2952,9 @@
 		(at 199.39 87.63 0)
 		(unit 1)
 		(exclude_from_sim no)
-		(in_bom yes)
+		(in_bom no)
 		(on_board yes)
-		(dnp no)
+		(dnp yes)
 		(uuid "36feb2bc-19fd-4c1a-bb5d-109d9c08ceb3")
 		(property "Reference" "R2"
 			(at 204.47 86.36 0)
@@ -3068,14 +3068,6 @@
 				)
 				(justify left bottom)
 				(hide yes)
-			)
-		)
-		(property "DNP" "DNP"
-			(at 201.93 87.63 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
 			)
 		)
 		(pin "1"

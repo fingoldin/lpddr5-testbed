@@ -49927,18 +49927,6 @@
 				)
 			)
 		)
-		(property "DNP" "DNP"
-			(at 0 0 0)
-			(layer "F.Fab")
-			(hide yes)
-			(uuid "eb883a4d-d533-43a9-a312-81adb16695d6")
-			(effects
-				(font
-					(size 1 1)
-					(thickness 0.15)
-				)
-			)
-		)
 		(property "License" "Apache-2.0"
 			(at 0 0 0)
 			(layer "F.Fab")
@@ -50002,7 +49990,7 @@
 		(path "/6dc6d680-4b07-4d6c-9fb2-b5a24aa4dc23/74cb3865-c5cd-4e86-b0f5-c37778d0e3d6")
 		(sheetname "Power supply")
 		(sheetfile "power_supply.kicad_sch")
-		(attr smd)
+		(attr smd exclude_from_pos_files exclude_from_bom dnp)
 		(fp_rect
 			(start -0.93 -0.47)
 			(end 0.93 0.47)
@@ -124952,18 +124940,6 @@
 				)
 			)
 		)
-		(property "DNP" "DNP"
-			(at 329.35 128.7 0)
-			(layer "F.Fab")
-			(hide yes)
-			(uuid "dd4ca72e-4635-439d-9485-4892bb905372")
-			(effects
-				(font
-					(size 1 1)
-					(thickness 0.15)
-				)
-			)
-		)
 		(property "License" "Apache-2.0"
 			(at 329.35 128.7 0)
 			(layer "F.Fab")
@@ -125027,7 +125003,7 @@
 		(path "/6dc6d680-4b07-4d6c-9fb2-b5a24aa4dc23/3f1fa2b8-bbd8-4e94-8058-c07b3a3cf4c5")
 		(sheetname "Power supply")
 		(sheetfile "power_supply.kicad_sch")
-		(attr smd)
+		(attr smd exclude_from_pos_files exclude_from_bom dnp)
 		(fp_rect
 			(start -0.93 -0.47)
 			(end 0.93 0.47)
@@ -212981,19 +212957,6 @@
 				(justify mirror)
 			)
 		)
-		(property "DNP" "DNP"
-			(at 227.7425 -40.0575 0)
-			(layer "B.Fab")
-			(hide yes)
-			(uuid "5abd577d-f499-46d8-acdb-73c7e7c309c8")
-			(effects
-				(font
-					(size 1 1)
-					(thickness 0.15)
-				)
-				(justify mirror)
-			)
-		)
 		(property "License" "Apache-2.0"
 			(at 227.7425 -40.0575 0)
 			(layer "B.Fab")
@@ -213062,7 +213025,7 @@
 		(path "/00000000-0000-0000-0000-00005fdc4a05/c64b3ad3-2bb5-4e01-accf-21c9730dc1cd")
 		(sheetname "SODIMM")
 		(sheetfile "sodim.kicad_sch")
-		(attr smd)
+		(attr smd exclude_from_pos_files exclude_from_bom dnp)
 		(fp_rect
 			(start -0.93 0.47)
 			(end 0.93 -0.47)
@@ -283678,19 +283641,6 @@
 				(justify mirror)
 			)
 		)
-		(property "DNP" "DNP"
-			(at 41.0575 228.7425 0)
-			(layer "B.Fab")
-			(hide yes)
-			(uuid "c83701d5-6c07-4002-88c5-c46a714c487e")
-			(effects
-				(font
-					(size 1 1)
-					(thickness 0.15)
-				)
-				(justify mirror)
-			)
-		)
 		(property "License" "Apache-2.0"
 			(at 41.0575 228.7425 0)
 			(layer "B.Fab")
@@ -283759,7 +283709,7 @@
 		(path "/00000000-0000-0000-0000-00005fdc4a05/62683362-aee1-4c2c-8b48-941bb98a0ee0")
 		(sheetname "SODIMM")
 		(sheetfile "sodim.kicad_sch")
-		(attr smd)
+		(attr smd exclude_from_pos_files exclude_from_bom dnp)
 		(fp_rect
 			(start -0.93 0.47)
 			(end 0.93 -0.47)
@@ -307966,19 +307916,6 @@
 				(justify mirror)
 			)
 		)
-		(property "DNP" "DNP"
-			(at 239.85 -52.25 0)
-			(layer "B.Fab")
-			(hide yes)
-			(uuid "d1695bdb-9fb9-4773-85b3-efd90bbcdc1b")
-			(effects
-				(font
-					(size 1 1)
-					(thickness 0.15)
-				)
-				(justify mirror)
-			)
-		)
 		(property "License" "Apache-2.0"
 			(at 239.85 -52.25 0)
 			(layer "B.Fab")
@@ -308046,7 +307983,7 @@
 		)
 		(path "/36feb2bc-19fd-4c1a-bb5d-109d9c08ceb3")
 		(sheetfile "lpddr5-testbed.kicad_sch")
-		(attr smd)
+		(attr smd exclude_from_pos_files exclude_from_bom dnp)
 		(fp_rect
 			(start -0.93 0.47)
 			(end 0.93 -0.47)

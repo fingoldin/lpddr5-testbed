@@ -12651,9 +12651,9 @@
 		(at 276.225 192.405 90)
 		(unit 1)
 		(exclude_from_sim no)
-		(in_bom yes)
+		(in_bom no)
 		(on_board yes)
-		(dnp no)
+		(dnp yes)
 		(uuid "3f1fa2b8-bbd8-4e94-8058-c07b3a3cf4c5")
 		(property "Reference" "R47"
 			(at 274.32 188.595 90)
@@ -12779,15 +12779,6 @@
 				)
 				(justify left bottom)
 				(hide yes)
-			)
-		)
-		(property "DNP" "DNP"
-			(at 276.225 191.77 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
 			)
 		)
 		(pin "1"
@@ -15189,9 +15180,9 @@
 		(at 163.83 197.485 0)
 		(unit 1)
 		(exclude_from_sim no)
-		(in_bom yes)
+		(in_bom no)
 		(on_board yes)
-		(dnp no)
+		(dnp yes)
 		(uuid "74cb3865-c5cd-4e86-b0f5-c37778d0e3d6")
 		(property "Reference" "R29"
 			(at 168.91 196.215 0)
@@ -15316,14 +15307,6 @@
 				)
 				(justify left bottom)
 				(hide yes)
-			)
-		)
-		(property "DNP" "DNP"
-			(at 166.37 197.485 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
 			)
 		)
 		(pin "1"
