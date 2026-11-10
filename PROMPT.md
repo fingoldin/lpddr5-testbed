@@ -34,3 +34,5 @@ There is also a full suite of Ansys EDT tools available on a remote server. Expl
 You can use SiWave for large simulations, and HFSS for small scale more accurate 3D simulations (like of the DDR4 sodimm socket).
 
 In the end, produce a design that's almost ready for fabrication. No need to target a specific fab vendor for now.
+
+I've already begun a bit with deleting parts of the Antmicro design.
