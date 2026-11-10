@@ -1,0 +1,199 @@
+Source: https://jlcpcb.com/help/article/pcb-panelization
+Retrieved 2026-10-02 (text of the server-rendered HTML, including collapsed sections; layout is in jlc_panelization.pdf)
+
+PCB PanelizationThis website requires JavaScript.
+Account Restriction Notice
+Get Coupon Here
+Coupons
+Country / Region
+Language
+undefined
+Currency
+USD $
+The currency you select is for reference only, payments must be made in US dollars.
+Save
+Language Coming Soon
+Ship to
+JLCPCB PCB Service
+FR-4 PCBs
+Flexible PCBs
+Metal Core PCBs
+High-Frequency PCBs
+PCBA Service
+PCB Assembly
+Parts Library
+More
+SMT Stencil
+PCB Layout
+Mechanical Services
+JLC3DP - 3D Printing
+JLCCNC - CNC Machining
+JLCCNC - Sheet Metal
+JLCMC - Mechanical Components
+Tools
+EasyEDA - PCB Design Tool
+JLCDFM - DFM Check
+Impedance Calculator
+PI Stiffener Calculator
+More
+OSHWLAB - Open Source Hardware
+JLCPCB - Flexible Heater
+Products
+Capabilities Contact Us
+Online Chat>
+Mon-Fri: 24 hours, Sat: 9am-6pm, GMT+8
+Email Us>
+Mon-Fri: 24 hours, Sat: 9am-6pm, GMT+8
+WhatsApp>
+Mon-Fri: 24 hours, Sat: 9am-6pm, GMT+8
+Support
+Help Center Get instant answers. 24/7 Available.
+Blog
+Community
+Support
+About Us
+JLCPCB delivers one-stop electronic and mechanical manufacturing solutions to empower hardware innovators worldwide.
+Explore Us
+Why JLCPCB?
+Quality Assurance
+How We Work
+Certifications
+Company News
+About Us
+Search
+0
+Order Now
+Sign In
+Sign In
+Help Center
+Help Center
+PCB Technical Guidelines
+PCB Panelization
+Help Center
+Get Started
+Register
+Know Before Ordering
+Account Setting
+Ordering
+PCB Ordering
+PCB Assembly Ordering
+PCB Stencil Ordering
+PCB Manufacturing
+PCB Files Preparation
+PCB Capabilities & Instructions
+PCB Technical Guidelines
+PCB Assembly
+PCB Assembly FAQs
+PCBA Price Details
+PCBA Parts Sourcing
+PCBA Capabilities & Instructions
+PCBA Technical Guidelines
+PCBA Files Preparation
+PCBA Lead Time
+PCBA After-Sale
+FPC Manufacturing
+FPC Materials & Options
+FPC Design Guidelines
+SMT Stencil
+Stencil Ordering
+Stencil Technical Guidelines
+PCB Layout
+PCB Layout Ordering
+PCB Layout FAQs
+JLCDFM Tool
+DFM Tool Help
+DFM FAQs
+JLCONE
+JLCONE FAQs
+JLCONE Download and Installation
+Shipping & Delivery
+Shipping Policies
+Shipping Instructions
+Payment & Invoice
+Payments
+Collab & Activities
+JLCPCB API
+Coupons & Promotions
+Policies & Certifications
+Policies
+Certifications
+Information
+Notice
+Flexible Heater
+Flexible Heater Ordering
+PCB Panelization
+Last updated on Sep 09, 2026
+Some customers would like to merge more than 1 PCB in the same Gerber. We know you want to save money but this may make it hard to cut the board outline and more importantly, this will take a lot more time to pick up and package the PCB. Although by doing this, you just have the one order, this complicates the fabrication of the panel and separation of the individual PCBs, so we will usually charge more for this. Similarly, using holes or slots as break off sections between boards are treated the same way as putting more than one design on a panel, each with its' own board outline.
+If you are just in the prototype phase and want to save money, then you can use the following trick. Place your different designs all inside one overall board outline and use lines drawn in the silk layer to mark out the separate the PCBs. Then, when you receive the PCB, carefully cut them apart yourself (we recommend you do this before you assemble the PCBs!). Like the PCB shown below, the yellow lines are drawn in the silk layers showing how you can merge 3 different PCBs in one gerber without incurring any extra costs. But on condition that the number of designs is more than 5, it still needs to be charged as different designs as well, and the number of the designs shall not exceed 10 designs on one board.
+V-cut/V-Groove
+This will help you to build a PCB Array to save time by making it faster to solder the PCB in SMT.
+1. The V-cut line should be the same as the outline of the Sub-PCB. That is to say, there is zero space between the sub-boards.
+2. The V-cut line can only be a vertical or horizontal straight line.
+3. The panel size needs to be 70*70mm at least to do v-cut process. If there are both horizontal and vertical V-cuts, the maximum panel size is 475*475mm.
+4. The V-cut line must cross the whole panel or else the factory can't add a V-groove on the PCB because the milling cutter may destroy any sub-PCBs on the V-cut line. They also cannot stop part way across the panel. The V-cut lines shown below are not acceptable.
+5. V-cut is not available on 0.4mm PCB thickness.
+6. Minimum clearance between two parallel V-cut lines is 2mm.
+7. V-cut is not supported in Economic Assembly. If V-cut and assembly is required, please select Standard Assembly.
+8. Please kindly note that if you select "Panel by JLCPCB" with the Edge Rails, fiducial marks and tooling holes will be added to the Edge Rails by default. Fiducial marks will not be added to each small piece in the panel.
+9.If either side of the small piece is within 15mm, there will be extra cost for V-cut process. For more details, please refer to  https://jlcpcb.com/help/article/in-what-cases-will-there-be-charged-extra
+10 Based on our current production capabilities, please ensure that there are no more than 25 V-cut lines on either the X or Y side.
+Online Chat >
+Chat with our live agent for fast reply.
+Mon-Fri: 24 hours, Sat: 9am-6pm, GMT+8
+Email Us >
+Contact us at supportjlcpcb.com
+Typically reply within hours.
+Help Center >
+Get instant answers.
+24/7 Available.
+Products
+FR-4 PCBs
+Flexible PCBs
+Metal Core PCBs
+High-Frequency PCBs
+PCBA Service
+PCB Layout
+SMT Stencil
+Flex Heater
+Support
+Help Center
+Contact Us
+Community
+Shipping & Delivery
+Payment Methods
+How to Order
+How to Track
+After-Sales Service
+Blog
+Company
+About Us
+Quality Assurance
+How We Work
+Certifications
+Security
+Environment
+JLCAPI
+News
+Cooperation
+Electronics
+EasyEDA
+JLCPCB
+JLCDFM
+LCSC
+OSHWLAB
+Mechanical
+JLC3DP
+JLCCNC
+JLCMC
+CONNECT WITH US
+© 2026 JLCPCB.COM All Rights Reserved.
+Privacy Policy
+Terms & Conditions
+Cookies Policy
+Get Coupon >
+Live Chat >
+Home
+Cart
+Files
+Message
+Me

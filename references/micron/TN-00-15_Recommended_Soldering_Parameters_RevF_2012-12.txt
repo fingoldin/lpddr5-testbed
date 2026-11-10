@@ -1,0 +1,370 @@
+                                                                           TN-00-15: Recommended Soldering Parameters
+                                                                                                          Introduction
+
+
+Technical Note
+Recommended Soldering Parameters
+
+
+
+
+Introduction
+                                                 The semiconductor industry is moving toward the elimination of Pb from packages in
+                                                 accordance with new international regulations. This concerns both solder paste, for the
+                                                 board mounting process, and semiconductor packages themselves.
+                                                 The solder reflow process step is affected by this change because most Pb-free solder
+                                                 pastes melt at temperatures that are 30°C to 40°C higher than Pb-based materials.
+                                                 Currently, Pb-based and Pb-free technologies coexist, by having Pb-based packages
+                                                 mounted with Pb-free paste or by having eutectic Sn/Pb paste used with Pb-free compo-
+                                                 nents. It’s likely this will continue for quite some time.
+                                                 This technical note defines the recommended soldering techniques and parameters for
+                                                 Micron’s products. Using these techniques and parameters will help prevent damage to
+                                                 the semiconductor package through the soldering processes and help ensure product
+                                                 quality and reliability.
+
+
+Definitions and Common Terms
+                                                 Symbols used from the periodic table of elements, used in this document:
+                                                 • Sn = tin, Pb = lead, Ag = silver, Cu = copper, Bi = bismuth, Ni = nickel
+                                                 Common Pb-based solder ball compositions:
+                                                 • 63Sn, 37% Pb
+                                                 • 60Sn, 40% Pb
+                                                 • 62Sn, 36% Pb, 2% Ag
+                                                 Pb-free solder ball and paste alloys (Micron uses an assortment of SAC alloys to meet
+                                                 customer requirements):
+                                                 • SAC405 = 95.5% Sn, 4%Ag, 0.5% Cu
+                                                 • SAC305 = 96.5% Sn, 3% Ag, 0.5% Cu
+                                                 • SAC302 = 96.8% Sn, 3Ag, 0.2% Cu
+                                                 • SAC387 = 95.5% Sn, 3.8Ag, 0.7% Cu
+                                                 • LF35 = 98.25% Sn, 1.2% Ag, 0.5% Cu, 0.05% Ni
+                                                 • SAC105 = 98.5% Sn, 1% Ag, 0.5% Cu
+                                                 • SACN=98.27 Sn, 1.2 Ag, 0.5 Cu, 0.003 Ni
+                                                 Pb-free lead-frame finishing materials:
+                                                 • Matte Sn
+                                                 • Hot dipped Sn
+                                                 • NiPdAu, SnBi
+
+
+
+PDF: 09005aef809140c7/Source: 09005aef80914088                                             Micron Technology, Inc., reserves the right to change products or specifications without notice.
+TN_00_15.fm - Rev. F 12/12 EN                                                  1                                                         ©2004 Micron Technology, Inc. All rights reserved.
+
+ Products and specifications discussed herein are for evaluation and reference purposes only and are subject to change by
+ Micron without notice. Products are only warranted by Micron to meet Micron’s production data sheet specifications. All
+               information discussed herein is provided on an “as is” basis, without warranties of any kind.
+                                                                            TN-00-15: Recommended Soldering Parameters
+                                                                                          Maximum Soldering Parameters
+
+Maximum Soldering Parameters
+                                                 Below are the maximum ratings for Micron packages to ensure package integrity
+                                                 through the surface mount process. These maximum ratings apply for all types of
+                                                 soldering processes, including mass assembly, rework, and component removal. The
+                                                 common types of reflow processes are described and discussed in the following section.
+                                                 Reflow parameters are primarily a function of solder paste chemistry and board tech-
+                                                 nology. Therefore, Micron’s first recommendation is to follow the solder paste supplier’s
+                                                 soldering parameters, while not violating the maximum parameters that are listed in the
+                                                 table below.
+
+Table 1:                         Maximum Soldering Parameters for Typical Surface Mount Technology (SMT) Processes
+
+                                    Max Peak           Max Dwell                                                           Total Time in
+                                  Temperature         Time at Peak     Max Heating         Max Cooling                       Chamber                        Number of
+     Process                          (°C)                 (s)          Rate (°C/s)         Rate (°C/s)                      (Minutes)                     Reflow Cycles
+ Pb-based                               235                  30               3                       6                                9                                3
+ Pb-free                                260                  30               3                       6                                9                                3
+
+                                       Note:       Preprogrammed NAND or PCM devices have lower temperature limits due to data
+                                                   retention. See data sheets or contact your Micron representative for additional
+                                                   requirements.
+
+Figure 1:                        General Reflow Profiles for Various Maximum-Peak Temperatures
+
+                                 270
+                                 260
+                                 250                                                                      260°C
+                                 240
+                                 230                                                                      235°C
+                                 220
+                                 210                                                                      220°C
+                                 200
+
+                                 180
+
+                                 160
+                                                                        Stepped Profile
+               Temperature (C)
+
+
+
+
+                                 140
+
+                                 120
+                                                                                  Umbrella Profile
+                                 100
+
+                                  80
+
+                                  60
+
+                                  40
+
+                                  20               Preheat                 Flux Activation                           Reflow                     Cooldown
+
+                                   0
+                                                                                      Time
+                                                                                                                                           MAX Time ~9 minutes
+
+                                       Note:       For specific profile recommendations, contact your solder paste supplier.
+
+PDF: 09005aef809140c7/Source: 09005aef80914088                                            Micron Technology, Inc., reserves the right to change products or specifications without notice.
+TN_00_15.fm - Rev. F 12/12 EN                                                     2                                                     ©2004 Micron Technology, Inc. All rights reserved.
+                                                                            TN-00-15: Recommended Soldering Parameters
+                                                                                            Convection Reflow Soldering
+
+Convection Reflow Soldering
+                                                 Convection reflow uses hot air or nitrogen to heat the assembly to reflow temperature.
+                                                 This is the most common reflow process used today, because of its low operational cost,
+                                                 easy and continuous operation, and ability to accurately control the heating and cooling
+                                                 profile. Because the convection reflow process typically has multiple heating stages, the
+                                                 assembly can be slowly and uniformly heated to the appropriate temperature. Convec-
+                                                 tion reflow is also compatible with double sided assembly and can be used in conjunc-
+                                                 tion with IR.
+
+
+Wave Soldering
+                                                 Wave soldering uses a wave of molten solder to create the solder connections between
+                                                 the board and components. After the components are attached to the board, the
+                                                 assembly is then passed through the wave and solder sticks to areas of the board and
+                                                 component that have exposed metal. Wave soldering is a technique that works well for
+                                                 continuous production, through-hole technology, and products with a large variation of
+                                                 board sizes. To wave solder a surface mount package, the part must be glued to the
+                                                 board, so that it doesn't fall off in the wave. This means the part must be immersed
+                                                 directly in the molten solder, and that the package will see extreme temperature ramp
+                                                 rates and a peak temperature that can lead to package or PCB damage. As a result, wave
+                                                 soldering is not recommended for Micron products. Wave soldering could be used if the
+                                                 parameters in Table 1 are maintained. Heating and cooling rates, as well as peak temper-
+                                                 ature will be the critical parameters to monitor.
+
+
+Infrared Reflow
+                                                 The infrared reflow (IR) process uses IR lights to heat the assembly to reflow tempera-
+                                                 tures. Because the process uses light, the resulting component and board temperatures
+                                                 are dependent on their color and thermal mass, so this should be considered during the
+                                                 product design stage. This process is not recommended because of the large variation in
+                                                 temperature that can occur on the board. The heating rate and temperature variation
+                                                 will depend on many assembly attributes. If the product can be held to Table 1 parame-
+                                                 ters, the process may be acceptable. IR reflow is commonly used for rework when a
+                                                 single component needs to be replaced or removed, because it's easy to shield areas of a
+                                                 board from the IR light to minimize heating while other areas are being reworked.
+
+
+Vapor Phase Reflow
+                                                 Vapor phase reflow uses the vaporized form of an inert fluid to bring the assembly to
+                                                 reflow temperatures. The advantage of this methods is the very tight temperature
+                                                 control it has over the assembly, because the peak temperature is limited by the boiling
+                                                 point of the liquid. As a result, component-to-component temperature variation is low.
+                                                 This is a limitation as well, because changing the peak temperature requires changing
+                                                 the liquid, so an assembly process that needs to handle different peak temperatures may
+                                                 not be suited for vapor phase reflow. Also, while the presence of the inert vapor means
+                                                 that nitrogen isn't needed, wet-ability tends to be better, and voiding is less than with
+                                                 other processes, the liquid used for heating is very expensive, resulting in higher opera-
+                                                 tional costs compared to other processes. Vapor phase reflow can have extreme temper-
+                                                 ature ramp rates, but can be acceptable if the maximum rating conditions listed in
+                                                 Table 1 are met.
+
+
+
+
+PDF: 09005aef809140c7/Source: 09005aef80914088                                          Micron Technology, Inc., reserves the right to change products or specifications without notice.
+TN_00_15.fm - Rev. F 12/12 EN                                                  3                                                      ©2004 Micron Technology, Inc. All rights reserved.
+                                                                              TN-00-15: Recommended Soldering Parameters
+                                                                                                          Hand Soldering
+
+Hand Soldering
+                                                 Typically, hand soldering is used only on leaded devices to touch-up leads with incom-
+                                                 plete or poorly formed solder joints. The recommended hand soldering parameters are
+                                                 shown in Table 2. These are considered to be a starting point for lead touch-up process
+                                                 development. It is recommended that the current version of IPC-A-610 be consulted for
+                                                 solder-joint formation requirements. The parameters in Table 2 were developed with an
+                                                 assortment of Micron leaded packages. PCB copper loading or iron tip and heat capacity
+                                                 could have a significant effect on the parameters, so great care should be used to
+                                                 develop a process for specific system design parameters.
+
+Table 2:               Hand Soldering Parameters Starting Point
+
+                                                       Max Solder Iron Tip            Max Contact Time with
+ Process                                                Temperature (°C)               Component Lead (s)                              Number of Heat Cycles
+ Pb-based                                                        300                                20                                                       3
+ Pb-free                                                         350                                20                                                       3
+
+                                Note:              Preprogrammed NAND or phase change memory (PCM) devices have lower tempera-
+                                                   ture limits than those listed in the table above. See the relevant Micron data sheet for
+                                                   specific product temperature limits.
+
+
+Mixed Alloy Considerations
+                                                 In the context of this document, a mixed alloy refers to mixing Pb-based and Pb-free
+                                                 solder, where the component termination is of different composition than the paste.
+                                                 Mixing between the various SAC alloys is typically not a concern in terms of surface
+                                                 mount. There are long term reliability implications that need to be considered when
+                                                 choosing alloys, but that is beyond the scope of this technical note.
+                                                 In terms of time zero surface mount quality, SAC305 and SAC405 are common paste
+                                                 alloys used by the industry and are, generally, compatible with other SAC compositions.
+                                                 These materials are readily available, have a low melting temperature, and provide good
+                                                 head-in-pillow (HIP) performance.
+
+Table 3:               Compatibility Matrix of Mixed Alloy Systems
+
+                                                                                                                         Moisture
+         Product                       Component                 Solder paste           Process                         Sensitivity                           Reliability
+  Lead-frame-based                        Pb-based                  Pb-free              Pb-free                           Good                                  Good
+                                           Pb-free                 Pb-based           Pb or Pb-free                        Good                                  Good
+             BGA                          Pb-based                  Pb-free              Pb-free                          Concerns                               Good
+                                           Pb-free                 Pb-based             Pb-based                           Good                                 Concerns
+                                                                                         Pb-free                           Good                                  Good
+                               Notes:            1. This table assumes that the paste has been formulated for the given process. Contact your
+                                                    paste supplier to confirm.
+                                                 2. Most Micron Pb components are rated for Pb-free temperatures. Each product should be
+                                                    considered on a case-by-case basis. See the appropriate Micron data sheet for details.
+                                                 3. When a ball grid array (BGA) Pb-free part is used in a Pb process, it is recommended that the
+                                                    peak temperature be chosen to ensure full mixing of the solder ball and paste.
+                                                 4. Preprogrammed NAND and PCM products have a limited temperature in terms of data
+                                                    retention, regardless of whether the package is reliable and adequate solder-joints are
+                                                    formed.
+
+
+
+PDF: 09005aef809140c7/Source: 09005aef80914088                                             Micron Technology, Inc., reserves the right to change products or specifications without notice.
+TN_00_15.fm - Rev. F 12/12 EN                                                     4                                                      ©2004 Micron Technology, Inc. All rights reserved.
+                                                                             TN-00-15: Recommended Soldering Parameters
+                                                                                     Qualification and Moisture Sensitivity
+
+Qualification and Moisture Sensitivity
+                                                 Most of Micron’s NAND and DRAM products are qualified at Pb-free reflow tempera-
+                                                 tures regardless of whether they are in a Pb rated package. This makes most Micron
+                                                 products compatible with Pb and Pb-free SMT processes. Since 2003 all commodity
+                                                 DRAM and networking DRAM have been qualified with 3 x 2 60°C preconditioning to
+                                                 ensure forward and backward compatibility.
+                                                 Micron NOR and MCP packages have a few exceptions to this rule, so the product data
+                                                 sheet should be consulted to make sure the any given product is capable of the required
+                                                 ratings.
+                                                 Micron floor-life recommendations, based on the moisture sensitivity level of the
+                                                 component, are designed to prevent component damage during reflow processing. The
+                                                 component packaging label notes the rated floor life for each type of component. The
+                                                 moisture sensitivity level is determined in accordance with the current version of J-STD-
+                                                 020, “Moisture/Reflow Sensitivity Classification for Non-Hermetic Solid State Surface
+                                                 Mount Devices.”
+
+
+Reliability Considerations
+Lead-Frame-Based Packages
+                                                 With lead-frame-based packages, Sn, SnPb, or NiPdAu plating finishes form reliable
+                                                 solder joints with or without full mixing as long as the solder joints is formed according
+                                                 to IPC requirements. The coating on the lead-frame contributes about 10% to 20% to the
+                                                 total solder-joint volume and, therefore, isn’t overly influential. See the latest edition of
+                                                 IPC-A-610 for the requirements to form a proper solder joint.
+
+BGA Packages
+                                                 BGA products have different requirements than their leaded counterparts. The solder
+                                                 ball contributes about 70% to 80% of the total solder-joint volume. For BGA packages,
+                                                 full mixing of the solder-joint and solder paste is recommended.1, 2, 3, 4, 5, 6
+
+Mixed Alloy Conclusions
+                                                 Mixed alloy systems have been studied extensively by the industry and are considered as
+                                                 reliable as homogeneous systems when a uniform solder-joint is formed during surface
+                                                 mount. However, temperatures that provide partial mixing when the SAC alloy is in the
+                                                 liquid phase can lead to solder-joint reliability issues.1, 2, 3, 4, 5, 6
+
+
+Additional Soldering Parameter Considerations
+                                                 • Oxidation rates are higher at elevated temperatures, so the flux activity should be
+                                                   considered relative to the reflow temperature
+                                                 • Voiding also increases with increased oxidation
+                                                 • Flux residue can be harder to remove with higher reflow temperatures
+                                                 • The glass transition temperature (TG) of the PCB and what affect will it have on
+                                                   process and long term reliability of the product
+                                                 • Nitrogen gas can be used in the reflow atmosphere to improve the process margin,
+                                                   wet ability, appearance of the solder-joints, and reduce oxidation
+                                                 • The peak temperature of the product should be ~30°C higher than the melting point
+                                                   of the solder
+
+
+PDF: 09005aef809140c7/Source: 09005aef80914088                                            Micron Technology, Inc., reserves the right to change products or specifications without notice.
+TN_00_15.fm - Rev. F 12/12 EN                                                   5                                                       ©2004 Micron Technology, Inc. All rights reserved.
+                                                                                TN-00-15: Recommended Soldering Parameters
+                                                                                                                References
+
+References
+                                                 1. D. Hillman et all, “The impact of Reflowing A Pb free Solder Alloy Using a Tin/Lead
+                                                    Solder Alloy Reflow Profile On Solder Joint Integrity,” Rockwell Collins website.
+                                                 2. P. Snugovsky, et al, “Solder Joint Formation With Sn/Ag/Cu and Sn/Pb Solder balls and
+                                                    Pastes,” SMTAI Conference Proceedings, 2002.
+                                                 3. D. Nelson, et al, “Manufacturing and Reliability of Pb Free and Mixed System Assem-
+                                                    blies (SNPB/Pb Free) in Avionics Environments,” SMTAI Conference proceedings,
+                                                    2003.
+                                                 4. F. Hua, et al, “Solder Joint Reliability Assessment of Sn/Ag/Cu BGA Components
+                                                    Attached With Eutectic Pb/Sn Solder,” SMTAI Conference proceedings, 2003.
+                                                 5. Brewin, et al, “Reliability of Joints Formed with Mixed Alloy Solders,” National Physics
+                                                    Laboratory Report MATC (A) 85, April 2002.
+                                                 6. F. Hua, et al, “Solder Joint Reliability of Sn/Ag/Cu BGA Components Attached with
+                                                    Eutectic Pb/Sn Solder Paste,” Journal of SMTA, Volume 16-1.
+                                                 7. R. Kinyanjui, et al, “Solder Joint Reliability of Pb-free Sn-Ag-Cu Ball Grid Array (BGA)
+                                                    Components in Sn-Pb Assembly Process,” iNEMI.
+                                                 8. G. Henshall, et al, “Comparison of Thermal Fatigue Performance of SAC105
+                                                    (Sn-1.0Ag-0.5Cu), Sn-3.5Ag, and SAC305 (Sn-3.0Ag-0.5Cu) BGA Components with
+                                                    SAC305 Solder Paste,” IPC APEX EXPO
+
+
+
+
+                                                  8000 S. Federal Way, P.O. Box 6, Boise, ID 83707-0006, Tel: 208-368-3900
+                                                 www.micron.com/productsupport Customer Comment Line: 800-932-4992
+                                                  Micron and the Micron logo are trademarks of Micron Technology, Inc.
+                                                     All other trademarks are the property of their respective owners.
+
+
+
+
+PDF: 09005aef809140c7/Source: 09005aef80914088                                                 Micron Technology, Inc., reserves the right to change products or specifications without notice.
+TN_00_15.fm - Rev. F 12/12 EN                                                       6                                                        ©2004 Micron Technology, Inc. All rights reserved.
+                                                                                             TN-00-15: Recommended Soldering Parameters
+                                                                                                                        Revision History
+
+Revision History
+Rev. F . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .12/12
+  • Updated all sections
+
+Rev. E . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 7/06
+  • Corrected typos, suppplier on page 1, note 1 punctuation on page 2
+
+Rev. E . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 5/06
+  • Updated Tables 1, 2, and 3
+
+Rev. D . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 4/06
+  • Changed J-STD-020 to "the most recent version of J-STD-020"
+  • In Tables 1 and 2: changed MAX Dwell Time to 30s
+  • In Tables 1 and 2: changed the MAX Heating/Cooling Rate to MAX Heating Rate of 3°C/s
+  • In Tables 1 and 2: Added MAX Cooling Rate column, with of 6°C/s value
+
+Rev. C . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .12/04
+  • Added note 3 to Tables 1 and 2
+
+Rev. C . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 6/04
+  • Changed Table 1 Max. Heating/Cooling Rate to 4°C
+
+Rev. B . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .10/03
+  • Reworded some text, added CMOS image sensors to all tables
+
+Rev. B . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 2/03
+  • Changed MAX solder iron tip temp in table 3: SnPb from 235 to 300C, Pb-free from 260 to 350C
+
+Rev. A . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .12/02
+  • New technical note
+
+
+
+
+PDF: 09005aef809140c7/Source: 09005aef80914088                                                                     Micron Technology, Inc., reserves the right to change products or specifications without notice.
+TN_00_15.fm - Rev. F 12/12 EN                                                                      7                                                             ©2004 Micron Technology, Inc. All rights reserved.
+

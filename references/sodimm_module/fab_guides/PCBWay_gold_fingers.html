@@ -1,0 +1,3463 @@
+
+
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title id="title">PCB Gold fingers(Edge connector) - PCB Prototype the Easy Way - PCBWay</title>
+    <link href="/img/css/the-comment-style.css?v=639264230552683783" type="text/css" rel="stylesheet" />
+    <link href="/img/css/base.css?v=639264230552683783" type="text/css" rel="stylesheet" />
+    <link href="/img/css/headerfoot.css?v=639264230552683783" type="text/css" rel="stylesheet" />
+
+
+    <link href="/img/css/product.css?v=639264230552683783" type="text/css" rel="stylesheet" />
+    <link href="/img/css/public.css?v=639264230552683783" type="text/css" rel="stylesheet" />
+
+    <script src="/img/js/jquery/jquery-1.11.3.min.js" type="text/javascript"></script>
+    <script src="/img/js/jqueryplus/layer/layer-v2.3/layer/layer.js" type="text/javascript"></script>
+
+    <script src="/img/js/project-public.js?v=639264230552683783"></script>
+    <!--public要在msg之前引用-->
+    
+    <link href="/img/js/jqueryplus/webuploader-0.1.5/webuploader.css" rel="stylesheet" />
+    <script src="/img/js/jqueryplus/webuploader-0.1.5/webuploader.js"></script>
+    <style type="text/css">
+        .webuploader-pick {
+            color: #000000;
+            background: none;
+            padding: 0px;
+        }
+
+        #file_upload .webuploader-pick {
+            padding: 0px;
+            margin: 0px;
+            background: none;
+            width: 0px;
+            height: 0px;
+        }
+
+        #file_upload {
+            height: 0px;
+        }
+    </style>
+    <style>
+        .loadingprice {
+            position: absolute;
+            top: 0px;
+            min-height: 776px;
+            left: 0px;
+            width: 576px;
+            background: #ccc;
+            opacity: .5;
+            filter: alpha(opacity=50);
+            text-align: center;
+            z-index: 15;
+        }
+
+            .loadingprice img {
+                vertical-align: middle;
+                margin-top: 300px;
+            }
+    </style>
+</head>
+<body>
+
+
+
+                    <div style=" background-color:#f8f5af; border-bottom:1px solid #cdd6e8; padding:5px 0; font-size:12px; clear:both;">
+  <div class="wcontainer" style="position:relative;">
+    <a onClick="closeAdv(this, 'TopNotice2026e525ffd6', 3)" href="javascript:;" style="position: absolute; right: 0px; top: 4px; display: block; width: 20px; height:20px; background: url(/img/images/close_pha.png) 0px 0px no-repeat;" title="Closed"></a>
+    <p style="padding:5px 24px 2px 0px; color:#444; font-size:13px;">
+       Holiday Notice: PCBWay factories will be closed on <span style="color:#00a63f; font-weight:bold;">Oct 1-3</span> (GMT+8). Orders can still be placed online during holidays, with extended lead times. Please place orders 3–5 days early to avoid delays.<br /><a href="https://www.pcbway.com/blog/News/Holiday_Schedule_of_Mid_Autumn_Festival_National_Day_2026_b897041f.html" target="_blank" style="color:#00a63f;">Read more &gt;&gt;</a>
+    </p>
+  </div>
+</div>
+</div>
+                    <div id="Toptip">
+    <div style="min-width:1200px;height: 80px;overflow: hidden;position:relative;">
+        <a onclick="closeAdv(this, 'TopNotice2026d47ed08a', 3)" href="javascript:;" style="position: absolute; right: 22px; top: 8px; display: block; width: 20px; height:20px; background: url(/img/images/close_pha.png) 0px 0px no-repeat;" title="Closed"></a>
+        <a href="/activity/9th-project-design-contest.html" style="background: url(https://pcb-files.s3.us-west-2.amazonaws.com/webfilerobots/260910/9th-contest_top.jpg) #00095b no-repeat center top;display: block; width: 100%;height: 100%;text-indent: -9999rem;" target="_blank">&nbsp;</a>
+    </div>
+</div>
+
+
+
+<link href="/img/css/headerfoot.css?v=639264230552683783" type="text/css" rel="stylesheet" />
+<link href="/img/css/signjoin.css?v=639264230552683783" type="text/css" rel="stylesheet" />
+<link rel="stylesheet" href="/img/css/our-product-box.css?v=639264230552683783">
+
+<script>
+    function closeAdv(obj, name, days) {
+        $(obj).parent().parent().hide();
+        setCookie(name, 'true', days == 0 ? 1 : days);
+    }
+    function setCookie(name, value, Days) {
+
+        var exp = new Date();
+        exp.setTime(exp.getTime() + Days * 24 * 60 * 60 * 1000);
+        document.cookie = name + "=" + escape(value) + ";expires=" + exp.toGMTString() + ";path=/";
+    }
+</script>
+
+<div class="header" id="headerdvtemp">
+
+    <div class="topnav-bg"></div>
+    <div class="header-wrap wcontainer clearfix">
+        <div class="hm-left">
+            <div class="logo p-icon">
+                <a href="/" title="Custom PCB Prototype Manufacturer">PCBWay</a>
+            </div>
+            <div class="secondary-branding">
+                <p class="h1">PCB Prototype the Easy Way</p>
+                <p>Full feature custom PCB prototype service.</p>
+            </div>
+        </div>
+        <div class="hm-right">
+            
+            <div class="mobile_icon">
+                <a href="javascript:showLiveChat();">
+                    <p>Online Chat</p>
+                </a>
+            </div>
+            <div class="ng-help " onmousemove="$(this).addClass('hd-func-dropdown-active')" onmouseout="$(this).removeClass('hd-func-dropdown-active')">
+                <a class="ng-help-ct" href="/helpcenter" target="_blank">Help Center <i class="p-icon icon-select-angle"></i></a>
+                <div class="hd-list hd-fold hd-help-list">
+                    <div class="hd-item">
+                        <div class="hd-item-icon cus-icon"></div>
+                        <div class="hd-item-info">
+                            <div class="info-title">
+                                <a class="info-title-link" href="/helpcenter" target="_blank">
+                                    Customer Service
+                                </a>
+                            </div>
+
+                            <div class="info-titled-des">
+                                <a href="/helpcenter/Findproducts/How_do_I_place_an_order_.html" target="_blank">
+                                    How to order
+                                </a>
+                                <a href="/helpcenter/disputeprocess/" target="_blank">
+                                    Service &amp; Refunds
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="hd-item">
+                        <div class="hd-item-icon send-icon"></div>
+                        <div class="hd-item-info">
+                            <div class="info-title">
+                                Sending a message
+                            </div>
+                            <div class="info-titled-des">
+                                <a href="mailto:service@pcbway.com" class="js-admin-email">
+                                    service@pcbway.com
+                                </a>
+                            </div>
+                            <div class="info-time">
+                                9:00 - 23:00, Mon.- Sun.
+                                (GMT+8)
+                            </div>
+                        </div>
+                    </div>
+                    <div class="hd-item">
+                        <div class="hd-item-icon ser-icon"></div>
+                        <div class="hd-item-info">
+                            <div class="info-title">
+                                Service hotlines
+                            </div>
+                            <div class="info-titled-des">
+                                +86 571 8503 9969
+                            </div>
+                            <div class="info-time">
+                                <p>
+                                    9:00 - 18:00, Mon.- Fri. (GMT+8)
+                                </p>
+                                <p>
+                                    9:00 - 12:00, Sat. (GMT+8)
+                                </p>
+                                <p>
+                                    (Except Chinese public holidays)
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="set-item-time js-top-time">
+
+                    </div>
+                </div>
+            </div>
+            <div class="hd-language hd-language-currency">
+                <!--hover addclass "hd-func-dropdown-active"-->
+                <span class="hd-cur-item">
+                        <i class="p-icon icon-flag icon-en"></i> <span class="language">EN</span> <span class="split">/</span> <span class="the-symbol">USD</span> <i class="p-icon icon-select-angle"></i>
+                </span>
+
+                <div class="hd-list hd-fold hd-language-list language-currency">
+                    <div class="from-list">
+                        <label class="label-name">
+                            Language
+                        </label>
+                        <div class="label-info">
+                            <div class="drop-down language js-drop-down-top">
+
+                                    <span class="filter-info js-filter">
+                                        <i class="p-icon icon-flag icon-en"></i>
+                                        <span>English</span>
+                                    </span>
+
+                                <ul class="drop-lists js-drop-lists js-language-drop-lists" style="display: none;">
+                                    <li data-url="https://www.pcbway.com/pcb_prototype/PCB_Gold_fingers.html" data-val="EN" class="active">
+                                        <a href="javascript:void(0)">
+                                            <i class="p-icon icon-flag icon-en"></i>
+                                            English
+                                        </a>
+                                    </li>
+                                    <li data-url="https://www.pcbway.es/pcb_prototype/PCB_Gold_fingers.html" data-val="ES" class="">
+                                        <a href="javascript:void(0)">
+                                            <i class="p-icon icon-flag icon-es"></i>
+                                            Español
+                                        </a>
+                                    </li>
+                                    <li data-url="https://www.pcbway.fr/pcb_prototype/PCB_Gold_fingers.html" data-val="FR" class="">
+                                        <a href="javascript:void(0)">
+                                            <i class="p-icon icon-flag icon-fr"></i>
+                                            Français
+                                        </a>
+                                    </li>
+                                    <li data-url="https://www.pcbway.jp/pcb_prototype/PCB_Gold_fingers.html" data-val="JP" class="">
+                                        <a href="javascript:void(0)">
+                                            <i class="p-icon icon-flag icon-jp"></i>
+                                            日本語
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="from-list">
+                        <label class="label-name">
+                            Currency
+                        </label>
+                        <div class="label-info">
+                            <div class="drop-down currency js-drop-down-top">
+                                    <span class="filter-info js-filter">USD ( US Dollar )</span>
+
+                                <ul class="drop-lists js-drop-lists js-currency-drop-lists" style="display: none;">
+                                    <li data-val="1" data-name="USD" class="active">
+                                        <a href="javascript:void(0)">
+                                            USD ( US Dollar )
+                                        </a>
+                                    </li>
+                                    <li data-val="3" data-name="EUR" class="">
+                                        <a href="javascript:void(0)">
+                                            EUR ( Euro )
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <input type="hidden" id="LangWebUrl" value="https://www.pcbway.com/pcb_prototype/PCB_Gold_fingers.html" />
+                    <input type="hidden" id="CurrencyType" value="1" />
+                    <a href="javascript:void(0)" class="save-btn">Save</a>
+                </div>
+
+            </div>
+            <div class="nav-cart">
+                <a href="https://member.pcbway.com/order/cartlist" rel="nofollow">
+                    <i class="p-icon"></i>
+                    <span class="text hidden-sm">Cart</span>
+                    <span class="cart-number">0</span>
+                </a>
+            </div>
+            <div class="nav-user-account">
+                <!--hover addclass"user-account-unfold"-->
+                <div class="user-account-info clearfix">
+                    <i class="p-icon"></i>
+                    <div class="user-account-inner">
+                        <span class="account-unsigned"><a href="/Member/Login/" rel="nofollow">Sign in</a><span class="ua-line">|</span><a href="/Member/Login" rel="nofollow">Join</a></span>
+                        <span id="login-stat-signed" class="notranslate" style="display:none">Hi, <b></b></span>
+
+                        <div class="sites-jump">
+                            <a rel="nofollow" href="https://member.pcbway.com"><span>My PCBWay</span></a> <!--<a rel="nofollow" href="/member/">My PCBWay</a>-->
+                            <b style="display: inline;">(0)</b><!--cooki 记录帐号 提供多少订单信息-->
+                        </div>
+                    </div>
+                </div>
+                <div class="user-account-main">
+                    <div class="flyout-user-signout"><a href="javascript:signout();" rel="nofollow">Sign Out</a></div><!--登录后 addstyle"display:block"-->
+                    <div class="flyout-user-signIn">
+                        <!--登录前 addstyle"display:block"-->
+                        <p class="flyout-welcome-text">Welcome to PCBWay</p><!--没有cooki的时候 默认加"Welcome to PCBWay.com"-->
+                        <p><a class="sign-btn" href="/Member/Login/" rel="nofollow">Sign in</a></p>
+                    </div>
+                    <dl class="flyout-visitors-login">
+                        <!--登录前 addstyle"display:block"-->
+                        <dt>New Customer?</dt>
+                        <dd><a class="join-btn" href="/Member/Login/" rel="nofollow">Join Free</a></dd>
+                    </dl>
+                    <div class="flyout-remind-list"><p><a rel="nofollow" href="https://member.pcbway.com/Order/CartList"><b>(1)</b>Items in Awaiting payment Cart!</a></p></div>
+                    <ul class="flyout-quick-entry">
+                        <li><a href="https://member.pcbway.com" rel="nofollow">My PCBWay</a></li>
+                        <li><a href="https://member.pcbway.com/order/OrderList" rel="nofollow">My Orders</a></li>
+                        <li><a href="https://member.pcbway.com/order/orderlist?type=1" rel="nofollow">Production Status</a></li>
+                        <li><a id="msg-center" rel="nofollow" href="https://member.pcbway.com/Message/Message">Message Center</a></li>
+                        <li><a href="https://member.pcbway.com/Member/coupons" rel="nofollow">My Coupons</a></li>
+                        <li><a href="https://member.pcbway.com/address/addoredit" rel="nofollow">Delivery Address</a></li>
+                        <li><a href="/helpcenter" target="_blank">Help Center</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div id="isshownewhere" class="ui-newuser-coupon-tips" style="right: -10px; top: 56px; overflow: hidden; display: block; z-index: -1;display:none;">
+                <a href="/Member/Login/">
+                    <p>New here? Get a $5.00 Coupon!</p>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!--登陆前显示-->
+    <div class="navigation" id="wwwNavigation">
+        <div class="navigation-nav wcontainer">
+            <span   class="topNavli"   >
+                <a class="navitem" href="/">Home</a>
+            </span>
+            <span   class="topNavli"   >
+                <a class="navitem" href="/orderonline.aspx">PCB Instant Quote</a>
+            </span>
+            <span style="position: relative;"   class="topNavli js-rapid-prototyping-nav"   >
+                <a class="navitem rapidp" href="/rapid-prototyping/">CNC | 3D Printing <i class="p-icon icon-select-angle"></i></a>
+                
+            </span>
+            <span   class="topNavli"   >
+                <a class="navitem" href="/pcb-assembly.html">PCB Assembly</a>
+            </span>
+            
+            <span style="position: relative;"   class="topNavli"   >
+                <a class="navitem" href="/pcbdesign.html">PCB&#160;Design</a>
+
+            </span>
+            <span style="position: relative; display: none"   class="topNavli"   >
+                <a class="navitem" href="/oem.html">OEM</a>
+
+            </span>
+            <span   class="topNavli js-capabilities-nav"   >
+                <a class="navitem products " href="/capabilities.html">Product &amp; Capabilities  <i class="p-icon icon-select-angle"></i></a>
+            </span>
+            <span   class="topNavli js-why-nav"   >
+                <a class="navitem" href="/why.html">
+                    Why Us?  
+                    <i class="p-icon icon-select-angle"></i>
+                </a>
+            </span>
+            <span   class="topNavli"   >
+                <a class="navitem" target="_blank" href="https://www.pcbway.com/project/share/">Feedback </a>
+            </span>
+            
+            
+            <span   class="topNavli"   >
+                <a class="navitem" target="_blank" href="https://www.pcbway.com/project/">Shared Projects</a>
+            </span>
+            <span   class="topNavli"   >
+                <a class="navitem" href="/project/gifts.html" target="_blank">Module Store</a>
+            </span>
+            
+            
+        </div>
+
+
+        <script type="text/javascript">
+            $(function () {
+                $('.js-capabilities-nav,.js-new-down1').hover(function () {
+                    $('.js-new-down1').show();
+                }, function () {
+                    $('.js-new-down1').hide();
+                });
+                $('.js-rapid-prototyping-nav,.js-new-down').hover(function () {
+                    $('.js-new-down').show();
+                }, function () {
+                    $('.js-new-down').hide();
+                });
+            });
+        </script>
+        <div class="common-topbar-dropdown js-new-down1" style="display:none;">
+            <div class="common-topbar-dropdown-all-product" style="display:block">
+                <div class="all-product-column-wrapper clearfix">
+    <div class="product-column">
+        <div class="product-item">
+            <div class="product-item-title animate-text">Printed Circuit Boards</div>
+            <ul>
+                <li class="animate-text"><a target="_blank" href="/capabilities.html">PCB Capabilities<img style="width:14px; margin-left: 2px;vertical-align:middle;" src="/img/images/xiangqing/hot.png"></a></li>
+                <li class="animate-text"><a target="_blank" href="/high-quality-pcb.html">Advanced PCB<img style="width:14px; margin-left: 2px;vertical-align:middle;" src="/img/images/xiangqing/hot.png"></a></li>
+                <li class="animate-text"><a target="_blank" href="/advanced-pcb-capabilities.html">Advanced PCB Capabilities</a></li>
+                <li class="animate-text"><a target="_blank" href="/pcb_prototype/Pinted_Circuit_Board_Prototype.html">PCB Prototype</a></li>
+                <li class="animate-text"><a target="_blank" href="/fpc-rigid-flex-pcb.html">Flex and Rigid-Flex PCBs<img style="width:14px; margin-left: 2px;vertical-align:middle;" src="/img/images/xiangqing/hot.png"></a></li>
+                <li class="animate-text"><a target="_blank" href="/fpc-rigid-flex-pcb/flex-pcb.html">Flexible PCBs<img style="width:14px; margin-left: 2px;vertical-align:middle;" src="/img/images/xiangqing/hot.png"></a></li>
+                <li class="animate-text"><a target="_blank" href="/fpc-rigid-flex-pcb/rigid-flex-pcb.html">Rigid-Flex PCBs<img style="width:14px; margin-left: 2px;vertical-align:middle;" src="/img/images/xiangqing/hot.png"></a></li>
+                <li class="animate-text"><a target="_blank" href="/aluminum-pcb.html">Aluminum PCB<img style="width:14px; margin-left: 2px;vertical-align:middle;" src="/img/images/xiangqing/hot.png"></a></li>
+                <li class="animate-text"><a target="_blank" href="/pcb_prototype/Metal_core_PCBs.html">Metal core PCBs</a></li>
+                <li class="animate-text"><a target="_blank" href="/pcb_prototype/What_is_High_Frequency__HF__PCB_.html">High Frequency PCBs</a></li>
+                <li class="animate-text"><a target="_blank" href="/pcb_prototype/High_TG_PCBs_High_Temperature_PCB_fr4_Material.html">High-TG PCBs</a></li>
+                <li class="animate-text"><a target="_blank" href="/pcb_prototype/Thick_Copper_PCBs.html">Thick-Copper PCBs</a></li>
+                <li class="animate-text"><a target="_blank" href="/hdi-pcb.html">HDI PCB<img style="width:14px; margin-left: 2px;vertical-align:middle;" src="/img/images/xiangqing/hot.png"></a></li>
+                <li class="animate-text"><a target="_blank" href="/pcb_prototype/LED_PCB.html">LED PCB</a></li>
+                <li class="animate-text"><a target="_blank" href="/quickturn-pcb-fabrication.html">Quick turn PCB Fabrication</a></li>
+                <li class="animate-text"><a target="_blank" href="/pcb-prototyping.html">PCB Prototyping</a></li>
+                <li class="animate-text"><a target="_blank" href="/pcb-service.html">PCB Production Process</a></li>
+                <li class="animate-text"><a target="_blank" href="/pcb-products.html">PCB Products</a></li>
+                <li class="animate-text"><a target="_blank" href="/helpcenter/Engineering_Questions/">PCB Engineering Questions<img style="width:14px; margin-left: 2px;vertical-align:middle;" src="/img/images/xiangqing/hot.png"></a></li>
+                <li class="animate-text"><a target="_blank" href="/faq-of-pcb.html">FAQ of PCB</a></li>
+                <li class="animate-text line"></li>
+            </ul>
+        </div>
+        <div class="product-item">
+            <div class="product-item-title animate-text">SMD-Stencils</div>
+            <ul>
+                <li class="animate-text"><a target="_blank" href="/pcb_prototype/SMT_stencil_and_Laser_Stencil.html">Laser Stencil</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="product-column">
+        <div class="product-item">
+            <div class="product-item-title animate-text">PCB Assembly</div>
+            <ul>
+                <li class="animate-text"><a target="_blank" href="/pcb_prototype/PCB_assembly_Capabilities.html">PCB Assembly Overview</a></li>
+                <li class="animate-text"><a target="_blank" href="/assembly-capabilities.html">PCB Assembly Capability<img style="width:14px; margin-left: 2px;vertical-align:middle;" src="/img/images/xiangqing/hot.png"></a></li>
+                <li class="animate-text"><a target="_blank" href="/smt_ordering_guide.html">SMT Ordering Necessary Files &amp; Info</a></li>
+	<li class="animate-text"><a target="_blank" href="/pcb-assembly/pcb-assembly-testing.html">PCB Assembly Testing Capability</a></li>
+                <li class="animate-text"><a target="_blank" href="/pcb_prototype/SMT_Assembly_Capabilities.html">SMT Assembly Capabilities</a></li>
+                <li class="animate-text"><a target="_blank" href="/pcb_prototype/Mixed_Assembly_Advantages.html">Mixed Assembly Advantages</a></li>
+                <li class="animate-text"><a target="_blank" href="/pcb_prototype/Through_Hole_Assembly.html">Through-Hole Assembly</a></li>
+                <li class="animate-text"><a target="_blank" href="/pcb_prototype/BGA_Assembly_Capabilities.html">BGA Assembly Capabilities</a></li>
+                <li class="animate-text"><a target="_blank" href="/pcb_prototype/Electronic_Components.html">Components Sourcing</a></li>
+                <li class="animate-text"><a target="_blank" href="/pcb_prototype/Panel_Requirements_for_Assembly.html">Panel Requirements for Assembly</a></li>
+                <li class="animate-text"><a target="_blank" href="/assembly-special-remind.html">Special Reminders</a></li>
+                <li class="animate-text"><a target="_blank" href="/assembly-file-requirements.html">File Requirements</a></li>
+                <li class="animate-text"><a target="_blank" href="/assembly-process.html">Production Process</a></li>
+                <li class="animate-text"><a target="_blank" href="/assembly-products.html">PCB Assembly Products</a></li>
+                <li class="animate-text"><a target="_blank" href="/assembly-faq.html">PCB Assembly FAQ</a></li>
+                <li class="animate-text line"></li>
+            </ul>
+        </div>
+        <div class="product-item">
+            <div class="product-item-title animate-text">PCB Design-Aid &amp; Layout</div>
+            <ul>
+                <li class="animate-text"><a target="_blank" href="/pcb_prototype/PCB_material_classification.html">Printed circuit board materials</a></li>
+                <li class="animate-text"><a target="_blank" href="/pcb_prototype/PCB_Design_and_Layout.html">PCB Design &amp; Layout</a></li>
+                <li class="animate-text"><a target="_blank" href="/pcb_prototype/Layer_Orientation.html">Layer Orientation</a></li>
+                <li class="animate-text"><a target="_blank" href="/pcb_prototype/PCB_Panel_Creation.html">Panel Creation</a></li>
+                <li class="animate-text"><a target="_blank" href="/pcb_prototype/PCB_BGA.html">BGA</a></li>
+                <li class="animate-text"><a target="_blank" href="/pcb_prototype/Talking_about_the_Composition_of_PCB_Price.html">PCB Price Composition</a></li>
+                <li class="animate-text"><a target="_blank" href="/pcb_prototype/PCB_Gold_fingers.html">Gold fingers</a></li>
+
+            </ul>
+        </div>
+
+    </div>
+    <div class="product-column">
+        <div class="product-item">
+            <div class="product-item-title animate-text">Surface</div>
+            <ul>
+                <li class="animate-text"><a target="_blank" href="/pcb_prototype/Comparison_of_several_PCB_surface_finish_types.html">Surface finish </a></li>
+                <li class="animate-text"><a target="_blank" href="/pcb_prototype/PCB_Solder_mask.html">Solder mask </a></li>
+                <li class="animate-text"><a target="_blank" href="/pcb_prototype/PCB_Via_Covering.html">Via Covering </a></li>
+                <li class="animate-text"><a target="_blank" href="/pcb_prototype/PCB_Silkscreen.html">Silkscreen </a></li>
+
+                <li class="animate-text line"></li>
+            </ul>
+        </div>
+        <div class="product-item">
+            <div class="product-item-title animate-text">Drills &amp; Throughplating</div>
+            <ul>
+                <li class="animate-text"><a target="_blank" href="/pcb_prototype/Blind_vias_and_Buried_Vias.html">Blind &amp; Buried Vias </a></li>
+                <li class="animate-text"><a target="_blank" href="/pcb_prototype/Annular_rings.html">Annular rings </a></li>
+                <li class="animate-text"><a target="_blank" href="/pcb_prototype/PCB_Sideplating.html">Sideplating </a></li>
+                <li class="animate-text"><a target="_blank" href="/pcb_prototype/What_are_Plated_Half_Holes_Castellated_Holes_.html">Plated Half-holes </a></li>
+                <li class="animate-text"><a target="_blank" href="/pcb_prototype/Plated_through_slots.html">Plated-through slots </a></li>
+                <li class="animate-text"><a target="_blank" href="/pcb_prototype/PCB_Via_in_Pad.html">Via-in-Pad </a></li>
+                <li class="animate-text line"></li>
+            </ul>
+        </div>
+        <div class="product-item">
+            <div class="product-item-title animate-text">Mechanics</div>
+            <ul>
+                <li class="animate-text"><a target="_blank" href="/pcb_prototype/PCB_Milling.html">Milling </a></li>
+                <li class="animate-text"><a target="_blank" href="/pcb_prototype/PCB_V_Scoring.html">V-Scoring </a></li>
+                <li class="animate-text"><a target="_blank" href="/pcb_prototype/PCB_Backdrill.html">Backdrill </a></li>
+
+            </ul>
+        </div>
+
+    </div>
+    <div class="product-column">
+
+        <div class="product-item">
+            <div class="product-item-title animate-text">Layer buildup</div>
+            <ul>
+                <li class="animate-text"><a target="_blank" href="/multi-layer-laminated-structure.html">Multi-layer laminated structure<img style="width:14px; margin-left: 2px;vertical-align:middle;" src="/img/images/xiangqing/hot.png"></a></li>
+                <li class="animate-text"><a target="_blank" href="/Rigid-Flex-PCB-standard-stackup.html">Rigid-Flex PCB Standard Stackup<img style="width:14px; margin-left: 2px;vertical-align:middle;" src="/img/images/xiangqing/hot.png"></a></li>
+                <li class="animate-text"><a target="_blank" href="/pcb_prototype/General_introduction_of_Aluminum_PCB.html">Aluminum PCB Stackup </a></li>
+<li class="animate-text"><a target="_blank" href="/pcb_prototype/What_is_layer_stack_up.html">Layer Stackup </a></li>
+                <li class="animate-text"><a target="_blank" href="/pcb_prototype/Cost_cores_Foil___Prepreg_for_PCBs.html">Prepregs, cores, foils </a></li>
+                <li class="animate-text"><a target="_blank" href="/pcb_prototype/_Stack_up_for_Prototypes.html">Prototypes </a></li>
+                <li class="animate-text"><a target="_blank" href="/pcb_prototype/Stack_up_for_FPC.html">Flex Stackup </a></li>
+                <li class="animate-text line"></li>
+            </ul>
+        </div>
+        <div class="product-item">
+            <div class="product-item-title animate-text">Quality</div>
+            <ul>
+                <li class="animate-text"><a target="_blank" href="/oem/quality-control.html">Quality Control<img style="width:14px; margin-left: 2px;vertical-align:middle;" src="/img/images/xiangqing/hot.png"></a></li>
+                <li class="animate-text"><a target="_blank" href="/pcb_prototype/PCB_Design_Rule_Check.html">Design Rule Check</a></li>
+                <li class="animate-text"><a target="_blank" href="/pcb_prototype/Automated_optical_inspection__AOI_.html">A.O.I.</a></li>
+                <li class="animate-text"><a target="_blank" href="/pcb_prototype/Electronic_test___probe_test.html">E-Test</a></li>
+                <li class="animate-text"><a target="_blank" href="/pcb_prototype/Automated_X_Ray_Inspection.html">X-RAY</a></li>
+                <li class="animate-text"><a target="_blank" href="/pcb_prototype/Impedance_Control.html">Impedance Control</a></li>
+               
+                <li class="animate-text"><a target="_blank" href="/pcb_prototype/RoHs_Lead_Free.html">ROHS-Lead Free</a></li>
+                <li class="animate-text"><a target="_blank" href="/pcb_prototype/PCB_Manufacturing_tolerances.html">Manufacturing tolerances</a></li>
+<li class="animate-text"><a target="_blank" href="/pcb_prototype/PCB_Shelf_Life.html">PCB Shelf Life</a></li>
+<li class="animate-text line"></li>
+            </ul>
+        </div>
+        <div class="product-item">
+            <div class="product-item-title animate-text">Online Tool</div>
+            <ul>
+<li class="animate-text"><a target="_blank" href="/blog/News/PCBWay_Plug_In_for_KiCad_3ea6219c.html">KiCad Plugin<img style="width:14px; margin-left: 2px;vertical-align:middle;" src="/img/images/xiangqing/hot.png"></a></li>
+                <li class="animate-text"><a target="_blank" href="/pcb_prototype/impedance_calculator.html">Impedance
+                    Calculation</a></li>
+                <li class="animate-text"><a target="_blank" href="/pcb_prototype/trace-width-calculator.html">PCB Trace
+                    Width Calculator</a></li>
+                <li class="animate-text"><a target="_blank" href="/project/OnlineGerberViewer.html">Online
+                    Gerber Viewer</a></li>
+                <li class="animate-text"><a target="_blank" href="/project/Online3DViewer.html">Online
+                    3D Viewer</a></li>
+                <li class="animate-text"><a target="_blank" href="/tool/ElectronicDesignViewer">Electronic
+                    Design Viewer</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="product-column">
+        <div class="sub-cat-image"><a href="/orderonline.aspx"><img src="https://pcbwayfile.s3.us-west-2.amazonaws.com/web/240621/pcb_promotion.png" alt="pcb assembly promotion"></a></div>
+    </div>
+</div>
+                
+            </div>
+        </div>
+
+        <div class="common-topbar-dropdown diy-new-topbar js-new-down" style="display:none;">
+            <div class="common-topbar-dropdown-all-product">
+                <div class="all-product-column-wrapper clearfix">
+                    <div class="product-column">
+                        <div class="product-item">
+                            <div class="site-nav-slider">
+
+                                <div class="site-nar-item">
+                                    <a class="site-nav-link" href="/rapid-prototyping/manufacture/?type=1&reffercode=TOP">
+                                        <div class="site-icon site-icon2"></div>
+                                        <div class="site-drop-text">
+                                            <div class="site-drop-title">
+                                                CNC Machining
+                                            </div>
+                                            <p class="site-drop-des">Milling (3-, 4- &amp; full 5-axis), turning</p>
+                                        </div>
+                                        <div class="site-arrow"></div>
+                                    </a>
+                                </div>
+                                <div class="site-nar-item">
+                                    <a class="site-nav-link" href="/rapid-prototyping/manufacture/?type=2&reffercode=TOP">
+                                        <div class="site-icon site-icon1"></div>
+                                        <div class="site-drop-text">
+                                            <div class="site-drop-title">
+                                                3D Printing
+                                            </div>
+                                            <p class="site-drop-des">FDM, SLA, SLS, MJF, DMLS, Polyjet</p>
+                                        </div>
+                                        <div class="site-arrow"></div>
+                                    </a>
+                                </div>
+                                <div class="site-nar-item">
+                                    <a class="site-nav-link" href="/rapid-prototyping/manufacture/?type=3&reffercode=TOP">
+                                        <div class="site-icon site-icon3"></div>
+                                        <div class="site-drop-text">
+                                            <div class="site-drop-title">
+                                                Sheet Metal Fabrication
+                                            </div>
+                                            <p class="site-drop-des">Laser cutting, bending, post processing</p>
+                                        </div>
+                                        <div class="site-arrow"></div>
+                                    </a>
+                                </div>
+                                <div class="site-nar-item">
+                                    <a class="site-nav-link" href="/rapid-prototyping/manufacture/?type=4&reffercode=TOP">
+                                        <div class="site-icon site-icon4"></div>
+                                        <div class="site-drop-text">
+                                            <div class="site-drop-title">
+                                                Injection Molding
+                                            </div>
+                                            <p class="site-drop-des">
+                                                Rapid tooling, multi-cavity molds
+                                            </p>
+                                        </div>
+                                        <div class="site-arrow"></div>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="product-column cnctype-02">
+                        <div class="product-item">
+                            <div class="product-item-title animate-text">CNC Machining</div>
+                            <ul>
+                                <li class="animate-text">
+                                    <a href="/rapid-prototyping/cnc-machining/">
+                                        CNC Machining Service<img style="width:14px; margin-left: 2px;vertical-align:middle;" src="/img/images/xiangqing/hot.png">
+                                    </a>
+                                </li>
+                                <li class="animate-text">
+                                    <a href="/rapid-prototyping/CNC-machining/CNC-Milling.html">
+                                        CNC Milling<img style="width:14px; margin-left: 2px;vertical-align:middle;" src="/img/images/xiangqing/hot.png">
+                                    </a>
+                                </li>
+                                <li class="animate-text">
+                                    <a href="/rapid-prototyping/CNC-machining/CNC-Turning.html">
+                                        CNC Turning<img style="width:14px; margin-left: 2px;vertical-align:middle;" src="/img/images/xiangqing/hot.png">
+                                    </a>
+                                </li>
+                                <li class="animate-text">
+                                    <a href="/blog/Tapping/Threaded_Holes_in_CNC_Machining_Thread_Types_Depth_and_Design_Tips_4496b79a.html">
+                                        Threaded Holes
+                                    </a>
+                                </li>
+                                <li class="animate-text">
+                                    <a href="/blog/CNC_Machining/Electrical_Discharge_Machining_EDM_Process_Types_Technical_Guide_3f35da5a.html">
+                                        Electric Discharge Machining (EDM)
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="product-column cnctype-01">
+                        <div class="product-item">
+                            <div class="product-item-title animate-text">3D Printing</div>
+                            <ul>
+                                <li class="animate-text">
+                                    <a href="/rapid-prototyping/3d-printing/">
+                                        3D Printing Service<img style="width:14px; margin-left: 2px;vertical-align:middle;" src="/img/images/xiangqing/hot.png">
+                                    </a>
+                                </li>
+                                <li class="animate-text">
+                                    <a href="/rapid-prototyping/3D-Printing/3D-Printing-SLA.html">
+                                        Stereolithography (SLA)<img style="width:14px; margin-left: 2px;vertical-align:middle;" src="/img/images/xiangqing/hot.png">
+                                    </a>
+                                </li>
+                                <li class="animate-text">
+                                    <a href="/rapid-prototyping/3D-Printing/3D-Printing-DLP.html">
+                                        Digital Light Processing (DLP)
+                                    </a>
+                                </li>
+                                <li class="animate-text">
+                                    <a href="/rapid-prototyping/3D-Printing/3D-Printing-FDM.html">
+                                        Fused Deposition Modeling (FDM)<img style="width:14px; margin-left: 2px;vertical-align:middle;" src="/img/images/xiangqing/hot.png">
+                                    </a>
+                                </li>
+                                <li class="animate-text">
+                                    <a href="/rapid-prototyping/3D-Printing/3D-Printing-SLM.html">
+                                        Selective Laser melting (SLM)
+                                    </a>
+                                </li>
+                                <li class="animate-text">
+                                    <a href="/rapid-prototyping/3D-Printing/3D-Printing-SLS.html">
+                                        Selective Laser Sintering (SLS)
+                                    </a>
+                                </li>
+                                <li class="animate-text">
+                                    <a href="/rapid-prototyping/3D-Printing/3D-Printing-PolyJet.html">
+                                        PolyJet (PJ)
+                                    </a>
+                                </li>
+                                <li class="animate-text">
+                                    <a href="/rapid-prototyping/3D-Printing/3D-Printing-VC.html">
+                                        Vacuum Casting (VC)
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="product-column cnctype-03">
+                        <div class="product-item">
+                            <div class="product-item-title animate-text">Sheet Metal Fabrication</div>
+                            <ul>
+                                <li class="animate-text">
+                                    <a href="/rapid-prototyping/sheet-metal/">
+                                        Sheet Metal Fabrication Service
+                                    </a>
+                                </li>
+                                <li class="animate-text">
+                                    <a href="/rapid-prototyping/Sheet-metal/Laser-Cutting.html">
+                                        Laser Cutting
+                                    </a>
+                                </li>
+                                <li class="animate-text">
+                                    <a href="/rapid-prototyping/Sheet-metal/sheet-cutting.html">
+                                        Sheet Cutting
+                                    </a>
+                                </li>
+                                <li class="animate-text">
+                                    <a href="/rapid-prototyping/Sheet-metal/bending.html">
+                                        Bending
+                                    </a>
+                                </li>
+                                <li class="animate-text">
+                                    <a href="/rapid-prototyping/Sheet-metal/countersink-counterbore.html">
+                                        Countersink & Counterbore
+                                    </a>
+                                </li>
+                                <li class="animate-text">
+                                    <a href="/rapid-prototyping/Sheet-metal/hardware-insertion.html">
+                                        Hardware Insertion
+                                    </a>
+                                </li>
+                                <li class="animate-text">
+                                    <a href="/rapid-prototyping/Sheet-metal/tapping.html">
+                                        Tapping
+                                    </a>
+                                </li>
+                                <li class="animate-text">
+                                    <a href="/rapid-prototyping/Sheet-metal/welding.html">
+                                        Welding
+                                    </a>
+                                </li>
+                                
+                            </ul>
+                        </div>
+                        <div class="product-item">
+                            <div class="product-item-title animate-text">Additional Services</div>
+                            <ul>
+                                <li class="animate-text">
+                                    <a href="/rapid-prototyping/injection-molding/">
+                                        Injection Molding Service
+                                    </a>
+                                </li>
+                                <li class="animate-text">
+                                    <a href="/rapid-prototyping/quality-control-cnc.html">
+                                        Quality Control<img style="width:14px; margin-left: 2px;vertical-align:middle;" src="/img/images/xiangqing/hot.png">
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="product-column cnctype-04">
+                        <div class="product-item">
+                            <div class="product-item-title animate-text">Finishing Options</div>
+                            <ul>
+                                <li class="animate-text">
+                                    <a href="/rapid-prototyping/Surface-Finishing.html">
+                                        All Surface Finishes<img style="width:14px; margin-left: 2px;vertical-align:middle;" src="/img/images/xiangqing/hot.png">
+                                    </a>
+                                </li>
+                                <li class="animate-text">
+                                    <a href="/rapid-prototyping/Surface-Finishing/standard/standard/">
+                                        Standard (As-Milled)(Ra 125μin)
+                                    </a>
+                                </li>
+                                <li class="animate-text">
+                                    <a href="/rapid-prototyping/Surface-Finishing/spray-painting/matt-paint/">
+                                        Spray painting - Matt paint
+                                    </a>
+                                </li>
+                                <li class="animate-text">
+                                    <a href="/rapid-prototyping/Surface-Finishing/spray-painting/high-gloss-paint/">
+                                        Spray painting - High gloss paint
+                                    </a>
+                                </li>
+                                <li class="animate-text">
+                                    <a href="/rapid-prototyping/Surface-Finishing/anodized/bead-blast-anodized-color/">
+                                        Bead blast + Anodized color
+                                    </a>
+                                </li>
+                                <li class="animate-text">
+                                    <a href="/rapid-prototyping/Surface-Finishing/anodized/anodized/">
+                                        Anodized
+                                    </a>
+                                </li>
+                                <li class="animate-text">
+                                    <a href="/rapid-prototyping/Surface-Finishing/brushed/brushed/">
+                                        Brushed
+                                    </a>
+                                </li>
+                                <li class="animate-text">
+                                    <a href="/rapid-prototyping/Surface-Finishing/detail-sanding/1000-sanding/">
+                                        #1000 sanding
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--  why-us 二级菜单-->
+        <div class="common-topbar-dropdown diy-new-topbar js-why-down" style="display: none">
+            <div class="common-topbar-dropdown-all-product" style="display:block">
+                <div class="all-product-column-wrapper clearfix">
+                    <div class="our-product-box">
+                        <div class="our-product-l">
+                            <div class="column-item w-way">
+                                <a href="/why.html">
+                                    <div class="column-icon"></div>
+                                    <div class="column-text">
+                                        <div class="text-name">
+                                            Why PCBWay
+                                        </div>
+                                        <div class="text-des">
+                                            One-Stop Solution for PCB & Assembly
+                                        </div>
+                                    </div>
+                                    <div class="column-sign">
+
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="column-item w-sponsor">
+                                <a href="/project/sponsor/" target="_blank">
+                                    <div class="column-icon"></div>
+                                    <div class="column-text">
+                                        <div class="text-name">
+                                            Sponsorships
+                                        </div>
+                                        <div class="text-des">
+                                            Educational & Engineering Program
+                                        </div>
+                                    </div>
+                                    <div class="column-sign">
+
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="column-item w-about">
+                                <a href="/about.html">
+                                    <div class="column-icon"></div>
+                                    <div class="column-text">
+                                        <div class="text-name">
+                                            About Us
+                                        </div>
+                                        <div class="text-des">
+                                            Learn about our company mission
+                                        </div>
+                                    </div>
+                                    <div class="column-sign">
+
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="column-item w-design">
+                                <a href="/design-services.html" target="_blank">
+                                    <div class="column-icon"></div>
+                                    <div class="column-text">
+                                        <div class="text-name">
+                                            PCB Design
+                                        </div>
+                                        <div class="text-des">
+                                            PCB Layout, PCB Design, Electronics
+                                        </div>
+                                    </div>
+                                    <div class="column-sign">
+
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="column-item w-contact">
+                                <a href="/contact.html">
+                                    <div class="column-icon"></div>
+                                    <div class="column-text">
+                                        <div class="text-name">
+                                            Contact Us
+                                        </div>
+                                        <div class="text-des">
+                                            Global Offices,quick answers on product
+                                        </div>
+                                    </div>
+                                    <div class="column-sign">
+
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="column-item w-technical">
+                                <a href="/helpcenter/technical_support/" target="_blank">
+                                    <div class="column-icon"></div>
+                                    <div class="column-text">
+                                        <div class="text-name">
+                                            Technical Support
+                                        </div>
+                                        <div class="text-des">
+                                            How to Generate Gerber files in Software
+                                        </div>
+                                    </div>
+                                    <div class="column-sign">
+
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="column-item w-mobike">
+                                <a href="/mobilepage.html" target="_blank">
+                                    <div class="column-icon"></div>
+                                    <div class="column-text">
+                                        <div class="text-name">
+                                            Mobile
+                                        </div>
+                                        <div class="text-des">
+                                            Enjoy more deals on our mobile website
+                                        </div>
+                                    </div>
+                                    <div class="column-sign">
+
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="column-item q-control" >
+                                <a href="/oem/quality-control.html" >
+                                    <div class="column-icon"></div>
+                                    <div class="column-text">
+                                        <div class="text-name">
+                                            Quality Control
+                                        </div>
+                                        <div class="text-des">
+                                            Perfect Quality Assurance System
+                                        </div>
+                                    </div>
+                                    <div class="column-sign">
+
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="our-product-r">
+                            <div class="new-log">
+                                News & Blog
+                            </div>
+                                    <div class="nav-item">
+                                        <a class="item-info" href="/blog/PCBWay_Store/PCBWay_Store_NewArrival_Product_M5Stack_NanoC6_Dev_Kit_ef45c758.html" target="_blank">
+                                            <div class="info-img">
+                                                <img src="https://pcb-files.s3.us-west-2.amazonaws.com/web/26/09/30/144713512cf43d70d0bf246689454c58c4aa40ce77384s.jpg" alt="">
+                                            </div>
+                                            <div class="info-des">
+                                                <div class="des-text">
+                                                    PCBWay Store NewArrival Product - M5Stack NanoC6 Dev Kit
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </div>
+                                    <div class="nav-item">
+                                        <a class="item-info" href="/blog/PCB_Design_Layout/Power_Supply_Design_and_Layout_Guidelines_for_LDO_and_DCDC_b194d0e8.html" target="_blank">
+                                            <div class="info-img">
+                                                <img src="https://pcb-files.s3.us-west-2.amazonaws.com/web/26/09/29/173451424318cf85d6b3a4c51aec989a2224ba6791744s.jpg" alt="">
+                                            </div>
+                                            <div class="info-des">
+                                                <div class="des-text">
+                                                    Power Supply Design and Layout Guidelines for LDO and DCDC
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </div>
+                                    <div class="nav-item">
+                                        <a class="item-info" href="/blog/Tapping/Threaded_Holes_in_CNC_Machining_Thread_Types_Depth_and_Design_Tips_4496b79a.html" target="_blank">
+                                            <div class="info-img">
+                                                <img src="https://pcb-files.s3.us-west-2.amazonaws.com/web/26/09/30/11265769388ac768ad2964c1b81370ce1da6e47506653.webp" alt="">
+                                            </div>
+                                            <div class="info-des">
+                                                <div class="des-text">
+                                                    Threaded Holes in CNC Machining: Thread Types, Depth, and Design Tips
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--登陆后显示-->
+</div>
+
+<input type="hidden" id="JsAdminEmail" value="" />
+<input type="hidden" id="showProtocolAgreemtPopup" value="0" />
+<script type="text/javascript">
+    // 抽奖用
+    
+    //最大化liveChat
+    function showLiveChat() {
+        LiveChatWidget.call('maximize')
+    };
+    $(function () {
+
+
+        //时间
+        window.setInterval(function () {
+            var offsetTime = new Date().getTimezoneOffset() * 60 * 1000;//时差
+            var beijingTime = new Date().getTime() + offsetTime + 8 * 3600 * 1000;
+            beijingTime = new Date(beijingTime).toString().split('+')[0];
+            beijingTime = beijingTime.split(" ")
+            beijingTime = [beijingTime[4], beijingTime[0], beijingTime[1] + " " + beijingTime[2], beijingTime[3] + '(GMT+8)']
+            $(".js-top-time").text(beijingTime.join(", "));
+        }, 1000);
+    })
+
+    $(document).ready(function () {
+        //debugger;
+        $(".hd-language").mouseover(function () {
+            $(this).addClass("hd-func-dropdown-active");
+        });
+        $(".hd-language").mouseout(function () {
+            $(this).removeClass("hd-func-dropdown-active");
+        });
+
+        $(".nav-user-account").hover(function () {
+            $(this).addClass("user-account-unfold");
+
+        }, function () {
+            $(this).removeClass("user-account-unfold");
+
+        });
+
+        // why-us
+        $('.js-why-nav,.js-why-down').hover(function () {
+            $('.js-why-down').show()
+        }, function () {
+            $('.js-why-down').hide()
+        })
+
+        // 登陆未登陆界面设置
+
+        jsonplogininfo();
+
+
+
+
+        //$.post("/ajax.aspx", { act: "GetCartNum" }, function (data) {
+
+
+        //    $(".cart-number").text(data.msg);
+
+        //})
+
+        //$.post("/ajax.aspx", { act: "GetUnPayOrderNum" }, function (data) {
+
+        //    $(".clsOrderNum").text("(" + data.msg + ")");
+
+        //    if (data.msg > 0 && 0 > 0) {
+        //        $(".flyout-remind-list").show();
+        //    }
+        //    else {
+        //        $(".flyout-remind-list").hide();
+
+        //    }
+
+        //})
+        //if (getCookie("Toptip2") != "1") {
+        //    $('#Toptip2').show();
+        //}
+        //if (getCookie("Toptip3") != "1") {
+        //    $('#Toptip3').show();
+        //}
+
+        $('.js-language-drop-lists li').click(function (e) {
+            e.stopPropagation();
+
+            $('.js-language-drop-lists li').removeClass('active');
+            $(this).addClass('active')
+
+            $(this).parents('.js-drop-down-top').find('.js-filter').html($.trim($(this).find('a').html()));
+
+            //$('#LangWebUrl').val($.trim($(this).find('a').attr('data-url')));
+
+            $(this).parent().hide();
+        });
+
+        $('.js-currency-drop-lists li').click(function (e) {
+            e.stopPropagation();
+
+            $('.js-currency-drop-lists li').removeClass('active');
+            $(this).addClass('active')
+
+            $(this).parents('.js-drop-down-top').find('.js-filter').html($.trim($(this).find('a').html()));
+
+            //$('#CurrencyType').val($.trim($(this).find('a').attr('data-val')));
+
+            $(this).parent().hide();
+        });
+
+
+
+        $('.js-drop-down-top').click(function (e) {
+            e.stopPropagation();
+            if ($(this).find('.js-drop-lists').is(':visible')) {
+                $('.js-drop-down-top').find('.js-drop-lists').hide()
+                $(this).find('.js-drop-lists').hide();
+            } else {
+                $('.js-drop-down-top').find('.js-drop-lists').hide()
+                $(this).find('.js-drop-lists').show();
+            }
+        });
+
+        // 点击其它地方
+        $(document).click(function (e) {
+            if ($(e.target).closest('.hd-language-currency').length <= 0) {
+                $('.hd-language').removeClass('hd-func-dropdown-active')
+            }
+            // 计价下拉框关闭
+            if ($(e.target).closest('.js-drop-down-top').length <= 0) {
+                $('#headerdvtemp .js-drop-lists').hide();
+            }
+        });
+
+        // 点击保存按钮--套用忽略
+        $('.language-currency .save-btn').click(function (e) {
+            e.stopPropagation()
+            $(this).parents('.hd-language').removeClass('hd-func-dropdown-active')
+
+            var LangWebUrl = $('.js-language-drop-lists li.active').attr('data-url');//$('#LangWebUrl').val();
+            var languageStr = $('.js-language-drop-lists li.active').attr('data-val');
+            var CurrencyType = $('.js-currency-drop-lists li.active').attr('data-val');
+            var currencyStr = $('.js-currency-drop-lists li.active').attr('data-name');
+
+            if (LangWebUrl && LangWebUrl.indexOf('https://www.pcbway.com') > -1) {
+                //now
+                set_currency(CurrencyType);
+
+            } else {
+                if (LangWebUrl) {
+                    var url = new URL(LangWebUrl);
+                    var searchParams = new URLSearchParams(url.search);
+                    searchParams.set('currency', CurrencyType);
+                    url.search = searchParams.toString();
+                    location.href = url.href;
+                }
+
+            }
+
+            var flagStr = $('.language.js-drop-down-top .js-filter').find('.icon-flag').attr('class').split(' ').slice(-1)[0];
+            $('.hd-cur-item').find('.icon-flag').removeClass('icon-jp icon-en icon-fr icon-es').addClass(flagStr);
+
+
+            $('.hd-cur-item').find('.language').html(languageStr)
+            $('.hd-cur-item').find('.the-symbol').html(currencyStr)
+        })
+    });
+
+    function set_currency(currency) {
+
+        $.getJSON('https://member.pcbway.com/Member/SetCurrencyType?callback=?', { ct: currency });
+
+        setCookie('CurrencyType', currency, 30);
+
+        if (typeof ChangeNotAddToBoard === "function") {
+            ChangeNotAddToBoard(currency)
+        }
+
+        if (typeof Step1 === "function") {
+            Step1();
+        }
+
+        if (typeof ChangeHomeCurrency === "function") {
+            ChangeHomeCurrency(currency)
+        }
+
+        //cnc
+        var cncIndex = $('#cncIndex').val();
+        if (cncIndex && cncIndex.length > 0) {
+
+            var cncIndexArray = cncIndex.split(',');
+            $.each(cncIndexArray, function (i, item) {
+                if (item > 0) {
+                    online.step2(item, 0, 0, 0);
+                }
+
+            });
+
+        }
+
+        if (typeof ChangePcbAssemblyCurrency === "function") {
+            ChangePcbAssemblyCurrency(currency)
+        }
+    }
+
+    $(document).ready(function () {
+    });
+
+
+    function jsonplogininfo() {
+        // 登陆未登陆界面设置
+        $.ajax({
+            url: "https://login.pcbway.com/GetSessionP.aspx?callback=?",
+            dataType: "jsonp",
+            jsonpCallback: "jasonpCallback",
+            success: function (jason) {
+
+                if (jason.data == 0) {
+                    var getBroswerAbc = getBroswer();
+                    //console.log(abc);
+
+                    if (getBroswerAbc && getBroswerAbc.broswer == "Firefox" && parseFloat(getBroswerAbc.version.split('.')[0]) > 102
+                        && "https://www.pcbway.com".indexOf("pcbway.com") == -1) {
+
+                        if (1==2 && $.cookie('hidiframemember') != "1" && window && window.location && window.location.href && window.location.href.indexOf("Member/Login/") == -1) {
+                            $("#headerdvtemp").append('<iframe style="display:none;" src="/home/iframeview" id="hidiframemember"></iframe>');
+
+                            $.cookie('hidiframemember', '1');
+
+                            setTimeout(function () {
+                                $.ajax({
+                                    url: "https://member.pcbway.com/Project/ResultDataLoinGet?callback=?",
+                                    dataType: "jsonp",
+                                    jsonpCallback: "jasonpCallback",
+                                    success: function (jasonmember) {
+                                        callbacklogininfo(jasonmember)
+
+                                    },
+                                    error: function (xhr, status, error) {
+                                        //debugger;
+                                    }
+                                });
+                            }, 3000);
+
+                        }
+                        else {
+
+                            $.ajax({
+                                url: "https://member.pcbway.com/Project/ResultDataLoinGet?callback=?",
+                                dataType: "jsonp",
+                                jsonpCallback: "jasonpCallback",
+                                success: function (jasonmember) {
+                                    callbacklogininfo(jasonmember)
+
+                                },
+                                error: function (xhr, status, error) {
+                                    //debugger;
+                                }
+                            });
+
+                        }
+
+
+
+
+
+                    }
+                    else {
+                        callbacklogininfo(jason);
+                    }
+                }
+                else {
+                    callbacklogininfo(jason);
+                }
+
+
+
+            },
+            error: function (xhr, status, error) {
+                //debugger;
+            }
+        });
+
+    }
+
+    function callbacklogininfo(jason) {
+        //debugger;
+        if (jason.data == 1) {
+            //已登陆
+            //if (jason.isonlyRemember == 1) {
+            $("#headerdvtemp").append('<iframe style="display:none;" src="https://member.pcbway.com/SetCookie.aspx?returl=https://member.pcbway.com&sid=' + jason.sid + '" id="hidiframe"></iframe>');
+            //}
+            $(".flyout-user-signout").css("display", "block");
+            $(".flyout-remind-list").css("display", "block");
+            $("#login-stat-signed").find("b").text(jason.contactName);
+            $(".sites-jump").find("b").text("(" + jason.awitingCount + ")");
+            $(".flyout-remind-list").find("b").text("(" + jason.awitingCount + ")");
+            $(".cart-number").text(jason.cartCount);
+            //cookie[logFlag]，写入userid
+            setCookie2('logFlag', jason.data, 3600 * 1000);
+            $("#logFlag").val(jason.data);
+            $("#hiduserNo").val(jason.userNo);
+            //pcb计价
+
+            //选项判断
+            if ($(".clsPlatingType.active").attr("data") == "HASL with lead" || $(".clsPlatingType.active").attr("data") == "HASL lead free") {
+                $(".custom-weight-show").show();
+            } else {
+                $(".custom-weight-show").hide();
+            }
+
+            if ($("#txthiduserid")) {
+                $("#txthiduserid").val(jason.id);
+            }
+            // 是否需要弹出协议更新提示框
+            var showProtocol = JSON.parse(jason.showProtocol.toLowerCase());
+            if (showProtocol == true) {
+                $("#showProtocolAgreemtPopup").val(1);
+            } else {
+                $("#showProtocolAgreemtPopup").val(0);
+            }
+
+            if (jason.IsNotAddToBoard == "True") {
+                if ($(".clsRemoveProNo").length > 0) {
+                    $(".clsRemoveProNo").removeClass("active");
+                    $(".clsRemoveProNo[data='Yes']").addClass("active");
+                    $("input[name='radRemoveProNo']").val('Yes');
+                }
+            }
+            //if (jason['isSkipNewWeb']) {
+            //    //
+            //    setCookie2('isSkipNewWeb', 'true', 1);
+            //}
+
+
+
+            //钢网计价
+            $("#StencilSelPcb").show();
+            //贴片计价
+            $("#dvSMTPCBRelation").show();
+            //PONumber显示
+            $("#divPONumber").show();
+            //PONumber不显示
+            $("#divSmtPONumber").show();
+            $("#divWHPONumber").show();
+            //PONumber不显示
+            $("#divStencilPONumber").show();
+            //PONumber不显示
+            $("#divFlexiblePONumber").show();
+            //登陆邮箱不显示
+            $(".unlogin-email").hide();
+            //Top显示已登陆
+            $(".account-unsigned").hide();
+            $("#login-stat-signed").show();
+
+            if ('4' == 2) { // pcb计价页
+                //显示member导航条
+                $("#memberNavigation").show();
+                $("#wwwNavigation").hide();
+            }
+            //显示业务员邮箱
+            $("#adminEmail").html(jason.adminEmail).attr('href', "mailTo:" + jason.adminEmail);
+            $('.js-admin-email').html(jason.adminEmail).attr('href', "https://member.pcbway.com/Message/MessageDetail").attr('target', '_blank');
+            $(".js-admin-email2").attr('href', "mailTo:" + jason.adminEmail);
+            $("#JsAdminEmail").val(jason.adminEmail);
+            // GetRestCount();
+
+            $('#isshownewhere').hide();
+            if (getCookie("isshownewhere") != "1") {
+                setCookie2("isshownewhere", "1", 1);
+            }
+
+            if (typeof CallByCheckLoginSuccess === "function") {
+                CallByCheckLoginSuccess(jason.sid, jason.id);
+            }
+            if (typeof CallByCheckLoginBottomSuccess === "function") {
+
+
+                if (jason.adminname) {
+                    CallByCheckLoginBottomSuccess(jason.userNo + "(sale-rep:" + jason.adminname + ")");
+                }
+                else {
+                    CallByCheckLoginBottomSuccess(jason.userNo);
+                }
+
+            }
+
+        }
+        else {
+            //未登陆
+            $(".flyout-user-signIn").css("display", "block");
+            $(".flyout-visitors-login").css("display", "block");
+            $(".flyout-remind-list").css("display", "none");
+            $("#login-stat-signed").find("b").text("");
+            $(".sites-jump").find("b").text("(0)");
+            $(".cart-number").text("0");
+
+            //cookie[logFlag]，写入0
+            setCookie2('logFlag', '0', 3600 * 1000);
+            $("#logFlag").val('0');
+            // 协议
+            $("#showProtocolAgreemtPopup").val(0);
+            //pcb计价
+            $(".custom-weight-show").hide();
+            //钢网计价
+            $("#StencilSelPcb").hide();
+            //贴片计价
+            $("#dvSMTPCBRelation").hide();
+            //PONumber不显示
+            $("#divPONumber").hide();
+            //PONumber不显示
+            $("#divSmtPONumber").hide();
+            //PONumber不显示
+            $("#divStencilPONumber").hide();
+            $("#divWHPONumber").hide();
+            //PONumber不显示
+            $("#divFlexiblePONumber").hide();
+            //登陆邮箱显示
+            //$(".unlogin-email").show();
+            //Top显示未登陆
+            $(".account-unsigned").show();
+            $("#login-stat-signed").hide();
+
+            if (getCookie("isshownewhere") != "1") {
+                $('#isshownewhere').show();
+            }
+
+            //显示www导航条
+            //$("#wwwNavigation").show();
+            //$("#memberNavigation").hide();
+        }
+
+        if (typeof CallByCheckLoginAfter === "function") {
+            CallByCheckLoginAfter(jason);
+        }
+
+    }
+
+    //sign out
+    function signout() {
+
+        var getBroswerAbc = getBroswer();
+        //console.log(abc);
+
+        if (getBroswerAbc && getBroswerAbc.broswer == "Firefox" && parseFloat(getBroswerAbc.version.split('.')[0]) > 102
+            && "https://www.pcbway.com".indexOf("pcbway.com") == -1) {
+            location.href = "https://member.pcbway.com/Home/Exit/";
+        }
+        else {
+            $.ajax({
+                url: "https://login.pcbway.com/RemoveSessionP.aspx?callback=?",
+                dataType: "jsonp",
+                jsonpCallback: "jasonpCallback",
+                success: function (jason) {
+                    top.location.href = "https://www.pcbway.com";
+                },
+                error: function (xhr, status, error) {
+                    //debugger;
+                }
+            });
+        }
+
+
+
+    }
+
+
+    function getBroswer() {
+        try {
+            var Sys = {};
+            var ua = navigator.userAgent.toLowerCase();
+            var s;
+            (s = ua.match(/edge\/([\d.]+)/)) ? Sys.edge = s[1] :
+            (s = ua.match(/rv:([\d.]+)\) like gecko/)) ? Sys.ie = s[1] :
+            (s = ua.match(/msie ([\d.]+)/)) ? Sys.ie = s[1] :
+            (s = ua.match(/firefox\/([\d.]+)/)) ? Sys.firefox = s[1] :
+             (s = ua.match(/opr\/([\d.]+)/)) ? Sys.opr = s[1] :
+            (s = ua.match(/chrome\/([\d.]+)/)) ? Sys.chrome = s[1] :
+            (s = ua.match(/opera.([\d.]+)/)) ? Sys.opera = s[1] :
+            (s = ua.match(/version\/([\d.]+).*safari/)) ? Sys.safari = s[1] : 0;
+
+            if (Sys.edge) return { broswer: "Edge", version: Sys.edge };
+            if (Sys.ie) return { broswer: "IE", version: Sys.ie };
+            if (Sys.firefox) return { broswer: "Firefox", version: Sys.firefox };
+            if (Sys.opr) return { broswer: "opr", version: Sys.opr };
+
+            if (Sys.chrome) return { broswer: "Chrome", version: Sys.chrome };
+            if (Sys.opera) return { broswer: "Opera", version: Sys.opera };
+            if (Sys.safari) return { broswer: "Safari", version: Sys.safari };
+            //opr/68.0.3618.165
+            return { broswer: "", version: "0" };
+        }
+        catch (e) {
+            return { broswer: "", version: "0" };
+
+        }
+    }
+
+
+    function closeNotice(obj) {
+        $(obj).parent().parent().hide();
+    }
+
+    //function Toptip2() {
+    //    $('#Toptip2').hide();
+    //    setCookie2("Toptip2", "1", 1);
+    //}
+    //function Toptip3() {
+    //    $('#Toptip3').hide();
+    //    setCookie2("Toptip3", "1", 1);
+    //}
+
+    function setCookie2(name, value, time) {
+        var exp = new Date();
+        exp.setDate(exp.getDate() + time * 1);
+        document.cookie = name + "=" + escape(value) + ";expires=" + exp.toGMTString() + "; path=/";
+    }
+    //function getCookie2(c_name) {
+    //    if (document.cookie.length > 0) {
+    //        c_start = document.cookie.indexOf(c_name + "=")
+    //        if (c_start != -1) {
+    //            c_start = c_start + c_name.length + 1
+    //            c_end = document.cookie.indexOf(";", c_start)
+    //            if (c_end == -1) c_end = document.cookie.length
+    //            return unescape(document.cookie.substring(c_start, c_end))
+    //        }
+    //    }
+    //    return ""
+    //}
+
+
+    function getCookie(name) {
+        var arr, reg = new RegExp("(^| )" + name + "=([^;]*)(;|$)");
+        if (arr = document.cookie.match(reg))
+            return unescape(arr[2]);
+        else
+            return "";
+    }
+
+
+</script>
+
+
+
+
+
+    <div class="mod-hero">
+        <div class="details-bg wcontainer clearfix">
+            <div class="details-box">
+                <div class="page-container">
+                    <hr class="page-headings" />
+                    <h1>PCB Gold fingers</h1>
+                    <div class="project-module text">
+                        <p>In the manufacturing process of electronic devices, gold finger, as a unique pin interface, plays a crucial role. With its distinctive metal coating, gold finger is hailed as the aristocratic connection in the PCB field.</p><h3>What is Gold Finger？</h3><p>On computer memory modules and graphics cards, there is a row of golden-colored conductive contacts commonly referred to as &quot;gold fingers.&quot; They resemble fingers in appearance and are also gold in color, hence the nickname &quot;gold fingers.&quot; They can also be referred to as edge connectors.&nbsp;</p><p><br/></p><p>Gold fingers are gold-plated connectors located at the edge of a PCB. They serve as connectors between the PCB and the motherboard, ensuring reliable transmission of signals or commands. In addition to providing connectivity, the gold plating also serves to protect the edges of the circuit board from damage.</p><p>Edge fingers and edge connectors are two concepts that are easily confused. Although both involve the connection of electronic devices, their purposes and functions are different.Next, we will explain the difference between them.</p><p><strong>Edge connector</strong></p><p>An edge connector is a specially designed connector used to mate with edge fingers. They are typically made of plastic or metal and feature slots or holes that are compatible with the edge fingers. The purpose of edge connectors is to connect electronic devices to other modules or external devices, enabling data transfer and electrical signal exchange. Common examples of edge connectors include expansion card slots, module sockets, and so on.</p><p><strong>Comparison between Gold Fingers and Edge Connectors</strong></p><ul class=" list-paddingleft-2" style="list-style-type: disc;"><li><p>Utility: Gold fingers are used to connect the PCB to peripheral devices or the motherboard, creating an interface for data transfer via USB and storage cards. While edge connectors are used in computers as expansion slots (to connect PCIe, PCI, and AGP cards to the system bus).</p></li><li><p>Placement: Gold fingers are located at the edge of the board, while edge connectors can be installed anywhere on the circuit board.</p></li><li><p>Package: Gold fingers are gold-plated for enhanced conductivity and durability. They can be plugged and unplugged as needed. While edge connectors are enclosed in a thermoplastic box, with one side of the box being open and the pins located along the edge.</p></li><li><p>Design: Gold fingers are designed as solder pads. They are created after the solder mask preparation and require additional milling to obtain chamfered edges. On the other hand, edge connectors are configured as pins that are inserted and soldered into through-holes.</p></li><li><p>Usage: Gold fingers are convenient in situations where frequent connection and disconnection are required. By repeatedly plugging and unplugging gold fingers, reliable electrical connections can be achieved without significant damage or wear to the connector or contact points. On the other hand, edge connectors are typically permanently fixed once inserted into the board and are not as easy to dismantle and replace.</p></li><li><p>Price: Gold fingers have higher manufacturing costs as they require gold plating. Conversely, edge connectors are cheaper as they are typically made of plastic or metal materials.</p></li></ul><h3>The Surface Treatment Methods for PCB Gold Fingers</h3><ul class=" list-paddingleft-2" style="list-style-type: disc;"><li><p>Electroplated Nickel Gold: With a thickness ranging from 3-50µ&quot;, electroplated nickel gold is widely used for gold fingers on PCBs that require frequent plugging and unplugging or undergo mechanical friction. It offers excellent conductivity, oxidation resistance, and wear resistance. However, due to the high cost of gold plating, it is typically used for localized gold plating, such as gold fingers.</p></li><li><p>Immersion Gold: Typically with a thickness of 1µ&quot;, up to a maximum of 3µ&quot;, immersion gold is widely applied to high-precision PCBs with features like keypads, IC bonding, or BGA (Ball Grid Array). It provides superior conductivity, surface flatness, and solderability. For gold finger PCBs that do not require high wear resistance, full-board immersion gold can be chosen as a cost-effective alternative to electroplated gold. The color of immersion gold is golden yellow.</p></li></ul><h3>Category of Gold Fingers</h3><p>Gold fingers can be divided into regular gold fingers (flush gold fingers), segmented gold fingers (intermittent gold fingers), and long-short gold fingers (uneven gold fingers).</p><p>Regular gold fingers (flush gold fingers): Rectangular solder pads with the same length and width are neatly arranged at the edge of the board. They are commonly used for physical connections in network cards, graphics cards, and similar devices.</p><p style="text-align: center;"><img src="https://pcbwayfile.s3.us-west-2.amazonaws.com/web/23/07/12/0942513910614t.jpg" title="2.jpg" alt="2.jpg"/></p><p>Segmented gold fingers (intermittent gold fingers): Rectangular solder pads of different lengths located at the edge of the circuit board, with a front section disconnected.</p><p style="text-align: center;"><img src="https://pcbwayfile.s3.us-west-2.amazonaws.com/web/23/07/12/0943569058431t.png" title="segament_gold_finger.png" alt="segament_gold_finger.png"/></p><p>Long-short gold fingers (uneven gold fingers): Rectangular solder pads of varying lengths located at the edge of the board. They are commonly used for physical connections in devices such as memory modules, USB drives, and card readers.</p><p style="text-align: center;"><img src="https://pcbwayfile.s3.us-west-2.amazonaws.com/web/23/07/12/0944315831315t.png" title="long_short.png" alt="long_short.png"/></p><h3>Design Rules for Gold Fingers</h3><ul class=" list-paddingleft-2" style="list-style-type: disc;"><li><p>There should be a minimum distance of 0.5mm between the gold fingers and the PCB board outline.</p><p style="text-align: center;"><img src="https://pcbwayfile.s3.us-west-2.amazonaws.com/web/23/07/12/0946124133456t.jpg" title="3.jpg" alt="3.jpg"/><br/></p></li><li><p>No SMD components, plated holes, or solder pads are allowed within a 1mm range of the gold fingers.</p></li><li><p>All inner layers within the gold fingers must undergo copper removal to prevent copper exposure during chamfering. Typically, the width of copper removal should be greater than 3mm. It can be done as half-finger copper removal or full-finger copper removal. In PCIE designs, there are indications that all copper within the gold fingers should be removed. Copper removal beneath the fingers can reduce the impedance mismatch between the gold fingers and impedance-controlled traces, providing benefits for ESD protection.</p></li><li><p>The length of all gold fingers should not exceed 40mm.</p></li><li><p>Avoid soldermask or silkscreen printing near the gold fingers.</p></li><li><p>To enhance the wear resistance of gold fingers, they are typically hard gold plated.</p></li><li><p>During PCB design, the gold fingers must have a continuous solder mask opening, and no steel mesh is required for the pins.</p></li><li><p>Gold fingers must be designed with chamfers, typically at a 45° angle. Other angles such as 20° or 30° can be chosen. The absence of chamfers in the PCB design of gold fingers indicates a problem. In the image below, the arrow indicates a 45° chamfer.</p><p style="text-align: center;"><img src="https://pcbwayfile.s3.us-west-2.amazonaws.com/web/23/07/12/0946430052516t.png" title="45.png" alt="45.png"/><br/></p></li><li><p>The surface of the gold fingers should avoid copper plating.</p></li></ul><p>The following image shows a design example of gold fingers for reference.</p><p style="text-align: center;"><img src="https://pcbwayfile.s3.us-west-2.amazonaws.com/web/23/07/12/0947272847287t.png" title="avoid_copper.png" alt="avoid_copper.png"/></p><h3>PCBWay Commonly Used Gold Finger Chamfer Parameters</h3><p style="text-wrap: wrap;">Edge chamfer is the process of creating a transitional edge between the two surfaces of a circuit board, usually done on the outer edge of the board. The chamfer allows the gold fingers to smoothly insert into edge connectors of other PCBs. PCBWay commonly used gold finger chamfer parameters are shown in the table below:</p><table width="513" align="center"><colgroup><col width="72" style="width:72px"/><col width="138" style=";width:139px"/><col width="173" style=";width:173px"/><col width="129" style=";width:129px"/></colgroup><tbody><tr style=";height:19px" class="firstRow"><td colspan="4" width="513" style="" align="center" valign="top">Commonly used gold finger chamfer parameters</td></tr><tr style="height:19px"><td style="border-top: none;">Angle(α)</td><td style="border-top:none;border-left:none">PCB thickness(d)</td><td style="border-top:none;border-left:none">Remaining &nbsp; thickness(s)</td><td style="border-top:none;border-left:none">Chamfer depth(h)</td></tr><tr style="height:19px"><td rowspan="3" style="border-top: none;">20°</td><td style="border-top:none;border-left:none">1.6mm</td><td style="border-top:none;border-left:none">0.5mm</td><td style="border-top:none;border-left:none">1.51mm</td></tr><tr style="height:19px"><td style="border-top: none; border-left: none;">2.0mm</td><td style="border-top:none;border-left:none">0.65mm</td><td style="border-top:none;border-left:none">1.85mm</td></tr><tr style="height:19px"><td style="border-top: none; border-left: none;">2.4mm</td><td style="border-top:none;border-left:none">0.7mm</td><td style="border-top:none;border-left:none">2.34mm</td></tr><tr style="height:19px"><td rowspan="3" style="border-top: none;">30°</td><td style="border-top:none;border-left:none">1.6mm</td><td style="border-top:none;border-left:none">0.5mm</td><td style="border-top:none;border-left:none">0.95mm</td></tr><tr style="height:19px"><td style="border-top: none; border-left: none;">2.0mm</td><td style="border-top:none;border-left:none">0.65mm</td><td style="border-top:none;border-left:none">1.16mm</td></tr><tr style="height:19px"><td style="border-top: none; border-left: none;">2.4mm</td><td style="border-top:none;border-left:none">0.7mm</td><td style="border-top:none;border-left:none">1.47mm</td></tr><tr style="height:19px"><td rowspan="3" style="border-top: none;">45°</td><td style="border-top:none;border-left:none">1.6mm</td><td style="border-top:none;border-left:none">0.5mm</td><td style="border-top:none;border-left:none">0.5mm</td></tr><tr style="height:19px"><td style="border-top: none; border-left: none;">2.0mm</td><td style="border-top:none;border-left:none">0.65mm</td><td style="border-top:none;border-left:none">0.65mm</td></tr><tr style="height:19px"><td style="border-top: none; border-left: none;">2.4mm</td><td style="border-top:none;border-left:none">0.7mm</td><td style="border-top:none;border-left:none">0.7mm</td></tr></tbody></table><p style="text-align: center;"><img src="https://pcbwayfile.s3.us-west-2.amazonaws.com/web/23/07/12/0949575245206t.jpg" title="4.jpg" alt="4.jpg"/></p><p>Note: PCBWay can also produce gold fingers with a chamfer angle of 60°.</p><p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Gold finger chamfer angle tolerance: +/- 5°.</p><p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Gold finger chamfer height tolerance: +/- 5 mil.</p><p style="white-space: normal;">More information please check here:</p><p style="white-space: normal;"><a href="/orderonline.aspx" target="_blank" class="b-buton"><em class="p-icon"></em>PCB Instant Quote</a></p>
+                    </div>
+                    <input type="hidden" id="memberurl" value="https://member.pcbway.com" />
+                    <input type="hidden" name="hidobjid" id="hidobjid" value="27" />
+                    <input type="hidden" name="hidobjtype" id="hidobjtype" value="2" />
+                    <input type="hidden" name="hidmbmessageobjtype" id="hidmbmessageobjtype" value="9" />
+                    
+                    <!--                新加评论开始-->
+                    <div class="module-box post-feedback ui-switchable" id="commentID">
+                        <div class="note-title clearfix">
+                            <div class="note-number left">
+                                Comments
+                                <span class="num" id="comments-num">(<b id="MsgCount">0</b>)</span>
+                            </div>
+                            <div class="note-text left">
+                                This message here is only a suggestion supplement to the above content, and does not for trading operations such as orders. If you have any urgent questions or order issues, please contact your sales rep.
+                            </div>
+                        </div>
+                        
+
+
+
+<div class="ui-tab-body ui-switchable-content">
+    <div class="ui-tab-pannel ui-post-comments ui-switchable-panel">
+        <div class="add-comment js-add-comment">
+            <textarea id="msg-0" class="form-control" maxlength="10000"></textarea><!--未登录添加 disabled="disabled"-->
+
+            <div class="comment-login-tips" style="display:none;">
+                <span><img src="/img/images/note-tips.png" alt="" /></span>
+                <a href="javascript:layerLogin();">Log in to post comments.</a>
+            </div>
+            <!--登录前-->
+            
+
+            <div class="upload-photo-parent">
+                <div class="upload-tips-row">
+                    <div class="upload-tag" id="msgFile0">
+                        Upload photo
+                    </div>
+                    <span class="tag-tips">
+                        You can only upload 5 files in total. Each file cannot exceed 2MB. Supports JPG, JPEG, GIF, PNG, BMP
+                    </span>
+                </div>
+                <div class="word-statistics">
+                    <span class="js-words" style="color: rgb(153, 153, 153);">0</span> / <span class="js-char-length">10000</span>
+                </div>
+            </div>
+            <div class="the-progress-el" id="progress-box0" style="display:none">
+                <div class="progress" data-percent="0">
+                    <div class="progress-bar"></div>
+                </div>
+            </div>
+            <!--上传后的图片-->
+            <div style="display: none" id="js-views-example0" class="views-example-pic js-views-example">
+
+            </div>
+            <div id="error-tips" class="error-tips" style="display: none;">It looks like you have not written anything. Please add a comment and try again.</div>
+            <div id="error-tips-img0" class="error-tips" style="display: none;">You can upload up to 5 images!</div>
+            <div id="error-tips-img-size0" class="error-tips" style="display: none;">Image size should not exceed 2MB!</div>
+            <div id="error-tips-img-type0" class="error-tips" style="display: none;">File format not supported!</div>
+            <div class="btn-com-submit">
+                <button class="btn btn-major btn-lg" onclick="commentObj.fn_save_msg(1,0,1)" id="bt-comment-submit">Post Comment</button>
+            </div>
+        </div>
+        <div class="comments-list-box">
+            <ul class="comments-list" id="comment_ul"></ul>
+        </div>
+    </div>
+    <div class="ui-tab-pannel ui-post-likes ui-switchable-panel" id="commentload">
+        <!--加载内容过程中-->
+        <div class="loading-layout"><span class="loading-m"></span></div>
+    </div>
+    <div class="all-comments" style="display:none;"><span class="i-btn i-more-btn" id="commentviewmore">View More</span></div>
+
+</div>
+<input type="hidden" id="c_IsProject" value="0" />
+<input type="hidden" id="c_ObjId" value="27" />
+<input type="hidden" id="c_ObjType" value="2" />
+<input type="hidden" id="c_msgMaxCount" value="10000" />
+
+<input type="hidden" id="JsA4" value="Upload photo" />
+<input type="hidden" id="JsA5" value="You can only upload 5 files in total. Each file cannot exceed 2MB. Supports JPG, JPEG, GIF, PNG, BMP" />
+<input type="hidden" id="JsA1" value="Comments" />
+<input type="hidden" id="JsA9" value="File exceeds the size limit!" />
+<input type="hidden" id="JsA10" value="Are you sure you want to delete this message?" />
+<input type="hidden" id="JsA11" value="There are sub-messages in this article and deletion is not allowed." />
+<input type="hidden" id="JsA12" value="Delete failed, please refresh and try again" />
+<input type="hidden" id="JsA13" value="Reply" />
+<input type="hidden" id="JsA14" value="Delete" />
+<input type="hidden" id="JsCancel" value="Cancel" />
+<input type="hidden" id="JsA15" value="Post reply" />
+<input type="hidden" id="JsA16" value="Login with your e-mail" />
+<input type="hidden" id="ImgCountTips" value="You can upload up to 5 images!" />
+<input type="hidden" id="ImgSizeTips" value="Image size should not exceed 2MB!" />
+<input type="hidden" id="ImgTypeTips" value="File format not supported!" />
+
+<script>
+    //const urlRegex = /\bhttps?:\/\/(?:www\.)?[-a-zA-Z0-9@:%._+~#=]{1,256}\.[a-zA-Z]{2,63}(?:\/[^\s]*)?/gi;
+    var commentObj = {
+        is_project: parseInt($('#c_IsProject').val()),//1 社区 0 web
+        obj_id: parseInt($('#c_ObjId').val()),
+        obj_type: parseInt($('#c_ObjType').val()),
+        max_count: parseInt($('#c_msgMaxCount').val()),
+        page: 1,
+        isLogin: true,
+        fn_init: function () {
+
+            $('#commentviewmore').click(function () {
+                $('#commentviewmore').parent().hide();
+
+                commentObj.page = commentObj.page + 1;
+                commentObj.fn_load_data(commentObj.page);
+            });
+
+            $(document).delegate('.form-error', 'keyup', function () {
+                $(this).removeClass('form-error');
+                if (!$(this).hasClass('js-mention'))
+                    $('#error-tips').hide();
+            });
+
+            $(document).delegate('.js-add-comment .form-control', 'keyup focus change', function () {
+                var characterText = $(this).val();
+                var characterCount = characterText.length;
+                if (characterCount >= commentObj.max_count) {
+                    $(this).val(characterText.substring(0, commentObj.max_count));
+                    //layer.tips('Comment length must be less than ' + commentObj.max_count + ' characters.', this, {
+                    //    tips: [3, '#000000'],
+                    //    time: 1000,
+                    //    tipsMore: true
+                    //});
+                    $('.js-add-comment .js-words').css({ 'color': 'red' }).text(commentObj.max_count);
+                    return;
+                }
+                $('.js-add-comment .js-words').css({ 'color': '#999' }).text(characterCount);
+            });
+
+            $(document).delegate('.js-mention', 'keyup focus change', function () {
+                var characterText = $(this).val();
+                var characterCount = characterText.length;
+                if (characterCount >= commentObj.max_count) {
+                    $(this).val(characterText.substring(0, commentObj.max_count));
+                    //layer.tips('Comment length must be less than ' + commentObj.max_count + ' characters.', this, {
+                    //    tips: [3, '#000000'],
+                    //    time: 1000,
+                    //    tipsMore: true
+                    //});
+                    $(this).next().find('.js-words').css({ 'color': 'red' }).text(commentObj.max_count);
+                    return;
+                }
+                $(this).next().find('.js-words').css({ 'color': '#999' }).text(characterCount);
+            });
+
+            $(document).on('click', '.js-view-graphic .view-graphic', function () {
+                var imageUrl = $(this).find('img').attr('src');
+                layer.photos({
+                    photos: {
+                        "data": [
+                            { "src": imageUrl }
+                        ]
+                    },
+                    move: '',
+                    shade: 0.4,
+                    closeBtn: true,
+                    anim: 5,
+                    tab: function () {
+                        $('html').attr('style', 'overflow:auto !important')
+                    }
+                });
+            });
+
+
+            commentObj.fn_load_data(commentObj.page);
+
+            commentObj.fn_uploader(0);
+        },
+        fn_get_comment_url: function () {
+            var url = $('#memberurl').val();
+            if (commentObj.is_project == 1) {
+                url += '/Project/GetProjectComment?callback=?';
+            } else {
+                url += '/Web/GetWebComment?callback=?';
+            }
+            return url;
+        },
+        fn_save_comment_url: function () {
+            var url = $('#memberurl').val();
+            url += '/Web/SaveComment';
+            //if (commentObj.is_project == 1) {
+            //    url += '/Project/SaveComment?callback=?';
+            //} else {
+            //    url += '/Web/SaveComment?callback=?';
+            //}
+            return url;
+        },
+        fn_del_comment_url: function () {
+            var url = $('#memberurl').val();
+            if (commentObj.is_project == 1) {
+                url += '/Project/DelComment?callback=?';
+            } else {
+                url += '/Web/DelComment?callback=?';
+            }
+            return url;
+        },
+        fn_get_username: function (name) {
+            if (!name || name == '') {
+                return 'Engineer';
+            }
+            return unescape(name);
+        },
+        fn_get_spic: function (url) {
+            if (url) {
+                return url.substring(0, url.lastIndexOf('.')) + 's' + url.substring(url.lastIndexOf('.'));
+            }
+            return '';
+        },
+        fn_focus_msg: function (obj) {
+            $(obj).closest("form").addClass("active");
+        },
+        //添加留言输入框
+        fn_add_reply: function (level, id, bename) {
+            if (!commentObj.isLogin) {
+                //弹出登录框
+                layerLogin();
+                return false;
+            }
+
+            if (level == 1) {
+                //第一级留言（直接回复文章）
+                //目前,第一级留言输入框默认显示
+                if ($('#div-two-' + id).find('.sub-comment').length > 0) {
+                    $('#div-two-' + id).toggle();
+                    $('#comment-info-' + id).toggleClass('toggle-active');
+                }
+
+            }
+            else if (level == 2) {
+                //第二级留言（回复第一级留言）
+                $('#form-two-' + id).parent().toggle();
+                commentObj.fn_uploader(id);
+            }
+            else if (level == 3) {
+                //第三级留言（回复第二级留言）
+                if ($('#form-two-' + id).length > 0) {
+                    $('#form-two-' + id).toggle();
+                    return;
+                }
+                var html = "";
+
+                html += '<form class="js-active-on-valid js-comment-create" id="form-two-' + id + '">';
+                html += '<div class="form-group">';
+                html += '<span class="reply_name small">' + $('#JsA13').val() + ' @' + unescape(bename) + ' </span>';
+                html += '<textarea id="msg-' + id + '" rows="1" class="form-control js-mention js-auto-expand" placeholder="" maxlength="' + commentObj.max_count + '" onfocus="commentObj.fn_focus_msg(this)" required></textarea>';
+                html += '<div class="son-upload-tips">';
+                html += '    <div class="upload-photo-parent floatL">';
+                html += '        <div class="upload-tips-row">';
+                html += '            <div class="upload-tag webuploader-container" id="upload6">';
+                html += '               <div class="webuploader-pick" id="msgFile' + id + '">' + $('#JsA4').val() + '</div >'
+                html += '           </div > ';
+                html += '        </div>';
+                html += '        <!-- 上传进度条-->';
+                html += '        <div  style="display: none" class="the-progress-el"  id="progress-box' + id + '" >';
+                html += '            <div class="progress" data-percent="0">';
+                html += '                <div class="progress-bar"></div>';
+                html += '            </div>';
+                html += '        </div>';
+                html += '        <div style="display: none" id="js-views-example' + id + '" class="views-example-pic js-views-example">';
+                html += '        </div>';
+                html += '    </div>';
+                html += '    <div class="word-statistics review"><span class="js-words">0</span> /' + commentObj.max_count + '</div>';
+                html += '</div>';
+                html += '</div>';
+                html += '<div class="form-group text-right post-row">';
+                html += '    <div class="post-l">';
+                html += '<div id="error-tips-img' + id + '" class="error-tips" style="display: none;">'+$('#ImgCountTips').val()+'</div>';
+                html += '<div id="error-tips-img-size' + id + '" class="error-tips" style="display: none;">'+$('#ImgSizeTips').val()+'</div>';
+                html += '<div id="error-tips-img-type' + id + '" class="error-tips" style="display: none;">'+$('#ImgTypeTips').val()+'</div>';
+                html += '    </div>';
+                html += '    <div class="post-r">';
+                html += '        <button type="button" class="btn btn-default btn-sm" onclick="commentObj.fn_add_reply(3,' + id + ')">' + $('#JsCancel').val() + '</button> ';
+                html += '        <button type="button" class="btn btn-primary btn-sm" onclick="commentObj.fn_save_msg(3,' + id + ',1)">' + $('#JsA15').val() + '</button>';
+                html += '    </div>';
+                html += '</div>';
+                html += '</form>';
+
+                $('#div-three-' + id).children('div').append(html).show();
+
+                commentObj.fn_uploader(id);
+            }
+        },
+        //取消添加留言
+        fn_cancel_msg: function (obj) {
+            $(obj).parents('.js-son-comments').hide();
+        },
+        //删除自己的留言
+        fn_del_msg: function (level, id) {
+            if (!commentObj.isLogin) {
+                //弹出登录框
+                layerLogin();
+                return false;
+            }
+
+            layer.confirm($('#JsA10').val(), {
+                title: "Message",   // 自定义标题
+                btn: ["OK", "Cancel"] // 自定义按钮
+            }, function (index) {
+
+                $.getJSON(commentObj.fn_del_comment_url(), { msgid: id }, function (res) {
+                    if (res.result) {
+                        if (level == 1) {
+                            //if (ispage > 0)
+                            //    window.location.reload();
+                            $('#li' + id).remove();
+                            commentObj.fn_up_level_msg_cnt(level, id, -1);
+                        }
+                        else {
+                            var obj = $('#' + (level == 1 ? 'li' : 'div-three-') + id);
+                            var num = parseInt(obj.parents('li').find('b').text());
+                            num += -1;
+                            if (num < 0) {
+                                num = 0;
+                            }
+                            var parobj = $('#div-three-' + id).parent();
+
+                            obj.parents('li').find('b').text(num);
+                            $('#div-three-' + id).remove();
+                            if (parobj.find('.sub-comment').length > 0) {
+
+                            } else {
+                                parobj.parent().hide();
+                            }
+                        }
+                        commentObj.fn_up_msg_cnt(-1);
+
+                        layer.close(index);
+                    }
+                    else if (res.msg == "nothing") {
+                        layer.alert("error");
+                        return;
+                    }
+                    else if (res.msg == "havereply") {
+                        layer.alert($('#JsA11').val());
+                        return;
+                    }
+                    else {
+                        layer.alert($('#JsA12').val());
+                        return;
+                    }
+
+                });
+            })
+        },
+        //更新留言数量
+        fn_up_msg_cnt: function (val) {
+            var num = parseInt($('#MsgCount').text());
+            num += parseInt(val);
+            if (num < 0) {
+                num = 0;
+            }
+            $('#MsgCount').text(num);
+        },
+        //更新留言数量level
+        fn_up_level_msg_cnt: function (level, id, val) {
+            var obj = $('#' + (level == 1 ? 'li' : 'div-three-') + id);
+            var num = parseInt(obj.parents('li').find('b').text());
+            num += parseInt(val);
+            if (num < 0) {
+                num = 0;
+            }
+            obj.parents('li').find('b').text(num);
+        },
+        fn_mark_comment: function (obj, islike, commentid) {
+            if (logintype != 1) {
+                layerLogin();
+                return;
+            }
+            $.getJSON($('#memberurl').val() + '/Project/CommentMark?callback=?', { id: commentObj.obj_id, ProjectType: commentObj.obj_type, isLike: islike, commentid: commentid }, function (res) {
+                if (res.result) {
+                    var markCnt = parseInt($('#commentMarkCnt' + commentid).text());
+                    if ($(obj).hasClass('active')) {
+                        $(obj).removeClass('active');
+                        if (islike) {
+                            $('#commentMarkCnt' + commentid).text(markCnt - 1);
+                        }
+                        else {
+                            $('#commentMarkCnt' + commentid).text(markCnt + 1);
+                        }
+                    }
+                    else {
+                        if ($(obj).parent().find('dl').hasClass('active')) {
+                            if (islike) {
+                                $('#commentMarkCnt' + commentid).text(markCnt + 2);
+                            }
+                            else {
+                                $('#commentMarkCnt' + commentid).text(markCnt - 2);
+                            }
+                            $(obj).parent().find('dl').removeClass('active');
+                        }
+                        else {
+                            if (islike) {
+                                $('#commentMarkCnt' + commentid).text(markCnt + 1);
+
+                            }
+                            else {
+                                $('#commentMarkCnt' + commentid).text(markCnt - 1);
+                            }
+                        }
+                        $(obj).addClass('active');
+
+
+                    }
+                }
+                else if (res.msg == "nologin") {
+                    //弹出登录框
+                    layerLogin();
+                } else
+                    layer.alert("error");
+            });
+
+        },
+        //加载数据
+        fn_load_data: function (page) {
+            $('#commentload').show();
+            $.ajax({
+                url: commentObj.fn_get_comment_url(),
+                dataType: 'jsonp',
+                data: { objid: commentObj.obj_id, objtype: commentObj.obj_type, page: page },
+                success: function (jason) {
+                    var totalpage = jason.TotalCount / 20;
+                    if (totalpage % 1 > 0)
+                        totalpage = parseInt(totalpage) + 1;
+                    if (page >= totalpage) {
+                        $('#commentviewmore').parent().remove();
+                    } else {
+                        $('#commentviewmore').parent().show();
+                    }
+                    if (jason.TotalCount > 0) {
+                        page = jason.PageIndex;
+                        var msgList = jason.DataList;
+                        var html = '';
+                        if (msgList && msgList.length > 0) {
+                            for (var item in msgList) {
+                                //msgList[item].Note = msgList[item].Note.replace(urlRegex, function (url) {
+                                //    return `<a class="link" href="${url}" target="_blank" rel="noopener noreferrer">${url}</a>`;
+                                //});
+                                html += '<li class="comment-item" id="li' + msgList[item].Id + '">';
+                                if (commentObj.is_project == 1 && commentObj.obj_type == 6) {
+                                    html += '<div class="a-i-award">';
+                                    html += '<dl class="' + (msgList[item].MarkStatus == 1 ? "active" : "") + '" onclick="commentObj.fn_mark_comment(this,true,' + msgList[item].Id + ')">';
+                                    html += '<dt class="icon-award"></dt>';
+                                    html += '<dd id="commentMarkCnt' + msgList[item].Id + '">' + msgList[item].MarkCnt + '</dd>';
+                                    html += '</dl>';
+                                    html += '<dl class="' + (msgList[item].MarkStatus == 2 ? "active" : "") + '" onclick="commentObj.fn_mark_comment(this,false,' + msgList[item].Id + ')">';
+                                    html += '<dt class="icon-n-award"></dt>';
+                                    html += '</dl></div>';
+                                    html += '<div class="r-user-info"><span class="r-name"><a href="/project/member/?bmbno=' + msgList[item].UserGuid + '" class="link"><img src="' + msgList[item].HeadPic + '" class="avatar-m">' + (msgList[item].MbId > 0 ? msgList[item].ContactName : msgList[item].Name == "" ? msgList[item].Email : msgList[item].Name) + '</a></span></div>';
+                                }
+                                else {
+                                    html += '<span class="r-avatar">';
+                                    html += '<a href="/project/member/?bmbno=' + msgList[item].UserGuid + '" class="link">'
+                                    html += '<img src="' + msgList[item].HeadPic + '" class="avatar-m">';
+                                    html += '</a>';
+                                    html += '</span>'
+                                    html += '<div class="r-user-info"><span class="r-name"><a href="/project/member/?bmbno=' + msgList[item].UserGuid + '" class="link">' + (msgList[item].MbId > 0 ? msgList[item].ContactName : msgList[item].Name == "" ? msgList[item].Email : msgList[item].Name) + '</a></span></div>';
+                                }
+                                html += '<p class="r-message">';
+                                html += msgList[item].Note;
+                                html += '</p>';
+                                if (msgList[item].MsgPic && msgList[item].MsgPic != '') {
+                                    html += '<div class="the-view-box js-view-graphic">'
+                                    var msgpicArr = msgList[item].MsgPic.split(',');
+                                    for (var i = 0; i < msgpicArr.length; i++) {
+                                        html += '<div class="view-graphic" style="background-image: url(' + msgpicArr[i] + ')">'
+                                        html += "<img  style='display: none; ' src='" + msgpicArr[i] + "' />";
+                                        html += '</div>';
+                                    }
+                                    html += '</div>';
+                                }
+
+                                //<!--  子评论-->
+                                html += '<div class="sub-comments-box js-son-comments" style="display:none;">';
+                                html += '<div class="sub-comments media-list"></div>';
+
+
+                                html += '<form class="js-active-on-valid js-comment-create" id="form-two-' + msgList[item].Id + '">';
+                                html += '<div class="form-group">';
+                                html += '<textarea id="msg-' + msgList[item].Id + '" rows="1" class="form-control js-mention js-auto-expand" placeholder="" maxlength="' + commentObj.max_count + '" onfocus="commentObj.fn_focus_msg(this)" required></textarea>';
+                                html += '<div class="son-upload-tips">';
+                                html += '    <div class="upload-photo-parent floatL">';
+                                html += '        <div class="upload-tips-row">';
+                                html += '            <div class="upload-tag webuploader-container">';
+                                html += '               <div class="webuploader-pick" id="msgFile' + msgList[item].Id + '">' + $('#JsA4').val() + '</div >'
+                                html += '           </div > ';
+                                html += '        </div>';
+                                html += '        <!-- 上传进度条-->';
+                                html += '        <div  style="display: none" class="the-progress-el"  id="progress-box' + msgList[item].Id + '" >';
+                                html += '            <div class="progress" data-percent="0">';
+                                html += '                <div class="progress-bar"></div>';
+                                html += '            </div>';
+                                html += '        </div>';
+                                html += '        <div style="display: none" id="js-views-example' + msgList[item].Id + '" class="views-example-pic js-views-example">';
+                                html += '        </div>';
+                                html += '    </div>';
+                                html += '    <div class="word-statistics review"><span class="js-words">0</span> /' + commentObj.max_count + '</div>';
+                                html += '</div>';
+                                html += '</div>';
+                                html += '<div class="form-group text-right post-row">';
+                                html += '    <div class="post-l">';
+                                html += '<div id="error-tips-img' + msgList[item].Id + '" class="error-tips" style="display: none;">'+$('#ImgCountTips').val()+'</div>';
+                                html += '<div id="error-tips-img-size' + msgList[item].Id + '" class="error-tips" style="display: none;">'+$('#ImgSizeTips').val()+'</div>';
+                                html += '<div id="error-tips-img-type' + msgList[item].Id + '" class="error-tips" style="display: none;">'+$('#ImgTypeTips').val()+'</div>';
+                                html += '    </div>';
+                                html += '    <div class="post-r">';
+                                html += '       <button type="button" class="btn btn-default btn-sm" onclick="commentObj.fn_cancel_msg(this)">' + $('#JsCancel').val() + '</button> ';
+                                html += '       <button type="button" class="btn btn-primary btn-sm" onclick="commentObj.fn_save_msg(2,' + msgList[item].Id + ',1)">' + $('#JsA13').val() + '</button>';
+                                html += '    </div>';
+                                html += '</div>';
+                                html += '</form>';
+
+
+                                html += '</div>';
+                                html += '<div class="a-i-footer clearfix">';
+                                html += '<span class="info-text">' + msgList[item].EnAddTime + '</span>';
+                                html += '<span class="info-text comment-info" id="comment-info-' + msgList[item].Id + '" onclick="commentObj.fn_add_reply(1,\'' + msgList[item].Id + '\')"><i class="icon-comment"></i><b>' + (msgList[item].ReplyList ? msgList[item].ReplyList.length : 0) + '</b> ' + $('#JsA1').val() + '</span>';
+                                html += '</div>';
+                                //<!-- 回复留言 -->
+                                html += '<div class="sub-comments-box" style="' + (msgList[item].ReplyList && msgList[item].ReplyList.length > 0 ? "" : " display:none;") + '" id="div-two-' + msgList[item].Id + '">';
+                                html += '<div class="sub-comments media-list">';
+                                var ReplyList = msgList[item].ReplyList;
+                                if (ReplyList && ReplyList.length > 0) {
+                                    for (var reply in ReplyList) {
+                                        //ReplyList[reply].Note = ReplyList[reply].Note.replace(urlRegex, function (url) {
+                                        //    return `<a class="link" href="${url}" target="_blank" rel="noopener noreferrer">${url}</a>`;
+                                        //});
+                                        html += '<div class="sub-comment media" id="div-three-' + ReplyList[reply].Id + '">';
+                                        html += '<div class="media-body" style="display: block;">';
+                                        html += '<div class="source clearfix">';
+                                        html += '<a href="/project/member/?bmbno=' + ReplyList[reply].UserGuid + '" class="author">' + ReplyList[reply].ContactName + '</a> ';
+                                        html += '<span class="action-link">' + ReplyList[reply].AddTimeStr + '</span>';
+                                        html += '<span class="pull-right">';
+                                        html += '<a href="javascript:void(0)" class="action-link" onclick="commentObj.fn_add_reply(3,' + ReplyList[reply].Id + ',\'' + escape(ReplyList[reply].ContactName) + '\')">' + $('#JsA13').val() + '</a>';
+                                        if (ReplyList[reply].IsMy && ((new Date() - new Date(ReplyList[reply].AddTime)) / (1000 * 60 * 60)) <= 5 && (!ReplyList[reply].ReplyList || ReplyList[reply].ReplyList.length == 0)) {
+                                            html += ' <a href="javascript:void(0)" class="action-link delete js-comment-destroy" onclick="commentObj.fn_del_msg(' + (ReplyList[reply].ReplyCommentId > 0 && ReplyList[reply].ReplyCommentId != msgList[item].Id ? 3 : 2) + ',' + ReplyList[reply].Id + ',1)">' + $('#JsA14').val() + '</a>';
+                                        }
+                                        html += '</span>';
+                                        html += '</div>';
+
+                                        html += '<div class="content unsafe">';
+                                        if (ReplyList[reply].ReplyCommentId > 0 && ReplyList[reply].ReplyCommentId != msgList[item].Id) {
+                                            html += '<div class="question-comment-reply small">';
+                                            html += $('#JsA13').val() + '<a href="/project/member/?bmbno=' + ReplyList[reply].ReplyUserGuid + '" class="author">@ ' + ReplyList[reply].ReplyContactName + '：</a>';
+                                            html += '</div>';
+                                        }
+                                        html += '<p>' + ReplyList[reply].Note + '</p>';
+                                        if (ReplyList[reply].MsgPic && ReplyList[reply].MsgPic != '') {
+                                            html += '<div class="the-view-box js-view-graphic">'
+                                            var msgpicArr = ReplyList[reply].MsgPic.split(',');
+                                            for (var i = 0; i < msgpicArr.length; i++) {
+                                                html += '<div class="view-graphic"  style="background-image: url(' + msgpicArr[i] + ')">'
+                                                html += "<img src='" + msgpicArr[i] + "' />";
+                                                html += '</div>';
+                                            }
+                                            html += '</div>';
+                                        }
+                                        html += '</div>';
+                                        html += '</div>';
+                                        html += '</div>';
+                                    }
+                                }
+                                html += '</div>';
+                                if (msgList[item].ReplyList && msgList[item].ReplyList.length > 0) {
+                                    html += '<form class="sub-comment-form  active" id="form-two-' + msgList[item].Id + '" style="display:none;">';
+                                    html += '<div class="form-group">';
+                                    html += '<textarea id="msg-' + msgList[item].Id + '" rows="1" class="form-control js-mention js-auto-expand" placeholder="" maxlength="' + commentObj.max_count + '" onfocus="commentObj.fn_focus_msg(this)" required></textarea>';
+                                    html += '<div class="word-statistics review"><span class="js-words">0</span> /' + commentObj.max_count + '</div>';
+                                    html += '</div>';
+                                    html += '<div class="form-group text-right actions">';
+                                    html += '<button type="button" class="btn btn-default btn-sm" onclick="commentObj.fn_cancel_msg(this)">' + $('#JsCancel').val() + '</button> ';
+                                    html += '<button type="button" class="btn btn-primary btn-sm" onclick="commentObj.fn_save_msg(2,' + msgList[item].Id + ',1)">' + $('#JsA15').val() + '</button>';
+                                    html += '</div>';
+                                    html += '</form>';
+                                }
+                                html += '</div>';
+                                html += '<div class="r-operate-btn">';
+                                if (msgList[item].MbId > 0) {
+                                    html += '<span class="icon-btn icon-replay" onclick="commentObj.fn_add_reply(2,' + msgList[item].Id + ')">' + $('#JsA13').val() + '</span>';
+                                }
+                                //<!-- 可删除自己5小时内的留言 -->
+                                if (msgList[item].IsMy && ((new Date() - new Date(msgList[item].AddTime)) / (1000 * 60 * 60)) <= 5 && (!msgList[item].ReplyList || msgList[item].ReplyList.Count == 0)) {
+                                    html += ' <span class="icon-btn icon-del" onclick="commentObj.fn_del_msg(1,' + msgList[item].Id + ',1)">' + $('#JsA14').val() + '</span>';
+                                }
+                                html += '</div>';
+                                html += '</li>';
+                            }
+                            $('#commentload').hide();
+                            $('#comment_ul').append(html);
+                        }
+                    }
+                    $('#commentload').hide();
+                },
+                error: function (xhr, status, error) {
+                    $('#commentload').hide();
+                }
+            });
+        },
+        //保存数据
+        fn_save_msg: function (level, id) {
+            var msg = $('#msg-' + id).val();
+            var msgpic = commentObj.getPicImgArr(id);
+            if (msg && msg.length > 10000) {
+                $('#msg-' + id).addClass('form-error');
+                return false;
+            }
+            else if (msg && msg.length > 0) {
+                //msg = commentObj.convertToHTMLFn(msg);
+            }
+
+            if ((msg && msg.length > 0) || msgpic.length > 4) {
+                $('body').addClass('global-loading');
+                $.ajax({
+                    url: commentObj.fn_save_comment_url(),
+                    //dataType: 'jsonp',
+                    type: 'POST',
+                    data: { msg: msg, replyid: id, objid: commentObj.obj_id, msgpic: msgpic, objtype: commentObj.obj_type, isproject: commentObj.is_project },
+                    crossDomain: true,
+                    xhrFields: {
+                        withCredentials: true
+                    },
+                    success: function (res) {
+                        if (res.result) {
+                            //if (ispage > 0) {
+                            //    window.location.reload();
+                            //    return;
+                            //}
+                            //js加载，不刷新页面，增强体验
+                            $('#msg-' + id).val("");
+                            if (level == 1) {
+                                $('.js-add-comment .js-words').css({ 'color': '#999' }).text(0);
+                            } else {
+                                $('#msg-' + id).next().find('.js-words').css({ 'color': '#999' }).text(0);
+                            }
+                            //res.msg.Note = res.msg.Note.replace(urlRegex, function(url) {
+                            //    return `<a class="link" href="${url}" target="_blank" rel="noopener noreferrer">${url}</a>`;
+                            //});
+                            if (level == 1) {
+                                $('#js-views-example' + id).html("");
+                                //第一级留言（直接回复文章）
+                                var objtype = parseInt($('#hidobjtype').val());
+                                var html = '<li class="comment-item" id="li' + res.msg.Id + '">';
+                                if (commentObj.is_project == 1 && commentObj.obj_type == 6) {
+                                    html += '<div class="a-i-award">';
+                                    html += '<dl class="" onclick="commentObj.fn_mark_comment(this,true,' + res.msg.Id + ')">';
+                                    html += '<dt class="icon-award"></dt>';
+                                    html += '<dd id="commentMarkCnt' + res.msg.Id + '">0</dd>';
+                                    html += '</dl>';
+                                    html += '<dl class="" onclick="commentObj.fn_mark_comment(this,false,' + res.msg.Id + ')">';
+                                    html += '<dt class="icon-n-award"></dt>';
+                                    html += '</dl></div>';
+                                    html += '<div class="r-user-info"><span class="r-name"><a href="/project/member/?bmbno=' + res.msg.UserGuid + '" target="_blank" class="link"><img src="' + res.msg.HeadPic + '" class="avatar-m">' + commentObj.fn_get_username(escape(res.msg.ContactName)) + '</a></span></div>';
+                                } else {
+                                    html += '<span class="r-avatar"><a href="/project/member/?bmbno=' + res.msg.UserGuid + '" target="_blank" class="link"><img src="' + res.msg.HeadPic + '" class="avatar-m"></a></span>';
+                                    html += '<div class="r-user-info"><span class="r-name"><a href="/project/member/?bmbno=' + res.msg.UserGuid + '" target="_blank" class="link">' + commentObj.fn_get_username(escape(res.msg.ContactName)) + '</a></span></div>';
+                                }
+
+                                html += ' <p class="r-message">';
+                                html += res.msg.Note;
+                                html += '</p>';
+                                if (res.msg.MsgPic && res.msg.MsgPic != '') {
+                                    var msgpicArr = res.msg.MsgPic.split(',');
+                                    html += '<div class="the-view-box js-view-graphic">'
+                                    for (var i = 0; i < msgpicArr.length; i++) {
+                                        html += '<div class="view-graphic" style="background-image: url(' + msgpicArr[i] + ')">'
+                                        html += "<img  style='display: none; ' src='" + msgpicArr[i] + "' />";
+                                        html += '</div>';
+                                    }
+                                    html += '</div>';
+                                }
+
+
+                                //<!--  子评论-->
+                                html += '<div class="sub-comments-box js-son-comments" style="display:none;">';
+                                html += '<div class="sub-comments media-list"></div>';
+
+                                html += '<form class="js-active-on-valid js-comment-create  active" id="form-two-' + res.msg.Id + '">';
+                                html += '<div class="form-group">';
+                                html += '<textarea id="msg-' + res.msg.Id + '" rows="1" class="form-control js-mention js-auto-expand" placeholder="" maxlength="' + commentObj.max_count + '" onfocus="commentObj.fn_focus_msg(this)" required></textarea>';
+                                html += '<div class="son-upload-tips">';
+                                html += '    <div class="upload-photo-parent floatL">';
+                                html += '        <div class="upload-tips-row">';
+                                html += '            <div class="upload-tag webuploader-container">';
+                                html += '               <div class="webuploader-pick" id="msgFile' + res.msg.Id + '">' + $('#JsA4').val() + '</div >'
+                                html += '           </div > ';
+                                html += '        </div>';
+                                html += '        <!-- 上传进度条-->';
+                                html += '        <div  style="display: none" class="the-progress-el"  id="progress-box' + res.msg.Id + '" >';
+                                html += '            <div class="progress" data-percent="0">';
+                                html += '                <div class="progress-bar"></div>';
+                                html += '            </div>';
+                                html += '        </div>';
+                                html += '        <div style="display: none" id="js-views-example' + res.msg.Id + '" class="views-example-pic js-views-example">';
+                                html += '        </div>';
+                                html += '    </div>';
+                                html += '    <div class="word-statistics review"><span class="js-words">0</span> /' + commentObj.max_count + '</div>';
+                                html += '</div>';
+                                html += '</div>';
+                                html += '<div class="form-group text-right post-row">';
+                                html += '    <div class="post-l">';
+                                html += '<div id="error-tips-img' + res.msg.Id + '" class="error-tips" style="display: none;">'+$('#ImgCountTips').val()+'</div>';
+                                html += '<div id="error-tips-img-size' + res.msg.Id + '" class="error-tips" style="display: none;">'+$('#ImgSizeTips').val()+'</div>';
+                                html += '<div id="error-tips-img-type' + res.msg.Id + '" class="error-tips" style="display: none;">'+$('#ImgTypeTips').val()+'</div>';
+                                html += '    </div>';
+                                html += '    <div class="post-r">';
+                                html += '       <button type="button" class="btn btn-default btn-sm" onclick="commentObj.fn_cancel_msg(this)">' + $('#JsCancel').val() + '</button> ';
+                                html += '       <button type="button" class="btn btn-primary btn-sm" onclick="commentObj.fn_save_msg(2,' + res.msg.Id + ',1)">' + $('#JsA13').val() + '</button>';
+                                html += '    </div>';
+                                html += '</div>';
+                                html += '</form>';
+
+
+                                html += '</div>';
+                                html += '<div class="a-i-footer clearfix">';
+                                html += '<span class="info-text">' + res.msg.EnAddTime + '</span>';
+                                html += '<span class="info-text comment-info" id="comment-info-' + res.msg.Id + '" onclick="commentObj.fn_add_reply(1,' + res.msg.Id + ')"><i class="icon-comment"></i> <b>0</b> ' + $('#JsA1').val() + '</span>';
+                                html += '</div>';
+
+                                html += '<div class="sub-comments-box" style="display:none;" id="div-two-' + res.msg.Id + '">';
+                                html += '<div class="sub-comments media-list"></div></div>';
+                                html += '<div class="r-operate-btn">';
+                                html += '<span class="icon-btn icon-replay" onclick="commentObj.fn_add_reply(2,' + res.msg.Id + ')">' + $('#JsA13').val() + '</span> ';
+                                html += '<span class="icon-btn icon-del" onclick="commentObj.fn_del_msg(1,' + res.msg.Id + ')">' + $('#JsA14').val() + '</span>';
+                                html += '</div>';
+                                html += '</li>';
+                                $('#comment_ul').prepend(html);
+                                commentObj.fn_up_msg_cnt(1);
+                                //commentObj.fn_up_level_msg_cnt(1, res.msg.Id, 1);
+                                //if (ispage == 0)
+                                //    $("html,body").animate({ scrollTop: $("#li" + res.msg.Id).offset().top - 70 }, 1000);
+                            }
+                            else {
+                                $('#js-views-example' + res.msg.Id).html("");
+                                //第二级留言（回复第一级留言）
+                                var html = '<div class="sub-comment media" id="div-three-' + res.msg.Id + '">';
+                                html += '<div class="media-body" >';
+                                html += '<div class="source clearfix">';
+                                html += '<a href="/project/member/?bmbno=' + res.msg.UserGuid + '" target="_blank" class="author">' + commentObj.fn_get_username(escape(res.msg.ContactName));
+                                html += '</a>';
+                                html += '<span class="action-link"> ' + res.msg.AddTimeStr;
+                                html += '</span>';
+                                html += '<span class="pull-right">';
+                                html += '<a href="javascript:void(0)" class="action-link" onclick="commentObj.fn_add_reply(3,' + res.msg.Id + ',\'' + escape(commentObj.fn_get_username(escape(res.msg.ContactName))) + '\')">' + $('#JsA13').val() + '</a> ';
+                                html += '<a href="javascript:void(0)" class="action-link delete js-comment-destroy" onclick="commentObj.fn_del_msg(' + level + ',' + res.msg.Id + ')">' + $('#JsA14').val() + '</a>';
+                                html += '</span>';
+                                html += '</div>';
+                                html += '<div class="content unsafe">';
+                                if (level == 3) {
+                                    //第三级留言（回复第二级留言）
+                                    html += '<div class="question-comment-reply small">';
+                                    html += $('#JsA13').val() + '<a href="/project/member/?bmbno=' + res.msg.ReplyUserGuid + '" target="_blank" class="author" >@ ' + commentObj.fn_get_username(escape(res.msg.ReplyContactName)) + '：</a>';
+                                    html += '</div>';
+                                }
+                                html += '<p>' + res.msg.Note + '</p>';
+                                if (res.msg.MsgPic && res.msg.MsgPic != '') {
+                                    html += '<div class="the-view-box js-view-graphic">'
+                                    var msgpicArr = res.msg.MsgPic.split(',');
+                                    for (var i = 0; i < msgpicArr.length; i++) {
+                                        html += '<div class="view-graphic" style="background-image: url(' + msgpicArr[i] + ')">'
+                                        html += "<img  style='display: none; ' src='" + msgpicArr[i] + "' />";
+                                        html += '</div>';
+                                    }
+                                }
+                                html += '</div>';
+                                html += '</div>';
+                                html += '</div>';
+                                html += '</div>';
+                                if (level == 3) {
+                                    //第三级留言（回复第二级留言）
+                                    commentObj.fn_add_reply(3, id);
+                                    $('#div-three-' + id).parent('div').append(html);
+                                }
+                                else {
+                                    commentObj.fn_add_reply(2, id);
+                                    $('#div-two-' + id).show().children('div').append(html);
+                                }
+
+                                commentObj.fn_up_msg_cnt(1);
+                                commentObj.fn_up_level_msg_cnt(level, res.msg.Id, 1);
+                            }
+
+                            commentObj.fn_uploader(id);
+                            $('#error-tips').hide();
+                            $('#msg-' + id).removeClass('form-error');
+                            $('#error-tips-img' + id).hide();
+                            $('#error-tips-img-size' + id).hide();
+                            $('#error-tips-img-type' + id).hide();
+                        }
+                        else if (res.msg == "nologin") {
+                            //弹出登录框
+                            layerLogin();
+                        }
+                        else {
+                            layer.alert("error", { icon: 2, title: 'message' }, function () { { window.location.href = "/project/question/"; } });
+                        }
+                        $('body').removeClass('global-loading');
+                    },
+                    error: function (xhr, status, error) {
+                        if (xhr.status == 403) {
+                            layer.alert("Amazon Firewall Warning: 403 Forbidden - Content may contain sensitive or dangerous words.");
+                        }
+                        $('body').removeClass('global-loading');
+                    }
+
+                });
+            } else {
+                $('#msg-' + id).addClass('form-error');
+                if (!$('#msg-' + id).hasClass('js-mention'))
+                    $('#error-tips').show().Shake(4, 10);
+                return false;
+            }
+
+
+        },
+        //上传文件
+        fn_uploader: function (id) {
+            /*上传文件开始*/
+            var uploader = WebUploader.create({
+                // 选完文件后，是否自动上传。
+                auto: true,
+                // swf文件路径
+                swf: '/img/js/jqueryplus/webuploader-0.1.5/Uploader.swf',
+                // 文件接收服务端。
+                server: '/Common/UpFile',
+                // 选择文件的按钮。可选。
+                // 内部根据当前运行是创建，可能是input元素，也可能是flash.
+                pick: { id: '#msgFile' + id, multiple: false },
+                fileVal: 'FileData',
+                fileNumLimit: 5,
+                fileSingleSizeLimit: '2097152',//'10485760',5242880,2097152
+                accept: {
+                    title: 'File',
+                    extensions: 'bmp,png,gif,jpg,jpeg',
+                    mimeTypes: 'image/*'
+                },
+                'formData': { 'uptype': "blogfile", 'key': "", 'checkcode': "", "getjson": true },
+            });
+            uploader.on('beforeFileQueued', function (file) {
+                $('#error-tips').hide();
+                $('#msg-' + id).removeClass('form-error');
+                $('#error-tips-img' + id).hide();
+                $('#error-tips-img-type' + id).hide()
+                $('#error-tips-img-size' + id).hide()
+            });
+            uploader.on('uploadStart', function (file, percentage) {
+                if (logintype != 1) {
+                    layerLogin();
+                    return;
+                }
+                $("#progress-box" + id).show();
+            });
+
+            uploader.on('uploadProgress', function (file, percentage) {
+                $('.progress').attr('data-percent', parseInt(percentage * 80))
+            });
+
+            uploader.on('uploadSuccess', function (file, data) {
+                if (data.state === "SUCCESS") {
+                    var tempImg = '<div class="pic-el"  style="background-image: url(' + data.url + ')">';
+                    tempImg += '<img style="display: none; " src="' + data.url + '" name="pig-img' + id + '" alt="">';
+                    tempImg += '<div class="del-pic" id="' + file.id + '"></div>';
+                    tempImg += '</div>';
+
+                    $('#js-views-example' + id).show().append(tempImg)
+                }
+
+                $('.progress').attr('data-percent', parseInt(0))
+
+                $("#progress-box" + id).hide();
+                // 上传图预览
+                $(document).on('click', '.js-views-example .del-pic', function () {
+                    var fileid = $(this)[0].id;
+                    var file = uploader.getFile(fileid)
+                    if (file) {
+                        uploader.removeFile(file, true); // 删除文件
+                    }
+                    $(this).parent().remove();
+                    $('#error-tips').hide();
+                    $('#msg-' + id).removeClass('form-error');
+                    $('#error-tips-img' + id).hide();
+                    $('#error-tips-img-size' + id).hide();
+                    $('#error-tips-img-type' + id).hide();
+                })
+            });
+
+            uploader.on('error', function (str) {
+                if (str == "Q_EXCEED_NUM_LIMIT") {
+                    $('#error-tips-img' + id).show().Shake(4, 10);
+                }
+                else if (str == "Q_TYPE_DENIED") {
+                    $('#error-tips-img-type' + id).show().Shake(4, 10);
+                }
+                else if (str == "F_EXCEED_SIZE") {
+                    $('#error-tips-img-size' + id).show().Shake(4, 10);
+                }
+
+                setTimeout(function () {
+                    $('#error-tips-img' + id).hide();
+                    $('#error-tips-img-size' + id).hide();
+                    $('#error-tips-img-type' + id).hide();
+                }, 3000);
+            });
+            /*上传文件结束*/
+        },
+        // 文本域转html
+        convertToHTMLFn: function (text) {
+            return text.replace(/\n/g, '<br>').replace(/ /g, '&nbsp;');
+        },
+        getPicImgArr: function (id) {
+            var imgpicarr = [];
+            $("img[name='pig-img" + id + "']").each(function (i, e) {
+                imgpicarr.push(e.src);
+            })
+
+            return imgpicarr.length > 0 ? imgpicarr.join(',') : "";
+        }
+    }
+
+    commentObj.fn_init();
+</script>
+                    </div>
+                    <!--                新加评论结束-->
+                </div>
+            </div>
+
+            <div class="product-right-nav">
+                <div class="side-nav-inner" id="jquery-accordion-menu">
+                    <div class="headertitletext">Products & Technology</div>
+                    <ul id="demo-list">
+                        <li class="side-nav-inner-list " ><a class="side-nav-title-1 " href="javascript:;">Printed Circuit Boards</a><ul class="nav-inner-list-2" style="display: none;"><li class=""><a class="side-nav-title-2" href="/pcb_prototype/Pinted_Circuit_Board_Prototype.html">PCB Prototype</a></li><li class=""><a class="side-nav-title-2" href="/pcb_prototype/General_introduction_of_Aluminum_PCB.html">Aluminum PCB Stackup</a></li><li class=""><a class="side-nav-title-2" href="/pcb_prototype/What_is_a_Rigid_Flex_PCBs.html">Rigid-Flex PCB</a></li><li class=""><a class="side-nav-title-2" href="/pcb_prototype/Metal_core_PCBs.html">Metal core PCBs</a></li><li class=""><a class="side-nav-title-2" href="/pcb_prototype/What_is_Flexible_PCB.html">Flexible PCBs</a></li><li class=""><a class="side-nav-title-2" href="/pcb_prototype/What_is_High_Frequency__HF__PCB_.html">High Frequency PCBs</a></li><li class=""><a class="side-nav-title-2" href="/pcb_prototype/High_TG_PCBs_High_Temperature_PCB_fr4_Material.html">High-TG PCBs</a></li><li class=""><a class="side-nav-title-2" href="/pcb_prototype/Thick_Copper_PCBs.html">Heavy Copper PCBs</a></li><li class=""><a class="side-nav-title-2" href="/pcb_prototype/What_is_HDI_PCB.html">HDI PCB</a></li><li class=""><a class="side-nav-title-2" href="/pcb_prototype/LED_PCB.html">LED PCB</a></li></ul></li><li class="side-nav-inner-list " ><a class="side-nav-title-1 " href="javascript:;">SMT Stencil</a><ul class="nav-inner-list-2" style="display: none;"><li class=""><a class="side-nav-title-2" href="/pcb_prototype/SMT_stencil_and_Laser_Stencil.html">SMT Stencil</a></li></ul></li><li class="side-nav-inner-list " ><a class="side-nav-title-1 " href="javascript:;">PCB assembly</a><ul class="nav-inner-list-2" style="display: none;"><li class=""><a class="side-nav-title-2" href="/pcb_prototype/PCB_assembly_Capabilities.html">PCB assembly services</a></li><li class=""><a class="side-nav-title-2" href="/pcb_prototype/SMT_Assembly_Capabilities.html">SMT Assembly Capabilities</a></li><li class=""><a class="side-nav-title-2" href="/pcb_prototype/Mixed_Assembly_Advantages.html">Mixed Assembly Advantages</a></li><li class=""><a class="side-nav-title-2" href="/pcb_prototype/Through_Hole_Assembly.html">Through-Hole Assembly</a></li><li class=""><a class="side-nav-title-2" href="/pcb_prototype/BGA_Assembly_Capabilities.html">BGA Assembly Capabilities</a></li><li class=""><a class="side-nav-title-2" href="/pcb_prototype/Panel_Requirements_for_Assembly.html">Panel Requirements for Assembly</a></li><li class=""><a class="side-nav-title-2" href="/pcb_prototype/PCB_Assembly_Functional_Testing.html">Functional Testing</a></li><li class=""><a class="side-nav-title-2" href="/pcb_prototype/Electronic_Components.html">Components Sourcing</a></li></ul></li><li class="side-nav-inner-list active" ><a class="side-nav-title-1 submenu-indicator-minus" href="javascript:;">PCB Design-Aid & Layout</a><ul class="nav-inner-list-2" ><li class=""><a class="side-nav-title-2" href="/pcb_prototype/PCB_material_classification.html">PCB Material</a></li><li class=""><a class="side-nav-title-2" href="/pcb_prototype/PCB_Design_and_Layout.html">PCB Design & Layout</a></li><li class=""><a class="side-nav-title-2" href="/pcb_prototype/Layer_Orientation.html">Layer Orientation</a></li><li class=""><a class="side-nav-title-2" href="/pcb_prototype/PCB_Panel_Creation.html">Panel Creation</a></li><li class=""><a class="side-nav-title-2" href="/pcb_prototype/PCB_BGA.html">BGA</a></li><li class=""><a class="side-nav-title-2" href="/pcb_prototype/Talking_about_the_Composition_of_PCB_Price.html">PCB Price Composition</a></li><li class="active"><a class="side-nav-title-2" href="/pcb_prototype/PCB_Gold_fingers.html">PCB Gold fingers(Edge connector)</a></li></ul></li><li class="side-nav-inner-list " ><a class="side-nav-title-1 " href="javascript:;">Surface</a><ul class="nav-inner-list-2" style="display: none;"><li class=""><a class="side-nav-title-2" href="/pcb_prototype/Comparison_of_several_PCB_surface_finish_types.html">Surface finish</a></li><li class=""><a class="side-nav-title-2" href="/pcb_prototype/PCB_Solder_mask.html">Solder mask</a></li><li class=""><a class="side-nav-title-2" href="/pcb_prototype/PCB_Via_Covering.html">Via Covering</a></li><li class=""><a class="side-nav-title-2" href="/pcb_prototype/PCB_Silkscreen.html">Silkscreen</a></li></ul></li><li class="side-nav-inner-list " ><a class="side-nav-title-1 " href="javascript:;">Drills & Throughplating</a><ul class="nav-inner-list-2" style="display: none;"><li class=""><a class="side-nav-title-2" href="/pcb_prototype/Blind_vias_and_Buried_Vias.html">Blind & Buried Vias</a></li><li class=""><a class="side-nav-title-2" href="/pcb_prototype/Annular_rings.html">Annular rings</a></li><li class=""><a class="side-nav-title-2" href="/pcb_prototype/PCB_Sideplating.html">Side Plating</a></li><li class=""><a class="side-nav-title-2" href="/pcb_prototype/What_are_Plated_Half_Holes_Castellated_Holes_.html">Plated Half-holes</a></li><li class=""><a class="side-nav-title-2" href="/pcb_prototype/Plated_through_slots.html">Plated-through slots</a></li><li class=""><a class="side-nav-title-2" href="/pcb_prototype/PCB_Via_in_Pad.html">Via-in-Pad</a></li></ul></li><li class="side-nav-inner-list " ><a class="side-nav-title-1 " href="javascript:;">Mechanics</a><ul class="nav-inner-list-2" style="display: none;"><li class=""><a class="side-nav-title-2" href="/pcb_prototype/PCB_Milling.html">Milling</a></li><li class=""><a class="side-nav-title-2" href="/pcb_prototype/PCB_V_Scoring.html">V-Scoring</a></li><li class=""><a class="side-nav-title-2" href="/pcb_prototype/PCB_Backdrill.html">Backdrill</a></li></ul></li><li class="side-nav-inner-list " ><a class="side-nav-title-1 " href="javascript:;">Layer buildup</a><ul class="nav-inner-list-2" style="display: none;"><li class=""><a class="side-nav-title-2" href="/pcb_prototype/What_is_layer_stack_up.html">PCB stack-up</a></li><li class=""><a class="side-nav-title-2" href="/pcb_prototype/Cost_cores_Foil___Prepreg_for_PCBs.html">Prepregs, cores, foils</a></li><li class=""><a class="side-nav-title-2" href="/pcb_prototype/_Stack_up_for_Prototypes.html">Prototypes</a></li><li class=""><a class="side-nav-title-2" href="/pcb_prototype/Stack_up_for_FPC.html">Flex</a></li></ul></li><li class="side-nav-inner-list " ><a class="side-nav-title-1 " href="javascript:;">Quality</a><ul class="nav-inner-list-2" style="display: none;"><li class=""><a class="side-nav-title-2" href="/pcb_prototype/PCB_Design_Rule_Check.html">Design Rule Check</a></li><li class=""><a class="side-nav-title-2" href="/pcb_prototype/Automated_optical_inspection__AOI_.html">A.O.I</a></li><li class=""><a class="side-nav-title-2" href="/pcb_prototype/Electronic_test___probe_test.html">E-Test</a></li><li class=""><a class="side-nav-title-2" href="/pcb_prototype/Automated_X_Ray_Inspection.html">X-RAY</a></li><li class=""><a class="side-nav-title-2" href="/pcb_prototype/Impedance_Control.html">Impedance Control</a></li><li class=""><a class="side-nav-title-2" href="/pcb_prototype/impedance_calculator.html">Impedance Calculation</a></li><li class=""><a class="side-nav-title-2" href="/pcb_prototype/RoHs_Lead_Free.html">RoHs-Lead Free</a></li><li class=""><a class="side-nav-title-2" href="/pcb_prototype/PCB_Manufacturing_tolerances.html">Manufacturing tolerances</a></li><li class=""><a class="side-nav-title-2" href="/pcb_prototype/trace-width-calculator.html">PCB Trace Width Calculator</a></li><li class=""><a class="side-nav-title-2" href="/pcb_prototype/PCB_Shelf_Life.html">PCB Shelf Life</a></li></ul></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--底部-->
+    <div class="footer">
+
+
+<link href="/img/css/public-web.css?v=639264230552683783" rel="stylesheet" />
+
+<style type="text/css">
+    .gerberlist {
+        margin-bottom: 10px;
+    }
+
+        .gerberlist input {
+            border: 1px solid #cccccc;
+            color: #333;
+            float: none;
+            font-family: arial;
+            font-size: 14px;
+            height: 16px;
+            overflow: hidden;
+            padding: 5px;
+            width: 238px;
+        }
+</style>
+
+
+
+<div class="wcontainer">
+    <div class="footer_left">
+        <div class="footer_left_top">
+            <dl>
+                <dt>Capabilities</dt>
+                <dd><a href="/capabilities.html" target="_blank">PCB Capabilities</a></dd>
+                <dd><a href="/assembly-capabilities.html" target="_blank">PCB Assembly Service</a></dd>
+                <dd><a href="/quickturn-pcb-fabrication.html" target="_blank">Quick turn PCB Fabrication</a></dd>
+                <dd><a href="/stencil.aspx" target="_blank">SMD Stencils</a></dd>
+                <dd><a href="/prototype_pcb/" target="_blank">Prototype PCBs</a></dd>
+                <dd><a href="/oem/quality-control.html" target="_blank">Quality Control</a></dd>
+            </dl>
+            <dl>
+                <dt>Products/Services
+</dt>
+                <dd><a href="/orderonline.aspx" target="_blank">PCB Instant Quote</a></dd>
+                <dd><a href="/faq-of-pcb.html" target="_blank">PCB FAQs</a></dd>
+                <dd><a href="/pcb_prototype/" target="_blank">PCB Prototyping</a></dd>
+                <dd><a href="/pcb-service.html" target="_blank">Our Equipment</a></dd>
+                <dd><a href="/blog/" target="_blank">Blog/Engineering</a></dd>
+                <dd><a href="/pcb-products.html">PCB Products</a></dd>
+            </dl>
+            <dl>
+                <dt>Customer Support</dt>
+                <dd><a href="/contact.html" target="_blank">Contact Us</a></dd>
+                <dd><a href="/helpcenter" target="_blank">Help Center
+</a></dd>
+                <dd><a href="/sponsor.html" target="_blank">Sponsorships</a></dd>
+                <dd><a href="/project/shareproject/" target="_blank">Shared Projects</a></dd>
+                <dd><a href="/pcb_glossary/" target="_blank">PCB Glossary</a></dd>
+                <dd><a href="https://member.pcbway.com/specials/referrals" target="_blank" rel="nofollow">Referral Program</a></dd>
+            </dl>
+            <dl>
+                <dt>About us</dt>
+                <dd><a href="/about.html" target="_blank">About Us</a></dd>
+                <dd><a href="/why.html" target="_blank">Why Buy From Us?</a></dd>
+                <dd><a href="/shipping_method_guide.aspx" target="_blank">Shipping Method Guide</a></dd>
+                <dd><a href="/privacy_policy.html" target="_blank">Privacy Policy &amp; Agreement</a></dd>
+                <dd><a href="/return_policy.html" target="_blank">Refund Policy</a></dd>
+
+                <dd><a href="/terms_service.html" target="_blank">Terms of Service</a></dd>
+            </dl>
+        </div>
+        <div class="footer_left_bottom">
+            <dl>
+                <dt>Payment Methods</dt>
+                <dd class="p-icon pay-methods">Payoneer, Bank Transfer, Wise, Google Pay, Apple Pay, Visa, Mastercard, JCB, America Express, DinersClub, Discover Card</dd>
+            </dl>
+            <dl>
+                <dt>Delivery Services
+</dt>
+                <dd class="p-icon delivery-service">FedEx,UPS,DHL,China Post Air Mail,TNT,EMS ePacket,Hongkong Post Air Mail,EMS</dd>
+            </dl>
+            <dl>
+                <dt>Verified by
+</dt>
+                <dd>
+                    <a href="javascript:void(0);" class="p-icon iso9001">Ul  Certificate &amp;ISO 9001:2008 Certificate</a>
+                    <a class="low-carbon" href="https://www.pcbway.com/blog/News/Corporate_Social_Responsibility_of_PCBWay_22074fba.html" target="_blank">Go Green</a>
+                </dd>
+            </dl>
+            <dl>
+                <dt>Link Us on
+</dt>
+                <dd class="clearfix">
+                    <a href="https://www.facebook.com/pcbway" target="_blank" title="Follow us on facebook" class="p-icon facebook">Facebook</a>
+                    <a href="https://twitter.com/PCBWayOfficial" target="_blank" title="Follow us on twitter" class="p-icon twitter">twitter</a>
+                    
+                    <a href="https://www.youtube.com/@PCBWayCom" target="_blank" title="Follow us on youtube" class="p-icon youtube">youtube</a>
+                    
+                    <a href="https://www.linkedin.com/company/pcbway" target="_blank" title="Follow us on linkedin" class="p-icon linkedin">linkedin</a>
+                    <a href="https://www.instagram.com/pcbway/" target="_blank" title="Follow us on instagram" class="p-icon instagram">instagram</a>
+                    <a href="https://www.tiktok.com/@pcbway" target="_blank" title="Follow us on tiktok" class="p-icon tiktok">tiktok</a>
+
+                </dd>
+            </dl>
+        </div>
+    </div>
+
+    <p class="bottom-logo"><span class="p-icon">PCBWay</span> PCB Prototype the Easy Way!</p>
+
+    <div class="footer_bottom">
+        © 2024 PCBWay. All rights reserved.
+    </div>
+</div>
+
+    <!--cookies 弹窗协议-->
+    <div class="cookies-pop-box js-cookies-pop-box" style="display: none">
+        <div class="cookies-pop-body">
+            <div class="cookies-pop-head">
+                <div class="pop-title">
+                    Cookie Preferences
+                    <span class="close-btn js-close-btn">
+
+                    </span>
+                </div>
+                <div class="title-des">
+                    Cookies are small files which, when placed on your device, enable us to provide certain features and
+                functionality of PCBWay websites and online services to you. We use the following types of cookies on
+                our websites. You have the ability to accept or decline cookies as you prefer. View <a href="/privacy_policy.html#Definition_Cookies_8" target="_blank">Cookies Policy</a> for full details.
+                </div>
+            </div>
+            <div class="cookies-pop-scroll">
+                <!--Required start-->
+                <div class="module-cookies">
+                    <div class="module-cookies-title">
+                        <span class="title">Required Cookies</span>
+                        <div class="switch-cookies">
+                            <span class="tag-text">Always active</span>
+                        </div>
+                    </div>
+                    <div class="cookies-title-des">
+                        These cookies are necessary to enable the basic features of this site to function, such as providing secure log-in and related services core functionality. Without them, the site could not operate, so they cannot be disabled.
+                    </div>
+                    <!--    子集展开 追加  active-->
+                    <div class="js-cookies-toggle cookie-toggle">
+                        <div class="cookie-details-title">
+                            Cookie details
+                        </div>
+                        <div class="cookie-list">
+                        <dl class="cookie-el">
+                            <dd>
+                                <div class="cookie-label">
+                                    Name
+                                </div>
+                                <div class="cookie-val">
+                                    country_id, logFlag, login_email / email, wayuserid, wayuserkey, inviteid, PromoterCode, sid, ASP.NET_SessionId, errCode, Language_Pabway_Visitor, pcbwaycookies, pcbwaycookies_analytics, pcbwaycookies_functional
+                                </div>
+                            </dd>
+                            <dd>
+                                <div class="cookie-label">
+                                    Recipient
+                                </div>
+                                <div class="cookie-val">
+                                    .pcbway.com
+                                </div>
+                            </dd>
+                            <dd>
+                                <div class="cookie-label">
+                                    Purpose
+                                </div>
+                                <div class="cookie-val">
+                                    These cookies are necessary to enable the basic features of this site to function, such as providing secure log-in and related services core functionality.
+                                </div>
+                            </dd>
+                        </dl>
+
+                        <dl class="cookie-el">
+                            <dd>
+                                <div class="cookie-label">
+                                    Name
+                                </div>
+                                <div class="cookie-val">
+                                    Secure-3PSIDCC, SAPISID, SSID, Secure-3PSID, SIDCC, SID, HSID, APISID, NEST, __Secure-3PAPISID, DSID, RUL, IDE
+                                </div>
+                            </dd>
+                            <dd>
+                                <div class="cookie-label">
+                                    Recipient
+                                </div>
+                                <div class="cookie-val">
+                                    .google.com &amp; .doubleclick.net
+                                </div>
+                            </dd>
+                            <dd>
+                                <div class="cookie-label">
+                                    Purpose
+                                </div>
+                                <div class="cookie-val">
+                                    These cookies are the property of Google Inc. Google tracks users through its own products and websites, as well as many technologies embedded in millions of websites around the world. Most of these services will collect data from the user’s actions through the pages to profile the interests of users and sell advertising space to organizations based on these interests, and align the advertisements with the content of the pages on which the user's advertisements appear.
+                                    <br>For more information about Google cookies, please visit <span style="color: #00a63f;">https://policies.google.com/technologies/types</span>.
+                                </div>
+                            </dd>
+                        </dl>
+
+                        <dl class="cookie-el">
+                            <dd>
+                                <div class="cookie-label">
+                                    Name
+                                </div>
+                                <div class="cookie-val">
+                                    VISITOR_INFO1_LIVE, YSC
+                                </div>
+                            </dd>
+                            <dd>
+                                <div class="cookie-label">
+                                    Recipient
+                                </div>
+                                <div class="cookie-val">
+                                    .youtube.com
+                                </div>
+                            </dd>
+                            <dd>
+                                <div class="cookie-label">
+                                    Purpose
+                                </div>
+                                <div class="cookie-val">
+                                    These cookies are used to provide video services and record the user’s saved delivery information.
+                                </div>
+                            </dd>
+                        </dl>
+
+                        <dl class="cookie-el">
+                            <dd>
+                                <div class="cookie-label">
+                                    Name
+                                </div>
+                                <div class="cookie-val">
+                                    fr, datr, sb,
+                                </div>
+                            </dd>
+                            <dd>
+                                <div class="cookie-label">
+                                    Recipient
+                                </div>
+                                <div class="cookie-val">
+                                    .facebook.com
+                                </div>
+                            </dd>
+                            <dd>
+                                <div class="cookie-label">
+                                    Purpose
+                                </div>
+                                <div class="cookie-val">
+                                    These cookies allow us to place advertising content relevant to the user on Facebook based on their browsing habits on our website. You can find out more and change your preferences on Facebook here: <span style="color: #00a63f;">https://www.facebook.com/policies/cookies/</span>. You can control and refuse Facebook ads and other third-party cookies by visiting here: <span style="color: #00a63f;">https://www.youronlinechoices.com/uk/your-ad-choices</span>.
+                                </div>
+                            </dd>
+                        </dl>
+
+                        <dl class="cookie-el">
+                            <dd>
+                                <div class="cookie-label">
+                                    Name
+                                </div>
+                                <div class="cookie-val">
+                                    atpsida, sca, UM_distinctid, CNZZDATA1279077088, cna
+                                </div>
+                            </dd>
+                            <dd>
+                                <div class="cookie-label">
+                                    Recipient
+                                </div>
+                                <div class="cookie-val">
+                                    .cnzz.mmstat.com &amp; .unionfab.com &amp; make.unionfab.com &amp; .mmstat.com
+                                </div>
+                            </dd>
+                            <dd>
+                                <div class="cookie-label">
+                                    Purpose
+                                </div>
+                                <div class="cookie-val">
+                                    This cookie is set to preview 3D images.
+                                </div>
+                            </dd>
+                        </dl>
+
+                        <dl class="cookie-el">
+                            <dd>
+                                <div class="cookie-label">
+                                    Name
+                                </div>
+                                <div class="cookie-val">
+                                    FASID, SSID
+                                </div>
+                            </dd>
+                            <dd>
+                                <div class="cookie-label">
+                                    Recipient
+                                </div>
+                                <div class="cookie-val">
+                                    cdn.livechat-files.com
+                                </div>
+                            </dd>
+                            <dd>
+                                <div class="cookie-label">
+                                    Purpose
+                                </div>
+                                <div class="cookie-val">
+                                    LiveChat online chat tool.
+                                </div>
+                            </dd>
+                        </dl>
+
+                        <dl class="cookie-el">
+                            <dd>
+                                <div class="cookie-label">
+                                    Name
+                                </div>
+                                <div class="cookie-val">
+                                    guest_id, personalization_id
+                                </div>
+                            </dd>
+                            <dd>
+                                <div class="cookie-label">
+                                    Recipient
+                                </div>
+                                <div class="cookie-val">
+                                    .twitter.com
+                                </div>
+                            </dd>
+                            <dd>
+                                <div class="cookie-label">
+                                    Purpose
+                                </div>
+                                <div class="cookie-val">
+                                    These cookies are Twitter's advertising cookies, which are used to deliver, measure, and improve the relevancy of ads. For more information, please visit <span style="color: #00a63f;">https://twitter.com/en/privacy</span>.
+                                </div>
+                            </dd>
+                        </dl>
+
+                    </div>
+                    </div>
+                </div>
+                <!--Required end-->
+                <!--Analytics start-->
+                <div class="module-cookies">
+                    <div class="module-cookies-title">
+                        <span class="title">Functional Cookies</span>
+                        <div class="switch-cookies">
+                            <span class="switch-shot js-switch-shot active js-pcbwaycookies-analytics">
+                                <span class="yes-tag">Yes</span>
+                                <span class="no-tag">No</span>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="cookies-title-des">
+                        Cookies that help us remember your preferences and settings in order to improve your experience when interacting with our sites and services.
+                    </div>
+                    <div class="js-cookies-toggle cookie-toggle">
+                        <div class="cookie-details-title">
+                            Cookie details
+                        </div>
+                        <div class="cookie-list">
+                        <dl class="cookie-el">
+                            <dd>
+                                <div class="cookie-label">
+                                    Name
+                                </div>
+                                <div class="cookie-val">
+                                    uvc, loc, sshs, xtc
+                                </div>
+                            </dd>
+                            <dd>
+                                <div class="cookie-label">
+                                    Recipient
+                                </div>
+                                <div class="cookie-val">
+                                    .addthis.com
+                                </div>
+                            </dd>
+                            <dd>
+                                <div class="cookie-label">
+                                    Purpose
+                                </div>
+                                <div class="cookie-val">
+                                    Share plugin. For more information, please visit<br> <span style="color: #00a63f;">https://www.addthis.com/privacy/terms-of-service/</span>.
+                                </div>
+                            </dd>
+                        </dl>
+                    </div>
+                    </div>
+                </div>
+                <!--Analytics end-->
+                <!--Functional start-->
+                <div class="module-cookies">
+                    <div class="module-cookies-title">
+                        <span class="title">Targeted Advertising</span>
+                        <div class="switch-cookies">
+                            <span class="switch-shot js-switch-shot active js-pcbwaycookies-functional">
+                                <span class="yes-tag">Yes</span>
+                                <span class="no-tag">No</span>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="cookies-title-des">
+                        Our third-party service providers and Our business partners may use advertising cookies to collect data about your online activities and your browsing habits on their websites. Thanks to the data collected by these cookies, they can offer you relevant advertising tailored to your preferences and interests.
+                    </div>
+                    <div class="js-cookies-toggle cookie-toggle">
+                        <div class="cookie-details-title">
+                            Cookie details
+                        </div>
+                        <div class="cookie-list">
+                        <dl class="cookie-el">
+                            <dd>
+                                <div class="cookie-label">
+                                    Name
+                                </div>
+                                <div class="cookie-val">
+                                    id, test_cookie, GCLID, DCLID, _gcl_*
+                                </div>
+                            </dd>
+                            <dd>
+                                <div class="cookie-label">
+                                    Recipient
+                                </div>
+                                <div class="cookie-val">
+                                    .google.com & .doubleclick.net
+                                </div>
+                            </dd>
+                            <dd>
+                                <div class="cookie-label">
+                                    Purpose
+                                </div>
+                                <div class="cookie-val">
+                                    Cookies pertaining to advertising may be read and written.<br>
+IP addresses are collected.<br>
+The full web page URL, including ad-click information in URL parameters (e.g., GCLID / DCLID) is collected.<br>
+Third-party web cookies previously set on <span style="color: #00a63f;">google.com</span> and <span style="color: #00a63f;">doubleclick.net</span>, and first-party conversion cookies (e.g., _gcl_*) are accessible.
+                                </div>
+                            </dd>
+                        </dl>
+                    </div>
+                    </div>
+                </div>
+                <!--Functional end-->
+
+
+            </div>
+            <div class="cookies-pop-footer">
+                <a class="cookie-btn js-choices-btn" href="javascript:void(0)">
+                    Submit my choices
+                </a>
+                <a class="cookie-btn js-decline-btn" href="javascript:void(0)">
+                    Decline All
+                </a>
+                <a class="cookie-btn agree js-agree-btn" href="javascript:void(0)">
+                    Accept All
+                </a>
+            </div>
+        </div>
+
+        <div class="cookies-pop-body-submitted" style="display: none">
+            <div class="cookies-pop-head">
+                <div class="pop-title">
+                    Settings Submitted
+                    <span class="close-btn js-close-btn">
+
+                    </span>
+                </div>
+                <div class="title-des">
+                    You have successfully updated your Cookie settings.
+                </div>
+            </div>
+
+            <div class="cookies-pop-footer">
+                <a class="cookie-btn agree js-close-btn" href="javascript:void(0)">
+                    Close
+                </a>
+            </div>
+        </div>
+    </div>
+    <!--cookies 弹窗提示-->
+    <div class="cookies-pop-alert" style="display:none;">
+        <div class="wcontainer">
+            <div class="close-btn js-tkclose-btn"></div>
+            <div class="pop-alert-title">PCBWay and Cookies</div>
+            <div class="pop-alert-des">
+                  We uses cookies to maintain the essential functionality of our website and personalise your browsing
+            experience. By clicking "Accept All" or continuing to browse the site you are agreeing to our use of
+            cookies. You can manage your settings through
+            <a class="interaction js-preferences-btn" href="javascript:void(0)">Cookie Preferences</a>
+            or read our
+            <a class="interaction" href="/privacy_policy.html#Definition_Cookies_8" target="_blank">Cookies Policy</a>
+            to learn more.
+            </div>
+            <div class="cookies-pop-footer">
+                <a class="cookie-btn js-preferences-btn" href="javascript:void(0)">
+                    Cookie Preferences
+                </a>
+                <a class="cookie-btn agree js-agree-all" href="javascript:void(0)">
+                    Accept All
+                </a>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript">
+        function showCookiePop() {
+            $('#chat-widget-container').css('bottom', '112px');
+            $('.cookies-pop-alert').show();
+            LiveChatWidget.on('ready', function () {
+                if ($('.cookies-pop-alert').is(':visible')) {
+                    $('#chat-widget-container').css('bottom', '112px');
+                    setTimeout(function () {
+                        $('#chat-widget-container').css('bottom', '112px');
+                    }, 100);
+                }
+            });
+            LiveChatWidget.on('visibility_changed', function (data) {
+                switch (data.visibility) {
+                    case "maximized":
+                        break;
+                    case "minimized":
+                        {
+                            if ($('.cookies-pop-alert').is(':visible')) {
+                                $('#chat-widget-container').css('bottom', '112px');
+                                setTimeout(function () {
+                                    $('#chat-widget-container').css('bottom', '112px');
+                                }, 2300);
+                            }
+                        }
+                        break;
+                    case "hidden":
+                        break;
+                }
+
+            });
+        }
+        function hideCookiePop(dom) {
+            if (dom) {
+                $(dom).parents('.cookies-pop-alert').hide()
+            }
+            else {
+                $('.cookies-pop-alert').hide();
+            }
+            $('#chat-widget-container').css('bottom', '0')
+        }
+        $(function () {
+           
+            //验证欧盟
+            $.post('/member/CheckEU/', {}, function (res) {
+                if (res.result) {
+                    showCookiePop();
+                }
+            });
+
+            // 新加cookies弹窗开始
+            $('.js-tkclose-btn').click(function () {
+                hideCookiePop(this);
+            })
+
+            $('.js-preferences-btn').click(function () {
+                $('.js-cookies-pop-box').show()
+            })
+            // 新加cookies弹窗结束
+
+
+            $('.js-close-btn').click(function () {
+                $('.js-cookies-pop-box').hide()
+            })
+
+            $('.js-cookies-toggle .cookie-details-title').click(function () {
+                $(this).parent().toggleClass('active')
+
+            })
+            $('.js-switch-shot').click(function () {
+                $(this).toggleClass('active')
+            })
+
+            $('.js-choices-btn').click(function () {
+                $('.js-cookies-pop-box').find('.cookies-pop-body').hide();
+                $('.js-cookies-pop-box').find('.cookies-pop-body-submitted').show();
+                closepcbwaycookies();
+            })
+            $('.js-decline-btn').click(function () {
+                $('.js-switch-shot').removeClass('active');
+                $('.js-cookies-pop-box').find('.cookies-pop-body').hide();
+                $('.js-cookies-pop-box').find('.cookies-pop-body-submitted').show();
+                closepcbwaycookies();
+            })
+            $('.js-agree-btn').click(function () {
+                $('.js-switch-shot').addClass('active');
+                $('.js-cookies-pop-box').find('.cookies-pop-body').hide();
+                $('.js-cookies-pop-box').find('.cookies-pop-body-submitted').show();
+                closepcbwaycookies();
+            })
+            $('.js-agree-all').click(function () {
+                $('.js-switch-shot').addClass('active')
+                closepcbwaycookies();
+            })
+        });
+
+        function closepcbwaycookies() {
+            hideCookiePop();
+            var pcbwaycookies_analytics = $('.js-pcbwaycookies-analytics').hasClass('active');
+            var pcbwaycookies_functional = $('.js-pcbwaycookies-functional').hasClass('active');
+
+            setCookie("pcbwaycookies_analytics", pcbwaycookies_analytics ? '1' : '0', 730);
+            setCookie("pcbwaycookies_functional", pcbwaycookies_functional ? '1' : '0', 730);
+
+            setCookie("pcbwaycookies", 'true', 730);
+
+            var visitorGuid = $('#visitorGuid').val();
+            if (!visitorGuid || visitorGuid == undefined){
+                visitorGuid = '';
+            }
+
+            $.getJSON('https://member.pcbway.com/Member/SetCookieLog?callback=?', { pcbwaycookies_analytics: pcbwaycookies_analytics, pcbwaycookies_functional: pcbwaycookies_functional, visitorGuid: visitorGuid });
+
+            if (pcbwaycookies_functional) {
+                consentGrantedAdStorage();
+            }
+        }
+    </script>
+
+
+<script type="text/javascript">
+
+
+
+
+
+
+
+    function clkPricingMatrix() {
+        if (checkForm() == false) {
+            return;
+        }
+        OpenWin('Price Comparison Matrix', 910, 450, '/pricematrix.aspx?' + $("#orderForm").serialize());
+    }
+
+    function ShowLayerOrder() {
+
+        // 判断是否登陆,未登陆不弹出层
+        if (getCookie("logFlag") == "0") {
+            return;
+        }
+
+        var layer = $("input[name='hidLayers']").val();
+
+
+        if (layer >= 10) {
+            return;
+        }
+
+        if (layer == 6) {
+            $("#divLayer5").show(); $("#divLayer6").show();
+            $("#divLayer7").hide(); $("#divLayer8").hide();
+        }
+
+        else if (layer == 8) {
+            $("#divLayer5").show(); $("#divLayer6").show();
+            $("#divLayer7").show(); $("#divLayer8").show();
+        }
+        else {
+            $("#divLayer5").hide(); $("#divLayer6").hide();
+            $("#divLayer7").hide(); $("#divLayer8").hide();
+        }
+
+
+        $('#layerorder').show();
+        $('#layerorder').dialog({
+            title: 'Please fill in the layer order from top to bottom here. (Optional)',
+            width: 500,
+            height: 450,
+            closed: false,
+            cache: false,
+            modal: true
+        });
+    }
+
+
+    function SetLayerNote() {
+        var layers = $("input[name='hidLayers']").val();
+        var cx1 = $.trim($("#txtLayerCXL1").val());
+        var cx2 = $.trim($("#txtLayerCXL2").val());
+        var cx3 = $.trim($("#txtLayerCXL3").val());
+        var cx4 = $.trim($("#txtLayerCXL4").val());
+        var cx5 = $.trim($("#txtLayerCXL5").val());
+        var cx6 = $.trim($("#txtLayerCXL6").val());
+        var cx7 = $.trim($("#txtLayerCXL7").val());
+        var cx8 = $.trim($("#txtLayerCXL8").val());
+        if (cx1.length == 0 || cx2.length == 0 || cx3.length == 0 || cx4.length == 0 || (layers > 4 && (cx5.length == 0 || cx6.length == 0)) || (layers > 6 && (cx7.length == 0 || cx8.length == 0))) {
+            alert("Please input the layer order"); return;
+        }
+
+        var note = "Layer Order:L1:" + cx1 + ",L2:" + cx2 + ",L3:" + cx3 + ",L4:" + cx4;
+        if (layers > 4) {
+            note += ",L5:" + cx5 + ",L6:" + cx6;
+        }
+        if (layers > 6) {
+            note += ",L7:" + cx7 + ",L8:" + cx8;
+        }
+        //if (note.length > 0 && layers >= 4) {
+        //    var orgNote = $("#txtPCBNote").val().replace(/Layer Order:.+?\./, "") + note + ". ";
+        //    $("#txtPCBNote").val(orgNote);
+
+        //}
+        //else {
+
+        //    var orgNote = $("#txtPCBNote").val().replace(/Layer Order:.+?\./, "");
+        //    $("#txtPCBNote").val(orgNote);
+        //}
+        $("#cxipt").val(note);
+        $("#layerorder").dialog("close");
+
+    }
+
+
+
+
+    $(function () {
+
+
+
+        $("#dvConvertSize").click(function () {
+            $('#dvConvert').window('open'); // open a window
+            $('#dvConvert').window('center');
+            $('#dvConvert').show();
+
+
+        })
+
+        $("#btnConvert").click(function () {
+            $('#dvConvert').window('close'); // open a window
+
+            var x = parseFloat($.trim($("#iptSizeX").val()));
+            var y = parseFloat($.trim($("#iptSizeY").val()));
+
+            if (x) {
+                $("#hidLength").val((25.4 * x).toFixed(1));
+            }
+
+            if (y) {
+                $("#hidWidth").val((25.4 * y).toFixed(1));
+            }
+
+
+
+        })
+
+
+        $("#btnHopeTime").click(function () {
+            $('#dvConvertPCBMax').window('close');  
+
+            var HopeCash = $("#HopeCash").val();
+            var HopeTime = $('#HopeTime').val();
+             
+            //if (!$("#HopeCash").validatebox("isValid")) {
+            //    $("#HopeCash").focus();
+            //    return false;
+
+            //}
+
+            //if (!$("#btnHopeTime").validatebox("isValid")) {
+            //    $("#btnHopeTime").focus();
+            //    return false;
+
+            //}
+             
+            $("#HopeCashTxt").val(HopeCash);
+            $("#HopeTimeTxt").val(HopeTime);
+        })
+
+        $(".example").hover(function () {
+
+            var offset = $(this).offset();
+
+            $(this).next("img").show();
+        })
+
+        $('body').delegate('.smintip', 'mouseover', function () {
+
+           
+            var datawidth = $(this).attr("datawidth");
+            if (datawidth) {
+
+            }
+            else {
+                datawidth = 280;
+            }
+
+            //var div = $(".wdetail-tips");
+            //$("#tipp").html('');
+            //div.css({ width: 300, left: 0, top: 25 });
+            //$("#tipp").html('<div class="wdetail-tips" style="width: 220px; display: none"><p id="tipp">' + $(this).attr("data") + '</p><a class="ui-balloon-arrow"></a></div>');
+            //console.log($(this).attr("data"));
+            if ($(this).find('.wdetail-tips').length == 0)
+                $(this).append('<div class="wdetail-tips" style="width:' + datawidth + 'px; display: none;top: 25px;"><p id="tipp">' + $(this).attr("data") + '</p><a class="ui-balloon-arrow"></a></div>');//$(this).find('.wdetail-tips').remove();
+
+            
+
+            $(this).find('.wdetail-tips').show();
+        })
+
+        $('body').delegate('.smintip', 'mouseout', function () {
+            $(this).find('.wdetail-tips').hide();
+            //$(".wdetail-tips").hide();
+        });
+    })
+
+</script>
+
+<script>
+    function getCookie_google(cookieName) {
+        let cookie = {};
+        document.cookie.split(";").forEach(function (el) {
+            let [key, value] = el.split("=");
+            if (key.indexOf(cookieName) > -1) {
+                cookie[key.trim()] = value;
+            }
+        });
+        return Object.values(cookie);
+    }
+    //1
+    // Define dataLayer and the gtag function.
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+
+    var json_consent_status;
+    var cookievalue = getCookie_google("consentstatus");
+
+    // Set default consent to 'denied' as a placeholder
+    // Determine actual values based on your own requirements
+    gtag("consent", "default", {
+        region: ['AT', 'BE', 'BG', 'CY', 'CZ', 'DE', 'DK', 'EE', 'ES', 'FI', 'FR', 'GR', 'HR', 'HU', 'IE', 'IS', 'IT', 'LI', 'LT', 'LU', 'LV', 'MT', 'NL', 'NO', 'PL', 'PT', 'RO', 'SE', 'SI', 'SK'],
+        'ad_storage': 'denied',
+        'ad_user_data': 'denied',
+        'ad_personalization': 'denied',
+        'analytics_storage': 'denied',
+        'wait_for_update': 500
+    });
+
+    if (cookievalue.length != 0) {
+        if ((cookievalue == 'granted')) {
+            gtag("consent", "update", {
+                'ad_storage': 'granted',
+                'ad_user_data': 'granted',
+                'ad_personalization': 'granted',
+                'analytics_storage': 'granted'
+            });
+        } else {
+            gtag("consent", "update", {
+                'ad_storage': 'denied',
+                'ad_user_data': 'denied',
+                'ad_personalization': 'denied',
+                'analytics_storage': 'denied'
+            });
+        }
+    }
+    function setCookies_google(json_consent_status) {
+        var currentDate = new Date();
+        var expirationDate = new Date(currentDate);
+        expirationDate.setFullYear(currentDate.getFullYear() + 1);
+        var expires = expirationDate.toUTCString();
+        document.cookie = "consentstatus=" + json_consent_status + ";expires=" + expires + ";path=/";
+    }
+
+    //3
+    function consentGrantedAdStorage() {
+        gtag('consent', 'update', {
+            'ad_storage': 'granted',
+            'ad_user_data': 'granted',
+            'ad_personalization': 'granted',
+            'analytics_storage': 'granted'
+        });
+        json_consent_status = 'granted';
+        setCookies_google(json_consent_status);
+    }
+</script>
+
+
+        
+        <!-- Google tag (gtag.js) -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-YRT9R5V5JB"></script>
+        <script>
+            //2
+            //window.dataLayer = window.dataLayer || [];
+            //function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+
+            gtag('config', 'G-YRT9R5V5JB');
+        </script>
+        
+
+
+<script type="text/javascript" src="https://login.pcbway.com/VisitorJS.aspx"></script>
+
+
+
+<!-- Start of LiveChat code -->
+<script>
+    window.__lc = window.__lc || {};
+    window.__lc.license = 12933531;
+    ; (function (n, t, c) { function i(n) { return e._h ? e._h.apply(null, n) : e._q.push(n) } var e = { _q: [], _h: null, _v: "2.0", on: function () { i(["on", c.call(arguments)]) }, once: function () { i(["once", c.call(arguments)]) }, off: function () { i(["off", c.call(arguments)]) }, get: function () { if (!e._h) throw new Error("[LiveChatWidget] You can't use getters before load."); return i(["get", c.call(arguments)]) }, call: function () { i(["call", c.call(arguments)]) }, init: function () { var n = t.createElement("script"); n.async = !0, n.type = "text/javascript", n.src = "https://cdn.livechatinc.com/tracking.js", t.head.appendChild(n) } }; !n.__lc.asyncInit && e.init(), n.LiveChatWidget = n.LiveChatWidget || e }(window, document, [].slice))
+</script>
+<!-- End of LiveChat code -->
+<script>
+    function CallByCheckLoginBottomSuccess(name) {
+        if (name && name.length > 0) {
+            LiveChatWidget.call('set_customer_name', name);
+        }
+
+    }
+</script>    </div>
+    <script src="/img/js/jquery-accordion-menu.js"></script>
+    <script type="text/javascript" src="/img/js/layui-v2.7.6/layui/layui.js"></script>
+    <script type="text/javascript">
+        jQuery(document).ready(function () {
+            jQuery("#jquery-accordion-menu").jqueryAccordionMenu();
+
+        });
+
+        $(function () {
+            //顶部导航切换
+            $("#demo-list .side-nav-inner-list").click(function () {
+                $("#demo-list .side-nav-inner-list").removeClass("active")
+                $(this).addClass("active");
+            })
+
+
+            $('.tabList_stackup').find('ul li').click(function () {
+                $(this).parent().find('.cur_stackup').removeClass('cur_stackup');
+                $(this).addClass('cur_stackup');
+
+                var i = $(this).parent().children().index(this);
+                var nextobj = $(this).parent().parent().next();
+                nextobj.find('.cur_stackup').hide().removeClass('cur_stackup');
+                nextobj.children().eq(i).fadeIn(20).addClass('cur_stackup');
+            })
+        })
+    </script>
+
+    <script type="text/javascript">
+    $(document).ready(function () {
+        //$(".ql-clipboard").attr("contenteditable", "false");
+        //$(".ql-editor").attr("contenteditable", "false");
+    })
+    var logintype = 0;
+    function CallByCheckLoginAfter(obj) {
+        if (obj.data == 1) {
+            //已登录
+            logintype = 1;
+            $('#mbid').val(logintype);
+
+            $.getJSON($('#memberurl').val() + '/Web/WebMbMessageSetReadByProType?callback=?', { proid: $('#hidobjid').val(), protype: $('#hidmbmessageobjtype').val() }, function (res) { });
+        } else {
+            //未登录
+            $('.comment-login-tips').show();
+            $('#msg-0').attr('disabled');
+            $('#bt-comment-submit').attr('disabled');
+            commentObj.isLogin = false;
+        }
+
+    }
+
+    
+    //var page = 1;
+    $(function () {
+        /*留言开始*/
+        //$(document).delegate('.form-error', 'keyup', function () {
+        //    $(this).removeClass('form-error');
+        //    if (!$(this).hasClass('js-mention'))
+        //        $('.error-tips').hide();
+        //});
+
+        $(document).delegate('textarea', 'focus', function () {
+            if (logintype != 1) {
+                layerLogin();
+                return;
+            }
+        });
+
+        
+        /*留言结束*/
+
+    });
+
+    </script>
+</body>
+</html>

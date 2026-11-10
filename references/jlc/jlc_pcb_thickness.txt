@@ -1,0 +1,163 @@
+Source: https://jlcpcb.com/resources/pcb-thickness
+Retrieved 2026-10-02 (text of the server-rendered HTML, including collapsed sections; layout is in jlc_pcb_thickness.pdf)
+
+Choose the Thickness of PCBThis website requires JavaScript.
+Account Restriction Notice
+Get Coupon Here
+Coupons
+Country / Region
+Language
+undefined
+Currency
+USD $
+The currency you select is for reference only, payments must be made in US dollars.
+Save
+Language Coming Soon
+Ship to
+JLCPCB PCB Service
+FR-4 PCBs
+Flexible PCBs
+Metal Core PCBs
+High-Frequency PCBs
+PCBA Service
+PCB Assembly
+Parts Library
+More
+SMT Stencil
+PCB Layout
+Mechanical Services
+JLC3DP - 3D Printing
+JLCCNC - CNC Machining
+JLCCNC - Sheet Metal
+JLCMC - Mechanical Components
+Tools
+EasyEDA - PCB Design Tool
+JLCDFM - DFM Check
+Impedance Calculator
+PI Stiffener Calculator
+More
+OSHWLAB - Open Source Hardware
+JLCPCB - Flexible Heater
+Products
+Capabilities Contact Us
+Online Chat>
+Mon-Fri: 24 hours, Sat: 9am-6pm, GMT+8
+Email Us>
+Mon-Fri: 24 hours, Sat: 9am-6pm, GMT+8
+WhatsApp>
+Mon-Fri: 24 hours, Sat: 9am-6pm, GMT+8
+Support
+Help Center Get instant answers. 24/7 Available.
+Blog
+Community
+Support
+About Us
+JLCPCB delivers one-stop electronic and mechanical manufacturing solutions to empower hardware innovators worldwide.
+Explore Us
+Why JLCPCB?
+Quality Assurance
+How We Work
+Certifications
+Company News
+About Us
+Search
+0
+Order Now
+Sign In
+Sign In
+PCB Thickness
+The thickness of PCBs impacts the performance, stability, and reliability of the final electronic products. Now, JLCPCB offers a variety of PCB thickness options to help you make the best and affordable choice. Thickness from 0.8mm to 1.6mm starts at only $2.
+$6
+PCB Coupon
+Valid for 30 days
+Get It Now
+Characteristics of PCB Thickness
+Ultra-thin PCB (below 0.6 mm): Ultra-thin PCBs are lightweight, soft, and easy to bend, making them suitable for products that require a high level of space efficiency, such as smartphones, wearable devices and drones.
+Mid-Range Thin PCBs (0.6-1.6 mm): The mid-range PCB has a good balance between thickness and load-bearing capacity, making it suitable for a wide range of electronic products, including computer motherboards and home appliance control boards.
+Thicker PCBs (above 1.6 mm): Thick boards have a high load-bearing capacity and stiffness, making them suitable for harsh environments and electronic products that require the carrying of high-power and heavy components.
+Key factors affecting PCB Thickness
+Circuit board thickness is influenced by PCB layer count, signal type, material selection, operating environment, copper thickness, and special requirements. More copper layers increase thickness. High-power signals demand thicker copper layers and wider traces; low-power environments can use thinner boards. Material choice and operating conditions impact thickness. Copper thickness, such as 2 or 3 ounces, significantly affects overall thickness. Special applications, like high-density boards, may require customized thickness for unique environments.
+How to Choose the Appropriate PCB Thickness
+Application Focus: Before deciding on PCB thickness, understanding application needs, scenarios, and component loads is crucial.This ensures the chosen thickness aligns with product requirements.
+Safety Concerns: If the circuit board needs to withstand high voltage or current, it is important to select a thicker circuit board to ensure its safe operation.
+Mechanical Strength: If the circuit board needs to withstand high mechanical influence, it is advisable to choose a thicker PCB to ensure its mechanical strength
+Why Choose JLCPCB
+Easy Ordering Process
+Upload your Gerber file and then get an instant quote! Easy as online shopping.
+Affordable Manufacturing
+Get 1-8 layer PCBs for just $2! Efficient large-scale production offers unbeatable prices.
+Reliable Services
+In-house production with strict quality control. Fast PCB production in just 24 hours!
+Choose Your PCB Thickness Now
+Get Instant Quote
+Frequently Asked Questions
+What PCB thicknesses does JLCPCB offer?
+We offer the following thickness options: 0.4mm, 0.6mm, 0.8mm, 1.0mm, 1.2mm, 1.6mm, 2.0mm. Note that 2-layer PCBs with 0.6mm thickness do not support HASL (with lead) surface finish.
+What is the thickness tolerance of your PCBs?
+The thickness tolerance of our PCBs is +/-10% of the finished board thickness.
+Anything I should know when selecting 0.4mm thickness boards?
+For 0.4mm thickness boards, only ENIG finish is accepted. These boards cannot be made with a panel and are not available for 1-layer PCBs.
+Anything I should know when selecting 0.6mm thickness boards?
+Boards with 0.6mm thickness have a maximum size of 100mm x 100mm. This thickness is not available for 1-layer, 4-layer, or 6-layer PCBs.
+Anything I should know when selecting 0.8-1.0mm thickness boards?
+For boards with 0.8mm to 1.0mm thickness, the maximum size is 300mm x 300mm.
+Online Chat >
+Chat with our live agent for fast reply.
+Mon-Fri: 24 hours, Sat: 9am-6pm, GMT+8
+Email Us >
+Contact us at supportjlcpcb.com
+Typically reply within hours.
+Help Center >
+Get instant answers.
+24/7 Available.
+Products
+FR-4 PCBs
+Flexible PCBs
+Metal Core PCBs
+High-Frequency PCBs
+PCBA Service
+PCB Layout
+SMT Stencil
+Flex Heater
+Support
+Help Center
+Contact Us
+Community
+Shipping & Delivery
+Payment Methods
+How to Order
+How to Track
+After-Sales Service
+Blog
+Company
+About Us
+Quality Assurance
+How We Work
+Certifications
+Security
+Environment
+JLCAPI
+News
+Cooperation
+Electronics
+EasyEDA
+JLCPCB
+JLCDFM
+LCSC
+OSHWLAB
+Mechanical
+JLC3DP
+JLCCNC
+JLCMC
+CONNECT WITH US
+© 2026 JLCPCB.COM All Rights Reserved.
+Privacy Policy
+Terms & Conditions
+Cookies Policy
+Get Coupon >
+Live Chat >
+Home
+Cart
+Files
+Message
+Me

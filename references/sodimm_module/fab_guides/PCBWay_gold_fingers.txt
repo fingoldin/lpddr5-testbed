@@ -1,0 +1,834 @@
+
+
+PCB Gold fingers(Edge connector) - PCB Prototype the Easy Way - PCBWay
+
+Holiday Notice: PCBWay factories will be closed on Oct 1-3 (GMT+8). Orders can still be placed online during holidays, with extended lead times. Please place orders 3–5 days early to avoid delays.
+Read more >>
+
+PCBWay
+
+PCB Prototype the Easy Way
+
+Full feature custom PCB prototype service.
+
+Online Chat
+
+Help Center
+
+Customer Service
+
+How to order
+
+Service & Refunds
+
+Sending a message
+
+service@pcbway.com
+
+9:00 - 23:00, Mon.- Sun.
+(GMT+8)
+
+Service hotlines
+
++86 571 8503 9969
+
+9:00 - 18:00, Mon.- Fri. (GMT+8)
+
+9:00 - 12:00, Sat. (GMT+8)
+
+(Except Chinese public holidays)
+
+EN / USD
+
+Language
+
+English
+
+English
+
+Español
+
+Français
+
+日本語
+
+Currency
+
+USD ( US Dollar )
+
+USD ( US Dollar )
+
+EUR ( Euro )
+
+Save
+
+Cart
+0
+
+Sign in | Join
+Hi,
+
+My PCBWay My PCBWay -->
+(0)
+
+Sign Out
+
+Welcome to PCBWay
+
+Sign in
+
+New Customer?
+Join Free
+
+(1) Items in Awaiting payment Cart!
+
+My PCBWay
+
+My Orders
+
+Production Status
+
+Message Center
+
+My Coupons
+
+Delivery Address
+
+Help Center
+
+New here? Get a $5.00 Coupon!
+
+Home
+
+PCB Instant Quote
+
+CNC | 3D Printing
+
+PCB Assembly
+
+PCB Design
+
+OEM
+
+Product & Capabilities
+
+Why Us?
+
+Feedback
+
+Shared Projects
+
+Module Store
+
+Printed Circuit Boards
+
+PCB Capabilities
+
+Advanced PCB
+
+Advanced PCB Capabilities
+
+PCB Prototype
+
+Flex and Rigid-Flex PCBs
+
+Flexible PCBs
+
+Rigid-Flex PCBs
+
+Aluminum PCB
+
+Metal core PCBs
+
+High Frequency PCBs
+
+High-TG PCBs
+
+Thick-Copper PCBs
+
+HDI PCB
+
+LED PCB
+
+Quick turn PCB Fabrication
+
+PCB Prototyping
+
+PCB Production Process
+
+PCB Products
+
+PCB Engineering Questions
+
+FAQ of PCB
+
+SMD-Stencils
+
+Laser Stencil
+
+PCB Assembly
+
+PCB Assembly Overview
+
+PCB Assembly Capability
+
+SMT Ordering Necessary Files & Info
+
+PCB Assembly Testing Capability
+
+SMT Assembly Capabilities
+
+Mixed Assembly Advantages
+
+Through-Hole Assembly
+
+BGA Assembly Capabilities
+
+Components Sourcing
+
+Panel Requirements for Assembly
+
+Special Reminders
+
+File Requirements
+
+Production Process
+
+PCB Assembly Products
+
+PCB Assembly FAQ
+
+PCB Design-Aid & Layout
+
+Printed circuit board materials
+
+PCB Design & Layout
+
+Layer Orientation
+
+Panel Creation
+
+BGA
+
+PCB Price Composition
+
+Gold fingers
+
+Surface
+
+Surface finish
+
+Solder mask
+
+Via Covering
+
+Silkscreen
+
+Drills & Throughplating
+
+Blind & Buried Vias
+
+Annular rings
+
+Sideplating
+
+Plated Half-holes
+
+Plated-through slots
+
+Via-in-Pad
+
+Mechanics
+
+Milling
+
+V-Scoring
+
+Backdrill
+
+Layer buildup
+
+Multi-layer laminated structure
+
+Rigid-Flex PCB Standard Stackup
+
+Aluminum PCB Stackup
+
+Layer Stackup
+
+Prepregs, cores, foils
+
+Prototypes
+
+Flex Stackup
+
+Quality
+
+Quality Control
+
+Design Rule Check
+
+A.O.I.
+
+E-Test
+
+X-RAY
+
+Impedance Control
+
+ROHS-Lead Free
+
+Manufacturing tolerances
+
+PCB Shelf Life
+
+Online Tool
+
+KiCad Plugin
+
+Impedance
+Calculation
+
+PCB Trace
+Width Calculator
+
+Online
+Gerber Viewer
+
+Online
+3D Viewer
+
+Electronic
+Design Viewer
+
+CNC Machining
+
+Milling (3-, 4- & full 5-axis), turning
+
+3D Printing
+
+FDM, SLA, SLS, MJF, DMLS, Polyjet
+
+Sheet Metal Fabrication
+
+Laser cutting, bending, post processing
+
+Injection Molding
+
+Rapid tooling, multi-cavity molds
+
+CNC Machining
+
+CNC Machining Service
+
+CNC Milling
+
+CNC Turning
+
+Threaded Holes
+
+Electric Discharge Machining (EDM)
+
+3D Printing
+
+3D Printing Service
+
+Stereolithography (SLA)
+
+Digital Light Processing (DLP)
+
+Fused Deposition Modeling (FDM)
+
+Selective Laser melting (SLM)
+
+Selective Laser Sintering (SLS)
+
+PolyJet (PJ)
+
+Vacuum Casting (VC)
+
+Sheet Metal Fabrication
+
+Sheet Metal Fabrication Service
+
+Laser Cutting
+
+Sheet Cutting
+
+Bending
+
+Countersink & Counterbore
+
+Hardware Insertion
+
+Tapping
+
+Welding
+
+Additional Services
+
+Injection Molding Service
+
+Quality Control
+
+Finishing Options
+
+All Surface Finishes
+
+Standard (As-Milled)(Ra 125μin)
+
+Spray painting - Matt paint
+
+Spray painting - High gloss paint
+
+Bead blast + Anodized color
+
+Anodized
+
+Brushed
+
+#1000 sanding
+
+Why PCBWay
+
+One-Stop Solution for PCB & Assembly
+
+Sponsorships
+
+Educational & Engineering Program
+
+About Us
+
+Learn about our company mission
+
+PCB Design
+
+PCB Layout, PCB Design, Electronics
+
+Contact Us
+
+Global Offices,quick answers on product
+
+Technical Support
+
+How to Generate Gerber files in Software
+
+Mobile
+
+Enjoy more deals on our mobile website
+
+Quality Control
+
+Perfect Quality Assurance System
+
+News & Blog
+
+PCBWay Store NewArrival Product - M5Stack NanoC6 Dev Kit
+
+Power Supply Design and Layout Guidelines for LDO and DCDC
+
+Threaded Holes in CNC Machining: Thread Types, Depth, and Design Tips
+
+PCB Gold fingers
+
+In the manufacturing process of electronic devices, gold finger, as a unique pin interface, plays a crucial role. With its distinctive metal coating, gold finger is hailed as the aristocratic connection in the PCB field.
+What is Gold Finger？
+On computer memory modules and graphics cards, there is a row of golden-colored conductive contacts commonly referred to as "gold fingers." They resemble fingers in appearance and are also gold in color, hence the nickname "gold fingers." They can also be referred to as edge connectors.
+
+Gold fingers are gold-plated connectors located at the edge of a PCB. They serve as connectors between the PCB and the motherboard, ensuring reliable transmission of signals or commands. In addition to providing connectivity, the gold plating also serves to protect the edges of the circuit board from damage.
+Edge fingers and edge connectors are two concepts that are easily confused. Although both involve the connection of electronic devices, their purposes and functions are different.Next, we will explain the difference between them.
+Edge connector
+An edge connector is a specially designed connector used to mate with edge fingers. They are typically made of plastic or metal and feature slots or holes that are compatible with the edge fingers. The purpose of edge connectors is to connect electronic devices to other modules or external devices, enabling data transfer and electrical signal exchange. Common examples of edge connectors include expansion card slots, module sockets, and so on.
+Comparison between Gold Fingers and Edge Connectors
+Utility: Gold fingers are used to connect the PCB to peripheral devices or the motherboard, creating an interface for data transfer via USB and storage cards. While edge connectors are used in computers as expansion slots (to connect PCIe, PCI, and AGP cards to the system bus).
+
+Placement: Gold fingers are located at the edge of the board, while edge connectors can be installed anywhere on the circuit board.
+
+Package: Gold fingers are gold-plated for enhanced conductivity and durability. They can be plugged and unplugged as needed. While edge connectors are enclosed in a thermoplastic box, with one side of the box being open and the pins located along the edge.
+
+Design: Gold fingers are designed as solder pads. They are created after the solder mask preparation and require additional milling to obtain chamfered edges. On the other hand, edge connectors are configured as pins that are inserted and soldered into through-holes.
+
+Usage: Gold fingers are convenient in situations where frequent connection and disconnection are required. By repeatedly plugging and unplugging gold fingers, reliable electrical connections can be achieved without significant damage or wear to the connector or contact points. On the other hand, edge connectors are typically permanently fixed once inserted into the board and are not as easy to dismantle and replace.
+
+Price: Gold fingers have higher manufacturing costs as they require gold plating. Conversely, edge connectors are cheaper as they are typically made of plastic or metal materials.
+
+The Surface Treatment Methods for PCB Gold Fingers
+Electroplated Nickel Gold: With a thickness ranging from 3-50µ", electroplated nickel gold is widely used for gold fingers on PCBs that require frequent plugging and unplugging or undergo mechanical friction. It offers excellent conductivity, oxidation resistance, and wear resistance. However, due to the high cost of gold plating, it is typically used for localized gold plating, such as gold fingers.
+
+Immersion Gold: Typically with a thickness of 1µ", up to a maximum of 3µ", immersion gold is widely applied to high-precision PCBs with features like keypads, IC bonding, or BGA (Ball Grid Array). It provides superior conductivity, surface flatness, and solderability. For gold finger PCBs that do not require high wear resistance, full-board immersion gold can be chosen as a cost-effective alternative to electroplated gold. The color of immersion gold is golden yellow.
+
+Category of Gold Fingers
+Gold fingers can be divided into regular gold fingers (flush gold fingers), segmented gold fingers (intermittent gold fingers), and long-short gold fingers (uneven gold fingers).
+Regular gold fingers (flush gold fingers): Rectangular solder pads with the same length and width are neatly arranged at the edge of the board. They are commonly used for physical connections in network cards, graphics cards, and similar devices.
+
+Segmented gold fingers (intermittent gold fingers): Rectangular solder pads of different lengths located at the edge of the circuit board, with a front section disconnected.
+
+Long-short gold fingers (uneven gold fingers): Rectangular solder pads of varying lengths located at the edge of the board. They are commonly used for physical connections in devices such as memory modules, USB drives, and card readers.
+
+Design Rules for Gold Fingers
+There should be a minimum distance of 0.5mm between the gold fingers and the PCB board outline.
+
+No SMD components, plated holes, or solder pads are allowed within a 1mm range of the gold fingers.
+
+All inner layers within the gold fingers must undergo copper removal to prevent copper exposure during chamfering. Typically, the width of copper removal should be greater than 3mm. It can be done as half-finger copper removal or full-finger copper removal. In PCIE designs, there are indications that all copper within the gold fingers should be removed. Copper removal beneath the fingers can reduce the impedance mismatch between the gold fingers and impedance-controlled traces, providing benefits for ESD protection.
+
+The length of all gold fingers should not exceed 40mm.
+
+Avoid soldermask or silkscreen printing near the gold fingers.
+
+To enhance the wear resistance of gold fingers, they are typically hard gold plated.
+
+During PCB design, the gold fingers must have a continuous solder mask opening, and no steel mesh is required for the pins.
+
+Gold fingers must be designed with chamfers, typically at a 45° angle. Other angles such as 20° or 30° can be chosen. The absence of chamfers in the PCB design of gold fingers indicates a problem. In the image below, the arrow indicates a 45° chamfer.
+
+The surface of the gold fingers should avoid copper plating.
+
+The following image shows a design example of gold fingers for reference.
+
+PCBWay Commonly Used Gold Finger Chamfer Parameters
+Edge chamfer is the process of creating a transitional edge between the two surfaces of a circuit board, usually done on the outer edge of the board. The chamfer allows the gold fingers to smoothly insert into edge connectors of other PCBs. PCBWay commonly used gold finger chamfer parameters are shown in the table below:
+| Commonly used gold finger chamfer parameters
+| Angle(α) | PCB thickness(d) | Remaining thickness(s) | Chamfer depth(h)
+| 20° | 1.6mm | 0.5mm | 1.51mm
+| 2.0mm | 0.65mm | 1.85mm
+| 2.4mm | 0.7mm | 2.34mm
+| 30° | 1.6mm | 0.5mm | 0.95mm
+| 2.0mm | 0.65mm | 1.16mm
+| 2.4mm | 0.7mm | 1.47mm
+| 45° | 1.6mm | 0.5mm | 0.5mm
+| 2.0mm | 0.65mm | 0.65mm
+| 2.4mm | 0.7mm | 0.7mm
+
+Note: PCBWay can also produce gold fingers with a chamfer angle of 60°.
+Gold finger chamfer angle tolerance: +/- 5°.
+Gold finger chamfer height tolerance: +/- 5 mil.
+More information please check here:
+PCB Instant Quote
+
+Comments
+( 0 )
+
+This message here is only a suggestion supplement to the above content, and does not for trading operations such as orders. If you have any urgent questions or order issues, please contact your sales rep.
+
+Log in to post comments.
+
+Upload photo
+
+You can only upload 5 files in total. Each file cannot exceed 2MB. Supports JPG, JPEG, GIF, PNG, BMP
+
+0 / 10000
+
+It looks like you have not written anything. Please add a comment and try again.
+
+You can upload up to 5 images!
+
+Image size should not exceed 2MB!
+
+File format not supported!
+
+Post Comment
+
+View More
+
+Products & Technology
+
+Printed Circuit Boards PCB Prototype
+Aluminum PCB Stackup
+Rigid-Flex PCB
+Metal core PCBs
+Flexible PCBs
+High Frequency PCBs
+High-TG PCBs
+Heavy Copper PCBs
+HDI PCB
+LED PCB
+
+SMT Stencil SMT Stencil
+
+PCB assembly PCB assembly services
+SMT Assembly Capabilities
+Mixed Assembly Advantages
+Through-Hole Assembly
+BGA Assembly Capabilities
+Panel Requirements for Assembly
+Functional Testing
+Components Sourcing
+
+PCB Design-Aid & Layout PCB Material
+PCB Design & Layout
+Layer Orientation
+Panel Creation
+BGA
+PCB Price Composition
+PCB Gold fingers(Edge connector)
+
+Surface Surface finish
+Solder mask
+Via Covering
+Silkscreen
+
+Drills & Throughplating Blind & Buried Vias
+Annular rings
+Side Plating
+Plated Half-holes
+Plated-through slots
+Via-in-Pad
+
+Mechanics Milling
+V-Scoring
+Backdrill
+
+Layer buildup PCB stack-up
+Prepregs, cores, foils
+Prototypes
+Flex
+
+Quality Design Rule Check
+A.O.I
+E-Test
+X-RAY
+Impedance Control
+Impedance Calculation
+RoHs-Lead Free
+Manufacturing tolerances
+PCB Trace Width Calculator
+PCB Shelf Life
+
+Capabilities
+PCB Capabilities
+PCB Assembly Service
+Quick turn PCB Fabrication
+SMD Stencils
+Prototype PCBs
+Quality Control
+
+Products/Services
+
+PCB Instant Quote
+PCB FAQs
+PCB Prototyping
+Our Equipment
+Blog/Engineering
+PCB Products
+
+Customer Support
+Contact Us
+Help Center
+
+Sponsorships
+Shared Projects
+PCB Glossary
+Referral Program
+
+About us
+About Us
+Why Buy From Us?
+Shipping Method Guide
+Privacy Policy & Agreement
+Refund Policy
+
+Terms of Service
+
+Payment Methods
+Payoneer, Bank Transfer, Wise, Google Pay, Apple Pay, Visa, Mastercard, JCB, America Express, DinersClub, Discover Card
+
+Delivery Services
+
+FedEx,UPS,DHL,China Post Air Mail,TNT,EMS ePacket,Hongkong Post Air Mail,EMS
+
+Verified by
+
+Ul Certificate &ISO 9001:2008 Certificate
+Go Green
+
+Link Us on
+
+Facebook
+twitter
+
+youtube
+
+linkedin
+instagram
+tiktok
+
+PCBWay PCB Prototype the Easy Way!
+
+© 2024 PCBWay. All rights reserved.
+
+Cookie Preferences
+
+Cookies are small files which, when placed on your device, enable us to provide certain features and
+functionality of PCBWay websites and online services to you. We use the following types of cookies on
+our websites. You have the ability to accept or decline cookies as you prefer. View Cookies Policy for full details.
+
+Required Cookies
+
+Always active
+
+These cookies are necessary to enable the basic features of this site to function, such as providing secure log-in and related services core functionality. Without them, the site could not operate, so they cannot be disabled.
+
+Cookie details
+
+Name
+
+country_id, logFlag, login_email / email, wayuserid, wayuserkey, inviteid, PromoterCode, sid, ASP.NET_SessionId, errCode, Language_Pabway_Visitor, pcbwaycookies, pcbwaycookies_analytics, pcbwaycookies_functional
+
+Recipient
+
+.pcbway.com
+
+Purpose
+
+These cookies are necessary to enable the basic features of this site to function, such as providing secure log-in and related services core functionality.
+
+Name
+
+Secure-3PSIDCC, SAPISID, SSID, Secure-3PSID, SIDCC, SID, HSID, APISID, NEST, __Secure-3PAPISID, DSID, RUL, IDE
+
+Recipient
+
+.google.com & .doubleclick.net
+
+Purpose
+
+These cookies are the property of Google Inc. Google tracks users through its own products and websites, as well as many technologies embedded in millions of websites around the world. Most of these services will collect data from the user’s actions through the pages to profile the interests of users and sell advertising space to organizations based on these interests, and align the advertisements with the content of the pages on which the user's advertisements appear.
+
+For more information about Google cookies, please visit https://policies.google.com/technologies/types .
+
+Name
+
+VISITOR_INFO1_LIVE, YSC
+
+Recipient
+
+.youtube.com
+
+Purpose
+
+These cookies are used to provide video services and record the user’s saved delivery information.
+
+Name
+
+fr, datr, sb,
+
+Recipient
+
+.facebook.com
+
+Purpose
+
+These cookies allow us to place advertising content relevant to the user on Facebook based on their browsing habits on our website. You can find out more and change your preferences on Facebook here: https://www.facebook.com/policies/cookies/ . You can control and refuse Facebook ads and other third-party cookies by visiting here: https://www.youronlinechoices.com/uk/your-ad-choices .
+
+Name
+
+atpsida, sca, UM_distinctid, CNZZDATA1279077088, cna
+
+Recipient
+
+.cnzz.mmstat.com & .unionfab.com & make.unionfab.com & .mmstat.com
+
+Purpose
+
+This cookie is set to preview 3D images.
+
+Name
+
+FASID, SSID
+
+Recipient
+
+cdn.livechat-files.com
+
+Purpose
+
+LiveChat online chat tool.
+
+Name
+
+guest_id, personalization_id
+
+Recipient
+
+.twitter.com
+
+Purpose
+
+These cookies are Twitter's advertising cookies, which are used to deliver, measure, and improve the relevancy of ads. For more information, please visit https://twitter.com/en/privacy .
+
+Functional Cookies
+
+Yes
+No
+
+Cookies that help us remember your preferences and settings in order to improve your experience when interacting with our sites and services.
+
+Cookie details
+
+Name
+
+uvc, loc, sshs, xtc
+
+Recipient
+
+.addthis.com
+
+Purpose
+
+Share plugin. For more information, please visit
+https://www.addthis.com/privacy/terms-of-service/ .
+
+Targeted Advertising
+
+Yes
+No
+
+Our third-party service providers and Our business partners may use advertising cookies to collect data about your online activities and your browsing habits on their websites. Thanks to the data collected by these cookies, they can offer you relevant advertising tailored to your preferences and interests.
+
+Cookie details
+
+Name
+
+id, test_cookie, GCLID, DCLID, _gcl_*
+
+Recipient
+
+.google.com & .doubleclick.net
+
+Purpose
+
+Cookies pertaining to advertising may be read and written.
+
+IP addresses are collected.
+
+The full web page URL, including ad-click information in URL parameters (e.g., GCLID / DCLID) is collected.
+
+Third-party web cookies previously set on google.com and doubleclick.net , and first-party conversion cookies (e.g., _gcl_*) are accessible.
+
+Submit my choices
+
+Decline All
+
+Accept All
+
+Settings Submitted
+
+You have successfully updated your Cookie settings.
+
+Close
+
+PCBWay and Cookies
+
+We uses cookies to maintain the essential functionality of our website and personalise your browsing
+experience. By clicking "Accept All" or continuing to browse the site you are agreeing to our use of
+cookies. You can manage your settings through
+Cookie Preferences
+or read our
+Cookies Policy
+to learn more.
+
+Cookie Preferences
+
+Accept All
+

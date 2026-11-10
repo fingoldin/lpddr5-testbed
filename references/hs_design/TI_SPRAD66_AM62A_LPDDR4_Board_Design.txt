@@ -1,0 +1,1783 @@
+www.ti.com                                                                                                                                                            Table of Contents
+
+Application Note
+AM62Ax, AM62Px, AM62Dx LPDDR4 Board Design and
+Layout Guidelines
+
+
+
+                                                                                    ABSTRACT
+This application report contains material applicable to the LPDDR4 interface of AM62Ax, AM62Px, AM62Dx
+processor board designs.
+
+
+
+
+                                                                           Table of Contents
+1 Overview..................................................................................................................................................................................3
+  1.1 Board Designs Supported.................................................................................................................................................. 3
+  1.2 General Board Layout Guidelines...................................................................................................................................... 3
+  1.3 PCB Stack-Up.................................................................................................................................................................... 4
+  1.4 Bypass Capacitors............................................................................................................................................................. 5
+  1.5 Velocity Compensation.......................................................................................................................................................6
+2 LPDDR4 Board Design and Layout Guidance......................................................................................................................7
+  2.1 LPDDR4 Introduction......................................................................................................................................................... 7
+  2.2 LPDDR4 Device Implementations Supported.................................................................................................................... 7
+  2.3 LPDDR4 Interface Schematics.......................................................................................................................................... 7
+  2.4 Compatible JEDEC LPDDR4 Devices..............................................................................................................................11
+  2.5 Placement.........................................................................................................................................................................11
+  2.6 LPDDR4 Keepout Region................................................................................................................................................ 12
+  2.7 Net Classes......................................................................................................................................................................12
+  2.8 LPDDR4 Signal Termination............................................................................................................................................ 13
+  2.9 LPDDR4 VREF Routing................................................................................................................................................... 13
+  2.10 LPDDR4 VTT................................................................................................................................................................. 13
+  2.11 CK and ADDR_CTRL Topologies...................................................................................................................................13
+  2.12 Data Group Topologies.................................................................................................................................................. 14
+  2.13 CK0 and ADDR_CTRL Routing Specification................................................................................................................15
+  2.14 Data Group Routing Specification..................................................................................................................................16
+  2.15 Channel, Byte, and Bit Swapping...................................................................................................................................17
+  2.16 Data Bus Inversion.........................................................................................................................................................18
+3 LPDDR4 Board Design Simulations....................................................................................................................................19
+  3.1 Board Model Extraction....................................................................................................................................................19
+  3.2 Board-Model Validation.................................................................................................................................................... 19
+  3.3 S-Parameter Inspection................................................................................................................................................... 19
+  3.4 Time Domain Reflectometry (TDR) Analysis....................................................................................................................20
+  3.5 System Level Simulation..................................................................................................................................................20
+  3.6 Design Example............................................................................................................................................................... 26
+4 Additional Information: SOC Package Delays................................................................................................................... 31
+5 Summary............................................................................................................................................................................... 33
+6 References............................................................................................................................................................................ 33
+7 Revision History................................................................................................................................................................... 33
+
+                                                                              List of Figures
+Figure 2-1. 32-Bit, Single-Rank LPDDR4 Implementation...........................................................................................................8
+Figure 2-2. 32-Bit, Dual Rank LPDDR4 Implementation............................................................................................................. 9
+Figure 2-3. 16-Bit, Single Rank LPDDR4 Implementation.........................................................................................................10
+Figure 2-4. AM62Ax, AM62Px, AM62Dx and LPDDR4 Example Placement (Top View)...........................................................11
+Figure 2-5. Example LPDDR4 Keepout Region for AM62Ax, AM62Px, AM62Dx (Top View)................................................... 12
+Figure 2-6. LPDDR4 CK Topology.............................................................................................................................................13
+
+
+
+SPRAD66B – FEBRUARY 2023 – REVISED DECEMBER 2024               AM62Ax, AM62Px, AM62Dx LPDDR4 Board Design and Layout Guidelines                                                             1
+Submit Document Feedback
+                                          Copyright © 2024 Texas Instruments Incorporated
+Trademarks                                                                                                                                                         www.ti.com
+
+Figure 2-7. LPDDR4 ADDR_CTRL Topology/Branched Signals............................................................................................... 13
+Figure 2-8. LPDDR4 ADDR_CTRL Topology/Point-to-Point Signals.........................................................................................13
+Figure 2-9. LPDDR4 DQS Topology.......................................................................................................................................... 14
+Figure 2-10. LPDDR4 DQ and DM Topology.............................................................................................................................14
+Figure 3-1. TDR Plot Example With Impedance Mismatch....................................................................................................... 20
+Figure 3-2. Typical System-Level DDR Schematic....................................................................................................................21
+Figure 3-3. Vix_CK and Vix_DQS Ratio for Eye Quality............................................................................................................24
+Figure 3-4. Example Simulated LPDDR4-4266 Read Eye With Diamond-Shaped Eye Mask.................................................. 25
+Figure 3-5. Example Simulated LPDDR4-4266 Write Eye With Rectangular JEDEC Eye Mask.............................................. 25
+Figure 3-6. Example Simulated LPDDR4-4266 CA Eye With Rectangular JEDEC Eye Mask..................................................26
+Figure 3-7. Example LPDDR4 Clock and CA Routing...............................................................................................................28
+Figure 3-8. Example LPDDR4 Data Bytes and DQSs Routing..................................................................................................28
+Figure 3-9. Example LPDDR4 Trace Impedance Scan............................................................................................................. 29
+Figure 3-10. LPDDR4 Simulation Results for CA...................................................................................................................... 30
+Figure 3-11. LPDDR4 Simulation Results for Write................................................................................................................... 30
+Figure 3-12. LPDDR4 Simulation Results for Read...................................................................................................................30
+
+                                                                          List of Tables
+Table 1-1. PCB Stack-up Specifications ..................................................................................................................................... 4
+Table 1-2. Bulk Bypass Capacitors.............................................................................................................................................. 5
+Table 1-3. High-Speed Bypass Capacitors.................................................................................................................................. 6
+Table 2-1. Supported LPDDR4 SDRAM Combinations............................................................................................................... 7
+Table 2-2. Compatible JEDEC LPDDR4 Devices...................................................................................................................... 11
+Table 2-3. LPDDR4 Placement Recommendations................................................................................................................... 11
+Table 2-4. Clock Net Class Definitions.......................................................................................................................................12
+Table 2-5. Signal Net Class Definitions......................................................................................................................................12
+Table 2-6. CK0 and ADDR_CTRL Routing Specifications.........................................................................................................15
+Table 2-7. Data Group Routing Specifications...........................................................................................................................17
+Table 3-1. Example Data Write ODI/ODT Optimization............................................................................................................. 23
+Table 3-2. Vix_CK and Vix_DQS Ratio for Eye Quality............................................................................................................. 24
+Table 3-3. LPDDR4 Eye Mask Definitions/Requirements..........................................................................................................25
+Table 3-4. Example 10-layer PCB Stackup for LPDDR4 (J7 EVM)........................................................................................... 26
+Table 3-5. Example 12-layer PCB Stackup for LPDDR4 (AM62Ax LP SK EVM)...................................................................... 27
+Table 3-6. Example 12-layer PCB Stackup for LPDDR4 (AM62Px SK EVM)............................................................................27
+Table 3-7. Example LPDDR4 Performance Impact From J7 EVM Stackup.............................................................................. 27
+Table 3-8. LPDDR4 Performance Impact on Routing Layer (Read at pad)............................................................................... 28
+Table 3-9. LPDDR4 Performance Impact on Routing Layer (Write at pad)............................................................................... 28
+Table 3-10. Example LPDDR4 Trace Impedance Summary for Data........................................................................................29
+Table 3-11. Example LPDDR4 Trace Impedance Summary for CA...........................................................................................29
+Table 3-12. Example LPDDR4 Simulation Results From Improved Trace Impedance..............................................................29
+Trademarks
+All trademarks are the property of their respective owners.
+
+
+
+
+2      AM62Ax, AM62Px, AM62Dx LPDDR4 Board Design and Layout Guidelines                              SPRAD66B – FEBRUARY 2023 – REVISED DECEMBER 2024
+                                                                                                                                Submit Document Feedback
+                                                             Copyright © 2024 Texas Instruments Incorporated
+www.ti.com                                                                                                                  Overview
+
+
+1 Overview
+The AM62Ax, AM62Px, AM62Dx processors support LPDDR4 SDRAMs. This document contains material
+applicable to board designs containing LPDDR4 memories. For supported data rates/speed grades, see the
+device-specific data manual.
+
+                                                        Note
+      To facilitate software configuration of the DDR subsystem, use the DDR Subsystem Register
+      Configuration Tool in SysConfig (https://dev.ti.com/sysconfig)
+
+1.1 Board Designs Supported
+To achieve the high frequency targets of the LPDDR4 interfaces supported by the AM62Ax, AM62Px, AM62Dx
+family of devices, an excellent PCB implementation is required. TI highly recommends that customer designs
+copy the TI AM62A LP SK EVM or AM62P-LP SK EVM PCB layout exactly, and in every detail (PCB material,
+routing, spacing, vias, and so forth) to achieve the full specified interface frequency and data rate. If the design
+does not or cannot copy the TI design, then the EVM must still be used as a starting point, and simulations must
+be performed. The customer design can need to constrain the interface frequency and data rate based on the
+PCB implementation.
+The goal of this document is to define a set of layout and routing and simulation rules that allow designers to
+successfully implement a robust design for the topologies that TI supports. This is also required that the PCB
+design be simulated to verify the design targets are achieved. TI limits debug and support for boards that have
+not been designed and simulated according to the steps defined in this document. Systems that do not follow the
+TI EVM implementation or do not have valid simulation results likely need to run at a reduced DDR frequency.
+This document provides reference eye masks as guidance for validation of the simulations results. There is still
+an expectation that the PCB design work (design, layout, and fabrication) is performed and reviewed by a highly
+knowledgeable high-speed PCB designer. Problems such as impedance discontinuities when signals cross a
+split in a reference plane can be detected visually by those with the proper experience.
+TI only supports board designs that follow the guidelines in this document. These guidelines are based on well-
+known transmission line properties for copper traces routed over a solid reference plane. Declaring insufficient
+PCB space does not allow routing guidelines to be discounted. TI limits debug and support for designs that have
+not been simulated according to the steps defined in this document.
+1.2 General Board Layout Guidelines
+To verify good signaling performance, the following general board design guidelines must be followed:
+•   Always follow TI's example layouts and EVM designs as close as possible. If concepts or routing strategies
+    are not understood, then ask questions on E2E.
+•   All signals need ground reference (strongly suggest on both sides).
+•   Avoid crossing plane splits in the signal reference planes.
+•   Use the widest trace that is practical between decoupling capacitors and memory modules.
+•   Minimize inter-symbol interference (ISI) by keeping impedances matched. This is especially true for any
+    T-branch signals where trace widths are adjusted to match trace impedance.
+•   Minimize crosstalk by isolating sensitive signals, such as strobes and clocks, and by using a proper PCB
+    stack-up.
+•   Avoid return path discontinuities by adding vias or capacitors whenever signals change layers and reference
+    planes.
+•   Minimize reference voltage noise through proper isolation and proper use of decoupling capacitors on the
+    reference input pins on the SDRAMs.
+•   Keep the signal routing stub lengths as short as possible.
+•   Add additional spacing for clock and strobe nets to minimize crosstalk.
+•   Maintain a common ground (also called VSS) reference for all signals and for all bypass and decoupling
+    capacitors.
+•   Consider the differences in propagation delays between microstrip and stripline nets when evaluating timing
+    constraints.
+
+
+
+SPRAD66B – FEBRUARY 2023 – REVISED DECEMBER 2024               AM62Ax, AM62Px, AM62Dx LPDDR4 Board Design and Layout Guidelines    3
+Submit Document Feedback
+                                          Copyright © 2024 Texas Instruments Incorporated
+Overview                                                                                                                          www.ti.com
+
+•     Via-to-via coupling can be significant part of PCB-level crosstalk. Dimension and pitch of vias is important.
+      For high speed interfaces, consider GND shielding vias. This via coupling is one factor for recommending
+      data signals be routed on layers closest to processor.
+•     Via stubs affect signal integrity. Via back-drilling can improve signal integrity, and is required in some
+      instances.
+For more information, see the High-Speed Interface Layout Guidelines application note. This provides additional
+general guidance for successful routing of high-speed signals.
+1.3 PCB Stack-Up
+The recommended stack-up for routing the DDR interface is a ten or twelve layer stack up. However, this can
+only be accomplished on a board with routing room with large keep-out areas. Additional layers are required if:
+•     The PCB layout area for the DDR Interface is restricted, which limits the area available to spread out the
+      signals to minimize crosstalk.
+•     Other circuitry must exist in the same area, but on layers isolated from the DDR routing.
+•     Additional planes layers are needed to enhance the power supply routing or to improve EMI shielding.
+Board designs that are relatively dense can require more layers to properly allow the DDR routing to be
+implemented such that all rules are met.
+All DDR signals must be routed adjacent to a solid VSS reference plane. When multiple VSS reference planes
+exist in the DDR routing area, stitching vias must be implemented nearby wherever vias transfer signals to a
+different VSS reference plane. This is required to maintain a low-inductance return current path.
+TI strongly recommends all DDR signals be routed as strip-line. Some PCB stack-ups implement signal routing
+on two adjacent layers. This is not recommended as crosstalk occurs on any trace routed parallel to another
+trace on an adjacent layer, even for a very short distance. TI recommends to route LPDDR4 signals on PCB
+layers closer to the SoC within the stackup, giving the signal a shorter travel time through the via. The PCB
+layers farther from the SoC has longer travel times through the via, which can increase coupling between vias.
+Both signal and via coupling can lead to smaller timing margins.
+Note a shorter via travel can mean a longer via stub (if using standard drill vias), so that is to be considered as
+well. Simulation can be used to determine if via stub length is an issue.
+PCB material is another important factor. Depending on the design specifics, PCB material is required to use
+a higher frequency material such as ISOLA I-Speed or equivalent to achieve highest data rates. For supported
+data rates and speed grades, see the device-specific data manual. Standard FR4 products like 370HR can be
+used for lower data rates. In specific cases, this is sufficient for higher data rates as well.
+                                               Table 1-1. PCB Stack-up Specifications
+    Number                                        Parameter(6)                                       MIN        TYP        MAX      UNIT
+      PS1      PCB routing plus plane layers                                                                  10 or 12
+      PS2      Signal routing layers                                                                             6
+      PS3      Full VSS reference layers under DDR routing region (1)                                 1
+      PS4      Full VDDS_DDR power reference layers under the DDR routing region (1)                  1
+      PS5      Number of reference plane cuts allowed within DDR routing region (2)                                          0
+      PS6      Number of layers between DDR routing layer and reference plane (3)                                            0
+      PS7      PCB routing feature size                                                                          4                  Mils
+      PS8      PCB trace width, w                                                                     3                             Mils
+      PS9      Point-to-Point, single-ended impedance                                                            40                  Ω
+      PS10     Point-to-Point, differential impedance                                                            80                  Ω
+      PS11     T-Branch, single-ended impedance (5)                                                            35/70                 Ω
+      PS12     T-branch, differential impedance (5)                                                          70/140 (7)              Ω
+      PS13     Impedance control (4)                                                                Z-10%        Z        Z+10%      Ω
+
+(1)    Ground reference layers are preferred over power reference layers. Return signal vias need to be near layer transitions.
+
+
+
+
+4      AM62Ax, AM62Px, AM62Dx LPDDR4 Board Design and Layout Guidelines                   SPRAD66B – FEBRUARY 2023 – REVISED DECEMBER 2024
+                                                                                                                     Submit Document Feedback
+                                                  Copyright © 2024 Texas Instruments Incorporated
+www.ti.com                                                                                                                          Overview
+
+(2)    No traces must cross reference plane cuts within the DDR routing region. High-speed signal traces crossing reference plane cuts
+       create large return current paths, which can lead to excessive crosstalk and EMI radiation. Beware of reference plane voids caused by
+       via antipads, as these also cause discontinuities in the return current path.
+(3)    Reference planes are to be directly adjacent to the signal layer, to minimize the size of the return current loop.
+(4)    Z is the nominal singled-ended or differential impedance selected for the PCB specified by PS9-PS12.
+(5)    Balanced T traces (also referred to as T-branch traces) are split traces from source to multiple end points. The target impedance of
+       the split trace must be twice that of the non-branched impedance. See routing topologies. The maximum trace impedance is typically
+       limited by the minimum trace width achievable. Reduction of the non-branched impedance can be necessary to maintain the 2:1 trace
+       impedance ratio.
+(6)    These specifications are to be used as a starting point for designs. TI recommends each design be extracted and simulated to make
+       sure all requirements are met.
+(7)    These values can be relaxed to 60/120 to facilitate fabrication, but TI recommends to prove eye margins are still adequate with
+       simulations.
+1.4 Bypass Capacitors
+1.4.1 Bulk Bypass Capacitors
+Bulk bypass capacitors are required for moderate speed bypassing of the DDR SDRAMs and other circuitry.
+Table 1-2 contains the minimum numbers and capacitance required for the bulk bypass capacitors. Table 1-2
+only covers the bypass needs of the DDR PHY of SoC. Additional bulk bypass capacitance is needed for other
+circuitry. For any additional decoupling requirements for the SDRAM devices, see the manufacturer's data sheet
+                                                Table 1-2. Bulk Bypass Capacitors
+    Number                                              Parameter                                               MIN       MAX        UNIT
+       1       VDDS_DDR bulk bypass capacitor count(1)                                                          1 (2)              Devices
+       2       VDDS_DDR bulk bypass total capacitance                                                          10 (2)                 µF
+
+(1)    These devices must be placed near the devices that are bypassing, but preference needs to be given to the placement of the
+       high-speed (HS) bypass capacitors and DDR signal routing.
+(2)    The capacitor recommendations in this guide reflect only the needs of this processor. For determining the appropriate decoupling
+       capacitor arrangement for the memory device, see the memory vendor’s guidelines.
+1.4.2 High-Speed Bypass Capacitors
+High-speed (HS) bypass capacitors are critical for proper DDR interface operation. This is particularly important
+to minimize the parasitic series inductance of the HS bypass capacitors to VDDS_DDR and the associated
+ground connections. Table 1-3 contains the specification for the HS bypass capacitors and for the power
+connections on the PCB. Generally speaking, TI recommends:
+•     Fitting as many HS bypass capacitors as possible.
+•     Minimizing the distance from the bypass capacitor to the pins and balls being bypassed.
+•     Using the smallest physical sized ceramic capacitors possible with the highest capacitance readily available.
+•     Connecting the bypass capacitor pads to the vias using the widest traces possible and using the largest via
+      hole size possible.
+•     Minimizing via sharing. Note the limits on via sharing shown in Table 1-3.
+•     Using three-terminal capacitors instead of two-terminal capacitors. Three-terminal capacitors provide lower
+      loop inductance, and one three-terminal capacitor can take the place of multiple two-terminal capacitors,
+      further optimizing loop inductance. For examples, see the AM62A Low-Power SK EVM User’s Guide or the
+      AM62P SK EVM User’s Guide.
+
+
+
+
+SPRAD66B – FEBRUARY 2023 – REVISED DECEMBER 2024               AM62Ax, AM62Px, AM62Dx LPDDR4 Board Design and Layout Guidelines                5
+Submit Document Feedback
+                                          Copyright © 2024 Texas Instruments Incorporated
+Overview                                                                                                                           www.ti.com
+
+
+For any additional SDRAM requirements, see the manufacturer's data sheet.
+                                            Table 1-3. High-Speed Bypass Capacitors
+      Number                                          Parameter                                         MIN        TYP      MAX      UNIT
+        1        HS bypass capacitor package size (1)                                                             0201      0402     10 Mils
+        2        Distance, HS bypass capacitor to processor being bypassed (2) (3) (4)                                       400      Mils
+        3        Processor HS bypass capacitor count per VDDS_DDR rail (5)                               12                         Devices
+        4        Processor HS bypass capacitor total capacitance per VDDS_DDR rail                       3.7                           µF
+        5        Number of connection vias for each device power/ground ball                              1                           Vias
+        6        Trace length from processor power/ground ball to connection via (2)                                35       70       Mils
+        7        Distance, HS bypass capacitor to DDR device being bypassed (6)                                              150      Mils
+        8        DDR device HS bypass capacitor count (5) (7)                                            12                         Devices
+        9        DDR device HS bypass capacitor total capacitance (7)                                   0.85                           µF
+        10       Number of connection vias for each HS capacitor (8) (9)                                  2                           Vias
+        11       Trace length from bypass capacitor to connection via (2) (9)                                       35       100      Mils
+        12       Number of connection vias for each DDR device power/ground ball                          1                           Vias
+        13       Trace length from DDR device power/ground ball to connection via (2)                               35       60       Mils
+
+(1)    LxW, 10-mil units, that is, a 0402 is a 40 x 20-mil surface-mount capacitor.
+(2)    Closer/shorter is preferable.
+(3)    Measured from the nearest processor power or ground ball to the center of the capacitor package.
+(4)    Five of these capacitors are located underneath the processor, among the cluster of VDDS_DDR balls.
+(5)    Low-ESL and multi-terminal capacitors can further reduce number of bypass capacitors required.
+(6)    Measured from the DDR device power or ground ball to the center of the capacitor package. For more information, see the guidance
+       from the SDRAM manufacturer.
+(7)    Per DDR device. For more information, see the guidance from the SDRAM manufacturer.
+(8)    An additional HS bypass capacitor can share the connection vias only if mounted on the opposite side of the board. No sharing of vias
+       is permitted on the same side of the board.
+(9)    An HS bypass capacitor can share a via with a DDR device mounted on the same side of the PCB. A wide trace must be used for the
+       connection, and the length from the capacitor pad to the DDR device pad needs to be less than 150 mils.
+1.5 Velocity Compensation
+For a PCB design, portions of the DDR signal traces are microstrip (BGA break-out segments), but majority
+of the trace segments are stripline (internal layers). Even though there is a wide variation in the proportion of
+track length routed as microstrip or stripline, the length or delay matching process must include a mechanism
+for compensating for the velocity delta between these two types of PCB interconnects. A compensation factor
+of 1.1 has been specified for this purpose by JEDEC. All microstrip segment lengths are to be divided by 1.1
+before summation into the length matching equation. The resulting compensated length is termed the stripline
+equivalent length. While some amount of residual velocity mismatch skew remains in the design, the process is
+a substantial improvement over simple length matching.
+
+
+
+
+6       AM62Ax, AM62Px, AM62Dx LPDDR4 Board Design and Layout Guidelines                  SPRAD66B – FEBRUARY 2023 – REVISED DECEMBER 2024
+                                                                                                                     Submit Document Feedback
+                                                  Copyright © 2024 Texas Instruments Incorporated
+www.ti.com                                                                                   LPDDR4 Board Design and Layout Guidance
+
+
+2 LPDDR4 Board Design and Layout Guidance
+2.1 LPDDR4 Introduction
+LPDDR4 is an SDRAM device specification governed by the JEDEC standard JESD209-4, Low Power Double
+Data Rate 4 (LPDDR4). This standard strives to reduce power and improve signal integrity by implementing a
+lower voltage I/O power rail, employing ODT on the Command/Address bus, and reducing the overall width of
+the Command/Address bus, among other features. Unlike other DDR types, LPDDR4 has been organized into 2
+× 16-bit channels. ECC is supported inline, thus a dedicated SDRAM for ECC is not required.
+LPDDR4X is a variant of LPDDR4, with the difference of additional power savings by reducing the I/O voltage
+from 1.1V to 0.6V. LPDDR4X is not supported with the AM62Ax, AM62Px, AM62Dx device.
+The maximum supported rows for LPDDR4 devices is 17. The JEDEC standard was ratified in 2020, and
+increased the max number of rows from 17 to 18. As a result, certain high density parts that use byte-mode die
+and require 18 row bits are not supported.
+ECC is supported on the LPDDR4 interface. Unlike traditional ECC interfaces which require dedicated memory
+pins and devices, ECC is supported inline. The ECC system impact is in interface bandwidth and overall memory
+density, as ECC data is stored alongside non-ECC data.
+The following sections detail the routing specification and layout guidelines for an LPDDR4 interface.
+2.2 LPDDR4 Device Implementations Supported
+There are different LPDDR4 SDRAM combinations supported by the DDR subsystem. Table 2-1 lists the
+supported device combinations.
+                                  Table 2-1. Supported LPDDR4 SDRAM Combinations
+   LPDDR4 SDRAM
+       Count            Channels         Die          Ranks             LPDDR4 Channel Width                   DDRSS Data Width
+        1 (1) (2)           1             1              1                        16 bits                             16 bits
+         1 (3)              2             1              1                        16 bits                             32 bits
+         1 (3)              2             2              1                        16 bits                             32 bits
+         1 (4)              2             2              2                        16 bits                             32 bits
+         1 (4)              2             4              2                        16 bits                             32 bits
+
+(1)   See 16-Bit, Single Rank LPDDR4 Implementation.
+(2)   16 bit DDRSS data width implementations are non-standard, but supported on select devices. See device-specific data manual if
+      supported for a particular processor.
+(3)   See 32-Bit, Single Rank LPDDR4 Implementation.
+(4)   See 32-Bit, Dual-Rank LPDDR4 Implementation.
+2.3 LPDDR4 Interface Schematics
+The LPDDR4 interface schematics vary, depending upon the number of ranks implemented. General
+connectivity is straightforward and consistent between the implementations. Figure 2-1 illustrates a 32-bit,
+single-rank LPDDR4 implementation. If dual rank is required, then the additional chip select is included. Figure
+2-2 illustrates a 32-bit, dual-rank LPDDR4 implementation. On select devices, 16-bit single-rank LPDDR4
+implementation are support, see Figure 2-3.
+
+                                                Note
+      Though LPDDR4 SDRAMs pin out two separate channels, independent channel use is not supported
+      by this processor.
+
+
+
+
+SPRAD66B – FEBRUARY 2023 – REVISED DECEMBER 2024               AM62Ax, AM62Px, AM62Dx LPDDR4 Board Design and Layout Guidelines       7
+Submit Document Feedback
+                                          Copyright © 2024 Texas Instruments Incorporated
+LPDDR4 Board Design and Layout Guidance                                                                                       www.ti.com
+
+                                                                                   VDDQ
+
+                                                                           VDD2       RZQ
+
+                                                                                          ZQ
+
+                                                                         VDD2             ODT_CA_A
+                                                                                          ODT_CA_B
+
+
+                                    DDR0_DQ[31:24]                                        DQ[15:8]_B
+                                         DDR0_DM3                                         DM[1]_B
+                                       DDR0_DQS3                                          DQS[1]_t_B
+                                     DDR0_DQS3_n                                          DQS[1]_c_B
+
+
+
+                                    DDR0_DQ[23:16]                                        DQ[7:0]_B
+                                         DDR0_DM2                                         DM[0]_B
+                                       DDR0_DQS2                                          DQS[0]_t_B
+                                     DDR0_DQS2_n                                          DQS[0]_c_B
+
+
+
+                                                                                          CA[5:0]_B
+                                     DDR0_RAS_n(1)                                        CS0_B
+                                                  (1)
+                                     DDR0_CAS_n                                           CKE0_B
+                                        DDR0_CKE1                                         CK_t_B
+                                                                                          CK_c_B
+
+
+                                     DDR0_DQ[15:8]                                        DQ[15:8]_A
+                                        DDR0_DM1                                          DM[1]_A
+                                       DDR0_DQS1                                          DQS[1]_t_A
+                                     DDR0_DQS1_n                                          DQS[1]_c_A
+
+
+                                      DDR0_DQ[7:0]                                        DQ[7:0]_A
+                                         DDR0_DM0                                         DM[0]_A
+                                       DDR0_DQS0                                          DQS[0]_t_A
+                                     DDR0_DQS0_n                                          DQS[0]_c_A
+
+                                       DDR0_A[5:0]                                        CA[5:0]_A
+                                     DDR0_CSN0_0                                          CS_A
+                                     DDR0_CSN1_0
+                                       DDR0_CKE0                                          CKE0_A
+                                        DDR0_CK0                                          CK_t_A
+                                       DDR0_CK0_n                                         CK_c_A
+
+                                   DDR0_RESET0_n                                          RESET_n(3)
+                                                        240                 10 k
+                                      DDR0_CAL0(2)
+
+
+
+
+                                Figure 2-1. 32-Bit, Single-Rank LPDDR4 Implementation
+
+1. When used with LPDDR4, the DDR0_CAS_n and DDR0_RAS_n pins output copies of the chip selects to
+   support point to point connections to Channel B chip selects on the LPDDR4 device. DDR0_CAS_n = copy
+   of CS1 for LPDDR4_CS1_B, DDR0_RAS_n = copy of CS0 for LPDDR4_CS0_B.
+2. An external 240Ω ±1% resistor must be connected between this pin and VSS. The maximum power
+   dissipation for the resistor is 5.2mW. No external voltage must be applied to this pin. Tolerance of ±1%
+   required throughout life of component or product.
+3. RESET_n shall have an external 10k pull-down resistor to control RESET low until the DDR controller drives
+   the signal. RESET_n has no length matching requirement.
+
+
+
+
+8     AM62Ax, AM62Px, AM62Dx LPDDR4 Board Design and Layout Guidelines                 SPRAD66B – FEBRUARY 2023 – REVISED DECEMBER 2024
+                                                                                                                  Submit Document Feedback
+                                               Copyright © 2024 Texas Instruments Incorporated
+www.ti.com                                                                                   LPDDR4 Board Design and Layout Guidance
+
+                                                                              VDDQ
+
+
+                                                                        RZQ       RZQ
+
+                                                                                     ZQ0
+                                                                       VDD2          ZQ1
+                                                                                     ODT_CA_A
+                                                                       VDD2
+                                                                                     ODT_CA_B
+
+                                   DDR0_DQ[31:24]                                    DQ[15:8]_B
+                                        DDR0_DM3                                     DM[1]_B
+                                       DDR0_DQS3                                     DQS[1]_t_B
+                                     DDR0_DQS3_n                                     DQS[1]_c_B
+
+
+                                   DDR0_DQ[23:16]                                    DQ[7:0]_B
+                                        DDR0_DM2                                     DM[0]_B
+                                       DDR0_DQS2                                     DQS[0]_t_B
+                                     DDR0_DQS2_n                                     DQS[0]_c_B
+
+                                                                                     CA[5:0]_B
+                                     DDR0_RAS_n(1)                                   CS0_B
+                                     DDR0_CAS_n(1)                                   CS1_B
+                                                                                     CKE0_B
+                                       DDR0_CKE1                                     CKE1_B
+                                                                                     CK_t_B
+                                                                                     CK_c_B
+
+                                    DDR0_DQ[15:8]                                    DQ[15:8]_A
+                                        DDR0_DM1                                     DM[1]_A
+                                       DDR0_DQS1                                     DQS[1]_t_A
+                                     DDR0_DQS1_n                                     DQS[1]_c_A
+
+
+                                      DDR0_DQ[7:0]                                   DQ[7:0]_A
+                                        DDR0_DM0                                     DM[0]_A
+                                       DDR0_DQS0                                     DQS[0]_t_A
+                                     DDR0_DQS0_n                                     DQS[0]_c_A
+
+
+                                       DDR0_A[5:0]                                   CA[5:0]_A
+                                     DDR0_CSN0_0                                     CS0_A
+                                     DDR0_CSN1_0                                     CS1_A
+                                       DDR0_CKE0                                     CKE0_A
+                                                                                     CKE1_A
+                                        DDR0_CK0                                     CK_t_A
+                                      DDR0_CK0_n                                     CK_c_A
+
+                                   DDR0_RESET0_n                                     RESET_n
+                                                      240
+                                      DDR0_CAL0(2)
+
+
+
+
+                                 Figure 2-2. 32-Bit, Dual Rank LPDDR4 Implementation
+
+1. When used with LPDDR4, the DDR0_CAS_n and DDR0_RAS_n pins output copies of the chip selects to
+   support point to point connections to Channel B chip selects on the LPDDR4 device. DDR0_CAS_n = copy
+   of CS1 for LPDDR4_CS1_B, DDR0_RAS_n = copy of CS0 for LPDDR4_CS0_B.
+2. An external 240Ω ±1% resistor must be connected between this pin and VSS. The maximum power
+   dissipation for the resistor is 5.2mW. No external voltage must be applied to this pin. Tolerance of ±1%
+   required throughout life of component or product.
+3. RESET_n shall have an external 10k pull-down resistor to control RESET low until the DDR controller drives
+   the signal. RESET_n has no length matching requirement.
+
+
+
+SPRAD66B – FEBRUARY 2023 – REVISED DECEMBER 2024               AM62Ax, AM62Px, AM62Dx LPDDR4 Board Design and Layout Guidelines    9
+Submit Document Feedback
+                                          Copyright © 2024 Texas Instruments Incorporated
+LPDDR4 Board Design and Layout Guidance                                                                                       www.ti.com
+
+                                                                               VDDQ
+
+                                                                           VDD2     RZQ
+
+                                                                                       ZQ
+                                                                                      ODT_CA_A
+
+
+                                                        VDDQ
+                                    DDR0_DQ[31:24]
+                                         DDR0_DM3
+                                                              1k   1k
+                                       DDR0_DQS3
+                                     DDR0_DQS3_n
+
+                                                        VDDQ
+                                    DDR0_DQ[23:16]
+                                         DDR0_DM2
+                                                              1k   1k
+                                       DDR0_DQS2
+                                     DDR0_DQS2_n
+
+
+
+                                                                                      CA[5:0]_B
+                                     DDR0_RAS_n(1)                                    CS0_B
+                                                  (1)
+                                     DDR0_CAS_n                                       CKE0_B
+                                        DDR0_CKE1                                     CK_t_B
+                                                                                      CK_c_B
+
+
+                                     DDR0_DQ[15:8]                                    DQ[15:8]_A
+                                         DDR0_DM1                                     DM[1]_A
+                                       DDR0_DQS1                                      DQS[1]_t_A
+                                     DDR0_DQS1_n                                      DQS[1]_c_A
+
+
+                                      DDR0_DQ[7:0]                                    DQ[7:0]_A
+                                         DDR0_DM0                                     DM[0]_A
+                                       DDR0_DQS0                                      DQS[0]_t_A
+                                     DDR0_DQS0_n                                      DQS[0]_c_A
+
+                                       DDR0_A[5:0]                                    CA[5:0]_A
+                                     DDR0_CSN0_0                                      CS_A
+                                     DDR0_CSN1_0
+                                       DDR0_CKE0                                      CKE0_A
+                                        DDR0_CK0                                      CK_t_A
+                                       DDR0_CK0_n                                     CK_c_A
+
+                                   DDR0_RESET0_n                                      RESET_n(3)
+                                                                             10 k
+                                                        240
+                                      DDR0_CAL0(2)
+
+
+
+
+                                Figure 2-3. 16-Bit, Single Rank LPDDR4 Implementation
+
+1. When used with LPDDR4, the DDR0_CAS_n and DDR0_RAS_n pins output copies of the chip selects to
+   support point to point connections to Channel B chip selects on the LPDDR4 device. DDR0_CAS_n = copy
+   of CS1 for LPDDR4_CS1_B, DDR0_RAS_n = copy of CS0 for LPDDR4_CS0_B.
+2. An external 240Ω ±1% resistor must be connected between this pin and VSS. The maximum power
+   dissipation for the resistor is 5.2mW. No external voltage must be applied to this pin. Tolerance of ±1%
+   required throughout life of component or product.
+3. RESET_n shall have an external 10k pull-down resistor to control RESET low until the DDR controller drives
+   the signal. RESET_n has no length matching requirement.
+
+
+
+
+10    AM62Ax, AM62Px, AM62Dx LPDDR4 Board Design and Layout Guidelines                 SPRAD66B – FEBRUARY 2023 – REVISED DECEMBER 2024
+                                                                                                                  Submit Document Feedback
+                                               Copyright © 2024 Texas Instruments Incorporated
+www.ti.com                                                                                  LPDDR4 Board Design and Layout Guidance
+
+2.4 Compatible JEDEC LPDDR4 Devices
+Table 2-2 shows the parameters of the JEDEC LPDDR4 devices compatible with this interface.
+                                       Table 2-2. Compatible JEDEC LPDDR4 Devices
+        Number                               Parameter                            MIN                   MAX              UNIT
+             1           Data rate(1) (2)                                                               4266             MT/s
+             2           Channel bit width                                        x16                   x16               Bits
+             3           Channels                                                  1                     2                    -
+             4           Ranks                                                     1                     2                    -
+             5           Die                                                       1                     4                    -
+             6           Device count                                              1                     1                    -
+
+(1)   For supported data rates or speed grades, see the device-specific data manual.
+(2)   SDRAMs in faster speed grades can be used, provided the SDRAMs are properly configured to operate at the supported data rates.
+      Faster speed grade SDRAMs can have faster edge rates, which affect signal integrity. SDRAMs with faster speed grades must be
+      validated on the target board design.
+2.5 Placement
+Figure 2-4 shows an example placement for the AM62Ax, AM62Px, AM62Dx processor and the LPDDR4
+memory device. The recommended spacing parameters for the AM62Ax, AM62Px, AM62Dx device and the
+LPDDR4 device are defined in Table 2-3. The placement does not restrict the side of the PCB on which the
+devices are mounted. The ultimate purpose of the placement is to limit the maximum trace lengths and allow for
+proper routing space.
+
+
+
+
+                                                                        x1
+
+
+
+
+                                                                             y1
+
+
+
+
+                                                                 A1                                A1
+
+
+
+
+                 Figure 2-4. AM62Ax, AM62Px, AM62Dx and LPDDR4 Example Placement (Top View)
+
+                                     Table 2-3. LPDDR4 Placement Recommendations
+         Number                      Parameter                   MIN                        MAX                       UNIT
+                 1          x1                                                              1200                       Mils
+                 2          y1                                                              250                        Mils
+
+
+
+
+SPRAD66B – FEBRUARY 2023 – REVISED DECEMBER 2024               AM62Ax, AM62Px, AM62Dx LPDDR4 Board Design and Layout Guidelines        11
+Submit Document Feedback
+                                          Copyright © 2024 Texas Instruments Incorporated
+LPDDR4 Board Design and Layout Guidance                                                                                        www.ti.com
+
+2.6 LPDDR4 Keepout Region
+The region of the PCB used for LPDDR4 circuitry must be isolated from other signals. The LPDDR4 keepout
+region is defined for this purpose and example is shown in Figure 2-5. The size of this region varies with the
+placement and DDR routing. Non-LPDDR4 signals must not be routed on the DDR signal layers within the
+LPDDR4 keepout region. Non-LPDDR4 signals can be routed in this region only if the signals are routed on
+other layers separated from the DDR signal layers by a ground layer. No breaks are allowed in the reference
+ground layers in this region. In addition, a solid VDDS_DDR power plane must exist across the entire keepout
+region.
+
+
+
+
+                                                                      DDR Keepout
+                                                                        Region
+
+
+
+                                                              A1                                A1
+
+
+
+
+            Figure 2-5. Example LPDDR4 Keepout Region for AM62Ax, AM62Px, AM62Dx (Top View)
+
+2.7 Net Classes
+Routing rules are applied to signals in groups called net classes. Each net class contains signals with the same
+routing requirements. This simplifies the implementation and compliance of these routes. Table 2-4 lists the clock
+net classes for the LPDDR4 interface. Table 2-5 lists the signal net classes, and associated clock net classes,
+for signals in the LPDDR4 interface. These net classes are then linked to the termination and routing rules that
+follow.
+                                            Table 2-4. Clock Net Class Definitions
+ Clock Net Class                                                     Processor Pin Names
+ CK0                                                                 DDR0_CK0 / DDR0_CK0_n
+ DQS0                                                                DDR0_DQS0 / DDR0_DQS0_n
+ DQS1                                                                DDR0_DQS1 / DDR0_DQS1_n
+ DQS2                                                                DDR0_DQS2 / DDR0_DQS2_n
+ DQS3                                                                DDR0_DQS3 / DDR0_DQS3_n
+
+                                            Table 2-5. Signal Net Class Definitions
+         Signal Net Class             Associated Clock Net Class       Processor Pin Names
+ ADDR_CTRL                                        CK0                  DDR0_A[5:0], DDR0_CS0_n, DDR0_CS1_n, DDR0_CKE0,
+                                                                       DDR0_CKE1, DDR0_CAS_n(1), DDR0_RAS_n(1)
+ BYTE0                                           DQS0                  DDR0_DQ[7:0], DDR0_DM0
+ BYTE1                                           DQS1                  DDR0_DQ[15:8], DDR0_DM1
+ BYTE2                                           DQS2                  DDR0_DQ[23:16], DDR0_DM2
+ BYTE3                                           DQS3                  DDR0_DQ[31:24], DDR0_DM3
+
+(1)    When used with LPDDR4, the DDR0_CAS_n and DDR0_RAS_n pins output copies of the chip selects to support point to point
+       connections to Channel B chip selects on the LPDDR4 device. DDR0_CAS_n = copy of CS1 for LPDDR4_CS1_B, DDR0_RAS_n =
+       copy of CS0 for LPDDR4_CS0_B
+
+
+
+
+12     AM62Ax, AM62Px, AM62Dx LPDDR4 Board Design and Layout Guidelines                 SPRAD66B – FEBRUARY 2023 – REVISED DECEMBER 2024
+                                                                                                                   Submit Document Feedback
+                                                Copyright © 2024 Texas Instruments Incorporated
+www.ti.com                                                                                                                     LPDDR4 Board Design and Layout Guidance
+
+2.8 LPDDR4 Signal Termination
+LPDDR4 memories have software configurable on-die termination for both the data group nets. The DDR
+subsystem also contains software configurable on-die termination for the address/control group nets. Thus,
+termination is not required on any DDR signals for an LPDDR4 configuration.
+2.9 LPDDR4 VREF Routing
+LPDDR4 memories generate a VREFCA and VREFDQ internally for the address and command bus and data
+bus, respectively. Similarly, the DDR PHY also provides a reference voltage for the data group nets during reads.
+Thus unlike DDR3 and DDR4, VREF does not need to be generated on the board, and there is no required
+VREF routing for an LPDDR4 configuration.
+2.10 LPDDR4 VTT
+Unlike DDR3 and DDR4, there is no required termination on the PCB of the address/control bus of an LPDDR4
+configuration. All termination is handled internally (on-die). Thus, VTT does not apply for LPDDR4.
+2.11 CK and ADDR_CTRL Topologies
+The CK and ADDR_CTRL net classes are routed similarly, and are skew matched from the DDR controller in
+the processor to the LPDDR4 SDRAM to make sure that the ADDR_CTRL signals are properly sampled at the
+SDRAM. The CK0 net class requires more care because the net class runs at a higher transition rate and are
+differential. The CK and ADDR_CTRL topology is balanced T.
+Figure 2-6 shows the topology of the CK0 net class. Figure 2-7 and Figure 2-8 shows the topologies for the
+corresponding ADDR_CTRL_A net class. Note some of the signals within the group are shared between the
+memory channels, while other signals are dedicated for each channel. Skew matching requirements for the
+routing segments are detailed in Table 2-6.
+                                                                              %DODQFHG µ7¶ 7RSRORJ\
+                                                                                                            RSAC2                              LPDDR4
+                                                                                                                                +
+                                                                                                                                          Differential Clock
+                                                                                                                                             Input Buffer
+                                                                                                                                             (Channel A)
+                                                            RSAC1                                           RSAC2               -
+                                               +
+                              Processor
+                          Differential Clock
+                           Output Buffer
+                                               -
+                                                            RSAC1
+                                                                                                             RSAC2
+                                                                                                                                +              LPDDR4
+                                                     Routed as differential                                                               Differential Clock
+                                                             pair                                                                            Input Buffer
+                                                                                                             RSAC2              -            (Channel B)
+
+
+                                                                                                      Routed as differential
+                                                                                                              pair
+
+
+                                                     Figure 2-6. LPDDR4 CK Topology
+
+                                                                       Balanced ‘T’ Topology                                                                   LPDDR4 Address
+                                                                                                                                                               and Control Input
+                                                                                                                    RSAC4
+                                                                                                                                                               Buffer (Channel A)
+
+
+     Processor Address
+     and Control Output                              RSAC3
+           Buffer
+
+
+
+                                                                                                                                                               LPDDR4 Address
+                                                                                                                     RSAC4                                     and Control Input
+                                                                                                                                                               Buffer (Channel B)
+
+
+
+
+                                         Figure 2-7. LPDDR4 ADDR_CTRL Topology/Branched Signals
+
+
+                                                                                                                                           LPDDR4 Address and
+                Processor Address and                                                                                                       Control Input Buffer
+                                                                                 RSAC5
+                 Control Output Buffer                                                                                                   (Channel A or Channel B)
+
+
+
+
+                                    Figure 2-8. LPDDR4 ADDR_CTRL Topology/Point-to-Point Signals
+
+
+
+SPRAD66B – FEBRUARY 2023 – REVISED DECEMBER 2024               AM62Ax, AM62Px, AM62Dx LPDDR4 Board Design and Layout Guidelines                                                     13
+Submit Document Feedback
+                                          Copyright © 2024 Texas Instruments Incorporated
+LPDDR4 Board Design and Layout Guidance                                                                                         www.ti.com
+
+
+TI recommends to minimize layer transitions during routing. If a layer transition is necessary, then this is
+preferable to transition to a layer using the same reference plane. If this cannot be accommodated, then make
+sure there are nearby stitching vias to allow the return currents to transition between reference planes. The
+goal is to minimize the size of the return current path thus minimizing the inductance in this path. Lack of these
+stitching vias results in impedance discontinuities in the signal path that increase crosstalk and signal distortion.
+There are no stubs or termination allowed on the nets of the CK and ADDR_CTRL group topologies. All test and
+probe access points must be in line without any branches or stubs.
+2.12 Data Group Topologies
+The data line topology is always point-to-point for LPDDR4 implementations, and is broken up into four different
+byte lanes. TI recommends to minimize layer transitions during routing. If a layer transition is necessary, then
+this is better to transition to a layer using the same reference plane. If this cannot be accommodated, then make
+sure there are nearby ground vias to allow the return currents to transition between reference planes. The goal
+is to provide a low inductance path for the return current. To optimize the skew matching, TI recommends routing
+all nets within a single data routing group on one layer where all nets have the exact same number of vias and
+the same via barrel length.
+DQSP and DQSN lines are point-to-point signals routed as a differential pair. Figure 2-9 illustrates the DQSP
+and DQSN connection topology.
+
+                                    +                              RSD1                             +
+                       Processor                                                                         DDR
+                         DQS IO                                                                          SDRAM
+                           Buffer                                                                        DQS IO
+                                                                                                         Buffer
+                                    ±                              RSD1                             ±
+
+
+
+
+                                    Routed as differential pair
+
+
+
+                                               Figure 2-9. LPDDR4 DQS Topology
+
+DQ and DM lines are point-to-point signals routed as single-ended. Figure 2-10 illustrates the DQ and DM
+connection topology.
+
+                                                                                                           DDR
+                      Processor
+                                                                                                           SDRAM
+                     DQ and DM                                     RSD2                                    DQ and DM
+                       IO Buffer
+                                                                                                           IO Buffer
+
+
+
+
+                                        Figure 2-10. LPDDR4 DQ and DM Topology
+
+There are no stubs or termination allowed on the nets of the data group topologies. All test and probe access
+points must be in line without any branches or stubs.
+
+
+
+
+14    AM62Ax, AM62Px, AM62Dx LPDDR4 Board Design and Layout Guidelines                   SPRAD66B – FEBRUARY 2023 – REVISED DECEMBER 2024
+                                                                                                                    Submit Document Feedback
+                                                 Copyright © 2024 Texas Instruments Incorporated
+www.ti.com                                                                                         LPDDR4 Board Design and Layout Guidance
+
+2.13 CK0 and ADDR_CTRL Routing Specification
+Skew within the CK0 and ADDR_CTRL net classes directly reduces setup and hold margin for the ADDR_CTRL
+nets. Thus, this skew must be controlled. The routed PCB track has a delay proportional to the length. Thus,
+the delay skew must be managed through matching the lengths of the routed tracks within a defined group of
+signals. The only way to practically match skew on a PCB is to lengthen the shorter traces up to the length of
+the longest net in the net class and the associated clock. Consider Z-axis delays (VIAs) with accurate stackup
+information during analysis.
+The DDR PHY includes a per-bit deskew feature, enabled by default. This capability allows signal routing with
+looser delay matching tolerance as specified in Table 2-6. If this feature is disabled, skews must be tightly
+matched. Measure the propagation delay of each signal from the SoC die to the DRAM device pin. The designer
+is free to length match using smaller tolerance than values shown in the table. Refer to Additional Information:
+SOC Package Delays during the initial PCB design phase. Perform a simulation and generate a delay report to
+confirm skews are within the specified tolerance.
+Table 2-6 lists the limits for the individual segments that comprise the routing from the processor to the SDRAM.
+These segment lengths coincide with the CK0 and ADDR_CTRL topology diagram shown previously in Figure
+2-6, Figure 2-7, and Figure 2-8. By controlling the routed lengths for the same segments of all signals in a
+routing group, the signal delay skews are controlled. Most PCB layout tools can be configured to generate
+reports to assist with this validation. If this cannot be generated automatically, this must be generated and
+verified manually.
+Delay reports from PCB layout tools use a simplified calculation based on a constant propagation velocity factor.
+To get the design close to success prior to simulation, TI recommends initially skew matching in PCB layout
+tool to a target less than 20% of the limit in Table 2-6. To make sure the PCB design meets all requirements,
+the design is required to be simulated and those results compared with the simulation results defined in Section
+3. Simulations must be power-aware and consider the entire system IO buffers, SOC package, PCB traces,
+memory packages, on-die decoupling circuits, and number of die.
+                                  Table 2-6. CK0 and ADDR_CTRL Routing Specifications
+ Number                                                     Parameter                                         MIN        TYP       MAX       UNIT
+ LP4_ACRS1              Propagation delay of net class CK0                                                                        250 (1)     ps
+                        (RSAC1 + RSAC2)
+ LP4_ACRS2              Propagation delay of net class ADDR_CTRL                                                                  250 (1)     ps
+                        (RSAC3 + RSAC4, RSAC5)
+ LP4_ACRS3              Skew within net class CK0 (Skew of DDR0_CK0 and DDR0_CK0_n )                                              0.75 (2)    ps
+                        (RSAC1 + RSAC2)                                                                                             (3)
+
+ LP4_ACRS5              Skew between each T-branch signal pair                                                -0.1         0        0.1       ps
+                        RSAC2 or RSAC4 Skew (4)
+ LP4_ACRS6              Skew across ADDR_CTRL and CK0 clock net class, relative to propagation               -75 (3)               75 (3)     ps
+                        delay of CK0 net class                                                                 (6)                  (6)
+
+                        (RSAC1 + RSAC2) - (RSAC3 + RSAC4), (RSAC1 + RSAC2 - RSAC5)(5)
+ LP4_ACRS7              VIAs per trace                                                                                             4 (1)     VIAs
+ LP4_ACRS8              VIA Stub Length                                                                                  20 (7)              Mils
+ LP4_ACRS9              VIA count difference                                                                                       0 (8)     VIAs
+ LP4_ACRS10             Center-to-center CK0 to other LPDDR4 trace spacing                                   5w(9)
+ LP4_ACRS11             Center-to-center ADDR_CTRL to other LPDDR4 trace spacing                             5w(9)
+ LP4_ACRS12             Center-to-center ADDR_CTRL to self or other ADDR_CTRL trace spacing                  3w(9)
+ LP4_ACRS13             CK0 center-to-center spacing (10)                                                            See note below
+ LP4_ACRS14             CK0 spacing to non-DDR net                                                           5w(9)
+
+(1)   Max value is based upon conservative signal integrity approach. FR4 material assumed with Dk equals approx. 3.7 - 3.9 and Df equals
+      approx. 0.002. This value can be extended only if detailed signal integrity analysis of rise time and fall time confirms desired operation.
+(2)   Recommendation for PCB layout tool design. Required to be verified by simulation(11), confirm JEDEC defined Vix_DQS_ratio (20%)
+      and Vix_CK_ratio (25%) are satisfied, also need to have good eye margins - refer to Section 3.5.3.1.
+(3)   Consider the delays from SOC die pad to the DRAM pin (that is, delays of SOC package and delays of PCB upto the DRAM pin.
+      DRAM package delays are omitted). Consider one leg of any T-branch trace segments when delay matching. Refer to Additional
+      Information: SOC Package Delays.
+
+
+
+SPRAD66B – FEBRUARY 2023 – REVISED DECEMBER 2024               AM62Ax, AM62Px, AM62Dx LPDDR4 Board Design and Layout Guidelines                     15
+Submit Document Feedback
+                                          Copyright © 2024 Texas Instruments Incorporated
+LPDDR4 Board Design and Layout Guidance                                                                                          www.ti.com
+
+(4)  Recommended skew control on T-branch trace segments (Balanced-T) is intended to optimize signal integrity (waveform reflections).
+     This is not required nor recommended to match skew across all T-branch trace segments, just for each branch of a specific signal.
+(5) Recommend routing net classes CK0 and ADDR_CTRL on same signal layer for better skew control.
+(6) Simulation(11) must be performed and the delay report analyzed to make sure skew is within the limit. Delay reports from PCB layout
+     tools use a simplified calculation based on a constant propagation velocity factor. TI recommends initially skew matching in PCB layout
+     tool to a target less than 20% of the limit.
+(7) VIA stub control (micro VIA or backdrilling) can be required if operating LPDDR4 above 3200Mbps depending on simulation(11) results.
+(8) VIA count difference can increase by 1 only if accurate 3-D modeling of the signal flight times; including accurately modeled signal
+     propagation through VIAs and has been applied to make sure skew maximums are not exceeded.
+(9) Center-to-center spacing is allowed to fall to minimum 2w for up to 500 mils of routed length (only near endpoints). Spacing minimums
+     can be relaxed if simulations(11) accurately capture crosstalk between neighboring victim and aggressor traces and show good margin.
+     Consider also VIA spacing. Signals with adjacent VIAs near SOC must not also have adjacent VIAs near the DRAM.
+(10) P to N spacing set to make sure of proper differential impedance. The designer must control the impedance so that inadvertent
+     impedance mismatches are not created. Generally speaking, center-to center spacing must be either 2w or slightly larger than 2w to
+     achieve a differential impedance equal to twice the single-ended impedance, Zo, on that layer. Refer to impedance targets in Table 1-1.
+(11) Simulation refers to a power-aware IBIS Signal Integrity (SI) simulation. Simulate across process, voltage, and temperature (PVT).
+     Refer to Section 3.
+2.14 Data Group Routing Specification
+Skew within the Byte signal net class directly reduces the setup and hold margin for the DQ and DM nets.
+As described with the ADDR_CTRL signal net class and associated CK0 clock net class, this skew must be
+controlled. The data byte skew must be managed through controlling the lengths of the routed tracks within a
+defined group of signals. The only way to practically match skews on a PCB is to lengthen the shorter traces
+up to the length of the longest net in the net class and the associated clock. Consider Z-axis delays (VIAs) with
+accurate stackup information during analysis.
+The DDR PHY includes a per-bit deskew feature, enabled by default. This capability allows signal routing with
+looser delay matching tolerance as specified in Table 2-7. If this feature is disabled, then skews must be tightly
+matched. Measure the propagation delay of each signal from the SoC die to the DRAM device pin. The designer
+is free to length match using smaller tolerance than values shown in the table. Refer to Additional Information:
+SOC Package Delays during the initial PCB design phase. Perform a simulation and generate a delay report to
+confirm skews are within the specified tolerance.
+
+                                                     Note
+      This is not required nor recommended to match the lengths across all byte lanes. Length matching is
+      only required within each byte.
+
+Table 2-7 contains the routing specifications for the Byte0, Byte1, Byte2, and Byte3 routing groups. Each signal
+net class and the associated clock net class is routed and matched independently. These parameters are
+recommendations only, intended to get the design close to success prior to simulation. To make sure the PCB
+design meets all requirements, the design is required to be simulated and those results compared with the
+simulation results defined in Section 3.
+
+
+
+
+16    AM62Ax, AM62Px, AM62Dx LPDDR4 Board Design and Layout Guidelines                  SPRAD66B – FEBRUARY 2023 – REVISED DECEMBER 2024
+                                                                                                                   Submit Document Feedback
+                                                Copyright © 2024 Texas Instruments Incorporated
+www.ti.com                                                                                        LPDDR4 Board Design and Layout Guidance
+
+                                          Table 2-7. Data Group Routing Specifications
+ Number                                                    Parameter                                         MIN         TYP      MAX        UNIT
+ LP4_DRS1               Propagation delay of net class DQSx                                                                       250 (1)     ps
+                        (RSD1)
+ LP4_DRS2               Propagation delay of net class BYTEx                                                                      250 (1)     ps
+                        (RSD2)
+ LP4_DRS3               Difference in propagation delays of CK0 pair and each DQS pair. (RSAC1 +            0 (3) (4)             3(3) (4)   tCK
+                        RSAC2 - RSD1)(2)
+ LP4_DRS4               Skew within net class DQSx                                                                                1.5 (4)     ps
+                        Skew of DQSx to DQSx_n (RSD1)                                                                                 (5)
+
+ LP4_DRS5               Skew across DQSx and BYTEx net classes.                                                                   150 (3)     ps
+                        (Skew of RSD1 and RSD2) (6)                                                                                   (4)
+
+ LP4_DRS6               Difference in propagation delays of shortest DQ/DM bit in BYTEx and respective      -50 (3)                           ps
+                        DQSx.                                                                                  (4)
+
+                        (RSD2 - RSD1)
+ LP4_DRS7               VIAs Per Trace                                                                                             2 (1)     VIAs
+ LP4_DRS8               VIA Stub Length                                                                                  40 (7)              Mils
+ LP4_DRS9               VIA Count Difference                                                                                       0 (8)     VIAs
+ LP4_DRS10              RSD1 center-to-center spacing (between clock net class)                             5w (9)
+ LP4_DRS11              RSD1 center-to-center spacing (within clock net class) (10)                                  See note below
+ LP4_DRS12              RSD2 center-to-center spacing (between signal net class)                            5w (9)
+ LP4_DRS13              RSD2 center-to-center spacing (to self or within signal net class)                  3w (9)
+
+(1)  Max value is based upon conservative signal integrity approach. FR4 material assumed with Dk equals approx. 3.7 - 3.9 and Df equals
+     approx. 0.002. This value can be extended only if detailed signal integrity analysis of rise time and fall time confirms desired operation.
+(2) Propagation delay of CK0 pair must be greater than propagation delay of each DQS pair. Consider one leg of any T-branch trace
+     segments when delay matching.
+(3) Simulation(11) must be performed and the delay report analyzed to make sure delays are within the limit. Delay reports from PCB layout
+     tools use a simplified calculation based on a constant propagation velocity factor. TI recommends initially delay matching in PCB layout
+     tool to a target less than 20% of the limit.
+(4) Consider the delays from SOC die pad to the DRAM pin (that is, delays of SOC package and delays of PCB up to the DRAM pin.
+     DRAM package delays are omitted). Refer to Additional Information: SOC Package Delays.
+(5) Recommendation for PCB layout tool design. Required to be verified by simulation(11), confirm JEDEC defined Vix_DQS_ratio (20%)
+     and Vix_CK_ratio (25%) are satisfied, also need to have good eye margins. Refer to Section 3.5.3.1.
+(6) Skew matching is only done within a byte including DQS. Skew matching across bytes is neither required nor recommended.
+(7) VIA stub control (micro VIA or backdrilling) is required if operating LPDDR4 above 3200Mbps depending on simulation(11) results.
+(8) VIA count difference can increase by 1 only if accurate 3-D modeling of the signal flight times; including accurately modeled signal
+     propagation through VIAs and has been applied to make sure skew maximums are not exceeded.
+(9) Center-to-center spacing is allowed to fall to minimum 2w for up to 500 mils of routed length (only near endpoints). Spacing minimums
+     can be relaxed if simulations(11) accurately capture crosstalk between neighboring victim and aggressor traces and show good margin.
+     Consider also VIA spacing. Signals with adjacent VIAs near SOC must not also have adjacent VIAs near the DRAM.
+(10) P to N spacing set to make sure proper differential impedance. The designer must control the impedance so that inadvertent
+     impedance mismatches are not created. Generally speaking, center-to center spacing must be either 2w or slightly larger than 2w to
+     achieve a differential impedance equal to twice the single-ended impedance, Zo, on that layer. Refer to impedance targets in Table 1-1.
+(11) Simulation refers to a power-aware IBIS Signal Integrity (SI) simulation. Simulate across process, voltage, and temperature (PVT).
+     Refer to Section 3.
+2.15 Channel, Byte, and Bit Swapping
+All address/control signals must be routed from the DDR controller to the LPDDR4 memory as described in
+the diagrams in Section 2.3. Address/control signals cannot be swapped with other signals. Data bit (DQx) and
+Data Mask (DM) swapping within a byte (for example, swapping D2 with D3) is allowed, but data bit DQx/DM
+swapping across bytes (for example, swapping D4 and D13) is not allowed. When swapping bytes, all of the
+associated signals of the byte (DQx, DQSx, and DM) must be swapped together. In addition, byte lanes within a
+channel (for example, swapping byte 0 and 1) is allowed, but swapping byte lanes across channels (for example,
+swapping bytes 0 and 3) is not allowed. Byte lanes 0 and 1 must be routed to channel A of the LPDDR4
+memory, and byte lanes 2 and 3 must be routed to channel B of the LPDDR4 memory. Use the DDR Subsystem
+Register Configuration Tool in SysConfig (https://dev.ti.com/sysconfig) to describe how the bits are swapped.
+
+
+
+
+SPRAD66B – FEBRUARY 2023 – REVISED DECEMBER 2024               AM62Ax, AM62Px, AM62Dx LPDDR4 Board Design and Layout Guidelines                     17
+Submit Document Feedback
+                                          Copyright © 2024 Texas Instruments Incorporated
+LPDDR4 Board Design and Layout Guidance                                                                                       www.ti.com
+
+2.16 Data Bus Inversion
+Data Bus Inversion (DBI) is recommended to reduce supply/ground noise and to improve the data eye.
+Therefore, the DDR Subsystem Register Configuration Tool enables Write DBI by default for LPDDR4
+configurations.
+
+
+
+
+18    AM62Ax, AM62Px, AM62Dx LPDDR4 Board Design and Layout Guidelines                 SPRAD66B – FEBRUARY 2023 – REVISED DECEMBER 2024
+                                                                                                                  Submit Document Feedback
+                                               Copyright © 2024 Texas Instruments Incorporated
+www.ti.com                                                                                          LPDDR4 Board Design Simulations
+
+
+3 LPDDR4 Board Design Simulations
+This section is intended to provide an overview of the basic system-level board extraction, simulation, and
+analysis methodologies for high-speed LPDDR4 interfaces (information specific to DDR4 comes in a later
+revision of this document). This is an essential step to make sure the PCB design meets all the requirements to
+operate the targeted speeds.
+3.1 Board Model Extraction
+                                                       Note
+      This section contains various information from J7 devices and board designs. The specific details only
+      apply to J7 board designs, but are provided here as an examples for AM62Ax, AM62Px, AM62Dx
+      board designs. Consult the AM62x data sheet for device specifications.
+
+The board level extraction guidelines listed below are intended to work in any EDA extraction tool and are not
+tool-specific. This is important to follow the steps outlined in Section 3.2 through Section 3.4 immediately after
+completing touchstone model extractions. The design must be checked with these steps prior to running IBIS
+simulations.
+1. For DDR extractions, extract power (VDDS_DDR/VDDQ) and signal nets together in a 3D-EM solver.
+2. Use wide-band models. TI recommends to extract from DC to at least until 6x the Nyquist frequency (for
+   example, for LPDDR4-3733 extract the model at least until 11.2GHz).
+3. Check the board stack-up for accurate layer thickness and material properties.
+   a. TI recommends to use Djordjevic-Sarkar models for the dielectric material definition.
+4. Use accurate etch profiles and surface roughness for the signal traces across all layers in the stack-up.
+5. If the board layout is cut prior to extraction (to reduce simulation time), then define a cut boundary that is at
+   least 0.25 inch away from the signal and power nets.
+6. Check the via padstack definitions.
+   a. Make sure that the non-functional internal layer pads on signal vias are modeled the same way the pads
+        are fabricated.
+   b. These non-functional internal layer pads on signal vias are not recommended by TI.
+7. Use Spice/S-parameter models (typically available from the vendor) for modeling all passives in the system.
+3.2 Board-Model Validation
+The extracted board models need to be checked for the following properties:
+•   Passivity: This makes sure that the board model is a passive network and does not generate energy.
+•   Causality: This makes sure that the board model obeys the causal relationship (output follows input).
+These checks can be performed in any standard EDA simulator or extraction engine.
+3.3 S-Parameter Inspection
+Once the extracted S-parameters have been verified as causal and passive, the S-parameter plots must be
+inspected. TI recommends to check for the following:
+•   Insertion Loss: The single-ended insertion loss is recommended to stay within 0 to 10dB up to 3 times
+    the Nyquist frequency of operation. For example, if the target frequency is 8Gbps (4GHz Nyquist), the
+    single-ended insertion loss must stay under 10dB up to 12GHz.
+•   Return Loss: The single-ended return loss is recommended to be less than 15dB up to 3 times the Nyquist
+    frequency.
+•   Near and Far end crosstalk (FEXT/NEXT): The FEXT and NEXT are recommended to be under 25dB for
+    frequencies up to 3 times the Nyquist frequency.
+The S-Parameter inspection plots are not pass or fail tests, but rather more of a guide to check if the design has
+a reasonable chance of performing a the required level.
+
+
+
+
+SPRAD66B – FEBRUARY 2023 – REVISED DECEMBER 2024               AM62Ax, AM62Px, AM62Dx LPDDR4 Board Design and Layout Guidelines   19
+Submit Document Feedback
+                                          Copyright © 2024 Texas Instruments Incorporated
+LPDDR4 Board Design Simulations                                                                                               www.ti.com
+
+3.4 Time Domain Reflectometry (TDR) Analysis
+As a lot of the design fixes are targeted towards maintaining uniform trace impedance, an important analysis
+method used in assessing the quality of the design is the Time Domain Reflectometry (TDR) analysis. This plots
+the impedance of a trace as a function of length, as shown in Figure 3-1.
+
+
+
+
+                               Figure 3-1. TDR Plot Example With Impedance Mismatch
+
+As shown in Figure 3-1, the TDR plot highlights impedance discontinuities in the trace from one end to the other.
+This method depends on a reflected waveform from the far-end of the trace. The delay in the plot corresponding
+to a particular point in the trace actually corresponds to 2 times the distance of that point from the source, owing
+to the round trip time. This needs to be factored in for assessing the source of impedance discontinuities.
+The TDR plot can be generated by reading in the S-parameter models generated by the extraction tool and
+assessing them in Time-Domain mode. A standard EDA simulator such as HyperLynx can perform this function.
+TI recommends to optimize the design to within a ± 5% deviation from the nominal trace impedance.
+The TDR plots are not pass or fail tests, but rather is more of a guide to check if the design has a reasonable
+chance of performing a the required level.
+3.5 System Level Simulation
+The methodology for validating the DDR interface is outlined in this section. LPDDR4 interfaces, as defined in
+the JEDEC specification, uses eye masks defined at a target BER (Bit Error Rate) to determine pass or fail for
+signal integrity. This is essential to perform channel simulations using IBIS models to generate the signal eye
+diagrams at the targeted BER. These are introduced for memory interfaces starting from LPDDR4
+
+
+
+
+20    AM62Ax, AM62Px, AM62Dx LPDDR4 Board Design and Layout Guidelines                 SPRAD66B – FEBRUARY 2023 – REVISED DECEMBER 2024
+                                                                                                                  Submit Document Feedback
+                                               Copyright © 2024 Texas Instruments Incorporated
+www.ti.com                                                                                          LPDDR4 Board Design Simulations
+
+3.5.1 Simulation Setup
+Set up the system-level schematic in the simulator by connecting the SOC IBIS model, board model, power
+supplies, DRAM package model, and DRAM IBIS model. A typical system-level DDR schematic is shown in
+Figure 3-2.
+
+                                                     Note
+      Be cautious of the DRAM configuration (number of dies in the package, number of ranks, and number
+      of channels) while setting up the system schematic. Be cautious that the DRAM configuration can also
+      include on-die decoupling circuit.
+
+
+
+
+                                    Figure 3-2. Typical System-Level DDR Schematic
+
+•   LPDDR4 simulations require power-aware IBIS models for the controller and the memory along with a
+    simulator that supports channel simulations for DDR interfaces.
+•   SPICE-based transistor-level simulations cannot be used for generating BER signal eyes. Use a simulator
+    that can handle power-aware IBIS simulations and can run channel simulations for the DDR interface.
+•   IBIS models reduce simulation time with minimal loss in accuracy compared with SPICE-based transistor-
+    level simulations. IBIS models starting from version 5.0 are power-aware models which enables
+    Simultaneous Switching Output (SSO) noise simulations. The TI IBIS model is a power-aware IBIS model.
+•   Use SPICE models to accurately model the on-die decoupling capacitance on the DDR supply net for both
+    controller and DRAM. This makes sure of accurate power noise and Power Supply Induced Jitter (PSIJ)
+    estimation in DDR simulations. The on-die decoupling capacitance information for the DRAM can be obtained
+    from the DRAM vendor.
+•   Use SPICE or S-parameter files to model the DRAM package. This can be requested from the DRAM vendor.
+    EBD models are not recommended.
+•   Note that inside the SoC IBIS model, there is a section for the package that contains an RLC matrix for all
+    signal and power nets including DDR. TI recommends to use the SoC IBIS model, not the SOC package
+    S-parameter model. When using SoC IBIS model, make sure to check the Package Parasitics (or equivalent
+    parameter in the simulation tools) and use the Package Model model type which contains fully coupled L/C
+    information on a per pin basis (denoted in the IBIS file as [Package Model] am62_pkg).
+
+
+
+
+SPRAD66B – FEBRUARY 2023 – REVISED DECEMBER 2024               AM62Ax, AM62Px, AM62Dx LPDDR4 Board Design and Layout Guidelines   21
+Submit Document Feedback
+                                          Copyright © 2024 Texas Instruments Incorporated
+LPDDR4 Board Design Simulations                                                                                               www.ti.com
+
+•    AM62Ax, AM62Px, AM62Dx model for the on-die decoupling capacitance on the DDR supply net:
+     – Data
+         ******************************************
+         * On-die Decoupling circuit for AM62Ax,
+                             AM62Px, AM62Dx (DIE_VDDS_DDR to VSS)
+         ******************************************
+         * Notes:
+         * Includes on-die decoupling for all DDR signals
+         *
+         * This subcircuit must be added across the AM62Ax,
+                             AM62Px, AM62Dx IBIS model's
+         * DIE_VDDS_DDR and VSS pins
+         *
+         ******************************************
+         * x_decouple DIE_VDDS_DDR vss_die AM62Ax,
+                             AM62Px, AM62Dx_ondie_decoupling_alldq
+         ******************************************
+         .SUBCKTAM62Ax,
+                             AM62Px, AM62Dx_ondie_decoupling_alldq DIE_VDDS_DDR vss_die
+         Cvddq_c DIE_VDDS_DDR DIE_VDDS_DDR_c 1.324741e-9
+         Rvddq_c vss_die DIE_VDDS_DDR_c 25.0036612e-3
+         .ENDS
+
+     – Address/Command
+         ******************************************
+         * On-die Decoupling circuit for AM62Ax,
+                             AM62Px, AM62Dx (DIE_VDDS_DDR to VSS)
+         ******************************************
+         * Notes:
+         * Includes on-die decoupling for all DDR signals
+         *
+         * This subcircuit must be added across the AM62Ax,
+                             AM62Px, AM62Dx IBIS model's
+         * DIE_VDDS_DDR and VSS pins
+         *
+         ******************************************
+         * x_decouple DIE_VDDS_DDR vss_die AM62Ax,
+                             AM62Px, AM62Dx_ondie_decoupling_alldq
+         ******************************************
+         .SUBCKTAM62Ax,
+                             AM62Px, AM62Dx_ondie_decoupling_alldq DIE_VDDS_DDR vss_die
+         Cvddq_c DIE_VDDS_DDR DIE_VDDS_DDR_c 4.335517e-9
+         Rvddq_c vss_die DIE_VDDS_DDR_c 25.0036612e-3
+         .ENDS
+
+
+
+
+22    AM62Ax, AM62Px, AM62Dx LPDDR4 Board Design and Layout Guidelines                 SPRAD66B – FEBRUARY 2023 – REVISED DECEMBER 2024
+                                                                                                                  Submit Document Feedback
+                                               Copyright © 2024 Texas Instruments Incorporated
+www.ti.com                                                                                          LPDDR4 Board Design Simulations
+
+3.5.2 Simulation Parameters
+This is important to configure the simulation to exercise the system to real, but worst case parameters.
+•   Use the worst-case bit pattern to excite the system. The simulator is able to generate the worst-case bit
+    pattern based on channel characterization.
+•   Select the controller and DRAM models (sets the drive strength, ODT, VOH levels, and so forth) from the IBIS
+    files which work best for the system.
+    – This is typically an iterative process.
+    – Every system is unique and the best settings for these parameters can vary from system to system.
+                                  Table 3-1. Example Data Write ODI/ODT Optimization
+                                                                                                                         Total EH
+                                                                                                         Total EW         Margin
+          Pkg Byte                          Board                            ODI Ω         ODT Ω        Margin (ps)       (mV)B
+
+             B3                  J7 370HR 10L Ref B3, No BD                    40             40           50.28          15.66
+
+             B3                  J7 370HR 10L Ref B3, No BD                    40             48           27.62           11.76
+
+             B3                  J7 370HR 10L Ref B3, No BD                    40             40           33.52           2.92
+
+             B3                  J7 370HR 10L Ref B3, No BD                    48             48            1.54           0.86
+
+•   Data bus and address bus ODT and drive strength values can be set independently. As an example, the J7
+    EVM board (which supports LPDDR4 at similar speeds) used 40Ω ODT for data read and writes and 80Ω for
+    CA bus. Drive strength of 40ohms for data read and write and CA.
+    – Data READ Controller model - lpddr4_odt_40, lpddr4_odt_40_diff.
+    – Data WRITE Controller model - lpddr4_ocd_40p_40n, lpddr4_ocd_40p_40n_diff.
+    – CA/CLK Controller model - lpddr4_ocd_40p_40n, lpddr4_ocd_40p_40n_diff.
+•   Set up the channel simulation parameters. These typically consists of the data rate, ignore time/bits,
+    minimum number of bits, bit sampling rate, BER floor, number of bits for display, types of BER eyes (voltage
+    and/or timing), and target BER.
+    – To determine the minimum number of bits one can run a series of channel simulations with different
+       number of bits. The BER signal eye (and margins) tend to converge after a certain minimum number of
+       bits. This helps determining the minimum number of bits to be used for the system.
+    – Run channel simulations to generate the eye diagrams at LBER of -16.
+•   Run channel simulations with basic power settings at different PVT corners. TI recommends to run the
+    simulations at least at the SSHT and FFLT corners.
+
+
+
+
+SPRAD66B – FEBRUARY 2023 – REVISED DECEMBER 2024               AM62Ax, AM62Px, AM62Dx LPDDR4 Board Design and Layout Guidelines     23
+Submit Document Feedback
+                                          Copyright © 2024 Texas Instruments Incorporated
+LPDDR4 Board Design Simulations                                                                                                 www.ti.com
+
+3.5.3 Simulation Targets
+Once the simulation successfully completes, generate the DDR analysis reports from the simulation tool. There
+are several different parameters to be verified, detailed in this section. Each parameter is pass or fail, meaning
+each must meet the specified target to make sure the design has sufficient margin to operate at the target data
+rates.
+Use the appropriate JEDEC Vref parameters (Vref_min, Vref_max, Vref_step, and Vref_set_tol) and mask
+parameters (shape, height, width).
+3.5.3.1 Eye Quality
+The Vix_DQS ratio and Vix_CK ratio for data write and CA bus simulations are to be verified, at the DRAM
+pin/BGA. Figure 3-3 from the JEDEC specification explains how to measure the Vix ratio, as well as define the
+ration requirements.
+
+
+
+
+                                   Figure 3-3. Vix_CK and Vix_DQS Ratio for Eye Quality
+
+                                    Table 3-2. Vix_CK and Vix_DQS Ratio for Eye Quality
+                                                          Data Rate
+      Symbol                1600/1867                 2133/2400/3200                       3733/4266              Unit           Note
+    Vix_CK_ratio        -               25            -               25               -               25          %            (1), (2)
+
+      Vix_DQS           -               20            -               20               -               20          %            (1), (2)
+
+
+(1)     Vix_CK_Ratio is defined by the equation: Vix_CK_Ratio = Vix_CK_FR|Min(f(t))|
+(2)     Vix_CK_Ratio is defined by the equation: Vix_CK_Ratio = Vix_CK_RF|Min(f(t))|
+3.5.3.2 Delay Report
+The required interconnect delays for DQ, DQS, CA, and CLK are listed in Section 2.13 and Section 2.14. The
+values listed as Typical are only recommendations. Any minimum or maximum value is a requirement. One key
+requirement is to make sure the CK delay is greater than any DQS delay. DQSx delays must also be less than
+the DQ and DM delays in the respective BYTEx. Consider the complete system from SOC die pad, through the
+PCB, to the pins of the memory package.
+3.5.3.3 Mask Report
+The minimum jitter and noise margins are to be captured with respect to the eye masks. This masks are data
+rate dependent, and includes:
+•     Data read eye mask at the SOC die pad for functionality testing.
+•     Data write eye mask (JEDEC spec) at the DRAM pin/BGA for compliance testing.
+•     CA bus eye mask (JEDEC spec) at the DRAM pin/BGA for compliance testing.
+There is at least two sets of eye diagrams generated by the simulator:
+•     Vref set to the best Vref of the byte offset by the Vref_set_tol in the positive direction (Vref_set_tol is defined
+      in JEDEC spec).
+•     Vref set to the best Vref of the byte offset by the Vref_set_tol in the negative direction.
+
+
+
+24      AM62Ax, AM62Px, AM62Dx LPDDR4 Board Design and Layout Guidelines                 SPRAD66B – FEBRUARY 2023 – REVISED DECEMBER 2024
+                                                                                                                    Submit Document Feedback
+                                                 Copyright © 2024 Texas Instruments Incorporated
+www.ti.com                                                                                            LPDDR4 Board Design Simulations
+
+
+The system-level margins are the worst case noise and jitter margins from all eye diagram measurements listed
+above (across SSHT and FFLT corners). For all waveforms captured at the DRAM device, margins must be
+calculated at both the BGA pin and the DRAM pad.
+                                Table 3-3. LPDDR4 Eye Mask Definitions/Requirements
+ Parameter                        Mask Shape               LPDDR4-1600                LPDDR4-3200                LPDDR4-3733
+ CA eye mask TcIVW               Rectangular (1)                0.3 UI                   0.3 UI (1)                    (2)
+
+ CA eye mask VcIVW               Rectangular (1)               175mV                    155mV (1)                      (2)
+
+ Write eye mask TdIVW            Rectangular (1)               0.22 UI                  0.25 UI (1)                    (2)
+
+ Write eye mask VdIVW            Rectangular (1)               140mV                    140mV (1)                      (2)
+
+ Read eye mask TdIVW                Diamond                    0.42 UI                   0.61 UI                    0.66 UI
+ Read eye mask VdIVW                Diamond                    140mV                     140mV                      140mV
+
+(1)   Copied from JEDEC specification: Low Power Double Date Rate 4 (LPDDR4).
+(2)   For details, contact the DRAM vendor.
+
+Figure 3-4 through Figure 3-6 show the eye mask definitions translated to eye diagrams within captured
+waveforms.
+
+
+
+
+             Figure 3-4. Example Simulated LPDDR4-4266 Read Eye With Diamond-Shaped Eye Mask
+
+
+
+
+         Figure 3-5. Example Simulated LPDDR4-4266 Write Eye With Rectangular JEDEC Eye Mask
+
+
+
+
+SPRAD66B – FEBRUARY 2023 – REVISED DECEMBER 2024               AM62Ax, AM62Px, AM62Dx LPDDR4 Board Design and Layout Guidelines    25
+Submit Document Feedback
+                                          Copyright © 2024 Texas Instruments Incorporated
+LPDDR4 Board Design Simulations                                                                                               www.ti.com
+
+
+
+
+             Figure 3-6. Example Simulated LPDDR4-4266 CA Eye With Rectangular JEDEC Eye Mask
+
+3.6 Design Example
+3.6.1 Stack-Up
+These guidelines recommend a 10- or 12-layer PCB stack-up for full device entitlement. Below are 10- and
+12-layer example stack-ups:
+•    Designs using FR4 products like 370HR are supported, but also recommend higher speed materials like
+     ISOLA I-Speed (or equivalent) for increased margin. IT180A is also another material to help with cost vs.
+     performance tradeoffs
+•    This example routes data groups on layers 2 and 4. While this minimizes the via travel and, therefore,
+     reduces via-to-via coupling, but leaves a longer via stub, which can require back-drill.
+•    In the 10-layer example, dynamic CA signals are routed on layer 7, and more static control signals routed on
+     layer 9.
+                           Table 3-4. Example 10-layer PCB Stackup for LPDDR4 (J7 EVM)
+     Layer No      Stackup                              Routing Plan Highest Priorities and Layer
+                   Solder mask
+         1         TOP - PWR/SIG                        BGA breakouts/VDD_CPU, VDD_CORE and VDD_DDR_1V1
+         2         PWR/SIG                              VDD_CPU and CORE/LPDDR (DBG #3/#1, CAT-Branches)
+         3         GND                                  REF
+         4         PWR/SIG                              VDDA_PHYCORE_0V8, VDD_xxx, 0V85/LPDDR (DBG #2/#0)
+         5         PWR/GND                              VDDA_0V8_xxx and GND flood for LPDDR4
+         6         PWR/GND                              VDD_xxx, VDDA_xxx supplies and GND flooded for LPDDR4
+         7         SIG/PWR                              VDD_xxx, VDDA_xxx/LPDDR (Dynamic CA, Trunks)/SERDES
+         8         GND                                  REF
+         9         SIG/PWR                              VDD_xxx, VDDA_xxx/LPDDR (static CA)
+        10         BOTTOM - SIG/PWR                     BGA breakouts/Pwr and GND plan segments
+                   Solder mask
+
+
+
+
+26    AM62Ax, AM62Px, AM62Dx LPDDR4 Board Design and Layout Guidelines                 SPRAD66B – FEBRUARY 2023 – REVISED DECEMBER 2024
+                                                                                                                  Submit Document Feedback
+                                               Copyright © 2024 Texas Instruments Incorporated
+www.ti.com                                                                                              LPDDR4 Board Design Simulations
+
+                     Table 3-5. Example 12-layer PCB Stackup for LPDDR4 (AM62Ax LP SK EVM)
+      Layer No       Stackup                             Routing Plan Highest Priorities and Layer
+                     Solder mask
+         1           TOP - PWR/SIG                       BGA breakouts, VDD_LPDDR4, GND
+         2           GND                                 REF
+         3           PWR/SIG                             VDDA_1V8, GND, LPDDR (DBG #3/#1, CA T-Branches), LVCMOS escape
+         4           GND                                 REF
+         5           SIG/GND                             GND, LPDDR (DBG #2/#0), LVCMOS escape
+         6           PWR/GND                             GND (under LPDDR), VDD_CORE, VDDR_CORE, VDDA_1V8, VDDSHVx
+         7           PWR                                 DVDD_3V3, DVDD_1V8, VDD1_LPDDR4_1V8
+         8           PWR                                 VDD_CORE, VDD_LPDDR4, VDDA_x
+         9           GND                                 REF
+        10           SIG/GND                             GND, LPDDR (CA point-to-point, CA Trunks), LVCMOS escape
+         11          GND                                 REF
+        12           BOTTOM - SIG/PWR                    GND, decaps, LVCMOS escape
+                     Solder mask
+
+                      Table 3-6. Example 12-layer PCB Stackup for LPDDR4 (AM62Px SK EVM)
+      Layer No       Stackup                             Routing Plan Highest Priorities and Layer
+                     Solder mask
+         1           TOP - PWR/SIG                       BGA breakouts, VDD_LPDDR4, GND
+         2           GND                                 REF
+         3           PWR/SIG                             VDDA_1V8, GND, LPDDR (DBG #3/#1, CA T-Branches), LVCMOS escape
+         4           GND                                 REF
+         5           SIG/GND                             GND, LPDDR (DBG #2/#0), LVCMOS escape
+         6           GND                                 REF
+         7           PWR                                 VDD_CORE, VDD_LPDDR4, DVDD_3V3
+         8           PWR/GND                             VDD1_LPDDR4_1V8, GND, VDDA_x
+         9           PWR/GND                             GND, VDDR_CORE, VDDA_1V8, DVDD_3V3, DVDD_1V8
+        10           SIG/GND                             GND, LPDDR (CA point-to-point, CA Trunks), LVCMOS escape
+         11          GND                                 REF
+        12           BOTTOM - SIG/PWR                    GND, decaps, LVCMOS escape
+                     Solder mask
+
+
+Table 3-7 provides simulation results performed on sample designs, showing the impact of the PCB stackup
+(material, drill plan, and so forth) on LPDDR4 performance. The results showed that maximum bandwidth can
+be achieved on a FR4 design, but required back-drilling. The higher frequency material can achieve same
+performance without back drill. Note the 8 layer design only achieved 3733, but this was due to other design
+compromises due to limited layers (solid reference planes, and so forth).
+                       Table 3-7. Example LPDDR4 Performance Impact From J7 EVM Stackup
+                                                                                                                 Maximum LPDDR4
+          Design                     Material                  Layer Count              Via Back Drilling         Speed (Mbps) (1)
+          J7 EVM                     I-Speed                        16                         Yes                     4266
+         Ref Board                   I-Speed                        10                         No                      4266
+         Ref Board                    370HR                         10                         Yes                     4266
+         Ref Board                    370HR                         8                          No                      3733
+
+(1)   These results are for J7 designs. For maximum supported data rates, see the device-specific data sheet.
+
+
+
+
+SPRAD66B – FEBRUARY 2023 – REVISED DECEMBER 2024               AM62Ax, AM62Px, AM62Dx LPDDR4 Board Design and Layout Guidelines      27
+Submit Document Feedback
+                                          Copyright © 2024 Texas Instruments Incorporated
+LPDDR4 Board Design Simulations                                                                                                 www.ti.com
+
+3.6.2 Routing
+The examples below from a J7 design show the LPDDR4 Clock and CA routing on an example 10-layer PCB
+design. The clock is routed differentially with target impedance of 70Ω. For the T-branch to match the impedance
+of the trace, the impedance needs to be doubled. This can create challenges, as the higher impedances can be
+difficult to achieve in some PCB stackups. The CA signals are routed targeting 35Ω, with the T-branch at two
+times the source impedance.
+
+
+
+
+                                  Figure 3-7. Example LPDDR4 Clock and CA Routing
+
+On the same 10 layer reference design, the data groups are routed on layers 2 and 4. The upper layers are used
+due to the minimum via travel, which minimized the via inductance and via-to-via coupling. Because the data
+signals are point-to-point, T-branch routing is not required.
+
+
+
+
+                             Figure 3-8. Example LPDDR4 Data Bytes and DQSs Routing
+
+                      Table 3-8. LPDDR4 Performance Impact on Routing Layer (Read at pad)
+      Routing Layer                 Via Type                 Back Drilling             EW Margin (ps)              EH Margin (mV)
+         L1, L12                      PTH                         No                         -7.10                      56.72
+         L1, L12                      PTH                         Yes                        -4.86                      55.71
+          L1, L3                      PTH                         No                         5.70                       40.29
+          L1, L3                      PTH                         Yes                        8.37                       34.54
+
+                      Table 3-9. LPDDR4 Performance Impact on Routing Layer (Write at pad)
+      Routing Layer                 Via Type                 Back Drilling             EW Margin (ps)              EH Margin (mV)
+         L1, L12                      PTH                         No                         17.42                      39.22
+         L1, L12                      PTH                         Yes                        20.04                      41.93
+          L1, L3                      PTH                         No                         27.66                      41.37
+          L1, L3                      PTH                         Yes                        27.76                      48.63
+
+
+
+
+28    AM62Ax, AM62Px, AM62Dx LPDDR4 Board Design and Layout Guidelines                 SPRAD66B – FEBRUARY 2023 – REVISED DECEMBER 2024
+                                                                                                                  Submit Document Feedback
+                                               Copyright © 2024 Texas Instruments Incorporated
+www.ti.com                                                                                                LPDDR4 Board Design Simulations
+
+3.6.3 Model Verification
+Before simulating, TI recommends to verify the models. One verification method described is the impedance plot
+(or impedance scan). The impedance scans for a 10 layer design are provided.
+
+
+
+
+                                     Figure 3-9. Example LPDDR4 Trace Impedance Scan
+
+                            Table 3-10. Example LPDDR4 Trace Impedance Summary for Data
+                                                                                                               DQS/CLK Difference
+                  Layer                         DDR Bus                     DQ SE Impedance (Ω)                  Impedance (Ω)
+                   L2                           B1 and B3                              40.9                              77.7
+                   L2                              CA                                  51.7                              101.4
+                   L4                           B0 and B2                              41.1                              77.7
+                   L7                              CA                                  41.1                              77.7
+
+
+For CK and CA signals, the goal is to have the branch segment equal to two times the impedance of the feed
+trace. Note, this is common for the PCB to limit the achievable impedances. Simulations show users if the
+compromises are acceptable.
+                                Table 3-11. Example LPDDR4 Trace Impedance Summary for CA
+                                                            CA Branch Impedance
+             Board               CA Feed Impedance (Ω)              (Ω)                 CA Branch Target (Ω)    Impedance Mismatch (Ω)
+ Initial Design                          49.1                       59.6                      98 (49x2)                     19.3
+ Final Design                            41.1                       51.7                      82 (41x2)                     15.3
+
+
+The simulation results show the improvement made by closer matching the impedances to the targets.
+                  Table 3-12. Example LPDDR4 Simulation Results From Improved Trace Impedance
+                        Board                            Total Eye Width Margin (ps)                 Total Eye Height Margin (ps)
+ Initial Design                                                    58.00                                         14.00
+ Final Design                                                      124.68                                        48.08
+
+
+3.6.4 Simulation Results
+The simulation results are provided for the LPDDR4 interface from a 10 layer design. These simulation targets
+must be met to make sure the design operates at the desired level of performance.
+CA simulations need to be verified at the DRAM pin or BGA. This includes:
+•   Vix_CK ratio (JEDEC).
+•   Jitter and noise margins with respect to the eye mask (JEDEC).
+•   Peak-peak power noise.
+
+
+
+
+SPRAD66B – FEBRUARY 2023 – REVISED DECEMBER 2024               AM62Ax, AM62Px, AM62Dx LPDDR4 Board Design and Layout Guidelines        29
+Submit Document Feedback
+                                          Copyright © 2024 Texas Instruments Incorporated
+LPDDR4 Board Design Simulations                                                                                               www.ti.com
+
+
+
+
+                                     Figure 3-10. LPDDR4 Simulation Results for CA
+
+Data write simulations need to be verified at both the DRAM BGA pin and the DRAM pad. This includes:
+•    Vix_CK ration (JEDEC).
+•    Jitter and noise margins with respect to the eye mask (JEDEC).
+•    Peak-peak power noise.
+
+
+
+
+                                    Figure 3-11. LPDDR4 Simulation Results for Write
+
+Data read simulations need to be verified at SOC. This includes:
+•    Jitter and noise margins with respect to the eye mask.
+•    Peak-peak power noise.
+
+
+
+
+                                    Figure 3-12. LPDDR4 Simulation Results for Read
+
+The simulations results for read includes two sets for data, black and green. The black shows the design failed,
+as several bytes failed to meet the eye margins. The green is the simulation results of the same design, but with
+back-drilling the via stubs applied.
+
+
+
+
+30    AM62Ax, AM62Px, AM62Dx LPDDR4 Board Design and Layout Guidelines                 SPRAD66B – FEBRUARY 2023 – REVISED DECEMBER 2024
+                                                                                                                  Submit Document Feedback
+                                               Copyright © 2024 Texas Instruments Incorporated
+www.ti.com                                                                                 Additional Information: SOC Package Delays
+
+
+4 Additional Information: SOC Package Delays
+The SOC package delays provided in this appendix are measured from SOC die pad to SOC package pin.
+The skew limits specified in Table 2-6 and Table 2-7 are measured from SOC die pad to DRAM package pin
+(including these delays inside the SOC package). The designer shall sum these package delays with the PCB
+delays for each net when checking for initial complance with the skew limits. Simulations of the propagation
+delays are then required to confirm the delays satisfy the requirements.
+                         AM62Ax        AM62Px
+                                                   AM62Dx ANF
+ Processor Pin            AMB           AMH
+                                                    Package          Net Class      Description
+ Name                   Package       Package
+                                                    Delay (ps)
+                        Delay (ps)    Delay (ps)
+ DDR0_A0                  22.88          21.5            24         ADDR_CTRL       Used with LPDDR4 and DDR4
+ DDR0_A1                  28.25          22.0            28         ADDR_CTRL       Used with LPDDR4 and DDR4
+ DDR0_A2                  22.05          20.7            26         ADDR_CTRL       Used with LPDDR4 and DDR4
+ DDR0_A3                  18.51          21.5            16         ADDR_CTRL       Used with LPDDR4 and DDR4
+ DDR0_A4                  32.23          21.3            31         ADDR_CTRL       Used with LPDDR4 and DDR4
+ DDR0_A5                  20.59          26.5            20         ADDR_CTRL       Used with LPDDR4 and DDR4
+ DDR0_A6                  24.25          20.9            28         ADDR_CTRL       Used with DDR4
+ DDR0_A7                  33.50          28.4            34         ADDR_CTRL       Used with DDR4
+ DDR0_A8                  16.81          25.8            13         ADDR_CTRL       Used with DDR4
+ DDR0_A9                  25.80          26.7            27         ADDR_CTRL       Used with DDR4
+ DDR0_A10                 27.13          26.4            27         ADDR_CTRL       Used with DDR4
+ DDR0_A11                 17.62          16.9            20         ADDR_CTRL       Used with DDR4
+ DDR0_A12                 23.81          21.2            23         ADDR_CTRL       Used with DDR4
+ DDR0_A13                 27.85          24.0            26         ADDR_CTRL       Used with DDR4
+ DDR0_ACT_N               13.90          11.4            12         ADDR_CTRL       Used with DDR4
+ DDR0_ALERT_N             12.55          20.4            15             N/A         Used with DDR4
+ DDR0_BA0                 14.08           9.2            12         ADDR_CTRL       Used with DDR4
+ DDR0_BA1                 29.69          21.4            30         ADDR_CTRL       Used with DDR4
+ DDR0_BG0                 20.88          24.9            20         ADDR_CTRL       Used with DDR4
+ DDR0_BG1                 17.32          12.1            21         ADDR_CTRL       Used with DDR4
+ DDR0_CAS_N               16.50          17.6            13         ADDR_CTRL       Used with LPDDR4 and DDR4 (LPDDR4: copy of
+                                                                                    CS1 for LPDDR4_CS1_B)
+ DDR0_CK0                 33.36          26.6            33             CK0         Used with LPDDR4 and DDR4
+ DDR0_CK0_N               31.54          25.1            31             CK0         Used with LPDDR4 and DDR4
+ DDR0_CKE0                23.42          24.0            23         ADDR_CTRL       Used with LPDDR4 and DDR4
+ DDR0_CKE1                19.39          19.7            17         ADDR_CTRL       Used with LPDDR4 and DDR4
+ DDR0_CS0_N               18.68          16.6            18         ADDR_CTRL       Used with LPDDR4 and DDR4
+ DDR0_CS1_N               19.25          22.1            19         ADDR_CTRL       Used with LPDDR4 and DDR4
+ DDR0_DM0                 42.32          33.9            36            BYTE0        Used with LPDDR4 and DDR4
+ DDR0_DM1                 32.47          23.8            31            BYTE1        Used with LPDDR4 and DDR4
+ DDR0_DM2                 37.15          25.6            39            BYTE2        Used with LPDDR4 and DDR4
+ DDR0_DM3                 34.93          39.9            42            BYTE3        Used with LPDDR4 and DDR4
+ DDR0_DQ0                 40.49          40.1            43            BYTE0        Used with LPDDR4 and DDR4
+ DDR0_DQ1                 40.10          37.4            35            BYTE0        Used with LPDDR4 and DDR4
+ DDR0_DQ2                 37.54          37.2            36            BYTE0        Used with LPDDR4 and DDR4
+ DDR0_DQ3                 38.09          37.5            35            BYTE0        Used with LPDDR4 and DDR4
+ DDR0_DQ4                 37.74          43.1            35            BYTE0        Used with LPDDR4 and DDR4
+ DDR0_DQ5                 39.28          37.1            35            BYTE0        Used with LPDDR4 and DDR4
+ DDR0_DQ6                 45.09          35.3            42            BYTE0        Used with LPDDR4 and DDR4
+
+
+
+
+SPRAD66B – FEBRUARY 2023 – REVISED DECEMBER 2024               AM62Ax, AM62Px, AM62Dx LPDDR4 Board Design and Layout Guidelines   31
+Submit Document Feedback
+                                          Copyright © 2024 Texas Instruments Incorporated
+Additional Information: SOC Package Delays                                                                                       www.ti.com
+
+                         AM62Ax         AM62Px
+                                                       AM62Dx ANF
+ Processor Pin            AMB            AMH
+                                                        Package           Net Class      Description
+ Name                   Package        Package
+                                                        Delay (ps)
+                        Delay (ps)     Delay (ps)
+ DDR0_DQ7                 46.22           32.9               42             BYTE0        Used with LPDDR4 and DDR4
+ DDR0_DQ8                 36.45           29.1               32             BYTE1        Used with LPDDR4 and DDR4
+ DDR0_DQ9                 27.44           31.6               24             BYTE1        Used with LPDDR4 and DDR4
+ DDR0_DQ10                37.16           22.2               34             BYTE1        Used with LPDDR4 and DDR4
+ DDR0_DQ11                35.57           29.9               32             BYTE1        Used with LPDDR4 and DDR4
+ DDR0_DQ12                34.30           25.2               27             BYTE1        Used with LPDDR4 and DDR4
+ DDR0_DQ13                29.40           22.4               27             BYTE1        Used with LPDDR4 and DDR4
+ DDR0_DQ14                40.85           24.8               37             BYTE1        Used with LPDDR4 and DDR4
+ DDR0_DQ15                42.33           32.6               43             BYTE1        Used with LPDDR4 and DDR4
+ DDR0_DQ16                44.73           25.8               29             BYTE2        Used with LPDDR4 and DDR4
+ DDR0_DQ17                37.56              22              30             BYTE2        Used with LPDDR4 and DDR4
+ DDR0_DQ18                36.87           22.1               29             BYTE2        Used with LPDDR4 and DDR4
+ DDR0_DQ19                28.07           22.2               28             BYTE2        Used with LPDDR4 and DDR4
+ DDR0_DQ20                35.14           32.8               44             BYTE2        Used with LPDDR4 and DDR4
+ DDR0_DQ21                26.37           30.2               40             BYTE2        Used with LPDDR4 and DDR4
+ DDR0_DQ22                29.40           25.3               36             BYTE2        Used with LPDDR4 and DDR4
+ DDR0_DQ23                29.78           28.4               37             BYTE2        Used with LPDDR4 and DDR4
+ DDR0_DQ24                42.45           37.2               45             BYTE3        Used with LPDDR4 and DDR4
+ DDR0_DQ25                37.11           30.6               38             BYTE3        Used with LPDDR4 and DDR4
+ DDR0_DQ26                34.38           33.3               41             BYTE3        Used with LPDDR4 and DDR4
+ DDR0_DQ27                34.47           38.7               36             BYTE3        Used with LPDDR4 and DDR4
+ DDR0_DQ28                35.37           34.7               36             BYTE3        Used with LPDDR4 and DDR4
+ DDR0_DQ29                41.43           31.5               39             BYTE3        Used with LPDDR4 and DDR4
+ DDR0_DQ30                37.85           36.2               35             BYTE3        Used with LPDDR4 and DDR4
+ DDR0_DQ31                41.82           37.1               40             BYTE3        Used with LPDDR4 and DDR4
+ DDR0_DQS0                45.57           40.1               43             DQS0         Used with LPDDR4 and DDR4
+ DDR0_DQS0_N              47.21           41.8               44             DQS0         Used with LPDDR4 and DDR4
+ DDR0_DQS1                35.22           28.1               32             DQS1         Used with LPDDR4 and DDR4
+ DDR0_DQS1_N              37.13           29.5               34             DQS1         Used with LPDDR4 and DDR4
+ DDR0_DQS2                32.77           30.2               37             DQS2         Used with LPDDR4 and DDR4
+ DDR0_DQS2_N              34.04           31.8               38             DQS2         Used with LPDDR4 and DDR4
+ DDR0_DQS3                45.45           37.1               46             DQS3         Used with LPDDR4 and DDR4
+ DDR0_DQS3_N              43.87           35.6               45             DQS3         Used with LPDDR4 and DDR4
+ DDR0_ODT0                19.87              13              22         ADDR_CTRL        Used with DDR4
+ DDR0_ODT1                24.27           21.1               23         ADDR_CTRL        Used with DDR4
+ DDR0_PAR                 29.55           28.1               27         ADDR_CTRL        Used with DDR4
+ DDR0_RAS_N               14.99           10.3               12         ADDR_CTRL        Used with LPDDR4 and DDR4 (LPDDR4: copy of
+                                                                                         CS0 for LPDDR4_CS0_B)
+ DDR0_RESET0_N            14.20           31.9               12         ADDR_CTRL        Used with LPDDR4 and DDR4, No length
+                                                                                         matching requirement
+ DDR0_WE_N                11.68           20.5               13         ADDR_CTRL        Used with DDR4
+
+
+
+
+32    AM62Ax, AM62Px, AM62Dx LPDDR4 Board Design and Layout Guidelines                    SPRAD66B – FEBRUARY 2023 – REVISED DECEMBER 2024
+                                                                                                                     Submit Document Feedback
+                                                  Copyright © 2024 Texas Instruments Incorporated
+www.ti.com                                                                                                                  Summary
+
+
+5 Summary
+This application report describes how to plan, route, and simulate a PCB for successful LPDDR4
+operation on AM62Ax, AM62Px, AM62Dx processor designs. Topics include board layout guidelines, board
+stackup, supported implementations, schematics, component placement, and trace length matching targets.
+Specifications are provided for the clock and address or control signal group and data group topologies.
+Designing to these metrics helps to achieve a board layout with first-pass success. The simulation section of this
+application report documents a procedure for confirming the layout meets the requirements for a robust system
+before board fabrication. The topics of board model extraction, drive-strength and termination optimization,
+system-level simulation, and eye mask minimums are presented with examples from actual board designs.
+6 References
+•   Texas Instruments, AM62A Low-Power SK EVM User’s Guide
+•   Texas Instruments, AM62P SK EVM User’s Guide
+
+7 Revision History
+NOTE: Page numbers for previous revisions may differ from page numbers in the current version.
+Changes from Revision A (December 2023 ) to Revision B (December 2024)                                                 Page
+• Added AM62Dx to Additional Information: SOC Package Delays section....................................................... 31
+
+
+
+
+SPRAD66B – FEBRUARY 2023 – REVISED DECEMBER 2024               AM62Ax, AM62Px, AM62Dx LPDDR4 Board Design and Layout Guidelines   33
+Submit Document Feedback
+                                          Copyright © 2024 Texas Instruments Incorporated
+                                       IMPORTANT NOTICE AND DISCLAIMER
+TI PROVIDES TECHNICAL AND RELIABILITY DATA (INCLUDING DATA SHEETS), DESIGN RESOURCES (INCLUDING REFERENCE
+DESIGNS), APPLICATION OR OTHER DESIGN ADVICE, WEB TOOLS, SAFETY INFORMATION, AND OTHER RESOURCES “AS IS”
+AND WITH ALL FAULTS, AND DISCLAIMS ALL WARRANTIES, EXPRESS AND IMPLIED, INCLUDING WITHOUT LIMITATION ANY
+IMPLIED WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE OR NON-INFRINGEMENT OF THIRD
+PARTY INTELLECTUAL PROPERTY RIGHTS.
+These resources are intended for skilled developers designing with TI products. You are solely responsible for (1) selecting the appropriate
+TI products for your application, (2) designing, validating and testing your application, and (3) ensuring your application meets applicable
+standards, and any other safety, security, regulatory or other requirements.
+These resources are subject to change without notice. TI grants you permission to use these resources only for development of an
+application that uses the TI products described in the resource. Other reproduction and display of these resources is prohibited. No license
+is granted to any other TI intellectual property right or to any third party intellectual property right. TI disclaims responsibility for, and you
+will fully indemnify TI and its representatives against, any claims, damages, costs, losses, and liabilities arising out of your use of these
+resources.
+TI’s products are provided subject to TI’s Terms of Sale or other applicable terms available either on ti.com or provided in conjunction with
+such TI products. TI’s provision of these resources does not expand or otherwise alter TI’s applicable warranties or warranty disclaimers for
+TI products.
+TI objects to and rejects any additional or different terms you may have proposed. IMPORTANT NOTICE
+
+                             Mailing Address: Texas Instruments, Post Office Box 655303, Dallas, Texas 75265
+                                            Copyright © 2024, Texas Instruments Incorporated
+

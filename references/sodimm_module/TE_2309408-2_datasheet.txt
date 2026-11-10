@@ -1,0 +1,293 @@
+     2309408-2
+     Small Outline (SO), 4 mm [.157 in] Stack Height, Right Angle Module Orientation, 260
+     2309408-2  ACTIVE
+     Position, .5 mm [.02 in] Centerline, DDR4 DIMM, SO DIMM Sockets
+
+
+     DDR4 DIMM
+     TE Internal #: 2309408-2
+     Small Outline (SO), 4 mm [.157 in] Stack Height, Right Angle
+     Module Orientation, 260 Position, .5 mm [.02 in] Centerline, DDR4
+     DIMM, SO DIMM Sockets
+     View on TE.com >
+
+
+
+                   Connectors > Socket Connectors > Memory Sockets > SO DIMM Sockets > DDR4 SO DIMM Sockets
+
+
+
+
+                   DRAM Type: Small Outline (SO)
+                   Stack Height: 4 mm [ .157 in ]
+                   Module Orientation: Right Angle
+                   Number of Positions: 260
+                   Centerline (Pitch): .5 mm [ .02 in ]
+
+                   All DDR4 SO DIMM Sockets (39)
+
+
+
+                   Features
+
+                   Product Type Features
+
+                     Connector & Contact Terminates To                                             Printed Circuit Board
+
+                     Connector System                                                              Cable-to-Board
+
+                     DRAM Type                                                                     Small Outline (SO)
+
+                   Configuration Features
+
+                     Number of Keys                                                                1
+
+                     Number of Rows                                                                2
+
+                     Module Orientation                                                            Right Angle
+
+                     Number of Positions                                                           260
+
+                   Electrical Characteristics
+
+                     DRAM Voltage                                                                  1.2 V
+
+                   Signal Characteristics
+
+                     SGRAM Voltage                                                                 1.2 V
+
+                   Body Features
+
+                     Retention Post Location                                                       Both Ends
+
+                     Latch Material                                                                High Temperature Thermoplastic
+
+
+                     Ejector Type                                                                  Locking
+   For support call+1 800 522 6752                                                                                             08/31/2025 10:24PM | Page 1
+     2309408-2
+     Small Outline (SO), 4 mm [.157 in] Stack Height, Right Angle Module Orientation, 260
+     Position, .5 mm [.02 in] Centerline, DDR4 DIMM, SO DIMM Sockets
+
+
+
+
+                     Ejector Type                                                           Locking
+
+                     Ejector Location                                                       Both Ends
+
+                     Connector Profile                                                      Low
+
+                   Contact Features
+
+                     Contact Current Rating (Max)                                           .5 A
+
+                     Memory Socket Type                                                     Memory Card
+
+                     Contact Base Material                                                  Copper Alloy
+
+                     PCB Contact Termination Area Plating Material                          Gold Flash
+
+                     Contact Mating Area Plating Material                                   Gold (Au)
+
+                     Contact Mating Area Plating Material Thickness                         .127 µm[5 µin]
+
+                   Termination Features
+
+                     Insertion Style                                                        Cam-In
+
+                     Termination Method to PCB                                              Surface Mount
+
+                   Mechanical Attachment
+
+                     Connector Mounting Type                                                Board Mount
+
+                     PCB Mount Retention Type                                               Solder Peg
+
+                     Mating Alignment Type                                                  Reverse Keying
+
+                     PCB Mount Retention                                                    With
+
+                   Housing Features
+
+                     Housing Material                                                       High Temperature Thermoplastic
+
+                     Housing Color                                                          Black
+
+                     Centerline (Pitch)                                                     .5 mm[.02 in]
+
+                   Dimensions
+
+                     Stack Height                                                           4 mm[.157 in]
+
+                     Row-to-Row Spacing                                                     8.2 mm[.322 in]
+
+                   Usage Conditions
+
+                     Operating Temperature Range                                            -55 – 85 °C[-67 – 185 °F]
+
+                   Operation/Application
+
+                     Circuit Application                                                    Power
+
+                   Industry Standards
+
+                     UL Flammability Rating                                                 UL 94V-0
+
+                   Packaging Features
+
+   For support call+1 800 522 6752                                                                                      08/31/2025 10:24PM | Page 2
+     2309408-2
+     Small Outline (SO), 4 mm [.157 in] Stack Height, Right Angle Module Orientation, 260
+     Position, .5 mm [.02 in] Centerline, DDR4 DIMM, SO DIMM Sockets
+
+
+
+                   Packaging Features
+
+                     Packaging Quantity                                                                        900
+
+                     Packaging Method                                                                          Tape & Reel
+
+
+
+                   Product Compliance
+                   For compliance documentation, visit the product page on TE.com>
+
+
+
+                     EU RoHS Directive 2011/65/EU                                                              Compliant
+
+                     EU ELV Directive 2000/53/EC                                                               Compliant
+
+                     China RoHS 2 Directive MIIT Order No 32, 2016                                             No Restricted Materials Above Threshold
+
+                     EU REACH Regulation (EC) No. 1907/2006                                                    Current ECHA Candidate List: JUNE 2025
+                                                                                                               (250)
+                                                                                                               Candidate List Declared Against: JUNE
+                                                                                                               2025 (250)
+                                                                                                               Does not contain REACH SVHC
+
+                     Halogen Content                                                                           Low Halogen - Br, Cl, F < 900 ppm per
+                                                                                                               homogenous material. Also BFR/CFR/PVC
+                                                                                                               Free
+
+                     Solder Process Capability                                                                 Reflow solder capable to 260°C
+
+
+                               Product Compliance Disclaimer
+
+                               This information is provided based on reasonable inquiry of our suppliers and represents our current actual knowledge
+                               based on the information they provided. This information is subject to change. The part numbers that TE has identified as
+                               EU RoHS compliant have a maximum concentration of 0.1% by weight in homogenous materials for lead, hexavalent
+                               chromium, mercury, PBB, PBDE, DBP, BBP, DEHP, DIBP, and 0.01% for cadmium, or qualify for an exemption to these
+                               limits as defined in the Annexes of Directive 2011/65/EU (RoHS2). Finished electrical and electronic equipment products
+                               will be CE marked as required by Directive 2011/65/EU. Components may not be CE marked. Additionally, the part
+                               numbers that TE has identified as EU ELV compliant have a maximum concentration of 0.1% by weight in homogenous
+                               materials for lead, hexavalent chromium, and mercury, and 0.01% for cadmium, or qualify for an exemption to these limits
+                               as defined in the Annexes of Directive 2000/53/EC (ELV). Regarding the REACH Regulation, the information TE provides
+                               on SVHC in articles for this part number is based on the latest European Chemicals Agency (ECHA) ‘Guidance on
+                               requirements for substances in articles’ posted at this URL: https://echa.europa.eu/guidance-documents/guidance-on-
+                               reach
+
+
+
+
+                   Compatible Parts
+
+
+
+
+                     TE Part # CAT-D33047-SO1339
+                     DDR4 SO DIMM Sockets
+
+
+
+
+                   Also in the Series DDR4 DIMM
+
+
+   For support call+1 800 522 6752                                                                                                                        08/31/2025 10:24PM | Page 3
+     2309408-2
+     Small Outline (SO), 4 mm [.157 in] Stack Height, Right Angle Module Orientation, 260
+     Position, .5 mm [.02 in] Centerline, DDR4 DIMM, SO DIMM Sockets
+
+
+
+
+                     DIMM Sockets(13)                        SO DIMM Sockets(39)
+
+
+
+
+                   Customers Also Bought
+
+
+
+
+                     TE Part #84952-9                        TE Part #643232-1            TE Part #1-1622824-3     TE Part #2170088-1
+                     1MM FPC HORZ.BTTM CONT.ASS.9P           05P UMNL HDR ASSY R/A 94VO   RL73H 2B R68 1% 5K RL    ZSFP+ Connector,30u"
+
+
+
+
+                     TE Part #2176529-3                      TE Part #1-2176529-2         TE Part #4-2176529-5     TE Part #5-2176529-2
+                     3504G 3A 53R6 1% 1K RL                  3504G 3A 66R5 1% 1K RL       3504G 3A 147R 1% 1K RL   3504G 3A 174R 1% 1K RL
+
+
+
+
+                     TE Part #2355825-4                      TE Part #2385692-1
+                     Mezalok, Socket, 114 p, 12 mm, 50 Au,   USB4 RECPTACLE ON BOARD
+                     LF
+
+
+
+
+                   Documents
+
+                   Product Drawings
+                   DDR4 SODIMM 260P 4.0H RVS
+
+                   English
+
+                   CAD Files
+                   3D PDF
+
+                   3D
+                   Customer View Model
+                   ENG_CVM_CVM_2309408-2_1.2d_dxf.zip
+
+                   English
+   For support call+1 800 522 6752                                                                                                         08/31/2025 10:24PM | Page 4
+     2309408-2
+     Small Outline (SO), 4 mm [.157 in] Stack Height, Right Angle Module Orientation, 260
+     Position, .5 mm [.02 in] Centerline, DDR4 DIMM, SO DIMM Sockets
+
+
+                   ENG_CVM_CVM_2309408-2_1.2d_dxf.zip
+
+                   English
+                   Customer View Model
+                   ENG_CVM_CVM_2309408-2_1.3d_igs.zip
+
+                   English
+                   Customer View Model
+                   ENG_CVM_CVM_2309408-2_1.3d_stp.zip
+
+                   English
+                     By downloading the CAD file I accept and agree to the Terms and Conditions of use.
+
+
+
+
+                   Product Specifications
+                   Application Specification
+
+                   English
+
+
+
+
+   For support call+1 800 522 6752                                                                       08/31/2025 10:24PM | Page 5
+

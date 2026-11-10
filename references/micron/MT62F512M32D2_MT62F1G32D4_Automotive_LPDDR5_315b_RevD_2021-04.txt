@@ -1,0 +1,874 @@
+                                                      Micron Confidential and Proprietary
+
+
+                                                                           315b: x32 Automotive LPDDR5 SDRAM
+                                                                                                      Features
+
+
+Automotive LPDDR5 SDRAM
+MT62F512M32D2, MT62F1G32D4
+
+Features                                                                  Options                                                                     Marking
+                                                                          • LPDDR5 V DD1/VDD2H/VDD2L/VDDQ:                                                 MT62F
+• Architecture                                                              1.8V/1.05V/0.9V/0.5V
+  – 12.8 GB/s maximum bandwidth per channel                               • Array configuration
+  – Frequency range: 800–5 MHz (data rate range per                         – 512 Meg x 32 (2 channels x16 I/O)                                           512M32
+     pin: 6400–40 Mb/s with WCK:CK = 4:1)                                   – 1 Gig x 32 (2 channels x16 I/O)                                              1G32
+  – Selectable CKR                                                        • Device configuration
+• LPDDR5 data interface                                                     – 2 die in package                                                                 D2
+  – Single x16 channel/die                                                  – 4 die in package                                                                 D4
+  – Double-data-rate command/address entry                                • FBGA "green" package
+  – Differential command clocks (CK_t/CK_c) for                             – 315-ball TFBGA (12.4mm × 15.0mm,                                                 DS
+     high-speed operation                                                      seated height: 1.1mm MAX, Ø0.48
+  – Differential data clocks (WCK_t/WCK_c)                                     SMD)
+  – Differential read strobe (RDQS_t/RDQS_c)                              • Speed grade, cycle time (tWCK)
+  – 16n-bit or 32n-bit prefetch architecture                                – 6400 Mb/s                                                                      -031
+  – 4KB page size with 8-bank (8B mode), 2KB page                         • Functional Safety (FuSa)                                                          F1
+     size with bank group (BG mode), or 16-bank (16B                        – Micron HW-Evaluated
+     mode) operation                                                           (ISO 26262-8:2018, cl. 13)
+  – Command-selectable burst lengths (BL = 16 or                            – FMEDA (ISO 26262-5:2018, cl. 8, 9)
+     32) in bank group or 16-bank modes                                     – Suitable for systems up to ASIL D
+  – Background ZQ calibration/command-based ZQ                            • Automotive grade                                                                    A
+     calibration                                                            – AEC-Q100
+  – Link protection (link ECC) support                                      – PPAP
+  – Partial-array self refresh (PASR) and partial-array                   • Operating temperature:
+     auto refresh (PAAR) with segment mask                                  – –40°C ≤ T C ≤ +95°C                                                              IT
+• Ultra-low-voltage core and I/O power supplies                             – –40°C ≤ T C ≤ +105°C                                                            AT
+  – VDD1 = 1.70–1.95V; 1.8V NOM                                             – –40°C ≤ T C ≤ +125°C                                                            UT2
+  – VDD2H = 1.01–1.12V; 1.05V NOM                                         • Revision                                                                           :B
+  – VDD2L = V DD2H or 0.87–0.97V; 0.9V NOM
+  – VDDQ = 0.5V NOM or 0.3V NOM (ODT off)                                  Notes:      1. For functional safety documentation, con-
+• I/O characteristics                                                                     tact Micron sales representative.
+  – Interface-LVSTL 0.5/0.3                                                            2. Based on automotive usage model. Contact
+  – I/O type: Low-swing single-ended, V SS termina-                                       Micron sales representative with questions.
+     ted
+  – VOH-compensated output drive
+  – Programmable V SS on-die termination (ODT)
+  – Non target ODT support
+  – DVFSQ support
+• Low power features
+  – DVFSC: Dynamic voltage frequency scaling core
+  – Single-ended CK, single-ended WCK and single-
+     ended RDQS
+  – Data copy
+  – Write X
+
+
+
+
+CCM005-1974498342-70
+315b_y31m_ddp_qdp_auto_lpddr5.pdf – Rev.D 4/2021 EN                   1        Micron Technology, Inc. reserves the right to change products or specifications without notice.
+                                                                                                                           © 2020 Micron Technology, Inc. All rights reserved.
+                        Products and specifications discussed herein are subject to change by Micron without notice.
+                                                           Micron Confidential and Proprietary
+
+
+                                                                                 315b: x32 Automotive LPDDR5 SDRAM
+                                                                                                            Features
+
+Part Number Ordering Information
+
+Figure 1: Part Number Chart
+                                             MT       62   F   512M32 D2   DS   -031    F       A       AT        :B
+
+                                                                                                                               Design Revision
+           Micron Technology                                                                                                   :B= Second generation
+
+           Product Family                                                                                                      Operating Temperature
+           62 = Mobile LPDDR5 SDRAM                                                                                            IT = –40°C TC +95°C
+                                                                                                                               AT = –40°C T C +105°C
+           Operating Voltage                                                                                                   UT = –40°C TC +125°C
+           F = 1.05V VDD2/0.5V VDDQ
+                                                                                                                               Automotive (option)
+           Configuration                                                                                                       A = Automotive grade
+           512M32 = 512 Meg x 32                                                                                               Blank = Standard
+           1G32 = 1 Gig x 32
+                                                                                                                               Functional Safety (option)
+           Die Count                                                                                                           F = Safety features
+                                                                                                                               Blank = Standard
+           D2 = LPDDR5, 2 die
+           D4 = LPDDR5, 4 die
+                                                                                                                               Cycle Time
+           Package Codes                                                                                                       -031 = 313ps, tWCK
+           DS = 315-ball TFBGA
+
+
+
+Table 1: Part Number List
+
+                                   Part Number                                         Total Density                                      Data Rate per Pin
+                       MT62F512M32D2DS-031 AIT:B                                        2GB (16Gb)                                                 6400 Mb/s
+                      MT62F512M32D2DS-031 AAT:B                                         2GB (16Gb)                                                 6400 Mb/s
+                      MT62F512M32D2DS-031 AUT:B                                         2GB (16Gb)                                                 6400 Mb/s
+                     MT62F512M32D2DS-031 FAAT:B                                         2GB (16Gb)                                                 6400 Mb/s
+                         MT62F1G32D4DS-031 AIT:B                                        4GB (32Gb)                                                 6400 Mb/s
+                        MT62F1G32D4DS-031 AAT:B                                         4GB (32Gb)                                                 6400 Mb/s
+                        MT62F1G32D4DS-031 AUT:B                                         4GB (32Gb)                                                 6400 Mb/s
+                       MT62F1G32D4DS-031 FAAT:B                                         4GB (32Gb)                                                 6400 Mb/s
+
+
+FBGA Part Marking Decoder
+Due to space limitations, FBGA-packaged components have an abbreviated part marking that is different from the
+part number. Micron’s FBGA part marking decoder is available at www.micron.com/decoder.
+
+LPDDR5/LPDDR5X Data Sheet List
+This data sheet only describes the product specifications that are unique to the Micron devices listed in Table 1.
+For general LPDDR5 specifications, please refer to the data sheets below.
+• General LPDDR5/LPDDR5X Specifications 1: Mode Registers
+• General LPDDR5/LPDDR5X Specifications 2: AC/DC and Interface Specifications
+• General LPDDR5/LPDDR5X Specifications 3: Features and Functionalities
+
+
+
+
+CCM005-1974498342-70
+315b_y31m_ddp_qdp_auto_lpddr5.pdf – Rev.D 4/2021 EN                         2            Micron Technology, Inc. reserves the right to change products or specifications without notice.
+                                                                                                                                     © 2020 Micron Technology, Inc. All rights reserved.
+                                                      Micron Confidential and Proprietary
+
+
+                                                                           315b: x32 Automotive LPDDR5 SDRAM
+                                                                                  Important Notes and Warnings
+
+Important Notes and Warnings
+Micron Technology, Inc. ("Micron") reserves the right to make changes to information published in this document,
+including without limitation specifications and product descriptions. This document supersedes and replaces all
+information supplied prior to the publication hereof. You may not rely on any information set forth in this docu-
+ment if you obtain the product described herein from any unauthorized distributor or other source not authorized
+by Micron.
+Automotive Applications. Products are not designed or intended for use in automotive applications unless specifi-
+cally designated by Micron as automotive-grade by their respective data sheets. Distributor and customer/distrib-
+utor shall assume the sole risk and liability for and shall indemnify and hold Micron harmless against all claims,
+costs, damages, and expenses and reasonable attorneys' fees arising out of, directly or indirectly, any claim of
+product liability, personal injury, death, or property damage resulting directly or indirectly from any use of non-
+automotive-grade products in automotive applications. Customer/distributor shall ensure that the terms and con-
+ditions of sale between customer/distributor and any customer of distributor/customer (1) state that Micron
+products are not designed or intended for use in automotive applications unless specifically designated by Micron
+as automotive-grade by their respective data sheets and (2) require such customer of distributor/customer to in-
+demnify and hold Micron harmless against all claims, costs, damages, and expenses and reasonable attorneys'
+fees arising out of, directly or indirectly, any claim of product liability, personal injury, death, or property damage
+resulting from any use of non-automotive-grade products in automotive applications.
+Critical Applications. Products are not authorized for use in applications in which failure of the Micron compo-
+nent could result, directly or indirectly in death, personal injury, or severe property or environmental damage
+("Critical Applications"). Customer must protect against death, personal injury, and severe property and environ-
+mental damage by incorporating safety design measures into customer's applications to ensure that failure of the
+Micron component will not result in such harms. Should customer or distributor purchase, use, or sell any Micron
+component for any critical application, customer and distributor shall indemnify and hold harmless Micron and
+its subsidiaries, subcontractors, and affiliates and the directors, officers, and employees of each against all claims,
+costs, damages, and expenses and reasonable attorneys' fees arising out of, directly or indirectly, any claim of
+product liability, personal injury, or death arising in any way out of such critical application, whether or not Mi-
+cron or its subsidiaries, subcontractors, or affiliates were negligent in the design, manufacture, or warning of the
+Micron product.
+Customer Responsibility. Customers are responsible for the design, manufacture, and operation of their systems,
+applications, and products using Micron products. ALL SEMICONDUCTOR PRODUCTS HAVE INHERENT FAIL-
+URE RATES AND LIMITED USEFUL LIVES. IT IS THE CUSTOMER'S SOLE RESPONSIBILITY TO DETERMINE
+WHETHER THE MICRON PRODUCT IS SUITABLE AND FIT FOR THE CUSTOMER'S SYSTEM, APPLICATION, OR
+PRODUCT. Customers must ensure that adequate design, manufacturing, and operating safeguards are included
+in customer's applications and products to eliminate the risk that personal injury, death, or severe property or en-
+vironmental damages will result from failure of any semiconductor component.
+Limited Warranty. In no event shall Micron be liable for any indirect, incidental, punitive, special or consequential
+damages (including without limitation lost profits, lost savings, business interruption, costs related to the removal
+or replacement of any products or rework charges) whether or not such damages are based on tort, warranty,
+breach of contract or other legal theory, unless explicitly stated in a written agreement executed by Micron's duly
+authorized representative.
+
+
+
+
+CCM005-1974498342-70
+315b_y31m_ddp_qdp_auto_lpddr5.pdf – Rev.D 4/2021 EN                   3        Micron Technology, Inc. reserves the right to change products or specifications without notice.
+                                                                                                                           © 2020 Micron Technology, Inc. All rights reserved.
+                                                          Micron Confidential and Proprietary
+
+
+                                                                                   315b: x32 Automotive LPDDR5 SDRAM
+                                                                                                         General Notes
+
+General Notes
+                                              Throughout the data sheet, figures and text refer to DQs as DQ. DQ should be interpre-
+                                              ted as any or all DQs collectively, unless specifically stated otherwise.
+                                              RDQS, CK, and WCK should be interpreted as RDQS_t, RDQS_c, CK_t, CK_c, and
+                                              WCK_t, WCK_c respectively unless specifically stated otherwise. CA includes all CA pins
+                                              used for a given density.
+                                              In timing diagrams, CMD is used as an indicator only. Actual signals occur on CA[6:0].
+                                              VREF indicates V REF(CA) and V REF(DQ).
+                                              Complete functionality is described throughout the entire document. Any page or dia-
+                                              gram may have been simplified to convey a topic and may not be inclusive of all re-
+                                              quirements.
+                                              Any specific requirement takes precedence over a general statement.
+                                              Any functionality not specifically stated herein is considered undefined, illegal, is not
+                                              supported, and will result in unknown operation.
+
+
+
+
+CCM005-1974498342-70
+315b_y31m_ddp_qdp_auto_lpddr5.pdf – Rev.D 4/2021 EN                           4         Micron Technology, Inc. reserves the right to change products or specifications without notice.
+                                                                                                                                    © 2020 Micron Technology, Inc. All rights reserved.
+                                                          Micron Confidential and Proprietary
+
+
+                                                                                  315b: x32 Automotive LPDDR5 SDRAM
+                                                                                                Functional Safety Notes
+
+Functional Safety Notes
+                                              This automotive LPDDR5 DRAM product family has been HW evaluated as outlined by
+                                              ISO 26262-8:2018, clause 13. The HW evaluation was certified by an external assessor to
+                                              provide a level of systematic fault coverage that allows its use in systems targeting up to
+                                              ASIL D compliance.
+                                              This LPDDR5 DRAM contains several new functional safety (FuSa) features that operate
+                                              within the JEDEC LPDDR5 protocols (commands, timings, and so forth). The specifica-
+                                              tion addendum governing these FuSa features is available under NDA. This LPDDR5
+                                              DRAM may operate as a standard LPDDR5 DRAM only, or as a standard LPDDR5 DRAM
+                                              with the additional functional safety features for substantially improved random hard-
+                                              ware fault metrics. Contact a Micron sales representative to initiate the process required
+                                              to obtain the specification addendum.
+
+
+
+
+CCM005-1974498342-70
+315b_y31m_ddp_qdp_auto_lpddr5.pdf – Rev.D 4/2021 EN                          5        Micron Technology, Inc. reserves the right to change products or specifications without notice.
+                                                                                                                                  © 2020 Micron Technology, Inc. All rights reserved.
+                                                            Micron Confidential and Proprietary
+
+
+                                                                                      315b: x32 Automotive LPDDR5 SDRAM
+                                                                                                     Device Configuration
+
+Device Configuration
+
+Table 2: Die Organization in the Package
+
+Die Organization                                                512M32 (16Gb/package)                                        1G32 (32Gb/package)
+Channel A, rank 0                                                      x16 mode × 1 die                                           x16 mode × 1 die
+Channel B, rank 0                                                      x16 mode × 1 die                                           x16 mode × 1 die
+Channel A, rank 1                                                             –                                                   x16 mode × 1 die
+Channel B, rank 1                                                             –                                                   x16 mode × 1 die
+
+                                     Note:        1. Refer to the Package Block Diagram section in this data sheet.
+
+
+Table 3: Die Addressing
+
+Description                                                               512M32 (16Gb/package), 1G32 (32Gb/package)
+Density per die                                                                                      8Gb
+Bits                                                                                        8,589,934,592
+Bank mode                                                      BG mode                         16B mode                                               8B mode
+Configuration                                          32Mb × 16 DQ × 4 Banks ×       32Mb × 16 DQ × 16 Banks                          64Mb × 16 DQ × 8 Banks
+                                                                 4BG
+Number of banks                                                    4                                  16                                                     8
+Number of bank groups                                              4                                   1                                                     1
+Array prefetch bits                                               256                                256                                                  512
+Rows per bank                                                                                     32,768
+Columns                                                                                               64
+Page size (bytes)                                                2048                               2048                                                 4096
+Native burst length                                                16                                 16                                                    32
+Number of I/Os                                                                                        16
+Bank address                                                    BA[1:0]                           BA[3:0]                                              BA[2:0]
+Bank group address                                              BG[1:0]                                –                                                     –
+Row address                                                                                       R[14:0]
+Column address                                                                                     C[5:0]
+Burst address                                                    B[3:0]                            B[3:0]                                                B[4:0]
+Burst starting address boundary                                                                   128-bit
+
+                                   Notes:         1. Refer to the SDRAM Addressing section in General LPDDR5/LPDDR5X Specification 3.
+                                                  2. Refer to the Speed Grades and Effective Burst Length in General LPDDR5/LPDDR5X Spec-
+                                                     ifications 3.
+
+
+
+
+CCM005-1974498342-70
+315b_y31m_ddp_qdp_auto_lpddr5.pdf – Rev.D 4/2021 EN                               6       Micron Technology, Inc. reserves the right to change products or specifications without notice.
+                                                                                                                                      © 2020 Micron Technology, Inc. All rights reserved.
+                                                            Micron Confidential and Proprietary
+
+
+                                                                                    315b: x32 Automotive LPDDR5 SDRAM
+                                                                                         Refresh Requirement Parameters
+
+Refresh Requirement Parameters
+
+Table 4: Refresh Requirement Parameters
+
+                                                                                                                             8Gb Die
+                                                                                                         BG and 16B
+Parameter                                                                            Symbol                Mode                              8B Mode                      Unit
+REFRESH cycle time (all banks)                                                       tRFCab                       210                             210                        ns
+REFRESH cycle time (per bank)                                                        tRFCpb                       120                             120                        ns
+Per bank refresh to per bank refresh time (different bank)                          tPBR2PBR                       90                              90                        ns
+Per bank refresh to ACTIVATE command time (different bank)                          tPBR2ACT                      7.5                              10                        ns
+
+                                     Note:        1. This table only describes refresh parameters that are density dependent. Refer to Re-
+                                                     fresh Requirement section in General LPDDR5/LPDDR5X Specifications 3 for all refresh
+                                                     parameters.
+
+
+
+
+CCM005-1974498342-70
+315b_y31m_ddp_qdp_auto_lpddr5.pdf – Rev.D 4/2021 EN                            7         Micron Technology, Inc. reserves the right to change products or specifications without notice.
+                                                                                                                                     © 2020 Micron Technology, Inc. All rights reserved.
+                                                      Micron Confidential and Proprietary
+
+
+                                                                               315b: x32 Automotive LPDDR5 SDRAM
+                                                                                            Package Block Diagrams
+
+Package Block Diagrams
+Dual Die, Dual Channel
+
+Figure 2: Dual-Die, Dual-Channel Package Block Diagram
+                                                         VDD1 VDD2H VDD2L VSS VDDQ
+
+
+
+                            RESET_n
+                                                             Die              Die
+                              CS0_A                                                                                       CS0_B
+                            CK_t_A                                                                                        CK_t_B
+                            CK_c_A                                                                                        CK_c_B
+                          CA[6:0]_A                                                                                       CA[6:0]_B
+                                                          LPDDR5           LPDDR5
+                     WCK[0:1]_t_A                         Channel A                                                       WCK[0:1]_t_B
+                                                                           Channel B                                      WCK[0:1]_c_B
+                     WCK[0:1]_c_A                             ZQ Cal
+                      DMI[0:1]_A                              Master                                                      DMI[0:1]_B
+                                                              die                                                                       VDDQ
+                      DQ[15:0]_A                                                                                          DQ[15:0]_B
+                    RDQS[0:1]_t_A                                                                                         RDQS[0:1]_t_B     RZQ
+                    RDQS[0:1]_c_A                                                                                         RDQS[0:1]_c_B
+
+                                                                                                                                        ZQ_A
+
+
+
+Quad Die, Dual Channel
+
+Figure 3: Quad-Die, Dual-Channel Package Block Diagram
+                                                         VDD1 VDD2H VDD2L VSS VDDQ
+
+
+
+                            RESET_n
+                                                             Die             Die
+                              CS0_A                                                                                      CS0_B
+                            CK_t_A                                                                                       CK_t_B
+                            CK_c_A                         LPDDR5          LPDDR5                                        CK_c_B
+                          CA[6:0]_A                       Channel A       Channel B                                      CA[6:0]_B
+                     WCK[0:1]_t_A                                                                                        WCK[0:1]_t_B
+                     WCK[0:1]_c_A                                                                                        WCK[0:1]_c_B
+                                                             ZQ Cal
+                      DMI[0:1]_A                             Master                                                      DMI[0:1]_B               VDDQ
+                      DQ[15:0]_A                             die                                                         DQ[15:0]_B
+                                                                                                                         RDQS[0:1]_t_B                   RZQ
+                    RDQS[0:1]_t_A
+                    RDQS[0:1]_c_A                                                                                        RDQS[0:1]_c_B
+
+                                                                                                                                        ZQ_A
+
+                                                             Die             Die
+                              CS1_A                                                                                      CS1_B
+
+
+                                                          LPDDR5          LPDDR5
+                                                          Channel A       Channel B
+
+
+
+
+CCM005-1974498342-70
+315b_y31m_ddp_qdp_auto_lpddr5.pdf – Rev.D 4/2021 EN                      8             Micron Technology, Inc. reserves the right to change products or specifications without notice.
+                                                                                                                                   © 2020 Micron Technology, Inc. All rights reserved.
+                                                                                                  Ball Assignments and Descriptions
+315b_y31m_ddp_qdp_auto_lpddr5.pdf – Rev.D 4/2021 EN
+CCM005-1974498342-70
+
+
+
+
+                                                                                                  Figure 4: 315-Ball Dual-Channel Discrete FBGA
+                                                                                                                     1            2             3          4           5          6            7             8             9     10         11         12          13            14        15
+
+                                                                                                                                                                                                                                                                    VSS           VSS       VSS
+                                                                                                               A     NC          NC           VDDQ      DMI0_A        VSS       VDD2L        VDD2H         VDD2H      VDD2H     VDD2L      VSS       DMI1_A       VDDQ           NC        NC      A
+
+
+                                                                                                               B     NC         VDDQ     RDQS0_t_A        VSS        DQ4_A      VDD2L        VDD2H          VSS       VDD2H     VDD2L    DQ12_A        VSS      RDQS1_t_A       VDDQ       NC      B
+
+
+                                                                                                               C    VDD1       DQ1_A          VDDQ     RDQS0_c_A      VSS      DQ5_A         VDD2H          VSS       VDD2H    DQ13_A      VSS      RDQS1_c_A     VDDQ         DQ9_A      VDD1     C
+
+
+                                                                                                               D   DQ0_A         VSS          DQ3_A       VDDQ      WCK0_c_A     VSS          VSS          VDD2H       VSS       VSS     WCK1_c_A     VDDQ       DQ11_A          VSS     DQ8_A     D
+
+
+                                                                                                               E     VSS       DQ2_A           VSS     WCK0_t_A      VDDQ      DQ6_A         VDD2H          VSS       V DD2H   DQ14_A      VDDQ     WCK1_t_A       VSS         DQ10_A      VSS     E
+
+
+                                                                                                               F    VDDQ         VSS          VDDQ        VDDQ       DQ7_A      VDD2H        V DD2H         VSS       V DD2H    V DD2H   DQ15_A       VDDQ        VDDQ           VSS      VDDQ     F
+
+
+
+
+                                                                                                                                                                                                                                                                                                                                               Micron Confidential and Proprietary
+                                                                                                               G    VDDQ        VDDQ           VSS       CA0_A        VSS      CS1_A          VSS          CA2_A       VSS     CA4_A       VSS        VSS
+                                                                                                                                                                                                                                                     CA6_A         VSS          VDDQ      VDDQ     G
+
+
+                                                                                                               H   RESET_N      VDD2L          VSS        VSS        CA1_A       VSS         CS0_A          VSS       CK_t_A     VSS      CA3_A        VSS       CA5_A          VDD2L     ZQ_A     H
+
+
+                                                                                                               J     VSS        VDD2L          VSS        RFU        V DD2H      RFU          VSS           VSS       CK_c_A     VSS      V DD2H       VSS         VSS          VDD2L      VSS     J
+
+
+                                                                                                               K    VDD2H       VDD2H         VDD2H       VDD2H      V DD2H     V DD2H        VSS           VSS        VSS      V DD2H    V DD2H      V DD2H      V DD2H        V DD2H    V DD2H   K
+      9
+
+
+
+
+                                                                                                               L     VSS         VSS           VSS        VSS         VSS       V DD2H       V DD2H        V DD2H     V DD2H    V DD2H     VSS         VSS         VSS           VSS       VSS     L
+                                                                                                                                                                                                                                                                         VSS
+
+                                                                                                              M                 V DD2H        V DD2H     V DD2H      V DD2H     V DD2H        VSS           VSS        VSS      V DD2H    V DD2H      V DD2H      V DD2H        V DD2H             M
+
+
+
+
+                                                                                                                                                                                                                                                                                                        315b: x32 Automotive LPDDR5 SDRAM
+                                                                                                                    VDD2H                                                                                                                                                                 VDD2H
+
+                                                                                                               N     VSS        VDD2L          VSS        VSS        V DD2H      VSS         CK_c_B         VSS        VSS       VSS      V DD2H       VSS         VSS          VDD2L      VSS     N
+Micron Technology, Inc. reserves the right to change products or specifications without notice.
+
+
+
+
+                                                                                                                                                                                                                                                                                                           Ball Assignments and Descriptions
+                                                                                                               P     RFU        VDD2L         CA5_B       VSS        CA3_B       VSS         CK_t_B         VSS       CS0_B      VSS      CA1_B        VSS         VSS          VDD2L      RFU     P
+
+
+                                                                                                               R    VDDQ        VDDQ           VSS       CA6_B        VSS      CA4_B          VSS          CA2_B       VSS     CS1_B       VSS       CA0_B         VSS          VDDQ      VDDQ     R
+
+
+                                                                                                               T    VDDQ         VSS          VDDQ        VDDQ      DQ15_B      V DD2H       V DD2H         VSS       V DD2H    V DD2H    DQ7_B       VDDQ        VDDQ           VSS      VDDQ     T
+
+
+                                                                                                               U     VSS       DQ10_B          VSS     WCK1_t_B      VDDQ      DQ14_B        V DD2H         VSS       V DD2H   DQ6_B      VDDQ      WCK0_t_B       VSS         DQ2_B       VSS     U
+
+
+                                                                                                               V   DQ8_B
+                                                                                                                    VSS          VSS      DQ11_B          VDDQ      WCK1_c_B     VSS          VSS          V DD2H      VSS       VSS     WCK0_c_B     VDDQ       DQ3_B           VSS     DQ0_B     V
+                                            © 2020 Micron Technology, Inc. All rights reserved.
+
+
+
+
+                                                                                                              W     VDD1       DQ9_B          VDDQ      RDQS1_c_B     VSS      DQ13_B        V DD2H         VSS       V DD2H   DQ5_B       VSS      RDQS0_c_B     VDDQ         DQ1_B      VDD1     W
+
+
+                                                                                                               Y     NC         VDDQ     RDQS1_t_B        VSS       DQ12_B      VDD2L        V DD2H         VSS       V DD2H    VDD2L     DQ4_B        VSS      RDQS0_t_B       VDDQ       NC      Y
+
+
+                                                                                                              AA     NC          NC           VDDQ      DMI1_B        VSS       VDD2L        V DD2H        V DD2H     V DD2H    VDD2L      VSS       DMI0_B       VDDQ           NC        NC      AA
+
+                                                                                                                     1            2             3          4           5          6            7             8             9     10         11         12          13            14        15
+
+                                                                                                                                                                                                Top View (ball down)
+
+                                                                                                                         VSS           VDD1            VDD2H         VDD2L            VDDQ            CK            RDQS       WCK         DQ,DMI            CA, CS, ZQ, RESET           NC, RFU
+                                                            Micron Confidential and Proprietary
+
+
+                                                                                     315b: x32 Automotive LPDDR5 SDRAM
+                                                                                        Ball Assignments and Descriptions
+
+
+Table 5: Ball/Pad Descriptions
+
+           Symbol                         Type        Description
+         CK_t_[A:B]                      Input        Clock: CK_t and CK_c are differential clock inputs. All double data rate (DDR) com-
+         CK_c_[A:B]                                   mand/address inputs are sampled on both crossing points of CK_t and CK_c. The first
+                                                      crossing point is the rising (falling) edge of CK_t (CK_c) and second crossing point is
+                                                      falling (rising) edge of CK_t (CK_c). Single data rate (SDR) inputs, CS is sampled on the
+                                                      crossing point that is the rising (falling) edge of CK_t (CK_c).
+ CS0_[A:B], CS1_[A:B]                    Input        Chip select: CS is part of the command code, and is sampled on the rising (falling)
+                                                      edge of CK_t (CK_c) unless the device is in power-down or deep sleep mode where it
+                                                      becomes an asynchronous signal. Each rank (0, 1) has its own CS signals. CS1_[A:B] be-
+                                                      come NC pins in a single-rank package.
+       CA[6:0]_[A:B]                     Input        Command/address inputs: Provide the command and address inputs according to
+                                                      the command truth table.
+    WCK[1:0]_t_[A:B]                     Input        Data clock: WCK_t and WCK_c are differential clock inputs used for write data cap-
+    WCK[1:0]_c_[A:B]                                  ture and read data output.
+      DQ[15:0]_[A:B]                       I/O        Data input/output: Bidirectional data bus.
+   RDQS[1:0]_t_[A:B]                     I/O          Read data strobe: RDQS_t and RDQS_c are differential output clock signals used to
+   RDQS[1:0]_c_[A:B]                    Output        strobe data during a READ operation. RDQS_t is also used as a parity pin during write
+                                                      link protection enabled. Each byte of data has RDQS_t and RDQS_c signals.
+      DMI[1:0]_[A:B]                       I/O        Data mask inversion: DMI serves multiple functions such as data mask (DM), data
+                                                      bus inversion (DBI), and parity at READ with ECC operation by setting the mode regis-
+                                                      ter. DMI is a bidirectional signal and each byte of data has a DMI signal.
+             ZQ_A                     Reference ZQ calibration reference: Used to calibrate the output drive strength and the termi-
+                                                nation resistance. The ZQ pin should be connected to VDDQ through a 240Ω ±1% resis-
+                                                tor.
+   VDDQ, VDD1, VDD2H,                   Supply        Power supplies: Isolated on the die for improved noise immunity.
+         VDD2L
+               VSS                      Supply        Ground reference: Power supply ground reference.
+           RESET_n                       Input        Reset: When asserted LOW, the RESET pin resets the die. Reset is an asynchronous sig-
+                                                      nal.
+               NC                            –        No connect: Not internally connected.
+
+
+
+
+CCM005-1974498342-70
+315b_y31m_ddp_qdp_auto_lpddr5.pdf – Rev.D 4/2021 EN                            10         Micron Technology, Inc. reserves the right to change products or specifications without notice.
+                                                                                                                                      © 2020 Micron Technology, Inc. All rights reserved.
+                                                              Micron Confidential and Proprietary
+
+
+                                                                                                        315b: x32 Automotive LPDDR5 SDRAM
+                                                                                                                        Package Dimensions
+
+Package Dimensions
+315-Ball Package (Package Code: DS)
+
+Figure 5: 315-Ball TFBGA – 12.4mm × 15mm (Package Code: DS )
+
+
+                                                                                                              Seating plane
+
+
+                                                                                                    A
+                                                                                                                 0.1 A
+
+
+ 315X Ø0.475 ±0.05
+ Dimensions apply to
+ solder balls post-reflow
+ on Ø0.48 SMD ball pads.                                                                  Ball A1 ID
+                                                                                                                                                                Ball A1 ID
+
+                                              15 14 13 12 11 10 9 8   7   6 5 4   3   2    1
+                                                                                               A
+                                                                                               B
+                                                                                               C
+                                                                                               D
+                                                                                               E
+                                                                                               F
+                                                                                               G
+                                                                                               H
+                                                                                               J
+        15 ±0.1                                                                                K
+               14.0 CTR                                                                        L
+                                                                                               M
+                                                                                               N
+                                                                                               P
+                                                                                               R
+                                                                                               T
+                                                                                               U
+                                                                                               V
+                                                                                               W
+                                                                                               Y
+                             0.7 TYP                                                           AA
+
+
+                                                        0.8 TYP                                                             1 ±0.1
+                                                            11.2 CTR                                                     0.29 ±0.04
+                                                            12.4 ±0.1
+
+                                   Notes:         1. All dimensions are in millimeters.
+                                                  2. Solder ball composition: SACQ with CuOSP pads (Sn-4Ag-0.5Cu-3Bi-0.05Ni).
+
+
+
+
+CCM005-1974498342-70
+315b_y31m_ddp_qdp_auto_lpddr5.pdf – Rev.D 4/2021 EN                                            11         Micron Technology, Inc. reserves the right to change products or specifications without notice.
+                                                                                                                                                      © 2020 Micron Technology, Inc. All rights reserved.
+                                                                Micron Confidential and Proprietary
+
+
+                                                                                       315b: x32 Automotive LPDDR5 SDRAM
+                                                                                    Product-Specific Mode Register Definition
+
+Product-Specific Mode Register Definition
+
+Table 6: Mode Register Contents
+
+Mode
+Register                     OP7                      OP6           OP5           OP4             OP3                      OP2                     OP1                      OP0
+MR0                                                                Unified        DMI        Optimized              Enhanced                   Latency                   NT ODT
+                                                                   NT ODT        output       refresh                  WCK                      mode                     timing
+                                                                  behavior      behavior       mode                 always-on                                             mode
+                                                                    mode         mode                                 mode
+                                                      OP[0] = 1b: Device supports different NT ODT latency for DQ and RDQS
+                                                                    OP[1] = 0b: Device supports x16 mode latency
+                                                             OP[2] = 1b: Device supports enhanced WCK always-on mode
+                                                                 OP[3] = 1b: Device supports optimized refresh mode
+                                            OP[4] = 1b: Device supports both DMI behavior mode 1 and 2 and mode selection
+                                                      OP[5] = 1b: The NT ODT behavior follows the unified NT ODT behavior
+MR5                                                                               Manufacturer ID
+                                                                                 1111 1111b : Micron
+MR6                                                                                 Revision ID1
+                                                                                      0000 0110b
+MR8                                I/O width                                            Density
+                             OP[7:6] = 00b: x16                                  OP[5:2] = 0100b: 8Gb
+MR13                                                                                                                      VRO
+                                                                        OP[2] = 0b: Normal operation (default)
+                                                            1b: Output the VREF(CA) value on DQ7 and VREF(DQ) value on DQ6
+MR19                                                              WCK2DQ
+                                                                  OSC FM
+                                                                       OP[5] = 1b: WCK2DQ OSC FM supported
+MR21                        WXS                                                             ODTD-CSFS                    WXFS                    RDCFS                   WDCFS
+                                                                  OP[0] = 1b: WRITE DATA COPY function supported
+                                                                  OP[1] = 1b: READ DATA COPY function supported
+                                                                       OP[2] = 1b: WRITE X function supported
+                                                                       OP[3] = 1b: Device ODTD-CS is supported
+                                                              OP[7] = 1b: Data to be written can be selected with 0 and 1
+MR22                                   RECC                               WECC
+                                                                    OP[5:4] = 00b: Write link ECC disabled (default)
+                                                                       01b: Write link ECC enabled (See Note 3)
+                                                                    OP[7:6] = 00b: Read link ECC disabled (default)
+                                                                       01b: Read link ECC enabled (See Note 3)
+MR24                        DFES
+                                                                             OP[7] = 1b: DFE is supported
+MR26                                           RDQSTFS
+                                                       OP[6] = 1b: Read/write-based RDQS_t TRAINING function supported
+
+
+
+CCM005-1974498342-70
+315b_y31m_ddp_qdp_auto_lpddr5.pdf – Rev.D 4/2021 EN                                12         Micron Technology, Inc. reserves the right to change products or specifications without notice.
+                                                                                                                                          © 2020 Micron Technology, Inc. All rights reserved.
+                                                            Micron Confidential and Proprietary
+
+
+                                                                                  315b: x32 Automotive LPDDR5 SDRAM
+                                                                               Product-Specific Mode Register Definition
+
+
+Table 6: Mode Register Contents (Continued)
+
+Mode
+Register                     OP7                      OP6       OP5           OP4            OP3                      OP2                     OP1                      OP0
+MR27                                                                                                                                                                   RFM
+                                                                        OP[0] = 0b: RFM not required
+MR43                                          SBEC Rule
+                                          OP[6] = 1b: Simultaneous SBE on each DQ byte and DMI are independently counted
+
+                                   Notes:         1. The contents of mode registers described here reflect information specific to each die in
+                                                     these packages.
+                                                  2. Refer to General LPDDR5/LPDDR5X Specification 1 for mode registers not described
+                                                     here.
+                                                  3. Write link ECC and read link ECC are supported.
+
+
+
+
+CCM005-1974498342-70
+315b_y31m_ddp_qdp_auto_lpddr5.pdf – Rev.D 4/2021 EN                            13        Micron Technology, Inc. reserves the right to change products or specifications without notice.
+                                                                                                                                     © 2020 Micron Technology, Inc. All rights reserved.
+                                                         Micron Confidential and Proprietary
+
+
+                                                                                 315b: x32 Automotive LPDDR5 SDRAM
+                                                                                                       IDD Parameters
+
+IDD Parameters
+                                              Refer to IDD Specification Parameters and Test Conditions section in General LPDDR5/
+                                              LPDDR5X Specifications 2 for detailed conditions.
+
+Table 7: IDD Parameters – Single Die
+VDD1 = 1.70–1.95V; VDD2H = 1.01–1.12V; VDD2L = 0.87–0.97V; VDDQ = 0.47–0.57V;
+Notes 1 and 2 apply to entire table.
+                                                                                         6400 Mb/s
+Symbol                                                Supply                   AIT             AAT                     AUT                   Unit                   Note
+IDD01                                                  VDD1                    2.9               2.9                    3.5                   mA
+IDD02H                                                VDD2H                    45.0             45.0                   58.0
+IDD02L                                                VDD2L                    0.25             0.25                   0.25
+IDD0Q                                                  VDDQ                    0.75             0.75                   0.75
+IDD2P1                                                 VDD1                    1.3               1.3                    1.5                   mA
+IDD2P2H                                               VDD2H                    2.5               2.5                    3.1
+IDD2P2L                                               VDD2L                    0.25             0.25                   0.25
+IDD2PQ                                                 VDDQ                    0.75             0.75                   0.75
+IDD2PS1                                                VDD1                    1.3               1.3                    1.5                   mA
+IDD2PS2H                                              VDD2H                    2.5               2.5                    3.1
+IDD2PS2L                                              VDD2L                    0.25             0.25                   0.25
+IDD2PSQ                                                VDDQ                    0.75             0.75                   0.75
+IDD2N1                                                 VDD1                    1.3               1.3                    1.5                   mA
+IDD2N2H                                               VDD2H                    30.0             30.0                   50.0
+IDD2N2L                                               VDD2L                    0.25             0.25                   0.25
+IDD2NQ                                                 VDDQ                    0.75             0.75                   0.75
+IDD2NS1                                                VDD1                    1.3               1.3                    1.5                   mA
+IDD2NS2H                                              VDD2H                    30.0             30.0                   50.0
+IDD2NS2L                                              VDD2L                    0.25             0.25                   0.25
+IDD2NSQ                                                VDDQ                    0.75             0.75                   0.75
+IDD3P1                                                 VDD1                    1.5               1.5                    1.9                   mA
+IDD3P2H                                               VDD2H                    8.4               8.4                   12.0
+IDD3P2L                                               VDD2L                    0.25             0.25                   0.25
+IDD3PQ                                                 VDDQ                    0.75             0.75                   0.75
+IDD3PS1                                                VDD1                    1.5               1.5                    1.9                   mA
+IDD3PS2H                                              VDD2H                    8.4               8.4                   12.0
+IDD3PS2L                                              VDD2L                    0.25             0.25                   0.25
+IDD3PSQ                                                VDDQ                    0.75             0.75                   0.75
+IDD3N1                                                 VDD1                    1.9               1.9                    2.3                   mA
+IDD3N2H                                               VDD2H                    39.0             39.0                   50.0
+IDD3N2L                                               VDD2L                    0.25             0.25                   0.25
+IDD3NQ                                                 VDDQ                    0.75             0.75                   0.75
+
+
+CCM005-1974498342-70
+315b_y31m_ddp_qdp_auto_lpddr5.pdf – Rev.D 4/2021 EN                       14          Micron Technology, Inc. reserves the right to change products or specifications without notice.
+                                                                                                                                  © 2020 Micron Technology, Inc. All rights reserved.
+                                                            Micron Confidential and Proprietary
+
+
+                                                                                      315b: x32 Automotive LPDDR5 SDRAM
+                                                                                                            IDD Parameters
+
+
+Table 7: IDD Parameters – Single Die (Continued)
+VDD1 = 1.70–1.95V; VDD2H = 1.01–1.12V; VDD2L = 0.87–0.97V; VDDQ = 0.47–0.57V;
+Notes 1 and 2 apply to entire table.
+                                                                                              6400 Mb/s
+Symbol                                                 Supply                       AIT             AAT                     AUT                   Unit                   Note
+IDD3NS1                                                 VDD1                        1.9               1.9                    2.3                   mA
+IDD3NS2H                                                VDD2H                       39.0             39.0                   50.0
+IDD3NS2L                                                VDD2L                       0.25             0.25                   0.25
+IDD3NSQ                                                 VDDQ                        0.75             0.75                   0.75
+IDD4R1                                                  VDD1                        7.2               7.2                    7.7                   mA                      3, 4
+IDD4R2H                                                 VDD2H                       372              372                    384
+IDD4R2L                                                 VDD2L                       0.25             0.25                   0.25
+IDD4RQ                                                  VDDQ                        106              106                    106
+IDD4W1                                                  VDD1                        6.2               6.2                    6.7                   mA                        3
+IDD4W2H                                                 VDD2H                       310              310                    340
+IDD4W2L                                                 VDD2L                       0.25             0.25                   0.25
+IDD4WQ                                                  VDDQ                        0.75             0.75                   0.75
+IDD51                                                   VDD1                        23.0             23.0                   23.0                   mA
+IDD52H                                                  VDD2H                       170              170                    170
+IDD52L                                                  VDD2L                       0.25             0.25                   0.25
+IDD5Q                                                   VDDQ                        0.75             0.75                   0.75
+IDD5AB1                                                 VDD1                        2.2               2.2                    2.6                   mA
+IDD5AB2H                                                VDD2H                       35.0             35.0                   50.0
+IDD5AB2L                                                VDD2L                       0.25             0.25                   0.25
+IDD5ABQ                                                 VDDQ                        0.75             0.75                   0.75
+IDD5PB1                                                 VDD1                        2.2               2.2                    2.6                   mA
+IDD5PB2H                                                VDD2H                       35.0             35.0                   50.0
+IDD5PB2L                                                VDD2L                       0.25             0.25                   0.25
+IDD5PBQ                                                 VDDQ                        0.75             0.75                   0.75
+
+                                   Notes:         1. Published IDD values except IDD4RQ are the maximum IDD values considering the worst-
+                                                     case conditions of process, temperature, and voltage.
+                                                  2. BG mode. DVFSC and DVFSQ disabled.
+                                                  3. BL = 16, DBI disabled.
+                                                  4. IDD4RQ value is reference only. Typical value. Output load = 5pF; RON = 40 ohms; TC = 25°C
+
+
+
+
+CCM005-1974498342-70
+315b_y31m_ddp_qdp_auto_lpddr5.pdf – Rev.D 4/2021 EN                            15          Micron Technology, Inc. reserves the right to change products or specifications without notice.
+                                                                                                                                       © 2020 Micron Technology, Inc. All rights reserved.
+                                                                Micron Confidential and Proprietary
+
+
+                                                                                     315b: x32 Automotive LPDDR5 SDRAM
+                                                                                                           IDD Parameters
+
+
+Table 8: Full-Array Power-Down Self Refresh Current/Deep-Sleep Mode Current – Single Die
+VDD1 = 1.70–1.95V; VDD2H = 1.01–1.12V; VDD2L = 0.87–0.97V; VDDQ = 0.47–0.57V
+Temperature                    Symbol                       Supply                                                           Value                                    Unit
+25°C                                                   IDD61                      VDD1                                        0.25                                     mA
+                                                      IDD62H                     VDD2H                                        0.60
+                                                      IDD62L                     VDD2L                                        0.01
+                                                      IDD6Q                      VDDQ                                         0.01
+                                                      IDD6DS1                     VDD1                                        0.25
+                                                  IDD6DS2H                       VDD2H                                        0.60
+                                                  IDD6DS2L                       VDD2L                                        0.01
+                                                  IDD6DSQ                        VDDQ                                         0.01
+95°C                                                   IDD61                      VDD1                                          3.6
+                                                      IDD62H                     VDD2H                                        14.5
+                                                      IDD62L                     VDD2L                                        0.25
+                                                      IDD6Q                      VDDQ                                         0.75
+                                                      IDD6DS1                     VDD1                                          3.6
+                                                  IDD6DS2H                       VDD2H                                        14.5
+                                                  IDD6DS2L                       VDD2L                                        0.25
+                                                  IDD6DSQ                        VDDQ                                         0.75
+105°C                                                  IDD61                      VDD1                                          3.6
+                                                      IDD62H                     VDD2H                                        14.5
+                                                      IDD62L                     VDD2L                                        0.25
+                                                      IDD6Q                      VDDQ                                         0.75
+                                                      IDD6DS1                     VDD1                                          3.6
+                                                  IDD6DS2H                       VDD2H                                        14.5
+                                                  IDD6DS2L                       VDD2L                                        0.25
+                                                  IDD6DSQ                        VDDQ                                         0.75
+125°C                                                  IDD61                      VDD1                                          5.6
+                                                      IDD62H                     VDD2H                                        30.0
+                                                      IDD62L                     VDD2L                                        0.25
+                                                      IDD6Q                      VDDQ                                         0.75
+                                                      IDD6DS1                     VDD1                                          5.6
+                                                  IDD6DS2H                       VDD2H                                        30.0
+                                                  IDD6DS2L                       VDD2L                                        0.25
+                                                  IDD6DSQ                        VDDQ                                         0.75
+
+                                   Notes:         1. IDD6 25°C is the typical value in the distribution with nominal VDD and a reference-only
+                                                     value. IDD6 95°C, IDD6 105°C, and IDD6 125°C are the maximum IDD guaranteed value con-
+                                                     sidering the worst-case conditions of process, temperature, and voltage.
+                                                  2. DVFSC and DVFSQ disabled.
+
+
+
+
+CCM005-1974498342-70
+315b_y31m_ddp_qdp_auto_lpddr5.pdf – Rev.D 4/2021 EN                             16       Micron Technology, Inc. reserves the right to change products or specifications without notice.
+                                                                                                                                     © 2020 Micron Technology, Inc. All rights reserved.
+                                                           Micron Confidential and Proprietary
+
+
+                                                                                315b: x32 Automotive LPDDR5 SDRAM
+                                                                                                    Revision History
+
+Revision History
+Rev. D – 4/2021
+                                              • Updated legal status to Production of DDP and QDP packages
+                                              • Updated Functional Safety (FuSa) features
+                                              • Updated automotive grade features
+                                              • Added FuSa MPNs (MT62F512M32D2DS-031 FAAT:B, MT62F1G32D4DS-031 FAAT:B)
+                                                in the Part Number List table
+                                              • Added Functional Safety Notes section
+                                              • Updated IDD6 (Power down) specification and added IDD6DS (Deep sleep) specification
+                                                up to 125°C
+
+Rev. C – 11/2020
+                                              • Updated legal status to Preliminary
+                                              • Updated wording of Operating Temperature in Features
+                                              • Added FuSa introduction in General Notes
+                                              • Updated Package Dimensions (Package Code: DS): Updated coplanarity from 0.08mm
+                                                to 0.1mm; Updated standoff (ball height) from 0.29 ±0.035mm to 0.29 ±0.04mm
+                                              • Updated IDD Parameters
+
+Rev. B – 5/2020
+                                              • Corrected lower operating temperature from –45°C to –40°C for AIT/AAT/AUT.
+
+Rev. A – 4/2020
+                                              • Initial release
+
+
+
+
+                                 8000 S. Federal Way, P.O. Box 6, Boise, ID 83707-0006, Tel: 208-368-4000
+                                     www.micron.com/products/support Sales inquiries: 800-932-4992
+                                  Micron and the Micron logo are trademarks of Micron Technology, Inc.
+                                     All other trademarks are the property of their respective owners.
+     This data sheet contains minimum and maximum limits specified over the power supply and temperature range set forth herein.
+  Although considered final, these specifications are subject to change, as further product development and data characterization some-
+                                                                 times occur.
+
+
+CCM005-1974498342-70
+315b_y31m_ddp_qdp_auto_lpddr5.pdf – Rev.D 4/2021 EN                        17       Micron Technology, Inc. reserves the right to change products or specifications without notice.
+                                                                                                                                © 2020 Micron Technology, Inc. All rights reserved.
+

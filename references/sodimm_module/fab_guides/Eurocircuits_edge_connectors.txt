@@ -1,0 +1,335 @@
+
+
+Edge Connectors - Eurocircuits
+
+Sign In / Register
+
+PCB Calculator
+
+Contact
+
+Services
+
+Help & Knowledge centre
+
+Help centre
+
+Technical guidelines
+
+User guides
+
+Technical & Educational Videos
+
+Knowledge centre
+
+Blogs
+
+Events
+
+Glossary
+
+How it works
+
+For students & teachers
+
+Downloads
+
+About us
+
+Get an instant price
+
+en
+
+de
+
+hu
+
+Homepage Technical Guidelines PCB Design Guidelines Edge Connectors
+
+Search for:
+
+Edge Connectors
+
+Back toPCB Design Guidelines
+
+Articles in this section
+
+10 Rules for Better Data BGA Components Carbon Contacts Classification Copper layers Drilled Holes Edge Connectors Heatsink Paste Input Data Formats Legend Print Mechanical Layer Peel-off Mask Soldermask Track Width Graphic Via Filling
+
+PCB Design Guideline Topics
+
+Introduction Input Data Formats
+10 Rules for Better Data
+Classification
+Drilled Holes
+Copper Layers
+Edge Connectors
+BGA Components
+Mechanical Layer
+Soldermask
+Legend Print
+Carbon Contacts
+Peel-off Mask
+Via Filling
+Heatsink Paste
+Track Width Graphic
+
+See also:
+
+Panel Guidelines
+
+PCB Assembly Guidelines
+
+Understand Manufacturing Tolerances on a PCB
+
+eC-smart-tools User Guides
+
+Insight Technology
+
+-->
+Introduction
+
+Edge connectors are generally used for connecting one PCB to another, the edge connector is plugged in to a socket on another PCB thus making the connection.
+
+Examples of this can be seen on a computer motherboard where you plug a graphics card with a gold edge connector into the socket on the mother board.
+
+Example of an Edge Connector on a PCB
+
+Example of an Edge Connector viewed in a CAM system
+
+The surface finish of edge connectors is usually with what is known as Hard Gold on top of nickel, this allows for the repeated plugging and unplugging of the connector.
+
+To help guide the edge connector into the socket they need to have a bevelled leading edge.
+
+Example of the Bevelling of an Edge Connector
+
+Specification
+
+|
+
+|
+Description
+
+|
+Specification
+
+| Maximum Pad Length
+| 40mm
+
+| Inner layer Copper to Board Edge Clearance
+| 20 o – 3.00mm
+
+30 o – 2.00mm
+
+45 o – 1.00mm
+
+60 o – 1.00mm
+
+| Minimum Finger Width
+| See our Classification Table for the minimum Outer Layer Track width (OTW) and Track to Track (TT) distance
+
+| PTH to Edge Connect Clearance (edge to edge)
+| 2.00mm
+
+| SMD Pad to Edge Connect Clearance (edge to edge)
+| 2.00mm
+
+| Copper Feature to Edge Connect Clearance (edge to edge)
+| 2.00mm
+
+| Minimum PCB Thickness
+| 1.00mm
+
+| Maximum PCB Thickness
+| 3.20mm
+
+| Minimum Remaining Material Thickness – All Angles
+| 0.25mm
+
+| PCB Dimension Perpendicular to Edge Connector for Standard Bevelling
+| Minimum – 40mm
+
+Maximum – 400mm
+
+| Bevel Angle
+| Standard – 30 o
+
+Special – 20 o , 30 o , 45 o , 60 o
+
+| Distance between Edge Connectors on Opposite side of the PCB
+| 150mm
+
+| Customer Panel Layout
+| See Panel Guidelines
+
+Bevelling
+
+Also known as chamfered edges.
+
+Bevelling angles with minimum inner layer copper clearance
+
+There are two types of bevelling available for edge connectors as below:
+
+Standard
+
+Standard bevelling is machined on the bevelling machine.
+
+Only 30 degrees angle possible.
+
+Only possible for edge connectors on an accessible outside edge of a single PCB.
+
+The PCB dimension perpendicular to the bevelled edge must be minimum 40mm and maximum 400mm.
+
+Special
+
+Special bevelling machined on the rout machine.
+
+Available at angles of 20, 30, 45 or 60 degrees.
+
+Bevelling is Special it cannot be done on the bevelling machine:
+
+Bevelling “inside” of an accessible outside edge of a PCB.
+
+Bevelling “inside” of the PCB contour.
+
+PCB dimension perpendicular to the bevelled edge less than 40mm or more than 400mm.
+
+Bevelling on PCBs in a customer panel.
+
+Other than 30 degrees angle.
+
+Copper Clearances
+
+Outer Layer Clearances
+
+Do not place any plated holes (PTH), SMD or other pads closer than 2.00mm (Dimension D) to the inner edge of the edge connector fingers.
+
+Copper Clearance on Inner Layers
+
+The minimum copper free area on inner layers is to prevent exposed inner layer copper at the bevelled edges.
+
+Inner Layers with Copper Free Area
+
+Inner layer with copper free area (example 2.00mm at 30 degrees angle (CAM image)
+
+Bevelling angles with minimum inner layer copper clearance
+
+Inner Layers without Copper Free Area
+
+Inner layer without copper free area (CAM image)
+
+Exposed inner layer copper after bevelling with copper free area on inner layers
+
+Other ways to find help
+
+User Guides
+
+Our User Guides provide step-by-step instructions on how to use our free online smart tools and other available software.
+
+View all 5 user guides
+
+Glossary
+
+To simplify communication Eurocircuits uses abbreviations for many of these technical terms. Most of the
+technical terms and abbreviations are international standards in the Printed Circuit Board manufacturing
+industry. However to make it clear to everyone involved, we here present a list of technical terms and
+abbreviations along with their explanation.
+
+View our glossary
+
+Still need help?
+
+Talk to our customer support via our online chat, telephone or email.
+
+Contact us
+
+Eurocircuits gets it right first-time - using digital twin verification and our in-house European manufacturing facilities.
+
+Services
+PCB Manufacturing
+
+PCB Assembly
+
+For students & teachers
+
+Legal
+Impressum
+
+Eurocircuits Terms of Sales
+
+Terms of Use
+
+NDA
+
+Privacy Statement
+
+Website disclaimer
+
+Our Business Etiquette
+
+Resources
+PCB Calculator
+
+Sign in / Register
+
+Help centre
+
+Blogs
+
+Events
+
+Contact
+Sales & Customer Support
+
+Head Office & Subsidiaries
+
+eC-calendar
+
+©
+2026 Eurocircuits
+
+Get connected!
+
+Join the Eurocircuits Community, keep up to date with News & Information.
+
+No thanks, not interested.
+Remind me later.
+
+Services
+
+Help & Knowledge centre
+
+Help centre
+
+Technical guidelines
+
+User guides
+
+Technical & Educational Videos
+
+Knowledge centre
+
+Blogs
+
+Events
+
+Glossary
+
+How it works
+
+For students & teachers
+
+Downloads
+
+About us
+
+Sign In / Register
+
+PCB Calculator
+
+Contact
+
+Deutsch
+
+Magyar
+

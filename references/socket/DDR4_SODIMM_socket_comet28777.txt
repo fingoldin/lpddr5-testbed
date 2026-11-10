@@ -1,0 +1,143 @@
+        1                    2                   3                      4             5                  6                   7                            8                      9                       10
+                                                                                                                                     REV.                       DESCRIPTION                    DRAWN          DATE
+                                                                                                                                      1      INITIAL RELEASE                                  TIM          2022/08/15
+                                                                                                                                      1.1 Revised spec. 2.2 & 2.3 to comply with JEDEC STD.   Fros         2023/03/30
+G                                                                                                                                                                                                                       G
+                                                                                              1.1 SPECIFICATION:
+
+
+                                                                                                   1. ELECTRICAL
+               PIN 2                                                           PIN 260             1.1 Current Rating: 0.5A per pin
+                                                                                                   1.2 Voltage Rating: 25V AC                            2.3 Extraction Force: 44.6N max.
+                                                                                                   1.3 Contact Resistance: 55      max.
+                                                                                                   1.4 Insulation Resistance: 500M                       3. ENVIRONMENTAL
+                                                                                                   1.5 Dielectric Withstanding Voltage: 300VAC           3.1 Operating temperature range: -           ~+
+F                                                                                                                                                                                                                       F
+                                                                                                                                                         3.2 Storage temperature range: -            ~+
+                                                                                                   2. MECHANICAL
+               PIN 1                                                           PIN 259             2.1 Durability: 25 Cycle                              4. SOLDER ABILITY
+                                                                                                   2.2 Insertion Force: 59.8N max.                       4.1 Recommended IR-Reflow Temperature: 260
+
+
+
+
+E                                                                                         2                                                                                                                             E
+                                                                                               3
+
+    DATE CODE: YWWD
+                                                                                               1
+     Y: YEAR                         OPERATING VOLTAGE
+    WW: WEEK(01~52)                         CONNECTOR TYPE
+     D: DAY (1~7)                                        DATE CODE
+
+D                                                                                                                                                                                                                       D
+                                                     YWWD
+                                                                                                                                             Type A             Type A                    Type B
+                                                            LOGO MARK
+
+
+
+
+C                                                                                                                                                                                                                       C
+
+                                                                                                                                  RECOMMENDED SOCKET MOUNTING LAYOUT
+                                                                            PIN 260
+               PIN 2             PITCH
+                                                                                                                                     3       LATCH              STAINLESS STEEL
+                                                                                                                                     2       CONTACT            PHOSPHOR BRONZE, GOLD FLASH
+B                                                                                                                                    1       HOUSING            LCP, UL94V-0, BLACK                                     B
+                                                                                                                                     NO. PART NAME                              DESCRIPTION
+                                                                                                                                     UNLESS OTHERWISE SPECIFIED TOLERANCE
+
+               PIN 1             PITCH                                                                                               UNIT:      DECIMAL LINEAR ANGLES
+                                                                            PIN 259
+                                                                                                                                                 X.
+                                                                                                                                         mm      X.X
+                                                                                                                                                 X.XX                                www.attend.com.tw
+
+A                                                                                                                                    DRAWN        Tim            2022/08/15 DRAWN NAME:                                 A
+                                                                                                                                                                                   DDR4 Vertical Socket
+             PCB                   RECOMMENDED PCB LAYOUT (TOP VIEW)                                                                 CHECKED      Fros           2022/08/15    Type A for 260P DDR SO DIMM
+             SEATING PLANE
+                                                                                                                                     APPROVED     Ken             2022/08/15 PRODUCT NO. 124B-150A02
+                                                                                                                                                  SCALE       SHEET   SIZE
+                                                                                                                                                                             FILE NAME   124B-150A02_B_1.1
+                                                                                                                                                   1/1          1/1      A4
+        1                    2                   3                      4             5                  6                   7                            8                      9                       10
+    1   2    3   4          5   6         7                         8                                 9                            10
+                                               REV.                       DESCRIPTION                               DRAWN                             DATE
+                                                    1   INITIAL RELEASE                                             FROS                  2017/02/23
+                                                    1.1 CORRECTED                                                   TIM                   2022/08/15
+G                                                                                                                                                            G
+
+
+                                              1.1
+
+
+
+
+                                                                           (outer layers/ 4 places)
+
+
+
+
+                                                                                                                           (inner layers/ 4 places)
+                                                                           non metalization area
+
+
+
+
+                                                                                                                           non metalization area
+F                                                                                                                                                            F
+
+
+
+
+                                                                    1.1
+
+
+                                    1.1
+E                                                                                                                                                            E
+
+
+
+
+        #1           #259                                                 Detail F
+
+
+D                                                                                                                                                            D
+
+
+
+
+                                                                                             1.1
+
+
+
+C                                                                   pitch                                                                                    C
+
+
+
+        #2           #260
+
+                                              Detail D                                                    Detail E
+B                                             SCALE 3.125                                                 SCALE 3.125                                        B
+
+
+                                               UNLESS OTHERWISE SPECIFIED TOLERANCE
+
+                                               UNIT:       DECIMAL LINEAR ANGLES
+                                                            X.
+                                                    mm      X.X
+                                                            X.XX                                           www.attend.com.tw
+
+A                                              DRAWN         Fros          2017/02/23 DRAWN NAME:                                                            A
+                                                                                                      DDR4 SODIMM CARD SPEC.
+                                               CHECKED       Tim           2017/02/23
+
+                                               APPROVED      Ken       2017/02/23 PRODUCT NO.
+                                                             SCALE SHEET   SIZE
+                                                                                  FILE NAME   124-CARD_B_1.1
+                                                             1.25/1  1/1      A4
+    1   2    3   4          5   6         7                         8                                 9                            10
+

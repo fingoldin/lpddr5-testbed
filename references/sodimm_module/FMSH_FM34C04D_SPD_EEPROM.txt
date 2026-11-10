@@ -1,0 +1,1280 @@
+                    FM34C04D
+                    Serial Presence Detect (SPD)
+                    EEPROM
+                    with Reversible Software Write Protection
+
+
+                    Data Sheet
+
+
+
+                    Apr. 2017
+
+
+
+
+                                                                Data Sheet
+FM34C04D Serial Presence Detect (SPD) EEPROM   Ver.1.0                  1
+INFORMATION IN THIS DOCUMENT IS INTENDED AS A REFERENCE TO ASSIST OUR CUSTOMERS IN THE SELECTION OF
+SHANGHAI FUDAN MICROELECTRONICS GROUP CO., LTD PRODUCT BEST SUITED TO THE CUSTOMER'S APPLICATION;
+THEY DO NOT CONVEY ANY LICENSE UNDER ANY INTELLECTUAL PROPERTY RIGHTS, OR ANY OTHER RIGHTS,
+BELONGING TO SHANGHAI FUDAN MICROELECTRONICS GROUP CO., LTD OR A THIRD PARTY.
+WHEN USING THE INFORMATION CONTAINED IN THIS DOCUMENTS, PLEASE BE SURE TO EVALUATE ALL INFORMATION
+AS A TOTAL SYSTEM BEFORE MAKING A FINAL DECISION ON THE APPLICABILITY OF THE INFORMATION AND PRODUCTS.
+PURCHASERS ARE SOLELY RESPONSIBLE FOR THE CHOICE, SELECTION AND USE OF THE SHANGHAI FUDAN
+MICROELECTRONICS GROUP CO., LTD PRODUCTS AND SERVICES DESCRIBED HEREIN, AND SHANGHAI FUDAN
+MICROELECTRONICS GROUP CO., LTD ASSUMES NO LIABILITY WHATSOEVER RELATING TO THE CHOICE, SELECTION
+OR USE OF THE SHANGHAI FUDAN MICROELECTRONICS GROUP CO., LTD PRODUCTS AND SERVICES DESCRIBED
+HEREIN. UNLESS EXPRESSLY APPROVED IN WRITING BY AN AUTHORIZED SHANGHAI FUDAN MICROELECTRONICS
+GROUP CO., LTD REPRESENTATIVE, SHANGHAI FUDAN MICROELECTRONICS GROUP CO., LTD PRODUCTS ARE NOT
+RECOMMENDED, AUTHORIZED OR WARRANTED FOR USE IN MILITARY, AIR CRAFT, SPACE, LIFE SAVING, OR LIFE
+SUSTAINING APPLICATIONS, NOR IN PRODUCTS OR SYSTEMS WHERE FAILURE OR MALFUNCTION MAY RESULT IN
+PERSONAL INJURY, DEATH, OR SEVERE PROPERTY OR ENVIRONMENTAL DAMAGE.
+FUTURE ROUTINE REVISIONS WILL OCCUR WHEN APPROPRIATE, WITHOUT NOTICE. CONTACT SHANGHAI FUDAN
+MICROELECTRONICS GROUP CO., LTD SALES OFFICE TO OBTAIN THE LATEST SPECIFICATIONS AND BEFORE PLACING
+YOUR PRODUCT ORDER. PLEASE ALSO PAY ATTENTION TO INFORMATION PUBLISHED BY SHANGHAI FUDAN
+MICROELECTRONICS GROUP CO., LTD BY VARIOUS MEANS, INCLUDING SHANGHAI FUDAN MICROELECTRONICS
+GROUP CO., LTD HOME PAGE (HTTP://WWW.FMSH.COM/).
+PLEASE CONTACT SHANGHAI FUDAN MICROELECTRONICS GROUP CO., LTD LOCAL SALES OFFICE FOR THE
+SPECIFICATION REGARDING THE INFORMATION IN THIS DOCUMENT OR SHANGHAI FUDAN MICROELECTRONICS
+GROUP CO., LTD PRODUCTS.
+
+Trademarks
+Shanghai Fudan Microelectronics Group Co., Ltd name and logo, the “复旦” logo are trademarks or registered trademarks of
+Shanghai Fudan Microelectronics Group Co., Ltd or its subsidiaries in China.
+Shanghai Fudan Microelectronics Group Co., Ltd, Printed in the China, All Rights Reserved.
+
+
+                                                                                                       Data Sheet
+FM34C04D Serial Presence Detect (SPD) EEPROM                   Ver.1.0                                            2
+Description                                           Absolute Maximum Ratings
+The FM34C04D provides 4,096 bits of serial             Ambient temperature with power
+                                                       applied
+                                                                                                      -55°C to +125°C
+electrically erasable and programmable read-only
+memory (EEPROM) organized as 512 words of 8            Storage Temperature                            -65°C to +150°C
+bits each, with 128-bit UID and 16-bytes Security                            SA0
+                                                       Voltage on Any Pin with                        -0.5V to +11.0V
+Sector. This device is JEDEC JC42.4 (EE1004-v)         Respect to Ground     Others                   -0.5V to +6.5V
+Serial Presence Detect (SPD) compliant and
+                                                       Maximum Operating Voltage                      6.5V
+includes reversible software write protection for
+each of four independent 128 x 8-bit blocks. The       DC Output Current                              20.0 mA
+device features a page write capability of up to 16   *NOTICE: Stresses beyond those listed under “Absolute Maximum
+                                                      Ratings” may cause permanent damage to the device. This is a stress
+bytes of data. Address pins allow up to eight         rating only and functional operation of the device at these or any other
+devices on the same bus.                              conditions beyond those indicated in the operational sections of this
+                                                      specification are not implied. Exposure to absolute maximum rating
+                                                      conditions for extended periods may affect device reliability.
+
+
+Features
+                                                      Packaging Type
+ Low Operation Voltage: VCC = 1.7V to 3.6V
+ Internally Organized: 512 x 8
+                                                                        TSSOP 8
+ JEDEC JC42.4 (EE1004-v) Serial Presence              SA0          1              8         VCC
+                                                       SA1          2              7         WP
+  Detect (SPD) Compliant for DRAM(DDR4)                SA2          3              6         SCL
+  modules                                              GND          4              5         SDA
+ 2-wire Serial Interface: I2C Fast-Mode Plus
+  Compatible                                                            TDFN8
+   – 100kHz, 400kHz, and 1MHz Compatibility
+                                                          SA0 1                        8 VCC
+   – SMBus-compatible bus Timeout                         SA1 2                        7 WP
+     Supported                                            SA2 3                        6 SCL
+
+ EEPROM memory array:                                    GND 4                        5 SDA
+
+   – 4 Kbits organized as two 256 x 8-bit banks
+   – Each bank is composed of two 128-byte                Note：
+     blocks                                               For Thinner package please contact local sales office.
+ Write Protect Pin for Hardware Data Protection
+ Software data protection for each 128-byte
+  block
+                                                      Pin Configurations
+ Schmitt Trigger, Filtered Inputs for Noise
+  Suppression                                            Pin Name                          Function
+ 16-Byte Page Write Modes (Partial Page                 SA0~SA2            Device Address Inputs
+  Writes are Allowed)                                      SDA              Serial Data Input/Output
+ Lockable 16-Byte Security Sector                         SCL              Serial Clock Input
+ 128-Bit Unique ID for each device                        WP               Write Protect
+ Self-timed Write Cycle (5 ms max)                        VCC              Power Supply
+ High-reliability                                         GND              Ground
+  – Endurance: 1,000,000 Write Cycles
+  – Data Retention: 40 Years
+ TSSOP8、TDFN8 (RoHS Compliant and
+  Halogen-free)
+
+
+
+
+                                                                                                          Data Sheet
+FM34C04D Serial Presence Detect (SPD) EEPROM           Ver.1.0                                                            3
+Figure 1．Block Diagram
+
+
+                        HARDWARE AND
+        WP            SOFTERWARE WRITE                                     EN
+                                                                                     HV PUMP & TIMING
+                       PROTECTION LOGIC
+                                                    CONTROL LOGIC
+                                                                                              HV
+
+        SA0                                                                             DATA BUFFER
+                      DEVICE ADDRESS
+        SA1            COMPARATOR
+        SA2                                                                                 BLOCK0
+
+
+
+                                                                                            BLOCK1
+                              DATA WORD
+
+
+
+
+                                                                       X DECODER
+                            ADDRESS COUNTER                                        4-Kbit EEPROM ARRAY
+                                                                                            BLOCK2
+
+         SCL
+                           START STOP LOGIC
+        SDA                                                                                 BLOCK3
+
+                                                   ACK
+                                                                                    16-BYTE SECURITY SECTOR
+                                                                                          128-BIT UID
+                     Din                                                                 SERIAL MUX
+                                                                      DATA
+                                           DATA & ACK
+                     Dout              INPUT/OUTPUT LOGIC
+
+
+               OD OUTPUT                                                                 Y DECODER
+
+
+
+
+                                                                                                        Data Sheet
+FM34C04D Serial Presence Detect (SPD) EEPROM                Ver.1.0                                             4
+Pin Description
+SERIAL CLOCK (SCL):                                          internally pulled down to GND if the capacitive
+The SCL input is used to positive edge clock data            coupling to the circuit board VCC plane is <3pF, if
+into each EEPROM device and negative edge clock              coupling is >3pF, FMSH recommends connecting
+data out of each device.                                     the address pins to GND.
+
+SERIAL DATA (SDA):                                           The SA0 input is used to detect the VHV voltage,
+The SDA pin is bi-directional for serial data transfer.      when decoding a SWPn or CWP instruction.
+This pin is open-drain driven and may be wire-ORed
+with any number of other open-drain or                       WRITE PROTECT (WP):
+open-collector devices. A pull-up resistor must be           The FM34C04D has a WP pin that provides
+connected from Serial Data (SDA) to VCC. (Figure 9           hardware data protection. When the WP pin is
+indicates how the value of the pull-up resistor can          connected to VCC, all write operations to the
+be calculated).                                              memory are inhibited. When the WP pin is
+                                                             connected to GND or left floating, the write
+DEVICE ADDRESSES (SA2, SA1, SA0):                            protection of the memory is determined by the status
+The SA2, SA1 and SA0 pins are device address                 defined by the execution of the previous SWPn
+inputs that are hardwired or left not connected.             instructions. If the pin is left floating, the WP pin will
+When the pins are hardwired, as many as eight 4K             be internally pulled down to GND if the capacitive
+devices may be addressed on a single bus system              coupling to the circuit board Vcc plane is <3pF. If
+(device addressing is discussed in detail under the          coupling is >3pF, FMSH recommends connecting
+Device Addressing section). If the pins are left             the WP to GND.
+floating, the SA2, SA1 and SA0 pins will be
+
+
+Write Protect Description
+      WP Pin Status                                       Part of the Memory Protected
+         WP=VCC                                                   Full Memory
+         WP=GND                                           Normal Read/Write Operations
+
+
+
+Memory Organization
+Data Memory: The FM34C04D includes a 4-Kbit                  memory may be used by the system manufacturers
+serial EEPROM organized as two banks of 256                  to store security and other important information
+bytes each, or 512 bytes of total memory. Each bank          separately from the main memory array.
+is composed of two 128-byte blocks. The device is
+able to selectively lock the data in any or all of the       Unique ID(UID) ： The FM34C04D                 utilizes a
+four 128-byte blocks.                                        separate memory block containing              a factory
+                                                             programmed 128-bit unique ID.
+Security Sector：The FM34C04D offers 16-byte
+Security Sectors which can be written and (later)
+permanently locked in Read-only mode. This
+
+
+
+
+                                                                                                       Data Sheet
+FM34C04D Serial Presence Detect (SPD) EEPROM                  Ver.1.0                                              5
+Input Parameters
+  SYMBOL                   PARAMETER                  CONDITIONS         Min       Max         Units
+          1
+     CIN          Input Capacitance(other pins)     VIN = 0V, f = 1MHz     -         6          pF
+    COUT1         Output Capacitance(SDA)          VOUT = 0V, f = 1MHz     -         8          pF
+    ZEIL1         SA0/SA1/SA2 input impedance           VIN<0.3VCC        30         -          KΩ
+    ZEIH1         SA0/SA1/SA2 input impedance           VIN>0.7VCC       800         -          KΩ
+    ZWPL1         WP input impedance                    VIN<0.3VCC        5          -          KΩ
+    ZWPH1         WP input impedance                    VIN>0.7VCC       500         -          KΩ
+Note: 1. This parameter is characterized and is not 100% tested.
+
+
+DC Characteristics
+Applicable over recommended operating range from: TA = -40°C to +85°C, VCC = +1.7V to +3.6V, (unless
+otherwise noted).
+ Symbol           Parameter                   Test Condition                Min       Max     Units
+   VCC        Supply Voltage                                 -              1.7      3.6        V
+   ICC1       Supply Current(read)       fc = 400 kHz or 1 MHz               -       1.0        mA
+   ICC2       Supply Current(write)      During tW, VIN = GND or VCC         -       1.0        mA
+   ISB1       Standby Current            VCC < 2.2V, VIN = VCC/ GND          -       1.0        µA
+   ISB2       Standby Current            VCC ≥ 2.2V, VIN = VCC/ GND          -       2.0        µA
+    ILI       Input Leakage Current      VIN = VCC/GND                       -      ±2.0        µA
+                                         SDA in Hi-Z, external voltage
+   ILO        Output Leakage Current                                         -      ±2.0         µA
+                                         applied on SDA: GND or VCC
+   VIL1       Input Low Level                                -             -0.5    VCC x 0.3     V
+   VIH1       Input High Level                               -           VCC x 0.7 VCC + 0.5     V
+                                         VCC < 2.2V                          7        10         V
+   VHV        SA0 high voltage detect
+                                         VCC ≥ 2.2V                      VCC + 4.8    10         V
+                                         VCC ≥ 2.2V, IOL = 20 mA             -       0.4         V
+   VOL        Output Low voltage         VCC ≤ 2.2V, IOL = 6 mA              -       0.6         V
+                                         VCC ≤ 2.2V, IOL = 3 mA              -       0.4         V
+  VOL1        Output Low Level 1         VCC =1.7V, IOL = 0.15 mA            -       0.2         V
+                                         Monotonic rise between VPON and                         V
+  VPON1       Power on reset threshold                                      1.6        -
+                                         VCC(min) without ringback
+              Power Off threshold for                                                            V
+ VPOFF1                               No ringback above VPOFF                  -         0.7
+              warm power on cycle
+Note: 1. Measured during characterization, not tested in production.
+
+
+
+
+                                                                                         Data Sheet
+FM34C04D Serial Presence Detect (SPD) EEPROM               Ver.1.0                                   6
+AC Characteristics
+AC measurement conditions
+   Symbol                                  Parameter                        Min           Max        Units
+       CL        Load capacitance                                                  100                pF
+                 SCL input rise and fall time,
+     T R, T F    SDA input fall time
+                                                                                           50         ns
+       VIN       Input levels                                                0.2VCC to 0.8VCC         V
+    IN, OUT      Input and output timing reference levels                    0.3VCC to 0.7VCC         V
+
+AC measurement I/O waveform
+
+
+
+
+AC characteristics
+Recommended operating conditions: TA = -40°C to +85°C, VCC = +1.7V to +3.6V, CL = 100 pF (unless
+otherwise noted).
+                                             VCC < 2.2V              VCC ≥ 2.2V
+   Symbol               Parameter             100 kHz         400 kHz          1000 kHz   Units
+                                           Min      Max    Min      Max      Min     Max
+       fSCL  Clock Frequency, SCL           10       100    10      400       10     1000  kHz
+      tLOW   Clock Pulse Width Low         4700       -    1300       -      500       -    ns
+      tHIGH  Clock Pulse Width High        4000       -     600       -      260       -    ns
+   tTIMEOUT  Detect clock low timeout       25       35     25       35       25      35   ms
+         tI1 Noise Suppression Time          -       50      -       50               50    ns
+             Time the bus must be free
+      tBUF1  before a new transmission can 4700       -    1300       -      500       -    ns
+             Start
+    tHD.STA  Start Hold Time               4000       -     600       -      260       -    ns
+    tSU.STA  Start Setup Time              4700       -     600       -      260       -    ns
+    tHD.DAT  Data In Hold Time               0        -      0        -       0        -    ns
+    tSU.DAT  Data In Setup Time             250       -     100       -       50       -    ns
+           1
+        tR   Inputs Rise Time                -      1000    20      300               120   ns
+        tF1  Inputs Fall Time                -       300    20      300               120   ns
+    tSU.STO  Stop Setup Time               4000             600              260            ns
+    tHD.DAT  Data Out Hold Time             200     3450    200     900       0       350   ns
+       tWR   Write Cycle Time                -        5              5                 5   ms
+     tPOFF1  Warm power cycle off time       1        -      1        -       1        -   ms
+             Time from power on to first
+       tINIT                                10        -     10        -       10       -    ns
+             command
+                                                                                          Write
+Endurance 1 3.3V, 25°C, Page Mode                            1,000,000
+                                                                                          Cycles
+Notes: 1. This parameter is characterized and is not 100% tested.
+       2. The minimum frequency is specified at 10kHz to avoid activating the timeout feature.
+
+
+                                                                                                 Data Sheet
+FM34C04D Serial Presence Detect (SPD) EEPROM                Ver.1.0                                        7
+Device Operation
+CLOCK AND DATA TRANSITIONS:                              minimum SCL clock speed of 10kHz to avoid any
+The SDA pin is normally pulled high with an external     timeout issues.
+device. Data on the SDA pin may change only during
+SCL low time periods (refer to Figure 4). Data           DEVICE RESET AND INITIALIZATION:
+changes during SCL high periods will indicate a          The FM34C04D incorporates an internal Power-On
+start or stop condition as defined below.                Reset (POR) circuit to help prevent inadvertent
+                                                         operations during power-up and power down cycles.
+START CONDITION:                                         On a cold power-up, the supply voltage must rise
+A high-to-low transition of SDA with SCL high is a       monotonically between VPON(max) and VCC(min)
+start condition which must precede any other             without any ringback to ensure a proper power-up.
+command (refer to Figure 5).                             Once the supply voltage has passed the VPON(max)
+                                                         threshold, the device is reset.
+STOP CONDITION:
+A low-to-high transition of SDA with SCL high is a       Before selecting the device and issuing instructions,
+stop condition. After a read sequence, the stop          a valid and stable supply voltage must be applied
+command will place the EEPROM in a standby               and no command should be issued to the device for
+power mode (refer to Figure 5).                          the time specified by the t INIT parameter. The supply
+                                                         voltage must remain stable and valid until the end
+ACKNOWLEDGE:                                             of the instructions transmission, and for a Write
+All address and data words are serially transmitted to   instruction, until the end of the internal write cycle
+and from the EEPROM in 8-bit words. The EEPROM           (tWR).
+sends a zero during the ninth clock cycle to
+acknowledge that it has received each word.              At power down (phase during which V CC decreases
+                                                         continuously), as soon as V CC drops from
+STANDBY MODE:                                            VPON(max), the device stops responding to
+The FM34C04D features a low-power standby mode           commands.
+which is enabled: (a) upon power-up and (b) after
+the receipt of the stop bit and the completion of any    On warm power cycling, VCC must remain below
+internal operations.                                     VPOFF(min) for tPOFF, and must meet cold power on
+                                                         reset timing when restoring power(refer to Figure
+TIMEOUT FUNCTION:                                        8).
+The FM34C04D supports the industry standard
+bus Timeout feature to help prevent potential            2-WIRE SOFTWARE RESET:
+system bus hang-ups. The device resets its serial        After an interruption in protocol, power loss or
+interface and will stop driving the bus (will let SDA    system reset, any 2-wire part can be reset in
+float high) if the SCL pin is held low for more than     following these steps:
+the minimum Timeout (tTIMEOUT ) specification. The       1. Clock up to 9 Cycles,
+FM34C04D will be ready to accept a new Start             2. Look for SDA high in each cycle while SCL is
+condition before the maximum tTIMEOUT has elapsed            high and then,
+(refer to Figure 7). This feature does require a         3. Create a start condition as SDA is high.
+
+
+
+
+                                                                                                Data Sheet
+FM34C04D Serial Presence Detect (SPD) EEPROM               Ver.1.0                                          8
+Bus Timing
+Figure 2．SCL: Serial Clock, SDA: Serial Data I/O
+
+
+                                           tHIGH
+                                   tF                                                       tR
+     SCL                          tLOW                  tLOW
+
+
+            tSU.STA            tHD.STA    tHD.DAT                     tSU.DAT                    tSU.STO
+     SDA
+     IN
+
+                                                                      tHD.DAT                        tBUF
+     SDA
+     OUT
+
+
+
+
+Write Cycle Timing
+Figure 3．SCL: Serial Clock, SDA: Serial Data I/O
+
+
+
+
+    SCL
+
+
+    SDA            8th BIT         ACK
+
+           WORD n                                                 tWR1
+                                                STOP                              START
+                                              CONDITION                         CONDITION
+
+
+Note: 1. The write cycle time tWR is the time from a valid stop condition of a write sequence to the end of the
+         internal clear/write cycle.
+
+
+
+
+                                                                                                  Data Sheet
+FM34C04D Serial Presence Detect (SPD) EEPROM                Ver.1.0                                         9
+Figure 4．Data Validity
+
+
+
+
+      SDA
+
+
+
+      SCL
+                              DATA STABLE                   DATA STABLE
+
+                                            DATA CHANGE
+
+
+
+Figure 5．Start and Stop Definition
+
+
+
+      SDA
+
+
+
+      SCL
+
+                  START                                                   STOP
+
+
+
+Figure 6．Output Acknowledge
+
+
+
+         SCL                     1                           8            9
+
+
+         DATA
+         IN
+
+
+         DATA
+         OUT
+
+
+                 START                                            ACKNOWLEDGE
+
+
+
+
+                                                                                 Data Sheet
+FM34C04D Serial Presence Detect (SPD) EEPROM      Ver.1.0                                10
+Timeout Timing
+Figure 7．Time Out
+
+                                                                                    tTIMEOUT (MAX)
+
+                                                                              tTIMEOUT (MIN)
+
+                                    SCL
+
+
+                                                                                               Device will release Bus and be
+                                                                                               ready to accept a new Start
+                                                                                               Condition within this Time
+
+
+
+Power-up Timing
+Figure 8．VCC Ramp Up and Ramp Down
+
+
+                                                              Cold Power                             Warm Power
+                                                              On Reset                               On Reset
+                                                tINIT
+                                                              First Command
+
+                                                   VCC(Min)
+                                 VPON                                                                     tOFF
+                                                                                                  VPOFF           VPOFF
+
+
+
+Maximum RBUS value VS. Bus capacitance (CBus)
+Figure 9．RBUS value VS. Bus capacitance (CBus)
+       Maximum RP Value(KΩ)
+
+
+
+
+                                                                                                                          RBUS
+
+
+                                                                                                     Bus Master    SCL           FM34C04D
+                                                                                                                   SDA
+                                                                                                                          CBUS
+
+
+
+
+                              (1) f to 100KHz
+                              (2) f to 400KHz           CBUS(pF)
+                              (3) f to 1MHz
+
+
+
+                                                                                                                                 Data Sheet
+FM34C04D Serial Presence Detect (SPD) EEPROM                                       Ver.1.0                                                  11
+Device Addressing
+To start a communication between the bus master and the slave device, the bus master must initiate a Start
+condition. Following this, the bus master sends the device select code, shown in Table 1 (on Serial Data
+(SDA), most significant bit first).
+
+The Device Type Identifier Code (DTIC) consists of a 4-bit device type identifier, and a 3-bit Logical Serial
+Address (LSA2, LSA1, LSA0). To address the Data memory, the 4-bit device type identifier is 1010b; to
+access the write-protection settings, it is 0110b; to access the Security Sector and UID, it is 1011b.
+
+Table 1．Device Type Identifier Code (DTIC)
+                                           Device type identifier (1) Select address (2) (3) R/W
+             Function                   Abbr                                                        SA0 pin
+                                             b7   b6     b5    b4      b3      b2     b1       b0
+Read Data Memory                      RSPD                                                   1    0 or 1
+                                           1    0      1     0       LSA2 LSA1 LSA0
+Write Data Memory                     WSPD                                                   0    0 or 1
+Read Security Sector                  RSS                            LSA2 LSA1 LSA0 1             0 or 1
+                                           1    0      1     1
+Write Security Sector                 WSS                            LSA2 LSA1 LSA0 0             0 or 1
+Read UID                              RUID 1    0      1     1       LSA2 LSA1 LSA0 1             0 or 1
+Set Write Protection, block 0         SWP0                           0       0      1        0    VHV
+Set Write Protection, block 1         SWP1                           1       0      0        0    VHV
+Set Write Protection, block 2         SWP2                           1       0      1        0    VHV
+Set Write Protection, block 3         SWP3                           0       0      0        0    VHV
+Clear All Write Protection            CWP                            0       1      1        0    VHV
+Read Protection Status, block 0 (5)   RPS0                           0       0      1        1    0,1 or VHV
+Read Protection Status, block 1 (5)   RPS1 0    1      1     0       1       0      0        1    0,1 or VHV
+Read Protection Status, block 2 (5)   RPS2                           1       0      1        1    0,1 or VHV
+Read Protection Status, block 3 (5)   RPS3                           0       0      0        1    0,1 or VHV
+Set Bank Address to 0 (6)             SBA0                           1       1      0        0    0,1 or VHV
+Set Bank Address to 1 (6)             SBA1                           1       1      1        0    0,1 or VHV
+Read Bank Address (7)                 RBA                            1       1      0        1    0,1 or VHV
+Reserved                              -                              All other encodings          0,1 or VHV
+Note:
+1. The most significant bit, b7, is sent first.
+2. Logical Serial Addresses (LSA) are generated by the combination of inputs on the SA2~SA0 pins.
+3. For backward compatibility with previous devices, the order of block select bits (b3 and b1) is not a simple
+   binary encoding of the block number.
+4. SA0 pin is driven to 0=GND, 1=VCC, or VHV.
+5. Reading the block protection status results in Ack when the block is not write-protected, and results in
+   NoAck when the block is write-protected.
+6. Setting the EE bank address to 0 selects the lower 256 bytes of EEPROM; setting it to 1 selects the upper
+   256 bytes of EEPROM. Subsequent Read EE or Write EE commands operate on the selected EE bank.
+7. Reading the EE bank address results in Ack when the current bank is 0, and NoAck when the current bank is 1.
+
+Table 2．Word Address
+      Access Area                Bit7          Bit6   Bit5     Bit4      Bit3      Bit2      Bit1      Bit0
+      Data Memory                 A7            A6     A5      A4        A3        A2        A1        A0
+     Security Sector              0             0       x       x        A3        A2        A1        A0
+  Security Sector Lock Bit         x            1       x       x         x         x         x         x
+    Unique ID Number              1             0       x       x         0         0         0         0
+                                 MSB                                                                   LSB
+Note:
+1. x = Don`t care bit.
+2. The value of word address is „don‟t care‟ for SWPn/CWP/RPSn/SBAn/RBA instructions
+                                                                                                Data Sheet
+FM34C04D Serial Presence Detect (SPD) EEPROM                 Ver.1.0                                          12
+Write Operations
+The FM34C04D supports single Byte Write and Page Write operations up to the maximum page size of 16 bytes
+in one operation. The only difference between a Byte Write and a Page Write operation is the amount of data
+bytes sent to the device. Regardless of whether a Byte Write or Page Write operation is performed, the internally
+self-timed write cycle will take the same amount of time to write the data to the addressed memory location(s).
+
+CAUTION: All Byte Write and Page Write operations should be preceded by the SBA and or RBA commands
+to ensure the internal address counter is located in the desired half of the memory. If a Byte Write or Page
+Write operation is attempted to a protected block, the FM34C04D will respond (ACK or NoACK) to the write
+operation according to Table 3.
+
+Table 3 Acknowledge Status When Writing Data or Defining Write Protection
+                               (instructions with R/W bit = 0)
+                                                                                               Write cycle
+    Status           Instruction         Ack     Word Address       Ack        Data byte        Ack
+                                                                                                   (tW)
+              SWPn                     NoAck Not significant       NoAck Not significant NoAck No
+              CWP                      Ack   Not significant       Ack   Not significant Ack   Yes
+Protected
+              Page or byte write
+                                       Ack       Address           Ack      Data              NoAck No
+              in protected block
+              SWPn or CWP              Ack       Not significant   Ack      Not significant Ack         Yes
+Not Protected
+              Page or byte write       Ack       Address           Ack      Data            Ack         Yes
+
+BYTE WRITE:                                                  condition followed by the device address word. The
+A write operation requires two 8-bit data word address       read/write bit is representative of the operation
+following the device address word and acknowledgment.        desired. Only if the internal write cycle has
+Upon receipt of this address, the EEPROM will again          completed will the EEPROM respond with a zero
+respond with a zero and then clock in the first 8-bit data   allowing the read or write sequence to continue.
+word. Following receipt of the 8-bit data word, the
+EEPROM will output a zero and the addressing device,         WRITE SECURITY SECTOR:
+such as a microcontroller, must terminate the write          Write the Security Sector is similar to the page write but
+sequence with a stop condition. At this time the             requires use of device address, and the special word
+EEPROM enters an internally-timed write cycle, tWR, to       address seen in Table 1~2. Address bits A<7:6> which
+the nonvolatile memory. All inputs are disabled during       must be equal to „00b‟. Lower address bits A<3:0>
+this write cycle and the EEPROM will not respond until
+                                                             define the byte address inside the Security Sector (refer
+the write is complete (refer to Figure 9).
+                                                             to Figure 14).And other address bits are don‟t care.
+PAGE WRITE:
+The 4K EEPROM is capable of 16-byte page writes.             If the Security Sector is locked, the data bytes
+A page write is initiated the same way as a byte             transferred during the Write Security Sector
+write, but the microcontroller does not send a stop          operation are not acknowledged (NoAck).
+condition after the first data word is clocked in.
+Instead, after the EEPROM acknowledges receipt of            LOCK SECURITY SECTOR:
+the first data word, the microcontroller can transmit        Lock the Security Sector is similar to the byte write but
+up to 15 more data words. The EEPROM will                    requires use of device address, and special word
+respond with a zero after each data word received.           address seen in Table 1. The word address bits
+The microcontroller must terminate the page write            A<7:6> must be „x1b‟, all other word address bits are
+sequence with a stop condition (refer to Figure 10).         don‟t care. The data byte must be equal to the binary
+                                                             value xxxx xx1x, where x is don't care (see Figure 16 ).
+ACKNOWLEDGE POLLING:
+Once the internally timed write cycle has started and
+the EEPROM inputs are disabled, acknowledge                  If the Security Sector is locked, the data bytes
+polling can be initiated. This involves sending a start      transferred during the Lock Security Sector
+                                                             operation are not acknowledged (NoAck).
+
+                                                                                                       Data Sheet
+FM34C04D Serial Presence Detect (SPD) EEPROM                   Ver.1.0                                             13
+Read Operations
+All Read operations are initiated by the Master             SEQUENTIAL READ:
+transmitting a Start bit, a device type identifier of       Sequential reads are initiated by either a current
+„1010‟ (Ah), three Logical Serial Address bits (LSA2,       address read or a random address read. After the
+LSA1, LSA0) that match their corresponding                  microcontroller receives a data word, it responds
+hard-wired address pins (SA2, SA1, SA0), and the            with an ACK. As long as the EEPROM receives an
+R/W select bit with a Logic 1 state. In the following       ACK, it will continue to increment the data word
+clock cycle, the device should respond with an ACK.         address and serially clock out sequential data words.
+The subsequent protocol depends on the type of              When the memory address limit is reached, the data
+Read operation desired.                                     word address will “roll over” and the sequential read
+                                                            will continue. The sequential read operation is
+CAUTION: For 4-Kbit Data Memory, all Read operations        terminated when the microcontroller does not
+                                                            respond with a zero but does generate a following
+should be preceded by the SBA and/or RBA
+                                                            stop condition (refer to Figure 13)
+commands to ensure the desired half of the memory
+is selected. The reason this is important, for example,
+during a Sequential Read operation on the last byte         UNIQUE ID READ:
+                                                            Reading the serial number is similar to the
+in the first half of the memory (address FFh) with
+                                                            sequential read but requires use of the device
+SBA=0 (indicating first half is selected), the internal
+                                                            address, a dummy write, and the use of specific
+address counter will roll-over to address 00h in the
+                                                            word address seen in Table 1~2. Address bits
+first half of memory as opposed to the first byte in the
+                                                            A<7:6> which must be equal to „10b‟. Lower address
+second half of the memory. For more information on
+                                                            bits A<3:0> define the byte address inside the UID.
+the SBA and RBA commands, see Table 1.
+                                                            And other address bits are don‟t care. If the
+                                                            application desires to read the first byte of the UID,
+CURRENT ADDRESS READ:
+                                                            the lower address bits A<3:0> would need to be
+The internal data word address counter maintains
+                                                            „0000b‟.
+the last address accessed during the last read or
+write operation, incremented by one. This address
+                                                            When the end of the 128-bit UID number is reached
+stays valid between operations as long as the chip
+power is maintained. The address “roll over” during         (16 bytes of data), the data word address will
+                                                            roll-over back to the beginning of the 128-bit UID
+read is from the last byte of the last memory page to
+                                                            number. The Unique ID Read operation is
+the first byte of the first page. The address “roll over”
+                                                            terminated when the microcontroller does not
+during write is from the last byte of the current page
+                                                            respond with a zero (ACK) and instead issues a
+to the first byte of the same page.
+                                                            Stop condition (refer to Figure 18).
+Once the device address with the read/write select
+bit set to one is clocked in and acknowledged by the        READ SECURITY SECTOR：
+EEPROM, the current address data word is serially           Read the Security Sector is similar to the random
+clocked out. The microcontroller does not respond           read but requires use of device address, a dummy
+with an input zero but does generate a following            write, and the use of specific word address seen in
+stop condition (refer to Figure 11).                        Table 1~2. The higher address bits are don‟t care
+                                                            except for address bits A<7:6>，which must be equal
+RANDOM READ:                                                to „00b‟. The lower address bits A<3:0> define the
+A random read requires a “dummy” byte write                 byte address inside the Security Sector.
+sequence to load in the data word address. Once             The internal byte address is automatically
+the device address word and data word address are           incremented to the next byte address after each
+clocked in and acknowledged by the EEPROM, the              byte of data is clocked out. When the last byte (0Fh)
+microcontroller must generate another start                 is reached, it will roll over to 00h, the first byte of the
+condition. The microcontroller now initiates a current      Security Sector, and continue to increment (refer to
+address read by sending a device address with the           Figure 15).
+read/write select bit high. The EEPROM
+acknowledges the device address and serially
+clocks out the data word. The microcontroller does
+not respond with a zero but does generate a
+following stop condition (refer to Figure 12).
+
+                                                                                                       Data Sheet
+FM34C04D Serial Presence Detect (SPD) EEPROM                  Ver.1.0                                              14
+READ LOCK STATUS：
+There are two ways to check the lock status of the        2 The second way is initiated by a Lock Status
+Security Sector.                                          Read. Lock Status Read is similar to the random
+1 The first way is initiated by a Security Sector         read but requires use of device address seen in
+Write, the EEPROM will acknowledge if the                 Table 1~2, a dummy write, and the use of specific
+Security Sector is unlocked, while it will not            word address. The address bits A<7:6> must be
+acknowledge if the Security Sector is locked.             „x1b‟, all other address bits are Don't Care. The
+                                                          Lock bit is the BIT1 of the byte read on SDA. It is
+Once the acknowledge bit is read, it is                   at “1” when the lock is active and at “0” when the
+recommended to generate a Start condition                 lock is not active. The same data is shifted out
+followed by a Stop condition, so that:                    repeatedly until the microcontroller does not
+ Start: the truncated command is not executed            respond with a zero but does generate a following
+     because the Start condition resets the device        stop condition (refer to Figure 17).
+     internal logic
+ Stop: the device is then set back into Standby
+     mode by the Stop condition.
+
+
+Setting the write protection
+There are four independent memory blocks, and each block may be independently protected. The memory
+blocks are:
+– Block 0 = memory addresses 0x00 to 0x7F (decimal 0 to 127), Bank address = 0
+– Block 1 = memory addresses 0x80 to 0xFF (decimal 128 to 255), Bank address = 0
+– Block 2 = memory addresses 0x00 to 0x7F (decimal 0 to 127), Bank address = 1
+– Block 3 = memory addresses 0x80 to 0xFF (decimal 128 to 255), Bank address = 1
+
+The device has three software commands for setting, clearing, or interrogating the write protection status.
+– SWPn: Set Write Protection for block n
+– CWP: Clear Write Protection for all blocks
+– RPSn: Read Protection status for block n
+
+The level of write protection (set or cleared), that has been defined using these instructions, remains defined
+even after a power cycle.
+
+The DTICs of the SWP, CWP and RPS instructions are defined in Table 1.
+
+SET AND CLEAR THE WRITE PROTECTION
+(SWPn and CWP):                                           The DTIC of the RPSn instruction is defined in Table 1.
+If the software write protection has been set with the
+SWPn instruction, it may be cleared again with a          Set the bank address (SBAn)
+CWP instruction. SWPn acts on a single block as           The SBAn command selects the lower 256 bytes
+specified in the SWPn command, but CWP clears             (SBA0) or upper 256 bytes (SBA1). After a cold or
+the write protection for all blocks.When decoded,         warm power-on reset, the bank address is always 0,
+SWPn and CWPn trigger a write cycle lasting tWR           selecting the lower 256 bytes. (refer to Figure 20)
+(Write Cycle Time). (refer to Figure 19)
+                                                          The DTIC of the SBAn instruction is defined in Table 1.
+The DTICs of the SWPn and CWP instructions are
+defined in Table 1.                                       Read the bank address (RBA)
+                                                          The RBA command determines if the currently
+READ THE PROTECTION STATUS (RPSn)                         selected bank is 0 (device returns Ack) or 1 (device
+The serial bus master issues an RPSn command              returns NoAck). (refer to Figure 21)
+specifying which block to report upon. If the software
+write protection has not been set, the device replies     The DTIC of the RBA instruction is defined in Table
+to the data byte with an Ack. If it has been set, the     1.
+device replies to the data byte with a NoAck.
+                                                                                                  Data Sheet
+FM34C04D Serial Presence Detect (SPD) EEPROM                Ver.1.0                                           15
+Figure 9．Byte Write
+
+
+                               S                    W
+                               T                    R                                                        S
+                               A                    I                                                        T
+                               R        DEVICE      T            WORD                                        O
+                               T       ADDRESS      E           ADDRESS                   DATA               P
+                    SDA LINE
+
+                                   M               LRA      M                  LA                        A
+                                   S               S / C    S                  SC                        C
+                                   B               BW K     B                  BK                        K
+
+
+
+
+Figure 10．Page Write
+
+
+            S                   W
+            T                   R                                                                                            S
+            A                   I                                                                                            T
+            R        DEVICE     T         WORD                                                                               O
+            T       ADDRESS     E        ADDRESS                DATA (n)             DATA(n+1)               DATA(n+x)       P
+ SDA LINE
+
+                M              LRA                      A                      A                     A                   A
+                S              S / C                    C                      C                     C                   C
+                B              BW K                     K                      K                     K                   K
+
+
+
+
+Figure 11．Current Address Read
+
+
+                                          S
+                                          T                      R                               S
+                                          A                      E                               T
+                                          R        DEVICE        A                               O
+                                          T       ADDRESS        D                 DATA          P
+                          SDA LINE
+
+                                              M             L R A                            N
+                                              S             S / C                            O
+                                              B             BWK                              A
+                                                                                             C
+                                                                                             K
+
+
+
+
+                                                                                                                 Data Sheet
+FM34C04D Serial Presence Detect (SPD) EEPROM                         Ver.1.0                                                 16
+Figure 12． Random Read
+
+               S                       W                               S
+               T                       R                               T                     R                            S
+               A                       I                               A                     E                            T
+               R        DEVICE         T         WORD                  R        DEVICE       A                            O
+               T       ADDRESS         E        ADDRESS                T       ADDRESS       D           DATA n           P
+   SDA LINE
+
+                   M               LRA          M              L A         M             L       A                    N
+                   S               S / C        S              S C         S             S       C                    O
+                   B               BW K         B              BK          B             B       K
+                                                                                                                      A
+                                                                                                                      C
+                                                                                                                      K
+                               DUMMY WRITE
+
+
+
+Figure 13． Sequential Read
+
+
+                        R                                                                                                  S
+                        E                                                                                                  T
+        DEVICE          A                                                                                                  O
+       ADDRESS          D         DATA n                  DATA n+1                DATA n+2                DATA(n+x)        P
+
+  SDA LINE
+
+                        RA                          A                       A                        A                N
+                        / C                         C                       C                        C                O
+                        WK                          K                       K                        K
+                                                                                                                      A
+                                                                                                                      C
+                                                                                                                      K
+
+
+
+Figure 14． Write Security Sector
+
+
+               S                       W
+               T                       RI
+               A                       T             WORD
+               R         DEVICE
+               T        ADDRESS        E            ADDRESS
+    SDA LINE                                        **
+                   M               L R A                           A
+                   S               S / C                           C
+                   B               BWK                             K
+
+                                                                                                                           S
+                                                                                                                           T
+                              DATA n                    DATA n+1                 DATA n+2                  DATA n+x        O
+                                                                                                                           P
+
+
+
+                                            A                           A                        A
+                                            C                                                                         AC
+                                                                        C                        C                    K
+                                            K                           K                        K
+
+Note: 1. * = Don’t CARE bits.
+
+
+
+
+                                                                                                                  Data Sheet
+FM34C04D Serial Presence Detect (SPD) EEPROM                           Ver.1.0                                                 17
+Figure 15． Read Security Sector
+
+              S                     W                          S
+              T                     R                          T                   R
+              A                     I                          A                   E
+              R        DEVICE       T      WORD                R      DEVICE       A
+              T       ADDRESS       E     ADDRESS              T     ADDRESS       D
+   SDA LINE                               **
+                  M             LRA                        A                           A
+                  S             S / C                      C                           C
+                  B             BW K                       K                           K
+
+
+
+
+                            DUMMY WRITE
+
+
+
+                                                                                                                    S
+                                                                                                                    T
+                                DATA n                DATA n+1               DATA n+2               DATA n+x        O
+                                                                                                                    P
+
+
+
+                                              A                       A                    A                    N
+                                              C                       C                    C                    O
+                                              K                       K                    K
+                                                                                                                A
+                                                                                                                C
+                                                                                                                K
+                                         Note: 1. * = Don’t CARE bits.
+
+Figure 16． Lock Security Sector
+
+
+                           S                      W
+                           T                      R                                                     S
+                           A                      I                                                     T
+                           R         DEVICE       T         WORD                                        O
+                                                                                       DATA 0
+                           T        ADDRESS       E        ADDRESS                                      P
+              SDA LINE                                 *   **                    * * * ***      *
+                                M             LRA                            A                      A
+                                S             S / C                          C                      C
+                                B             BW K                           K                      K
+
+
+
+Note: 1. * = Don’t CARE bits.
+
+
+
+
+                                                                                                            Data Sheet
+FM34C04D Serial Presence Detect (SPD) EEPROM                       Ver.1.0                                              18
+Figure 17． Read Lock Status
+
+
+                    S                  W                          S
+                    T                  R                          T                 R
+                    A                  I                          A                 E
+                    R        DEVICE    T           WORD           R     DEVICE      A
+                    T       ADDRESS    E          ADDRESS         T    ADDRESS      D
+        SDA LINE                              *   **
+                        M             LRA                     A                         A
+                        S             S / C                   C                         C
+                        B             BW K                    K                         K
+
+
+
+
+                                  DUMMY WRITE
+
+
+
+                                                                                                                    S
+                                                                                                                    T
+                                  LOCK BYTE            LOCK BYTE             LOCK BYTE           LOCK BYTE          O
+                                                                                                                    P
+
+                                              «                   «                     «               «
+                                                   A                    A                   A                   N
+                                                   C                    C                   C                   O
+                                                   K                    K                   K
+                                                                                                                A
+                                                                                                                C
+                                                                                                                K
+
+                                           Note: 1. * = Don’t CARE bits.
+                                                  2. « = LOCK bit.
+
+
+Figure 18．Read Unique ID
+
+
+                    S                  W                          S
+                    T                  R                          T                 R
+                    A                  I                          A                 E
+                    R        DEVICE    T           WORD           R     DEVICE      A
+                    T       ADDRESS    E          ADDRESS         T    ADDRESS      D
+         SDA LINE                                 **
+                        M             LRA                     A                         A
+                        S             S / C                   C                         C
+                        B             BW K                    K                         K
+
+
+
+
+                                  DUMMY WRITE
+
+
+
+                                                                                                                    S
+                                 Serial Number         Serial Number        Serial Number       Serial Number       T
+                                    DATA 0                DATA 1               DATA 2             DATA 15           O
+                                                                                                                    P
+
+
+
+                                                   A                    A                   A               N
+                                                   C                    C                   C               O
+                                                   K                    K                   K
+                                                                                                            A
+                                                                                                            C
+                                                                                                            K
+
+                                              Note: 1. * = Don’t CARE bits.
+
+
+
+
+                                                                                                                Data Sheet
+FM34C04D Serial Presence Detect (SPD) EEPROM                          Ver.1.0                                           19
+Figure 19．Set and clear the write protection (SWPn and CWP)
+
+                         S                    W
+                         T                    R                                                S
+                         A                    I                                                T
+                         R        DEVICE      T         WORD
+                                                                             DATA              O
+                         T       ADDRESS      E        ADDRESS                                 P
+              SDA LINE                              ** * ** * * *         * * * ** * * *
+                             M              L R A                     A                    A
+                             S              S / C                     C                    C
+                             B              BWK                       K                    K
+
+
+Note: 1. * = Don’t CARE bits.
+
+
+
+Figure 20．Set Bank Address (SBA)
+
+                         S                    W
+                         T                    R                                                S
+                         A                    I                                                T
+                         R        DEVICE      T       DUMMY BYTE           DUMMY BYTE          O
+                         T       ADDRESS      E                                                P
+              SDA LINE                              ** * ** * * *         * * * ** * * *
+                             M              L R A                     N                    N
+                             S              S / C                     O                    O
+                             B              BWK
+                                                                      A                    A
+                                                                      C                    C
+                                                                      K                    K
+Note: 1. * = Don’t CARE bits.
+
+
+
+Figure 21．Read Bank Address (RBA)
+
+                                    S
+                                    T                   R
+                                                        E                           S
+                                    A                                               T
+                                    R        DEVICE     A
+                                                        D         DUMMY BYTE        O
+                                    T       ADDRESS                                 P
+                         SDA LINE                              ** * ** * * *
+                                        M             L R A1                    N
+                                        S             S / C                     O
+                                        B             BWK
+                                                                                A
+                                                                                C
+                                                                                K
+Note:
+1. The FM34C04D will only acknowledge if Bank 0 is currently selected.
+2. * = Don’t CARE bits.
+3. In accordance with the JEDEC spec, the master is allowed to read multiple dummy bytes,
+    transmitting a NoAck after each byte.
+
+
+                                                                                                   Data Sheet
+FM34C04D Serial Presence Detect (SPD) EEPROM                Ver.1.0                                        20
+Ordering Information
+
+                                                               FM 34C 04 D -PP -C -H
+        Company Prefix
+        FM = Shanghai Fudan Microelectronics Group Co.,ltd
+
+        Product Family
+        34C
+        34C == Serial
+               Serial Presence
+                      Presence Detect
+                               Detect EEPROM
+                                      EEPROM
+
+        Product Density
+        04 = 4k-bit
+
+        Device Type
+        D = with 128-bit Unique ID
+            with 16-byte Security Sector
+
+        Package Type 1
+        TS = 8-pin TSSOP
+                                2
+        DN = 8-pin TDFN (2x3mm)
+
+        Product Carrier
+        U = Tube
+        T = Tape and Reel
+
+        HSF ID Code
+        G = RoHS Compliant, Halogen-free, Antimony-free
+
+
+      Note:
+      1. For TS, DN package, MSL1 package are available, for detail please contact local sales office.
+      2. For Thinner package please contact local sales office.
+
+
+
+
+                                                                                             Data Sheet
+FM34C04D Serial Presence Detect (SPD) EEPROM                 Ver.1.0                                     21
+Part Marking Scheme
+
+
+TSSOP8
+
+
+
+
+  FM34C04D
+ YYWWALHM
+                      Moisture Sensitivity Level
+                        1=MSL1
+
+                     HSF ID Code
+                        G = RoHS Compliant, Halogen-free, Antimony-free
+                     Lot Number（just with 0~9、A~Z）
+                     Assembly’s Code
+                     Work week during which the product was molded (eg..week 12)
+                     The last two digits of the year In which the product was sealed / molded.
+
+
+TDFN8 (2x3mm)
+
+  3   C    2
+                    Product Density Code
+  D   Y   M
+                    The month (hexadecimal digit) in which the product was molded.
+  A   L   H         The year in which the product was sealed/molded, Using hexadecimal (1-9, A-
+                    C) representation
+                    HSF ID Code
+          M          G = RoHS Compliant, Halogen-free, Antimony-free
+                     Moisture Sensitivity Level
+                     1=MSL1
+                    Lot Number（just with 0~9、A~Z）
+
+                    Assembly’s Code
+
+
+
+
+                                                                                        Data Sheet
+FM34C04D Serial Presence Detect (SPD) EEPROM             Ver.1.0                                  22
+Packaging Information
+
+
+                                         TSSOP8
+
+
+
+
+                  Symbol                  MIN                   MAX
+                     D                   2.900                  3.100
+                    E1                   4.300                  4.500
+                     b                   0.190                  0.300
+                     c                   0.090                  0.200
+                     E                   6.200                  6.600
+                     A                                          1.200
+                    A1                   0.050                  0.150
+                     e                            0.650 (BSC)
+                     L                   0.450                  0.750
+                     θ                     0°                     8°
+              NOTE:
+              1. Dimensions are in Millimeters.
+
+
+
+                                                                        Data Sheet
+FM34C04D Serial Presence Detect (SPD) EEPROM      Ver.1.0                       23
+                                    TDFN8 (2x3mm)
+
+
+
+
+                   Symbol                  MIN                 MAX
+                     A                    0.700                0.800
+                     A1                   0.000                0.050
+                     D                    1.900                2.100
+                     E                    2.900                3.100
+                     D2                   1.400                1.600
+                     E2                   1.400                1.700
+                      k                           0.150(MIN)
+                     b                    0.200                0.300
+                      e                           0.500(TYP)
+                     L                    0.200                0.500
+              NOTE:
+              1. Dimensions are in Millimeters.
+
+
+
+
+                                                                       Data Sheet
+FM34C04D Serial Presence Detect (SPD) EEPROM      Ver.1.0                      24
+Revision History
+
+            Publication
+ Version                  Pages                               Revise Description
+               date
+Preliminary  Oct. 2015     26     Initial document Release.
+    1.0      Apr. 2017     26     Corrected the typo.
+
+
+
+
+                                                                                   Data Sheet
+FM34C04D Serial Presence Detect (SPD) EEPROM           Ver.1.0                             25
+Sales and Service
+Shanghai Fudan Microelectronics Group Co., Ltd.
+Address: Bldg No. 4, 127 Guotai Rd,
+Shanghai City China.
+Postcode: 200433
+Tel: (86-021) 6565 5050
+Fax: (86-021) 6565 9115
+
+Shanghai Fudan Microelectronics (HK) Co., Ltd.
+Address: Unit 506, 5/F., East Ocean Centre, 98 Granville
+Road, Tsimshatsui East, Kowloon, Hong Kong
+Tel: (852) 2116 3288 2116 3338
+Fax: (852) 2116 0882
+
+Beijing Office
+Address: Room 423, Bldg B, Gehua Building,
+1 QingLong Hutong, Dongzhimen Alley north Street,
+Dongcheng District, Beijing City, China.
+Postcode: 100007
+Tel: (86-010) 8418 6608
+Fax: (86-010) 8418 6211
+
+Shenzhen Office
+Address: Room.1301, Century Bldg, No. 4002, Shengtingyuan
+Hotel, Huaqiang Rd (North),
+Shenzhen City, China.
+Postcode: 518028
+Tel: (86-0755) 8335 0911 8335 1011 8335 2011 8335 0611
+Fax: (86-0755) 8335 9011
+
+Shanghai Fudan Microelectronics (HK) Ltd Taiwan
+Representative Office
+Address: Unit 1225, 12F., No 252, Sec.1 Neihu Rd.,
+Neihu Dist., Taipei City 114, Taiwan
+Tel : (886-2) 7721 1890 (886-2) 7721 1889
+Fax: (886-2) 7722 3888
+
+Shanghai Fudan Microelectronics (HK) Ltd
+Singapore Representative Office
+Address : 237, Alexandra Road, #07-01 The Alexcier,
+Singapore 159929
+Tel : (65) 6472 3688
+Fax: (65) 6472 3669
+
+Shanghai Fudan Microelectronics Group Co., Ltd
+NA Office
+Address :2490 W. Ray Road Suite#2
+Chandler, AZ 85224 USA
+Tel : (480) 857-6500 ext 18
+
+Web Site: http://www.fmsh.com/
+
+
+                                                                      Data Sheet
+FM34C04D Serial Presence Detect (SPD) EEPROM                Ver.1.0           26
+

@@ -1,0 +1,1022 @@
+
+
+Understanding Gold Fingers in PCBs | AdvancedPCB
+
+Back
+
+Tools
+
+Trace Width Calculator
+
+Get a Quote
+
+PCB Artist Software
+
+Free DFM Filecheck
+
+View All Tools
+
+Solutions
+
+Quick-Turn Prototypes
+
+Advanced Technology PCBs
+
+Standard Technology PCBs
+
+Global Services
+
+Prototype Assembly
+
+Design Services
+
+DFM Verification
+
+Flex & Rigid-Flex
+
+View All Solutions
+
+Resources
+
+Manufacturing Capabilities
+
+Certifications
+
+Laminates
+
+Stackup Guides
+
+Tolerances
+
+Finishes
+
+Online Specials
+
+PCB Glossary
+
+Blog
+
+Company
+
+About Us
+
+Quality Assurance
+
+Careers
+
+Markets Served
+
+Why Choose AdvancedPCB?
+
+Engineering Student Sponsorships
+
+FAQs
+
+View All Company
+
+Contact Us
+
+Regional Sales Contacts
+
+Facilities
+
+Where to Buy
+
+View All Contact Us
+
+Get a Quote
+
+Contact AdvancedPCB
+
+Login
+
+1-800-979-4722
+
+Search
+
+Suggested term
+
+Get a Quote
+
+Login
+
+1-800-979-4722
+
+Home
+/
+
+Resources
+
+/
+
+Blog
+
+/
+
+Hard Gold, Hard Work: Designing PCB Edge Connectors That Last
+
+Hard Gold, Hard Work: Designing PCB Edge Connectors That Last
+
+Posted
+
+1/29/2026
+
+Gold fingers are the exposed, hard gold–plated edge connectors on printed circuit boards that slide into mating slots to create a reliable electrical interface. They are specifically designed for applications that require repeated insertion cycles, stable electrical performance, and long service life. Common in backplanes, daughtercards, and modular systems, gold fingers remain the preferred solution when durability and signal integrity matter.
+
+This article explains what gold fingers are, how they are manufactured, and why they are used, with guidance to help engineers confidently specify a PCB with this feature.
+
+What Are Gold Fingers?
+
+Gold fingers are plated contact pads located along the edge of a PCB that function as plug-in connectors. Unlike standard surface finishes intended for soldering, gold fingers are engineered for sliding contact. Their primary role is to maintain low, consistent contact resistance through thousands of mating cycles while resisting wear, oxidation, and corrosion.
+
+Gold fingers typically use hard electrolytic gold plated over a nickel barrier layer. The nickel acts as a diffusion barrier and provides mechanical strength, while the hard gold surface resists abrasion and fretting corrosion far better than tin or soft gold finishes. This construction keeps electrical performance stable over time, even in serviceable or hot-swap applications.
+
+A controlled edge bevel is equally important. Beveling reduces insertion force, prevents damage to the mating connector, and improves alignment during insertion. For this reason, gold finger PCB designs typically specify tight tolerances for bevel angle, edge straightness, and coplanarity.
+
+How Gold Fingers Are Manufactured
+
+Gold finger fabrication follows standard PCB processing up to the point where additional steps are introduced for edge connector durability.
+
+Design begins with defining finger length, pitch, spacing, keep-out zones, and bevel geometry, often with bevel angles between 20 and 45 degrees. These parameters should be reviewed early with the fabricator to ensure manufacturability.
+
+After copper circuitry is fabricated, solder mask is applied while leaving the gold finger area fully exposed. The PCB edge is then beveled using controlled machining to achieve smooth insertion. Nickel is plated first, typically 3 to 7 microns thick, followed by hard electrolytic gold, commonly around 0.5 to 1.0 microns or more depending on required mating cycle life. This hard gold finish is fundamentally different from ENIG and is specifically intended for wear resistance rather than solderability.
+
+Quality control includes XRF measurement of plating thickness, visual inspection for porosity or nodules, verification of bevel geometry, and cleanliness checks. Contamination on the contact surface can increase contact resistance and compromise long-term reliability.
+
+Why Use Gold Fingers?
+
+Gold fingers provide superior wear resistance and stable electrical performance compared to tin-plated contacts or separate board-to-board connectors. They support high mating cycle counts, reduce the risk of intermittent failures, and eliminate the need for additional connector hardware at the board edge.
+
+From a signal integrity perspective, hard gold over nickel provides a smooth, consistent contact interface. When combined with controlled-impedance routing to the edge connector, this helps minimize reflections and insertion loss in high-speed interfaces.
+
+Although hard gold plating increases initial fabrication cost, it often lowers total lifecycle cost by reducing maintenance, connector replacement, and field failures in modular and serviceable systems.
+
+Relevant IPC Standards
+
+Gold finger PCBs are commonly specified and evaluated using the following IPC standards:
+
+IPC-6012 – Qualification and performance specification for rigid printed boards
+
+IPC-A-600 – Acceptability of printed boards
+
+IPC-2221 – Generic standard on printed board design
+
+These standards define expectations for plating quality, visual acceptance, and mechanical integrity, while many applications also include custom requirements for gold thickness and mating durability.
+
+_________________________________________________________________________________________
+
+Frequently Asked Questions
+
+What is the difference between hard gold and ENIG on PCBs?
+
+Hard gold is electrolytically plated over a nickel barrier and is designed for wear resistance in sliding or repeated-mating contacts such as gold fingers. ENIG (electroless nickel immersion gold) is intended for solderability, not mechanical wear, and will degrade quickly if used in edge connector applications.
+
+How thick should gold plating be on PCB gold fingers?
+
+Gold thickness typically ranges from 0.5 to 1.0 microns or more, depending on the required number of mating cycles and reliability expectations. Higher cycle applications often specify thicker hard gold plating, which should be confirmed with the fabricator during design.
+
+Why is beveling required on gold fingers?
+
+Beveling reduces insertion force, improves alignment during mating, and minimizes wear on both the PCB and the connector. A properly controlled bevel helps prevent damage to the gold plating and ensures consistent electrical contact throughout the life of the product.
+
+Share this post:
+
+Circuit Board
+
+Circuit Board Design
+
+Manufacturing
+
+PCB Design
+
+PCB Design Software
+
+Printed Circuit Board Design
+
+Related Posts
+
+Built for the Factory Floor
+
+Learn how PCB design choices support reliable performance in industrial environments.
+
+Built for the Factory Floor
+
+Read More
+
+Is Your Robotic PCB Design Ready for Manufacturing?
+
+From Working Prototype to Production-Ready Industrial Robot PCB
+
+Is Your Robotic PCB Design Ready for Manufacturing?
+
+Read More
+
+PCB Thermal Management for Robotics
+
+How to design for Power, Motion, and Reliability
+
+PCB Thermal Management for Robotics
+
+Read More
+
+Browse
+
+By Tag
+
+Benefits
+
+Customer service
+
+Facts
+
+File check
+
+panelization
+
+pcb software
+
+prototype assembly
+
+service
+
+software
+
+traffic control
+
+2 layer boards
+
+3d printing
+
+4 layer boards
+
+4K Screens
+
+advanced circuits
+
+advanced circuits offshore
+
+advantage
+
+aerospace pcb
+
+AS9100 c
+
+assembly
+
+assembly services
+
+Aurora
+
+automobiles
+
+automotive
+
+Avoiding Common PCB Design Mistakes
+
+b2b
+
+barebones
+
+battery
+
+Best free pcb design software
+
+Best PCB Design Software
+
+biodegradable PCBs
+
+Blind and Buried Vias
+
+boards
+
+breadboards
+
+business
+
+CAM
+
+CAM hold
+
+car
+
+cars
+
+cell phones
+
+certifications
+
+charging stations
+
+cheap
+
+cheap pcb
+
+cheap pcb assembly
+
+cheap pcb manufacturing
+
+cheap pcb prototyping
+
+cheap printed circuit boards
+
+cheaper circuit boards
+
+china pcb manufacturing
+
+Choosing the Right PCB Company
+
+circuit board
+
+circuit board fabrication
+
+circuit board manufacturer
+
+circuit board manufacturing
+
+circuit boards
+
+Colorado
+
+Combo PCB Assembly
+
+common mistakes
+
+common pcb design mistakes
+
+components
+
+computers
+
+consumer electronics
+
+cost saving SMT
+
+custom
+
+Custom PCB
+
+custom printed circuit board
+
+data formats
+
+defense
+
+defense electronics
+
+defense pcb
+
+Denver Area
+
+designers
+
+development
+
+discount
+
+difference
+
+DIY
+
+double layer
+
+easy assembly
+
+economic
+
+electric cars
+
+electronic design
+
+electronics
+
+embedded antennas
+
+engineers
+
+environment
+
+epoxy laminates
+
+errors
+
+expanded capabilities
+
+expansion
+
+fabric pcb
+
+fabrication
+
+fabrication drawings
+
+finishes
+
+fitness tracking
+
+flex circuits
+
+flexible
+
+flex-rigid
+
+FR-4
+
+free dfm
+
+free pcb design
+
+free pcb design software
+
+Free PCB Layout Software
+
+full spec
+
+future
+
+gerber file
+
+gerber file viewer
+
+Gerber files
+
+gerber pcb
+
+Gold
+
+Gold in PCBs
+
+Green Energy
+
+Green PCB Design
+
+HDI
+
+hdi boards
+
+hdi pcb
+
+HDI PCBs
+
+High Density Interconnect
+
+high performance
+
+high power boards
+
+High Speed PCB Design
+
+high tg
+
+how to
+
+human element
+
+inspection
+
+Internet of Things
+
+IoT
+
+iphone6
+
+job creation
+
+jobs
+
+Keeping PCB Costs Low
+
+kids projects
+
+Kitted/Consigned PCB Assembly
+
+laminate
+
+laminates
+
+Laser Direct Imaging
+
+laser drilled microvias
+
+Layout
+
+LDI
+
+lead-free designs
+
+led basketball court
+
+less power
+
+low cost assembly
+
+low cost circuit boards
+
+low cost pcb
+
+Low Cost SMT Asspembly
+
+Low PCB Costs
+
+low-cost pcb prototyping
+
+machinery
+
+materials
+
+md&m
+
+md&m west 2018
+
+medical
+
+metal
+
+microvias
+
+microwaves & rf
+
+military
+
+MIL-PRF-55110G GF Etchback
+
+multi-layer
+
+multi-layer pcb
+
+Multilayer PCB
+
+multilayer printed circuit board
+
+multilayer printed circuit boards
+
+offshore pcb fabrication
+
+offshore pcb manufacturing
+
+offshore pcb production
+
+OLED
+
+online gerber file check
+
+online pcbdesign
+
+patents
+
+pc board
+
+pcb artist
+
+PCB Artist software
+
+pcb basics
+
+pcb board
+
+pcb capabilities
+
+PCB Companies
+
+PCB Concepts
+
+PCB Construction
+
+pcb des
+
+PCB Design Considerations
+
+capabilities
+
+circuit board design
+
+circuit board design software
+
+circuit board design tools
+
+circuit design
+
+Design
+
+Design Considerations
+
+freedfm
+
+Gerber File Check
+
+gerber file design
+
+manufacturing
+
+mil grade PCB
+
+military pcb
+
+PCB
+
+PCB assembly
+
+pcb design
+
+pcb design mistakes
+
+pcb design online
+
+PCB Design Software
+
+pcb design tips
+
+pcb epoxy
+
+PCB fabrication
+
+pcb files
+
+pcb gerber files
+
+PCB Layout
+
+PCB Layout Preparation
+
+PCB Layout Software
+
+PCB manufacturer
+
+PCB Manufacturing
+
+pcb manufacturing offshore
+
+PCB Materials
+
+pcb offshore manufacturing
+
+PCB Production
+
+pcb production runs
+
+PCB prototype
+
+PCB Prototype Design Software
+
+pcb prototyping
+
+PCB quick turn
+
+PCB technology
+
+pcba
+
+pcbs
+
+PCBs and 4K Screens
+
+PCBs and OLED
+
+perfboards
+
+performance
+
+plating
+
+plating finishes
+
+PPE
+
+PPO
+
+PPO/PPE
+
+printed circuit board
+
+printed circuit board assembly
+
+printed circuit board design
+
+printed circuit board layout
+
+printed circuit board manufacturing
+
+Printed Circuit Board Software
+
+Printed Circuit Boards
+
+printed circuit boards
+
+printed circuits boards
+
+production
+
+production pcb
+
+production quality
+
+production volume pcb
+
+Prototype
+
+prototype pcb
+
+quality
+
+Quality PCB Manufacturing
+
+quote
+
+recycling
+
+Renewable Energy
+
+rf pcb
+
+robots
+
+rogers material
+
+sales
+
+score
+
+single layer PCB
+
+small quantity PCB
+
+smaller is better
+
+smart phones
+
+smt
+
+SMT Assembly
+
+smt design
+
+SMT PCB
+
+smt production
+
+SMT Solderpaste Stencils
+
+smta
+
+soldering
+
+solderpaste
+
+soluble
+
+sound
+
+space coast conference
+
+space coast expo
+
+space coast forum
+
+specifications
+
+sports
+
+standard
+
+stencils
+
+Surface Mount Technology
+
+tab-route
+
+through-hole technology
+
+tolerances
+
+turnkey pcb assembly
+
+ul
+
+ul certification
+
+vehicle
+
+via tenting
+
+vias
+
+Wastewater Reclamation Award
+
+wearable
+
+wearables
+
+By Category
+
+Aerospace
+
+Aerospace PCB
+
+Assembly
+
+Blind and Buried Vias
+
+Circuit Board
+
+Circuit Board Assembly
+
+Circuit Board Design
+
+Commercial
+
+Commercial PCB
+
+Consumer Electronics
+
+Custom PCB
+
+Custom Printed Circuit Board
+
+Defense
+
+Development
+
+Expanded Capabilities
+
+Gerber Files
+
+HDI PCB
+
+Manufacturing
+
+Medical
+
+Mil Grade PCB
+
+Multilayer PCB
+
+PCB
+
+PCB Assembly
+
+PCB Cost
+
+PCB Design
+
+PCB Design Software
+
+PCB Development
+
+PCB Fabrication
+
+PCB Finishes
+
+PCB Layout Software
+
+PCB Manufacturing
+
+PCB Materials
+
+PCB Prototyping
+
+PCB Quality
+
+Printed Circuit Board Assembly
+
+Printed Circuit Board Design
+
+Printed Circuit Board News
+
+Printed Circuit Boards
+
+Prototype Assembly
+
+Prototype PCB
+
+SMT
+
+SMT Manufacturing
+
+Software
+
+Uncategorized
+
+All Categories
+
+Recent Posts
+
+View Recent Posts
+
+We value your privacy
+
+We use cookies to enhance your browsing experience, serve personalized content, and analyze traffic to better serve your needs. By clicking "Accept All" you consent to our use of cookies. Read more in the privacy policy
+
+Customize
+
+Accept All
+
+Contact us
+
+Get In Touch Today
+
+ISO 9001:2015
+
+MIL-PRF-31032
+
+ITAR Registered
+
+All Certifications
+
+linkedIn
+
+youtube
+
+Locations
+
+Aurora, CO (Headquarters) -
+21101 E. 32nd Pkwy.
+
+Aurora,
+CO
+80011
+
+- Phone: (303)-576-6610
+
+Santa Clara, CA -
+3495 De La Cruz Blvd
+
+Santa Clara,
+CA
+95054
+
+- Phone: (408)-727-6442
+
+Chandler, AZ -
+6615 W. Boston St.
+
+Chandler,
+AZ
+85226
+
+- Phone: (800)-678-0233
+
+Anaheim, CA -
+250 E. Emerson Ave
+
+Orange,
+CA
+92865
+
+- Phone: (714)-921-0860
+
+Maple Grove, MN -
+8860 Zachary Ln.
+
+Maple Grove,
+MN
+55369
+
+- Phone: (763)-424-3788
+
+Orange County, CA -
+1900 Petra Lane
+
+Placentia,
+CA
+92870
+
+- Phone: (714)-993-0270
+
+Free DFM Filecheck
+
+About Us
+
+Trace Width Calculator
+
+Get a Quote
+
+Facilities
+
+Quality Assurance
+
+Pricing
+
+PCB Artist Software
+
+My AdvancedPCB
+
+Blog
+
+Flex & Rigid-Flex
+
+1-800-979-4722
+
+Privacy Policy
+
+ITAR Compliance
+
+Warranty
+
+Terms & Conditions
+
+Cookie Settings
+
+© Copyright 2026
+AdvancedPCB All rights reserved.
+
+Scroll to Top
+

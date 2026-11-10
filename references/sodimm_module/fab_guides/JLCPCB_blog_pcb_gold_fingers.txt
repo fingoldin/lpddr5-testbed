@@ -1,0 +1,436 @@
+
+
+All you need to know about PCB Gold Fingers
+
+Account Restriction Notice
+
+Get Coupon Here
+
+Coupons
+Country / Region
+
+Language
+undefined
+
+Currency
+USD $
+
+The currency you select is for reference only, payments must be made in US dollars.
+
+Save
+
+Language Coming Soon
+
+Ship to
+
+JLCPCB PCB Service
+
+FR-4 PCBs
+
+Flexible PCBs
+
+Metal Core PCBs
+
+High-Frequency PCBs
+
+PCBA Service
+
+PCB Assembly
+
+Parts Library
+
+More
+
+SMT Stencil
+
+PCB Layout
+
+Mechanical Services
+JLC3DP - 3D Printing
+JLCCNC - CNC Machining
+JLCCNC - Sheet Metal
+JLCMC - Mechanical Components
+
+Tools
+EasyEDA - PCB Design Tool
+JLCDFM - DFM Check
+Impedance Calculator
+PI Stiffener Calculator
+
+More
+OSHWLAB - Open Source Hardware
+JLCPCB - Flexible Heater
+
+Products
+Capabilities Contact Us
+
+Online Chat>
+Mon-Fri: 24 hours, Sat: 9am-6pm, GMT+8
+
+Email Us>
+Mon-Fri: 24 hours, Sat: 9am-6pm, GMT+8
+
+WhatsApp>
+Mon-Fri: 24 hours, Sat: 9am-6pm, GMT+8
+
+Support
+Help Center Get instant answers. 24/7 Available.
+
+Blog
+Community
+
+Support
+About Us
+JLCPCB delivers one-stop electronic and mechanical manufacturing solutions to empower hardware innovators worldwide.
+
+Explore Us
+Why JLCPCB?
+Quality Assurance
+How We Work
+Certifications
+Company News
+
+About Us
+
+Search
+
+0
+Order Now
+
+Sign In
+
+Sign In
+
+Blog PCB Engineering & Fundamentals PCB Design PCB Manufacturing Advanced PCB PCB Assembly SMT Stencil PCB Layout Flexible Heater Case Studies
+Blog
+
+Blog
+
+PCB Engineering & Fundamentals Essential PCB engineering principles, materials, and structural basics for beginners.
+
+PCB Materials Science Explore PCB materials, FR-4, metals, Rogers, PTFE characteristics.
+
+PCB Structures & Fundamentals Understand PCB layers, stackups, and structural basics.
+
+PCB Engineering & Fundamentals
+
+PCB Design Comprehensive PCB design concepts, schematic rules, and design workflow.
+
+Design Fundamentals & Schematics Learn core schematic rules and design basics.
+
+High-Speed & RF Design Key principles for GHz and RF routing.
+
+Design Tools & Best Practices Effective workflows, tool usage, and design guidelines.
+
+Signal & Power Integrity Solve SI/PI issues using design principles.
+
+PCB Design
+
+PCB Manufacturing Fabrication workflows, materials, and manufacturing techniques.
+
+Design for Manufacturing Design Rules for Manufacturability & Yield Improvement
+
+Quality & Reliability Testing Learn inspection, testing, and reliability steps.
+
+Fabrication Processes Key steps in PCB manufacturing workflows.
+
+Surface Finishes & Coating Compare ENIG, HASL, OSP, and more.
+
+PCB Sourcing & Procurement Tips for selecting reliable PCB suppliers.
+
+PCB Manufacturing
+
+Advanced PCB High-performance PCB concepts, HDI, RF, and advanced materials.
+
+Flexible PCBs Learn flex materials and bending rules.
+
+HDI PCBs Microvias, sequential lamination, fine-pitch routing.
+
+Advanced Packaging & Integration HDI, embedded components, and advanced stackups.
+
+Advanced PCB
+
+PCB Assembly SMT/THT/Mixed assembly, electronic components, process control, and quality insights.
+
+Quality Control & Testing SPI, AOI, X-ray, electrical and functional testing basics.
+
+Components & Sourcing Choose and source components effectively.
+
+Assembly Services How PCB assembly services work and what affects manufacturing outcomes.
+
+Industry Applications PCBA applications and requirements across industries.
+
+Basics & Tips PCB assembly basics, workflows, soldering methods, and practical tips
+
+Cost Management Key factors that drive PCB assembly and PCBA manufacturing costs.
+
+Assembly Techniques SMT and THT techniques, soldering processes, and profiles
+
+PCB Assembly
+
+SMT Stencil Solder paste stencil design, printing, cleaning, and manufacturing — for better paste transfer and S
+
+SMT Stencil Application & Printing Expert techniques for solder paste printing and SMT defect prevention.
+
+SMT Stencil Types & Manufacturing Stencil types and coatings, and how SMT stencils are laser-cut, formed, and finished.
+
+SMT Stencil Design Aperture geometry, foil thickness, and fiducials for reliable solder paste deposition.
+
+Stencil Selection & Ordering Choose the right stencil — framed vs frameless, thickness, cost — and how to order one.
+
+Hand Soldering & Stencils Hand soldering and rework techniques — and where a stencil makes SMT easier.
+
+SMT Stencil Cleaning & Maintenance How to clean, wipe, store, and extend the life of your SMT stencil.
+
+SMT Stencil
+
+PCB Layout PCB layer planning, routing rules, and layout optimization.
+
+Routing Techniques Key methods for effective PCB routing.
+
+Layout Guide Learn layout rules and placement strategies.
+
+Power & Ground Layout Improve stability with proper grounding design.
+
+Layout for Manufacturing Ensure manufacturable, efficient PCB layout designs.
+
+High-Speed Layout Design rules for fast, reliable signals.
+
+PCB Layout
+
+Flexible Heater Technical insights on flexible heaters, including fundamentals, design guides and others.
+
+Flexible Heater Basics Learn the essentials. Discover how flexible heaters work and materials.
+
+Heating Tips & Troubleshooting Find practical tips for improving heating performance and solving common heater problems.
+
+Applications & Industries Explore flexible heater applications across batteries, 3D printing, medical devices, and more.
+
+Heating Technology & Trends Explore heating technologies, thermal management, industry developments, and related topics.
+
+Design & Engineering Learn about heater design, sizing, power, temperature control, materials, and installation.
+
+Flexible Heater
+
+Case Studies Engineering cases demonstrating PCB design, manufacturing, and assembly.
+
+PCB Fabrication Case Real fabrication examples showcasing practical challenges and solutions.
+
+PCB Assembly Case Practical assembly cases illustrating techniques, issues, and resolutions.
+
+Case Studies
+
+Blog
+Blog
+
+Home
+
+Blog
+
+PCB Manufacturing
+
+Surface Finishes & Coating
+
+All you need to know about PCB Gold Fingers
+
+Published Oct 20, 2025,
+
+updated Mar 31, 2026
+8 min
+
+In today's highly connected, tech-driven world, seamless communication between devices is essential, and it all starts at the circuit board level. A critical element in enabling this communication is the use of gold fingers, the gold-plated connectors that link circuit boards to motherboards, making the flow of signals possible. Although it looks nice, gold plating is not merely for aesthetic purposes, it serves a practical function critical to the connector performance. Without gold fingers, critical components like graphics or sound cards wouldn’t be able to interact with the main processing units in computers and other electronic devices.
+
+Gold fingers allow instant communication between circuit boards, enabling automation in industries such as manufacturing, automotive, and even consumer electronics like smartphones. Gold, prized for its superior conductivity and resistance to oxidation, ensures reliable performance and longevity in these critical connectors. In this blog, we will explore the role of gold fingers in PCB design, why they are essential to modern technology, and the careful selection of materials that make them so effective.
+Types of Gold Plating on a PCB:
+The standards involved in the plating process also helps to ensure a perfect fit between the gold fingers on each circuit board with the corresponding slots on a given motherboard. Here are two main types of PCB over which gold plating process can be carried out:
+
+1. Electroless Nickel Immersion Gold (ENIG):
+Its the most popular PCB surface finish used by Electronic Engineers, as it is economical and relatively feasible to solder than electroplate gold as shown below. EING finish provides reliable electrical connection and better resistance from corrosion and oxidation. But due to its soft and thin (typically 2-5u” composition) nature, ENIG became unsuitable for the abrasive effects of circuit board insertion and removal.
+
+2. Electroplated Hard gold:
+The gold offered is hard, and the thickness can reach 3-50u. This is more suitable for gold finger PCBs that will be repeatedly plugged-in and removed. It’s also suitable for PCB boards that require frequent mechanical friction. The cost of gold plating is extremely high, and it is only suitable for partial gold plating such as gold fingers.
+How Are Gold Fingers Used?
+Gold fingers serve as the connecting contacts between two PCBs, ensuring conductivity while protecting the edges from wear during multiple uses. Due to the durability of hard gold at its specified thickness, gold fingers enable a PCB to be connected, disconnected, and reconnected up to 1,000 times. Some common applications include:
+Interconnection points: Gold fingers connect secondary PCBs to the motherboard through female slots like PCI, ISA, or AGP, allowing signal transmission between peripheral devices or internal cards and the computer.
+Special adapters: Gold fingers allow secondary PCBs to enhance computer performance, such as improved graphics and sound. These connectors typically outlast the cards themselves.
+External connections: Peripherals like speakers, printers, and monitors connect to the motherboard via slots with PCB gold fingers, ensuring smooth communication with the computer.
+
+Beyond personal computers, gold fingers are also used in industrial machinery for connecting contacts in automated systems.
+Classification of Goldfingers:
+1. Conventional gold fingers (flush fingers): Rectangular pads of the same length and width are neatly arranged at the edge of the board. Commonly used in physical objects such as network cards and graphics cards.
+
+2. Long and short gold fingers (i.e. uneven gold fingers): Rectangular solder pads of varying lengths located on the edge of the board, commonly used in physical objects such as memories, USB flash drives, and card readers. ​
+
+3. Segmented gold fingers (interrupted gold fingers): There are rectangular pads of different lengths located at the edge of the board, and the front section is disconnected.
+
+The IPC Standards and Rules for Gold Fingers:
+The production standards for PCB gold fingers were established in 2002 by the Association Connecting Electronics Industries (IPC). The standards were amended with the release of IPC A-600 and IPC-6010, which are currently the most widely employed standards in PCB production.
+
+Chemical composition: For maximum rigidity along the edges of PCB contacts, the gold plating should consist of between 5 and 10% cobalt.
+
+Thickness: The plating thickness of gold fingers should always fall within the range of 2 to 50 microinches. The standard thicknesses by size are 0.031 inches, 0.062 inches, 0.093 inches and 0.125 inches. The lower thicknesses are generally used for prototypes while the higher thicknesses are used along connecting edges that are regularly inserted, unplugged and reinserted.
+Visual test: The visual test is conducted through a magnifying glass. The edges should have a smooth, clean surface with no unwanted plating or the appearance of nickel.
+
+Tape test: To test the adhesiveness of the gold plating along with the contacts, the ICP recommends a test whereby a strip of tape is placed along the contact edges. After removing the tape, inspect the strip for traces of plating. If any gold plating is evident on the tape, the plating lacks sufficient adhesiveness along with the contacts.
+
+As technology improves, further standards of testing are commonly introduced to the process, so it is best to check back with the IPC for updates periodically.
+Processing Steps of a PCB Gold Finger:
+On a circuit board, the PCB gold finger plating process is used after the solder mask and before the surface finish. The plating process generally consists of the following steps:
+
+Nickel plating: 3 to 6 microns of nickel are plated first to the connector edges of the fingers.
+
+Gold plating: 1-2 microns of hard gold are plated over the nickel. The gold is usually enhanced with cobalt for boosted surface resistance.
+
+Beveling: The connector edges are bevelled at specified angles for easier insertion on corresponding slots. Beveling is typically done at angles of 30 to 45 degrees. More information about beveling the edges of a PCB can be seen here.
+
+There are certain restrictions to the plating process. For example, certain distances are needed between the gold fingers and other parts of the circuit board.
+
+Process restrictions and include the following:
+Plated holes, SMD and pads should not be placed within 1.0mm of the gold fingers.
+Plated pads cannot exceed 40mm in length.
+A distance of 0.5mm should exist between the gold fingers and the outline.
+Deviating from these standard spacing requirements can compromise the physical strength and functionality of the PCB.
+Manufactures Design Specifications for Gold Fingers:
+In order to ensure the reliability of the gold finger , PCB Design engineers must follow some design rules when designing. Regardless of the purpose or size of the PCB itself, the following rules are always applicable in the design of gold fingers:
+
+Gold-plated connectors should not be placed near PTH (plated-through holes).
+Gold fingers need to be chamfered, generally 30°, 45°, 20°, etc.
+The gold finger is at least 1.0mm away from the PCB outline.
+Gold fingers should be placed outward from the centre of the PCB.
+In order to bevel the PCB edge, the gold fingers should never face in the direction of the middle of the PCBs.
+There is no solder mask or screen printing near the gold fingers, they should be kept at a distance from the gold fingers.
+Here are the commonly used gold finger chamfering parameters in JLCPCB:
+
+Application of PCB Gold Fingers:
+It is not possible to conceive today’s world without PCB Gold Fingers. While scanning a photo from a handheld device and sending it to a printer, many gold fingers have already been utilized for communicating between devices. They have not only made communication faster and cheaper but also reliable. Today, we see PCBs in all sectors of life including:
+Consumer Electronics
+Industrial Equipment
+Medical Equipment
+Automotive Components
+Aerospace Components
+Safety and Security Equipment
+Telecommunications Equipment
+Personal Computers and more
+Conclusion:
+Each time you print out an article or scan a photo to upload to a social media account, signals are sent from peripheral devices to motherboard cards, which receive these signals via PCBs. Thanks in large part to gold fingers, technology has been able to advance to the modern array of mobile devices that millions now use on a daily basis.
+
+In conclusion, PCB gold fingers are essential components that enable reliable connections and seamless communication across a wide range of electronic devices. They play a crucial role in enhancing the performance and convenience of modern technology, from everyday mobile devices to industrial machinery. As technology evolves, the significance of gold fingers will only grow, ensuring that devices remain efficient and interconnected. To maintain this level of performance, it is important to ensure that gold fingers are plated and tested to the highest standards, supporting the continued advancement of technology in our daily lives. Turn your PCB designs into real products with JLCPCB amazing PCB services.
+
+Popular Articles
+
+The Ultimate Guide to OSP Surface Finish in PCB Manufacturing: Advantages, Process, and Selection
+
+• The Ultimate Guide to OSP Surface Finish in PCB Manufacturing: Advantages, Process, and Selection
+
+Keep Learning
+
+Conformal Coating in PCB Technology: Benefits, Challenges, and Future Developments
+
+If you're searching for conformal coating, you're likely looking for a reliable way to protect your PCB from moisture, dust, chemicals, or harsh environments. Choosing the right coating directly affects product reliability, performance, and lifespan. In this guide, you'll learn what conformal coating is, the main types available, and how to select the best option for your application. We'll also cover key benefits, application methods (manual, automated, and selective), as well as inspection, rework, ......
+
+PCB Gold Fingers: Why They Matter and How to Design Them
+
+Key Takeaways PCB gold fingers provide reliable electrical and mechanical contact for PCBs that connect to external connectors or card slots. ENIG is suitable for general contact applications, while electroplated hard gold offers higher wear resistance for repeated insertion and removal. Gold fingers should remain fully exposed, with solder mask and silkscreen kept away from the contact area. Proper chamfering and gold finger orientation are essential to ensure smooth insertion and prevent damage duri......
+
+Comparing HASL and ENIG Surface Finishes for PCBs
+
+Selecting the right surface finish for a printed circuit board (PCB) is crucial to ensuring its performance, reliability, and longevity. Two of the most commonly used finishes are Hot Air Solder Leveling (HASL) and Electroless Nickel Immersion Gold (ENIG). Each of these surface finishes offers distinct advantages and disadvantages, making them suitable for different applications. In this article, we will compare HASL and ENIG to help you determine which finish is best suited for your PCB project. What......
+
+Avoid PCB Assembly Failures: Mastering Solder Mask Expansion Rules and Best Practices
+
+Solder mask protects copper traces and pads from oxidation, bridges, and contamination during assembly. Incorrect solder mask expansion—the clearance around features where mask is pulled back—leads to defects like shorts or exposed copper. Engineers must set expansion values precisely to ensure reliable soldering and long-term performance. Introduction: Why Solder Mask Expansion is Critical for PCB Reliability Understanding Solder Mask and Expansion Basics Solder mask is a polymer layer applied over t......
+
+The Ultimate Guide to OSP Surface Finish in PCB Manufacturing: Advantages, Process, and Selection
+
+Key Takeaways OSP (Organic Solderability Preservative) is a water-based, cost-effective PCB surface finish that deposits a 0.2-0.5μm organic film directly onto copper pads. Unlike metallic finishes such as ENIG or HASL, OSP provides superior surface flatness for fine-pitch SMT components at no extra process charge, making it ideal for high-density consumer electronics. However, OSP requires controlled handling and a limited assembly window (24-48 hours after opening vacuum packaging). It is best suite......
+
+PCB Encapsulation: Design Rules, Material Selection, and Reliable Manufacturing
+
+Key Takeaways Encapsulation vs. Potting: Potting uses a permanent shell; encapsulation produces a free-standing resin-coated module. Both deliver full environmental isolation. Encapsulation vs. Conformal Coating: Conformal coating is lightweight and reworkable but limited to mild environments. Encapsulation provides IP67/IP68 submersion-grade protection at the cost of repairability. Resin Selection: Epoxy offers rigidity and chemical resistance; polyurethane provides flexibility for thermal cycling; s......
+
+Popular Articles
+
+The Ultimate Guide to OSP Surface Finish in PCB Manufacturing: Advantages, Process, and Selection
+
+• The Ultimate Guide to OSP Surface Finish in PCB Manufacturing: Advantages, Process, and Selection
+
+Online Chat >
+
+Chat with our live agent for fast reply.
+Mon-Fri: 24 hours, Sat: 9am-6pm, GMT+8
+
+Email Us >
+Contact us at support jlcpcb.com
+Typically reply within hours.
+
+Help Center >
+Get instant answers.
+24/7 Available.
+
+Products
+FR-4 PCBs
+Flexible PCBs
+Metal Core PCBs
+High-Frequency PCBs
+PCBA Service
+PCB Layout
+SMT Stencil
+Flex Heater
+
+Support
+Help Center
+Contact Us
+Community
+Shipping & Delivery
+Payment Methods
+How to Order
+How to Track
+After-Sales Service
+Blog
+
+Company
+About Us
+Quality Assurance
+How We Work
+Certifications
+Security
+Environment
+JLCAPI
+News
+Cooperation
+
+Electronics
+EasyEDA
+JLCPCB
+JLCDFM
+LCSC
+OSHWLAB
+
+Mechanical
+JLC3DP
+JLCCNC
+JLCMC
+
+CONNECT WITH US
+
+© 2026 JLCPCB.COM All Rights Reserved.
+Privacy Policy
+
+Terms & Conditions
+
+Cookies Policy
+
+Get Coupon >
+
+Live Chat >
+
+Home
+
+Cart
+
+Files
+
+Message
+
+Me
+

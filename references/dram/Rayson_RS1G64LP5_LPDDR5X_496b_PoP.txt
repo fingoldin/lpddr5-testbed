@@ -1,0 +1,989 @@
+                                       LPDDR5/5X Datasheet
+                                                       RS1G64LP5D4FGD-23BT
+                                                       RS2G64LP5D8FGD-23BT
+                                                                                           496-ball
+
+
+
+                                                                                         Revision 1.2
+
+                                                                                        May. 13. 2025
+
+
+
+This document and all information provided herein (collectively, "Information") remains the sole and
+exclusive property of RAYSON. You must keep all Information in strict confidence and trust, and must
+not,directly or indirectly, in any way, disclose, make accessible, post on the internet, reveal, report,
+publish, disseminate or transfer any Information to any third party. You must not reproduce or copy
+Information, without first obtaining express written permission from RAYSON. You must not use, or
+allow use of, any Information in any manner whatsoever, except to internally evaluate the information.
+You must restrict access to Information to those of your employees who have a bonafide need-to-know
+for such purpose and are bound by obligations at least as restrictive as this clause. In order to receive
+Information,you must agree to the foregoing and to indemnify RAYSON for any failure to strictly comply
+therewith. If you do not agree,please do not accept any receipt of Information.
+
+
+
+
+                       Copyright©2025 RAYSON HI-TECH(SZ)Co.,Ltd. All Rights Reserved.
+                                                                                            Rev.1.2
+
+
+
+
+                                   Revision History
+
+     Version                    Date                                    Changes
+
+
+       V1.0                 2023-6-28                       Basic spec and architecture
+
+
+                                                       1) Add some content
+       V1.1                 2024-10-21
+                                                       2) Change discrete package dimension
+
+                                                       1) Add IDD parameters
+       V1.2                 2025-5-13
+                                                       2) Change discrete package dimension
+
+
+
+
+Notes：This data sheet contains minimum and maximum limits specified over the power supply
+and temperature range set forth herein. Although considered final, these specifications are
+subject to change at any time without notice, as further product development and data
+characterization sometimes occur.
+
+
+
+
+       Copyright©2025 RAYSON HI-TECH(SZ)Co.,Ltd. All Rights Reserved.             Page 2 / 21
+                                                                                                   Rev.1.2
+
+
+
+
+                                            Contents
+
+1. Product Overview........................................................................................4
+    1.1. Feature Overview................................................................................4
+2. Physical Specifications................................................................................ 6
+    2.1. Function Block Diagram......................................................................6
+    2.2. Package ballout & Addressing............................................................ 8
+    2.3. Pad Definition......................................................................................9
+    2.4. Discrete Package Dimension............................................................ 10
+3. Core Specifications....................................................................................11
+    3.1. Part Number Decoding..................................................................... 11
+    3.2. Ordering Options.............................................................................. 12
+    3.3. Die Addressing Table.........................................................................13
+    3.4. Mode Register Contens.................................................................... 14
+4. IDD Parameters ....................................................................................... 19
+
+
+
+
+           Copyright©2025 RAYSON HI-TECH(SZ)Co.,Ltd. All Rights Reserved.                       Page 3 / 21
+                                                                              Rev.1.2
+
+
+
+
+1. Product Overview
+1.1. Feature Overview
+
+• Architecture
+    - 17.1 GB/s maximum bandwidth per channel
+    - Frequency range: 1067–5 MHz (data rate range per pin: 8533–40
+      Mbp/s with WCK:CK = 4:1)
+    - Selectable CKR (WCK:CK = 2:1 or 4:1)
+• LPDDR5 data interface
+    -Single x16 channel/die
+    - Double-data-rate command/addressentry
+    - Differential command clocks (CK_t/CK_c) for high-speedoperation
+    - Differential data clocks(WCK_t/WCK_c)
+    - Optional differential read strobe (RDQS_t/ RDQS_c)
+    - 16n-bit or 32n-bit prefetch architecture
+    - 2KB page size with bank group (BG mode), or 16-bank (16B mode) operation
+    - Command-selectable burst lengths (BL = 16 or 32) in bank group or16-bank
+      modes
+    - Background ZQ calibration/command-based ZQ calibration- Optionallink
+      protection (link ECC)
+    - Optional link protection (link ECC)
+    - Partial-array self refresh (PASR) and partial-array auto refresh (PAAR) with
+      segment mask
+• Ultra-low-voltage core and I/O power supplies
+    - VDD1 = 1.70–1.95V; 1.8V NOM
+    - VDD2H = 1.01–1.12V; 1.05V NOM
+    - VDD2L = VDD2H or 0.87–0.97V; 0.9V NOM
+    - VDDQ = 0.5V NOM or 0.3V NOM (ODT off)
+• I/O characteristics
+    - Interface-LVSTL 0.5/0.3
+    - I/O type: Low-swing single-ended, VSS terminated
+    - VOH-compensated output drive
+
+
+        Copyright©2025 RAYSON HI-TECH(SZ)Co.,Ltd. All Rights Reserved.     Page 4 / 21
+                                                                             Rev.1.2
+
+
+
+    - Programmable VSS on-die termination (ODT)
+    - Non target ODT support
+    - DVFSQ support
+• Low power features
+    - DVFSC: Dynamic voltage frequency scalingcore
+    - Single-ended CK, single-ended WCK, and single- ended RDQS
+     VDD1/VDD2H/VDD2L/VDDQ(ODT on)/ (ODT off): 1.8V/1.05V/0.9V/0.5V/0.3V
+
+• Array configuration
+    - 1 Gig × 64 (4 channels × 16 I/O)
+    - 2 Gig × 64 (4 channels × 16 I/O)
+• Device configuration
+    - 1G16 × 4 die in package
+    - 1G16 × 8 die in package
+• FBGA ”green” package
+    - 496-ball FBGA (14mm × 12.4mm Seated height: 0.763mm MAX)
+• Speed grade, cycle time(tWCK)
+    - 8533 Mb/s
+• Operating temperature range
+     -   -25℃ to + 85 ℃
+
+
+
+
+         Copyright©2025 RAYSON HI-TECH(SZ)Co.,Ltd. All Rights Reserved.   Page 5 / 21
+                                                                                          Rev.1.2
+
+
+
+
+2. Physical Specifications
+2.1. Function Block Diagram
+
+
+
+                                    VDD1 VDD2H VDD2L VSS VDDQ
+
+
+
+       RESET_n
+                                        Die             Die
+         CS0_A                                                            CS0_C
+
+        CK_t_A                                                            CK_t_C
+        CK_c_A                                                            CK_c_C
+      CA[6:0]_A                       LPDDR5         LPDDR5               CA[6:0]_C
+                                     Channel A       Channel C
+   WCK[1:0]_t_A                                                           WCK[1:0]_t_C
+   WCK[1:0]_c_A                                                           WCK[1:0]_c_C
+
+                                                                          DMI[1:0]_C      VDDQ
+    DMI[1:0]_A                         ZQ Cal                             DQ[15:0]_C
+    DQ[15:0]_A                         Initiator
+  RDQS[1:0]_t_A                                                           RDQS[1:0]_t_C          RZQ
+                                       die                                RDQS[1:0]_c_C
+  RDQS[1:0]_c_A
+                                                                                  ZQ_A_C
+
+                                        Die            Die                CS0_D
+         CS0_B
+                                                                          CK_t_D
+        CK_t_B
+                                                                          CK_c_D
+        CK_c_B
+                                                                          CA[6:0]_D
+      CA[6:0]_B
+                                      LPDDR5          LPDDR5
+   WCK[1:0]_t_B                      Channel B       Channel D            WCK[1:0]_t_D
+   WCK[1:0]_c_B                                                           WCK[1:0]_c_D
+                                                     ZQ Cal               DMI[1:0]_D       VDDQ
+    DMI[1:0]_B                                                            DQ[15:0]_D
+    DQ[15:0]_B                                       Initiator
+                                                     die                  RDQS[1:0]_t_D          RZQ
+  RDQS[1:0]_t_B                                                           RDQS[1:0]_c_D
+  RDQS[1:0]_c_B
+                                                                                      ZQ_B_D
+
+
+
+
+                  Quad-Die, Quad-Channel Package, Single-Rank Block Diagram
+
+
+
+
+         Copyright©2025 RAYSON HI-TECH(SZ)Co.,Ltd. All Rights Reserved.               Page 6 / 21
+                                                                                          Rev.1.2
+
+
+
+
+                              VDD1 VDD2H VDD2L VSS VDDQ
+
+
+
+     RESET_n
+                                  Die              Die
+       CS0_A                                                     CS0_C
+
+      CK_t_A                                                     CK_t_C
+      CK_c_A                                                     CK_c_C
+    CA[6:0]_A                   LPDDR5         LPDDR5            CA[6:0]_C
+                               Channel A       Channel C
+ WCK[1:0]_t_A                                                    WCK[1:0]_t_C
+ WCK[1:0]_c_A                                                    WCK[1:0]_c_C
+
+                                                                 DMI[1:0]_C      VDDQ
+  DMI[1:0]_A                    ZQ Cal                           DQ[15:0]_C
+  DQ[15:0]_A                    Initiator                        RDQS[1:0]_t_C        RZQ
+RDQS[1:0]_t_A                   die                              RDQS[1:0]_c_C
+RDQS[1:0]_c_A
+                                                                         ZQ_A_C
+       CS1_A                      Die             Die
+                                                                 CS1_C
+
+
+
+                               LPDDR5         LPDDR5
+                              Channel A       Channel C
+
+
+
+
+                                  Die             Die            CS0_D
+       CS0_B
+                                                                 CK_t_D
+      CK_t_B
+                                                                 CK_c_D
+      CK_c_B
+                                                                 CA[6:0]_D
+    CA[6:0]_B
+                                LPDDR5          LPDDR5
+ WCK[1:0]_t_B                  Channel B       Channel D         WCK[1:0]_t_D
+ WCK[1:0]_c_B                                                    WCK[1:0]_c_D
+                                               ZQ Cal            DMI[1:0]_D       VDDQ
+  DMI[1:0]_B                                                     DQ[15:0]_D
+                                               Initiator
+  DQ[15:0]_B                                                     RDQS[1:0]_t_D          RZQ
+                                               die
+RDQS[1:0]_t_B                                                    RDQS[1:0]_c_D
+RDQS[1:0]_c_B
+                                                                             ZQ_B_D
+                                  Die             Die
+       CS1_B
+                                                                 CS1_D
+
+
+
+                                LPDDR5          LPDDR5
+                               Channel B       Channel D
+
+
+
+
+         Eight-Die, Quad-Channel Package, Dual-Rank Block Diagram
+
+
+
+
+Copyright©2025 RAYSON HI-TECH(SZ)Co.,Ltd. All Rights Reserved.                        Page 7 / 21
+                                                                                                                                                                                                                                                                                                                  Rev.1.2
+
+
+
+2.2. Package ballout & Addressing
+                                                                                                    496-Ball Quad-Channel POP FBGA
+              1          2          3         4        5        6       7        8        9       10        11         12             13            14        15              16      17         18           19       20       21        22           23     24         25        26         27      28
+
+
+        A    NC         NC        VDD1      VDD2H    VDD2L    VDDQ     VSS     VDD2H    VDD2L    V DD2H    V DD2H     VDDQ        VDD1             VDD2L     VDD2L        VDD1       VDDQ      V DD2H        V DD2H    VSS     VDD2H     VDD2L     VDDQ      VDD2L      VDD2H     VDD1        NC      NC     A
+
+
+        B    NC        DQ3_A    RDQS0_t_A    VSS     DQ5_A     VSS    CS1_A     VSS      VSS    DQ13_A      VSS     RDQS1_t_A         VSS         DQ9_A     DQ1_C         VSS      RDQS0_t_C    VSS      DQ5_C         VSS    CS1_C      VSS       VSS      DQ13_C      VSS     RDQS1_t_C   DQ11_C    NC     B
+
+
+        C   DQ1_A       VSS     RDQS0_c_A   DMI0_A   VDDQ     CA0_A   CS0_A    CA4_A    CA6_A    VDDQ     DMI1_A    RDQS1_c_A DQ11_A               VDDQ      VDDQ        DQ3_C     RDQS0_c_C   DMI0_C        VDDQ     CA0_C   CS0_C     CA4_C     CA6_C      VDDQ      DMI1_C RDQS1_c_C       VSS    DQ9_C   C
+
+
+        D   VDDQ       DQ2_A      VDDQ       VSS     DQ6_A     VSS    CA2_A    CA3_A     VSS    DQ14_A      VSS       VDDQ            VSS         DQ8_A     DQ0_C         VSS        VDDQ       VSS      DQ6_C         VSS    CA2_C     CA3_C      VSS      DQ14_C      VSS       VDDQ      DQ10_C   VDDQ    D
+
+
+        E   DQ0_A      VDDQ     WCK0_c_A    DQ4_A    VDDQ     CA1_A   VDD2H    VDD2L    CA5_A    VDDQ     DQ12_A WCK1_ c _A DQ10_A                 VDDQ      VDDQ        DQ2_C     WCK0_c_C    DQ4_C         VDDQ     CA1_C    VDD2H     VDD2L    CA5_C      VDDQ      DQ12_C WCK1_c_C       VDDQ    DQ8_C   E
+
+
+        F    VSS        VSS     WCK0_t_A     VSS     DQ7_A     VSS    CK_t_A   CK_c_A    VSS    DQ15_A      VSS     WCK1_t_A          VSS         ZQ_A_C   RESET_n        VSS      WCK0_t_C     VSS      DQ7_C         VSS    CK_t_C    CK_c_C     VSS      DQ15_C      VSS     WCK1_t_C      VSS     VSS    F
+
+
+        G   VDD2H      VDD1       VDD2L      VDDQ    V DD2H   VDD2L    VSS      VSS     VDD2H    VDD2L     VDD2H       VSS        VDD2L           V DD2H     V DD2H       VDD2L       VSS      V DD2H        V DD2H   VDD2L    VSS       VSS       VDD2H     VDD2L      VDDQ      VDD2L      VDD1    VDD2H   G
+
+
+        H   VDD2H      VDD1       V DD2H    V DD2H                                                                                                                                                                                                                     V DD2H     V DD2H     VDD1    VDD2H   H
+
+
+        J    VSS        VSS        VSS       VSS                                                                                                                                                                                                                        VSS        VSS        VSS     VSS    J
+
+
+        K    VSS        VSS        VSS       VSS                                                                                                                                                                                                                        VSS        VSS        VSS     VSS    K
+
+
+        L    VSS        VSS        VSS       VSS                                                                                                                                                                                                                        VSS        VSS        VSS     VSS    L
+                                                                                                                                            VSS
+
+       M     VSS        VSS        VSS       VSS                                                                                                                                                                                                                        VSS        VSS        VSS     VSS    M
+
+
+        N    VSS        VSS        VSS       VSS                                                                                                                                                                                                                        VSS        VSS        VSS     VSS    N
+
+
+        P    VSS        VSS        VSS       VSS                                                                                                                                                                                                                        VSS        VSS        VSS     VSS    P
+
+
+        R    VSS        VSS        VSS       VSS                                                                                                                                                                                                                        VSS        VSS        VSS     VSS    R
+
+
+        T    VSS        VSS        VSS       VSS                                                                                                                                                                                                                        VSS        VSS        VSS     VSS    T
+
+
+        U    VSS        VSS        VSS       VSS                                                                                                                                                                                                                        VSS        VSS        VSS     VSS    U
+
+
+        V    VSS        VSS        VSS       VSS                                                                                                                                                                                                                        VSS        VSS        VSS     VSS    V
+
+
+       W     VSS        VSS        VSS       VSS                                                                                                                                                                                                                        VSS        VSS        VSS     VSS    W
+
+
+        Y   VDD2H      VDD1       V DD2H    V DD2H                                                                                                                                                                                                                     V DD2H     V DD2H     VDD1    VDD2H   Y
+
+
+       AA   VDD2H      VDD1       VDD2L     VDDQ     VDD2H    VDD2L    VSS      VSS     VDD2H    VDD2L     VDD2H       VSS        VDD2L           V DD2H     V DD2H       VDD2L       VSS      V DD2H        V DD2H   VDD2L    VSS       VSS       VDD2H     VDD2L      VDDQ      VDD2L      VDD1    VDD2H   AA
+
+
+       AB   WCK1_t_B
+             V          VSS     WCK1_t_B     VSS     DQ15_B    VSS    CK_c_B   CK_t_B    VSS    DQ7_B       VSS     WCK0_t_B          VSS          NC      ZQ_B_D         VSS      WCK1_t_D     VSS      DQ15_D        VSS    CK_c_D    CK_t_D     VSS      DQ7_D       VSS     WCK0_t_D      VSS     VSS    AB
+              SS
+
+
+       AC   DQ8_B      VDDQ     WCK1_c_B    DQ12_B   VDDQ     CA5_B   VDD2L    VDD2H    CA1_B    VDDQ     DQ4_B     WCK0_c_B     DQ2_B             VDDQ      VDDQ        DQ10_D    WCK1_c_D    DQ12_D        VDDQ     CA5_D    VDD2L     VDD2H    CA1_D      VDDQ      DQ4_D    WCK0_c_D     VDDQ    DQ0_D   AC
+
+
+       AD   VDDQ       DQ10_B     VDDQ       VSS     DQ14_B    VSS    CA3_B    CA2_B     VSS    DQ6_B       VSS       VDDQ            VSS         DQ0_B     DQ8_D         VSS        VDDQ       VSS      DQ14_D        VSS    CA3_D     CA2_D      VSS      DQ6_D       VSS       VDDQ      DQ2_D    VDDQ    AD
+
+
+       AE   DQ9_B       VSS     RDQS1_c_B   DMI1_B   VDDQ     CA6_B   CA4_B    CS0_B    CA0_B    VDDQ     DMI0_B RDQS0_c_B       DQ3_B             VDDQ      VDDQ        DQ11_D RDQS1_c_D DMI1_D             VDDQ     CA6_D   CA4_D     CS0_D     CA0_D      VDDQ      DMI0_D RDQS0_c_D       VSS    DQ1_D   AE
+
+
+       AF    NC        DQ11_B RDQS1_t_B      VSS     DQ13_B    VSS     VSS     CS1_B     VSS    DQ5_B       VSS     RDQS0_t_B         VSS         DQ1_B     DQ9_D         VSS      RDQS1_t_D    VSS      DQ13_D        VSS     VSS      CS1_D      VSS      DQ5_D       VSS     RDQS0_t_D   DQ3_D     NC     AF
+
+
+       AG    NC         NC        VDD1      VDD2H    VDD2L    VDDQ    VDD2H     VSS     VDD2L    V DD2H    V DD2H     VDDQ        VDD1             VDD2L     VDD2L        VDD1       VDDQ      V DD2H        V DD2H   VDD2L    VDD2H     VSS       VDDQ      VDD2L      VDD2H     VDD1        NC      NC     AG
+
+
+              1          2          3         4        5        6       7        8        9       10        11         12             13            14        15              16      17         18           19       20       21        22           23     24         25        26         27      28
+
+
+                                                                                                                                                  Top View (ball down)
+
+
+
+                                                                                                                                VSS                 VDD1              VDD2H          VDD2L            VDDQ            CK         RDQS            WCK          DQ,DMI            CA, CS, ZQ, RESET       NC
+
+
+
+
+                                         Copyright©2025 RAYSON HI-TECH(SZ)Co.,Ltd. All Rights Reserved.                                                                                                                                                                   Page 8 / 21
+                                                                                                           Rev.1.2
+
+
+
+
+    2.3. Pad Definition
+
+
+     Symbol              Type                                        Description
+
+                                  Clock: CK_t and CK_c are differential clock inputs. All double data rate (DDR)
+                                  command/address inputs are sampled on both crossing points of CK_t and CK_c.
+    CK_t_[A:D]
+                         Input    The first crossing point is the rising (falling) edge of CK_t (CK_c) and second
+    CK_c_[A:D]
+                                  crossing point is falling (rising) edge of CK_t (CK_c). Single data rate (SDR) inputs,
+                                  CS is sampled on the crossing point that is the rising (falling) edge of CK_t (CK_c).
+
+                                  Chip select: CS is part of the command code, and is sampled on the rising (falling)
+                                  edge of CK_t (CK_c) unless the device is in power-down or deep sleep mode where
+CS0_[A:D], CS1_[A:D]     Input
+                                  it becomes an asynchronous signal. Each rank (0, 1) has its own CS signals.
+                                  CS1_[A:B] be- come NC pins in a single-rank package.
+                                  Command/address inputs: Provide the command and addressinputs according
+  CA[6:0]_[A:D]          Input
+                                  to the command truth table.
+
+ WCK[1:0]_t_[A:D],                Data clock: WCK_t and WCK_c are differential clock inputs used for write data cap-
+                         Input
+ WCK[1:0]_c_[A:D]                 ture and read data output.
+
+    DQ[15:0]_[A:D]        I/O     Data input/output: Bidirectional databus.
+
+                                  Read data strobe: RDQS_t and RDQS_c are differential output clock
+ RDQS[1:0]_t_[A:D],               signals used to strobe data during a READ operation. RDQS_t is also
+                       I/O Output
+ RDQS[1:0]_c_[A:D]                used as a parity pin during write link protection enabled. Each byte of
+                                  data has RDQS_t and RDQS_c signals.
+
+                                  Data mask inversion: DMI serves multiple functions such as data mask
+                                  (DM), data bus inversion (DBI), and parity at READ with ECC operation by
+ DMI[1:0]_[A:D]            I/O
+                                  setting the mode register. DMI is a bidirectional signal and each byte of
+                                  data has a DMI signal.
+
+
+
+
+                                 ZQ calibration reference: Used to calibrate the output drive strength and
+     ZQ_A_C,                     the termination resistance. The ZQ pin should be connected to VDDQ
+                       Reference
+     ZQ_B_D                      through a 240Ω ±1% resistor.
+
+
+VDDQ, VDD1, VDD2H,
+                        Supply    Power supplies: Isolated on the die for improved noise immunity.
+      VDD2L
+
+        VSS             Supply    Ground reference: Power supply ground reference.
+
+                                  RESET: When asserted LOW, the RESET pin resets all channels of the die.
+     RESET_n             Input
+                                  Reset is an asynchronous signal.
+
+        NC                 –      No connect: Not internally connected.
+
+
+
+              Copyright©2025 RAYSON HI-TECH(SZ)Co.,Ltd. All Rights Reserved.                           Page 9 / 21
+                                                                           Rev.1.2
+
+
+
+
+2.4. Discrete Package Dimension
+                                       14mm X12.4mm
+
+
+
+
+       Copyright©2025 RAYSON HI-TECH(SZ)Co.,Ltd. All Rights Reserved.   Page 10 / 21
+                                                                                                       Rev.1.2
+
+
+
+
+        3. Core Specifications
+        3.1. Part Number Decoding
+
+
+
+                        RS       1G64            LP5     D4      F    GD      -      23   BT
+
+
+                                                                                               Operating temperature
+Rayson
+                                                                                                      BT = -25°C to +85°C
+Mobile DRAM Memory
+
+
+
+
+Configuration                                                                                                    Speed
+1G64 = 1 Gig x 64                                                                                   23 = 8533Mb/s/pin
+2G64 = 2 Gig x 64
+
+
+
+Product Family                                                                                           Package code
+LP5 = LPDDR5/5X Resource                                                                       GD= 496ball FBGA-14*12.4
+
+
+                                                                                                     Operating Voltage
+                                                                                                            F = VDD1 1.80V
+                                                                                                               VDD2H 1.05V
+Die Count                                                                                                       VDD2L 0.9V
+D4 = 4die                                                                                                  VDDQ 0.5V/0.3V
+D8 = 8 die
+
+
+
+
+                    Copyright©2025 RAYSON HI-TECH(SZ)Co.,Ltd. All Rights Reserved.                  Page 11 / 21
+                                                                                                Rev.1.2
+
+
+
+
+  3.2. Ordering Options
+
+  Table 1: Part Number List
+
+                                                                                        Operating
+         Part Number                   Total Density              Data Rate
+                                                                                       temperature
+
+     RS1G64LP5D4FGD-23BT                    8GB(64Gb)           8533 Mb/s/pin          -25°C to + 85°C
+
+     RS2G64LP5D8FGD-23BT                 16GB(128Gb)            8533 Mb/s/pin          -25°C to + 85°C
+
+
+
+  Table 2: Refresh Requirement Parameters
+
+
+
+                                                                             16Gb
+                Parameter                      Symbol                                               unit
+                                                                     BG and 16B Mode
+
+                                                   t
+REFRESH cycle time (all banks)                      RFCab                    280                     ns
+
+REFRESH cycle time (per bank)                      tRFCpb                    140                     ns
+Per bank refresh to per bank refresh time      t
+                                                PBR2PBR                      90                      ns
+(different bank)
+Per bank refresh to ACTIVATE command           t
+                                                   PBR2ACT                   7.5                     ns
+time (different bank)
+
+
+
+
+            Copyright©2025 RAYSON HI-TECH(SZ)Co.,Ltd. All Rights Reserved.                   Page 12 / 21
+                                                                                                         Rev.1.2
+
+
+
+
+     3.3. Die Addressing Table
+
+                                                      1G64                                     2G64
+           Configuration                         (64Gb/package)                           (128Gb/package)
+
+
+                      Channel A, rank 0             × 16 mode × 1 die                     × 16 mode × 1 die
+                      Channel B, rank 0             × 16 mode × 1 die                     × 16 mode × 1 die
+
+                      Channel C, rank 0             × 16 mode × 1 die                     × 16 mode × 1 die
+Die Configuration     Channel D, rank 0             × 16 mode × 1 die                     × 16 mode × 1 die
+
+                      Channel A, rank 1                     -                             × 16 mode × 1 die
+                      Channel B, rank 1                                                   × 16 mode × 1 die
+
+                      Channel C, rank 1                     -                             × 16 mode × 1 die
+                      Channel D, rank 1                                                   × 16 mode × 1 die
+
+                    Bits                                               17,179,869,184
+
+                    Bank mode                           BG mode                                  16B mode
+                                                    64Mb × 16 DQ                             64Mb × 16 DQ
+                    Configuration
+                                                   × 4 Banks × 4 BG                            × 16 Banks
+                    Number of banks                         4                                       16
+                    Number of banks
+                                                            4                                        1
+                    groups
+                    Array prefetch bits                                          256
+
+                    Rows per bank                                           65,536
+
+                    Columns                                                      64
+
+Die Addressing Page size (bytes)                                                2048
+                    Native burst
+                                                                                 16
+                    length
+                    Number of I/Os                                               16
+
+                    Bank address                         BA[1:0]                                  BA[3:0]
+
+                    Bank group address                   BG[1:0]                                     -
+
+                    Row address                                                 R[15:0]
+
+                    Column address                                              C[5:0]
+
+                    Burst address                                               B[3:0]
+                    Burst starting
+                                                                            128-bit
+                    address boundar
+
+
+               Copyright©2025 RAYSON HI-TECH(SZ)Co.,Ltd. All Rights Reserved.                        Page 13 / 21
+                                                                                                   Rev.1.2
+
+
+
+
+      3.4. Mode Register Contens
+
+                       MR0                                                         MR1
+
+                        OP[0] = 1b: Device supports
+OP7    Per-pin DFE                                     OP7
+                        different NT ODT latency
+                        for DQ and RDQS
+OP6    Pre Emphasis                                    OP6
+                        OP[1] = 0b: Device supports
+      Unified NT ODT    x16 mode
+OP5                                                    OP5
+      bebavior mode     OP[2] = 1b: Device supports
+        DMI output      enhanced WCK always-on
+OP4                                                    OP4
+       behavior mode    mode.
+         Optimized      OP[3] =1b: Device supports                                  OP[0] = 0b: Device does not
+OP3                     optimized refresh mode         OP3                          support CS ODT behavior OP
+       refresh mode
+                        OP[4] = 1b: Device supports                                 OP[1] = 1b: Device supports
+       Enhanced WCK     both DMI behavior mode 1                                    ARFM
+OP2                                                    OP2
+      always-on mode    and 2 and mode selection
+                        OP[5] = 1b: The NT ODT
+OP1   Latency Mode                                     OP1    ARFM support
+                        behavior follows the
+                        unified NT ODT behavior
+                        OP[6] = 1b: Device supports
+          NT ODT                                              CS ODT OP
+OP0                     Pre Emphasis mode              OP0
+        timing mode                                           support
+                        OP[7] = 0b: Device does not
+                        support Per Pin DFE
+
+
+
+                       MR3                                                         MR5
+
+OP7                                                    OP7
+
+OP6                                                    OP6
+
+OP5                                                    OP5
+
+OP4                     OP[4:3] = 00b: BG;             OP4
+                                                                                         1111 1111b : Micron
+        BK/BG Org       10b:16B Mode Supported                   Manufacturer ID
+OP3                                                    OP3
+
+OP2                                                    OP2
+
+OP1                                                    OP1
+
+OP0                                                    OP0
+
+
+
+
+                Copyright©2025 RAYSON HI-TECH(SZ)Co.,Ltd. All Rights Reserved.                  Page 14 / 21
+                                                                                                  Rev.1.2
+
+
+
+
+                        MR6                                                        MR8
+
+OP7                                                         OP7
+                                                                       I/O width   OP[7:6] = 00b: x16/channel
+OP6                                                         OP6
+
+OP5                                                         OP5
+
+OP4                                                         OP4
+      Revision ID1               0000 1000b                             Density    OP[5:2] = 0110b: 16Gb
+OP3                                                         OP3
+
+OP2                                                         OP2
+
+OP1                                                         OP1
+                                                                         Type      OP[1:0] =01b:LPDDR5X SDRAM
+OP0                                                         OP0
+
+
+
+                        MR13                                                       MR19
+
+OP7                                                         OP7
+
+OP6                                                         OP6
+
+                       OP[2]=0b:Normal operation                   WCK2DQ Osc FM
+OP5                                                         OP5
+                       (default)                                   support
+                       1b: Output the VREF(CA) value on
+OP4                    DQ7 and VREF(DQ) value on DQ6        OP4
+                                                                                   OP[5] = 1b:WCK2DQ Osc FM
+                                                                                   supported
+OP3                                                         OP3
+
+OP2       VR0                                               OP2
+
+OP1                                                         OP1
+
+OP0                                                         OP0
+
+
+
+
+                Copyright©2025 RAYSON HI-TECH(SZ)Co.,Ltd. All Rights Reserved.                 Page 15 / 21
+                                                                                                Rev.1.2
+
+
+
+
+                   MR21                                                        MR22
+
+OP7     WXS                                             OP7
+                                                                  RECC
+OP6                                                     OP6
+                      OP[0] = 1b: WRITE DATA
+                      COPY function supported
+OP5                   OP[1] = 1b: READ DATA             OP5
+                      COPY function supported                     WECC      OP[5:4] = 00b: Write link ECC
+OP4                   OP[2] = 1b: WRITE X function      OP4                 disabled (default)
+                      supported                                             01b: Write link ECC enabled
+OP3   ODTD-CSFS       OP[3] = 1b: Device ODTD-CS        OP3                 OP[7:6] = 00b: Read link ECC
+                      is supported                                          disabled (default)
+OP2     WXFS          OP[7] = 1b: Data to be            OP2                 01b: Read link ECC enabled
+                      written can be selected with
+OP1    RDCFS          0 and 1                           OP1
+
+OP0    WDCFS                                            OP0
+
+
+
+                   MR24                                                        MR26
+
+OP7     DFES                                            OP7
+
+OP6                                                     OP6     RDQSTFS
+
+OP5                                                     OP5
+
+                      OP[3] = 1b: Device supports
+OP4                                                     OP4                 OP[6] = 1b: Read/write-based
+                      Read DCA
+                                                                            RDQS_t TRAINING function
+                      OP[7] = 1b: Devices supports
+OP3   Read DCA                                          OP3                 supported
+                      DFE
+
+OP2                                                     OP2
+
+OP1                                                     OP1
+
+OP0                                                     OP0
+
+
+
+
+           Copyright©2025 RAYSON HI-TECH(SZ)Co.,Ltd. All Rights Reserved.                    Page 16 / 21
+                                                                                              Rev.1.2
+
+
+
+
+                  MR27                                                       MR43
+
+OP7                                                    OP7
+      RAAMULT
+OP6                                                    OP6     SBEC Rule
+
+OP5                                                    OP5
+
+OP4                 OP[0] = 1b: RFM is required        OP4                 OP[6] = 1b: Simultaneous SBE on
+                    OP[5:1] = 00101b: 40                                   each DQ byte and DMI are
+OP3   RAAIMT        OP[7:6]=01b: 4X                    OP3                 independently counted
+
+OP2                                                    OP2
+
+OP1                                                    OP1
+
+OP0     RFM                                            OP0
+
+
+
+                                                  MR57
+
+OP7
+
+OP6
+
+OP5
+
+                    OP[1:0] = 10b: 2 x RAAIMT
+OP4
+                    OP[3:2] = 00b: 1=Does not support single-bank mode
+
+OP3
+
+       RFMSB
+OP2
+
+OP1
+       RAADEC
+OP0
+
+
+
+
+          Copyright©2025 RAYSON HI-TECH(SZ)Co.,Ltd. All Rights Reserved.                   Page 17 / 21
+                                                                                               Rev.1.2
+
+
+
+
+Notes: 1、The contents of Product Specific Mode Register definition will reflect information specific to each
+         die in these packages.
+       2、Refer to General LPDDR5 Specifications 1 for mode registers not described here.
+       3、Write link ECC and read link ECC are supported.
+
+
+
+
+             Copyright©2025 RAYSON HI-TECH(SZ)Co.,Ltd. All Rights Reserved.                 Page 18 / 21
+                                                                                                Rev.1.2
+
+
+
+
+4.. Parameters
+Table 1: IDD Parameters – Single Die
+                                                               Speed Grade
+Symbol                    Supply                   7500 Mb/s                 8533 Mb/s    Unit       Note
+IDD01                      VDD1                       3.80                     3.80        mA             2
+IDD02H                     VDD2H                      53.00                    53.00
+IDD02L                     VDD2L                      0.20                     0.20
+IDD0Q                       VDDQ                      0.60                     0.60
+IDD2P1                     VDD1                       1.50                     1.50        mA             2
+IDD2P2H                    VDD2H                      3.90                     3.90
+IDD2P2L                    VDD2L                      0.20                     0.20
+IDD2PQ                      VDDQ                      0.60                     0.60
+IDD2PS1                    VDD1                       1.50                     1.50        mA             2
+IDD2PS2H                   VDD2H                      3.90                     3.90
+IDD2PS2L                   VDD2L                      0.20                     0.20
+IDD2PSQ                     VDDQ                      0.60                     0.60
+IDD2N1                     VDD1                       1.50                     1.50        mA             2
+IDD2N2H                    VDD2H                      32.50                    32.50
+IDD2N2L                    VDD2L                      0.20                     0.20
+IDD2NQ                      VDDQ                      0.60                     0.60
+IDD2NS1                    VDD1                       1.50                     1.50        mA             2
+IDD2NS2H                   VDD2H                      32.50                    32.50
+IDD2NS2L                   VDD2L                      0.20                     0.20
+IDD2NSQ                     VDDQ                      0.60                     0.60
+IDD3P1                     VDD1                       2.50                     2.50        mA             2
+IDD3P2H                    VDD2H                      12.50                    12.50
+IDD3P2L                    VDD2L                      0.20                     0.20
+IDD3PQ                      VDDQ                      0.60                     0.60
+IDD3PS1                    VDD1                       2.50                     2.50        mA             2
+IDD3PS2H                   VDD2H                      12.50                    12.50
+IDD3PS2L                   VDD2L                      0.20                     0.20
+IDD3PSQ                     VDDQ                      0.60                     0.60
+
+
+
+
+           Copyright©2025 RAYSON HI-TECH(SZ)Co.,Ltd. All Rights Reserved.                Page 19 / 21
+                                                                                                Rev.1.2
+
+
+
+
+Table 1: IDD Parameters – Single Die
+                                                               Speed Grade
+Symbol                     Supply                  7500 Mb/s                 8533 Mb/s    Unit        Note
+IDD3N1                      VDD1                       2.80                    2.80        mA              2
+IDD3N2H                    VDD2H                      40.00                    40.00
+IDD3N2L                    VDD2L                       0.20                    0.20
+IDD3NQ                      VDDQ                       0.60                    0.60
+IDD4R1                      VDD1                      18.00                    20.50       mA         2, 3, 4
+IDD4R2H                    VDD2H                     390.00                   430.00
+IDD4R2L                    VDD2L                       0.20                    0.20
+IDD4RQ                      VDDQ                     111.90                   121.00
+IDD4RDVFSC1                 VDD1                      10.00                    10.00       mA         3, 4, 6
+IDD4RDVFSC2H               VDD2H                      32.00                    32.00
+IDD4RDVFSC2L               VDD2L                     115.00                   115.00
+IDD4RDVFSCQ                 VDDQ                      74.70                    74.70
+IDD4W1                      VDD1                      16.50                    18.50       mA             2, 3
+IDD4W2H                    VDD2H                     265.00                   280.00
+IDD4W2L                    VDD2L                       0.20                    0.20
+IDD4WQ                      VDDQ                       0.60                    0.60
+IDD4WDVFSC1                 VDD1                       9.00                    9.00        mA             3, 6
+IDD4WDVFSC2H               VDD2H                      29.00                    29.00
+IDD4WDVFSC2L               VDD2L                      80.00                    80.00
+IDD4WDVFSCQ                 VDDQ                       0.60                    0.60
+IDD51                       VDD1                      24.00                    24.00       mA              2
+IDD52H                     VDD2H                     205.00                   205.00
+IDD52L                     VDD2L                       0.20                    0.20
+IDD5Q                       VDDQ                       0.60                    0.60
+IDD5ED1                     VDD1                      21.00                    21.00       mA              6
+IDD5ED2H                   VDD2H                     160.00                   160.00
+IDD5ED2L                   VDD2L                      26.50                    26.50
+IDD5EDQ                     VDDQ                       0.60                    0.60
+IDD5AB1                     VDD1                       3.60                    3.60        mA              2
+IDD5AB2H                   VDD2H                      47.00                    47.00
+IDD5AB2L                   VDD2L                       0.20                    0.20
+IDD5ABQ                     VDDQ                       0.60                    0.60
+
+
+
+
+           Copyright©2025 RAYSON HI-TECH(SZ)Co.,Ltd. All Rights Reserved.                Page 20 / 21
+                                                                                                                Rev.1.2
+
+
+
+
+Table 1: IDD Parameters – Single Die
+                                                                     Speed Grade
+Symbol                       Supply                     7500 Mb/s                  8533 Mb/s              Unit        Note
+IDD5ABED1                     VDD1                         3.40                       3.40                 mA             6
+IDD5ABED2H                   VDD2H                         24.00                      24.00
+IDD5ABED2L                   VDD2L                         22.00                      22.00
+IDD5ABEDQ                     VDDQ                         0.60                       0.60
+IDD5PB1                       VDD1                         3.60                       3.60                 mA             2
+IDD5PB2H                     VDD2H                         47.00                      47.00
+IDD5PB2L                     VDD2L                         0.20                       0.20
+IDD5PBQ                       VDDQ                         0.60                       0.60
+IDD5PBED1                     VDD1                         3.40                       3.40                 mA             6
+IDD5PBED2H                   VDD2H                         24.00                      24.00
+IDD5PBED2L                   VDD2L                         22.00                      22.00
+IDD5PBEDQ                     VDDQ                         0.60                       0.60
+
+Notes: 1. Published IDD values except IDD4RQ are the maximum IDD values considering the worst-case conditions of process,
+          temperature, and voltage.
+       2. BG mode. Enhanced DVFSC and DVFSQ disabled.
+       3. BL = 16, DBI disabled.
+       4. IDD4RQ value is reference only. Typical value. Output load = 5pF; RON = 40 ohms; TC = 25°C
+       5. VDD1 = 1.70–1.95V; VDD2H = 1.01–1.12V; VDD2L = 0.87–0.97V; VDDQ = 0.47–0.57V (DVFSQ disabled)/0.27–0.37V
+          (DVFSQ enabled); TC = –25°C to +85°C
+       6. Enhanced DVFSC enabled, DVFSQ enabled, 3200 Mb/s, 16B Mode
+       7. Notes 1 and 5 apply to entire table.
+
+Table 2: Full-Array Power-Down Self Refresh Current – Single Die
+Temperature                     Symbol                        Supply                          Value                  Unit
+25°C                             IDD61                            VDD1                        0.27                    mA
+                                 IDD62H                        VDD2H                          1.00
+                                 IDD62L                        VDD2L                    – (See Note 4)
+                                 IDD6Q                            VDDQ                  – (See Note 4)
+85°C                             IDD61                            VDD1                        3.70
+                                 IDD62H                        VDD2H                          21.00
+                                 IDD62L                        VDD2L                          0.20
+                                 IDD6Q                            VDDQ                        0.60
+
+Notes: 1. IDD625°C is the typical value in the distribution with nominal VDD and a reference-only value. IDD685°C is the
+          maximum IDD guaranteed value considering the worst-case conditions of process, temperature, and voltage.
+       2. Enhanced DVFSC and DVFSQ disabled.
+       3. VDD1 = 1.70–1.95V; VDD2H = 1.01–1.12V; VDD2L = 0.87–0.97V; VDDQ = 0.47–0.57V; TC = –25°C to +85°C
+       4. VDD2L and VDDQ power rail are not used during power-down self refresh.
+
+
+
+             Copyright©2025 RAYSON HI-TECH(SZ)Co.,Ltd. All Rights Reserved.                              Page 21 / 21
+

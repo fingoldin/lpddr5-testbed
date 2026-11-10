@@ -1,0 +1,462 @@
+                                                                                               TN-00-08: Thermal Applications
+                                                                                                                 Introduction
+
+
+Technical Note
+Thermal Applications
+
+Introduction
+                                            This technical note defines a general method and the criteria for measuring and ensur-
+                                            ing that Micron® memory components operate below their maximum allowable tem-
+                                            perature. The specified temperatures will help ensure the reliability and functionality of
+                                            Micron's memory components as defined in the product data sheets.
+                                            The primary consideration for the functionality and reliability of Micron's semiconduc-
+                                            tor products is the junction temperature. Table 2 (page 3) shows an overview of junc-
+                                            tion temperature limits based on product families. It is essential that each device oper-
+                                            ates below the defined junction temperature to ensure proper functionality and long-
+                                            term reliability of the device.
+
+Temperature Definitions and Terms
+                                            Much of the discussion of this technical note is based on specifically defined tempera-
+                                            ture terms. These terms and parameters are defined here, and are used throughout this
+                                            technical note as well as other Micron documents and web sites.
+                                            Junction Temperature, Reliability – Temperature at which the device will be perma-
+                                            nently damaged. This is a stress rating only, and device functional operation at or above
+                                            the conditions indicated is not implied. Exposure to absolute maximum rating condi-
+                                            tions for extended periods may affect the reliability of the part for various device and
+                                            package reasons.
+                                            Junction Temperature, Functionality – These temperature limits are derived from Mi-
+                                            cron's test temperatures. The junction temperature, functionality, is the temperature
+                                            below which the part should be designed to operate. Maintaining the temperature of
+                                            Micron's semiconductor products below this temperature will ensure the functionality
+                                            of the product to data sheet specifications.
+                                            PB – The power dissipated down through the substrate where the component is
+                                            attached.
+                                            PC – The power dissipated up through the top case of the component.
+                                            Thermal Resistance – The thermal resistance between two locations x and y. (Rxy and
+                                            θxy are typical nomenclatures.) For many Micron products, thermal resistance can be
+                                            considered a fixed value. For a few products, like Micron’s HMC or other multi die prod-
+                                            ucts, thermal resistance changes for varying power scenarios. It is Micron’s recommen-
+                                            dation that a customer uses a detailed CFD (computational fluid dynamics) model to
+                                            analyze an HMC device and estimate maximum junction temperatures. Micron pro-
+                                            vides detailed Flotherm models of these packages and internal temperature sensors
+                                            within these devices for correlation.
+
+
+
+
+09005aef805ec8a5
+tn0008_thermal_apps.pdf - Rev. K 01/17 EN                                 1         Micron Technology, Inc. reserves the right to change products or specifications without notice.
+                                                                                                                                 © 2002 Micron Technology, Inc. All rights reserved.
+                          Products and specifications discussed herein are subject to change by Micron without notice.
+                                                                                              TN-00-08: Thermal Applications
+                                                                                                 Device Thermal Information
+
+Device Thermal Information
+Thermal Resistance Model
+
+Figure 1: Model of Device Thermal Resistance Parameters
+
+
+                                                                    TA
+
+                                                                         RCA                                                            qCA
+                                                              TC                                                                                                          qJA
+
+
+                                                                   PC    RJC                                                           qJC
+
+                                                              TJ          PT
+
+                                                                                                                                                                          qJB
+                                                                         RJB
+                                                                   PB
+
+                                                              TB
+
+
+                                                                         RBA
+                                                                                                                                                                          qBA
+
+
+                                                                    TA
+
+
+Table 1: Thermal Resistance Parameters
+
+       Symbol                  Description                                                                                                                    Unit
+             TA                Temperature of ambient air                                                                                                       °C
+             TB                Temperature of board                                                                                                             °C
+             TC                Temperature of case                                                                                                              °C
+             TJ                Temperature at junction of device, typically the maximum temperature of the hottest                                              °C
+                               die
+             PB                Power dissipated down through device to board                                                                                    W
+             PC                Power dissipated up through device to top of case and out to ambient air, heat sink,                                             W
+                               or other surface
+       PT/PTOTAL               Total power dissipated at junction of device                                                                                     W
+        θBA/RBA                Thermal resistance between board and ambient air                                                                               °C/W
+        θCA/RCA                Thermal resistance between case and ambient air                                                                                °C/W
+         θJA/RJA               Thermal resistance between junction and ambient air                                                                            °C/W
+         θJB/RJB               Thermal resistance between junction and board                                                                                  °C/W
+         θJC/RJC               Thermal resistance between junction and case                                                                                   °C/W
+
+
+
+
+09005aef805ec8a5
+tn0008_thermal_apps.pdf - Rev. K 01/17 EN                                  2       Micron Technology, Inc. reserves the right to change products or specifications without notice.
+                                                                                                                                © 2002 Micron Technology, Inc. All rights reserved.
+                                                                                                TN-00-08: Thermal Applications
+                                                                                                   Device Thermal Information
+
+Junction Temperature
+                                            The die temperature, TJ is probably the most difficult to measure, but is the most impor-
+                                            tant to understand or be able to estimate to ensure functionality and reliability of the
+                                            product. Some devices have internal temperature sensors that enable a measurement
+                                            within the die at a specific location. If this feature is not available in the device, then it
+                                            may be easier to measure the case or board temperature, and then estimate the die
+                                            temperature with θJC or θJB and a power estimate. The best method to use will depend
+                                            on the application and measurement capability of the user. Attempts to calculate the
+                                            junction temperature using traditional θJA calculations are not recommended. Using
+                                            the traditional method can produce significant errors because important parameters
+                                            such as airflow, flow type, adjacent components, heat dissipation direction, PCB thick-
+                                            ness, and PCB copper content aren’t accounted for with enough detail to apply to a real
+                                            application. A real application is typically very different than the JEDEC defined envi-
+                                            ronments, where the thermal impedance values are determined. This can lead to very
+                                            erroneous temperature estimates based on the θJA or θJMA calculations.
+
+                                            Table 2: Maximum Junction Temperatures
+
+                                            Device                                  Application                                                    TJ Max (°C)
+                                            DDR SDRAM                               Commercial                                                             85
+                                                                                    Industrial                                                             90
+                                                                                    Automotive                                                            110
+                                            DDR2 SDRAM                              Commercial                                                             90
+                                                                                    Industrial                                                            100
+                                                                                    Automotive                                                            110
+                                            DDR3 SDRAM                              Commercial                                                            100
+                                                                                    Industrial                                                            100
+                                                                                    Automotive                                                            110
+                                                                                    Automotive Grade 1                                                    130
+                                            DDR4 SDRAM                              Commercial                                                            100
+                                                                                    Industrial                                                            100
+                                                                                    Automotive                                                            110
+                                                                                    Automotive Grade 1                                                    130
+                                            LPDDR, LPSDR, LPDDR2, LPDDR3            Commercial                                                             85
+                                                                                    Wireless                                                               90
+                                                                                    Industrial                                                             90
+                                                                                    Wide Extended                                                         110
+                                                                                    Automotive                                                            110
+                                                                                    Automotive Grade 1                                                    130
+                                            LPDDR4                                  Wireless                                                               90
+                                                                                    Wide Extended                                                         110
+                                                                                    Industrial                                                            100
+                                                                                    Automotive                                                            110
+                                                                                    Automotive Grade 1                                                    130
+
+
+
+09005aef805ec8a5
+tn0008_thermal_apps.pdf - Rev. K 01/17 EN                                   3        Micron Technology, Inc. reserves the right to change products or specifications without notice.
+                                                                                                                                  © 2002 Micron Technology, Inc. All rights reserved.
+                                                                                                  TN-00-08: Thermal Applications
+                                                                                                     Device Thermal Information
+
+
+                                               Table 2: Maximum Junction Temperatures (Continued)
+
+                                               Device                                Application                                                     TJ Max (°C)
+                                               GDDR5                                 Commercial                                                             100
+                                               RLDRAM                                Commercial                                                             100
+                                                                                     Industrial                                                             100
+                                               NAND                                  Commercial                                                              85
+                                                                                     Industrial                                                              90
+                                                                                     Automotive                                                             110
+                                               NOR                                   Industrial                                                              90
+                                                                                     Automotive                                                             110
+                                                                                     Automotive Grade 1                                                     125
+                                               e.MMC, e.MCP                          Wireless                                                                90
+                                                                                     Industrial                                                              90
+
+                                      Notes:     1. The maximum junction temperature in each device grouping is considered the maxi-
+                                                    mum reliability rating for that grouping.
+                                                 2. DRAM refresh rate is device-dependent; refer to device data sheets.
+                                                 3. For products not listed see data sheet for product specific junction temperatures.
+
+Case Temperature
+                                               The case temperature should be measured by attaching a thermocouple to the top cen-
+                                               ter of the component. This should be done with a 1mm bead of conductive epoxy, as
+                                               defined by the JEDEC EIA/JESD51 standards. Care should be taken to ensure that the
+                                               thermocouple bead is touching the case. The case temperature can then be used to esti-
+                                               mate the junction temperature using Equation 1.
+                                               (EQ1)
+                                               TJ = TC + (PC × θJC)
+                                            where:
+                                            TJ = Junction temperature
+                                            TC = Case temperature
+                                            PC = Power through case = PTOTAL x (% through case)
+                                            θJC = Thermal resistance from junction to case
+                                            Note: PC can vary significantly depending on the application. With a “perfect” heat sink,
+                                            PC can approach 100%. With no case cooling and a high copper content board, PC can
+                                            be very small with most the heat dissipation going into the board. In many applications,
+                                            the case and junction can be assumed to be the same temperature. However, this de-
+                                            pends on the direction of the heat loss and power level. See Table 3 (page 5). Certain
+                                            applications and products are better suited to this type of analysis.
+
+Board Temperature
+                                               The board temperature should be measured by attaching a thermocouple to the center
+                                               lead of the longest side, or the trace for a BGA, of the desired component. This should
+                                               be done with a 1mm bead of conductive epoxy, as defined by the JEDEC EIA/JESD51
+                                               standards. The board temperature can then be used to estimate the junction tempera-
+
+
+09005aef805ec8a5
+tn0008_thermal_apps.pdf - Rev. K 01/17 EN                                    4         Micron Technology, Inc. reserves the right to change products or specifications without notice.
+                                                                                                                                    © 2002 Micron Technology, Inc. All rights reserved.
+                                                                                                  TN-00-08: Thermal Applications
+                                                                                                     Device Thermal Information
+
+                                            ture using Equation 2. For most applications, this method is less desirable than using
+                                            θJC, but is better than using the traditional method of θJA.
+                                            (EQ2)
+                                            TJ = TB + (PB × θJB)
+                                            where:
+                                            TJ = Junction temperature
+                                            TB = Board temperature
+                                            PB = Power through board
+                                            θJB = Thermal resistance from junction to board
+                                            Note: PB is often higher than PC because of conduction into the board, but can change
+                                            greatly, depending upon the application. See Table 3 (page 5).
+
+Ambient Temperature
+                                            Ambient temperature is a vague term that has been defined numerous ways by various
+                                            references. Some have defined it as the system ambient, the temperature of the incom-
+                                            ing or outgoing air temperature. Others have defined it at some distance from the com-
+                                            ponent of interest. The JEDEC EIA/JESD51 standards have a very specific definition, but
+                                            this definition only applies to the JEDEC environments. For the purpose of determining
+                                            the junction temperature in an application, Micron makes no recommendation on how
+                                            to define the ambient temperature. The ambient temperature should not be used for
+                                            predicting the junction temperature, but may be useful for first-level measurement or
+                                            design evaluations.
+
+Power Dissipation
+                                            The total power dissipation PTOTAL of a component is a critical consideration because
+                                            power causes device heating. In a typical application, parameters such as memory con-
+                                            troller, number of memory components in a system, and software application all have a
+                                            significant influence on the per component power dissipation. For help estimating
+                                            power dissipation, contact Micron Application Engineering or reference the relevant
+                                            technical notes on the Micron web site www.micron.com/support. After the total power
+                                            per component has been determined, the percent of power dissipation through the
+                                            case and through the board must be estimated. Table 3 can be used as a starting point
+                                            to estimate power distribution based on some typical products and applications.
+
+                                            Table 3: Power Distribution Examples
+                                            These are examples only to highlight the concept; actual values should be based on modeling
+                                            or testing of the real application.
+                                            Application                                                     %PC               %PB
+                                            0m/s, high-conductivity JEDEC test board                                             5                                 95
+                                            0m/s, low-conductivity JEDEC test board                                             10                                 90
+                                            2m/s, high-conductivity JEDEC test board                                            15                                 85
+                                            2m/s, low-conductivity JEDEC test board                                             25                                 75
+                                            0m/s, 12-layer PCB module                                                           50                                 50
+                                            2m/s, 12-layer PCB module                                                           75                                 25
+                                            12-layer PCB SSD (enclosed with TIM)                                                90                                 10
+
+
+
+09005aef805ec8a5
+tn0008_thermal_apps.pdf - Rev. K 01/17 EN                                  5           Micron Technology, Inc. reserves the right to change products or specifications without notice.
+                                                                                                                                    © 2002 Micron Technology, Inc. All rights reserved.
+                                                                                                 TN-00-08: Thermal Applications
+                                                                                                    Device Thermal Information
+
+
+                                            Table 3: Power Distribution Examples (Continued)
+                                            These are examples only to highlight the concept; actual values should be based on modeling
+                                            or testing of the real application.
+                                            Application                                                     %PC               %PB
+                                            12-layer PCB SSD (enclosed without TIM)                                            50                                 50
+
+
+Sensitivity Analysis
+                                            In many applications a detailed understanding of the heat dissipation direction or other
+                                            critical variables in the TJ calculation are poorly understood. When this happens, it’s of-
+                                            ten convenient to calculate a range of heat flow assumptions. For example, you might
+                                            measure the case, then calculate TJ for 75%, 50%, and finally 25% power through the
+                                            case. This approach will often indicate if the difference between percent directions of
+                                            heat flow is significant. This same approach can be used to study PTOTAL or case temper-
+                                            ature and their effect on TJ. This will often give the thermal engineer direction to under-
+                                            stand the critical thermal physics of the application and where to focus future efforts.
+                                            See case studies below.
+
+Modeling and Simulation
+                                            If more accurate thermal predictions are required, computational fluid dynamics (CFD)
+                                            and finite element analysis (FEA) modeling of the device is suggested. It is not recom-
+                                            mended that JEDEC standard thermal impedance measurements be used for determin-
+                                            ing die temperatures. These parameters are very application-dependent and will give
+                                            erroneous predictions. The JEDEC standard thermal resistance parameters are designed
+                                            solely for comparing like packages under similar conditions. Micron can provide a vari-
+                                            ety of detailed and compact thermal models of components and assemblies on a re-
+                                            quest basis. Contact your sales or applications engineer for more details.
+
+Steady State
+                                            Prior to making measurements, the component and system should be allowed to reach
+                                            steady state temperature. The time required to reach steady state could vary greatly by
+                                            application, but can be determined by taking measurements over a long period of time
+                                            to ensure that the temperature does not change. A personal computer can take 30 to 45
+                                            minutes to reach steady state with no airflow.
+
+Case Study 1 (Environmental Chamber)
+                                            Environment: high airflow, socketed, no heat sink
+                                            Memory Power: low power, 160mW
+                                            Assumption 1)
+                                            100% of power through case
+                                            Power total ~ 0.160W
+                                            Case = 74°C
+                                            Worst case θJC = 7 °C/W
+                                            Junction = (0.160W x 1 x 7 °C/W) + 74°C = 75.1°C
+                                            Assumption 2)
+                                            50% of power through case
+
+09005aef805ec8a5
+tn0008_thermal_apps.pdf - Rev. K 01/17 EN                                  6          Micron Technology, Inc. reserves the right to change products or specifications without notice.
+                                                                                                                                   © 2002 Micron Technology, Inc. All rights reserved.
+                                                                                               TN-00-08: Thermal Applications
+                                                                                                  Device Thermal Information
+
+                                            Junction = (0.160W x 0.5 x 7 °C/W) + 74°C = 74.6°C
+                                            Assumption 3)
+                                            25% of power through case
+                                            Junction = (0.160W x 0.25 x 7 °C/W) + 74°C = 74.3°C
+                                            The conclusion from this analysis, is that with low power it isn’t necessary to have a
+                                            thorough understanding of the direction of heat dissipation. All three scenarios have
+                                            junction temperatures that are within the measurement capability of a thermocouple.
+                                            Additional analysis might be needed to better understand the case temperature or pow-
+                                            er dissipation, but with the assumptions above the junction is insensitive to the direc-
+                                            tion of heat dissipation.
+
+Case Study 2 (Multi Die Products)
+                                            Product: Multi die NAND package
+                                            Environment: low airflow, large system, adjacent hot components
+                                            Power: 1.5W total for all die
+                                            θJC = 5 °C/W
+                                            TJ limit = 110°C
+                                            Maximum TC = 110°C - (1.5W x 0.5 x 5 °C/W) = 106.25°C
+                                            for 75% through case = 104.38°C
+                                            for 25% through case = 108.13°C
+                                            For this scenario, the higher power dissipation of the memory makes θJC and the heat
+                                            dissipation direction more critical to the analysis and should give direction where to fo-
+                                            cus additional thermal studies.
+
+References
+                                            JEDEC standards, including JEDEC EIA/JESD51, are available on the JEDEC web site at:
+                                            jedec.org.
+
+
+
+
+09005aef805ec8a5
+tn0008_thermal_apps.pdf - Rev. K 01/17 EN                                 7         Micron Technology, Inc. reserves the right to change products or specifications without notice.
+                                                                                                                                 © 2002 Micron Technology, Inc. All rights reserved.
+                                                                                            TN-00-08: Thermal Applications
+                                                                                                          Revision History
+
+Revision History
+Rev. K – 01/17
+                                            • Updated Maximum Junction Temperatures table in Junction Temperature section
+
+Rev. J – 08/16
+                                            • Updated Maximum Junction Temperatures table in Junction Temperature section
+
+Rev. I – 04/16
+                                            • Updated Introduction section
+                                            • Updated Temperature Definitions and Terms section
+                                            • Updated Device Thermal Information section
+                                            • Updated Thermal Resistance Parameters T J Description
+                                            • Updated Junction Temperature section
+                                            • Updated Maximum Junction Temperature Table
+                                            • Updated Case Temperature section
+                                            • Updated Board Temperature section Note
+                                            • Updated Ambient Temperature section
+                                            • Updated Description of Power Distribution Examples
+                                            • Added Sensitivity Analysis section
+                                            • Updated Modeling and Simulation section
+                                            • Added Case Study 1
+                                            • Added Case Study 2
+
+Rev. H – 07/13
+                                            • Updated Introduction section
+                                            • Updated Junction Temperature Definitions and Terms section
+                                            • Updated Junction Temperature section
+                                            • Deleted T J Operating Range column in Junction Temperature table
+                                            • Updated Case Temperature section
+                                            • Updated Board Temperature section
+                                            • Updated Ambient Temperature section
+                                            • Updated Power Consumption (Power Dissipation) section
+                                            • Updated Power Distribution Examples table
+                                            • Updated Modeling and Simulation section
+                                            • Updated Steady State section
+
+Rev. G – 04/13
+                                            • Updated Introduction section
+                                            • Updated Junction Temperature Definitions and Terms section
+                                            • Updated Thermal Resistance Parameters figure
+                                            • Added Thermal Resistance Parameters table
+                                            • Updated Junction Temperature section
+
+
+09005aef805ec8a5
+tn0008_thermal_apps.pdf - Rev. K 01/17 EN                               8        Micron Technology, Inc. reserves the right to change products or specifications without notice.
+                                                                                                                              © 2002 Micron Technology, Inc. All rights reserved.
+                                                                                              TN-00-08: Thermal Applications
+                                                                                                            Revision History
+
+                                            • Updated Component/Module Ambient section
+                                            • Updated System Ambient section
+                                            • Deleted Air Flow section
+                                            • Updated description in Power Consumption section
+                                            • Updated Power Distribution Examples table
+
+Rev. F – 05/10
+                                            • Updated table: Junction Temperature, Functionality
+
+Rev. E – 05/08
+                                            • Updated table: Junction Temperature, Functionality
+
+Rev. D – 01/07
+                                            • Updated template
+                                            • Updated table: Junction Temperature, Functionality
+                                            • Revised text for readability
+                                            • Created revision history
+
+Rev. C – 02/04
+                                            • Added flash device to table: Junction Temperature, Functionality
+                                            • Changed location of figure: Case Temperature vs. Bulk Airflow for a Typical Personal
+                                              Computer Application
+
+Rev. B – 08/03
+                                            • Deleted table: Typical Specification
+                                            • Added temperature definitions and terms
+                                            • Added figure: Depiction of Thermal Resistance Parameters as Defined by JEDEC
+                                            • Added table: Junction Temperature, Reliability
+                                            • Added table: Junction Temperature, Functionality
+
+Rev. A – 04/02
+                                            • Initial release
+
+
+
+
+                                 8000 S. Federal Way, P.O. Box 6, Boise, ID 83707-0006, Tel: 208-368-4000
+                                     www.micron.com/products/support Sales inquiries: 800-932-4992
+                                  Micron and the Micron logo are trademarks of Micron Technology, Inc.
+                                     All other trademarks are the property of their respective owners.
+     This data sheet contains minimum and maximum limits specified over the power supply and temperature range set forth herein.
+  Although considered final, these specifications are subject to change, as further product development and data characterization some-
+                                                                 times occur.
+
+
+09005aef805ec8a5
+tn0008_thermal_apps.pdf - Rev. K 01/17 EN                                 9        Micron Technology, Inc. reserves the right to change products or specifications without notice.
+                                                                                                                                © 2002 Micron Technology, Inc. All rights reserved.
+

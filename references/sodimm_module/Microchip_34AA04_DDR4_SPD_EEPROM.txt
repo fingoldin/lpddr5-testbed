@@ -1,0 +1,1472 @@
+                                                                                       34AA04
+      4K I2C™ Serial EEPROM with Software Write-Protect
+Device Selection Table                                Description
+   Part           VCC        Max. Clock       Temp    The Microchip Technology Inc. 34AA04 is a 4 Kbit
+  Number         Range       Frequency       Ranges   Electrically Erasable PROM which utilizes the I2C serial
+                                                      interface and is capable of operation across a broad
+34AA04           1.7-3.6       1 MHz(1)       I, E    voltage range (1.7V to 3.6V). This device is JEDEC
+   Note 1:   400 kHz for 1.8V ≤ VCC < 2.2V            JC42.4 (EE1004-v) Serial Presence Detect (SPD)
+             100 kHz for VCC < 1.8V                   compliant and includes reversible software write
+                                                      protection for each of four independent 128 x 8-bit
+Features                                              blocks. The device features a page write capability of
+                                                      up to 16 bytes of data. Address pins allow up to eight
+• 4 Kbit EEPROM:                                      devices on the same bus.
+  - Internally organized as two 256 x 8-bit banks     The 34AA04 is available in the 8-lead PDIP, SOIC,
+  - Byte or page writes (up to 16 bytes)              TSSOP, TDFN, and UDFN packages.
+  - Byte or sequential reads within a single bank
+  - Self-timed write cycle (5 ms max.)                Package Types
+• JEDEC® JC42.4 (EE1004-v) Serial Presence
+  Detect (SPD) Compliant for DRAM (DDR4)                   PDIP/SOIC/TSSOP                     TDFN/UDFN
+  modules                                                 A0      1       8      VCC
+• High-Speed I2C™ Interface:                                                                  A0 1             8 VCC
+                                                          A1      2       7      NC
+  - Industry standard 1 MHz, 400 kHz, and                                                     A1 2             7 NC
+     100 kHz                                              A2      3       6      SCL           A2 3            6 SCL
+  - Schmitt Trigger inputs for noise suppression         VSS      4       5      SDA          VSS 4            5 SDA
+  - SMBus-compatible bus time out
+  - Cascadable up to eight devices
+• Write Protection:
+  - Reversible software write protection for four     Block Diagram
+     individual 128-byte blocks
+                                                          A0 A1 A2
+• Low-Power CMOS Technology:                                                                      HV Generator
+
+  - Voltage range: 1.7V to 3.6V
+                                                                                                        Block 0
+  - Write current: 1.5 mA at 3.6V                          I/O         Memory                         (000h-07Fh)
+                                                          Control      Control                          Block 1
+  - Read current: 200 µA at 3.6V, 400 kHz                 Logic         Logic          XDEC           (080h-0FFh)
+  - Standby current: 1 µA at 3.6V                                                                       Block 2
+                                                                                                      (100h-17Fh)
+• High Reliability:                                                                                     Block 3
+                                                         SDA SCL                                      (180h-1FFh)
+  - More than one million erase/write cycles
+  - Data retention: > 200 years                             VCC                                   Write-Protect
+  - ESD protection: > 4000V                                                                         Circuitry
+                                                            VSS
+• 8-lead PDIP, SOIC, TSSOP, TDFN, and UDFN                                                            YDEC
+  Packages
+                                                                                                      Sense Amp.
+• Available Temperature Ranges:                                                                       R/W Control
+  - Industrial (I): -40°C to +85°C
+  - Automotive (E): -40°C to +125°C
+
+
+
+
+ 2014 Microchip Technology Inc.                                                               DS20005271B-page 1
+34AA04
+1.0           ELECTRICAL CHARACTERISTICS
+
+Absolute Maximum Ratings(†)
+VCC .............................................................................................................................................................................6.5V
+All Inputs and Outputs (except A0) w.r.t. VSS ............................................................................................... -0.3V to 6.5V
+A0 Input w.r.t. VSS ........................................................................................................................................... -0.3 to 12V
+Storage Temperature...............................................................................................................................-65°C to +150°C
+Ambient Temperature with Power Applied ..............................................................................................-40°C to +125°C
+ESD Protection on All Pins  4 kV
+
+
+ † NOTICE: Stresses above those listed under “Absolute Maximum Ratings” may cause permanent damage to the
+ device. These are stress ratings only and functional operation of the device at these or any other conditions above
+ those indicated in the operation sections of the specifications is not implied. Exposure to Absolute Maximum Rating
+ conditions for extended periods may affect device reliability.
+
+
+TABLE 1-1:                  DC SPECIFICATIONS
+                                                                               VCC = +1.7V to +3.6V
+ DC CHARACTERISTICS                                                            Industrial (I): TA = -40°C to +85°C
+                                                                               Automotive (E): TA = -40°C to +125°C
+ Param.
+                  Symbol                    Characteristic                          Min.               Max.             Units                      Conditions
+  No.
+                —                 A0, A1, A2, SCL, and SDA                            —                  —                 —
+ D1             VIH               High-Level Input Voltage                       0.7 VCC           VCC + 0.5               V
+ D2             VIL               Low-Level Input Voltage                             —              0.3 VCC               V         VCC ≥ 2.5V
+                                                                                                     0.2 VCC               V         VCC < 2.5V
+ D3             VHYS              Hysteresis of Schmitt                          0.0 VCC                 —                 V         (Note)
+                                  Trigger Inputs
+ D4             VOL               Low-Level Output Voltage                            —                0.40                V         IOL = 20.0 mA, VCC = 2.2V
+                                                                                                       0.40                V         IOL = 6.0 mA, VCC = 1.7V
+                                  High-Voltage Detect                                  7                 10                V         VCC < 2.2V
+ D5             VHV               (A0 pin only)                                 VCC + 4.8                10                V         VCC  2.2V
+ D6             ILI               Input Leakage Current                               —                  ±1               A         VIN = VSS or VCC
+ D7             ILO               Output Leakage Current                              —                  ±1               A         VOUT = VSS or VCC
+ D8             CIN, COUT Pin Capacitance                                             —                  10               pF         VCC = 5.5V (Note)
+                          (all inputs/outputs)                                                                                       TA = 25°C, FCLK = 1 MHz
+ D9             ICC write         Operating Current                                   —                 1.5               mA         VCC = 3.6V
+ D10            ICC read                                                              —                 200               A         VCC = 3.6V, SCL = 400 kHz
+ D11            ICCS              Standby Current                                     —                   1               A         Industrial
+                                                                                      —                   5               A         Automotive
+                                                                                                                                     SDA, SCL, VCC = 3.6V
+                                                                                                                                     A0, A1, A2 = VSS
+   Note:         This parameter is periodically sampled and not 100% tested.
+
+
+
+
+DS20005271B-page 2                                                                                                                     2014 Microchip Technology Inc.
+                                                                                                            34AA04
+
+TABLE 1-2:          AC SPECIFICATIONS
+                                                          VCC = +1.7V to +3.6V
+AC CHARACTERISTICS                                        Industrial (I): TA = -40°C to +85°C
+                                                          Automotive (E): TA = -40°C to +125°C
+ Param.
+           Symbol              Characteristic                 Min.         Max.      Units                Conditions
+  No.
+1         FCLK        Clock Frequency (Note 2)                 10          100        kHz     1.7V  VCC < 1.8V
+                                                               10          400                1.8V  VCC  2.2V
+                                                               10          1000               2.2V  VCC  3.6V
+2         THIGH       Clock High Time                         4000           —         ns     1.7V  VCC < 1.8V
+                                                              600            —                1.8V  VCC  2.2V
+                                                              260            —                2.2V  VCC  3.6V
+3         TLOW        Clock Low Time                          4700           —         ns     1.7V  VCC < 1.8V
+                                                              1300           —                1.8V  VCC  2.2V
+                                                              500            —                2.2V  VCC  3.6V
+4         TR          SDA and SCL Rise Time (Note 1)            —          1000        ns     1.7V  VCC < 1.8V
+                                                                —          300                1.8V  VCC  2.2V
+                                                                —          120                2.2V  VCC  3.6V
+5         TF          SDA and SCL Fall Time (Note 1)            —           300        ns     1.7V  VCC < 1.8V
+                                                                —           300               1.8V  VCC  2.2V
+                                                                —           120               2.2V  VCC  3.6V
+6         THD:STA     Start Condition Hold Time               4000           —         ns     1.7V  VCC < 1.8V
+                                                              600            —                1.8V  VCC  2.2V
+                                                              260            —                2.2V  VCC  3.6V
+7         TSU:STA     Start Condition Setup Time              4700           —         ns     1.7V  VCC < 1.8V
+                                                              600            —                1.8V  VCC  2.2V
+                                                              260            —                2.2V  VCC  3.6V
+8         THD:DAT     Data Input Hold Time                      0            —         ns     (Note 3)
+9         TSU:DAT     Data Input Setup Time                    250           —         ns     1.7V  VCC < 1.8V
+                                                               100           —                1.8V  VCC  2.2V
+                                                                50           —                2.2V  VCC  3.6V
+10        TSU:STO     Stop Condition Setup Time               4000           —         ns     1.7V  VCC < 1.8V
+                                                              600            —                1.8V  VCC  2.2V
+                                                              260            —                2.2V  VCC  3.6V
+11        TAA         Output Valid from Clock (Note 3)         200         3450        ns     1.7V  VCC < 1.8V
+                                                               200         900                1.8V  VCC  2.2V
+                                                                —          350                2.2V  VCC  3.6V
+12        TBUF        Bus Free Time: Time the bus must        4700           —         ns     1.7V  VCC < 1.8V
+                      be free before a new transmission       1300           —                1.8V  VCC  2.2V
+                      can start                               500            —                2.2V  VCC  3.6V
+13        TSP         Input Filter Spike Suppression            —            50        ns     (Note 1)
+                      (SDA and SCL pins)
+14        TWC         Write Cycle Time (byte or page)           —            5         ms     —
+15        TTIMEOUT    Bus Timeout Time                         25            35        ms     —
+16        —           Endurance                                1M            —       cycles   Page mode, 25°C, VCC = 3.6V
+                                                                                              (Note 4)
+Note 1: Not 100% tested.
+       2: The minimum clock frequency of 10 kHz is to prevent the bus timeout from occurring.
+       3: As a transmitter, the device must provide an internal minimum delay time to bridge the undefined region (minimum
+          200 ns) of the falling edge of SCL to avoid unintended generation of Start or Stop conditions.
+       4: This parameter is not tested but ensured by characterization. For endurance estimates in a specific application, please
+          consult the Total Endurance™ Model which can be obtained from Microchip’s web site at www.microchip.com.
+
+
+
+
+ 2014 Microchip Technology Inc.                                                                            DS20005271B-page 3
+34AA04
+FIGURE 1-1:          BUS TIMING DATA
+
+
+                          5                                  4
+                                       2                D3
+
+
+  SCL
+                 7
+                              3            8        9            10
+  SDA
+                      6
+  In
+               13
+
+                                               11                        12
+  SDA
+  Out
+
+
+
+
+DS20005271B-page 4                                            2014 Microchip Technology Inc.
+                                                                                                    34AA04
+2.0         PIN DESCRIPTIONS
+The descriptions of the pins are listed in Table 2-1.
+
+TABLE 2-1:          PIN FUNCTION TABLE
+
+  Symbol          PDIP         SOIC        TSSOP            UDFN     TDFN                     Description
+  A0/VHV            1            1            1              1           1     Chip Address Input, High-Voltage Input
+      A1            2            2            2              2           2     Chip Address Input
+      A2            3            3            3              3           3     Chip Address Input
+      VSS           4            4            4              4           4     Ground
+      SDA           5            5            5              5           5     Serial Address/Data I/O
+      SCL           6            6            6              6           6     Serial Clock
+      NC            7            7            7              7           7     Not Connected
+      VCC           8            8            8              8           8     +1.7V to 3.6V Power Supply
+  Note:       Exposed pad on TDFN/UDFN can be connected to VSS or left floating.
+
+2.1         A0, A1, A2 Chip Address Inputs                         2.3       Serial Clock (SCL)
+The levels on these inputs are compared with the                   This input is used to synchronize the data transfer to
+corresponding bits in the slave address. The chip is               and from the device.
+selected if the compare is true.
+Up to eight 34AA04 devices may be connected to the
+same bus by using different Chip Select bit combina-
+tions. These inputs must be connected to either VSS or
+VCC.
+The A0 pin also serves as the high-voltage input for
+enabling the SWPn and CWP instructions.
+  Note:       The comparison between the A0, A1, and
+              A2 pins and the corresponding Chip
+              Select bits is disabled for software Write-
+              Protect and Bank Select commands.
+
+2.2         Serial Address/Data Input/Output
+            (SDA)
+This is a bidirectional pin used to transfer addresses
+and data into and data out of the device. It is an open
+drain terminal. Therefore, the SDA bus requires a pull-
+up resistor to VCC (typical 10 k for 100 kHz, 2 k for
+400 kHz and 1 MHz).
+For normal data transfer, SDA is allowed to change
+only during SCL low. Changes during SCL high are
+reserved for indicating the Start and Stop conditions.
+
+
+
+
+ 2014 Microchip Technology Inc.                                                                     DS20005271B-page 5
+34AA04
+3.0      FUNCTIONAL DESCRIPTION                              will be stored when doing a write operation. When an
+                                                             overwrite does occur, it will replace data in a first-in,
+The 34AA04 supports a bidirectional 2-wire bus and           first-out (FIFO) fashion.
+data transmission protocol. A device that sends data
+onto the bus is defined as a transmitter, and a device       4.5       Acknowledge
+receiving data, as a receiver. The bus has to be
+controlled by a master device, which generates the           Each receiving device, when addressed, is obliged to
+Serial Clock (SCL), controls the bus access and gener-       generate an Acknowledge after the reception of each
+ates the Start and Stop conditions, while the 34AA04         byte. Exceptions to this rule relating to software write
+works as slave. Both master and slave can operate as         protection are described in Section 9.0 “Software
+transmitter or receiver, but the master device               Write Protection”. The master device must generate
+determines which mode is activated.                          an extra clock pulse, which is associated with this
+                                                             Acknowledge bit.
+The 4 Kbit array of the 34AA04 is divided into two
+separate banks of 2 Kbits each. The 34AA04 also                Note:     The 34AA04 does not generate any
+offers reversible software write protection for each of                  Acknowledge bits       if an internal
+four 1 Kbit blocks.                                                      programming cycle is in progress.
+                                                             The device that acknowledges has to pull down the
+4.0      BUS CHARACTERISTICS                                 SDA line during the Acknowledge clock pulse in such a
+                                                             way that the SDA line is stable low during the high
+The following bus protocol has been defined:                 period of the acknowledge related clock pulse. Of
+• Data transfer may be initiated only when the bus           course, setup and hold times must be taken into
+  is not busy.                                               account. During reads, a master must signal an end-of-
+• During data transfer, the data line must remain            data to the slave by not generating an Acknowledge bit
+  stable whenever the clock line is high. Changes in         on the last byte that has been clocked out of the slave.
+  the data line while the clock line is high will be         In this case, the slave (34AA04) will leave the data line
+  interpreted as a Start or Stop condition.                  high to enable the master to generate the Stop
+                                                             condition.
+Accordingly, the following bus conditions have been
+defined (Figure 4-1).
+                                                             4.6       Bus Timeout
+4.1      Bus Not Busy (A)                                    If SCL remains low for the time specified by TTIMEOUT,
+Both data and clock lines remain high.                       the 34AA04 will reset the serial interface and ignore all
+                                                             further communication until another Start condition is
+4.2      Start Data Transfer (B)                             detected (Figure 4-2). This dictates the minimum clock
+                                                             speed as defined by FCLK.
+A high-to-low transition of the SDA line while the clock
+(SCL) is high determines a Start condition. All
+commands must be preceded by a Start condition.
+
+4.3      Stop Data Transfer (C)
+A low-to-high transition of the SDA line while the clock
+(SCL) is high determines a Stop condition. All
+operations must be ended with a Stop condition.
+
+4.4      Data Valid (D)
+The state of the data line represents valid data when,
+after a Start condition, the data line is stable for the
+duration of the high period of the clock signal.
+The data on the line must be changed during the low
+period of the clock signal. There is one clock pulse per
+bit of data.
+Each data transfer is initiated with a Start condition and
+terminated with a Stop condition. The number of data
+bytes transferred between the Start and Stop
+conditions is determined by the master device and is,
+theoretically, unlimited; although only the last sixteen
+
+
+
+
+DS20005271B-page 6                                                                    2014 Microchip Technology Inc.
+                                                                                                             34AA04
+FIGURE 4-1:             DATA TRANSFER SEQUENCE ON THE SERIAL BUS
+
+         (A)         (B)                        (D)                                  (D)                                 (C)    (A)
+ SCL
+
+
+
+
+SDA
+
+
+
+                   Start                   Address or           Data                                                  Stop
+                 Condition                Acknowledge          Allowed                                              Condition
+                                             Valid           to Change
+
+
+
+FIGURE 4-2:                BUS TIMEOUT
+                                                                   TTIMEOUT(MIN)                 TTIMEOUT(MAX)
+
+
+  SCL
+
+
+
+
+                      TLOW < TTIMEOUT(MIN): Bus interface does not reset.
+
+         TTIMEOUT(MIN) < TLOW < TTIMEOUT(MAX): Bus interface may or may not reset.
+
+                                     TTIMEOUT(MAX) < TLOW: Bus interface will reset.
+
+
+4.7      Device Addressing
+                                                                                                 Control         Chip
+                                                                             Operation                                         R/W
+A control byte is the first byte received following the                                           Code          Select
+Start condition from the master device. The first part of
+                                                                     Read                            1010     A2 A1 A0          1
+the control byte consists of a 4-bit control code which is
+set to ‘1010’ for normal read and write operations and               Write                           1010     A2 A1 A0          0
+‘0110’ for accessing the software write-protect features             Read Write-Protect/
+                                                                                                     0110     A2 A1 A0          1
+and bank selection. The control byte is followed by                  Bank Address
+three Chip Select bits (A2, A1, A0). The Chip Select bits            Set Write-Protect/
+allow the use of up to eight 34AA04 devices on the                                                   0110     A2 A1 A0          0
+                                                                     Bank Address
+same bus and are used to determine which device is
+accessed. The Chip Select bits in the control byte must
+                                                                    FIGURE 4-3:                 CONTROL BYTE
+correspond to the logic levels on the corresponding A2,
+                                                                                                ALLOCATION
+A1 and A0 pins for the device to respond.
+The eighth bit of slave address determines if the master                     Start                          Read/Write
+device wants to read or write to the 34AA04
+(Figure 4-3). When set to a one, a read operation is
+                                                                                           Slave Address                R/W A
+selected. When set to a zero, a write operation is
+selected.
+
+                                                                              1      0      1    0     A2     A1   A0
+
+                                                                                                OR
+
+                                                                              0      1      1    0     A2     A1   A0
+
+
+
+
+ 2014 Microchip Technology Inc.                                                                             DS20005271B-page 7
+34AA04
+5.0     BANK ADDRESSING                                             Note: Sequential read operations cannot
+To support backwards-compatibility with DDR2/3                            cross a bank boundary and will roll over
+(JEDEC EE1002) SPD EEPROMs, the memory array                              back to the beginning of the selected
+of the 34AA04 is divided into two separate 256-byte                       bank.
+banks. The Set Bank Address (SBA) commands are
+used to set the bank address to either 0 or 1. The               TABLE 5-1:               BANK ADDRESS RANGE
+Read Bank Address (RBA) command is used to                               Bank                     Logical Array Address
+determine which bank is currently selected.
+                                                                         Bank 0                            000h-0FFh
+   Note 1: The bank address is volatile and is reset                     Bank 1                            100h-1FFh
+           to Bank 0 upon power-up.
+        2: The comparison between the A0, A1, and
+           A2 pins and the corresponding Chip
+           Select bits is disabled for Bank Select
+           commands.
+
+TABLE 5-2:          BANK ADDRESSING INSTRUCTION SET
+                                                                       Control Byte
+                Function              Abbr            Control Code              Chip Select Bits            R/W        A0 Pin
+                                              Bit 7    Bit 6   Bit 5   Bit 4   Bit 3      Bit 2    Bit 1    Bit 0
+Set Bank Address to 0                SBA0                                         1        1        0         0     0, 1, or VHV
+Set Bank Address to 1                SBA1       0        1      1        0        1        1        1         0     0, 1, or VHV
+Read Bank Address                    RBA                                          1        1        0         1     0, 1, or VHV
+
+5.1      Set Bank Address (SBA)                                  34AA04 will respond with an Acknowledge, and then
+                                                                 the master transmits two dummy bytes. The 34AA04
+The Set Bank Address (SBA) commands are used to                  will not acknowledge either dummy byte. Finally, the
+select the array bank for future read and write                  master generates a Stop condition to end the
+operations.                                                      operation (Figure 5-1).
+The master generates a Start condition followed by the           Array Read and Write commands will operate in the
+corresponding control byte for the chosen SBA                    newly-selected bank until another SBA command is
+command (Table 5-2), with the R/W bit set to a logic             executed, or the 34AA04 experiences a POR or BOR
+‘0’. Note that Chip Select bit A0 of the control byte            event.
+effectively determines which bank is selected. The
+
+FIGURE 5-1:        SET BANK ADDRESS
+
+                     S                                                                                                     S
+ Bus Activity        T         Control                         Dummy                               Dummy                   T
+ Master              A          Byte                            Byte                                Byte                   O
+                     R                                                                                                     P
+                     T
+                                   A1
+ SDA Line            S 0 1 1 0 1 1 0 0                                                                                     P
+
+                                                 A                                    N                                N
+ Bus Activity                                    C                                    o                                o
+                                                 K
+                                                                                  A                                    A
+                                                                                  C                                    C
+ Note 1: Chip Select bit A0 specifies which bank to select.                       K                                    K
+
+
+
+
+DS20005271B-page 8                                                                              2014 Microchip Technology Inc.
+                                                                                              34AA04
+5.2      Read Bank Address (RBA)
+The Read Bank Address (RBA) command allows the
+34AA04 to indicate which array bank is currently
+selected.
+The master generates a Start condition and transmits
+the RBA control byte (Table 5-2), with the R/W bit set
+to logic ‘1’. If Bank 0 is currently selected, the 34AA04
+will respond with an Acknowledge signal. If Bank 1 is
+currently selected, an Acknowledge will not be
+generated. Regardless of the result, the master must
+read at least one dummy byte from the 34AA04,
+transmitting a Not Acknowledge signal after each byte,
+and generate a Stop condition to end the command
+(Figure 5-2).
+
+FIGURE 5-2:       READ BANK ADDRESS
+                                   S
+             Bus Activity          T           Control                  Dummy                 S
+             Master                A            Byte                     Byte                 T
+                                   R                                                          O
+                                   T                                                          P
+
+             SDA Line              S 0 1 1 0 1 1 0 1                                          P
+
+                                                             A1                           N
+             Bus Activity                                    C                            o
+                                                             K
+                                                                                          A
+                                                                                          C
+                                                                                          K
+             Note 1: The 34AA04 will only acknowledge if Bank 0 is currently selected.
+                  2: In accordance with the JEDEC spec, the master is allowed to read multiple dummy bytes,
+                     transmitting a Not Acknowledge after each byte.
+
+
+
+
+ 2014 Microchip Technology Inc.                                                               DS20005271B-page 9
+34AA04
+6.0       WRITE OPERATIONS                                      Pointer bits are internally incremented by one. The
+                                                                higher order four bits of the array address, as well as
+6.1       Byte Write                                            the bank selection, remain constant. If the master
+                                                                should transmit more than 16 bytes prior to generating
+Following the Start signal from the master, the control         the Stop condition, the address counter will roll over
+code (4 bits), the Chip Select bits (3 bits) and the R/W        and the previously received data will be overwritten. As
+bit, which is a logic low, are placed onto the bus by the       with the byte write operation, once the Stop condition is
+master transmitter. This indicates to the addressed             received, an internal write cycle will begin (Figure 6-2).
+slave receiver that the array address byte will follow,         If an attempt is made to write to a software write-pro-
+once it has generated an Acknowledge bit during the             tected portion of the array, the 34AA04 will not
+ninth clock cycle. Therefore, the next byte transmitted         acknowledge the data byte, no data will be written, and
+by the master is the array address and will be written          the device will immediately accept a new command.
+into the Address Pointer of the 34AA04.
+After receiving another Acknowledge signal from the               Note:     When doing a write of less than 16 bytes,
+34AA04, the master device will transmit the data byte to                    the data in the rest of the page is
+be written into the addressed memory location. The                          refreshed along with the data bytes being
+34AA04 acknowledges again and the master generates                          written. This will force the entire page to
+a Stop condition. This initiates the internal write cycle,                  endure a write cycle. For this reason,
+which means that during this time, the 34AA04 will not                      endurance is specified per page.
+generate Acknowledge signals (Figure 6-1).
+  Note:      It is recommended to perform a Set Bank              Note:     Page write operations are limited to
+             Address command before initiating a                            writing bytes within a single physical page,
+             Write command to ensure the desired                            regardless of the number of bytes actually
+             bank is selected.                                              being written. Physical page boundaries
+                                                                            start at addresses that are integer multi-
+If an attempt is made to write to a software write-pro-
+                                                                            ples of the page buffer size (or ‘page size’)
+tected portion of the array, the 34AA04 will not acknowl-                   and end at addresses that are integer mul-
+edge the data byte, no data will be written, and the                        tiples of [page size – 1]. If a Page Write
+device will immediately accept a new command.
+                                                                            command attempts to write across a phys-
+                                                                            ical page boundary, the result is that the
+6.2       Page Write                                                        data wraps around to the beginning of the
+The write control byte, array address and the first data                    current page (overwriting data previously
+byte are transmitted to the 34AA04 in the same way as                       stored there), instead of being written to
+in a byte write. Instead of generating a Stop condition,                    the next page, as might be expected. It is,
+the master transmits up to 15 additional data bytes to                      therefore, necessary for the application
+the 34AA04, which are temporarily stored in the on-                         software to prevent page write operations
+chip page buffer and will be written into the memory                        that would attempt to cross a page
+after the master has transmitted a Stop condition. Upon                     boundary.
+receipt of each word, the four lower order Address
+
+TABLE 6-1:         DEVICE RESPONSE WHEN WRITING DATA
+          Status               Command              ACK      Address      ACK       Data Byte       ACK    Write Cycle
+                         Page or Byte Write in
+Protected with SWPn                                 ACK      Address      ACK         Data       NoACK          No
+                         Protected Block
+Not Protected            Page or Byte Write         ACK      Address      ACK         Data          ACK         Yes
+
+FIGURE 6-1:             BYTE WRITE
+                    S                                                                                              S
+ Bus Activity       T            Control                       Array                                               T
+ Master             A             Byte                        Address
+                    R                                                                        Data                  O
+                    T                                                                                              P
+
+ SDA Line           S                                                                                              P
+
+                                                    A                           A                              A
+ Bus Activity                                       C                           C                              C
+                                                    K                           K                              K
+
+
+
+
+DS20005271B-page 10                                                                       2014 Microchip Technology Inc.
+                                                                                                 34AA04
+FIGURE 6-2:            PAGE WRITE
+                        S                                                                                            S
+  Bus Activity          T      Control         Array                                                                 T
+                        A                                                                                            O
+  Master                R       Byte         Address (n)       Data (n)       Data (n + 1)       Data (n + 15)       P
+                        T
+  SDA Line              S                                                                                            P
+                                         A                 A              A                  A                   A
+  Bus Activity                           C                 C              C                  C                   C
+                                         K                 K              K                  K                   K
+
+
+
+
+ 2014 Microchip Technology Inc.                                                                 DS20005271B-page 11
+34AA04
+7.0      ACKNOWLEDGE POLLING
+Since the device will not acknowledge during a write
+cycle, this can be used to determine when the cycle is
+complete (this feature can be used to maximize bus
+throughput). Once the Stop condition for a Write
+command has been issued from the master, the device
+initiates the internally timed write cycle. ACK polling
+can be initiated immediately. This involves the master
+sending a Start condition followed by the control byte
+for a Write command (R/W = 0). If the device is still
+busy with the write cycle, then no ACK will be returned.
+If the cycle is complete, then the device will return the
+ACK and the master can then proceed with the next
+Read or Write command. See Figure 7-1 for flow
+diagram.
+
+FIGURE 7-1:             ACKNOWLEDGE
+                        POLLING FLOW
+
+                     Send
+                Write Command
+
+
+
+                   Send Stop
+                   Condition to
+              Initiate Write Cycle
+
+
+
+                   Send Start
+
+
+
+
+              Send Control Byte
+                with R/W = 0
+
+
+
+
+                  Did Device
+                                       No
+                 Acknowledge
+                  (ACK = 0)?
+
+                           Yes
+
+                     Next
+                   Operation
+
+
+
+
+DS20005271B-page 12                                          2014 Microchip Technology Inc.
+                                                                                                34AA04
+8.0      READ OPERATION                                      master will not acknowledge the transfer, but does
+                                                             generate a Stop condition and the 34AA04
+Read operations are initiated in the same way as write       discontinues transmission (Figure 8-2).
+operations, with the exception that the R/W bit of the
+slave address is set to ‘1’. There are three basic types       Note:     It is recommended to perform a Set Bank
+of read operations: current address read, random read                    Address command before initiating a
+and sequential read.                                                     Read command to ensure the desired
+                                                                         bank is selected.
+8.1      Current Address Read
+                                                             8.3       Sequential Read
+The 34AA04 contains an address counter that
+maintains the address of the last byte accessed, inter-      Sequential reads are initiated in the same way as a
+nally incremented by ‘1’. Therefore, if the previous         random read, with the exception that after the 34AA04
+access (either a read or write operation) was to             transmits the first data byte, the master issues an
+address n, the next current address read operation           acknowledge, as opposed to a Stop condition in a
+would access data from address n+1. Upon receipt of          random read. This directs the 34AA04 to transmit the
+the slave address with R/W bit set to ‘1’, the 34AA04        next sequentially addressed 8-bit word (Figure 8-3).
+issues an acknowledge and transmits the 8-bit data           To provide sequential reads, the 34AA04 contains an
+value. The master will not acknowledge the transfer,         internal Address Pointer, which is incremented by one
+but does generate a Stop condition and the 34AA04            at the completion of each operation. Sequential reads
+discontinues transmission (Figure 8-1).                      are limited to a single bank per operation, so the
+                                                             Address Pointer allows the entire memory contents of
+8.2      Random Read                                         the current bank to be serially read during one opera-
+Random read operations allow the master to access            tion.
+any memory location in a random manner. To perform
+this type of read operation, the array address must first    8.4       Noise Protection and Brown-Out
+be set. This is done by sending the array address to the     The 34AA04 employs a VCC threshold detector circuit
+34AA04 as part of a write operation. Once the array          which disables the internal erase/write logic if the VCC
+address is sent, the master generates a Start condition      is below 1.35V at nominal conditions.
+following the acknowledge. This terminates the write
+operation, but not before the internal Address Pointer is    The SCL and SDA inputs have Schmitt Trigger and
+set. The master then issues the control byte again, but      filter circuits which suppress noise spikes to assure
+with the R/W bit set to a ‘1’. The 34AA04 then issues        proper device operation, even on a noisy bus.
+an acknowledge and transmits the 8-bit data word. The
+
+FIGURE 8-1:            CURRENT ADDRESS READ
+                                      S
+                Bus Activity          T            Control                                         S
+                Master                A             Byte                                           T
+                                      R                                    Data (n)
+                                                                                                   O
+                                      T                                                            P
+
+                SDA Line              S                                                            P
+
+                                                                A                              N
+                Bus Activity                                    C                              O
+                                                                K
+                                                                                               A
+                                                                                               C
+                                                                                               K
+
+
+
+
+ 2014 Microchip Technology Inc.                                                               DS20005271B-page 13
+34AA04
+FIGURE 8-2:           RANDOM READ
+
+                           S                                                S
+            Bus Activity   T         Control           Array                T    Control                             S
+            Master         A          Byte           Address (n)            A     Byte                               T
+                           R                                                R                       Data (n)         O
+                           T                                                T                                        P
+                           S                                                S                                        P
+            SDA Line
+                                                 A                      A                      A                 N
+                                                 C                      C                      C                 O
+                                                 K                      K                      K
+            Bus Activity                                                                                         A
+                                                                                                                 C
+                                                                                                                 K
+
+
+
+FIGURE 8-3:           SEQUENTIAL READ
+
+    Bus Activity       Control                                                                                               S
+                                                                                                                             T
+    Master              Byte          Data (n)           Data (n + 1)           Data (n + 2)              Data (n + X)       O
+                                                                                                                             P
+
+    SDA Line                                                                                                                 P
+                                 A                   A                      A                  A                         N
+    Bus Activity                 C                   C                      C                  C                         O
+                                 K                   K                      K                  K
+                                                                                                                         A
+                                                                                                                         C
+                                                                                                                         K
+
+
+
+
+DS20005271B-page 14                                                                                 2014 Microchip Technology Inc.
+                                                                                                           34AA04
+
+9.0      SOFTWARE WRITE                                             TABLE 9-1:            BLOCK ADDRESS RANGE
+         PROTECTION                                                         Block                 Logical Array Address
+
+The 34AA04 has a reversible software write-protect                         Block 0                      000h - 07Fh
+feature that allows each of four 128-byte blocks to be                     Block 1                      080h - 0FFh
+individually write-protected. The write protection is set                  Block 2                      100h - 17Fh
+by executing the Set Write Protect (SWPn)                                  Block 3                      180h - 1FFh
+commands. The Clear All Write Protect (CWP)
+command is used to unprotect all of the blocks at
+once. It is not possible to unprotect blocks individually.             Note:      The comparison between the A0, A1, and
+The Read Protection Status (RPS) commands are                                     A2 pins and the corresponding Chip
+used to determine if a given block is currently write-                            Select bits is disabled for software Write-
+protected.                                                                        Protect commands.
+The 34AA04 will not respond with an Acknowledge
+following the data bytes of write operations that are
+attempted within a write-protected block.
+  Note: The write-protect state of each block is
+        stored in nonvolatile bits.
+
+TABLE 9-2:         SOFTWARE WRITE PROTECTION INSTRUCTION SET
+                                                                          Control Byte
+              Function                   Abbr             Control Code              Chip Select Bits       R/W        A0 Pin
+                                                  Bit 7   Bit 6   Bit 5   Bit 4   Bit 3   Bit 2    Bit 1   Bit 0
+Set Write Protection, block 0           SWP0                                         0     0        1        0         VHV
+Set Write Protection, block 1           SWP1                                         1     0        0        0         VHV
+Set Write Protection, block 2           SWP2                                         1     0        1        0         VHV
+Set Write Protection, block 3           SWP3                                         0     0        0        0         VHV
+Clear All Write Protection              CWP         0         1    1        0        0     1        1        0         VHV
+Read Protection Status, block 0         RPS0                                         0     0        1        1     0, 1, or VHV
+Read Protection Status, block 1         RPS1                                         1     0        0        1     0, 1, or VHV
+Read Protection Status, block 2         RPS2                                         1     0        1        1     0, 1, or VHV
+Read Protection Status, block 3         RPS3                                         0     0        0        1     0, 1, or VHV
+
+9.1      Set Write Protection (SWPn)                                If the specified block is already write-protected, the
+                                                                    SWP command is ignored, no Acknowledges will be
+The Set Write Protection (SWP) commands are used                    sent, and the internal write cycle will not be executed.
+to set the reversible write protection for individual array
+blocks. There are four different SWP commands, one
+for each block.
+VHV must be applied to the A0 pin for the entire SWP
+command. Then, the command is executed in a
+manner similar to an array byte Write command.
+Following the Start condition, the ‘0110’ control code
+and the three Chip Select bits that correspond to the
+desired SWP command (Table 9-2) are transmitted by
+the master, along with the R/W bit as a logic ‘0’. After
+the 34AA04 responds with an Acknowledge, the
+master transmits two dummy bytes, after each of
+which the 34AA04 responds with an Acknowledge.
+Finally, the master generates a Stop condition, which
+initiates the internal write cycle and, during this time,
+the 34AA04 will not generate Acknowledge signals
+(Figure 9-1).
+
+
+
+
+ 2014 Microchip Technology Inc.                                                                           DS20005271B-page 15
+34AA04
+FIGURE 9-1:        SET WRITE PROTECTION
+             VHV
+
+
+ A0 Pin
+                    S                                                                                                S
+ Bus Activity       T           Control                      Dummy                           Dummy                   T
+ Master             A            Byte                         Byte                            Byte                   O
+                    R                                                                                                P
+                    T
+                              A1 A1 A1
+ SDA Line           S 0 1 1 0 2 1 0 0                                                                                P
+
+                                                  A2                            A2                              A2
+ Bus Activity                                     C                             C                               C
+                                                  K                             K                               K
+ Note 1: Chip Select bits A0-A2 vary depending on which SWP command is being executed.
+      2: The 34AA04 will only acknowledge if the specified block is not currently write-protected.
+
+
+TABLE 9-3:         DEVICE RESPONSE WHEN DEFINING WRITE PROTECTION
+          Status              Command             ACK      Address        ACK        Data Byte      ACK      Write Cycle
+                         SWPn                    NoACK     Don’t Care   NoACK        Don’t Care   NoACK          No
+Protected with SWPn
+                         CWP                      ACK      Don’t Care    ACK         Don’t Care    ACK           Yes
+Not Protected            SWPn or CWP              ACK      Don’t Care    ACK         Don’t Care    ACK           Yes
+
+9.2       Clear All Write Protection (CWP)                      Following the Start condition, the master transmits the
+                                                                control byte for the desired RPS command (Table 9-2),
+The Clear All Write Protection (CWP) command resets             with the R/W bit set to logic ‘1’. If the specified block is
+all of the write protection in a single operation. It is        not write-protected, the 34AA04 will respond with an
+executed in the same manner as a SWP command,                   Acknowledge signal. If the block is currently write-
+except using the CWP control byte (Table 9-2).                  protected, an Acknowledge will not be generated.
+The 34AA04 will always acknowledge and execute a                Regardless of the result, the master must read at least
+CWP command if an internal write cycle is not in                one dummy byte from the 34AA04, transmitting a Not
+progress, regardless of the state of write protection.          Acknowledge signal after each byte, and generate a
+                                                                Stop condition to end the command (Figure 9-3).
+9.3       Read Protection Status (RPS)
+The Read Protection Status (RPS) commands provide
+a way of determining whether or not the specified
+block is currently write-protected.
+
+FIGURE 9-2:        CLEAR ALL WRITE PROTECTION
+
+             VHV
+
+
+ A0 Pin
+                    S                                                                                                S
+ Bus Activity       T           Control                      Dummy                           Dummy                   T
+ Master             A            Byte                         Byte                            Byte                   O
+                    R                                                                                                P
+                    T
+
+ SDA Line           S 0 1 1 0 0 1 1 0                                                                                P
+
+                                                  A                             A                               A
+ Bus Activity                                     C                             C                               C
+                                                  K                             K                               K
+
+
+
+
+DS20005271B-page 16                                                                        2014 Microchip Technology Inc.
+                                                                                                 34AA04
+FIGURE 9-3:       READ PROTECTION STATUS
+                                   S
+             Bus Activity          T         Control                      Dummy                 S
+             Master                A          Byte                         Byte                 T
+                                   R                                                            O
+                                   T                                                            P
+                                             A1 A1 A1
+             SDA Line              S 0 1 1 0 2 1 0 1                                            P
+
+                                                               A2                           N
+             Bus Activity                                      C                            o
+                                                               K
+                                                                                            A
+                                                                                            C
+                                                                                            K
+             Note 1: Chip Select bits A0-A2 vary depending on which RPS command is being performed.
+                  2: The 34AA04 will only acknowledge if the specified block is not currently write-protected.
+                  3: In accordance with the JEDEC spec, the master is allowed to read multiple dummy bytes,
+                     transmitting a Not Acknowledge after each byte.
+
+
+TABLE 9-4:        DEVICE RESPONSE WHEN READING WRITE PROTECTION STATUS
+              Status                    Command                 ACK               Data Byte               ACK
+Protected with SWPn                        RPSn                NoACK              Don’t Care            NoACK
+Not Protected                              RPSn                 ACK               Don’t Care            NoACK
+
+
+
+
+ 2014 Microchip Technology Inc.                                                                DS20005271B-page 17
+34AA04
+10.0    PACKAGING INFORMATION
+10.1    Package Marking Information
+
+           8-Lead PDIP (300 mil)                                 Example:
+
+              XXXXXXXX                                             34AA04
+              XXXXXNNN                                             e3 3EC
+                  YYWW                                               1442
+
+
+
+           8-Lead SOIC (3.90 mm)                                 Example:
+
+               XXXXXXXX                                                34AA04
+              XXXXYYWW                                              e3 1442
+                   NNN                                                   3EC
+
+
+
+
+           8-Lead TSSOP                                          Example:
+
+                          XXXX                                                    AACK
+                          YYWW                                                      1442
+                           NNN                                                      3EC
+
+
+
+            8-Lead 2x3 TDFN                                       Example:
+
+               XXX                                                      ACB
+               YWW                                                      442
+               NN                                                       3E
+
+
+
+
+            8-Lead 2x3 UDFN                                       Example:
+
+               XXX                                                      CAC
+               YWW                                                      442
+               NN                                                       3E
+
+
+
+
+                                        1st Line Marking Codes
+
+                      Part Number    PDIP    SOIC     TSSOP      TDFN         UDFN
+
+
+                        34AA04      34AA04   34AA04    AACK      ACB          CAC
+
+
+
+
+DS20005271B-page 18                                                            2014 Microchip Technology Inc.
+                                                                                                    34AA04
+
+                Legend: XX...X      Part number or part number code
+                        Y           Year code (last digit of calendar year)
+                        YY          Year code (last 2 digits of calendar year)
+                        WW          Week code (week of January 1 is week ‘01’)
+                        NNN         Alphanumeric traceability code (2 characters for small packages)
+                            e3      JEDEC® designator for Matte Tin (Sn)
+
+
+                Note:      For very small packages with no room for the JEDEC designator
+                           e3 , the marking will only appear on the outer carton or reel label.
+
+
+                Note:    In the event the full Microchip part number cannot be marked on one line, it will
+                         be carried over to the next line, thus limiting the number of available
+                         characters for customer-specific information.
+
+
+
+
+     *Standard OTP marking consists of Microchip part number, year code, week code, and traceability code.
+
+
+
+
+ 2014 Microchip Technology Inc.                                                                   DS20005271B-page 19
+34AA04
+ 8-Lead Plastic Dual In-Line (P) - 300 mil Body [PDIP]
+
+  Note:   For the most current package drawings, please see the Microchip Packaging Specification located at
+          http://www.microchip.com/packaging
+
+
+
+
+                                           D            A
+                            N                                  B
+
+
+
+
+                                                               E1
+
+
+
+            NOTE 1
+                            1          2
+                                  TOP VIEW
+
+
+
+
+                                                                                             E
+
+
+
+
+             C   A                                            A2
+
+
+    PLANE
+                                                         L                                        c
+                 A1
+
+
+                                               e                                            eB
+                       8X b1
+                         8X b
+                                .010       C
+
+                                  SIDE VIEW                                            END VIEW
+
+
+
+
+                                                             Microchip Technology Drawing No. C04-018D Sheet 1 of 2
+
+
+
+
+DS20005271B-page 20                                                                    2014 Microchip Technology Inc.
+                                                                                                         34AA04
+
+ 8-Lead Plastic Dual In-Line (P) - 300 mil Body [PDIP]
+
+  Note:     For the most current package drawings, please see the Microchip Packaging Specification located at
+            http://www.microchip.com/packaging
+
+
+
+
+                                                                                ALTERNATE LEAD DESIGN
+                                                                                 (VENDOR DEPENDENT)
+
+                                              DATUM A                                                   DATUM A
+
+
+
+
+                                              b                                                         b
+                        e                                                           e
+                        2                                                           2
+
+                                   e                                                         e
+
+
+
+
+                                                          Units                   INCHES
+                                               Dimension Limits        MIN          NOM          MAX
+                      Number of Pins                       N                          8
+                      Pitch                                 e                    .100 BSC
+                      Top to Seating Plane                  A            -            -          .210
+                      Molded Package Thickness             A2          .115         .130         .195
+                      Base to Seating Plane                A1          .015           -            -
+                      Shoulder to Shoulder Width           E           .290         .310         .325
+                      Molded Package Width                 E1          .240         .250         .280
+                      Overall Length                       D           .348         .365         .400
+                      Tip to Seating Plane                  L          .115         .130         .150
+                      Lead Thickness                        c          .008         .010         .015
+                      Upper Lead Width                     b1          .040         .060         .070
+                      Lower Lead Width                      b          .014         .018         .022
+                      Overall Row Spacing        §         eB            -            -          .430
+      Notes:
+      1. Pin 1 visual index feature may vary, but must be located within the hatched area.
+      2. § Significant Characteristic
+      3. Dimensions D and E1 do not include mold flash or protrusions. Mold flash or
+         protrusions shall not exceed .010" per side.
+      4. Dimensioning and tolerancing per ASME Y14.5M
+             BSC: Basic Dimension. Theoretically exact value shown without tolerances.
+
+                                                                    Microchip Technology Drawing No. C04-018D Sheet 2 of 2
+
+
+
+
+ 2014 Microchip Technology Inc.                                                                        DS20005271B-page 21
+34AA04
+
+
+  Note:   For the most current package drawings, please see the Microchip Packaging Specification located at
+          http://www.microchip.com/packaging
+
+
+
+
+DS20005271B-page 22                                                                  2014 Microchip Technology Inc.
+                                                                                              34AA04
+
+
+  Note:    For the most current package drawings, please see the Microchip Packaging Specification located at
+           http://www.microchip.com/packaging
+
+
+
+
+ 2014 Microchip Technology Inc.                                                              DS20005271B-page 23
+34AA04
+
+          !"#$%
+   &     ! "#  $% &"' ""    ($ )  %
+            *++&&&!    !+ $
+
+
+
+
+DS20005271B-page 24                                                               2014 Microchip Technology Inc.
+                                                                                                                       34AA04
+
+          '( ( )  '** !"' %
+   &       ! "#  $% &"' ""    ($ )  %
+              *++&&&!    !+ $
+
+
+                                                  D
+
+                                         N
+
+
+
+
+                                                                   E
+
+                                                             E1
+
+
+
+                      NOTE 1
+
+
+                                         1    2
+                                   b
+                                                      e
+
+
+                                                                  c
+                           A                               A2                                                      φ
+
+
+
+                            A1                                                 L1                       L
+
+                                                                       @"               AA8 8
+                                                          !" A!"          E       EG           H
+                  E#!7  )("                                        E                       
+                  (                                                                     J;>?
+                  G3 K                                                     L          L           1
+                   %%($            $""                                     1         1;
+                  % ))                                            1           ;        L           1;
+                  G3 N%                                          8                   J>?
+                   %%($N%                                  81           <                ;
+                   %%($A                                                    <         <1
+                        A                                        A           ;       J         ;
+                                                                  A1                    18
+                                                                            O         L            O
+                  A%        $""                                                     L           
+                    A%N%                                     7        1      L           <
+  &
+1 (13"#%6)# !3 '7#!#"7 %&    % 
+ !" "%81%  #%! %)"    #" " %)"    #" ""  6%1;!!  "%
+< !" %    8=1;
+       >?* >"!"   63#" && #  "
+       8* ) !" '#"#& #  ') ) !  # "" 
+
+                                                                                                            & ?J>
+
+
+
+
+ 2014 Microchip Technology Inc.                                                                                   DS20005271B-page 25
+34AA04
+
+
+  Note:   For the most current package drawings, please see the Microchip Packaging Specification located at
+          http://www.microchip.com/packaging
+
+
+
+
+DS20005271B-page 26                                                                  2014 Microchip Technology Inc.
+                                                                                                34AA04
+
+
+   Note:    For the most current package drawings, please see the Microchip Packaging Specification located at
+            http://www.microchip.com/packaging
+
+
+
+
+ 2014 Microchip Technology Inc.                                                               DS20005271B-page 27
+34AA04
+
+
+  Note:   For the most current package drawings, please see the Microchip Packaging Specification located at
+          http://www.microchip.com/packaging
+
+
+
+
+DS20005271B-page 28                                                                  2014 Microchip Technology Inc.
+                                                                                              34AA04
+
+          + ,   )-./0012 !"'+,%
+    &      ! "#  $% &"' ""    ($ )  %
+              *++&&&!    !+ $
+
+
+
+
+ 2014 Microchip Technology Inc.                                                             DS20005271B-page 29
+34AA04
+
+       + ,   )-.3/002 !"3+,%
+   &     ! "#  $% &"' ""    ($ )  %
+            *++&&&!    !+ $
+
+
+
+
+DS20005271B-page 30                                                               2014 Microchip Technology Inc.
+                                                                                             34AA04
+
+          + ,   )-.3/002 !"3+,%
+   &       ! "#  $% &"' ""    ($ )  %
+              *++&&&!    !+ $
+
+
+
+
+ 2014 Microchip Technology Inc.                                                            DS20005271B-page 31
+34AA04
+APPENDIX A:           REVISION HISTORY
+
+Revision B (10/2014)
+• Removed “Preliminary” condition.
+• Updated Section 10.0, Packaging Information.
+• Minor typographical corrections.
+
+Revision A (03/2014)
+Original release of this document.
+
+
+
+
+DS20005271B-page 32                               2014 Microchip Technology Inc.
+                                                                                                34AA04
+THE MICROCHIP WEB SITE                                     CUSTOMER SUPPORT
+Microchip provides online support via our WWW site at      Users of Microchip products can receive assistance
+www.microchip.com. This web site is used as a means        through several channels:
+to make files and information easily available to          • Distributor or Representative
+customers. Accessible by using your favorite Internet
+                                                           • Local Sales Office
+browser, the web site contains the following informa-
+tion:                                                      • Field Application Engineer (FAE)
+                                                           • Technical Support
+• Product Support – Data sheets and errata, appli-
+  cation notes and sample programs, design                 Customers should contact their distributor, representa-
+  resources, user’s guides and hardware support            tive or Field Application Engineer (FAE) for support.
+  documents, latest software releases and archived         Local sales offices are also available to help custom-
+  software                                                 ers. A listing of sales offices and locations is included in
+• General Technical Support – Frequently Asked             the back of this document.
+  Questions (FAQ), technical support requests,             Technical support is available through the web site
+  online discussion groups, Microchip consultant           at: http://microchip.com/support
+  program member listing
+• Business of Microchip – Product selector and
+  ordering guides, latest Microchip press releases,
+  listing of seminars and events, listings of Micro-
+  chip sales offices, distributors and factory repre-
+  sentatives
+
+CUSTOMER CHANGE NOTIFICATION
+SERVICE
+Microchip’s customer notification service helps keep
+customers current on Microchip products. Subscribers
+will receive e-mail notification whenever there are
+changes, updates, revisions or errata related to a spec-
+ified product family or development tool of interest.
+To register, access the Microchip web site at
+www.microchip.com. Under “Support”, click on “Cus-
+tomer Change Notification” and follow the registration
+instructions.
+
+
+
+
+ 2014 Microchip Technology Inc.                                                               DS20005217B-page 33
+34AA04
+PRODUCT IDENTIFICATION SYSTEM
+To order or obtain information, e.g., on pricing or delivery, refer to the factory or the listed sales office.
+       PART NO.         –   X               /XX
+                                                                                        Examples:
+         Device        Temperature Package                                              a)    34AA04-I/P: Industrial    Temperature,
+                         Range                                                                1.7V, PDIP package
+                                                                                        b)    34AA04-I/SN: Industrial Temperature,
+  Device:          34AA04:      = 1.7V, 4 Kbit I2C Serial EEPROM                              1.7V, SOIC package
+                   34AA04T:     = 1.7V, 4 Kbit I2C Serial EEPROM                        c)    34AA04T-E/MUY: Tape and Reel,
+                                  (Tape and Reel)                                             Automotive Temperature, 1.7V, UDFN
+                                                                                              package
+                                                                                        d)    34AA04T-I/MNY: Tape and Reel, Indus-
+  Temperature      I        =    -40°C to +85°C                                               trial Temperature, 1.7V, TDFN package
+  Range:           E        =    -40°C to +125°C                                        e)    34AA04-E/ST: Automotive Temperature,
+                                                                                              1.7V, TSSOP package
+
+  Package:         P      =     Plastic DIP (300 mil body), 8-lead
+                   SN     =     Plastic SOIC (3.90 mm body), 8-lead
+                   ST     =     Plastic TSSOP (4.4 mm), 8-lead
+                   MNY(1) =     Plastic Dual Flat, No Lead Package
+                                (2x3x0.75 mm body), 8-lead
+                   MUY(1) =     Plastic Dual Flat, No Lead Package
+                                (2x3x0.5 mm body), 8-lead
+
+
+
+
+    Note 1: “Y” indicates a Nickel Palladium Gold (NiPdAu) finish.
+
+
+
+
+DS20005271B-page 34                                                                                        2014 Microchip Technology Inc.
+Note the following details of the code protection feature on Microchip devices:
+•    Microchip products meet the specification contained in their particular Microchip Data Sheet.
+
+•    Microchip believes that its family of products is one of the most secure families of its kind on the market today, when used in the
+     intended manner and under normal conditions.
+
+•    There are dishonest and possibly illegal methods used to breach the code protection feature. All of these methods, to our
+     knowledge, require using the Microchip products in a manner outside the operating specifications contained in Microchip’s Data
+     Sheets. Most likely, the person doing so is engaged in theft of intellectual property.
+
+•    Microchip is willing to work with the customer who is concerned about the integrity of their code.
+
+•    Neither Microchip nor any other semiconductor manufacturer can guarantee the security of their code. Code protection does not
+     mean that we are guaranteeing the product as “unbreakable.”
+
+Code protection is constantly evolving. We at Microchip are committed to continuously improving the code protection features of our
+products. Attempts to break Microchip’s code protection feature may be a violation of the Digital Millennium Copyright Act. If such acts
+allow unauthorized access to your software or other copyrighted work, you may have a right to sue for relief under that Act.
+
+
+
+Information contained in this publication regarding device               Trademarks
+applications and the like is provided only for your convenience          The Microchip name and logo, the Microchip logo, dsPIC,
+and may be superseded by updates. It is your responsibility to
+                                                                         FlashFlex, flexPWR, JukeBlox, KEELOQ, KEELOQ logo, Kleer,
+ensure that your application meets with your specifications.
+                                                                         LANCheck, MediaLB, MOST, MOST logo, MPLAB,
+MICROCHIP MAKES NO REPRESENTATIONS OR
+                                                                         OptoLyzer, PIC, PICSTART, PIC32 logo, RightTouch, SpyNIC,
+WARRANTIES OF ANY KIND WHETHER EXPRESS OR
+                                                                         SST, SST Logo, SuperFlash and UNI/O are registered
+IMPLIED, WRITTEN OR ORAL, STATUTORY OR                                   trademarks of Microchip Technology Incorporated in the
+OTHERWISE, RELATED TO THE INFORMATION,                                   U.S.A. and other countries.
+INCLUDING BUT NOT LIMITED TO ITS CONDITION,
+QUALITY, PERFORMANCE, MERCHANTABILITY OR                                 The Embedded Control Solutions Company and mTouch are
+FITNESS FOR PURPOSE. Microchip disclaims all liability                   registered trademarks of Microchip Technology Incorporated
+arising from this information and its use. Use of Microchip              in the U.S.A.
+devices in life support and/or safety applications is entirely at        Analog-for-the-Digital Age, BodyCom, chipKIT, chipKIT logo,
+the buyer’s risk, and the buyer agrees to defend, indemnify and          CodeGuard, dsPICDEM, dsPICDEM.net, ECAN, In-Circuit
+hold harmless Microchip from any and all damages, claims,                Serial Programming, ICSP, Inter-Chip Connectivity, KleerNet,
+suits, or expenses resulting from such use. No licenses are              KleerNet logo, MiWi, MPASM, MPF, MPLAB Certified logo,
+conveyed, implicitly or otherwise, under any Microchip                   MPLIB, MPLINK, MultiTRAK, NetDetach, Omniscient Code
+intellectual property rights.                                            Generation, PICDEM, PICDEM.net, PICkit, PICtail,
+                                                                         RightTouch logo, REAL ICE, SQI, Serial Quad I/O, Total
+                                                                         Endurance, TSHARC, USBCheck, VariSense, ViewSpan,
+                                                                         WiperLock, Wireless DNA, and ZENA are trademarks of
+                                                                         Microchip Technology Incorporated in the U.S.A. and other
+                                                                         countries.
+                                                                         SQTP is a service mark of Microchip Technology Incorporated
+                                                                         in the U.S.A.
+                                                                         Silicon Storage Technology is a registered trademark of
+                                                                         Microchip Technology Inc. in other countries.
+                                                                         GestIC is a registered trademarks of Microchip Technology
+                                                                         Germany II GmbH & Co. KG, a subsidiary of Microchip
+                                                                         Technology Inc., in other countries.
+                                                                         All other trademarks mentioned herein are property of their
+                                                                         respective companies.
+                                                                         © 2014, Microchip Technology Incorporated, Printed in the
+                                                                         U.S.A., All Rights Reserved.
+                                                                         ISBN: 978-1-63276-747-9
+
+QUALITY MANAGEMENT SYSTEM                                                Microchip received ISO/TS-16949:2009 certification for its worldwide
+                                                                         headquarters, design and wafer fabrication facilities in Chandler and
+      CERTIFIED BY DNV                                                   Tempe, Arizona; Gresham, Oregon and design centers in California
+                                                                         and India. The Company’s quality system processes and procedures
+
+        == ISO/TS 16949 ==
+                                                                         are for its PIC® MCUs and dsPIC® DSCs, KEELOQ® code hopping
+                                                                         devices, Serial EEPROMs, microperipherals, nonvolatile memory and
+                                                                         analog products. In addition, Microchip’s quality system for the design
+                                                                         and manufacture of development systems is ISO 9001:2000 certified.
+
+
+
+ 2014 Microchip Technology Inc.                                                                                    DS20005271B-page 35
+                            Worldwide Sales and Service
+AMERICAS                    ASIA/PACIFIC                 ASIA/PACIFIC                  EUROPE
+Corporate Office            Asia Pacific Office          India - Bangalore             Austria - Wels
+2355 West Chandler Blvd.    Suites 3707-14, 37th Floor   Tel: 91-80-3090-4444          Tel: 43-7242-2244-39
+Chandler, AZ 85224-6199     Tower 6, The Gateway         Fax: 91-80-3090-4123          Fax: 43-7242-2244-393
+Tel: 480-792-7200           Harbour City, Kowloon                                      Denmark - Copenhagen
+                                                         India - New Delhi
+Fax: 480-792-7277           Hong Kong                                                  Tel: 45-4450-2828
+                                                         Tel: 91-11-4160-8631
+Technical Support:          Tel: 852-2943-5100                                         Fax: 45-4485-2829
+                                                         Fax: 91-11-4160-8632
+http://www.microchip.com/   Fax: 852-2401-3431
+                                                         India - Pune                  France - Paris
+support
+                            Australia - Sydney           Tel: 91-20-3019-1500          Tel: 33-1-69-53-63-20
+Web Address:
+                            Tel: 61-2-9868-6733                                        Fax: 33-1-69-30-90-79
+www.microchip.com                                        Japan - Osaka
+                            Fax: 61-2-9868-6755                                        Germany - Dusseldorf
+Atlanta                                                  Tel: 81-6-6152-7160
+                            China - Beijing                                            Tel: 49-2129-3766400
+Duluth, GA                                               Fax: 81-6-6152-9310
+                            Tel: 86-10-8569-7000                                       Germany - Munich
+Tel: 678-957-9614                                        Japan - Tokyo
+                            Fax: 86-10-8528-2104                                       Tel: 49-89-627-144-0
+Fax: 678-957-1455                                        Tel: 81-3-6880- 3770
+                            China - Chengdu                                            Fax: 49-89-627-144-44
+Austin, TX                                               Fax: 81-3-6880-3771
+                            Tel: 86-28-8665-5511
+Tel: 512-257-3370                                        Korea - Daegu
+                                                                                       Germany - Pforzheim
+                            Fax: 86-28-8665-7889                                       Tel: 49-7231-424750
+Boston                                                   Tel: 82-53-744-4301
+Westborough, MA             China - Chongqing            Fax: 82-53-744-4302           Italy - Milan
+Tel: 774-760-0087           Tel: 86-23-8980-9588                                       Tel: 39-0331-742611
+                                                         Korea - Seoul
+Fax: 774-760-0088           Fax: 86-23-8980-9500                                       Fax: 39-0331-466781
+                                                         Tel: 82-2-554-7200
+Chicago                     China - Hangzhou             Fax: 82-2-558-5932 or         Italy - Venice
+Itasca, IL                  Tel: 86-571-8792-8115        82-2-558-5934                 Tel: 39-049-7625286
+Tel: 630-285-0071           Fax: 86-571-8792-8116                                      Netherlands - Drunen
+                                                         Malaysia - Kuala Lumpur
+Fax: 630-285-0075           China - Hong Kong SAR        Tel: 60-3-6201-9857           Tel: 31-416-690399
+Cleveland                   Tel: 852-2943-5100           Fax: 60-3-6201-9859           Fax: 31-416-690340
+Independence, OH            Fax: 852-2401-3431                                         Poland - Warsaw
+                                                         Malaysia - Penang
+Tel: 216-447-0464           China - Nanjing                                            Tel: 48-22-3325737
+                                                         Tel: 60-4-227-8870
+Fax: 216-447-0643           Tel: 86-25-8473-2460         Fax: 60-4-227-4068            Spain - Madrid
+Dallas                      Fax: 86-25-8473-2470                                       Tel: 34-91-708-08-90
+                                                         Philippines - Manila
+Addison, TX                 China - Qingdao                                            Fax: 34-91-708-08-91
+                                                         Tel: 63-2-634-9065
+Tel: 972-818-7423           Tel: 86-532-8502-7355        Fax: 63-2-634-9069            Sweden - Stockholm
+Fax: 972-818-2924
+                            Fax: 86-532-8502-7205                                      Tel: 46-8-5090-4654
+                                                         Singapore
+Detroit                     China - Shanghai             Tel: 65-6334-8870             UK - Wokingham
+Novi, MI                    Tel: 86-21-5407-5533         Fax: 65-6334-8850             Tel: 44-118-921-5800
+Tel: 248-848-4000           Fax: 86-21-5407-5066
+                                                         Taiwan - Hsin Chu             Fax: 44-118-921-5820
+Houston, TX
+                            China - Shenyang             Tel: 886-3-5778-366
+Tel: 281-894-5983
+                            Tel: 86-24-2334-2829         Fax: 886-3-5770-955
+Indianapolis                Fax: 86-24-2334-2393
+Noblesville, IN                                          Taiwan - Kaohsiung
+Tel: 317-773-8323
+                            China - Shenzhen             Tel: 886-7-213-7830
+                            Tel: 86-755-8864-2200
+Fax: 317-773-5453                                        Taiwan - Taipei
+                            Fax: 86-755-8203-1760        Tel: 886-2-2508-8600
+Los Angeles
+                            China - Wuhan                Fax: 886-2-2508-0102
+Mission Viejo, CA
+                            Tel: 86-27-5980-5300
+Tel: 949-462-9523                                        Thailand - Bangkok
+                            Fax: 86-27-5980-5118         Tel: 66-2-694-1351
+Fax: 949-462-9608
+                            China - Xian                 Fax: 66-2-694-1350
+New York, NY
+Tel: 631-435-6000           Tel: 86-29-8833-7252
+                            Fax: 86-29-8833-7256
+San Jose, CA
+Tel: 408-735-9110           China - Xiamen
+                            Tel: 86-592-2388138
+Canada - Toronto
+                            Fax: 86-592-2388130
+Tel: 905-673-0699
+Fax: 905-673-6509           China - Zhuhai
+                            Tel: 86-756-3210040
+                                                                                                        03/25/14
+                            Fax: 86-756-3210049
+
+
+
+DS20005271B-page 36                                                                 2014 Microchip Technology Inc.
+

@@ -1,0 +1,2079 @@
+
+    <!DOCTYPE html>
+
+<html lang="en">
+<head id="head">
+    <script src="//cdn.bc0a.com/autopilot/f00000000302968/autopilot_sdk.js"></script>
+    
+        <script>
+            (function (w, d, s, l, i) {
+                w[l] = w[l] || []; w[l].push({
+                    'gtm.start':
+                        new Date().getTime(), event: 'gtm.js'
+                }); var f = d.getElementsByTagName(s)[0],
+                    j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
+                        'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
+            })(window, document, 'script', 'dataLayer', 'GTM-KBJNCRSP');
+        </script>
+        
+
+    
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico"/>
+<link rel="icon" type="image/x-icon" href="/favicon.ico"/>
+<link rel="sitemap" href="/sitemap.xml"/>
+
+<title>Understanding Gold Fingers in PCBs | AdvancedPCB</title>
+<meta content="gold fingers in pcbs" name="keywords" />
+
+
+<link rel="canonical" href="https://www.advancedpcb.com/en-us/resources/blog/gold_fingers/" />
+    <link rel="alternative" hreflang="x-default" href="https://www.advancedpcb.com/en-us/resources/blog/gold_fingers/"/>
+    <link rel="alternative" hreflang="en-us" href="https://www.advancedpcb.com/en-us/resources/blog/gold_fingers/"/>
+
+
+            <meta name="description" content="Learn about gold fingers in PCBs, their role in connectivity, and the manufacturing process that ensures quality and performance." />
+        <meta property="og:description" content="Learn about gold fingers in PCBs, their role in connectivity, and the manufacturing process that ensures quality and performance." />
+        <meta property="og:site_name" content="AdvancedPCB" />
+        <meta property="og:title" content="Understanding Gold Fingers in PCBs" />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://www.advancedpcb.com/en-us/resources/blog/gold_fingers/" />
+            <meta name="twitter:card" content="summary_large_image" />
+            <meta name="twitter:description" content="Learn about gold fingers in PCBs, their role in connectivity, and the manufacturing process that ensures quality and performance." />
+            <meta name="twitter:url" content="https://www.advancedpcb.com/en-us/resources/blog/gold_fingers/" />
+
+
+<!-- Start of HubSpot Embed Code -->
+  <script type="text/javascript" id="hs-script-loader" async defer
+  src="//js-na1.hs-scripts.com/45172949.js"></script>
+  <!-- End of HubSpot Embed Code -->
+
+    
+    <link rel="preload" href="/dist/NHaasGroteskDSPro-45Lt.DRdVESMx.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="/dist/NHaasGroteskDSPro-95Blk.Had4O6iY.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="/dist/NHaasGroteskTXPro-55Rg.BPs-uVRv.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="/dist/NHaasGroteskTXPro-65Md.VMYclGbC.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="/dist/NHaasGroteskTXPro-75Bd.CHvEZ86q.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="/dist/template-icons.B_ZVdZOe.woff2" as="font" type="font/woff2" crossorigin>
+
+
+
+    <link href="/dist/index.9dTsdP91.css" rel="stylesheet" type="text/css" />
+
+<link rel="icon" type="image/png" sizes="16x16" href="/icons/favicon-16x16.png"/>
+<link rel="icon" type="image/png" sizes="32x32" href="/icons/favicon-32x32.png"/>
+<link rel="apple-touch-icon" href="/icons/apple-touch-icon.png"/>
+<link rel="icon" type="image/x-icon" href="/icons/favicon.ico"/>
+<link rel="manifest" href="/manifest.webmanifest"/>
+
+<link href="/_content/Kentico.Content.Web.Rcl/Content/Bundles/Public/systemPageComponents.min.css" rel="stylesheet" />
+
+    
+    
+<script>
+    !function(T,l,y){var S=T.location,k="script",D="instrumentationKey",C="ingestionendpoint",I="disableExceptionTracking",E="ai.device.",b="toLowerCase",w="crossOrigin",N="POST",e="appInsightsSDK",t=y.name||"appInsights";(y.name||T[e])&&(T[e]=t);var n=T[t]||function(d){var g=!1,f=!1,m={initialize:!0,queue:[],sv:"5",version:2,config:d};function v(e,t){var n={},a="Browser";return n[E+"id"]=a[b](),n[E+"type"]=a,n["ai.operation.name"]=S&&S.pathname||"_unknown_",n["ai.internal.sdkVersion"]="javascript:snippet_"+(m.sv||m.version),{time:function(){var e=new Date;function t(e){var t=""+e;return 1===t.length&&(t="0"+t),t}return e.getUTCFullYear()+"-"+t(1+e.getUTCMonth())+"-"+t(e.getUTCDate())+"T"+t(e.getUTCHours())+":"+t(e.getUTCMinutes())+":"+t(e.getUTCSeconds())+"."+((e.getUTCMilliseconds()/1e3).toFixed(3)+"").slice(2,5)+"Z"}(),iKey:e,name:"Microsoft.ApplicationInsights."+e.replace(/-/g,"")+"."+t,sampleRate:100,tags:n,data:{baseData:{ver:2}}}}var h=d.url||y.src;if(h){function a(e){var t,n,a,i,r,o,s,c,u,p,l;g=!0,m.queue=[],f||(f=!0,t=h,s=function(){var e={},t=d.connectionString;if(t)for(var n=t.split(";"),a=0;a<n.length;a++){var i=n[a].split("=");2===i.length&&(e[i[0][b]()]=i[1])}if(!e[C]){var r=e.endpointsuffix,o=r?e.location:null;e[C]="https://"+(o?o+".":"")+"dc."+(r||"services.visualstudio.com")}return e}(),c=s[D]||d[D]||"",u=s[C],p=u?u+"/v2/track":d.endpointUrl,(l=[]).push((n="SDK LOAD Failure: Failed to load Application Insights SDK script (See stack for details)",a=t,i=p,(o=(r=v(c,"Exception")).data).baseType="ExceptionData",o.baseData.exceptions=[{typeName:"SDKLoadFailed",message:n.replace(/\./g,"-"),hasFullStack:!1,stack:n+"\nSnippet failed to load ["+a+"] -- Telemetry is disabled\nHelp Link: https://go.microsoft.com/fwlink/?linkid=2128109\nHost: "+(S&&S.pathname||"_unknown_")+"\nEndpoint: "+i,parsedStack:[]}],r)),l.push(function(e,t,n,a){var i=v(c,"Message"),r=i.data;r.baseType="MessageData";var o=r.baseData;return o.message='AI (Internal): 99 message:"'+("SDK LOAD Failure: Failed to load Application Insights SDK script (See stack for details) ("+n+")").replace(/\"/g,"")+'"',o.properties={endpoint:a},i}(0,0,t,p)),function(e,t){if(JSON){var n=T.fetch;if(n&&!y.useXhr)n(t,{method:N,body:JSON.stringify(e),mode:"cors"});else if(XMLHttpRequest){var a=new XMLHttpRequest;a.open(N,t),a.setRequestHeader("Content-type","application/json"),a.send(JSON.stringify(e))}}}(l,p))}function i(e,t){f||setTimeout(function(){!t&&m.core||a()},500)}var e=function(){var n=l.createElement(k);n.src=h;var e=y[w];return!e&&""!==e||"undefined"==n[w]||(n[w]=e),n.onload=i,n.onerror=a,n.onreadystatechange=function(e,t){"loaded"!==n.readyState&&"complete"!==n.readyState||i(0,t)},n}();y.ld<0?l.getElementsByTagName("head")[0].appendChild(e):setTimeout(function(){l.getElementsByTagName(k)[0].parentNode.appendChild(e)},y.ld||0)}try{m.cookie=l.cookie}catch(p){}function t(e){for(;e.length;)!function(t){m[t]=function(){var e=arguments;g||m.queue.push(function(){m[t].apply(m,e)})}}(e.pop())}var n="track",r="TrackPage",o="TrackEvent";t([n+"Event",n+"PageView",n+"Exception",n+"Trace",n+"DependencyData",n+"Metric",n+"PageViewPerformance","start"+r,"stop"+r,"start"+o,"stop"+o,"addTelemetryInitializer","setAuthenticatedUserContext","clearAuthenticatedUserContext","flush"]),m.SeverityLevel={Verbose:0,Information:1,Warning:2,Error:3,Critical:4};var s=(d.extensionConfig||{}).ApplicationInsightsAnalytics||{};if(!0!==d[I]&&!0!==s[I]){var c="onerror";t(["_"+c]);var u=T[c];T[c]=function(e,t,n,a,i){var r=u&&u(e,t,n,a,i);return!0!==r&&m["_"+c]({message:e,url:t,lineNumber:n,columnNumber:a,error:i}),r},d.autoExceptionInstrumented=!0}return m}(y.cfg);function a(){y.onInit&&y.onInit(n)}(T[t]=n).queue&&0===n.queue.length?(n.queue.push(a),n.trackPageView({})):a()}(window,document,{
+    src: "https://js.monitor.azure.com/scripts/b/ai.2.min.js",
+    crossOrigin: "anonymous",
+    cfg: {
+        connectionString: "InstrumentationKey=09280f29-9147-46bb-95cd-f96336050dd0;IngestionEndpoint=https://westus-0.in.applicationinsights.azure.com/;LiveEndpoint=https://westus.livediagnostics.monitor.azure.com/;ApplicationId=c46eef31-6a78-4e8c-b9f6-1c6b38834dec",
+        isCookieUseDisabled: false
+    }});
+</script>
+    <style type="text/css" data-branding>
+        :root { --color-white: 0, 0%, 100%;--color-black: 0, 0%, 0%;--color-base: 240, 100%, 17%;--color-navy: 228, 100%, 13%;--color-red: 346, 98%, 38%;--color-bright-red: 347, 100%, 50%;--color-dark-red: 345, 100%, 30%;--color-light-blue: 209, 73%, 58%;--color-main-50: 240, 100%, 95%;--color-main-100: 240, 100%, 91%;--color-main-200: 240, 100%, 82%;--color-main-300: 240, 100%, 73%;--color-main-400: 240, 100%, 63%;--color-main-500: 240, 100%, 54%;--color-main-600: 240, 100%, 45%;--color-main-700: 240, 100%, 36%;--color-main-800: 240, 100%, 27%;--color-main-900: 240, 100%, 17%;--color-main-950: 240, 100%, 9%;--color-main-glow: 209, 73%, 58%;--color-gray-50: 0, 0%, 98%;--color-gray-100: 0, 0%, 96%;--color-gray-200: 0, 0%, 89%;--color-gray-300: 0, 0%, 75%;--color-gray-400: 240, 5%, 65%;--color-gray-500: 240, 4%, 46%;--color-gray-600: 240, 5%, 34%;--color-gray-700: 240, 5%, 26%;--color-gray-800: 0, 0%, 15%;--color-gray-900: 0, 0%, 9%;--color-gray-950: 0, 0%, 4%;--color-error-50: 0, 100%, 97%;--color-error-100: 0, 100%, 85%;--color-error-200: 0, 100%, 72%;--color-error-300: 0, 100%, 60%;--color-error-400: 0, 100%, 48%;--color-error-500: 0, 100%, 50%;--color-error-600: 0, 100%, 32%;--color-error-700: 0, 100%, 27%;--color-error-800: 0, 100%, 23%;--color-error-900: 0, 100%, 18%;--color-error-900: 0, 100%, 18%;--color-accent-400: 27, 100%, 48%;--color-accent-500: 27, 100%, 50%;--color-accent-600: 27, 100%, 32%;--bg-header-contact: 228, 100%, 13%;--text-header-contact: 0, 0%, 100%;--bg-header: 228, 100%, 13%;--bg-footer: 228, 100%, 13%;--text-header: 0, 0%, 100%;--text-footer: 0, 0%, 100%;--bg-menu: 228, 100%, 13%;--text-menu: 0, 0%, 100%;--bg-copyright: 228, 100%, 13%;--text-copyright: 0, 0%, 100%; }:root .dark { --color-white: 0, 0%, 0%;--color-black: 0, 0%, 100%;--color-base: 0, 0%, 100%;--color-navy: 228, 100%, 13%;--color-red: 346, 98%, 38%;--color-bright-red: 347, 100%, 50%;--color-dark-red: 345, 100%, 30%;--color-light-blue: 209, 73%, 58%;--color-main-50: 240, 100%, 9%;--color-main-100: 240, 100%, 17%;--color-main-200: 240, 100%, 27%;--color-main-300: 240, 100%, 36%;--color-main-400: 240, 100%, 45%;--color-main-500: 240, 100%, 54%;--color-main-600: 240, 100%, 63%;--color-main-700: 240, 100%, 73%;--color-main-800: 240, 100%, 82%;--color-main-900: 240, 100%, 91%;--color-main-950: 240, 100%, 95%;--color-main-glow: 209, 73%, 58%;--color-gray-50: 0, 0%, 4%;--color-gray-100: 0, 0%, 9%;--color-gray-200: 0, 0%, 15%;--color-gray-300: 240, 5%, 26%;--color-gray-400: 240, 5%, 34%;--color-gray-500: 240, 4%, 46%;--color-gray-600: 240, 5%, 65%;--color-gray-700: 0, 0%, 75%;--color-gray-800: 0, 0%, 89%;--color-gray-900: 0, 0%, 96%;--color-gray-950: 0, 0%, 98%;--color-error-50: 0, 100%, 97%;--color-error-900: 0, 100%, 85%;--color-error-800: 0, 100%, 72%;--color-error-700: 0, 100%, 60%;--color-error-600: 0, 100%, 48%;--color-error-500: 0, 100%, 50%;--color-error-400: 0, 100%, 32%;--color-error-300: 0, 100%, 27%;--color-error-200: 0, 100%, 23%;--color-error-100: 0, 100%, 18%;--color-error-50: 0, 100%, 18%;--color-accent-600: 27, 100%, 48%;--color-accent-500: 27, 100%, 50%;--color-accent-400: 27, 100%, 32%;--bg-header-contact: 0, 0%, 100%;--text-header-contact: 228, 100%, 13%;--bg-header: 0, 0%, 100%;--bg-footer: 0, 0%, 100%;--text-header: 228, 100%, 13%;--text-footer: 228, 100%, 13%;--bg-menu: 0, 0%, 100%;--text-menu: 228, 100%, 13%;--bg-copyright: 0, 0%, 100%;--text-copyright: 228, 100%, 13%; }
+    </style>
+    <script charset="utf-8" type="text/javascript" src="//js.hsforms.net/forms/embed/v2.js"></script>
+</head>
+<body id="page-top">
+
+        <noscript>
+            <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KBJNCRSP" height="0" width="0" style="display:none;visibility:hidden"></iframe>
+        </noscript>
+
+
+        
+
+
+
+
+<div class="[ page ]">
+    
+
+
+<header class="[ header header-sticky ] z-30">
+    <section class="[ header-wrapper ] relative bg-header-bg" data-ktc-search-exclude>
+        
+<div class="[ header-brand ] flex self-center justify-self-start z-1">
+        <div style="line-height: 0;">
+            <a class="inline-block" href="/en-us/">
+                <img alt="AdvancedPCB" class="h-auto relative" height="31" src="/getattachment/92b04213-eac5-462f-8670-5027cbea328f/Advanced-PCB-logo.svg?resizemode=force&amp;height=31&amp;width=287" width="287" />
+                <div class="flex items-center gap-3 mt-2">
+                    <img src="/images/APCT.png" alt="APCT" class="mobile:h-4 h-5 w-auto" />
+                    <img src="/images/AdvancedCircuits.png" alt="Advanced Circuits" class="mobile:h-4 h-5 w-auto" />
+                </div>
+            </a>
+        </div>
+</div>
+        
+<div class="[ header-navigation navigation z-4 ]" data-ktc-search-exclude>
+    <!-- Hamburger menu button hidden on desktop -->
+    <div class="[ mobile-toggle ] nav:hidden" aria-expanded="false" aria-label="Open the menu">
+        <div class="[ mobile-toggle-icon ]">
+            <div class="[ mobile-toggle-bar ]"></div>
+        </div>
+    </div>
+
+    <nav role="navigation" class="[ nav ] z-3">
+        <div class="[ nav-back ] cursor-pointer hidden items-center px-4 border-b h-10 nav:hidden text-white border-main-500">
+            <div class="[ nav-back-trigger button:outline --small ] text-white font-semibold">
+                <i class="[ i-chevron-left ] me-ch-1" aria-hidden="true"></i>
+                Back
+            </div>
+        </div>
+        <ul class="nav-max:flex-col nav-max:gap-0 flex">
+
+                <li class="[ nav-item  ] has-children">
+
+                    <a class="[ nav-link ]" target="_self" href="/en-us/tools/">
+                        <span class="[ nav-text ]" title="View Tools">
+                            Tools
+                        </span>
+                    </a>
+
+                        <section class="[ nav-menu ]">
+                            <ul class="[ nav-panel ]">
+                                    <li class="[ nav-panel-item ]" >
+                                        <a class="[ nav-panel-link ]" target="_self" href="/en-us/tools/trace-width-calculator/">
+                                            <span class="[ nav-panel-text ]" data-text="Trace Width Calculator" title="View Trace Width Calculator">Trace Width Calculator</span>
+                                        </a>
+                                    </li>
+                                    <li class="[ nav-panel-item ]" >
+                                        <a class="[ nav-panel-link ]" target="_blank" href="https://www.my4pcb.com/Net35/Login.aspx?">
+                                            <span class="[ nav-panel-text ]" data-text="Get a Quote" title="View Get a Quote">Get a Quote</span>
+                                        </a>
+                                    </li>
+                                    <li class="[ nav-panel-item ]" >
+                                        <a class="[ nav-panel-link ]" target="_self" href="/en-us/tools/pcb-artist-software/">
+                                            <span class="[ nav-panel-text ]" data-text="PCB Artist Software" title="View PCB Artist Software">PCB Artist Software</span>
+                                        </a>
+                                    </li>
+                                    <li class="[ nav-panel-item ]" >
+                                        <a class="[ nav-panel-link ]" target="_self" href="/en-us/tools/free-dfm-filecheck/">
+                                            <span class="[ nav-panel-text ]" data-text="Free DFM Filecheck" title="View Free DFM Filecheck">Free DFM Filecheck</span>
+                                        </a>
+                                    </li>
+                                <li class="[ nav-panel-view ] nav:hidden">
+                                    <a class="[ button:main ]" target="_self" href="/en-us/tools/">
+                                        View All Tools
+                                    </a>
+                                </li>
+                            </ul>
+                        </section>
+                </li>
+                <li class="[ nav-item  ] has-children">
+
+                    <a class="[ nav-link ]" target="_self" href="/en-us/services/">
+                        <span class="[ nav-text ]" title="View Solutions">
+                            Solutions
+                        </span>
+                    </a>
+
+                        <section class="[ nav-menu ]">
+                            <ul class="[ nav-panel ]">
+                                    <li class="[ nav-panel-item ]" >
+                                        <a class="[ nav-panel-link ]" target="_self" href="/en-us/solutions/quick-turn-rapid-prototype-solutions/">
+                                            <span class="[ nav-panel-text ]" data-text="Quick-Turn Prototypes" title="View Quick-Turn Prototypes">Quick-Turn Prototypes</span>
+                                        </a>
+                                    </li>
+                                    <li class="[ nav-panel-item ]" data-nav-target=advancedtechnologypcbs>
+                                        <a class="[ nav-panel-link ]" target="_self" href="/en-us/solutions/advanced-pcbs/">
+                                            <span class="[ nav-panel-text ]" data-text="Advanced Technology PCBs" title="View Advanced Technology PCBs">Advanced Technology PCBs</span>
+                                        </a>
+                                    </li>
+                                    <li class="[ nav-panel-item ]" >
+                                        <a class="[ nav-panel-link ]" target="_self" href="/en-us/solutions/standard-pcbs/">
+                                            <span class="[ nav-panel-text ]" data-text="Standard Technology PCBs" title="View Standard Technology PCBs">Standard Technology PCBs</span>
+                                        </a>
+                                    </li>
+                                    <li class="[ nav-panel-item ]" >
+                                        <a class="[ nav-panel-link ]" target="_self" href="/en-us/solutions/global-services/">
+                                            <span class="[ nav-panel-text ]" data-text="Global Services" title="View Global Services">Global Services</span>
+                                        </a>
+                                    </li>
+                                    <li class="[ nav-panel-item ]" >
+                                        <a class="[ nav-panel-link ]" target="_self" href="/en-us/solutions/pcb-assembly/">
+                                            <span class="[ nav-panel-text ]" data-text="Prototype Assembly" title="View Prototype Assembly">Prototype Assembly</span>
+                                        </a>
+                                    </li>
+                                    <li class="[ nav-panel-item ]" >
+                                        <a class="[ nav-panel-link ]" target="_self" href="/en-us/solutions/design-services/">
+                                            <span class="[ nav-panel-text ]" data-text="Design Services" title="View Design Services">Design Services</span>
+                                        </a>
+                                    </li>
+                                    <li class="[ nav-panel-item ]" >
+                                        <a class="[ nav-panel-link ]" target="_self" href="/en-us/solutions/dfm-services/">
+                                            <span class="[ nav-panel-text ]" data-text="DFM Verification" title="View DFM Verification">DFM Verification</span>
+                                        </a>
+                                    </li>
+                                    <li class="[ nav-panel-item ]" >
+                                        <a class="[ nav-panel-link ]" target="_self" href="/en-us/flex-rigid-flex/">
+                                            <span class="[ nav-panel-text ]" data-text="Flex &amp; Rigid-Flex " title="View Flex &amp; Rigid-Flex ">Flex &amp; Rigid-Flex </span>
+                                        </a>
+                                    </li>
+                                <li class="[ nav-panel-view ] nav:hidden">
+                                    <a class="[ button:main ]" target="_self" href="/en-us/services/">
+                                        View All Solutions
+                                    </a>
+                                </li>
+                            </ul>
+                        </section>
+                </li>
+                <li class="[ nav-item is-active ] has-children">
+
+                    <a class="[ nav-link ]" target="_self" href="#">
+                        <span class="[ nav-text ]" title="View Resources">
+                            Resources
+                        </span>
+                    </a>
+
+                        <section class="[ nav-menu ]">
+                            <ul class="[ nav-panel ]">
+                                    <li class="[ nav-panel-item ]" >
+                                        <a class="[ nav-panel-link ]" target="_self" href="/en-us/resources/manufacturing-capabilities/">
+                                            <span class="[ nav-panel-text ]" data-text="Manufacturing Capabilities" title="View Manufacturing Capabilities">Manufacturing Capabilities</span>
+                                        </a>
+                                    </li>
+                                    <li class="[ nav-panel-item ]" >
+                                        <a class="[ nav-panel-link ]" target="_self" href="/en-us/resources/certifications/">
+                                            <span class="[ nav-panel-text ]" data-text="Certifications" title="View Certifications">Certifications</span>
+                                        </a>
+                                    </li>
+                                    <li class="[ nav-panel-item ]" >
+                                        <a class="[ nav-panel-link ]" target="_self" href="/en-us/resources/pcb-laminates/">
+                                            <span class="[ nav-panel-text ]" data-text="Laminates" title="View Laminates">Laminates</span>
+                                        </a>
+                                    </li>
+                                    <li class="[ nav-panel-item ]" >
+                                        <a class="[ nav-panel-link ]" target="_self" href="/en-us/resources/stackups/">
+                                            <span class="[ nav-panel-text ]" data-text="Stackup Guides" title="View Stackup Guides">Stackup Guides</span>
+                                        </a>
+                                    </li>
+                                    <li class="[ nav-panel-item ]" >
+                                        <a class="[ nav-panel-link ]" target="_self" href="/en-us/resources/tolerances/">
+                                            <span class="[ nav-panel-text ]" data-text="Tolerances" title="View Tolerances">Tolerances</span>
+                                        </a>
+                                    </li>
+                                    <li class="[ nav-panel-item ]" >
+                                        <a class="[ nav-panel-link ]" target="_self" href="/en-us/resources/pcb-finishes/">
+                                            <span class="[ nav-panel-text ]" data-text="Finishes" title="View Finishes">Finishes</span>
+                                        </a>
+                                    </li>
+                                    <li class="[ nav-panel-item ]" >
+                                        <a class="[ nav-panel-link ]" target="_self" href="/en-us/resources/pricing/">
+                                            <span class="[ nav-panel-text ]" data-text="Online Specials" title="View Online Specials">Online Specials</span>
+                                        </a>
+                                    </li>
+                                    <li class="[ nav-panel-item ]" >
+                                        <a class="[ nav-panel-link ]" target="_self" href="/en-us/resources/pcb-glossary/">
+                                            <span class="[ nav-panel-text ]" data-text="PCB Glossary" title="View PCB Glossary">PCB Glossary</span>
+                                        </a>
+                                    </li>
+                                    <li class="[ nav-panel-item ]" >
+                                        <a class="[ nav-panel-link ]" target="_self" href="/en-us/resources/blog/">
+                                            <span class="[ nav-panel-text ]" data-text="Blog" title="View Blog">Blog</span>
+                                        </a>
+                                    </li>
+                                
+                            </ul>
+                        </section>
+                </li>
+                <li class="[ nav-item  ] has-children">
+
+                    <a class="[ nav-link ]" target="_self" href="/en-us/company/about/">
+                        <span class="[ nav-text ]" title="View Company">
+                            Company
+                        </span>
+                    </a>
+
+                        <section class="[ nav-menu ]">
+                            <ul class="[ nav-panel ]">
+                                    <li class="[ nav-panel-item ]" >
+                                        <a class="[ nav-panel-link ]" target="_self" href="/en-us/company/about/">
+                                            <span class="[ nav-panel-text ]" data-text="About Us" title="View About Us">About Us</span>
+                                        </a>
+                                    </li>
+                                    <li class="[ nav-panel-item ]" >
+                                        <a class="[ nav-panel-link ]" target="_self" href="/en-us/company/quality-assurance/">
+                                            <span class="[ nav-panel-text ]" data-text="Quality Assurance" title="View Quality Assurance">Quality Assurance</span>
+                                        </a>
+                                    </li>
+                                    <li class="[ nav-panel-item ]" >
+                                        <a class="[ nav-panel-link ]" target="_self" href="/en-us/company/careers/">
+                                            <span class="[ nav-panel-text ]" data-text="Careers" title="View Careers">Careers</span>
+                                        </a>
+                                    </li>
+                                    <li class="[ nav-panel-item ]" >
+                                        <a class="[ nav-panel-link ]" target="_self" href="/en-us/markets/">
+                                            <span class="[ nav-panel-text ]" data-text="Markets Served" title="View Markets Served">Markets Served</span>
+                                        </a>
+                                    </li>
+                                    <li class="[ nav-panel-item ]" >
+                                        <a class="[ nav-panel-link ]" target="_self" href="/en-us/company/why-choose-us/">
+                                            <span class="[ nav-panel-text ]" data-text="Why Choose AdvancedPCB?" title="View Why Choose AdvancedPCB?">Why Choose AdvancedPCB?</span>
+                                        </a>
+                                    </li>
+                                    <li class="[ nav-panel-item ]" >
+                                        <a class="[ nav-panel-link ]" target="_self" href="/en-us/company/students/">
+                                            <span class="[ nav-panel-text ]" data-text="Engineering Student Sponsorships" title="View Engineering Student Sponsorships">Engineering Student Sponsorships</span>
+                                        </a>
+                                    </li>
+                                    <li class="[ nav-panel-item ]" >
+                                        <a class="[ nav-panel-link ]" target="_self" href="/en-us/company/faqs/">
+                                            <span class="[ nav-panel-text ]" data-text="FAQs" title="View FAQs">FAQs</span>
+                                        </a>
+                                    </li>
+                                <li class="[ nav-panel-view ] nav:hidden">
+                                    <a class="[ button:main ]" target="_self" href="/en-us/company/about/">
+                                        View All Company
+                                    </a>
+                                </li>
+                            </ul>
+                        </section>
+                </li>
+                <li class="[ nav-item  ] has-children">
+
+                    <a class="[ nav-link ]" target="_self" href="/en-us/contact-us/">
+                        <span class="[ nav-text ]" title="View Contact Us">
+                            Contact Us
+                        </span>
+                    </a>
+
+                        <section class="[ nav-menu ]">
+                            <ul class="[ nav-panel ]">
+                                    <li class="[ nav-panel-item ]" >
+                                        <a class="[ nav-panel-link ]" target="_self" href="/en-us/company/regional-sales-contacts/">
+                                            <span class="[ nav-panel-text ]" data-text="Regional Sales Contacts" title="View Regional Sales Contacts">Regional Sales Contacts</span>
+                                        </a>
+                                    </li>
+                                    <li class="[ nav-panel-item ]" >
+                                        <a class="[ nav-panel-link ]" target="_self" href="/en-us/company/facilities/">
+                                            <span class="[ nav-panel-text ]" data-text="Facilities" title="View Facilities">Facilities</span>
+                                        </a>
+                                    </li>
+                                    <li class="[ nav-panel-item ]" >
+                                        <a class="[ nav-panel-link ]" target="_self" href="/en-us/where-to-buy/">
+                                            <span class="[ nav-panel-text ]" data-text="Where to Buy" title="View Where to Buy">Where to Buy</span>
+                                        </a>
+                                    </li>
+                                <li class="[ nav-panel-view ] nav:hidden">
+                                    <a class="[ button:main ]" target="_self" href="/en-us/contact-us/">
+                                        View All Contact Us
+                                    </a>
+                                </li>
+                            </ul>
+                        </section>
+                </li>
+        </ul>
+        <div class="flex flex-col items-center gap-2 mt-auto pb-4 nav:hidden">
+
+            <div class="flex flex-col items-center gap-2">
+                <a href="https://www.my4pcb.com/Net35/Login.aspx?" target="_blank" class="[ button:main ] w-full max-w-80" rel="nofollow noopener"
+                   data-track-event="get_a_quote_click">
+                    Get a Quote
+                </a>
+                <div class="flex w-full max-w-80 items-center gap-2">
+                    <a class="[ button:main nav-mobile-contact ] grow" href="#contact">
+                        Contact AdvancedPCB
+                    </a>
+                    <a class="[ button:main ] shrink-0" target="_blank" href="https://www.my4pcb.com/Net35/Login.aspx"
+                       data-track-event="login_click">
+                        Login
+                    </a>
+                </div>
+                <div class="flex items-center gap-3">
+                    
+<div class="[ header-action_link ] flex gap-2">
+        <a href="https://www.linkedin.com/company/advanced-pcb-official/"
+           target="_blank"
+           class="text-white hover:text-red"
+           style="20px"
+           rel="noopener noreferrer nofollow"
+           title=linkedIn>
+            <i class="[ i-linkedin ]" aria-hidden="true"></i>
+        </a>
+</div>
+                    <div class="[ header-phone ]">1-800-979-4722</div>
+                </div>
+            </div>
+
+        </div>
+    </nav>
+</div>
+
+        
+<div class="[ header-search ]" data-ktc-search-exclude>
+    <div class="[ search-wrap ] flex justify-end">
+        <i id="search-open" class="[ i-search ] cursor-pointer hover:text-dark-red text-bright-red hidden tablet-sm:block text-24 py-2" aria-hidden="true"></i>
+        <form method="get" autocomplete="off" class="[ pile search-form ]" action="/en-us/search/">
+            <i id="search-close" class="[ i-close ] cursor-pointer hidden hover:text-dark-red tablet-sm:inline-block self-start justify-self-end text-bright-red text-40" aria-hidden="true"></i>
+            <div class="[ pile ] tablet-sm:w-full tablet-sm:mt-24 h-fit">
+                <input type="search"
+                    name="q"
+                    id="search-input"
+                    enterkeyhint="search"
+                    data-url="/api/search/suggest/?searchtype=0"
+                    aria-label="Search"
+                    class="js-main-search caret-white bg-navy border-red hover:border-dark-red z-2 relative text-white placeholder-white border-2 rounded-full pr-8"
+                    placeholder="Search" />
+                <button class="justify-self-end z-3 w-11 hover:bg-transparent self-center px-0 text-xl text-white bg-transparent" type="submit" id="searchButtonMain">
+                    <i class="[ i-search ]" aria-hidden="true"></i>
+                    <span class="sr-only">Search</span>
+                </button>
+                <ul class="bg-navy tablet-sm:top-36 top-full rounded-xl absolute w-full text-white" id="search-suggestions"
+                    style="display: none;">
+                    <li class="hover:bg-main-800/70 px-4 py-2">Suggested term</li>
+                </ul>
+            </div>
+        </form>
+    </div>
+</div>
+        <div class="[ header-actions ] hidden flex-col gap-0.5 nav:flex items-end">
+            <div class="flex items-center gap-2">
+                <a href="https://www.my4pcb.com/Net35/Login.aspx?" target="_blank" class="[ button:outline-red ]" rel="nofollow noopener"
+                   data-track-event="get_a_quote_click">
+                    Get a Quote
+                </a>
+                <a class="flex items-center gap-2 text-white"
+                   target="_blank"
+                   href="https://www.my4pcb.com/Net35/Login.aspx"
+                   data-track-event="login_click">
+                    <i class="i-login-user text-14" aria-hidden="true"></i>
+                    Login
+                </a>
+            </div>
+            <div class="flex items-center gap-4">
+                
+<div class="[ header-action_link ] flex gap-2">
+        <a href="https://www.linkedin.com/company/advanced-pcb-official/"
+           target="_blank"
+           class="text-white hover:text-red"
+           style="text-xl"
+           rel="noopener noreferrer nofollow"
+           title=linkedIn>
+            <i class="[ i-linkedin ]" aria-hidden="true"></i>
+        </a>
+</div>
+                <div class="[ header-phone ]">1-800-979-4722</div>
+            </div>
+        </div>
+    </section>
+</header>
+
+
+    <main class="[ page-content ]">
+        
+    <div class="[ breadcrumbs limit ] w-full py-3" data-ktc-search-exclude>
+        <div class="tablet-xs:justify-center flex items-center tablet-xs:flex-wrap">
+            <a class="hover:underline text-gray-600" href="/en-us/">Home</a>
+            <span class="text-[#4496E2] hover:no-underline relative inline-block px-2 opacity-50" aria-hidden="true">/</span>
+                <a href="/en-us/resources/" class="hover:underline text-gray-600">
+                    Resources
+                </a>
+                <span class="text-gray-600 hover:no-underline relative inline-block px-2 opacity-50" aria-hidden="true">/</span>
+                <a href="/en-us/resources/blog/" class="hover:underline text-gray-600">
+                    Blog 
+                </a>
+                <span class="text-gray-600 hover:no-underline relative inline-block px-2 opacity-50" aria-hidden="true">/</span>
+            <span class="line-clamp-1 text-gray-400">
+                Hard Gold, Hard Work: Designing PCB Edge Connectors That Last
+            </span>
+        </div>
+    </div>
+
+
+<div class="[ limit ]">
+    <div class="[ layout:right ] mt-8 mb-24 relative z-1">
+        <div class="pb-8">
+            <div class="rounded-huge border-navy mb-12 overflow-hidden bg-white border-2">
+                <div class="border-navy tablet-xs:flex-col-reverse flex items-center gap-10 border-b-2  tablet-xs:gap-0">
+                    <div class="tablet-xs:text-center ps-10 py-4 tablet-xs:px-10">
+                        <h1 class="text-3xl my-0">
+                            Hard Gold, Hard Work: Designing PCB Edge Connectors That Last
+                        </h1>
+                        <div class="text-20 mt-2">
+                            <span>Posted</span>
+                            <strong>
+                                
+1/29/2026
+                            </strong>
+                        </div>
+                    </div>
+                    <div class="pe-10 ml-auto max-w-[450px] w-full h-44 tablet-xs:w-full tablet-xs:max-w-full tablet-xs:px-0 tablet-xs:h-auto">
+                        <img alt="Hard gold&#x2013;plated PCB edge" class="[ blog-header-image ] rounded-2xl h-full w-full object-cover object-center tablet-xs:w-full tablet-xs:rounded-b-none tablet-xs:h-60" loading="lazy" src="/getattachment/cf501880-6655-4ded-94b4-7ea87efe5b56/Gold-Finger-Image.png?resizemode=force&amp;maxsidesize=500" title="Hard gold&#x2013;plated PCB edge" />
+                    </div>
+                </div>
+                <div class="mobile:px-6 px-10 py-8">
+                    <div class="[ blog-article ] raw mb-8">
+                        <div data-end="700" data-start="252">Gold fingers are the exposed, hard gold–plated edge connectors on printed circuit boards that slide into mating slots to create a reliable electrical interface. They are specifically designed for applications that require repeated insertion cycles, stable electrical performance, and long service life. Common in backplanes, daughtercards, and modular systems, gold fingers remain the preferred solution when durability and signal integrity matter.</div>
+
+<div data-end="867" data-start="702">This article explains what gold fingers are, how they are manufactured, and why they are used, with guidance to help engineers confidently specify a PCB with this feature.</div>
+
+<p data-end="899" data-start="874"><strong>What Are Gold Fingers?</strong></p>
+
+<div data-end="1264" data-start="901">Gold fingers are plated contact pads located along the edge of a PCB that function as plug-in connectors. Unlike standard surface finishes intended for soldering, gold fingers are engineered for sliding contact. Their primary role is to maintain low, consistent contact resistance through thousands of mating cycles while resisting wear, oxidation, and corrosion.</div>
+
+<p data-end="1264" data-start="901">Gold fingers typically use hard electrolytic gold plated over a nickel barrier layer. The nickel acts as a diffusion barrier and provides mechanical strength, while the hard gold surface resists abrasion and fretting corrosion far better than tin or soft gold finishes. This construction keeps electrical performance stable over time, even in serviceable or hot-swap applications.</p>
+
+<div data-end="1932" data-start="1642">A controlled edge bevel is equally important. Beveling reduces insertion force, prevents damage to the mating connector, and improves alignment during insertion. For this reason, gold finger PCB designs typically specify tight tolerances for bevel angle, edge straightness, and coplanarity.</div>
+
+<p data-end="1975" data-start="1939"><strong>How Gold Fingers Are Manufactured</strong></p>
+
+<div data-end="2117" data-start="1977">Gold finger fabrication follows standard PCB processing up to the point where additional steps are introduced for edge connector durability.</div>
+
+<p data-end="2117" data-start="1977">Design begins with defining finger length, pitch, spacing, keep-out zones, and bevel geometry, often with bevel angles between 20 and 45 degrees. These parameters should be reviewed early with the fabricator to ensure manufacturability.</p>
+
+<div data-end="2863" data-start="2357">After copper circuitry is fabricated, solder mask is applied while leaving the gold finger area fully exposed. The PCB edge is then beveled using controlled machining to achieve smooth insertion. Nickel is plated first, typically 3 to 7 microns thick, followed by hard electrolytic gold, commonly around 0.5 to 1.0 microns or more depending on required mating cycle life. This hard gold finish is fundamentally different from ENIG and is specifically intended for wear resistance rather than solderability.</div>
+
+<div data-end="3133" data-start="2865">Quality control includes XRF measurement of plating thickness, visual inspection for porosity or nodules, verification of bevel geometry, and cleanliness checks. Contamination on the contact surface can increase contact resistance and compromise long-term reliability.</div>
+
+<p data-end="3164" data-start="3140"><strong>Why Use Gold Fingers?</strong></p>
+
+<div data-end="3473" data-start="3166">Gold fingers provide superior wear resistance and stable electrical performance compared to tin-plated contacts or separate board-to-board connectors. They support high mating cycle counts, reduce the risk of intermittent failures, and eliminate the need for additional connector hardware at the board edge.</div>
+
+<p data-end="3473" data-start="3166">From a signal integrity perspective, hard gold over nickel provides a smooth, consistent contact interface. When combined with controlled-impedance routing to the edge connector, this helps minimize reflections and insertion loss in high-speed interfaces.</p>
+
+<div data-end="3964" data-start="3762">Although hard gold plating increases initial fabrication cost, it often lowers total lifecycle cost by reducing maintenance, connector replacement, and field failures in modular and serviceable systems.</div>
+
+<p data-end="3996" data-start="3971"><strong>Relevant IPC Standards</strong></p>
+
+<div data-end="4086" data-start="3998">Gold finger PCBs are commonly specified and evaluated using the following IPC standards:</div>
+
+<ul data-end="4287" data-start="4088">
+	<li data-end="4175" data-start="4088">
+	<div data-end="4175" data-start="4090"><strong data-end="4102" data-start="4090">IPC-6012</strong> – Qualification and performance specification for rigid printed boards</div>
+	</li>
+	<li data-end="4227" data-start="4176">
+	<div data-end="4227" data-start="4178"><strong data-end="4191" data-start="4178">IPC-A-600</strong> – Acceptability of printed boards</div>
+	</li>
+	<li data-end="4287" data-start="4228">
+	<div data-end="4287" data-start="4230"><strong data-end="4242" data-start="4230">IPC-2221</strong> – Generic standard on printed board design</div>
+	</li>
+</ul>
+
+<div data-end="4489" data-start="4289">These standards define expectations for plating quality, visual acceptance, and mechanical integrity, while many applications also include custom requirements for gold thickness and mating durability.</div>
+_________________________________________________________________________________________
+
+<p data-end="247" data-start="185"><strong>Frequently Asked Questions</strong></p>
+
+<p data-end="247" data-start="185"><strong style="font-size: 13px">What is the difference between hard gold and ENIG on PCBs?</strong></p>
+
+<p data-end="247" data-start="185">Hard gold is electrolytically plated over a nickel barrier and is designed for wear resistance in sliding or repeated-mating contacts such as gold fingers. ENIG (electroless nickel immersion gold) is intended for solderability, not mechanical wear, and will degrade quickly if used in edge connector applications.</p>
+
+<p data-end="625" data-start="568"><strong>How thick should gold plating be on PCB gold fingers?</strong></p>
+
+<p>Gold thickness typically ranges from 0.5 to 1.0 microns or more, depending on the required number of mating cycles and reliability expectations. Higher cycle applications often specify thicker hard gold plating, which should be confirmed with the fabricator during design.</p>
+
+<p><strong>Why is beveling required on gold fingers?</strong></p>
+
+<p>Beveling reduces insertion force, improves alignment during mating, and minimizes wear on both the PCB and the connector. A properly controlled bevel helps prevent damage to the gold plating and ensures consistent electrical contact throughout the life of the product.</p>
+
+<h3 data-end="950" data-start="905">&nbsp;</h3>
+
+                    </div>
+
+                    <div class="flex justify-between pb-4" data-ktc-search-exclude>
+                        <div>
+                            
+<div>
+    <span class="text-20 font-semibold">Share this post:</span>
+    <a href="https://twitter.com/share?text=Hard Gold, Hard Work: Designing PCB Edge Connectors That Last&amp;url=https://www.advancedpcb.com/en-us/resources/blog/gold_fingers/"
+       rel="noopener noreferrer nofollow"
+       title="Twitter"
+       class="ms-5">
+        <i class="[ i-twitter ] text-16 text-navy" aria-hidden="true"></i>
+    </a>
+    <a href="https://www.linkedin.com/sharing/share-offsite/?url=https://www.advancedpcb.com/en-us/resources/blog/gold_fingers/"
+       rel="noopener noreferrer nofollow"
+       title="Linkedin"
+       class="ms-5">
+        <i class="[ i-linkedin ] text-16 text-navy" aria-hidden="true"></i>
+    </a>
+    <a href="#"
+       class="ms-5"
+       title="Facebook"
+       onclick=" window.open(`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(location.href)}`, 'facebook-share-dialog', 'width=626,height=436'); return false;">
+        <i class="[ i-facebook ] text-16 text-navy" aria-hidden="true"></i>
+    </a>
+
+    <a href="/cdn-cgi/l/email-protection#dee1adabbcb4bbbdaae396bfacbafe99b1b2baf2fe96bfacbafe89b1acb5e4fe9abbadb7b9b0b7b0b9fe8e9d9cfe9bbab9bbfe9db1b0b0bbbdaab1acadfe8ab6bfaafe92bfadaaf8bfb3aee5bcb1baa7e39ab7b9b7aabfb28eacbbadbbb0bdbbf08db1bdb7bfb293bbbab7bff08db6bfacbbf096acbbb88abba6aae4feb6aaaaaeade4f1f1a9a9a9f0bfbaa8bfb0bdbbbaaebdbcf0bdb1b3f1bbb0f3abadf1acbbadb1abacbdbbadf1bcb2b1b9f1b9b1b2ba81b8b7b0b9bbacadf1" title="Email" class="ms-5">
+        <i class="[ i-email ] text-16 text-navy" aria-hidden="true"></i>
+    </a>
+</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="border-navy border-t-2">
+                    <div class="px-10 py-4">
+                            
+<a class="[ post-tags ] text-navy font-bold hover:underline"
+   href="/en-us/resources/blog/categories/circuit-board/">Circuit Board</a>
+                            
+<a class="[ post-tags ] text-navy font-bold hover:underline"
+   href="/en-us/resources/blog/categories/circuit-board-design/">Circuit Board Design</a>
+                            
+<a class="[ post-tags ] text-navy font-bold hover:underline"
+   href="/en-us/resources/blog/categories/manufacturing/">Manufacturing</a>
+                            
+<a class="[ post-tags ] text-navy font-bold hover:underline"
+   href="/en-us/resources/blog/categories/pcb-design/">PCB Design</a>
+                            
+<a class="[ post-tags ] text-navy font-bold hover:underline"
+   href="/en-us/resources/blog/categories/pcb-design-software/">PCB Design Software</a>
+                            
+<a class="[ post-tags ] text-navy font-bold hover:underline"
+   href="/en-us/resources/blog/categories/printed-circuit-board-design/">Printed Circuit Board Design</a>
+                    </div>
+                </div>
+            </div>
+
+            
+
+            <div>
+                <h2 class="[ heading:2 ] text-26 my-4">
+                    Related Posts
+                </h2>
+                
+<div data-pagination-url="/en-us/articles/list/?type=blog&amp;categories=106d8afe-a1ed-4a1e-b78f-c700f903649d&amp;categories=68641808-c649-4920-9f9a-85bce450aad3&amp;categories=7a34a090-3df8-4456-aa40-2035ded0858f&amp;categories=318796a4-c357-4632-9134-6da9c15f5d20&amp;categories=7eeedfab-c5be-468f-b569-cc58d662f752&amp;categories=d429372c-96e6-4550-805d-06edd752005d&amp;except=19a6fa8b-f475-4b8a-ab5b-87b2f24f80e5&amp;take=3&amp;columns=3&amp;showpagination=false">
+    <div class="[ article-card-group ] grid grid-cols-3 gap-x-4 gap-y-4 tablet:grid-cols-2 mobile:grid-cols-1 tablet:gap-y-4">
+            
+
+<div style="container-type: inline-size;">
+    <div class="[ article-card ]">
+        <div class="[ card-image ] h-40">
+            <img class="[ article-card-image ]" src="/getattachment/56bd9626-6a7d-420b-85d7-cdccc8b66cc0/Robots-in-industrial-environment.jpg?resizemode=force&amp;maxsidesize=1226" />
+        </div>
+        <h4 class="[ card-title ] not-raw">
+            Built for the Factory Floor
+        </h4>
+        <div class="[ card-content ]">
+Learn how PCB design choices support reliable performance in industrial environments.        </div>
+        <a class="[ card-hit-zone ]" target="_self" href="/en-us/resources/blog/pcb-reliability-in-industrial-environments/">
+            <span class="sr-only">Built for the Factory Floor</span>
+        </a>
+        <a class="[ card-button button:main ] flex-shrink-0" target="_self" href="/en-us/resources/blog/pcb-reliability-in-industrial-environments/">Read More <i class="i-chevron-right" aria-hidden="true"></i></a>
+    </div>
+</div>
+            
+
+<div style="container-type: inline-size;">
+    <div class="[ article-card ]">
+        <div class="[ card-image ] h-40">
+            <img alt="PCBs for Industrial Robotics" class="[ article-card-image ]" src="/getattachment/ae814439-5915-4824-9d7e-cd6405c4f91f/Industrial-Robotics-2.jpg?resizemode=force&amp;maxsidesize=1226" title="PCBs for Industrial Robotics" />
+        </div>
+        <h4 class="[ card-title ] not-raw">
+            Is Your Robotic PCB Design Ready for Manufacturing?
+        </h4>
+        <div class="[ card-content ]">
+From Working Prototype to Production-Ready Industrial Robot PCB        </div>
+        <a class="[ card-hit-zone ]" target="_self" href="/en-us/resources/blog/is-your-robotic-pcb-design-ready-for-manufacturing/">
+            <span class="sr-only">Is Your Robotic PCB Design Ready for Manufacturing?</span>
+        </a>
+        <a class="[ card-button button:main ] flex-shrink-0" target="_self" href="/en-us/resources/blog/is-your-robotic-pcb-design-ready-for-manufacturing/">Read More <i class="i-chevron-right" aria-hidden="true"></i></a>
+    </div>
+</div>
+            
+
+<div style="container-type: inline-size;">
+    <div class="[ article-card ]">
+        <div class="[ card-image ] h-40">
+            <img alt="PCBs for Humanoid Robots" class="[ article-card-image ]" src="/getattachment/4728a4ca-fa8c-4100-a5f9-149152a65c30/Humanoid-Robot.jpg?resizemode=force&amp;maxsidesize=1226" title="PCBs for Humanoid Robots" />
+        </div>
+        <h4 class="[ card-title ] not-raw">
+            PCB Thermal Management for Robotics
+        </h4>
+        <div class="[ card-content ]">
+How to design for Power, Motion, and Reliability        </div>
+        <a class="[ card-hit-zone ]" target="_self" href="/en-us/resources/blog/pcb-thermal-management-for-robots/">
+            <span class="sr-only">PCB Thermal Management for Robotics</span>
+        </a>
+        <a class="[ card-button button:main ] flex-shrink-0" target="_self" href="/en-us/resources/blog/pcb-thermal-management-for-robots/">Read More <i class="i-chevron-right" aria-hidden="true"></i></a>
+    </div>
+</div>
+    </div>
+    
+</div>
+
+
+            </div>
+        </div>
+        <div data-ktc-search-exclude>
+            
+<div class="flex flex-col gap-3 pb-8 mb-4 rounded-lg">
+    <div class="text-20 font-bold">Browse</div>
+    <select onchange="if(this.value) window.location.href = this.value;" class="leading-5">
+    <option value="">
+        By Tag
+    </option>
+        <option value="/en-us/resources/blog/tags/benefits/">
+            Benefits
+        </option>
+        <option value="/en-us/resources/blog/tags/customer-service/">
+            Customer service
+        </option>
+        <option value="/en-us/resources/blog/tags/facts/">
+            Facts
+        </option>
+        <option value="/en-us/resources/blog/tags/file-check/">
+             File check
+        </option>
+        <option value="/en-us/resources/blog/tags/panelization/">
+             panelization
+        </option>
+        <option value="/en-us/resources/blog/tags/pcb-software/">
+             pcb software
+        </option>
+        <option value="/en-us/resources/blog/tags/prototype-assembly/">
+             prototype assembly
+        </option>
+        <option value="/en-us/resources/blog/tags/service/">
+             service
+        </option>
+        <option value="/en-us/resources/blog/tags/software/">
+             software
+        </option>
+        <option value="/en-us/resources/blog/tags/traffic-control/">
+             traffic control
+        </option>
+        <option value="/en-us/resources/blog/tags/2-layer-boards/">
+            2 layer boards
+        </option>
+        <option value="/en-us/resources/blog/tags/3d-printing/">
+            3d printing
+        </option>
+        <option value="/en-us/resources/blog/tags/4-layer-boards/">
+            4 layer boards
+        </option>
+        <option value="/en-us/resources/blog/tags/4k-screens/">
+            4K Screens
+        </option>
+        <option value="/en-us/resources/blog/tags/advanced-circuits/">
+            advanced circuits
+        </option>
+        <option value="/en-us/resources/blog/tags/advanced-circuits-offshore/">
+            advanced circuits offshore
+        </option>
+        <option value="/en-us/resources/blog/tags/advantage/">
+            advantage
+        </option>
+        <option value="/en-us/resources/blog/tags/aerospace-pcb/">
+            aerospace pcb
+        </option>
+        <option value="/en-us/resources/blog/tags/as9100-c/">
+            AS9100 c
+        </option>
+        <option value="/en-us/resources/blog/tags/assembly/">
+            assembly
+        </option>
+        <option value="/en-us/resources/blog/tags/assembly-services/">
+            assembly services
+        </option>
+        <option value="/en-us/resources/blog/tags/aurora/">
+            Aurora
+        </option>
+        <option value="/en-us/resources/blog/tags/automobiles/">
+            automobiles
+        </option>
+        <option value="/en-us/resources/blog/tags/automotive/">
+            automotive
+        </option>
+        <option value="/en-us/resources/blog/tags/avoiding-common-pcb-design-mistakes/">
+            Avoiding Common PCB Design Mistakes
+        </option>
+        <option value="/en-us/resources/blog/tags/b2b/">
+            b2b
+        </option>
+        <option value="/en-us/resources/blog/tags/barabones/">
+            barebones
+        </option>
+        <option value="/en-us/resources/blog/tags/battery/">
+            battery
+        </option>
+        <option value="/en-us/resources/blog/tags/best-free-pcb-design-software/">
+            Best free pcb design software
+        </option>
+        <option value="/en-us/resources/blog/tags/best-pcb-design-software/">
+            Best PCB Design Software
+        </option>
+        <option value="/en-us/resources/blog/tags/biodegradable-pcbs/">
+            biodegradable PCBs
+        </option>
+        <option value="/en-us/resources/blog/tags/blind-and-buried-vias/">
+            Blind and Buried Vias
+        </option>
+        <option value="/en-us/resources/blog/tags/boards/">
+            boards
+        </option>
+        <option value="/en-us/resources/blog/tags/breadboards/">
+            breadboards
+        </option>
+        <option value="/en-us/resources/blog/tags/business/">
+            business
+        </option>
+        <option value="/en-us/resources/blog/tags/cam/">
+            CAM
+        </option>
+        <option value="/en-us/resources/blog/tags/cam-hold/">
+            CAM hold
+        </option>
+        <option value="/en-us/resources/blog/tags/car/">
+            car
+        </option>
+        <option value="/en-us/resources/blog/tags/cars/">
+            cars
+        </option>
+        <option value="/en-us/resources/blog/tags/cell-phones/">
+            cell phones
+        </option>
+        <option value="/en-us/resources/blog/tags/certifications/">
+            certifications
+        </option>
+        <option value="/en-us/resources/blog/tags/charging-stations/">
+            charging stations
+        </option>
+        <option value="/en-us/resources/blog/tags/cheap/">
+            cheap
+        </option>
+        <option value="/en-us/resources/blog/tags/cheap-pcb/">
+            cheap pcb
+        </option>
+        <option value="/en-us/resources/blog/tags/cheap-pcb-assembly/">
+             cheap pcb assembly
+        </option>
+        <option value="/en-us/resources/blog/tags/cheap-pcb-manufacturing/">
+            cheap pcb manufacturing
+        </option>
+        <option value="/en-us/resources/blog/tags/cheap-pcb-prototyping/">
+            cheap pcb prototyping
+        </option>
+        <option value="/en-us/resources/blog/tags/cheap-printed-circuit-boards/">
+            cheap printed circuit boards
+        </option>
+        <option value="/en-us/resources/blog/tags/cheaper-circuit-boards/">
+            cheaper circuit boards
+        </option>
+        <option value="/en-us/resources/blog/tags/china-pcb-manufacturing/">
+            china pcb manufacturing
+        </option>
+        <option value="/en-us/resources/blog/tags/choosing-the-right-pcb-company/">
+            Choosing the Right PCB Company
+        </option>
+        <option value="/en-us/resources/blog/tags/circuit-board/">
+            circuit board
+        </option>
+        <option value="/en-us/resources/blog/tags/circuit-board-fabrication/">
+            circuit board fabrication
+        </option>
+        <option value="/en-us/resources/blog/tags/circuit-board-manufacturer/">
+            circuit board manufacturer
+        </option>
+        <option value="/en-us/resources/blog/tags/circuit-board-manufacturing/">
+            circuit board manufacturing
+        </option>
+        <option value="/en-us/resources/blog/tags/circuit-boards/">
+            circuit boards
+        </option>
+        <option value="/en-us/resources/blog/tags/colorado/">
+            Colorado
+        </option>
+        <option value="/en-us/resources/blog/tags/combo-pcb-assembly/">
+            Combo PCB Assembly
+        </option>
+        <option value="/en-us/resources/blog/tags/common-mistakes/">
+            common mistakes
+        </option>
+        <option value="/en-us/resources/blog/tags/common-pcb-design-mistakes/">
+            common pcb design mistakes
+        </option>
+        <option value="/en-us/resources/blog/tags/components/">
+            components
+        </option>
+        <option value="/en-us/resources/blog/tags/computers/">
+            computers
+        </option>
+        <option value="/en-us/resources/blog/tags/consumer-electronics/">
+            consumer electronics
+        </option>
+        <option value="/en-us/resources/blog/tags/cost-saving-smt/">
+            cost saving SMT
+        </option>
+        <option value="/en-us/resources/blog/tags/custom/">
+            custom
+        </option>
+        <option value="/en-us/resources/blog/tags/custom-pcb/">
+            Custom PCB
+        </option>
+        <option value="/en-us/resources/blog/tags/custom-printed-circuit-board/">
+            custom printed circuit board
+        </option>
+        <option value="/en-us/resources/blog/tags/data-formats/">
+            data formats
+        </option>
+        <option value="/en-us/resources/blog/tags/defense/">
+            defense
+        </option>
+        <option value="/en-us/resources/blog/tags/defense-electronics/">
+            defense electronics
+        </option>
+        <option value="/en-us/resources/blog/tags/defense-pcb/">
+            defense pcb
+        </option>
+        <option value="/en-us/resources/blog/tags/denver-area/">
+            Denver Area
+        </option>
+        <option value="/en-us/resources/blog/tags/designers/">
+            designers
+        </option>
+        <option value="/en-us/resources/blog/tags/development/">
+            development
+        </option>
+        <option value="/en-us/resources/blog/tags/dicount/">
+            discount
+        </option>
+        <option value="/en-us/resources/blog/tags/difference/">
+            difference
+        </option>
+        <option value="/en-us/resources/blog/tags/diy/">
+            DIY
+        </option>
+        <option value="/en-us/resources/blog/tags/double-layer/">
+            double layer
+        </option>
+        <option value="/en-us/resources/blog/tags/easy-assembly/">
+            easy assembly
+        </option>
+        <option value="/en-us/resources/blog/tags/economic/">
+            economic
+        </option>
+        <option value="/en-us/resources/blog/tags/electric-cars/">
+            electric cars
+        </option>
+        <option value="/en-us/resources/blog/tags/electronic-design/">
+            electronic design
+        </option>
+        <option value="/en-us/resources/blog/tags/electronics/">
+            electronics
+        </option>
+        <option value="/en-us/resources/blog/tags/embedded-antennas/">
+            embedded antennas
+        </option>
+        <option value="/en-us/resources/blog/tags/engineers/">
+            engineers
+        </option>
+        <option value="/en-us/resources/blog/tags/environment/">
+            environment
+        </option>
+        <option value="/en-us/resources/blog/tags/epoxy-laminates/">
+            epoxy laminates
+        </option>
+        <option value="/en-us/resources/blog/tags/errors/">
+            errors
+        </option>
+        <option value="/en-us/resources/blog/tags/expanded-capabilities/">
+            expanded capabilities
+        </option>
+        <option value="/en-us/resources/blog/tags/expansion/">
+            expansion
+        </option>
+        <option value="/en-us/resources/blog/tags/fabric-pcb/">
+            fabric pcb
+        </option>
+        <option value="/en-us/resources/blog/tags/fabrication/">
+            fabrication
+        </option>
+        <option value="/en-us/resources/blog/tags/fabrication-drawings/">
+            fabrication drawings
+        </option>
+        <option value="/en-us/resources/blog/tags/finishes/">
+            finishes
+        </option>
+        <option value="/en-us/resources/blog/tags/fitness-tracking/">
+            fitness tracking
+        </option>
+        <option value="/en-us/resources/blog/tags/flex-circuits/">
+            flex circuits
+        </option>
+        <option value="/en-us/resources/blog/tags/flexible/">
+            flexible
+        </option>
+        <option value="/en-us/resources/blog/tags/flex-rigid/">
+            flex-rigid
+        </option>
+        <option value="/en-us/resources/blog/tags/fr-4/">
+            FR-4
+        </option>
+        <option value="/en-us/resources/blog/tags/free-dfm/">
+            free dfm
+        </option>
+        <option value="/en-us/resources/blog/tags/free-pcb-design/">
+            free pcb design
+        </option>
+        <option value="/en-us/resources/blog/tags/free-pcb-design-software/">
+            free pcb design software
+        </option>
+        <option value="/en-us/resources/blog/tags/free-pcb-layout-software/">
+            Free PCB Layout Software
+        </option>
+        <option value="/en-us/resources/blog/tags/full-spec/">
+            full spec
+        </option>
+        <option value="/en-us/resources/blog/tags/future/">
+            future
+        </option>
+        <option value="/en-us/resources/blog/tags/gerber-file/">
+            gerber file
+        </option>
+        <option value="/en-us/resources/blog/tags/gerber-file-viewer/">
+            gerber file viewer
+        </option>
+        <option value="/en-us/resources/blog/tags/gerber-files/">
+            Gerber files
+        </option>
+        <option value="/en-us/resources/blog/tags/gerber-pcb/">
+            gerber pcb
+        </option>
+        <option value="/en-us/resources/blog/tags/gold/">
+            Gold
+        </option>
+        <option value="/en-us/resources/blog/tags/gold-in-pcbs/">
+            Gold in PCBs
+        </option>
+        <option value="/en-us/resources/blog/tags/green-energy/">
+            Green Energy
+        </option>
+        <option value="/en-us/resources/blog/tags/green-pcb-design/">
+            Green PCB Design
+        </option>
+        <option value="/en-us/resources/blog/tags/hdi/">
+            HDI
+        </option>
+        <option value="/en-us/resources/blog/tags/hdi-boards/">
+            hdi boards
+        </option>
+        <option value="/en-us/resources/blog/tags/hdi-pcb/">
+            hdi pcb
+        </option>
+        <option value="/en-us/resources/blog/tags/hdi-pcbs/">
+            HDI PCBs
+        </option>
+        <option value="/en-us/resources/blog/tags/high-density-interconnect/">
+            High Density Interconnect
+        </option>
+        <option value="/en-us/resources/blog/tags/high-performance/">
+            high performance
+        </option>
+        <option value="/en-us/resources/blog/tags/high-power-boards/">
+            high power boards
+        </option>
+        <option value="/en-us/resources/blog/tags/high-speed-pcb-design/">
+            High Speed PCB Design
+        </option>
+        <option value="/en-us/resources/blog/tags/high-tg/">
+            high tg
+        </option>
+        <option value="/en-us/resources/blog/tags/how-to/">
+            how to
+        </option>
+        <option value="/en-us/resources/blog/tags/human-element/">
+            human element
+        </option>
+        <option value="/en-us/resources/blog/tags/inspection/">
+            inspection
+        </option>
+        <option value="/en-us/resources/blog/tags/internet-of-things/">
+            Internet of Things
+        </option>
+        <option value="/en-us/resources/blog/tags/iot/">
+            IoT
+        </option>
+        <option value="/en-us/resources/blog/tags/iphone6/">
+            iphone6
+        </option>
+        <option value="/en-us/resources/blog/tags/job-creation/">
+            job creation
+        </option>
+        <option value="/en-us/resources/blog/tags/jobs/">
+            jobs
+        </option>
+        <option value="/en-us/resources/blog/tags/keeping-pcb-costs-low/">
+            Keeping PCB Costs Low
+        </option>
+        <option value="/en-us/resources/blog/tags/kids-projects/">
+            kids projects
+        </option>
+        <option value="/en-us/resources/blog/tags/kitted-consigned-pcb-assembly/">
+            Kitted/Consigned PCB Assembly
+        </option>
+        <option value="/en-us/resources/blog/tags/laminate/">
+            laminate
+        </option>
+        <option value="/en-us/resources/blog/tags/laminates/">
+            laminates
+        </option>
+        <option value="/en-us/resources/blog/tags/laser-direct-imaging/">
+            Laser Direct Imaging
+        </option>
+        <option value="/en-us/resources/blog/tags/laser-drilled-microvias/">
+            laser drilled microvias
+        </option>
+        <option value="/en-us/resources/blog/tags/layout/">
+            Layout
+        </option>
+        <option value="/en-us/resources/blog/tags/ldi/">
+            LDI
+        </option>
+        <option value="/en-us/resources/blog/tags/lead-free-designs/">
+            lead-free designs
+        </option>
+        <option value="/en-us/resources/blog/tags/led-basketball-court/">
+            led basketball court
+        </option>
+        <option value="/en-us/resources/blog/tags/less-power/">
+            less power
+        </option>
+        <option value="/en-us/resources/blog/tags/low-cost-assembly/">
+            low cost assembly
+        </option>
+        <option value="/en-us/resources/blog/tags/low-cost-circuit-boards/">
+            low cost circuit boards
+        </option>
+        <option value="/en-us/resources/blog/tags/low-cost-pcb/">
+            low cost pcb
+        </option>
+        <option value="/en-us/resources/blog/tags/low-cost-smt-asspembly/">
+            Low Cost SMT Asspembly
+        </option>
+        <option value="/en-us/resources/blog/tags/low-pcb-costs/">
+            Low PCB Costs
+        </option>
+        <option value="/en-us/resources/blog/tags/low-cost-pcb-prototyping/">
+            low-cost pcb prototyping
+        </option>
+        <option value="/en-us/resources/blog/tags/machinery/">
+            machinery
+        </option>
+        <option value="/en-us/resources/blog/tags/materials/">
+            materials
+        </option>
+        <option value="/en-us/resources/blog/tags/md-m/">
+            md&amp;m
+        </option>
+        <option value="/en-us/resources/blog/tags/md-m-west-2018/">
+            md&amp;m west 2018
+        </option>
+        <option value="/en-us/resources/blog/tags/medical/">
+            medical
+        </option>
+        <option value="/en-us/resources/blog/tags/metal/">
+            metal 
+        </option>
+        <option value="/en-us/resources/blog/tags/microvias/">
+            microvias
+        </option>
+        <option value="/en-us/resources/blog/tags/microwaves-rf/">
+            microwaves &amp; rf
+        </option>
+        <option value="/en-us/resources/blog/tags/military/">
+            military
+        </option>
+        <option value="/en-us/resources/blog/tags/mil-prf-55110g-gf-etchback/">
+            MIL-PRF-55110G GF Etchback
+        </option>
+        <option value="/en-us/resources/blog/tags/multi-layer/">
+            multi-layer
+        </option>
+        <option value="/en-us/resources/blog/tags/multi-layer-pcb/">
+            multi-layer pcb
+        </option>
+        <option value="/en-us/resources/blog/tags/multilayer-pcb/">
+            Multilayer PCB
+        </option>
+        <option value="/en-us/resources/blog/tags/multilayer-printed-circuit-board/">
+            multilayer printed circuit board
+        </option>
+        <option value="/en-us/resources/blog/tags/multilayer-printed-circuit-boards/">
+            multilayer printed circuit boards
+        </option>
+        <option value="/en-us/resources/blog/tags/offshore-pcb-fabrication/">
+            offshore pcb fabrication
+        </option>
+        <option value="/en-us/resources/blog/tags/offshore-pcb-manufacturing/">
+            offshore pcb manufacturing
+        </option>
+        <option value="/en-us/resources/blog/tags/offshore-pcb-production/">
+            offshore pcb production
+        </option>
+        <option value="/en-us/resources/blog/tags/oled/">
+            OLED
+        </option>
+        <option value="/en-us/resources/blog/tags/online-gerber-file-check/">
+            online gerber file check
+        </option>
+        <option value="/en-us/resources/blog/tags/online-pcbdesign/">
+            online pcbdesign
+        </option>
+        <option value="/en-us/resources/blog/tags/patents/">
+            patents
+        </option>
+        <option value="/en-us/resources/blog/tags/pc-board/">
+            pc board
+        </option>
+        <option value="/en-us/resources/blog/tags/pcb-artist/">
+            pcb artist
+        </option>
+        <option value="/en-us/resources/blog/tags/pcb-artist-software/">
+            PCB Artist software
+        </option>
+        <option value="/en-us/resources/blog/tags/pcb-basics/">
+            pcb basics
+        </option>
+        <option value="/en-us/resources/blog/tags/pcb-board/">
+            pcb board
+        </option>
+        <option value="/en-us/resources/blog/tags/pcb-capabilities/">
+            pcb capabilities
+        </option>
+        <option value="/en-us/resources/blog/tags/pcb-companies/">
+            PCB Companies
+        </option>
+        <option value="/en-us/resources/blog/tags/pcb-concepts/">
+            PCB Concepts
+        </option>
+        <option value="/en-us/resources/blog/tags/pcb-construction/">
+            PCB Construction
+        </option>
+        <option value="/en-us/resources/blog/tags/pcb-des/">
+            pcb des
+        </option>
+        <option value="/en-us/resources/blog/tags/pcb-design-considerations/">
+            PCB Design Considerations
+        </option>
+        <option value="/en-us/resources/blog/tags/capabilities/">
+            capabilities
+        </option>
+        <option value="/en-us/resources/blog/tags/circuit-board-design/">
+            circuit board design
+        </option>
+        <option value="/en-us/resources/blog/tags/circuit-board-design-software/">
+            circuit board design software
+        </option>
+        <option value="/en-us/resources/blog/tags/circuit-board-design-tools/">
+            circuit board design tools
+        </option>
+        <option value="/en-us/resources/blog/tags/circuit-design/">
+            circuit design
+        </option>
+        <option value="/en-us/resources/blog/tags/design/">
+            Design
+        </option>
+        <option value="/en-us/resources/blog/tags/design-considerations/">
+            Design Considerations
+        </option>
+        <option value="/en-us/resources/blog/tags/freedfm/">
+            freedfm
+        </option>
+        <option value="/en-us/resources/blog/tags/gerber-file-check/">
+            Gerber File Check
+        </option>
+        <option value="/en-us/resources/blog/tags/gerber-file-design/">
+            gerber file design
+        </option>
+        <option value="/en-us/resources/blog/tags/manufacturing/">
+            manufacturing
+        </option>
+        <option value="/en-us/resources/blog/tags/mil-grade-pcb/">
+            mil grade PCB
+        </option>
+        <option value="/en-us/resources/blog/tags/military-pcb/">
+            military pcb
+        </option>
+        <option value="/en-us/resources/blog/tags/pcb/">
+            PCB
+        </option>
+        <option value="/en-us/resources/blog/tags/pcb-assembly/">
+            PCB assembly
+        </option>
+        <option value="/en-us/resources/blog/tags/pcb-design/">
+            pcb design
+        </option>
+        <option value="/en-us/resources/blog/tags/pcb-design-mistakes/">
+            pcb design mistakes
+        </option>
+        <option value="/en-us/resources/blog/tags/pcb-design-online/">
+            pcb design online
+        </option>
+        <option value="/en-us/resources/blog/tags/pcb-design-software/">
+            PCB Design Software
+        </option>
+        <option value="/en-us/resources/blog/tags/pcb-design-tips/">
+            pcb design tips
+        </option>
+        <option value="/en-us/resources/blog/tags/pcb-epoxy/">
+            pcb epoxy
+        </option>
+        <option value="/en-us/resources/blog/tags/pcb-fabrication/">
+            PCB fabrication
+        </option>
+        <option value="/en-us/resources/blog/tags/pcb-files/">
+            pcb files
+        </option>
+        <option value="/en-us/resources/blog/tags/pcb-gerber-files/">
+            pcb gerber files
+        </option>
+        <option value="/en-us/resources/blog/tags/pcb-layout/">
+            PCB Layout
+        </option>
+        <option value="/en-us/resources/blog/tags/pcb-layout-preparation/">
+            PCB Layout Preparation
+        </option>
+        <option value="/en-us/resources/blog/tags/pcb-layout-software/">
+            PCB Layout Software
+        </option>
+        <option value="/en-us/resources/blog/tags/pcb-manufacturer/">
+            PCB manufacturer
+        </option>
+        <option value="/en-us/resources/blog/tags/pcb-manufacturing/">
+            PCB Manufacturing
+        </option>
+        <option value="/en-us/resources/blog/tags/pcb-manufacturing-offshore/">
+            pcb manufacturing offshore
+        </option>
+        <option value="/en-us/resources/blog/tags/pcb-materials/">
+            PCB Materials
+        </option>
+        <option value="/en-us/resources/blog/tags/pcb-offshore-manufacturing/">
+            pcb offshore manufacturing
+        </option>
+        <option value="/en-us/resources/blog/tags/pcb-production/">
+            PCB Production
+        </option>
+        <option value="/en-us/resources/blog/tags/pcb-production-runs/">
+            pcb production runs
+        </option>
+        <option value="/en-us/resources/blog/tags/pcb-prototype/">
+            PCB prototype
+        </option>
+        <option value="/en-us/resources/blog/tags/pcb-prototype-design-software/">
+            PCB Prototype Design Software
+        </option>
+        <option value="/en-us/resources/blog/tags/pcb-prototyping/">
+            pcb prototyping
+        </option>
+        <option value="/en-us/resources/blog/tags/pcb-quick-turn/">
+            PCB quick turn
+        </option>
+        <option value="/en-us/resources/blog/tags/pcb-technology/">
+            PCB technology
+        </option>
+        <option value="/en-us/resources/blog/tags/pcba/">
+            pcba
+        </option>
+        <option value="/en-us/resources/blog/tags/pcbs/">
+            pcbs
+        </option>
+        <option value="/en-us/resources/blog/tags/pcbs-and-4k-screens/">
+            PCBs and 4K Screens
+        </option>
+        <option value="/en-us/resources/blog/tags/pcbs-and-oled/">
+            PCBs and OLED
+        </option>
+        <option value="/en-us/resources/blog/tags/perfboards/">
+            perfboards
+        </option>
+        <option value="/en-us/resources/blog/tags/performance/">
+            performance
+        </option>
+        <option value="/en-us/resources/blog/tags/plating/">
+            plating
+        </option>
+        <option value="/en-us/resources/blog/tags/plating-finishes/">
+            plating finishes
+        </option>
+        <option value="/en-us/resources/blog/tags/ppe/">
+            PPE
+        </option>
+        <option value="/en-us/resources/blog/tags/ppo/">
+            PPO
+        </option>
+        <option value="/en-us/resources/blog/tags/ppo-ppe/">
+            PPO/PPE
+        </option>
+        <option value="/en-us/resources/blog/tags/printed-circuit-board/">
+            printed circuit board
+        </option>
+        <option value="/en-us/resources/blog/tags/printed-circuit-board-assembly/">
+            printed circuit board assembly
+        </option>
+        <option value="/en-us/resources/blog/tags/printed-circuit-board-design/">
+            printed circuit board design
+        </option>
+        <option value="/en-us/resources/blog/tags/printed-circuit-board-layout/">
+            printed circuit board layout
+        </option>
+        <option value="/en-us/resources/blog/tags/printed-circuit-board-manufacturing/">
+            printed circuit board manufacturing
+        </option>
+        <option value="/en-us/resources/blog/tags/printed-circuit-board-software/">
+            Printed Circuit Board Software
+        </option>
+        <option value="/en-us/resources/blog/tags/printed-circuit-boards/">
+            Printed Circuit Boards
+        </option>
+        <option value="/en-us/resources/blog/tags/printed-circuit-coards/">
+            printed circuit boards
+        </option>
+        <option value="/en-us/resources/blog/tags/printed-circuits-boards/">
+            printed circuits boards
+        </option>
+        <option value="/en-us/resources/blog/tags/production/">
+            production
+        </option>
+        <option value="/en-us/resources/blog/tags/production-pcb/">
+            production pcb
+        </option>
+        <option value="/en-us/resources/blog/tags/production-quality/">
+            production quality
+        </option>
+        <option value="/en-us/resources/blog/tags/production-volume-pcb/">
+            production volume pcb
+        </option>
+        <option value="/en-us/resources/blog/tags/prototype/">
+            Prototype
+        </option>
+        <option value="/en-us/resources/blog/tags/prototype-pcb/">
+            prototype pcb
+        </option>
+        <option value="/en-us/resources/blog/tags/quality/">
+            quality
+        </option>
+        <option value="/en-us/resources/blog/tags/quality-pcb-manufacturing/">
+            Quality PCB Manufacturing
+        </option>
+        <option value="/en-us/resources/blog/tags/quote/">
+            quote
+        </option>
+        <option value="/en-us/resources/blog/tags/recycling/">
+            recycling
+        </option>
+        <option value="/en-us/resources/blog/tags/renewable-energy/">
+            Renewable Energy
+        </option>
+        <option value="/en-us/resources/blog/tags/rf-pcb/">
+            rf pcb
+        </option>
+        <option value="/en-us/resources/blog/tags/robots/">
+            robots
+        </option>
+        <option value="/en-us/resources/blog/tags/rogers-material/">
+            rogers material
+        </option>
+        <option value="/en-us/resources/blog/tags/sales/">
+            sales
+        </option>
+        <option value="/en-us/resources/blog/tags/score/">
+            score
+        </option>
+        <option value="/en-us/resources/blog/tags/single-layer-pcb/">
+            single layer PCB
+        </option>
+        <option value="/en-us/resources/blog/tags/small-quantity-pcb/">
+            small quantity PCB
+        </option>
+        <option value="/en-us/resources/blog/tags/smaller-is-better/">
+            smaller is better
+        </option>
+        <option value="/en-us/resources/blog/tags/smart-phones/">
+            smart phones
+        </option>
+        <option value="/en-us/resources/blog/tags/smt/">
+            smt
+        </option>
+        <option value="/en-us/resources/blog/tags/smt-assembly/">
+            SMT Assembly
+        </option>
+        <option value="/en-us/resources/blog/tags/smt-design/">
+            smt design
+        </option>
+        <option value="/en-us/resources/blog/tags/smt-pcb/">
+            SMT PCB
+        </option>
+        <option value="/en-us/resources/blog/tags/smt-production/">
+            smt production
+        </option>
+        <option value="/en-us/resources/blog/tags/smt-solderpaste-stencils/">
+            SMT Solderpaste Stencils
+        </option>
+        <option value="/en-us/resources/blog/tags/smta/">
+            smta
+        </option>
+        <option value="/en-us/resources/blog/tags/soldering/">
+            soldering
+        </option>
+        <option value="/en-us/resources/blog/tags/solderpaste/">
+            solderpaste
+        </option>
+        <option value="/en-us/resources/blog/tags/soluble/">
+            soluble
+        </option>
+        <option value="/en-us/resources/blog/tags/sound/">
+            sound
+        </option>
+        <option value="/en-us/resources/blog/tags/space-coast-conference/">
+            space coast conference
+        </option>
+        <option value="/en-us/resources/blog/tags/space-coast-expo/">
+            space coast expo
+        </option>
+        <option value="/en-us/resources/blog/tags/space-coast-forum/">
+            space coast forum
+        </option>
+        <option value="/en-us/resources/blog/tags/specifications/">
+            specifications
+        </option>
+        <option value="/en-us/resources/blog/tags/sports/">
+            sports
+        </option>
+        <option value="/en-us/resources/blog/tags/standard/">
+            standard
+        </option>
+        <option value="/en-us/resources/blog/tags/stencils/">
+            stencils
+        </option>
+        <option value="/en-us/resources/blog/tags/surface-mount-technology/">
+            Surface Mount Technology
+        </option>
+        <option value="/en-us/resources/blog/tags/tab-route/">
+            tab-route
+        </option>
+        <option value="/en-us/resources/blog/tags/through-hole-technology/">
+            through-hole technology
+        </option>
+        <option value="/en-us/resources/blog/tags/tolerances/">
+            tolerances
+        </option>
+        <option value="/en-us/resources/blog/tags/turnkey-pcb-assembly/">
+            turnkey pcb assembly
+        </option>
+        <option value="/en-us/resources/blog/tags/ul/">
+            ul
+        </option>
+        <option value="/en-us/resources/blog/tags/ul-certification/">
+            ul certification
+        </option>
+        <option value="/en-us/resources/blog/tags/vehicle/">
+            vehicle
+        </option>
+        <option value="/en-us/resources/blog/tags/via-tenting/">
+            via tenting
+        </option>
+        <option value="/en-us/resources/blog/tags/vias/">
+            vias
+        </option>
+        <option value="/en-us/resources/blog/tags/wastewater-reclamation-award/">
+            Wastewater Reclamation Award
+        </option>
+        <option value="/en-us/resources/blog/tags/wearable/">
+            wearable
+        </option>
+        <option value="/en-us/resources/blog/tags/wearables/">
+            wearables
+        </option>
+
+</select>
+    
+<select onchange="if(this.value) window.location.href = this.value;" class="leading-5">
+    <option value="">
+        By Category
+    </option>
+                <option value="/en-us/resources/blog/categories/aerospace/">
+                    Aerospace
+                </option>
+                <option value="/en-us/resources/blog/categories/aerospace-pcb/">
+                    Aerospace PCB
+                </option>
+                <option value="/en-us/resources/blog/categories/assembly/">
+                    Assembly
+                </option>
+                <option value="/en-us/resources/blog/categories/blind-and-buried-vias/">
+                    Blind and Buried Vias
+                </option>
+                <option value="/en-us/resources/blog/categories/circuit-board/">
+                    Circuit Board
+                </option>
+                <option value="/en-us/resources/blog/categories/circuit-board-assembly/">
+                    Circuit Board Assembly
+                </option>
+                <option value="/en-us/resources/blog/categories/circuit-board-design/">
+                    Circuit Board Design
+                </option>
+                <option value="/en-us/resources/blog/categories/commercial/">
+                    Commercial
+                </option>
+                <option value="/en-us/resources/blog/categories/commercial-pcb/">
+                    Commercial PCB
+                </option>
+                <option value="/en-us/resources/blog/categories/consumer-electronics/">
+                    Consumer Electronics
+                </option>
+                <option value="/en-us/resources/blog/categories/custom-pcb/">
+                    Custom PCB
+                </option>
+                <option value="/en-us/resources/blog/categories/custom-printed-circuit-board/">
+                    Custom Printed Circuit Board
+                </option>
+                <option value="/en-us/resources/blog/categories/defense/">
+                    Defense
+                </option>
+                <option value="/en-us/resources/blog/categories/development/">
+                    Development
+                </option>
+                <option value="/en-us/resources/blog/categories/expanded-capabilities/">
+                    Expanded Capabilities
+                </option>
+                <option value="/en-us/resources/blog/categories/gerber-files/">
+                    Gerber Files
+                </option>
+                <option value="/en-us/resources/blog/categories/hdi-pcb/">
+                    HDI PCB
+                </option>
+                <option value="/en-us/resources/blog/categories/manufacturing/">
+                    Manufacturing
+                </option>
+                <option value="/en-us/resources/blog/categories/medical/">
+                    Medical
+                </option>
+                <option value="/en-us/resources/blog/categories/mil-grade-pcb/">
+                    Mil Grade PCB
+                </option>
+                <option value="/en-us/resources/blog/categories/multilayer-pcb/">
+                    Multilayer PCB
+                </option>
+                <option value="/en-us/resources/blog/categories/pcb/">
+                    PCB
+                </option>
+                <option value="/en-us/resources/blog/categories/pcb-assembly/">
+                    PCB Assembly
+                </option>
+                <option value="/en-us/resources/blog/categories/pcb-cost/">
+                    PCB Cost
+                </option>
+                <option value="/en-us/resources/blog/categories/pcb-design/">
+                    PCB Design
+                </option>
+                <option value="/en-us/resources/blog/categories/pcb-design-software/">
+                    PCB Design Software
+                </option>
+                <option value="/en-us/resources/blog/categories/pcb-development/">
+                    PCB Development
+                </option>
+                <option value="/en-us/resources/blog/categories/pcb-fabrication/">
+                    PCB Fabrication
+                </option>
+                <option value="/en-us/resources/blog/categories/pcb-finishes/">
+                    PCB Finishes
+                </option>
+                <option value="/en-us/resources/blog/categories/pcb-layout-software/">
+                    PCB Layout Software
+                </option>
+                <option value="/en-us/resources/blog/categories/pcb-manufacturing/">
+                    PCB Manufacturing
+                </option>
+                <option value="/en-us/resources/blog/categories/pcb-materials/">
+                    PCB Materials
+                </option>
+                <option value="/en-us/resources/blog/categories/pcb-prototyping/">
+                    PCB Prototyping
+                </option>
+                <option value="/en-us/resources/blog/categories/pcb-quality/">
+                    PCB Quality
+                </option>
+                <option value="/en-us/resources/blog/categories/printed-circuit-board-assembly/">
+                    Printed Circuit Board Assembly
+                </option>
+                <option value="/en-us/resources/blog/categories/printed-circuit-board-design/">
+                    Printed Circuit Board Design
+                </option>
+                <option value="/en-us/resources/blog/categories/printed-circuit-board-news/">
+                    Printed Circuit Board News
+                </option>
+                <option value="/en-us/resources/blog/categories/printed-circuit-boards/">
+                    Printed Circuit Boards
+                </option>
+                <option value="/en-us/resources/blog/categories/prototype-assembly/">
+                    Prototype Assembly
+                </option>
+                <option value="/en-us/resources/blog/categories/prototype-pcb/">
+                    Prototype PCB
+                </option>
+                <option value="/en-us/resources/blog/categories/smt/">
+                    SMT
+                </option>
+                <option value="/en-us/resources/blog/categories/smt-manufacturing/">
+                    SMT Manufacturing
+                </option>
+                <option value="/en-us/resources/blog/categories/software/">
+                    Software
+                </option>
+                <option value="/en-us/resources/blog/categories/uncategorized/">
+                    Uncategorized
+                </option>
+</select>
+    <a class="text-navy hover:underline font-bold" href="/en-us/resources/blog/categories/">
+        All Categories
+    </a>
+</div>
+
+<div data-ktc-search-exclude>
+    <div class="flex flex-col gap-4 py-8 my-4">
+        <div  class="text-20 font-bold">
+            Recent Posts
+        </div>
+        <a class="[ button ]" href="/en-us/resources/blog/">
+            View Recent Posts
+        </a>
+    </div>
+</div>
+        </div>
+    </div>
+</div>
+    </main>
+
+
+    
+<div id="cookieBanner" class="[ cookie-banner ] fixed bottom-8 end-8 z-20 mobile:bottom-0 mobile:end-0 mobile:m-4 print:hidden" data-ktc-search-exclude>
+    <div class="[ cookie-panel cardPanel:5 ] bg-white border-navy border-2 p-8 max-w-[450px] mobile:max-w-max">
+        <button id="cookieBannerCollapse" onclick="document.getElementById('cookieBanner').classList.toggle('cookie-collapse');"
+            class="top-4 end-8 hover:bg-gray-100 !absolute flex items-center justify-center w-8 h-8 rounded-full cursor-pointer text-black">
+            <i class="icon i-close" aria-hidden="true"></i>
+        </button>
+        <form action="/dataprotection/setcookielevel/?cookielevel=1000&amp;returnurl=%2Fen-us%2Fresources%2Fblog%2Fgold_fingers%2F" method="post">
+            <h2>We value your privacy</h2>
+
+<p class="pb-4">We use cookies to enhance your browsing experience, serve personalized content, and analyze traffic to better serve your needs. By clicking &quot;Accept All&quot; you consent to our use of cookies. <a class="underline text-main-500 hover:text-main-500" href="/en-us/company/about/privacy-policy/">Read more in the privacy policy</a></p>
+            <div class="flex flex-wrap justify-end gap-4">
+                <a rel="modal:open nofollow" class="button:outline" href="/dataprotection/manage-privacy/?returnurl=%2Fen-us%2Fresources%2Fblog%2Fgold_fingers%2F">
+                    Customize
+                </a>
+                <button type="submit" class="button:main">
+                    Accept All
+                </button>
+            </div>
+        <input name="__RequestVerificationToken" type="hidden" value="CfDJ8Lh0uz806nBJrbrQksnYuKasjBh747oQtFB_CwnaMrvnukKY1dK2O6iSZgaaWt9A3GthtuPP7PEem7iP_1c91VT7R0eqdtRAanzEKteOnZ69grwQArCiciFSXHOskFljpW4FL7YCtrx0sb8zORI4qm4" /></form>
+    </div>
+    <button id="cookieBannerExpand" onclick="document.getElementById('cookieBanner').classList.toggle('cookie-collapse');"
+        data-tippy-content="View privacy settings"
+        class="[ cookie-open ] cursor-pointer !absolute flex items-center justify-center text-white rounded-full w-12 h-12 text-20 -bottom-2 end-16 bg-main-500 hover:bg-main-600 border-2 border-red border-solid">
+        <i class="icon i-cookie text-bright-red" aria-hidden="true"></i>
+    </button>
+</div>
+    
+<div class="[ limit ]">
+    <div class="mb-16">
+        <a id="contact">
+            <span class="sr-only">Contact us</span>
+        </a>
+        <h3 class="text-navy text-h3 font-bold text-center mb-10">
+            <span class="text-navy">
+                Get In Touch Today
+            </span>
+        </h3>
+        <div id="hsForm" class="bg-white w-full max-w-[1000px] tablet-sm:max-w-full border-2 border-navy mx-auto rounded-3xl">
+            <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+              hbspt.forms.create({
+                region: "na1",
+                portalId: "45172949",
+                formId: "2e8942ba-e520-49ee-8129-b8af636087b6"
+              });
+            </script>
+        </div>
+    </div>
+</div>
+
+<footer class="[ footer ] mt-auto" data-ktc-search-exclude>
+    <div>
+        
+<div class="[ footer-navigation ] py-12 text-footer bg-footer-bg" data-ktc-search-exclude>
+    <div class="limit">
+        <div class="columns:11 mb-8" style="--column-width: 1250px; --column-gap: 4rem;">
+            <div class="flex flex-col gap-4">
+                <a href="/">
+                    <img alt="AdvancedPCB" class="[ brand-img ] my-4 tablet-sm:px-4 nav-max:mx-auto" loading="lazy" src="/getattachment/653e3734-ddbb-4dad-803b-5deb24be8456/ftrimg.svg" />
+                </a>
+
+                    <div class="grid grid-cols-4 tablet-sm:grid-cols-2 tablet-sm:justify-items-center mobile:grid-cols-1 mobile:text-center">
+                            <div class="mb-2">
+                                    <span class="text-white">
+                                        ISO 9001:2015
+                                    </span>
+                            </div>
+                            <div class="mb-2">
+                                    <span class="text-white">
+                                        MIL-PRF-31032
+                                    </span>
+                            </div>
+                            <div class="mb-2">
+                                    <span class="text-white">
+                                        ITAR Registered
+                                    </span>
+                            </div>
+                            <div class="mb-2">
+                                    <a class="group text-bright-red hover:text-dark-red transition-colors duration-300"
+                                       href="/en-us/resources/certifications/"
+                                       target="_self">
+                                        <span class="group-hover:underline">All Certifications</span>
+                                        <i class="icon i-chevron-right" aria-hidden="true"></i>
+                                    </a>
+                            </div>
+                    </div>
+            </div>
+            <div>
+                <!-- Newsletter subscribe form -->
+                <div class="pt-4 pb-2" style="max-width: calc(100vw - 1rem);">
+                    <script>
+                        document.addEventListener('DOMContentLoaded', () => {
+                            hbspt.forms.create({
+                                region: "na1",
+                                portalId: "45172949",
+                                formId: "3c149e01-a962-4add-9777-749d9db33be4"
+                            });
+                        });
+                    </script>
+                </div>
+
+                        <a target="_blank" class="inline-block pe-4 mb-3 text-28 text-footer hover:text-dark-red" rel="noopener noreferrer nofollow" href="https://www.linkedin.com/company/advanced-pcb-official/">
+                            <i class="i-linkedin" aria-hidden="true"></i>
+                            <span class="sr-only">linkedIn</span>
+                        </a>
+                        <a target="_blank" class="inline-block pe-4 mb-3 text-28 text-footer hover:text-dark-red" rel="noopener noreferrer nofollow" href="https://www.youtube.com/@AdvancedPCB">
+                            <i class="i-youtube" aria-hidden="true"></i>
+                            <span class="sr-only">youtube</span>
+                        </a>
+            </div>
+        </div>
+
+            <div class="border border-gray-400 p-2.5 mb-10">
+            <h4 class="text-white text-18 mt-0 mb-3">Locations</h4>
+            <div class="grid grid-cols-2 tablet:grid-cols-1 gap-x-6 gap-y-5">
+                <div class="text-gray-400 text-14 tracking-tight">
+                    <i class="i-pin" aria-hidden="true"></i>
+                    <address class="inline">
+                        <span>Aurora, CO (Headquarters) -</span>
+                        <span>21101 E. 32nd Pkwy.</span>
+                        <span>
+                            Aurora,
+                            CO
+                            80011
+                        </span>
+                            <span> - Phone: (303)-576-6610</span>
+                    </address>
+                </div>
+                <div class="text-gray-400 text-14 tracking-tight">
+                    <i class="i-pin" aria-hidden="true"></i>
+                    <address class="inline">
+                        <span>Santa Clara, CA -</span>
+                        <span>3495 De La Cruz Blvd</span>
+                        <span>
+                            Santa Clara,
+                            CA
+                            95054
+                        </span>
+                            <span> - Phone: (408)-727-6442</span>
+                    </address>
+                </div>
+                <div class="text-gray-400 text-14 tracking-tight">
+                    <i class="i-pin" aria-hidden="true"></i>
+                    <address class="inline">
+                        <span>Chandler, AZ -</span>
+                        <span>6615 W. Boston St.</span>
+                        <span>
+                            Chandler,
+                            AZ
+                            85226
+                        </span>
+                            <span> - Phone: (800)-678-0233</span>
+                    </address>
+                </div>
+                <div class="text-gray-400 text-14 tracking-tight">
+                    <i class="i-pin" aria-hidden="true"></i>
+                    <address class="inline">
+                        <span>Anaheim, CA -</span>
+                        <span>250 E. Emerson Ave</span>
+                        <span>
+                            Orange,
+                            CA
+                            92865
+                        </span>
+                            <span> - Phone: (714)-921-0860</span>
+                    </address>
+                </div>
+                <div class="text-gray-400 text-14 tracking-tight">
+                    <i class="i-pin" aria-hidden="true"></i>
+                    <address class="inline">
+                        <span>Maple Grove, MN -</span>
+                        <span>8860 Zachary Ln.</span>
+                        <span>
+                            Maple Grove,
+                            MN
+                            55369
+                        </span>
+                            <span> - Phone: (763)-424-3788</span>
+                    </address>
+                </div>
+                <div class="text-gray-400 text-14 tracking-tight">
+                    <i class="i-pin" aria-hidden="true"></i>
+                    <address class="inline">
+                        <span>Orange County, CA -</span>
+                        <span>1900 Petra Lane</span>
+                        <span>
+                            Placentia,
+                            CA
+                            92870
+                        </span>
+                            <span> - Phone: (714)-993-0270</span>
+                    </address>
+                </div>
+            </div>
+            </div>
+
+        <div class="grid grid-cols-5 tablet:block">
+            <div class="col-span-3 tablet:col-span-1 grid grid-cols-3 mb-4 tablet-sm:grid-cols-2 tablet-sm:justify-items-center mobile:grid-cols-1 mobile:text-center">
+                    <div class="mb-2">
+                        <a class="text-bright-red hover:text-dark-red hover:underline transition-colors duration-300" target="_self" href="/en-us/tools/free-dfm-filecheck/">
+                            Free DFM Filecheck
+                        </a>
+                    </div>
+                    <div class="mb-2">
+                        <a class="text-bright-red hover:text-dark-red hover:underline transition-colors duration-300" target="_self" href="/en-us/company/about/">
+                            About Us
+                        </a>
+                    </div>
+                    <div class="mb-2">
+                        <a class="text-bright-red hover:text-dark-red hover:underline transition-colors duration-300" target="_self" href="/en-us/tools/trace-width-calculator/">
+                            Trace Width Calculator
+                        </a>
+                    </div>
+                    <div class="mb-2">
+                        <a class="text-bright-red hover:text-dark-red hover:underline transition-colors duration-300" target="_blank" href="https://www.my4pcb.com/Net35/Login.aspx?">
+                            Get a Quote
+                        </a>
+                    </div>
+                    <div class="mb-2">
+                        <a class="text-bright-red hover:text-dark-red hover:underline transition-colors duration-300" target="_self" href="/en-us/company/facilities/">
+                            Facilities
+                        </a>
+                    </div>
+                    <div class="mb-2">
+                        <a class="text-bright-red hover:text-dark-red hover:underline transition-colors duration-300" target="_self" href="/en-us/company/quality-assurance/">
+                            Quality Assurance
+                        </a>
+                    </div>
+                    <div class="mb-2">
+                        <a class="text-bright-red hover:text-dark-red hover:underline transition-colors duration-300" target="_self" href="/en-us/resources/pricing/">
+                            Pricing
+                        </a>
+                    </div>
+                    <div class="mb-2">
+                        <a class="text-bright-red hover:text-dark-red hover:underline transition-colors duration-300" target="_self" href="/en-us/tools/pcb-artist-software/">
+                            PCB Artist Software
+                        </a>
+                    </div>
+                    <div class="mb-2">
+                        <a class="text-bright-red hover:text-dark-red hover:underline transition-colors duration-300" target="_blank" href="https://www.my4pcb.com/Net35/Login.aspx">
+                            My AdvancedPCB
+                        </a>
+                    </div>
+                    <div class="mb-2">
+                        <a class="text-bright-red hover:text-dark-red hover:underline transition-colors duration-300" target="_self" href="/en-us/blog/">
+                            Blog
+                        </a>
+                    </div>
+                    <div class="mb-2">
+                        <a class="text-bright-red hover:text-dark-red hover:underline transition-colors duration-300" target="_self" href="/en-us/flex-rigid-flex/">
+                            Flex &amp; Rigid-Flex
+                        </a>
+                    </div>
+            </div>
+            <div class="col-span-2 tablet:col-span-1">
+                <div class="be-ix-link-block"><!--IXF: Link Equity Block--></div>
+            </div>
+        </div>
+    </div>
+</div>
+    </div>
+
+    <div class="py-2 text-center text-copyright bg-copyright-bg">
+        <div class="[ limit ] border-white/40 border-t pb-8">
+            <div class="flex items-center justify-between tablet:justify-center pt-8 pb-4 gap-x-4 gap-y-6 tablet:inline-flex gap-3 flex-wrap">
+                        <span>1-800-979-4722</span>
+                        <a class="text-bright-red hover:text-dark-red hover:underline transition-colors duration-300" target="_self" href="/en-us/company/about/privacy-policy/">
+                            Privacy Policy
+                        </a>
+                        <a class="text-bright-red hover:text-dark-red hover:underline transition-colors duration-300" target="_self" href="/en-us/resources/certifications/itar/">
+                            ITAR Compliance
+                        </a>
+                        <a class="text-bright-red hover:text-dark-red hover:underline transition-colors duration-300" target="_self" href="/en-us/warranty/">
+                            Warranty
+                        </a>
+                        <a class="text-bright-red hover:text-dark-red hover:underline transition-colors duration-300" target="_self" href="/en-us/company/about/terms-of-use/">
+                            Terms &amp; Conditions
+                        </a>
+                <a class="text-bright-red hover:text-dark-red hover:underline transition-colors duration-300" rel="modal:open nofollow" href="/dataprotection/manage-privacy/?returnurl=%2Fen-us%2Fresources%2Fblog%2Fgold_fingers%2F">
+                    Cookie Settings
+                </a>
+            </div>
+            <div class="flex justify-end tablet:justify-center">
+                <div>
+                    <strong>&copy; Copyright 2026</strong>
+                    <strong>AdvancedPCB</strong> All rights reserved.
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+</div>
+
+
+<script type="text/javascript" src="/kentico.resource/activities/kenticoactivitylogger/logger.js/?pageidentifier=1571" async></script><script type="text/javascript" src="/kentico.resource/webanalytics/logger.js/?culture=en-us&amp;httpstatus=200&amp;value=0" async></script>
+
+    <script type="application/ld&#x2B;json">
+        {"@context":"https://schema.org","@type":"BlogPosting","description":"Gold fingers are hard gold\u2013plated PCB edge connectors designed for high mating cycles and reliable electrical performance. Learn how they are manufactured, specified, and used in high-reliability systems.","image":{"@type":"ImageObject","url":"https://www.advancedpcb.com/getattachment/cf501880-6655-4ded-94b4-7ea87efe5b56/Gold-Finger-Image.png"},"url":"https://www.advancedpcb.com/en-us/resources/blog/gold_fingers/","abstract":"Gold fingers are hard gold\u2013plated PCB edge connectors designed for high mating cycles and reliable electrical performance. Learn how they are manufactured, specified, and used in high-reliability systems.","datePublished":"2026-01-29","headline":"Hard Gold, Hard Work: Designing PCB Edge Connectors That Last"}
+    </script>
+    <script type="application/ld&#x2B;json">
+        {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","item":{"@type":"Thing","@id":"https://www.advancedpcb.com/en-us/resources/","name":"Resources"},"position":1},{"@type":"ListItem","item":{"@type":"Thing","@id":"https://www.advancedpcb.com/en-us/resources/blog/","name":"Blog "},"position":2},{"@type":"ListItem","item":{"@type":"Thing","@id":"https://www.advancedpcb.com/en-us/resources/blog/gold_fingers/","name":"Hard Gold, Hard Work: Designing PCB Edge Connectors That Last"},"position":3}]}
+    </script>
+
+
+<script type="text/javascript">
+window.kentico = window.kentico || {};
+window.kentico.builder = {}; 
+window.kentico.builder.useJQuery = true;</script><script src="/_content/Kentico.Content.Web.Rcl/Content/Bundles/Public/systemFormComponents.min.js"></script>
+
+
+    <script type="module" src="/dist/index.5P5im7Vh.js"></script>
+
+
+<script id="6senseWebTag" src="https://j.6sc.co/j/66ee022e-31da-4305-be82-d06c615884cd.js"></script>
+<div id="modal"></div>
+
+<div class="[ scroll-to-top stp--show ] fixed mx-auto z-50">
+    <a href="#page-top" class="[ scroll-to-top-link ] inline-flex flex-col items-center gap-2">
+        <i class="i-arrow-up flex items-center justify-center text-24 p-2 h-12 w-12 bg-navy text-white rounded-full border-2 border-red" aria-hidden="true"></i>
+        <div class="[ scroll-to-top-text ] text-12 font-bold bg-gray-200 rounded p-1">
+            Scroll to Top
+        </div>
+    </a>
+</div>
+</body>
+</html>

@@ -1,0 +1,192 @@
+1/4/2018                                        DDR4 SODIMM 260P 4.0H STD: 2309407-5 : DDR4 DIMM | TE Connectivity
+
+                               © 2018 TE Connectivity Ltd. family of companies. All Rights Reserved
+
+
+
+
+           Connectors  Card Edge Connectors & Sockets  Memory Sockets  SO DIMM
+
+
+
+
+           TE CONNECTIVITY (TE) - DDR4 DIMM
+
+           DDR4 SODIMM 260P 4.0H STD
+              ACTIVE
+
+           2309407-5
+           TE Internal Number: 2309407-5
+
+
+                                                                               Get a Sample
+
+
+
+
+                                                                     Compatible Parts & Tooling
+
+
+           Add to List 
+           Documents
+           Features
+           Compliance
+           Similar Products
+
+
+            PRODUCT
+             English
+                     DRAWING
+
+
+            3D PDF
+
+
+
+           DOCUMENTATION                                                                                             
+
+
+           FEATURES                                                                                                  
+
+
+           Please review product documents or contact us for the latest agency approval information.
+
+           Please Note: Use the Product Drawing for all design activity.
+
+
+
+
+http://www.te.com/usa-en/product-2309407-5.html#pdp-docs-features                                                        1/3
+1/4/2018                                   DDR4 SODIMM 260P 4.0H STD: 2309407-5 : DDR4 DIMM | TE Connectivity
+
+
+           Product Type Features
+           DRAM Type Small Outline (SO)
+           Connector System Cable-to-Board
+           Profile Low
+           Row-to-Row Spacing 8.2 mm [ .322 in ]
+           Sealable No
+           Connector & Contact Terminates To Printed Circuit Board
+           Center Post Without
+           Product Type Socket
+
+
+
+           Configuration Features
+           Module Orientation Right Angle
+           Number of Positions 260
+           Number of Rows 2
+           Keying Standard
+           Number of Keys 1
+           Center Key Offset Left
+
+
+
+           Electrical Characteristics
+
+           DRAM Voltage (V) 1.2
+
+
+
+           Signal Characteristics
+
+           SGRAM Voltage (V) 1.2
+
+
+
+           Body Features
+
+           Ejector Type Locking
+           Module Key Type Offset Left
+           Retention Post Location Both Ends
+           Latch Material High Temperature Thermoplastic
+           Ejector Location Both Ends
+
+
+
+           Contact Features
+           Solder Tail Contact Plating Material Gold Flash
+           Contact Mating Area Plating Material Gold
+           Contact Mating Area Plating Thickness .76 µm [ 30 µin ]
+           Contact Current Rating (Max) (A) .5
+           Contact Base Material Copper Alloy
+           Socket Type Memory Card
+           Socket Style SO DIMM
+
+
+
+           Termination Features
+
+           Insertion Style Cam-In
+
+
+
+
+http://www.te.com/usa-en/product-2309407-5.html#pdp-docs-features                                               2/3
+1/4/2018                                    DDR4 SODIMM 260P 4.0H STD: 2309407-5 : DDR4 DIMM | TE Connectivity
+
+
+            Mechanical Attachment
+
+            PCB Mounting Style Surface Mount
+            Connector Mounting Type Board Mount
+            PCB Mount Retention With
+            PCB Mount Retention Type Solder Peg
+
+
+
+            Housing Features
+            Centerline (Pitch) .5 mm [ .0197 in ]
+            Housing Material High Temperature Thermoplastic
+            Housing Color Black
+
+
+
+            Dimensions
+            Stack Height 4 mm [ .157 in ]
+
+
+
+            Usage Conditions
+            Operating Temperature Range -55 – 85 °C [ -67 – 185 °F ]
+
+
+
+            Operation/Application
+            Circuit Application Power
+
+
+
+            Industry Standards
+
+            UL Flammability Rating UL 94V-0
+
+
+
+            Packaging Features
+
+            Packaging Method Tape & Reel
+            Packaging Quantity 900
+
+
+
+            PRODUCT COMPLIANCE                                                                                   
+
+
+
+           Compatible Products
+         Contact Product Support
+
+           Also in the Series | DDR4 DIMM
+
+
+
+
+           DIMM Sockets           SO DIMM Sockets
+           (71)                   (39)
+
+
+
+
+http://www.te.com/usa-en/product-2309407-5.html#pdp-docs-features                                                    3/3
+

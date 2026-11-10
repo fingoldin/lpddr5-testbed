@@ -1,29 +1,46 @@
-# LPDDR5 Testbed
+# LPDDR5 testbed for the ZCU104
 
-Copyright (c) 2023-2025 [Antmicro](https://www.antmicro.com)
+A single-channel LPDDR5X module (currently targeting SK hynix H58G56BK7BX068N or Samsung K3KL8L80CM-MGCT, both 2 x 16 Gb
+with one rank) on a card that plugs into the ZCU104's DDR4
+SO-DIMM socket and is driven by the FPGA through a dedicated pin map. It is a custom LPDDR5 card, not a DDR4 memory
+module.
 
-[![image](https://img.shields.io/badge/View%20on-Antmicro%20Open%20Source%20Portal-332d37?style=flat-square)](https://opensource.antmicro.com/projects/lpddr5-testbed/)
-[![image](https://img.shields.io/badge/View%20on-Antmicro%20Open%20Hardware%20Portal-332d37?style=flat-square)](https://openhardware.antmicro.com/boards/lpddr5-testbed/?tab=features)
-![](img/lpddr5-testbed-rev.1.0.0-photo.jpg)
+### Goals
 
-## Overview
+Implement custon PHY and controller on ZCU104 FPGA, communicate with one rank on one channel of the LPDDR5 package at
+the highest command rate possible (up to 800 MHz, DDR). Reads and writes can be slow, but must be at least 20 Mb/s 
+(WCK = 10 MHz). 
 
-This project contains open hardware design files for an experimental test module in a mechanical form of SO-DIMM DDR5. 
+### High-level signal routing
 
-The module includes a standard 315-ball WFBGA (12.4mm × 15.0mm × 0.8mm, Ø0.42 SMD) LPDDR5 RAM footprint break-routed in the SO-DIMM edge connector. 
-The design files were prepared in KiCad 9.x. 
+FPGA <-> LPDDR5 routes, for one channel and one rank with no DM wires:
+- Bank 64 on FPGA: command bus and write data -- CK, CA0-6, CS0, RESET_n, WCK0/1, DQ0-15, plus PWR_EN and PGOOD
+  (33 of 37 pins, socket fingers 108-162). LPDDR5 balls are connected via a resistive divider to level-shift the FPGA
+  signals down to ~0.5 V from 1.2 V.
+- Bank 66 on FPGA: read data and strobes -- 16 DQ with RDQS0/1 as true pairs (18 of 20 pairs, socket fingers 169-250).
+  LPDDR5 balls are connected directly to FPGA P pins, while the corresponding N pins carry VREF_RD from a static DAC
+  defining the read reference value around 170 mV.
+- Bank 65 on FPGA: spare (0 of 44 pins, socket fingers 3-84), free to take DMI or a second channel later.
 
-Please note that this board is not electrically compatible with off-the-shelf hot platforms accepting SO-DIMM DDR5 memory modules. 
-It is compatible with [this](https://github.com/antmicro/sodimm-ddr5-tester) test platform.
+### Board components
 
-## Project structure
+Resistive dividers for 
 
-The main project directory contains KiCad PCB project files, a LICENSE and README. 
-The remaining files are stored in the following directories:
+### Operating notes
 
-* `img` - contains graphics for this README
-* `doc` - contains PDF schematic
+LPDDR5 allows CK down to 5 MHz (tCK max 200 ns), but the data rate is tied to CK (4x or 8x), so reads and writes run in
+their own frequency set point: CK 25 MHz for 100 Mb/s reads, 80 MHz for 320 Mb/s writes. 800 MHz CK is for
+command-only traffic.
 
-## Licensing
 
-This project is published under the [Apache-2.0](LICENSE) license.
+### File layout
+
+| Folder | Contents |
+|---|---|
+| `kicad/` | the design (schematic, PCB, rules), KiCad 10 format; 3D models in `kicad/3dmodels/` |
+| `fab/` | single-board outputs and `fab/jlc/` (outputs for uploading to JLCPCB) |
+| `fpga/` | PHY gateware generators (`gen_ips.py`, `gen_top.py`, `build.tcl`), testbench (`sim/`), build and xsim results (`results/rev1.1.0/`, `results/rev2.1.0/`) |
+| `references/` | data sheets, user guides, the JEDEC text, models and vendor PCB guidelines used for the design (`references/README.md`) |
+
+
+Derived from the Antmicro LPDDR5 testbed.

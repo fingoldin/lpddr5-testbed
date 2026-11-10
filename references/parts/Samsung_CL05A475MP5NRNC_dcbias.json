@@ -1,0 +1,304 @@
+
+
+
+
+
+
+
+
+	
+	
+	
+		<!doctype html>
+		<html lang="ko">
+		<head>
+			<meta charset="UTF-8">
+			<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+			<meta http-equiv="Content-Script-Type" content="text/javascript">
+			<meta http-equiv="Content-Style-Type" content="text/css">
+			<meta http-equiv="X-UA-Compatible" content="IE=edge">
+			<meta name="description" content="">
+			<meta name="keywords" content="">
+			<meta property="og:title" content="SAMSUNG ELECTRO-MECHANICS">
+			<meta property="og:image" content="http://www.samsungsem.com/images/samsungsem_logo.jpg">
+			<meta property="og:url" content="http://weblib.samsungsem.com">
+			<link rel="stylesheet" type="text/css" href="/resources/css/common.css" />
+			<link rel="shortcut icon" href="/resources/images/common/sem_favicon.ico" /><!-- favicon -->
+			<title>Page Not Found | Component Library</title>
+		</head>
+		<body class="error">
+			<div id="wrap" class="wrap">
+				<div class="skip_navi">
+					<a href="#gnb">Skip to Navigation</a>
+					<a href="#content">Skip to contents</a>
+				</div>
+				
+
+
+<div id="header">
+	<div class="header_inner">
+		<div class="logo">
+			<a href="/index.do" onclick="gtag('event', 'gnb_click_ci_CL', {'event_category':'GNB', 'event_label':'SEM_CL_W'});">SAMSUNG ELECTRO-MECHANICS</a>
+			<span>Component<br>Center</span>
+		</div>
+		<div class="gnb">
+			<ul>
+				<li class="depth1">
+					<a href="http://product.samsungsem.com/mlcc/basic-search.do" onclick="gtag('event', 'gnb_PS_MLCC_BasicSearch', {'event_category':'GNB', 'event_label':'SEM_CL_W'});">Product Search</a>
+					<div class="depth_wrap">
+						<div class="depth2_list">
+							<ul>
+								<li class="depth2" data-pcode="mlcc">
+									<a href="http://product.samsungsem.com/mlcc/basic-search.do" onclick="gtag('event', 'gnb_PS_MLCC_BasicSearch', {'event_category':'GNB', 'event_label':'SEM_CL_W'});">MLCC</a>
+									<div class="depth3_list">
+										<ul>
+											<li class="depth3"><a href="http://product.samsungsem.com/mlcc/basic-search.do" onclick="gtag('event', 'gnb_PS_MLCC_BasicSearch', {'event_category':'GNB', 'event_label':'SEM_CL_W'});"><span>Basic Search</span></a></li>
+											<li class="depth3"><a href="http://product.samsungsem.com/mlcc/lineup-search.do" onclick="gtag('event', 'gnb_PS_MLCC_LineupSearch', {'event_category':'GNB', 'event_label':'SEM_CL_W'});"><span>Lineup Search</span></a></li>
+											<li class="depth3"><a href="http://product.samsungsem.com/mlcc/cross-reference.do" onclick="gtag('event', 'gnb_PS_MLCC_PNCrossingSearch', {'event_category':'GNB', 'event_label':'SEM_CL_W'});"><span>Cross Reference</span></a></li>
+										</ul>
+									</div>
+								</li>
+								<li class="depth2" data-pcode="pi">
+									<a href="http://product.samsungsem.com/pi/basic-search.do" onclick="gtag('event', 'gnb_PS_PI_BasicSearch', {'event_category':'GNB', 'event_label':'SEM_CL_W'});">Power Inductor</a>
+									<div class="depth3_list">
+										<ul>
+											<li class="depth3"><a href="http://product.samsungsem.com/pi/basic-search.do" onclick="gtag('event', 'gnb_PS_PI_BasicSearch', {'event_category':'GNB', 'event_label':'SEM_CL_W'});"><span>Basic Search</span></a></li>
+											<li class="depth3"><a href="http://product.samsungsem.com/pi/lineup-search.do" onclick="gtag('event', 'gnb_PS_PI_LineupSearch', {'event_category':'GNB', 'event_label':'SEM_CL_W'});"><span>Lineup Search</span></a></li>
+										</ul>
+									</div>
+								</li>
+								<li class="depth2" data-pcode="tantalum">
+									<a href="http://product.samsungsem.com/tantalum/basic-search.do" onclick="gtag('event', 'gnb_PS_Tantalum_BasicSearch', {'event_category':'GNB', 'event_label':'SEM_CL_W'});">Tantalum</a>
+									<div class="depth3_list">
+										<ul>
+											<li class="depth3"><a href="http://product.samsungsem.com/tantalum/basic-search.do" onclick="gtag('event', 'gnb_PS_Tantalum_BasicSearch', {'event_category':'GNB', 'event_label':'SEM_CL_W'});"><span>Basic Search</span></a></li>
+											<li class="depth3"><a href="http://product.samsungsem.com/tantalum/lineup-search.do" onclick="gtag('event', 'gnb_PS_Tantalum_LineupSearch', {'event_category':'GNB', 'event_label':'SEM_CL_W'});"><span>Lineup Search</span></a></li>
+										</ul>
+									</div>
+								</li>
+								<li class="depth2" data-pcode="cr">
+									<a href="http://product.samsungsem.com/cr/basic-search.do" onclick="gtag('event', 'gnb_PS_ChipResistor_BasicSearch', {'event_category':'GNB', 'event_label':'SEM_CL_W'});">Chip Resistor</a>
+									<div class="depth3_list">
+										<ul>
+											<li class="depth3"><a href="http://product.samsungsem.com/cr/basic-search.do" onclick="gtag('event', 'gnb_PS_ChipResistor_BasicSearch', {'event_category':'GNB', 'event_label':'SEM_CL_W'});"><span>Basic Search</span></a></li>
+										</ul>
+									</div>
+								</li>
+								<li class="depth2" data-pcode="sicap">
+									<a href="http://product.samsungsem.com/sicap/basic-search.do" onclick="gtag('event', 'gnb_PS_SiliconCapacitor_BasicSearch', {'event_category':'GNB', 'event_label':'SEM_CL_W'});">Silicon Capacitor</a>
+									<div class="depth3_list">
+										<ul>
+											<li class="depth3"><a href="http://product.samsungsem.com/sicap/basic-search.do" onclick="gtag('event', 'gnb_PS_SiliconCapacitor_BasicSearch', {'event_category':'GNB', 'event_label':'SEM_CL_W'});"><span>Basic Search</span></a></li>
+										</ul>
+									</div>
+								</li>
+							</ul>
+						</div>
+					</div>
+				</li>
+				<li class="depth1">
+					<a href="/mlcc/mlcc-ec.do" onclick="gtag('event', 'gnb_CL_MLCC', {'event_category':'GNB', 'event_label':'SEM_CL_W'});">Component Library</a>
+					<div class="depth_wrap">
+						<div class="depth2_list">
+							<ul>
+								<li class="depth2" data-page="mlccEc">
+									<a href="/mlcc/mlcc-ec.do" onclick="gtag('event', 'gnb_CL_MLCC', {'event_category':'GNB', 'event_label':'SEM_CL_W'});">MLCC</a>
+								</li>
+								<li class="depth2" data-page="pi">
+									<a href="/pi/pi.do" onclick="gtag('event', 'gnb_CL_PI', {'event_category':'GNB', 'event_label':'SEM_CL_W'});">Power Inductor</a>
+								</li>
+								<li class="depth2" data-page="tantalum">
+									<a href="/tantalum/tantalum.do" onclick="gtag('event', 'gnb_CL_Tantalum', {'event_category':'GNB', 'event_label':'SEM_CL_W'});">Tantalum</a>
+								</li>
+								<li class="depth2" data-page="simulation">
+									<a href="/converter/simulation-tool.do" onclick="gtag('event', 'gnb_CL_ConverterSimulationTool_BuckConverterSimulation', {'event_category':'GNB', 'event_label':'SEM_CL_W'});">Converter Simulation Tool</a>
+									<div class="depth3_list">
+										<ul>
+											<li class="depth3"><a href="/converter/simulation-tool.do" onclick="gtag('event', 'gnb_CL_ConverterSimulationTool_BuckConverterSimulation', {'event_category':'GNB', 'event_label':'SEM_CL_W'});"><span>Buck Converter Simulation</span></a></li>
+										</ul>
+									</div>
+								</li>
+								<li class="depth2">
+									<a href="/index.do?designSupportTools=sParameter">Design Support Tools</a>
+									<div class="depth3_list">
+										<ul>
+											<li class="depth3"><a href="/index.do?designSupportTools=sParameter" data-scrollto><span>S-parameter</span></a></li>
+											<li class="depth3"><a href="/index.do?designSupportTools=LTspice" data-scrollto><span>Linear Technology LTspice</span></a></li>
+											<li class="depth3"><a href="/index.do?designSupportTools=Pspice" data-scrollto><span>Cadence Pspice</span></a></li>
+											<li class="depth3"><a href="/index.do?designSupportTools=Hspice" data-scrollto><span>Synopsys Hspice</span></a></li>
+											<li class="depth3"><a href="/index.do?designSupportTools=AWR" data-scrollto><span>Cadence AWR</span></a></li>
+											<li class="depth3"><a href="/index.do?designSupportTools=SIMPLIS" data-scrollto><span>SIMetrix/SIMPLIS</span></a></li>
+											<li class="depth3"><a href="/index.do?designSupportTools=ADS" data-scrollto><span>Keysight ADS</span></a></li>
+											<li class="depth3"><a href="/index.do?designSupportTools=SI" data-scrollto><span>Cadence Sigrity Power SI</span></a></li>
+											<li class="depth3"><a href="/index.do?designSupportTools=AnsysSlwave" data-scrollto><span>Ansys Slwave</span></a></li>
+										</ul>
+									</div>
+								</li>
+							</ul>
+						</div>
+					</div>
+				</li>
+				<li class="depth1">
+					<a href="/product-news/list.do" onclick="gtag('event', 'gnb_ProductNews', {'event_category':'GNB', 'event_label':'SEM_CL_W'});">Technical Resources</a>
+					<div class="depth_wrap">
+						<div class="depth2_list">
+							<ul>
+								<li class="depth2" data-pcode="product-news">
+									<a href="/product-news/list.do" onclick="gtag('event', 'gnb_ProductNews', {'event_category':'GNB', 'event_label':'SEM_CL_W'});">Product News</a>
+								</li>
+								<li class="depth2" data-pcode="technical-articles">
+									<a href="/technical-articles/list.do" onclick="gtag('event', 'gnb_TechnicalArticles', {'event_category':'GNB', 'event_label':'SEM_CL_W'});">Technical Articles</a>
+								</li>
+								<li class="depth2" data-pcode="video-library">
+									<a href="/video-library/list.do" onclick="gtag('event', 'gnb_VidoeLibrary', {'event_category':'GNB', 'event_label':'SEM_CL_W'});">Video Library</a>
+								</li>
+								<li class="depth2" data-pcode="product-catalog">
+									<a href="/product-catalog.do" onclick="gtag('event', 'gnb_Catalog', {'event_category':'GNB', 'event_label':'SEM_CL_W'});">Product Catalog</a>
+								</li>
+							</ul>
+						</div>
+					</div>
+				</li>
+				<li class="depth1">
+					<a href="http://www.samsungsem.com/global/support/contact-us/faq.do" onclick="gtag('event', 'gnb_FAQ', {'event_category':'GNB', 'event_label':'SEM_CL_W'});" target="_blank" title="Go to new window">Support</a>
+					<div class="depth_wrap">
+						<div class="depth2_list">
+							<ul>
+								<li class="depth2 out_link">
+									<a href="http://www.samsungsem.com/global/support/contact-us/faq.do" onclick="gtag('event', 'gnb_FAQ', {'event_category':'GNB', 'event_label':'SEM_CL_W'});" target="_blank" title="Go to new window">FAQ</a>
+								</li>
+								<li class="depth2 out_link">
+									<a href="http://www.samsungsem.com/global/support/contact-us/inquiry.do" onclick="gtag('event', 'gnb_Inquiry', {'event_category':'GNB', 'event_label':'SEM_CL_W'});" target="_blank" title="Go to new window">Inquiry</a>
+								</li>
+								<li class="depth2">
+									<a href="http://www.samsungsem.com/global/support/certificate/product-stewardship.do" onclick="gtag('event', 'gnb_Certificate_ProductEnvironmentalCertificate', {'event_category':'GNB', 'event_label':'SEM_CL_W'});" target="_blank" title="Go to new window">Certificate</a>
+									<div class="depth3_list">
+										<ul>
+											<li class="depth3 out_link"><a href="http://www.samsungsem.com/global/support/certificate/product-stewardship.do" onclick="gtag('event', 'gnb_Certificate_ProductEnvironmentalCertificate', {'event_category':'GNB', 'event_label':'SEM_CL_W'});" target="_blank" title="Go to new window"><span>Product Environmental Certificate</span></a></li>
+											<li class="depth3 out_link"><a href="http://www.samsungsem.com/global/support/certificate/environment-safety-quality.do" onclick="gtag('event', 'gnb_Certificate_EnvironmentSafetyQuality', {'event_category':'GNB', 'event_label':'SEM_CL_W'});" target="_blank" title="Go to new window"><span>Environment/Safety/Quality</span></a></li>
+										</ul>
+									</div>
+								</li>
+								<li class="depth2">
+									<a href="javascript:void(0);">Sales Partners</a>
+									<div class="depth3_list">
+										<ul>
+											<li class="depth3 out_link"><a href="http://www.samsungsem.com/global/support/sales-partners.do?area=KOREA" onclick="gtag('event', 'gnb_SalesPartner_Korea', {'event_category':'GNB', 'event_label':'SEM_CL_W'});" target="_blank" title="Go to new window"><span>Korea</span></a></li>
+											<li class="depth3 out_link"><a href="http://www.samsungsem.com/global/support/sales-partners.do?area=GREATER_CHINA" onclick="gtag('event', 'gnb_SalesPartner_GreaterChina', {'event_category':'GNB', 'event_label':'SEM_CL_W'});" target="_blank" title="Go to new window"><span>Greater China</span></a></li>
+											<li class="depth3 out_link"><a href="http://www.samsungsem.com/global/support/sales-partners.do?area=JAPAN" onclick="gtag('event', 'gnb_SalesPartner_Japan', {'event_category':'GNB', 'event_label':'SEM_CL_W'});" target="_blank" title="Go to new window"><span>Japan</span></a></li>
+											<li class="depth3 out_link"><a href="http://www.samsungsem.com/global/support/sales-partners.do?area=SOUTHEAST_ASIA" onclick="gtag('event', 'gnb_SalesPartner_SoutheastAsia', {'event_category':'GNB', 'event_label':'SEM_CL_W'});" target="_blank" title="Go to new window"><span>Southeast Asia</span></a></li>
+											<li class="depth3 out_link"><a href="http://www.samsungsem.com/global/support/sales-partners.do?area=AMERICAS" onclick="gtag('event', 'gnb_SalesPartner_Americas', {'event_category':'GNB', 'event_label':'SEM_CL_W'});" target="_blank" title="Go to new window"><span>Americas</span></a></li>
+											<li class="depth3 out_link"><a href="http://www.samsungsem.com/global/support/sales-partners.do?area=EUROPE" onclick="gtag('event', 'gnb_SalesPartner_Europe', {'event_category':'GNB', 'event_label':'SEM_CL_W'});" target="_blank" title="Go to new window"><span>Europe</span></a></li>
+										</ul>
+									</div>
+								</li>
+								<li class="depth2">
+									<a href="javascript:void(0);">Sales Representatives</a>
+									<div class="depth3_list">
+										<ul>
+											<li class="depth3 out_link"><a href="http://www.samsungsem.com/global/support/sales-representatives.do" onclick="gtag('event', 'gnb_SalesRepresentatives', {'event_category':'GNB', 'event_label':'SEM_CL_W'});" target="_blank" title="Go to new window"><span>Americas</span></a></li>
+										</ul>
+									</div>
+								</li>
+							</ul>
+						</div>
+					</div>
+				</li>
+				<li class="depth1">
+					<a href="http://www.samsungsem.com/global/about-us/company/overview.do" onclick="gtag('event', 'gnb_Company_CompanyInformation', {'event_category':'GNB', 'event_label':'SEM_CL_W'});" target="_blank" title="Go to new window">About Us</a>
+					<div class="depth_wrap">
+						<div class="depth2_list">
+							<ul>
+								<li class="depth2">
+									<a href="http://www.samsungsem.com/global/about-us/company/overview.do" onclick="gtag('event', 'gnb_Company_CompanyInformation', {'event_category':'GNB', 'event_label':'SEM_CL_W'});" target="_blank" title="Go to new window">Company</a>
+									<div class="depth3_list">
+										<ul>
+											<li class="depth3 out_link"><a href="http://www.samsungsem.com/global/about-us/company/overview.do" onclick="gtag('event', 'gnb_Company_CompanyInformation', {'event_category':'GNB', 'event_label':'SEM_CL_W'});" target="_blank" title="Go to new window"><span>Company Information</span></a></li>
+											<li class="depth3 out_link"><a href="http://www.samsungsem.com/global/about-us/company/ceo-message.do" onclick="gtag('event', 'gnb_Company_CEOMessage', {'event_category':'GNB', 'event_label':'SEM_CL_W'});" target="_blank" title="Go to new window"><span>CEO Message</span></a></li>
+											<li class="depth3 out_link"><a href="http://www.samsungsem.com/global/about-us/company/location.do" onclick="gtag('event', 'gnb_Company_GlobalNetwork', {'event_category':'GNB', 'event_label':'SEM_CL_W'});" target="_blank" title="Go to new window"><span>Global Network</span></a></li>
+											<li class="depth3 out_link"><a href="http://www.samsungsem.com/global/about-us/company/history.do" onclick="gtag('event', 'gnb_Company_HistoryAwards', {'event_category':'GNB', 'event_label':'SEM_CL_W'});" target="_blank" title="Go to new window"><span>History & Awards</span></a></li>
+										</ul>
+									</div>
+								</li>
+								<li class="depth2">
+									<a href="http://www.samsungsem.com/global/about-us/investor-relations/earnings-release.do" onclick="gtag('event', 'gnb_IR_EarningsRelease', {'event_category':'GNB', 'event_label':'SEM_CL_W'});" target="_blank" title="Go to new window">IR</a>
+									<div class="depth3_list">
+										<ul>
+											<li class="depth3 out_link"><a href="http://www.samsungsem.com/global/about-us/investor-relations/earnings-release.do" onclick="gtag('event', 'gnb_IR_EarningsRelease', {'event_category':'GNB', 'event_label':'SEM_CL_W'});" target="_blank" title="Go to new window"><span>Earnings Release</span></a></li>
+											<li class="depth3 out_link"><a href="http://www.samsungsem.com/global/about-us/investor-relations/financial-information.do" onclick="gtag('event', 'gnb_IR_FnancialInformation', {'event_category':'GNB', 'event_label':'SEM_CL_W'});" target="_blank" title="Go to new window"><span>Financial Information</span></a></li>
+											<li class="depth3 out_link"><a href="http://www.samsungsem.com/global/about-us/investor-relations/shareholder.do" onclick="gtag('event', 'gnb_IR_Shareholder', {'event_category':'GNB', 'event_label':'SEM_CL_W'});" target="_blank" title="Go to new window"><span>Shareholder</span></a></li>
+											<li class="depth3 out_link"><a href="http://www.samsungsem.com/global/about-us/investor-relations/corporate-governance/board-of-directors.do" onclick="gtag('event', 'gnb_IR_CorporateGovernance', {'event_category':'GNB', 'event_label':'SEM_CL_W'});" target="_blank" title="Go to new window"><span>Corporate Governance</span></a></li>
+											<li class="depth3 out_link"><a href="http://www.samsungsem.com/global/about-us/investor-relations/archive.do" onclick="gtag('event', 'gnb_IR_Archives', {'event_category':'GNB', 'event_label':'SEM_CL_W'});" target="_blank" title="Go to new window"><span>IR Archives</span></a></li>
+											<li class="depth3 out_link"><a href="http://www.samsungsem.com/global/about-us/investor-relations/stock.do" onclick="gtag('event', 'gnb_IR_Stocks', {'event_category':'GNB', 'event_label':'SEM_CL_W'});" target="_blank" title="Go to new window"><span>Stocks</span></a></li>
+										</ul>
+									</div>
+								</li>
+								<li class="depth2 out_link">
+									<a href="http://www.samsungsem.com/global/sustainability/sustainability.do" onclick="gtag('event', 'gnb_SustainableManagement', {'event_category':'GNB', 'event_label':'SEM_CL_W'});" target="_blank" title="Go to new window">Sustainable Management</a>
+								</li>
+								<li class="depth2 out_link">
+									<a href="http://www.samsungsem.com/global/newsroom/news/overview.do" onclick="gtag('event', 'gnb_Newsroom', {'event_category':'GNB', 'event_label':'SEM_CL_W'});" target="_blank" title="Go to new window">Newsroom</a>
+								</li>
+							</ul>
+						</div>
+					</div>
+				</li>
+			</ul>
+		</div>
+		<div class="menu">
+			<ul>
+				<li class="lang">
+					<a href="javascript:void(0);">ENG</a>
+					<ul>
+						<li class="active"><a href="/index.do">ENG</a></li>
+						<li><a href="/cn/index.do">CHN</a></li>
+					</ul>
+				</li>
+			</ul>
+		</div>
+	</div>
+</div>
+
+
+<!-- popup -->
+<div id="popup" class="pop_wrap info_pop">
+	<div class="pop_inner">
+		<a href="javascript:void(0);" id="popCloseBtn" class="close_btn">close</a>
+		<div class="cont">
+			<img src="/resources/images/index/main_popup.jpg" alt="">
+		</div>
+	</div>
+</div>
+				<div class="container">
+					<div id="content" class="content">
+						<div class="error_section contEng" id="contEng">
+							<p class="txt1">The page you are looking for cannot be found</p>
+							<p class="txt2">The requested page cannot be found due to an invalid page URL or a service error.</p>
+							<div class="btn_area">
+								<a href="javascript:window.history.back();" class="btn_default btn_blue">Back</a>
+							</div>
+						</div>
+					</div>
+				</div>
+				
+<div id="footer">
+	<div class="inner">
+		<div class="box">
+			<ul>
+				<li><a href="javascript:void(0);" onclick="window.open('http://weblib.samsungsem.com/caution.do', 'detail','width=1150,height=830,top=0,left=0,scrollbars=yes'); gtag('event', 'footer_caution', {'event_category':'MAIN', 'event_label':'SEM_CL_W'}); return false;">Caution</a></li>
+				<li><a href="http://www.samsungsem.com/global/support/contact-us/inquiry/product.do?weblibrary=Y" onclick="gtag('event', 'footer_contactus', {'event_category':'MAIN', 'event_label':'SEM_CL_W'});" target="_blank" title="Go to new window">Contact Us</a></li>
+			</ul>
+			<p>Copyright. SAMSUNG ELECTRO-MECHANICS All rights reserved.</p>
+		</div>
+		<div class="box">
+			<a href="http://www.samsungsem.com/global/index.do" onclick="gtag('event', 'footer_click_ci', {'event_category':'GNB', 'event_label':'SEM_CL_W'});" target="_blank" title="Go to new window"><img src="/resources/images/common/footer_logo.svg" alt=""></a>
+		</div>
+	</div>
+</div>
+				<script type="text/javascript" src="/resources/js/lib/jquery-3.7.1.min.js"></script>
+				<script type="text/javascript" src="/resources/js/lib/jquery-ui.min.js"></script>
+				<script type="text/javascript" src="/resources/js/common.js"></script>
+			</div>
+		</body>
+		</html>
+	

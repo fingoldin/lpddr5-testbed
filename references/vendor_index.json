@@ -1,0 +1,273 @@
+{
+ "generated": "2026-10-02",
+ "board": "lpddr5-testbed rev 2.1.0",
+ "review": "references/VENDOR_GUIDELINES_REVIEW.md",
+ "documents": [
+  {
+   "file": "references/amd/UG583_UltraScale_Architecture_PCB_Design_v1.29.pdf",
+   "doc_id": "UG583",
+   "title": "UltraScale Architecture PCB Design User Guide",
+   "version": "v1.29",
+   "date": "2025-12-23",
+   "source_url": "https://docs.amd.com/api/khub/maps/5t7dhkhtFM3JC0rDT2nwdQ/attachments/dzpIPlA7iUPybH1lxY8IEg-5t7dhkhtFM3JC0rDT2nwdQ/content",
+   "size_bytes": 16416860,
+   "sha256": "747b040adbe047588fb05def81d6647e35106a3fc9c099eac20c9aeb0748cef9",
+   "text": "references/amd/UG583_UltraScale_Architecture_PCB_Design_v1.29.txt",
+   "relevance": "Memory routing rules (Ch.2 General Memory Routing Guidelines items 1-19; Ch.3 Tables 116-119 LPDDR5 signals/terminations/impedance/length/vias/skew), VREF-pin handling"
+  },
+  {
+   "file": "references/amd/UG571_UltraScale_SelectIO_Resources_v1.16.pdf",
+   "doc_id": "UG571",
+   "title": "UltraScale Architecture SelectIO Resources User Guide",
+   "version": "v1.16",
+   "date": "2025-01-14",
+   "source_url": "https://docs.amd.com/api/khub/documents/kFbaUC5HGcXyGNauhgU6Gw/content",
+   "size_bytes": 5589006,
+   "sha256": "ea1aa08b568305719f2a4ff30e820afcbc7fdd1ce02b3bf40f9317326c241dc2",
+   "text": "references/amd/UG571_UltraScale_SelectIO_Resources_v1.16.txt",
+   "relevance": "IBUFDS_DPHY, MIPI_DPHY_DCI attributes (Table 1-75), VRP 240 ohm, DCI cascading rules, native-mode bitslices, VAR_LOAD/EN_VTC"
+  },
+  {
+   "file": "references/amd/DS925_ZynqUSplus_DC_AC_Switching_Characteristics_v1.30.pdf",
+   "doc_id": "DS925",
+   "title": "Zynq UltraScale+ MPSoC Data Sheet: DC and AC Switching Characteristics",
+   "version": "v1.30",
+   "date": "2026-07-09",
+   "source_url": "https://docs.amd.com/api/khub/maps/sTfrXTPA6iXT4rkhrRi7qg/attachments/BWun7FlLVxpkVeaFyauyTg-sTfrXTPA6iXT4rkhrRi7qg/content",
+   "size_bytes": 2187239,
+   "sha256": "774d99f03d768358a2b9fa83eea8cfbc24bfe95e431a80d5221993cef2879c4a",
+   "text": "references/amd/DS925_ZynqUSplus_DC_AC_Switching_Characteristics_v1.30.txt",
+   "relevance": "HP I/O abs-max/recommended VIN (Tables 1,2), overshoot (Table 7), leakage/pull-ups (Table 4), MIPI_DPHY_DCI_HS VICM/VID/VILHS/VIHHS (Table 17), native-mode rates and async limit, IDELAY resolution, TSAMP"
+  },
+  {
+   "file": "references/amd/PG188_High_Speed_SelectIO_Wizard_v3.6_2020-06-10.pdf",
+   "doc_id": "PG188",
+   "title": "High Speed SelectIO Wizard v3.6 LogiCORE IP Product Guide",
+   "version": "v3.6 (PG188 2020-06-10)",
+   "date": "2020-06-10",
+   "source_url": "https://docs.amd.com/api/khub/documents/f9e9UOnpRuAaaYviw5USoA/content",
+   "size_bytes": 2085338,
+   "sha256": "b4a7c51d15bfcaebff43f9eeab5485e7bb2dbb659089b608836e8f161d9de803",
+   "text": "references/amd/PG188_High_Speed_SelectIO_Wizard_v3.6_2020-06-10.txt",
+   "relevance": "The wizard used for banks 64/65/66: async (SERIAL_MODE) RX rules, bitslice-0 inference, TX/RX nibble sharing, VAR_LOAD, async AC-coupling caution"
+  },
+  {
+   "file": "references/amd/PG150_UltraScale_Memory_IP_v1.4_2022-04-20.pdf",
+   "doc_id": "PG150",
+   "title": "UltraScale Architecture-Based FPGAs Memory IP v1.4 Product Guide",
+   "version": "v1.4 (2022-04-20)",
+   "date": "2022-04-20",
+   "source_url": "https://www.xilinx.com/support/documents/ip_documentation/ultrascale_memory_ip/v1_4/pg150-ultrascale-memory-ip.pdf",
+   "size_bytes": 27195245,
+   "sha256": "fbe57a7c083cc87ede32955bf35e6c70e02c1acb6aeebf5948a1ce247ae59d42",
+   "text": "references/amd/PG150_UltraScale_Memory_IP_v1.4_2022-04-20.txt",
+   "relevance": "Memory pin rules (byte groups, QBC/DBC strobe placement) used to compare the custom pin map; newest edition (2025-12-03, 39.4 MB) at https://docs.amd.com/api/khub/maps/flt3b6Mn8NdXiyvlSsCAgA/attachments/7k9FysAWXFALlRYcsCRfJw-flt3b6Mn8NdXiyvlSsCAgA/content not downloaded"
+  },
+  {
+   "file": "references/amd/PG202_MIPI_DPHY_v4.3.pdf",
+   "doc_id": "PG202",
+   "title": "MIPI D-PHY v4.3 LogiCORE IP Product Guide",
+   "version": "v4.3",
+   "date": "2024-12-04",
+   "source_url": "https://docs.amd.com/api/khub/maps/33PCiXatxYYhWV5yiwKHkQ/attachments/WELEMWNiL25xgjHQUf2Apw-33PCiXatxYYhWV5yiwKHkQ/content",
+   "size_bytes": 2681822,
+   "sha256": "3474e6c965669d37a8e2fe7c64eabf70ac56af9e7bc65728d9be5708eb93daa6",
+   "text": "references/amd/PG202_MIPI_DPHY_v4.3.txt",
+   "relevance": "Reference for IBUFDS_DPHY / MIPI_DPHY_DCI usage in HP banks (only the P bitslice is used, HS termination)"
+  },
+  {
+   "file": "references/amd/UG1075_ZynqUSplus_Packaging_and_Pinouts_v1.13.pdf",
+   "doc_id": "UG1075",
+   "title": "Zynq UltraScale+ Device Packaging and Pinouts",
+   "version": "v1.13",
+   "date": "2024-10-11",
+   "source_url": "https://docs.amd.com/api/khub/documents/k38T6kZ59QxjypJdQzD_KQ/content",
+   "size_bytes": 18875949,
+   "sha256": "82b0e3f9327273974d6a554433096be799428b057f441272ce9030c6596d19a6",
+   "text": "references/amd/UG1075_ZynqUSplus_Packaging_and_Pinouts_v1.13.txt",
+   "relevance": "FFVC1156 pin functions (VRP, VREF, GC/QBC/DBC), package delays for skew budgets"
+  },
+  {
+   "file": "references/amd/UG1267_ZCU104_Evaluation_Board_User_Guide_v1.1.pdf",
+   "doc_id": "UG1267",
+   "title": "ZCU104 Evaluation Board User Guide",
+   "version": "v1.1",
+   "date": "2018-10-09",
+   "source_url": "https://docs.amd.com/api/khub/documents/g76en4BfB6qIp2gHDRkQxg/content",
+   "size_bytes": 4504946,
+   "sha256": "ed9d0defdaded80ca5973edb980834dd77c6377e593033490c6f4163693c1263",
+   "text": "references/amd/UG1267_ZCU104_Evaluation_Board_User_Guide_v1.1.txt",
+   "relevance": "Host board: SODIMM socket, VCCO of banks 64-66 = VCC1V2, VTT. NOTE: its bank/pin tables disagree with XTP484 (see review). Identical copy already in references/zcu104/"
+  },
+  {
+   "file": "references/amd/UG572_UltraScale_Clocking_Resources_v1.11.pdf",
+   "doc_id": "UG572",
+   "title": "UltraScale Architecture Clocking Resources User Guide",
+   "version": "v1.11",
+   "date": "2025-05-29",
+   "source_url": "https://docs.amd.com/api/khub/maps/N1UbyXlQHGKYgPvaK7rhzQ/attachments/37T2o9uHT4V~YQpPRuzsLA-N1UbyXlQHGKYgPvaK7rhzQ/content",
+   "size_bytes": 1764300,
+   "sha256": "9b0507f341829a351e9fd014aaa0c7049b0592c3ba2d59517ce8dee8ad092414",
+   "text": "references/amd/UG572_UltraScale_Clocking_Resources_v1.11.txt",
+   "relevance": "MMCM/PLL placement and BUFG/backbone rules behind the PHY clocking (MMCM_X1Y2 -> bank PLLs)"
+  },
+  {
+   "file": "references/amd/XAPP1274_Native_High-Speed_IO_Interfaces_v1.2.pdf",
+   "doc_id": "XAPP1274",
+   "title": "Native High-Speed I/O Interfaces Application Note",
+   "version": "v1.2",
+   "date": "2019-09-06",
+   "source_url": "https://docs.amd.com/api/khub/documents/om2Kf~mU6ToqvVkj0OzUNg/content",
+   "size_bytes": 1715814,
+   "sha256": "9b457271ba84ca9e5fa7c5b54040ba628b6abd90961b35ff673f49fa10ffae39",
+   "text": "references/amd/XAPP1274_Native_High-Speed_IO_Interfaces_v1.2.txt",
+   "relevance": "Native-mode reference designs incl. async receive, cited by PG188 for async mode"
+  },
+  {
+   "file": "references/amd/XAPP1330_Async_Data_Capture_HSSIO_Wizard_v1.1.pdf",
+   "doc_id": "XAPP1330",
+   "title": "Asynchronous Data Capture Using the High Speed SelectIO Wizard",
+   "version": "v1.1",
+   "date": "2018-08-03",
+   "source_url": "https://docs.amd.com/api/khub/documents/FTMytUCz52Bn7_luenbU8A/content",
+   "size_bytes": 2721019,
+   "sha256": "ddeb7f971bf604dd0e477ae412d5273e99cb08a94f016039db1a20b997134b11",
+   "text": "references/amd/XAPP1330_Async_Data_Capture_HSSIO_Wizard_v1.1.txt",
+   "relevance": "Async (oversampling) capture with the wizard: clocking recommendation (GC_QBC -> bank PLL, avoid cascaded MMCM), VAR_LOAD/COUNT requirement"
+  },
+  {
+   "file": "references/micron/CSN-33_Micron_BGA_Manufacturers_User_Guide_RevG_2020-04.pdf",
+   "doc_id": "CSN-33",
+   "title": "Micron BGA Manufacturer's User Guide",
+   "version": "Rev. G",
+   "date": "2020-04",
+   "source_url": "https://assets.micron.com/adobe/assets/urn:aaid:aem:4c418a2e-a221-456c-bc5b-46e1392055ee/renditions/original/as/csn33-bga-user-guide.pdf",
+   "size_bytes": 1010760,
+   "sha256": "ef0d5f633e69b2f8bbe5fbecbf33d38fcce4884134a7362e41a8aff33c712c37",
+   "text": "references/micron/CSN-33_Micron_BGA_Manufacturers_User_Guide_RevG_2020-04.txt",
+   "relevance": "PCB land pad type/ratio (Table 3), 80 % ball-to-land rule, teardrops for NSMD, stencil (Table 4), moisture sensitivity/floor life"
+  },
+  {
+   "file": "references/micron/CSN-34_Micron_PoP_User_Guide_RevC_2016-05.pdf",
+   "doc_id": "CSN-34",
+   "title": "Micron PoP User Guide",
+   "version": "Rev. C",
+   "date": "2016-05",
+   "source_url": "https://assets.micron.com/adobe/assets/urn:aaid:aem:eb4e373f-84c5-4a62-9bef-e92a2f434d35/renditions/original/as/csn34-pop-user-guide.pdf",
+   "size_bytes": 808038,
+   "sha256": "655cf5f585b73cfb8531c051eb24a558ea2c56b1082c1b32c369aa2e4e9f5022",
+   "text": "references/micron/CSN-34_Micron_PoP_User_Guide_RevC_2016-05.txt",
+   "relevance": "Fine-pitch LPDDR package assembly (warpage, reflow); secondary"
+  },
+  {
+   "file": "references/micron/MT62F512M32D2_MT62F1G32D4_Automotive_LPDDR5_315b_RevD_2021-04.pdf",
+   "doc_id": "MT62F 315b",
+   "title": "315b x32 Automotive LPDDR5 SDRAM (MT62F512M32D2, MT62F1G32D4) short-form data sheet",
+   "version": "Rev. D",
+   "date": "2021-04",
+   "source_url": "https://www.farnell.com/datasheets/3761270.pdf (distributor copy of a Micron document)",
+   "size_bytes": 370153,
+   "sha256": "1157fd836d9f7f7651f5180a66b541f82d546a267a952ff2b5bd37124b367b30",
+   "text": "references/micron/MT62F512M32D2_MT62F1G32D4_Automotive_LPDDR5_315b_RevD_2021-04.txt",
+   "relevance": "315-ball package drawing: 0.475 mm balls on 0.48 mm SMD package pads, ball map of the pin-compatible Micron alternative"
+  },
+  {
+   "file": "references/micron/TN-00-08_Thermal_Applications_RevK_2017-01.pdf",
+   "doc_id": "TN-00-08",
+   "title": "Thermal Applications",
+   "version": "Rev. K",
+   "date": "2017-01",
+   "source_url": "https://taoic.oss-cn-hangzhou.aliyuncs.com/6305/product/szyuda88_1648111169000.pdf (mirror of a Micron document)",
+   "size_bytes": 288895,
+   "sha256": "efd01c51aa9597799a732157ff8f4dfe5d3a72d1d1215f52c337a19f9bff96f0",
+   "text": "references/micron/TN-00-08_Thermal_Applications_RevK_2017-01.txt",
+   "relevance": "Case-temperature measurement (thermocouple at top centre), TJ = TC + PC x thetaJC"
+  },
+  {
+   "file": "references/micron/TN-00-15_Recommended_Soldering_Parameters_RevF_2012-12.pdf",
+   "doc_id": "TN-00-15",
+   "title": "Recommended Soldering Parameters",
+   "version": "Rev. F",
+   "date": "2012-12",
+   "source_url": "http://file2.dzsc.com/icpdf/18/06/05/1133676_205054558.pdf (mirror of a Micron document)",
+   "size_bytes": 177531,
+   "sha256": "734f051d3d9401caf58bb7b400ce36add00d1a93e00b5cca41508dbf5405d73f",
+   "text": "references/micron/TN-00-15_Recommended_Soldering_Parameters_RevF_2012-12.txt",
+   "relevance": "Pb-free reflow (260 C peak, 30 s), moisture sensitivity / floor life"
+  },
+  {
+   "file": "references/micron/TN-40-40_DDR4_Point-to-Point_Design_Guide_RevB_2016-10.pdf",
+   "doc_id": "TN-40-40",
+   "title": "DDR4 Point-to-Point Design Guide",
+   "version": "Rev. B",
+   "date": "2016-10",
+   "source_url": "https://www.oldfriend.url.tw/article/SI/TN_4040_DDR4_Point_to_Point_Design_Guide.pdf (mirror of a Micron document)",
+   "size_bytes": 826091,
+   "sha256": "3422ba2a6cab8c0876fede516147a4078614409d17c696e86623538adfed13a5",
+   "text": "references/micron/TN-40-40_DDR4_Point-to-Point_Design_Guide_RevB_2016-10.txt",
+   "relevance": "Host-side DDR4 context (the ZCU104 SODIMM channel the card plugs into): impedance, decoupling, VREF"
+  },
+  {
+   "file": "references/micron/TN-46-14_Hardware_Tips_Point-to-Point_System_Design_RevB_2008-06.pdf",
+   "doc_id": "TN-46-14",
+   "title": "Hardware Tips for Point-to-Point System Design: Termination, Layout, and Routing",
+   "version": "Rev. B",
+   "date": "2008-06",
+   "source_url": "https://pcbartists.com/wp-content/uploads/2019/03/STM32-SDRAM-Micron-TN-46-14.pdf (mirror of a Micron document)",
+   "size_bytes": 385635,
+   "sha256": "89203907057ae69414f29313c74f77365689b108d5ffc71c093dfd2441e9c983",
+   "text": "references/micron/TN-46-14_Hardware_Tips_Point-to-Point_System_Design_RevB_2008-06.txt",
+   "relevance": "Reference (VREF) routing/decoupling, series termination, ground return"
+  }
+ ],
+ "total_pdf_bytes": 89604641,
+ "already_in_references_used_not_redownloaded": [
+  "references/zcu104/XTP484_ZCU104_schematic_rev1.0.pdf (docs.amd.com copy is a login-gated empty 'cluster-shadow' zip)",
+  "references/zcu104/XTP485_ZCU104_layout_rev1.0.pdf",
+  "references/zcu104/UG1267_ZCU104_user_guide_v1.1.pdf",
+  "references/dram/Micron_MT62F_315b_Y31M.pdf",
+  "references/dram/Micron_Y31M_LPDDR5_multi_package.pdf",
+  "references/dram/Micron_Y42M_LPDDR5X_315b_441b_563b_RevF.pdf",
+  "references/dram/Micron_315b_LPDDR5X_ballout.pdf",
+  "references/jedec/JESD209-5C_LPDDR5.txt",
+  "references/fpga/UG571_UltraScale_SelectIO.pdf (same file as amd/UG571)"
+ ],
+ "not_obtained": [
+  {
+   "doc": "Micron TN-53-06 Point-to-Point System Design: Layout and Routing Tips for LPDDR4/LPDDR4X",
+   "reason": "no public PDF found (Micron portal/login); only third-party HTML scrapes"
+  },
+  {
+   "doc": "Micron TN-53-09 LPDDR4/LPDDR4X Power Integrity Design Guidelines",
+   "reason": "no public PDF found"
+  },
+  {
+   "doc": "Micron TN-40-44 DDR4 PDN Impedance Targets",
+   "url": "https://www.mouser.com/pdfDocs/tn4044_ddr4_pdn_impedance_targets.pdf",
+   "reason": "host refused scripted download"
+  },
+  {
+   "doc": "Micron LPDDR5 full AC/DC data sheet and IBIS (MT62F1G32D4DR-031 WT:B)",
+   "reason": "my.micron.com login required"
+  },
+  {
+   "doc": "AMD AR 67565 (MIPI_DPHY_DCI on ZCU102 banks 66/67; DCI_CASCADE for banks without VRP)",
+   "url": "https://adaptivesupport.amd.com/s/article/67565?language=en_US",
+   "reason": "JavaScript-only support portal; content taken from the search abstract"
+  },
+  {
+   "doc": "XTP484/XTP485 via docs.amd.com",
+   "url": "https://docs.amd.com/api/khub/documents/s4DCMP770IYoW4kGUEObKQ/content",
+   "reason": "login-gated (returns an empty zip); copies already in references/zcu104/"
+  },
+  {
+   "doc": "PG150 latest edition (2025-12-03)",
+   "url": "https://docs.amd.com/api/khub/maps/flt3b6Mn8NdXiyvlSsCAgA/attachments/7k9FysAWXFALlRYcsCRfJw-flt3b6Mn8NdXiyvlSsCAgA/content",
+   "reason": "39.4 MB, near the 40 MB cap; the 2022-04-20 edition (27 MB) was saved instead"
+  },
+  {
+   "doc": "JEDEC MO-310 SODIMM outline",
+   "reason": "JEDEC login required; the Foxconn/Comet socket drawings in references/socket/ carry the module dimensions"
+  }
+ ]
+}

@@ -1,0 +1,3485 @@
+ Explore more resources
+ Altera® Design Hub
+
+
+
+
+AN 958: Board Design Guidelines
+
+
+
+
+  Online Version                      683073
+  Send Feedback           AN-958   2023.06.26
+                                                                                                                       Contents
+
+
+
+
+Contents
+
+1. Power Distribution Network............................................................................................4
+       1.1. Target Impedance Decoupling Method...................................................................... 4
+              1.1.1. FDTIM Decoupling Concepts........................................................................ 4
+              1.1.2. Select Decoupling CAPS to Meet ZTARGET....................................................... 5
+       1.2. Voltage Regulator Selection.....................................................................................6
+       1.3. PDN Design Tool.................................................................................................... 6
+       1.4. Plane Capacitance..................................................................................................6
+       1.5. Minimization Parasitic Inductances........................................................................... 8
+              1.5.1. VRM.........................................................................................................8
+              1.5.2. Decaps.....................................................................................................8
+              1.5.3. Mounting Inductance..................................................................................8
+              1.5.4. Spreading Inductance...............................................................................11
+              1.5.5. Inter-Plane Capacitance............................................................................ 11
+              1.5.6. Conclusion.............................................................................................. 12
+       1.6. Additional Resources............................................................................................ 12
+2. Gigahertz Channel Design Considerations..................................................................... 13
+       2.1. Material Selection and Loss................................................................................... 13
+       2.2. Routing Guidelines for Gigabit Channel Designs........................................................13
+              2.2.1. Via Optimization Techniques...................................................................... 13
+       2.3. Minimizing Adverse Effects of Material Glass Fiber Weaves.........................................17
+       2.4. Plane Cut-outs Below Surface Mount Pads............................................................... 17
+       2.5. Transmitter Pre-Emphasis and Receiver Equalization................................................. 17
+       2.6. Additional Resources............................................................................................ 18
+3. PCB and Stack-Up Design Considerations......................................................................19
+       3.1. Material Selection and Loss................................................................................... 19
+       3.2. Board Thickness and Vias......................................................................................19
+       3.3. PCB Recommended Layout Footprint Land Pattern.................................................... 19
+4. Device Pin-Map, Checklists, and Connection Guidelines................................................ 20
+       4.1. High Speed Board Design Advisor.......................................................................... 20
+       4.2. Complete Pin Connection Table by Device................................................................20
+       4.3. Pin Connection Guidelines By Device...................................................................... 20
+       4.4. Design for Debug with JTAG Pins............................................................................20
+       4.5. Hot Socketing, POR and Power Sequencing Support..................................................20
+       4.6. Implementing OCT............................................................................................... 20
+       4.7. Unused I/O Pins Guidelines................................................................................... 21
+       4.8. Device Breakout Guidelines................................................................................... 21
+       4.9. Additional Resources............................................................................................ 21
+5. General Board Design Considerations/Guidelines......................................................... 22
+       5.1. Board Design Process Overview............................................................................. 22
+             5.1.1. Material Selection and Loss....................................................................... 23
+             5.1.2. Cross Talk Minimization.............................................................................23
+             5.1.3. Power Filtering/Distribution....................................................................... 24
+             5.1.4. Unused I/O Pins.......................................................................................26
+             5.1.5. Signal Trace Routing.................................................................................27
+
+
+
+
+AN 958: Board Design Guidelines                                                                                  Send Feedback
+
+2
+Contents
+
+
+
+
+               5.1.6. Ground Bounce........................................................................................55
+               5.1.7. Understanding Transmission Lines.............................................................. 59
+               5.1.8. Impedance Calculation..............................................................................60
+               5.1.9. Coplanar Wave Guides.............................................................................. 65
+               5.1.10. Simultaneous Switching Noise Guidelines.................................................. 66
+        5.2. Design Security Features in FPGAs......................................................................... 67
+        5.3. EMI....................................................................................................................67
+        5.4. Discrete Component Selection for High-Speed Design............................................... 68
+               5.4.1. Resistors and Capacitors........................................................................... 68
+               5.4.2. Inductors and Ferrite Beads.......................................................................68
+               5.4.3. SMA Connectors...................................................................................... 69
+        5.5. S-Parameters...................................................................................................... 70
+        5.6. Smith Chart........................................................................................................ 72
+        5.7. AC Versus DC Coupling......................................................................................... 72
+        5.8. Additional Resources............................................................................................ 74
+6. Memory Interfacing Guidelines..................................................................................... 75
+        6.1. DDR3 Board Design Guidelines.............................................................................. 75
+        6.2. DDR2 Board Design Guidelines.............................................................................. 75
+        6.3. DDR Board Design Guidelines................................................................................ 75
+        6.4. QDR II and QDR II+.............................................................................................75
+        6.5. RLDRAM II.......................................................................................................... 75
+        6.6. Additional Resources............................................................................................ 75
+7. Power Dissipation and Thermal Management................................................................76
+        7.1. Power Management Guidelines.............................................................................. 76
+        7.2. Heat Sinking and Thermal Managment for FPGAs..................................................... 76
+        7.3. Additional Resources............................................................................................ 76
+8. Tools, Models, and Libraries..........................................................................................77
+        8.1. Design Tools........................................................................................................77
+        8.2. I/O Buffer Models................................................................................................ 77
+        8.3. Device Libraries................................................................................................... 77
+        8.4. Net Length Reports.............................................................................................. 77
+        8.5. Thermal Models................................................................................................... 78
+9. Reference Designs and Development Kits..................................................................... 79
+        9.1. Development Kits................................................................................................ 79
+10. Document Revision History for AN 958: Board Design Guidelines............................... 80
+
+
+
+
+      Send Feedback                                                                                AN 958: Board Design Guidelines
+
+                                                                                                                                    3
+ AN-958 | 2023.06.26
+
+       Send Feedback
+
+
+
+
+1. Power Distribution Network
+
+1.1. Target Impedance Decoupling Method
+                An efficient strategy for determining the PCB decoupling scheme is to use the
+                Frequency Domain Target Impedance Method (FDTIM). This method is used by the
+                PDN Decoupling Calculator Tool and is the recommended method for determining the
+                board-level decoupling requirements using Intel FPGAs.
+
+1.1.1. FDTIM Decoupling Concepts
+                The key concept of the FDTIM method is the determination of the target impedance
+                (ZTARGET) for the power rail under consideration. A reliable decoupling strategy
+                warrants for the effective power rail impedance (ZEFF) to be lower than the ZTARGET
+                from a few KHz up to the highest frequency of interest (fTARGET). The following figure
+                illustrates this concept, where the solid horizontal blue line is the ZTARGET and the
+                dotted vertical brown line is the fTARGET. The solid red ZEFF line has been designed
+                by using various decoupling and bulk capacitors such that its impedance remains
+                below the ZTARGET from DC up to fTARGET. With this design, power integrity is
+                achieved from DC up to the target frequency of decoupling.
+
+
+
+
+ © Altera Corporation. Altera, the Altera logo, the ‘a’ logo, and other Altera marks are trademarks of Altera Corporation. Altera
+
+ reserves the right to make changes to any products and services at any time without notice. Altera assumes no responsibility or
+ liability arising out of the application or use of any information, product, or service described herein except as expressly agreed
+ to in writing by Altera. Altera customers are advised to obtain the latest version of device specifications before relying on any
+ published information and before placing orders for products or services.
+ *Other names and brands may be claimed as the property of others.
+1. Power Distribution Network
+AN-958 | 2023.06.26
+
+
+
+
+               To design a reliable decoupling scheme using the FDTIM, perform the following
+               calculations:
+
+1.1.1.1. Determining the ZTARGET
+
+               To calculate ZTARGET for a power rail, you must know the following information:
+               •     Maximum transient current requirements for all devices in the system that are
+                     powered by the power rail under consideration. You can get this information the
+                     from manufacturers of the respective devices.
+                     Note: You can download the Early Power Estimator (EPE) tool to estimate power
+                           consumption for all its FPGAs and CPLDs. https://www.intel.com/
+                           content/www/us/en/programmable/support/support-resources/operation-
+                           and-testing/power/pow-powerplay.html
+               •     Maximum allowable AC ripple on the power rail as a percentage of the supply
+                     voltage. You can get this information from the power supply tolerance
+                     specifications of the devices being supplied by the power rail under consideration.
+               •     ZTARGET= [VoltageRail (%Ripple/100)/MaxTransientCurrent]
+               •     ZTARGET= [(1.1)(0.05)/1.5]=36.7mΩ
+
+               If this information is available, then ZTARGET can be calculated as:
+               •     ZTARGET= [VoltageRail (%Ripple/100)/MaxTransientCurrent]
+
+               For example, to reliably decouple a 1.1-volt power rail that allows 5 percent of AC
+               ripple and is expected to supply a maximum transient current of 1.5 A, the target
+               impedance is:
+               •     ZTARGET= [(1.1)(0.05)/1.5]=36.7mΩ
+
+1.1.1.2. Determining the fTARGET
+
+               The highest frequency of interest is the point in frequency after which adding a
+               reasonable number of decoupling capacitors does not bring down the power rail
+               impedance (ZEFF) below the target impedance (ZTARGET) due to the dominance of
+               the parasitic planar spreading inductance and package mounting inductances.
+               Typically, this fTARGET ranges from 50/60 MHz to 150/200 MHz. Beyond these
+               frequencies, it is expected that power integrity is maintained and performed by the
+               on-package and on-die capacitors of the selected target devices.
+
+1.1.2. Select Decoupling CAPS to Meet ZTARGET
+               To maintain power integrity throughout the entire frequency range of interest, the
+               Power Distribution System relies on the voltage regulator module (VRM), the on-board
+               discrete decoupling capacitors, and inter-plane capacitance (capacitance from the
+               power-ground sandwich in the board stack-up). For the above example, the designer
+               must select these appropriately so that the effective impedance remains below 36.7 Ω
+               within the entire frequency range of interest.
+
+               For more details on applying the FDTIM, refer to the PDN Decoupling Calculator Tool
+               and its corresponding User Guide.
+
+
+
+
+     Send Feedback                                                             AN 958: Board Design Guidelines
+
+                                                                                                            5
+                                                                               1. Power Distribution Network
+                                                                                        AN-958 | 2023.06.26
+
+
+
+
+1.2. Voltage Regulator Selection
+                 •   Voltage Regulator Selection for FPGAs White Paper (PDF)
+
+
+1.3. PDN Design Tool
+                 Power Delivery Network (PDN) tool does not support Intel Agilex® 7 devices (Intel
+                 Agilex 7 devices PDN design guideline is based on time domain simulation and worst
+                 step load at package level; however, PDN tool design guideline is based on frequency
+                 simulation and target impedance).
+                 •   AN 910: Intel Agilex 7 Power Distribution Network Design Guidelines
+                 •   Power Delivery Network (PDN) Tool User Guide (PDF)
+                 •   Device-Specific Power Delivery Network (PDN) Tool User Guide for Stratix® V,
+                     Arria® V, Arria II GZ, Cyclone® V, and Cyclone IV Device Families (PDF)
+                     ○ Power Delivery Network (PDN) Tool for Arria V, Stratix V, Cyclone IV, and Arria
+                       II GZ Devices (ZIP)
+                 •   Device-Specific Power Delivery Network (PDN) Tool User Guide (PDF)
+                     ○    Power Delivery Network (PDN) Tool for Arria II GX Devices
+                     ○    Power Deliver Network (PDN) Tool for Stratix IV Devices
+                     ○    Power Deliver Network (PDN) Tool for Stratix III Devices
+                 •   Device-Specific Power Delivery Network (PDN) Tool 2.0 User Guide (PDF)
+                     ○    Power Delivery Network (PDN) Tool 2.0 for Intel® Stratix 10, Intel Arria 10,
+                          and Intel Cyclone 10 devices
+                     ○    Power Delivery Network (PDN) Tool 2.0 for Intel MAX® 10 Devices
+                          Note: For Intel Arria 10 devices, do not use the previous version of the Intel
+                                Arria 10 combined in Intel MAX 10 PDN Tool. The latest version of Intel
+                                Arria 10 and Intel Stratix 10 is already available through the link above.
+                     ○    Power Delivery Network (PDN) Tool 2.0 for Stratix V, Arria V, Cyclone V,
+                          Cyclone IV, and Arria II GZ Devices (ZIP)
+
+
+1.4. Plane Capacitance
+                 For high frequencies, decoupling using discrete capacitors is less effective. Use power
+                 plane capacitance for decoupling noise at these frequencies. You can understand the
+                 concept of plane capacitance by studying the classic parallel plate capacitor, as shown
+                 in Figure 1 on page 7.
+
+
+
+
+AN 958: Board Design Guidelines                                                              Send Feedback
+
+6
+1. Power Distribution Network
+AN-958 | 2023.06.26
+
+
+
+
+Figure 1.      Parallel Plane Capacitance
+
+
+
+
+               An electric field is created when there is a power plane next to a ground plane. The
+               upper area in Figure 1 on page 7 shows the power island or plane, the lower area
+               shows the ground plane, and the arrows represent the electric field lines. This electric
+               field gives rise to a capacitance, the magnitude of which is shown by the following
+               equation:
+
+               C=(εοεrA)/h
+
+               Where
+               •     εο = permittivity of free space
+               •     εr = relative permittivity of the dielectric used
+               •     A = area of overlap
+               •     h = separation of the planes.
+
+               If there are ground planes on both sides of the power island, then the capacitance
+               needs to be calculated for each side and added to determine the total capacitance.
+
+               Plane capacitance is the primary way of decoupling at high frequencies, so it must be
+               an integral part of any high-speed design. At high frequencies, the discrete capacitors
+               are not very effective.
+
+               As an example, consider the following.
+
+               Example: Determine the parallel plate capacitance for 1 square inch of area overlap
+               in an FR-4 dielectric (εr = 4.5) and a separation of 4 mils.
+
+               Solution:
+
+               Applying these numbers to the capacitance equation above yields C = 253 pF.
+               Therefore, there is about 253 pF per square inch of area overlap on a typical FR-4
+               board with 4 mils of separation. The value scales inverse linearly with separation and
+               linearly with area.
+
+
+
+
+     Send Feedback                                                           AN 958: Board Design Guidelines
+
+                                                                                                          7
+                                                                             1. Power Distribution Network
+                                                                                     AN-958 | 2023.06.26
+
+
+
+
+1.5. Minimization Parasitic Inductances
+                 The goal of a Power Distribution System (PDS) is to provide and maintain a target
+                 constant voltage at the power and ground pads of each device. To effectively
+                 accomplish this, the PDS relies on the Voltage Regulator Module (VRM), the bulk and
+                 decoupling capacitors (Decaps) and the power and ground plane sandwich (plane
+                 capacitance). How effectively each of these components perform their job in helping to
+                 maintain a constant voltage under varying transient loads depends highly on their
+                 associated parasitic inductances.
+
+1.5.1. VRM
+                 As a first-order approximation, the VRM can simply be modeled as a series connected
+                 resistor and inductor, as shown in Figure 2 on page 8.
+
+Figure 2.        Series Impedance Model of a VRM
+
+
+
+
+                 At low frequencies in the range of tens of KHz, the VRM, being primarily resistive,
+                 provides very low impedance and thus it is capable of providing the instantaneous
+                 current requirements at these lower frequencies. However, beyond a few tens of KHz,
+                 the VRM impedance being primarily inductive makes it incapable of providing the
+                 transient current requirements. You can get the ESR and ESL values of the VRM from
+                 the VRM manufacturer and you can choose a low ESR/ESL regulator for best transient
+                 performance.
+
+1.5.2. Decaps
+                 The on-board discrete decoupling capacitors must provide the required low impedance
+                 from a few tens of KHz to about a couple of hundred MHz (maximum) depending upon
+                 the capacitor ESR and ESL as well as board mounting and spreading inductance
+                 parasitics. Even choosing decoupling capacitors with very low ESR and ESL
+                 specifications is not enough as the contribution of the parasitic mounting and
+                 spreading inductances can limit the effectiveness of these capacitors. Hence, to design
+                 an effective PDS, care must be taken to minimize the various parasitic inductances
+                 associated with the design of the board.
+
+1.5.3. Mounting Inductance
+                 Mounting Inductance is the additional series inductance contribution associated with
+                 the mounting of the capacitor on the PCB. This parasitic inductance adds to the
+                 published ESL value that is provided by the cap vendor. Mounting inductance can be
+                 minimized by choosing smaller capacitor packages and performing proper layout of
+                 the capacitor on the PCB. Figure 3 on page 9 shows the cross-section of a mounted
+                 decoupling capacitor in relation to the PCB planes and BGA device.
+
+
+
+
+AN 958: Board Design Guidelines                                                            Send Feedback
+
+8
+1. Power Distribution Network
+AN-958 | 2023.06.26
+
+
+
+
+Figure 3.      Decoupling Cap Mounting
+
+
+
+
+               To estimate the mounting inductance, use the following equation:
+               •     Lmnt = Ltrace + Lvia
+
+               Where,
+               •     Ltrace = 128*[(2xLenpad)+Lencap]*(htop/w) pH
+
+               And,
+               •     Lvia = 10*htop*ln(2s/D) ph
+
+               Where,
+               •     Lenpad = Length of the capacitor pads plus trace length from pad to the via (mils)
+               •     Lencap = Length of the capacitor body (mils)
+               •     w = Width of the trace between the capacitor pad and via (mils)
+               •     htop = Distance between the top layer and the nearest power/ground plane (mils)
+               •     s = Distance between the capacitor's power via center and ground via center
+                     (mils)
+               •     D = Outer diameter of the via (mils)
+               •     hplanes = Distance between the power and ground plane (mils)
+               •     b = Half the distance between the capacitor and the package power/ground vias
+                     (mils)
+
+               Generally, to minimize the mounting inductance, keep the capacitors power and
+               ground vias as close as possible to its respective pad and use wide connecting traces
+               and larger via drill diameters, if possible. Placing power and ground plane pairs closer
+               to the surface where the capacitor is mounted reduces the via inductance contribution.
+               Additionally, placing the vias on the same sides of the capacitor (via-on-side
+               configuration) as opposed to the opposite ends of the capacitor (via-on-end
+               configuration) reduces the current loop area, minimizing the amount of flux lines that
+               penetrate the loop and thus reduces the inductance. Figure 4 on page 10 illustrates
+               the various capacitor layout topologies while Table 1 on page 10 compares mounting
+               inductance of those various cap layout styles for different size capacitors.
+
+
+
+
+     Send Feedback                                                           AN 958: Board Design Guidelines
+
+                                                                                                          9
+                                                                                                       1. Power Distribution Network
+                                                                                                                  AN-958 | 2023.06.26
+
+
+
+
+Figure 4.          Various Capacitor Layout Topologies
+
+
+
+
+Table 1.           Mounting Inductance Comparison
+
+                   Note:               All values are in nano-Henries and drill sizes are in inches.
+
+
+       Via Length            0603               0603               0603               0603                   0402          0402
+     (height above         footprint          footprint          footprint          footprint              footprint     footprint
+     plane, inches)
+
+     0.020 drill       Thin trace          Short thick        Via on the         Via on the            Via on the      Via on one
+                       from pad to         trace              end of pads        side of pads          end of pads     side of pads
+                       via
+
+     0.004             1.57                1.04               0.82               0.52                  0.8             0.5
+
+     0.006             1.96                1.35               1.05               0.65                  1               0.63
+
+     0.01              2.51                1.87               1.4                0.88                  1.34            0.86
+
+     0.02              3.45                2.87               2.13               1.39                  1.99            1.36
+
+     0.010 drill
+
+     0.004             1.61                1.08               0.86               0.56                  0.84            0.54
+
+     0.006             1.99                1.39               1.08               0.69                  1.04            0.67
+
+     0.01              2.55                1.92               1.45               0.92                  1.38            0.9
+
+     0.02              3.49                2.91               2.17               1.44                  2.03            1.4
+
+
+                   As shown in Table 1 on page 10, the optimum mounting inductance of 0.50 nH is
+                   obtained when the smaller 0402 size capacitor is mounted using the via-on-side
+                   scheme with wide connecting traces to the larger 20 mil via drill diameter. Figure 5 on
+                   page 11 shows other recommended via placement configurations that further reduce
+                   mounting inductance. However, these styles require additional vias and hampers
+                   routability.
+
+
+
+
+AN 958: Board Design Guidelines                                                                                        Send Feedback
+
+10
+1. Power Distribution Network
+AN-958 | 2023.06.26
+
+
+
+
+Figure 5.      Via placement Styles that Yield Lower Mounting Inductance
+
+
+
+
+1.5.4. Spreading Inductance
+               Spreading Inductance is the inductance formed by the loop area between the power-
+               ground plane pair and the distance from the decoupling cap to the power-ground balls
+               of the target BGA device. As a result, this inductance is directly related to the
+               inductance of the inter-plane capacitance formed by the power-ground sandwich. This
+               inductance is explained in detail in the inter-plane capacitance section below.
+
+1.5.5. Inter-Plane Capacitance
+               As a first-order analysis, the PCB power-ground plane pair can simply be modeled as a
+               series connected resistor, inductor, and, capacitor as shown in Figure 6 on page 11.
+               Note that this simple model ignores the frequency dependent effects such as skin
+               effect and dielectric absorption.
+
+Figure 6.      Simplified Impedance Model of the Power-Ground Plane Sandwich
+
+
+
+
+               The first-order equations for the ESL in Figure 6 on page 11 is shown below:
+               •     ESL = (μ0•h•l)/w
+
+
+
+
+     Send Feedback                                                         AN 958: Board Design Guidelines
+
+                                                                                                       11
+                                                                             1. Power Distribution Network
+                                                                                     AN-958 | 2023.06.26
+
+
+
+
+                 Where,
+                 •   μ0 = magnetic permeability of free space (32 pH/mil)
+                 •   h = distance between the power and ground planes in mils
+                 •   l = length of the power plane in inches
+                 •   w = width of the power plane in inches
+
+                 You can interpret the ESL of the power-ground plane sandwich as the spreading
+                 inductance that the decoupling capacitor sees as it is supplying current to the BGA
+                 device. Therefore, from the ESL equation above, the spreading inductance can be
+                 reduced by placing the decoupling capacitors as close as possible to the target BGA
+                 device (minimizing the distance l from the cap to the BGA device). Additionally, using
+                 a thin dielectric material (minimizing h) and wide plane pairs (maximize w) for the
+                 power-ground plane sandwich helps reduce the effective spreading inductance seen by
+                 the decoupling capacitor.
+
+1.5.6. Conclusion
+                 To successfully design an effective PDS requires an understanding of the various
+                 parasitic inductances that can limit the performance of the PDS. This document
+                 explains three parasitic inductances that you must be concerned with in designing the
+                 PDS. VRM parasitic inductance, decoupling capacitor mounting inductance, and power
+                 plane spreading inductance are examined and techniques to minimize them are
+                 presented. For additional information and tools, download the PDN Decoupling
+                 Calculator tool and user guide
+
+
+1.6. Additional Resources
+                 •   High-Speed Board Design Advisor: Power Distribution Network (PDF)
+                 •   Stratix III FPGA Signal Integrity white paper (PDN section) (PDF)
+
+
+
+
+AN 958: Board Design Guidelines                                                            Send Feedback
+
+12
+ AN-958 | 2023.06.26
+
+       Send Feedback
+
+
+
+
+2. Gigahertz Channel Design Considerations
+
+2.1. Material Selection and Loss
+                •    AN 528: PCB Dielectric Material Selection and Fiber Weave Effect on High-Speed
+                     Channel Routing (PDF)
+
+
+2.2. Routing Guidelines for Gigabit Channel Designs
+
+2.2.1. Via Optimization Techniques
+
+2.2.1.1. General Routing Guidelines
+
+                This section provides a summary of routing guidelines for laying out high-speed
+                differential pair traces.
+
+                Use tight coupling for differential traces as much as possible. If it is not possible to
+                maintain tight coupling throughout the trace length, use loose coupling for the entire
+                trace. Figure 7 on page 14 shows 3.125-Gbps differential transceiver traces, which
+                are loosely coupled on layer 15 and the top layer of the Stratix GX development
+                board. Tight coupling is not possible on the top layer because of the minimum
+                separation required (because of the mechanical constraints of the SMA connectors). If
+                you used tight coupling on layer 15, the signal needs to transition from tight to loose
+                coupling, which introduces impedance discontinuities.
+
+
+
+
+ © Altera Corporation. Altera, the Altera logo, the ‘a’ logo, and other Altera marks are trademarks of Altera Corporation. Altera
+
+ reserves the right to make changes to any products and services at any time without notice. Altera assumes no responsibility or
+ liability arising out of the application or use of any information, product, or service described herein except as expressly agreed
+ to in writing by Altera. Altera customers are advised to obtain the latest version of device specifications before relying on any
+ published information and before placing orders for products or services.
+ *Other names and brands may be claimed as the property of others.
+                                                                    2. Gigahertz Channel Design Considerations
+                                                                                         AN-958 | 2023.06.26
+
+
+
+
+Figure 7.        Loose Coupling and Ground Reference Example
+
+
+
+
+                 •   Microstrip and stripline transmission lines are both fine for routing. Stripline has
+                     the added benefit of shielding the signals from other noise sources. The
+                     constraints during layout design often dictate on which layer to do the routing.
+                 •   Use rounded corners while routing. Do not use 90° bends, which introduce
+                     impedance discontinuities. A 45° bend provides a compromise, but rounded
+                     corners offer the best performance.
+                 •   Both broadside and edge coupling are fine. Generally, broadside coupling makes it
+                     easy to route out of the BGA, but requires more layers. Edge coupling makes it
+                     harder to route out of the BGA, but requires fewer layers. Both provide acceptable
+                     signal integrity performance.
+                 •   Do not allow high-speed signals to cross over plane splits. A crossover causes
+                     signals to see a longer return path, which increases trace inductance. The
+                     increased inductance changes the impedance of the line, causing signal integrity
+                     problems.
+                 •   Remove all unused via pads during the manufacturing process. Some fabrication
+                     houses refer to unused via pads as "nonfunctional via pads." Unused via pads add
+                     additional capacitance on the signal path. Figure 8 on page 15 shows examples
+                     of unused via pads.
+
+
+
+
+AN 958: Board Design Guidelines                                                                Send Feedback
+
+14
+2. Gigahertz Channel Design Considerations
+AN-958 | 2023.06.26
+
+
+
+
+Figure 8.      Unused Via Pads
+
+
+
+
+Figure 9.      Optimal Routing Path with Through-Hole Vias
+
+
+
+
+               If the signal must be routed through a via, route it so that the via stub length is
+               minimized. The option shown in Figure 9 on page 15 minimizes the via stub length
+               and is preferred over the option shown in Figure 10 on page 15. This technique is
+               used in the Stratix GX development board. The high-speed traces were taken to layer
+               16 from the top layer through the vias to use as much of the via length as possible
+               and to minimize the stubs.
+
+Figure 10.     Sub-Optimal Routing Path with Through-Hole Vias
+
+
+
+
+     Send Feedback                                                        AN 958: Board Design Guidelines
+
+                                                                                                      15
+                                                                   2. Gigahertz Channel Design Considerations
+                                                                                        AN-958 | 2023.06.26
+
+
+
+
+                 •   For dual stripline traces (Power 1 – Signal 1 – Signal 2 - Power 2 configuration),
+                     ensure that the signals on the Signal 1 layer are orthogonal to the signals on the
+                     Signal 2 layer if they cross each other. If they do not cross each other, ensure that
+                     they are at least 4W away, where W is the width of the traces.
+                 •   Use "tear-dropping" to reduce impedance discontinuity when going from a wide
+                     pin and trace to a narrow pin or trace. For example, when you interface an SMA
+                     connector to a trace, use tear-dropping. Figure 11 on page 16 shows the
+                     dimensions of an SMA connector and a screen capture of tear-dropping on the
+                     Stratix GX development board. The SMA connector has a 50-mil diameter center
+                     pin, but the board traces might be 5-mils wide. Tear-dropping helps minimize the
+                     impedance discontinuity.
+
+Figure 11.       SMA Tear-dropping
+
+
+
+
+                 Related Information
+                 AN 529: Via Optimization Techniques for High-Speed Channel Designs (PDF)
+
+
+
+
+AN 958: Board Design Guidelines                                                               Send Feedback
+
+16
+2. Gigahertz Channel Design Considerations
+AN-958 | 2023.06.26
+
+
+
+
+2.3. Minimizing Adverse Effects of Material Glass Fiber Weaves
+               •     AN 528: PCB Dielectric Material Selection and Fiber Weave Effect on High-Speed
+                     Channel Routing (PDF)
+
+
+2.4. Plane Cut-outs Below Surface Mount Pads
+               •     AN 530: Optimizing Impedance Discontinuity Caused by Surface Mount Pads for
+                     High-Speed Channel Designs (PDF)
+
+
+2.5. Transmitter Pre-Emphasis and Receiver Equalization
+               Typical transmission media like copper trace and coaxial cable have low pass
+               characteristics, so they attenuate higher frequencies more than lower frequencies. A
+               typical digital signal that approximates a square wave contains high frequencies near
+               the switching region and low frequencies in the constant region. When this signal
+               travels through low pass media, its higher frequencies are attenuated more than the
+               lower frequencies, resulting in increased signal rise times. Consequently, the eye
+               opening narrows and the probability of error increases.
+
+               The high-frequency content of a signal is also degraded by what is called "skin effect".
+               The cause of skin effect is the high-frequency current that flows primarily on the
+               surface (skin) of a conductor. The changing current distribution causes the resistance
+               to increase as a function of frequency.
+
+               You can use pre-emphasis to compensate for the skin effect. By Fourier analysis, a
+               square wave signal contains an infinite number of frequencies. The high frequencies
+               are located in the low-to-high and high-to-low transition regions and the low
+               frequencies are located in the flat (constant) regions. Increasing the signal's amplitude
+               near the transition region emphasizes higher frequencies more than the lower
+               frequencies. When this pre-emphasized signal passes through low pass media, it
+               comes out with minimal distortion, if you apply the correct amount of pre-emphasis.
+               Refer to Figure 12 on page 18 for a graphical illustration of this concept.
+
+
+
+
+     Send Feedback                                                           AN 958: Board Design Guidelines
+
+                                                                                                         17
+                                                                  2. Gigahertz Channel Design Considerations
+                                                                                       AN-958 | 2023.06.26
+
+
+
+
+Figure 12.       Input and Output Signals with and without Pre-Emphasis
+
+
+
+
+                 Stratix II GX and Stratix IV GX devices provide programmable pre-emphasis to
+                 compensate for variable lengths of transmission media. You can set the pre-emphasis
+                 to be between 5 percent and 25 percent, depending on the value of the output
+                 differential voltage (VOD). Please refer to the Stratix II GX and Stratix IV GX legacy
+                 FPGA support pages for more information.
+
+                 Related Information
+                 •   Pre-Emphasis and Equalization and Link Estimator (PELE) Technology
+                        You can find the PELE feature in Siemens* EDA HyperLynx tool.
+                 •   Differences Between the Stratix GX & Stratix II GX Transceivers
+                 •   Using Pre-Emphasis and Equalization with Stratix GX white paper (PDF)
+
+
+2.6. Additional Resources
+                 •   High-Speed Board Design Advisor: High-Speed Channel Design and Layout
+                     technical brief (PDF)
+
+
+
+
+AN 958: Board Design Guidelines                                                              Send Feedback
+
+18
+ AN-958 | 2023.06.26
+
+       Send Feedback
+
+
+
+
+3. PCB and Stack-Up Design Considerations
+
+3.1. Material Selection and Loss
+                •    AN 528: PCB Dielectric Material Selection and Fiber Weave Effect on High-Speed
+                     Channel Routing (PDF)
+
+
+3.2. Board Thickness and Vias
+                •    AN 114: Board Design Guidelines for Intel Programmable Device Packages (PDF)
+
+
+3.3. PCB Recommended Layout Footprint Land Pattern
+                •    AN 114: Board Design Guidelines for Intel Programmable Device Packages (PDF)
+
+
+
+
+ © Altera Corporation. Altera, the Altera logo, the ‘a’ logo, and other Altera marks are trademarks of Altera Corporation. Altera
+
+ reserves the right to make changes to any products and services at any time without notice. Altera assumes no responsibility or
+ liability arising out of the application or use of any information, product, or service described herein except as expressly agreed
+ to in writing by Altera. Altera customers are advised to obtain the latest version of device specifications before relying on any
+ published information and before placing orders for products or services.
+ *Other names and brands may be claimed as the property of others.
+ AN-958 | 2023.06.26
+
+       Send Feedback
+
+
+
+
+4. Device Pin-Map, Checklists, and Connection Guidelines
+
+4.1. High Speed Board Design Advisor
+                •    Stratix II GX High-Speed Board Design Advisor High-Speed Channel Design and
+                     Layout
+
+
+4.2. Complete Pin Connection Table by Device
+                •    Pin-Out Files for Intel FPGA Devices
+
+
+4.3. Pin Connection Guidelines By Device
+                •    Pin Connection Guidelines
+
+
+4.4. Design for Debug with JTAG Pins
+                •    On-Chip Debugging Resource Center
+
+
+4.5. Hot Socketing, POR and Power Sequencing Support
+                •    On-Chip Hot-Socketing & Power-Sequencing Support in Intel Devices
+                •    Altera Hot-Socketing & Power-Sequencing Advantages white paper (PDF)
+                •    Hot Socketing and Power-On Reset in Stratix III Devices (PDF), Chapter 10 of the
+                     Stratix III Handbook
+                •    Hot Socketing & Power-On Reset (PDF), Chapter 4 of the Stratix II Handbook
+                •    Hot Socketing and Power-On Reset in Cyclone III Devices (PDF), Chapter 11 of the
+                     Cyclone III Handbook
+                •    Hot Socketing & Power-On Reset (PDF), Chapter 4 of the Cyclone II Handbook
+                •    Hot Socketing and Power-On Reset in MAX II Devices (PDF), Chapter 4 of the MAX
+                     II Handbook
+
+
+4.6. Implementing OCT
+                •    AN 465: Implementing OCT Calibration in Stratix III Devices (PDF)
+                •    AN 384: Using Calibrated On-Chip Series Termination in Stratix II Devices (PDF)
+
+
+
+
+ © Altera Corporation. Altera, the Altera logo, the ‘a’ logo, and other Altera marks are trademarks of Altera Corporation. Altera
+
+ reserves the right to make changes to any products and services at any time without notice. Altera assumes no responsibility or
+ liability arising out of the application or use of any information, product, or service described herein except as expressly agreed
+ to in writing by Altera. Altera customers are advised to obtain the latest version of device specifications before relying on any
+ published information and before placing orders for products or services.
+ *Other names and brands may be claimed as the property of others.
+4. Device Pin-Map, Checklists, and Connection Guidelines
+AN-958 | 2023.06.26
+
+
+
+
+4.7. Unused I/O Pins Guidelines
+                To allow flexibility in board design, you can specify the state of unused pins as one of
+                the following five states in the Quartus® Prime or Quartus II software: as inputs that
+                are tri-stated, as outputs that drive ground, as outputs that drive an unspecified
+                signal, as input tri-stated with bus-hold, or as input tri-stated with weak pull-up
+                resistors. To improve signal integrity, set unused pins as outputs that drive ground and
+                tie them directly to the ground plane on the board. Doing so reduces inductance by
+                creating a shorter return path and reduces noise on the neighboring I/O. To reduce
+                power dissipation, set clock pins to drive ground and set other unused I/O pins as
+                inputs that are tri-stated. To make the setting that is appropriate for your design,
+                choose one of the five allowable states for Reserve all unused pins on theUnused
+                Pins tab in the Device & Pin Options dialog box, or apply the Reserve
+                Pin assignment to specific pins in the Pin Planner.
+
+                When you compile your design, the software generates the pin report file (.pin) to
+                specify how you should connect the device pins. Unused I/O pins are marked in the
+                report file according to the unused pins option you set in the software. All I/O pins
+                specified as GND* can either be connected to ground to improve the device's
+                immunity to noise, or left unconnected. Leave all RESERVED I/O pins unconnected on
+                your board because these I/O pins drive out unspecified signals. Tying a RESERVED
+                I/O pin to VCC, ground, or another signal source can create contention that can
+                damage the device output driver. You can connect RESERVED_INPUT I/O pins to a
+                high or low signal on the board, while RESERVED_INPUT_WITH_WEAK_PULLUP and
+                RESERVED_INPUT_WITH_BUS_HOLD pins can be left unconnected.
+
+
+4.8. Device Breakout Guidelines
+                •    FineLine BGA Gerber Files & Layout Guidelines
+                •    High-Speed Board Design Advisor: Pinout Definition technical brief (PDF)
+
+
+4.9. Additional Resources
+                •    High-Speed Board Design Advisor: Pinout Definition technical brief (PDF)
+
+
+
+
+     Send Feedback                                                           AN 958: Board Design Guidelines
+
+                                                                                                         21
+ AN-958 | 2023.06.26
+
+       Send Feedback
+
+
+
+
+5. General Board Design Considerations/Guidelines
+
+5.1. Board Design Process Overview
+                A typical high-speed board design begins with a product requirements document, a
+                concept review, and a functional specification. After the specification is finalized,
+                actual system design begins with the selection of key components. At this point,
+                timing analysis for all the interfaces and power analysis — to determine the power
+                requirements — is performed. Based on the power analysis, power supply modules
+                and regulators are chosen, and a decoupling scheme is specified. Based on the timing
+                analysis, a length-matching criterion for the buses is established. Upon completion of
+                these tasks, as well as completion of the system design and selection of remaining
+                components, the schematics are created. These are typically reviewed among
+                engineers who make any necessary changes, after which they are given to the layout
+                designer. A layout guidelines document, which specifies how to place components on
+                the board and how to route the traces, is created and given to the layout designer as
+                well.
+
+                A pre-layout simulation is performed to determine the ideal stack-up, trace widths,
+                spacing, and other routing requirements. Any changes to the schematic, based on the
+                simulation results, are incorporated in the schematic and provided to the layout
+                designer. When the layout is complete, a post-layout simulation is performed on the
+                critical sections of the board to ensure that there are no major signal integrity
+                problems.
+
+                Based on the results of the post-layout simulation, any changes required are
+                incorporated into the layout, and finally the layout is released to the fabrication house
+                for board manufacturing. Figure 13 on page 23 shows typical board design process.
+
+
+
+
+ © Altera Corporation. Altera, the Altera logo, the ‘a’ logo, and other Altera marks are trademarks of Altera Corporation. Altera
+
+ reserves the right to make changes to any products and services at any time without notice. Altera assumes no responsibility or
+ liability arising out of the application or use of any information, product, or service described herein except as expressly agreed
+ to in writing by Altera. Altera customers are advised to obtain the latest version of device specifications before relying on any
+ published information and before placing orders for products or services.
+ *Other names and brands may be claimed as the property of others.
+5. General Board Design Considerations/Guidelines
+AN-958 | 2023.06.26
+
+
+
+
+Figure 13.     Simplified View of a Typical High-Speed Board Design Process
+
+
+
+
+5.1.1. Material Selection and Loss
+               •     AN 528: PCB Dielectric Material Selection and Fiber Weave Effect on High-Speed
+                     Channel Routing (PDF)
+
+5.1.2. Cross Talk Minimization
+               Crosstalk is the unwanted coupling of signals between parallel traces. Proper routing
+               and layer stack-up through microstrip and stripline layouts can minimize crosstalk.
+
+               To reduce crosstalk in dual-stripline layouts, which have two signal layers next to each
+               other (refer to Figure 14 on page 24), route all traces perpendicular, increase the
+               distance between the two signal layers, and minimize the distance between the signal
+               layer and the adjacent reference plane.
+
+
+
+
+     Send Feedback                                                           AN 958: Board Design Guidelines
+
+                                                                                                         23
+                                                             5. General Board Design Considerations/Guidelines
+                                                                                         AN-958 | 2023.06.26
+
+
+
+
+Figure 14.       Dual- Stripline Layout
+
+
+
+
+                 Use the following steps to reduce crosstalk in either microstrip or stripline layouts:
+
+                 Crosstalk also increases when two or more single-ended traces run parallel and are
+                 not spaced far enough apart. The distance between the centers of two adjacent traces
+                 should be at least four times the trace width, as shown in Figure 15 on page 24. To
+                 improve design performance, lower the distance between the trace and the ground
+                 plane to under 10 mils without changing the separation between two traces.
+
+Figure 15.       Separating Traces for Crosstalk
+
+
+
+
+                 •   Widen spacing between signal lines as much as routing restrictions allow. Try not
+                     to bring traces closer than three times the dielectric height.
+                 •   Design the transmission line so that the conductor is as close to the ground plane
+                     as possible. This technique couples the transmission line tightly to the ground
+                     plane and help decouple it from adjacent signals.
+                 •   Use differential routing techniques where possible, especially for critical nets (i.e.,
+                     match the lengths as well as the gyrations that each trace goes through).
+                 •   If there is significant coupling, route single-ended signals on different layers
+                     orthogonal to each other.
+                 •   Minimize parallel run lengths between single-ended signals. Route with short
+                     parallel sections and minimize long, coupled sections between nets.
+
+5.1.3. Power Filtering/Distribution
+                 Clean, evenly distributed power to VCC on all boards and devices can reduce system
+                 noise.
+
+5.1.3.1. Filtering Noise
+
+                 To diminish the low-frequency (less than 1 kHz) noise caused by the power supply,
+                 filter the noise on the power lines at the point where the power connects to the PCB
+                 and to each device. You may place a 100-μF electrolytic capacitor adjacent to the
+                 location where the power supply lines enter the PCB. If using a voltage regulator,
+
+
+
+
+AN 958: Board Design Guidelines                                                                Send Feedback
+
+24
+5. General Board Design Considerations/Guidelines
+AN-958 | 2023.06.26
+
+
+
+
+               place the capacitor immediately after the final stage that provides the VCC signal to
+               the device(s). Capacitors not only filter low-frequency noise from the power supply,
+               but also supply extra current when many outputs switch simultaneously in a circuit.
+
+               Another way to filter power supply noise is to place a non-resonant surface-mount
+               ferrite bead, big enough to handle the current, in series with power supply. Place a 10-
+               μF to 100μF bypass capacitor next to the ferrite bead (refer to Figure 16 on page
+               25). Proper terminations, layouts, and filtering in a design eliminate the need for the
+               ferrite bead. In this case, use a 0-Ω resistor instead of the ferrite bead.
+
+Figure 16.     Filtering Noise with Ferrite Bead
+
+
+
+
+               PCB elements add high-frequency noise to the power plane. To filter high-frequency
+               noise at the device, place decoupling capacitors as close as possible to each VCC and
+               ground pair. Placing the power and ground planes in parallel and separated by
+               dielectric material provides another level of bypass capacitance. These parallel planes
+               reduce the power-related high-frequency noise, since this type of capacitance has no
+               effective series resistance (ESR) and no lead inductance.
+
+5.1.3.2. Distributing Power
+
+               Power distribution also impacts system noise. Either a power bus network or power
+               planes can distribute power throughout the PCB. Usually used on two-layer PCBs, the
+               least expensive way to distribute power is a power bus network, which consists of two
+               or more wide metal traces that carry VCC and ground to the devices. The density of
+               the PCB limits the trace widths, which should be as wide as possible. Power buses
+               have significant DC resistance; the last element on the bus may receive VCC power
+               degraded by as much as 0.5 V.
+
+               It is recommended to use power planes to distribute power. Used on multi-layer PCBs,
+               power planes consist of two or more metal layers that carry VCC and ground to the
+               devices. Because the power plane covers the full area of the PCB, its DC resistance is
+               very low. The power plane maintains VCC, distributes it equally to all devices, and
+               provides very high current-sink capability, noise protection, and shielding for the logic
+               signals on the PCB. Sharing the same plane between analog and digital power supplies
+               may be risky due to unwanted interaction of these two circuit types.
+
+
+
+
+     Send Feedback                                                           AN 958: Board Design Guidelines
+
+                                                                                                         25
+                                                            5. General Board Design Considerations/Guidelines
+                                                                                        AN-958 | 2023.06.26
+
+
+
+
+                 For fully digital systems without separate analog power and ground planes on the
+                 board, adding two new planes to the board may be prohibitively expensive. Instead,
+                 you can create partitioned power islands (split plane). Figure 17 on page 26 shows
+                 an example board layout with phase-locked loop (PLL) power islands.
+
+Figure 17.       Board Layout for General-Purpose PLL Power Islands
+
+
+
+
+                 To reduce system noise from power distribution:
+
+                 •   Use separate power planes for the analog power supply for equal power
+                     distribution.
+                 •   Avoid trace and multiple signal layers when routing the PLL power supply.
+                 •   Place a ground plane next to the PLL power supply plane. Place analog and digital
+                     components only over their respective ground plane.
+                 •   Use ferrite beads to isolate the PLL power supply from the digital power supply.
+
+
+
+5.1.4. Unused I/O Pins
+                 To allow flexibility in board design, you can specify the state of unused pins as one of
+                 the following five states in the Quartus® prime or Quartus II software: as inputs that
+                 are tri-stated, as outputs that drive ground, as outputs that drive an unspecified
+                 signal, as input tri-stated with bus-hold, or as input tri-stated with weak pull-up
+                 resistors. To improve signal integrity, set unused pins as outputs that drive ground and
+                 tie them directly to the ground plane on the board. Doing so reduces inductance by
+                 creating a shorter return path and reduces noise on the neighboring I/O. To reduce
+                 power dissipation, set clock pins to drive ground and set other unused I/O pins as
+                 inputs that are tri-stated. To make the setting that is appropriate for your design,
+                 choose one of the five allowable states for Reserve all unused pins on theUnused
+                 Pins tab in the Device & Pin Options dialog box, or apply the Reserve
+                 Pin assignment to specific pins in the Pin Planner.
+
+                 When you compile your design, the software generates the pin report file (.pin) to
+                 specify how you should connect the device pins. Unused I/O pins are marked in the
+                 report file according to the unused pins option you set in the software. All I/O pins
+
+
+
+
+AN 958: Board Design Guidelines                                                               Send Feedback
+
+26
+5. General Board Design Considerations/Guidelines
+AN-958 | 2023.06.26
+
+
+
+
+               specified as GND* can either be connected to ground to improve the device's
+               immunity to noise, or left unconnected. Leave all RESERVED I/O pins unconnected on
+               your board because these I/O pins drive out unspecified signals. Tying a RESERVED
+               I/O pin to VCC, ground, or another signal source can create contention that can
+               damage the device output driver. You can connect RESERVED_INPUT I/O pins to a
+               high or low signal on the board, while RESERVED_INPUT_WITH_WEAK_PULLUP and
+               RESERVED_INPUT_WITH_BUS_HOLD pins can be left unconnected.
+
+
+
+
+5.1.5. Signal Trace Routing
+               Proper routing helps to maintain signal integrity. To route a clean trace, you should
+               perform simulation with good signal integrity (SI) tools. The following section
+               describes the two different types of signal traces available for routing:
+               •     Single-ended trace
+               •     Differential pair trace
+
+5.1.5.1. Single Ended Trace Routing
+
+               A single-ended trace connects the source and the load/receiver. Single-ended traces
+               are used in general point-to-point routing, clock routing, low-speed, and non-critical
+               I/O routing. This section discusses different routing schemes for clock signals. You can
+               use the following types of routing to drive multiple devices with the same clock.
+
+               Use the following guidelines to improve the clock transmission line's signal integrity:
+               •     Daisy chain routing
+                     ○   With stub
+                     ○   Without stub
+               •     Star routing
+               •     Serpentine routing
+               •     Keep clock traces as straight as possible. Use arc-shaped traces instead of right-
+                     angle bends.
+               •     Do not use multiple signal layers for clock signals.
+               •     Do not use vias in clock transmission lines. Vias can cause impedance change and
+                     reflection.
+               •     Place a ground plane next to the outer layer to minimize noise. If you use an inner
+                     layer to route the clock trace, sandwich the layer between reference planes.
+               •     Terminate clock signals to minimize reflection.
+               •     Use point-to-point clock traces as much as possible.
+
+
+
+
+     Send Feedback                                                             AN 958: Board Design Guidelines
+
+                                                                                                           27
+                                                            5. General Board Design Considerations/Guidelines
+                                                                                        AN-958 | 2023.06.26
+
+
+
+
+                 Daisy Chain - With Stub
+
+                 Daisy chain routing is a common practice in designing PCBs. One disadvantage of
+                 daisy chain routing is that stubs, or short traces, are usually necessary to connect
+                 devices to the main bus (refer to Figure 18 on page 28). If a stub is too long, it
+                 induces transmission line reflections and degrade signal quality. Therefore, the stub
+                 length should not exceed the following conditions:
+
+                 TDstub < ( T10% to 90% )/3
+
+                 Where TDstub = Electrical delay of the stubT10% to 90% = Rise or fall time of signal
+                 edge
+
+                 For a 1-ns rise-time edge, the stub length should be less than 0.5 inches. If your
+                 design uses multiple devices, all stub lengths should be equal to minimize clock skew.
+                 Figure 1 shows stub routing. If possible, you should avoid using stubs in your PCB
+                 design. For high-speed designs, even very short stubs can create signal integrity
+                 problems.
+
+Figure 18.       Daisy Chain Routing with Stubs
+
+
+
+
+                 Figure 19 on page 28, Figure 20 on page 29, and Figure 21 on page 29 show the
+                 SPICE simulation with different stub length. As the stub length decreases, there is less
+                 reflection noise, and the eye opening increases due to less reflection noise.
+
+Figure 19.       Stub Length = 0.5 Inch
+
+
+
+
+AN 958: Board Design Guidelines                                                               Send Feedback
+
+28
+5. General Board Design Considerations/Guidelines
+AN-958 | 2023.06.26
+
+
+
+
+Figure 20.     Stub Length = 0.25 Inches
+
+
+
+
+Figure 21.     Stub Length = Zero Inches
+
+
+
+
+               Daisy Chain - Without Stub
+
+               Figure 22 on page 29 shows daisy chain routing with the main bus running through
+               the device pins, eliminating stubs. This layout removes the risk of impedance
+               mismatch between the main bus and the stubs, minimizing signal integrity problems.
+
+Figure 22.     Daisy Chain Routing without Stubs
+
+
+
+
+               Star Routing
+
+               In star routing, the clock signal travels to all the devices at the same time (refer to
+               Figure 23 on page 30). Therefore, all trace lengths between the clock source and
+               devices must be matched to minimize the clock skew. Each load should be identical to
+               minimize signal integrity problems. In star routing, you must match the impedance of
+               the main bus with the impedance of the long trace that connects to multiple devices.
+
+
+
+
+     Send Feedback                                                          AN 958: Board Design Guidelines
+
+                                                                                                        29
+                                                           5. General Board Design Considerations/Guidelines
+                                                                                       AN-958 | 2023.06.26
+
+
+
+
+Figure 23.       Star Routing
+
+
+
+
+                 Serpentine Routing
+
+                 When a design requires equal-length traces between the source and multiple loads,
+                 you can bend some traces to match trace lengths (refer to Figure 24 on page 30).
+                 Improper trace bends affects signal integrity and propagation delay. To minimize
+                 crosstalk, ensure that S ≥ 3 x H, where S is the spacing between the parallel sections
+                 and H is the height of the signal trace above the reference ground plane.
+
+Figure 24.       Serpentine Routing
+
+
+
+
+                 It is recommended to avoid serpentine routing if possible. Instead, use arcs to create
+                 equal-length traces.
+
+
+
+
+AN 958: Board Design Guidelines                                                              Send Feedback
+
+30
+5. General Board Design Considerations/Guidelines
+AN-958 | 2023.06.26
+
+
+
+
+5.1.5.2. Differential Trace Routing
+
+               To maximize signal integrity, proper routing techniques for differential signals are
+               important for high-speed designs. Figure 25 on page 31 shows a differential pair
+               using the microstrip layout.
+
+Figure 25.     Differential Trace Routing
+
+
+
+
+Note:          Use the following guidelines when using two differential pairs:
+               •     D = Distance between two differential pair signals; W = Width of a trace in a
+                     differential pair; S = Distance between the trace in a differential pair; and H =
+                     Dielectric height above the group plane.
+               •     Make sure D > 2S to minimize the crosstalk between the two differential pairs.
+               •     To minimize reflection noise, place the differential traces S = 3H as they leave the
+                     device.
+               •     Keep the distance between the differential traces (S) constant over the entire
+                     trace length.
+               •     Keep the length of the two differential traces the same to minimize the skew and
+                     phase difference.
+               •     Avoid using multiple vias, because they can cause impedance mismatch and
+                     inductance.
+
+5.1.5.3. Skew Minimization
+
+               To minimize skew, make sure the two traces of a differential pair are equal lengths. If
+               there is skew between pair traces and if the traces are loosely coupled, the traces can
+               be designed as shown in Figure 26 on page 31. To control the trace length, the traces
+               separate and come back together. Because the traces are loosely coupled, the
+               impedance is just slightly affected.
+
+Figure 26.     45° Turns on the Serpentine Traces
+
+
+
+
+     Send Feedback                                                             AN 958: Board Design Guidelines
+
+                                                                                                           31
+                                                            5. General Board Design Considerations/Guidelines
+                                                                                        AN-958 | 2023.06.26
+
+
+
+
+                 When using serpentine traces, you should have 45° bends (refer to Figure 26 on page
+                 31). Figure 27 on page 32 shows another example using serpentine traces. However,
+                 when using the design shown in Figure 27 on page 32, make sure there is no
+                 coupling between the adjacent lines. When using serpentine traces for high-speed
+                 applications, you should avoid having the traces run parallel to each other at any
+                 point. See the example shown in Figure 26 on page 31.
+
+Figure 27.       Example of Serpentine Traces
+
+
+
+
+                 Figure 28 on page 32 shows skew control for tightly coupled pairs. Because the
+                 traces are tightly coupled, the impedance changes when the traces are separated and
+                 then brought closer together. In a tightly coupled pair, skew-matching is performed at
+                 the pin level.
+
+Figure 28.       Skew Control Tightly-Coupled Differential Pairs
+
+
+
+
+                 When designing traces on adjacent signal layers, the traces should not cross each
+                 other unless they are almost perpendicular. Parallel traces on adjacent signal layers
+                 have coupling between the traces.
+
+5.1.5.4. Termination Schemes
+
+                 Mismatched impedance causes signals to reflect back and forth along the lines, which
+                 causes ringing at the load receiver. The ringing reduces the dynamic range of the
+                 receiver and can cause false triggering. To eliminate reflections, the impedance of the
+
+
+
+
+AN 958: Board Design Guidelines                                                               Send Feedback
+
+32
+5. General Board Design Considerations/Guidelines
+AN-958 | 2023.06.26
+
+
+
+
+               source (ZS) must equal the impedance of the trace (Z0), as well as the impedance of
+               the load (ZL). Stratix devices feature support for on-chip implementation of a
+               termination resistor. This section discusses the following signal termination schemes:
+               •     Simple parallel termination
+               •     Thevenin parallel termination
+               •     Active parallel termination
+               •     Series-RC parallel termination
+               •     Series termination
+               •     Differential pair termination
+               •     On-chip termination
+
+5.1.5.4.1. Simple Parallel Termination
+
+               In a simple parallel termination scheme, the terminating resistor (RT) is equal to the
+               line impedance. Place the termination resistor as close to the load as possible to be
+               efficient. Refer to Figure 29 on page 33.
+
+Figure 29.     Simple Parallel Termination
+
+
+
+
+               The stub length from RT to the receiver pin and pads should be as small as possible. A
+               long stub length causes reflections from the receiver pads, resulting in signal
+               degradation. If your design requires a long termination line between the terminator
+               and receiver, the placement of the resistor becomes important. For long termination
+               line lengths, use fly-by termination (refer to Figure 30 on page 33).
+
+Figure 30.     Simple Parallel Fly-By Termination
+
+
+
+
+     Send Feedback                                                           AN 958: Board Design Guidelines
+
+                                                                                                         33
+                                                           5. General Board Design Considerations/Guidelines
+                                                                                       AN-958 | 2023.06.26
+
+
+
+
+5.1.5.4.2. Thevenin Parallel Termination
+
+                 An alternative parallel termination scheme uses a Thevenin voltage divider (refer to
+                 Figure 31 on page 34). The terminating resistor is split between R1 and R2, which
+                 equals the line impedance when combined. Although this scheme reduces the current
+                 drawn from the source device, it adds current drawn from the power supply because
+                 the resistors are tied between VCC and GND.
+
+Figure 31.       Thevenin Termination
+
+
+
+
+                 Stub length is dependent on signal rise and fall time and should be kept to a
+                 minimum. If your design requires a long termination line between the terminator and
+                 receiver, use fly-by termination or Thevenin fly-by termination. Refer to Figure 31 on
+                 page 34 and Figure 32 on page 34.
+
+Figure 32.       Thevenin Fly-By Termination
+
+
+
+
+AN 958: Board Design Guidelines                                                              Send Feedback
+
+34
+5. General Board Design Considerations/Guidelines
+AN-958 | 2023.06.26
+
+
+
+
+5.1.5.4.3. Active Parallel Termination
+
+               Figure 33 on page 35 shows an active parallel termination scheme, where the
+               terminating resistor (RT = Z0) is tied to a bias voltage (VBIAS). In this scheme, the
+               voltage is selected so that the output drivers can draw current from the high- and low-
+               level signals. However, this scheme requires a separate voltage source that can sink
+               and source currents to match the output transfer rates.
+
+Figure 33.     Active Parallel Termination
+
+
+
+
+               Figure 34 on page 35 shows the active parallel fly-by termination scheme.
+
+Figure 34.     Active Parallel Fly-By Termination
+
+
+
+
+5.1.5.4.4. Series-RC Parallel Termination
+
+               A series-RC parallel termination scheme uses a resistor and capacitor (i.e., series-RC)
+               network as the terminating impedance. The terminating resistor (RT) is equal to Z0.
+               The capacitor must be large enough to filter the constant flow of DC current. However,
+               if the capacitor is too large, it delays the signal beyond the design threshold.
+
+               Capacitors smaller than 100 pF diminish the effectiveness of termination. The
+               capacitor blocks low-frequency signals while passing high-frequency signals.
+               Therefore, the DC loading effect of RT does not have an impact on the driver, as there
+               is no DC path to ground. The series-RC termination scheme requires balanced DC
+               signaling (i.e., the signals spend half the time on and half the time off). AC
+               termination is typically used if there is more than one load. Refer to Figure 35 on page
+               36.
+
+
+
+
+     Send Feedback                                                           AN 958: Board Design Guidelines
+
+                                                                                                         35
+                                                           5. General Board Design Considerations/Guidelines
+                                                                                       AN-958 | 2023.06.26
+
+
+
+
+Figure 35.       Series-RC Parallel Termination
+
+
+
+
+                 Figure 36 on page 36 shows series-RC parallel fly-by termination.
+
+Figure 36.       Series-RC Parallel Fly-By Termination
+
+
+
+
+5.1.5.4.5. Series Termination
+
+                 In a series termination scheme, the resistor matches the impedance at the signal
+                 source instead of matching the impedance at each load (refer to Figure 37 on page
+                 36). The sum of RT and the impedance of the output driver should be equal to the
+                 Z0. Because Intel device output impedance is low, you should add a series resistor to
+                 match the signal source to the line impedance. The advantage of series termination is
+                 that it consumes little power. However, the disadvantage is that the rise time degrades
+                 due to the increased RC time constant. Therefore, for high-speed designs, you should
+                 perform the pre-layout signal integrity simulation with Intel input/output buffer
+                 information specification (IBIS) models before using the series termination scheme.
+
+Figure 37.       Series Termination
+
+
+
+
+AN 958: Board Design Guidelines                                                              Send Feedback
+
+36
+5. General Board Design Considerations/Guidelines
+AN-958 | 2023.06.26
+
+
+
+
+5.1.5.4.6. Differential Pair Termination
+
+               Differential signal I/O standards require a termination resistor between the signals at
+               the receiving device (refer to Figure 38 on page 37). For the LVDS and LVPECL
+               standard, the termination resistor should match the differential load impedance of the
+               bus (i.e., typically 100 Ω). Intel Stratix family of devices, and Mercury™ devices have
+               an on-chip termination option. Using on-chip termination decreases required board
+               space.
+
+Figure 38.     Differential Pair (LVDS and LVPECL) Termination
+
+
+
+
+               Figure 39 on page 37 shows the differential pair fly-by termination scheme for the
+               LVDS and LVPECL standard.
+
+Figure 39.     Pair (LVDS and LVPECL) Fly-By Termination
+
+
+
+
+               3.3-V PCML uses two parallel 100-Ω termination resistors at the transmitter and two
+               parallel 50-Ω termination resistors at the receiver (refer to Figure 40 on page 38).
+               The termination voltage (VT) is the same as the VCCIO voltage (3.3 V).
+
+
+
+
+     Send Feedback                                                          AN 958: Board Design Guidelines
+
+                                                                                                        37
+                                                            5. General Board Design Considerations/Guidelines
+                                                                                        AN-958 | 2023.06.26
+
+
+
+
+Figure 40.       Differential Pair (3.3 V PCML) Termination
+
+
+
+
+                 Figure 41 on page 38 shows the differential pair, fly-by termination scheme for 3.3-V
+                 PCML.
+
+Figure 41.       Differential Pair (3.3 V PCML) Fly-By Termination
+
+
+
+
+5.1.5.4.7. On-Chip Termination
+
+                 Stratix family of devices has on-chip resistors designed to support termination for
+                 several I/O standards. On-chip resistors simplify the task of board design by freeing
+                 board space and offering more freedom in signal routing. Also, using the on-chip
+                 resistors reduces stub reflection. Consequently, Stratix series devices provides better
+                 load and/or source termination, which leads to better signal integrity.
+
+                 All transceivers in Stratix series devices have programmable, per channel internal
+                 termination resistors, which can be programmed to be either 50-, 60-, or 75-Ω single-
+                 ended resistors. In differential mode, the resistors generate 100-, 120-, or 150-Ω
+                 termination. Figure 42 on page 39 and Figure 43 on page 39 show receiver and
+                 transmitter on-chip termination schemes. Because different I/O standards require
+                 different termination resistors, programmable internal termination resistors can be
+                 helpful. For example, XAUI and Infiniband applications require 100-Ω differential
+                 termination, while Gigabit Ethernet and Fibre Channel require 150-Ω differential
+                 termination.
+
+
+
+
+AN 958: Board Design Guidelines                                                               Send Feedback
+
+38
+5. General Board Design Considerations/Guidelines
+AN-958 | 2023.06.26
+
+
+
+
+Figure 42.     Receiver On-Chip Termination
+
+
+
+
+               You can bypass the on-chip resistors used in the receiver and use external resistors.
+
+Figure 43.     Transmit On-Chip Termination
+
+
+
+
+5.1.5.5. Termination Design Example
+
+               When designing a circuit board, one challenge is determining the type of termination
+               to use and where to place it. This section helps you determine the type of termination
+               needed and the best possible location for your custom board design.
+
+               If transmission lines associated with data or clock circuitry are not terminated
+               properly, the signal experiences reflections. In this example, the design has the
+               following features:
+
+               In this design example, you need to determine if the transmission line should be
+               terminated, and if so, how it should be accomplished.
+
+
+
+
+     Send Feedback                                                           AN 958: Board Design Guidelines
+
+                                                                                                         39
+                                                           5. General Board Design Considerations/Guidelines
+                                                                                       AN-958 | 2023.06.26
+
+
+
+
+5.1.5.5.1. Determine the Delay
+
+                 Use the following equations to determine the delay for a 300-ps rise-time signal
+                 traveling through a transmission line embedded in a dielectric with an electrical
+                 permittivity of εr.
+
+                 For stripline configuration:
+
+                 For microstrip configuration:
+
+                 In FR-4, a transmission line with a stripline configuration induces approximately 180
+                 ps per inch of delay on the signal. Therefore, the velocity of the signal through the
+                 transmission line becomes the inverse of the delay, which is 5.5*10-9 inches per
+                 second.
+
+5.1.5.5.2. Determine the Bandwidth
+
+                 Figure 44 on page 40 shows that the voltage at any instant t is:
+
+Figure 44.       Characteristic Voltage Plot for Charging of an AC Circuit
+
+
+
+
+                 At 10 percent of the curve, you have:
+
+                 At 90 percent of the curve, you have:
+
+                 The 10 percent equation divided by the 90 percent equation gives:
+
+                 Where:
+
+                 The time constant variable is related to the 3-dB frequency by the equation:
+
+                 From the previous equation, we can determine the equation for the time constant, r.
+
+
+
+
+AN 958: Board Design Guidelines                                                              Send Feedback
+
+40
+5. General Board Design Considerations/Guidelines
+AN-958 | 2023.06.26
+
+
+
+
+               Plug the time constant into the voltage equation to get:
+
+               Use the following equation to determine the bandwidth for sinusoidal signal
+
+               The highest frequency component for a signal with a rise time of Tr have a frequency
+               given by this equation.
+
+               The signal previously discussed had a rise time of 300 ps, which means that the
+               highest frequency component present in the signal be:
+
+               Using the equation with the bandwidth and speed numbers, you can determine that:
+
+               If the transmission line is longer than wavelength/10, then termination is required. In
+               this design example, the transmission line is two inches long, so termination is
+               required.
+
+5.1.5.5.3. Using Series Termination
+
+               When using series termination, only near-end termination can be applied. Series
+               termination should only be used with clock signals. With the near-end series
+               termination (Z0) and the transmission line following, the circuit looks like a voltage
+               divider circuit to the driver, reducing the amplitude V at the driver to V/2 after the
+               series termination. Because there is no termination at the end of the transmission line,
+               when the signal reaches the end, the entire signal reflects being restored to V.
+
+               The reflection coefficient is calculated using the following equation:
+
+5.1.5.5.4. Using Parallel Termination
+
+               You can place parallel terminations on either ends or only the far end of the
+               transmission line. You should place terminations as close to the source or destination
+               as possible. Any transmission line between the termination and the end of the
+               transmission line appears as a capacitive load to the signal. If you cannot place
+               terminations close to the integrated circuit (IC), place them after the pin (i.e., fly-by
+               configuration).
+               •     A 300-ps rise-time signal
+               •     Two-inch long transmission path between the source and the destination
+               •     delay = 85√εr ps per inch
+               •     delay = 85√(0.457εr+0.67) ps per inch
+               •     V = VFINAL(1–e–t/RC)
+               •     0.1 VFINAL = VFINAL (1–e–t1/RC)
+               •     0.9 = e–t1/RC
+               •     9 = e(t2–t1)/RC
+               •     ln 9 = (t2–t1)/RC
+               •     2.197 = (t2–t1)/RC
+               •     t2–t1 = Rise time of the signal (Tr) and RC = time constant = r
+               •     Frequency = 1/2 πr
+               •     r = RC = 1/2 πf
+               •     2.197 = 2 πf Tr
+
+
+
+
+     Send Feedback                                                             AN 958: Board Design Guidelines
+
+                                                                                                           41
+                                                             5. General Board Design Considerations/Guidelines
+                                                                                         AN-958 | 2023.06.26
+
+
+
+
+                 •   f = 0.35/Tr
+                 •   Bandwidth = 0.35/Tr
+                 •   Bandwidth = 0.35/300 ps = 1.16 GHz
+                 •   Speed = Frequency x Wavelength
+                 •   5.5 giga inches per second = 1.16 GHz x wavelength
+                 •   wavelength = 4.74 in.
+                 •   wavelength/10 = 0.474 in.
+                 •   Reflection coefficient = (ZLOAD – Z0)/(ZLOAD + Z0)
+
+                 Time Domain Reflectometry
+
+                 Time domain reflectometry (TDR) is a way to observe discontinuities on a transmission
+                 path. The time domain reflectometer sends a pulse through the transmission medium.
+                 Reflections occur when the pulse of energy reaches either the end of the transmission
+                 path or a discontinuity within the transmission path. From these reflections, the
+                 designer can determine the size and location of the discontinuity. This section provides
+                 an understanding of TDR.
+
+                 Figure 45 on page 42 shows a TDR voltage plot for a cable that is not connected to a
+                 PCB. The middle line is a 50-Ω cable one meter long. At point A, a pulse starts (Z0 =
+                 50-Ω) and transmits through the cable, stopping at the end of the transmission line
+                 (i.e., Point B). Because the end of the transmission line is open, there is infinite
+                 impedance, ZLOAD = α. Therefore, the reflection coefficient at the load is determined
+                 with the equation:
+
+                 The entire signal is reflected. At point B, the amplitude of the signal doubles. Refer to
+                 Figure 45 on page 42.
+
+Figure 45.       TDR Voltage Plot with Cable Not Connected to PCB
+
+
+
+
+                 If the same meter-long cable is then connected to a PCB through an SMA connector,
+                 the plot changes. Refer to Figure 46 on page 43. Because the SMA connector is more
+                 capacitive than inductive in nature, it appears as a capacitive load, shown as a dip in
+                 the TDR plot.
+
+
+
+
+AN 958: Board Design Guidelines                                                                Send Feedback
+
+42
+5. General Board Design Considerations/Guidelines
+AN-958 | 2023.06.26
+
+
+
+
+Figure 46.     TDR Voltage Plot with Cable Connected to PCB
+
+
+
+
+               Figure 47 on page 43 shows an expanded curve for the SMA connector. Because the
+               rise time of the pulse sent for TDR analysis is very small (around 20 ps), the TDR
+               voltage plot shows every discontinuity on the transmission path.
+
+               The SMA is a capacitive discontinuity on the transmission path, so the signal dips on
+               the voltage plot. The impedance of an ideal transmission line is defined by the
+               following equation:
+
+               Therefore, when the capacitance increases, the impedance decreases. If the
+               discontinuity is inductive, then the impedance increases, which appears as a bump in
+               the TDR plot. You can calculate the capacitance and inductance from the curves on a
+               TDR plot. If the plot shows a dip, as in Figure 47 on page 43, then calculate the
+               capacitance.
+
+Figure 47.     TDR Voltage Plot for the Section Around the SMA Connector on PCB
+
+
+
+
+               The equivalent circuit approximation for a dip in the TDR plot is a capacitor to ground,
+               as shown in Figure 48 on page 44.
+
+
+
+
+     Send Feedback                                                           AN 958: Board Design Guidelines
+
+                                                                                                         43
+                                                                5. General Board Design Considerations/Guidelines
+                                                                                            AN-958 | 2023.06.26
+
+
+
+
+Figure 48.       Equivalent Circuit for a Transmission Line with Capacitive Discontinuity
+
+
+
+
+                 The RC equation for this type of circuit is:
+
+                 The two transmission lines behave as if they are parallel to each other.
+
+                 You can determine the change in voltage (ΔV) and rise time (Tr) from the curve. Then,
+                 you can enter the values into the equation (i.e., Z0 = 50 Ω):
+
+                 Use this equation to determine the RC time constant. You can also use the curve to
+                 approximate the RC time constant. Between 0 to 63 percent of the rise is RC. Once
+                 the RC is found, you can use it to determine the capacitance (discontinuity, as seen by
+                 the signal).
+
+                 If the discontinuity looks more inductive in nature (i.e., the curve goes up), then the
+                 signal experiences a circuit similar to Figure 49 on page 44. The transmission line is
+                 split, with an inductive discontinuity in between.
+
+Figure 49.       Equivalent Circuit for a Transmission Line with Inductive Discontinuity
+
+
+
+
+                 Use the following two equations to find inductive discontinuity (L):
+
+                 To determine the inductance value, use the equation for (Z0 = 50 Ω):
+
+                 Figure 50 on page 45 shows a cross section of a PCB transmission path, which
+                 illustrates many discontinuities.
+
+
+
+
+AN 958: Board Design Guidelines                                                                   Send Feedback
+
+44
+5. General Board Design Considerations/Guidelines
+AN-958 | 2023.06.26
+
+
+
+
+Figure 50.     Example TDR Voltage Plot for a Cross Section of a PCB
+
+
+
+
+               If you experience a TDR plot similar to Figure 51 on page 45, calculate the capacitive
+               discontinuity introduced by the SMA connector by factoring in the voltage dip.
+
+Figure 51.     TDR Plot for a Section of a PCB
+
+
+
+
+               You can determine Tr and V for the equation from the curve as shown in Figure 52 on
+               page 45.
+
+Figure 52.     TDR Plot for the SMA
+
+
+
+
+               In this example,
+
+               From the equation:
+
+               The examples in this section can be used when modeling discontinuity with a
+               simulator. However, instead of using TDR to extract the parasitic for the discontinuity,
+               you can model the discontinuity in the 2D and 3D field solvers.
+
+               Reflection coefficient = (ZLOAD – Z0)/(ZLOAD + Z0)
+
+               Reflection coefficient in this case = (α– 50)/(α + 50) = 1
+
+               Z0 = √(L/C)
+
+
+
+
+     Send Feedback                                                           AN 958: Board Design Guidelines
+
+                                                                                                         45
+                                                            5. General Board Design Considerations/Guidelines
+                                                                                        AN-958 | 2023.06.26
+
+
+
+
+                 R = Z0/2
+
+                 RC = Z0C/2
+
+                 (ΔV/250 mV) = 1 - (Tr /2RC)
+
+                 R = 2Z0
+
+                 L/R = L/2Z0
+
+                 (ΔV/250 mV) = 1 - (Tr x Z0 /L)
+
+                 (ΔV/250 mV) = 1 - (Tr /2RC)
+
+                 RC = (Tr x 250 mV)/2 (250 mV - ΔV) = 29.9 ps
+
+                 RC = Z0C/2
+
+                 If Z0 = 50 Ω, then C = 1.196 pF
+
+5.1.5.6. Discontinuities Related to a Transmission Path
+
+                 Discontinuity on a transmission path degrades signals. Signals with fast rise times
+                 have higher degradation than signals with slow rise times. Thus, high-speed board
+                 designs require careful planning to avoid the problems associated with discontinuity.
+                 This section discusses inductive and capacitive discontinuities related to a transmission
+                 path.
+
+5.1.5.6.1. Inductive Discontinuity
+
+                 Figure 53 on page 46 illustrates a TDR voltage plot for two different SMA connectors,
+                 one side of the SMA connector is 50 Ω and the other is 58 Ω. The curve rises upwards
+                 due to the increasing inductance in the region.
+
+                 The two plots in Figure 53 on page 46 represent two different discontinuities due to
+                 SMA connectors. The curve with the higher peak represents a connector with higher
+                 inductive discontinuity of about 3.8 nH. The curve with a lower peak represents a
+                 connector with lower inductive discontinuity of about 2.6 nH. You can calculate the
+                 inductance for the discontinuity for both these curves from the graph.
+
+Figure 53.       Impedance Curves for SMA Connectors
+
+
+
+
+AN 958: Board Design Guidelines                                                               Send Feedback
+
+46
+5. General Board Design Considerations/Guidelines
+AN-958 | 2023.06.26
+
+
+
+
+               Figure 53 on page 46 shows a 3.125-Gbps signal transmitted through the two SMA
+               connectors. The rise time of the signal is approximately 70 ps.
+
+               Figure 54 on page 47 shows the eye opening plot when a signal passes through the
+               lower-inductance (2.6 nH of discontinuity) SMA connector. The eye opening is 336 mV,
+               and the jitter is 20 ps.
+
+Figure 54.     Lower-Inductance SMA Connector Eye Opening and Expanded View of the Eye
+               Opening
+
+
+
+
+               An expanded view of the eye (Figure 54 on page 47) provides a better jitter reading;
+               the peak-to-peak jitter value is approximately 20 ps.
+
+               Figure 55 on page 47 shows an eye opening plot of the same signal; however, this
+               time the signal goes through 3.8 nH of inductive discontinuity due to the higher-
+               inductance SMA connector. The eye opening is approximately 332 mV. When
+               comparing the plots, the plot in Figure 55 on page 47 has more jitter than Figure 54
+               on page 47.
+
+               An expanded view of the eye (Figure 55 on page 47) provides a better jitter reading;
+               the peak-to-peak jitter value is approximately 24 ps.
+
+Figure 55.     Higher-Inductance SMA Connector Eye Opening and Expanded View of the
+               Eye Opening
+
+
+
+
+               Jitter increases and the eye opening gets smaller when the wrong type of connectors
+               are used or other forms of inductive discontinuities are added to the transmission
+               path. Increasing jitter behavior becomes a significant problem with signals with faster
+               rise times. Also, when the signals become more stressed (i.e., random), jitter is more
+               pronounced.
+
+
+
+
+     Send Feedback                                                          AN 958: Board Design Guidelines
+
+                                                                                                        47
+                                                            5. General Board Design Considerations/Guidelines
+                                                                                        AN-958 | 2023.06.26
+
+
+
+
+5.1.5.6.2. Capacitive Discontinuity
+
+                 This section discusses the effects of capacitive discontinuity, which usually occurs
+                 when components are introduced on the transmission path.
+
+                 The two connector plots in Figure 56 on page 48 show capacitive loads, one acting as
+                 a lower capacitive discontinuity and the other as higher capacitive discontinuity. The
+                 capacitance (C) for the load can be calculated with the equation:
+
+                 A 3.125-Gbps signal (a pseudo random binary sequence (PRBS) pattern) is sent
+                 through the first connector that looks like a lower-capacitive connector (1.2 pF); the
+                 eye opening and jitter are observed on the other end.
+
+Figure 56.       Lower- and Higher-Capacitive Load Connectors Illustrating the Effects of
+                 Capacitive Discontinuity
+
+
+
+
+                 Figure 57 on page 48 shows the eye opening with the connector that induces a
+                 discontinuity of 1.2 pF. The eye opening is a 330-mV differential. The expanded view
+                 of the eye shows the peak-to-peak jitter as approximately 27 ps.
+
+Figure 57.       Lower-Capacitance Connector Eye Opening and Expanded View of the Eye
+                 Opening
+
+
+
+
+                 Figure 57 on page 48 shows a 3.125-Gbps PRBS pattern sent through the second
+                 connector that looks like a higher-capacitive connector; the eye opening and jitter are
+                 observed on the other end.
+
+
+
+
+AN 958: Board Design Guidelines                                                               Send Feedback
+
+48
+5. General Board Design Considerations/Guidelines
+AN-958 | 2023.06.26
+
+
+
+
+               Figure 58 on page 49 shows the eye opening for the same signal passing through an
+               SMA connector with a capacitance of 2.9 pF. The eye opening is approximately 280
+               mV, differential. The expanded view of the eye opening shows that the peak-to-peak
+               jitter is 43 ps.
+
+Figure 58.     Higher-Capacitance Connector Eye Opening and Expanded View of the Eye
+               Opening
+
+
+
+
+               You should avoid adding connectors and components on the transmission path
+               whenever possible. However, if connectors are required, select ones that creates the
+               least amount of inductive and/or capacitive discontinuity on the transmission path.
+               The jitter and amplitude impact on a 3.125-Gbps signal when transmitting through a
+               2.9 and 1.2 pF capacitor is very significant. The eye opening shows an amplitude
+               difference of 50 mV, and the expanded view shows a peak-to-peak jitter difference of
+               16 ps.
+               •     ρ = RC = (Z0C/2)
+
+5.1.5.6.3. Via Discontinuity
+
+               Avoid vias and layer changes as much as possible when routing a trace because vias
+               slow down edges and cause reflections. Vias are both inductive and capacitive in
+               nature; however, they are dominantly capacitive. A design that uses differential
+               signals requires vias. However, to ensure that the true and complement signals
+               experience the same discontinuity, vias must be in the same configuration for each
+               signal of the differential pair. Thus, any variation in signal due to the via-induced
+               discontinuity is in a common mode. A differential mode discontinuity causes a
+               reduction in the dynamic range.
+
+               Blind vias are more expensive, smaller, and act less as a discontinuity than full-sized
+               vias. Blind vias do not go through the PCB and are designed to reduce discontinuity
+               from vias. For better performance when using full-sized vias, use vias in series with
+               the transmission line. The via section that is left hanging behaves like a capacitive
+               stub.
+
+               Figure 59 on page 50 shows an 18-layer board. Layers 1, 3, and 16 are signal layers.
+               Route a trace from layer 1 down to layer 16, rather than routing through layer 3. If
+               you route a trace that stops at layer 3, then the part of the via left hanging behaves
+               like a capacitive stub.
+
+
+
+
+     Send Feedback                                                           AN 958: Board Design Guidelines
+
+                                                                                                         49
+                                                              5. General Board Design Considerations/Guidelines
+                                                                                          AN-958 | 2023.06.26
+
+
+
+
+Figure 59.       Eighteen-Layer Board with Trace Stub
+
+
+
+
+                 The capacitive stub effects on a via become more pronounced when the board design
+                 involves:
+
+                 A board thickness of 93 mils, with capacitive stubs, has less impact on a 3.125-Gbps
+                 signal as compared to a 200 mils-thick board running at the same frequency. Thus,
+                 vias affect signal integrity (at 3.125 Gbps) for boards that are too thick.
+
+                 When possible, avoid vias and via stubs, and remove any unnecessary pads on vias
+                 because the pads create parallel plate capacitance between each other. When
+                 designing a 100-mils-thick board, you do not need to back drill the vias for a 3.125-
+                 Gbps signal. However, back drilling may be advisable for boards measurably thicker
+                 than 100 mils.
+
+                 A current flow on a transmission line creates a magnetic field. The flux lines induce a
+                 return current on the reference structure. When a transmission line has its broadside
+                 facing reference planes, most of the return current travels underneath the
+                 transmission line at a skin depth on the reference plane. The value of skin depth can
+                 be calculated with the following equation:
+
+                 Where:
+
+                 You can calculate the current density at any point x in the reference plane with the
+                 following equation:
+
+                 Where:
+
+                 You should provide a good path for return currents. Figure 60 on page 51 shows a
+                 layer change (from layer 1 to 13) for a pair of differential signals (i.e., red and green
+                 structures). The signal starts at point A (in Figure 60 on page 51) and transmits to
+                 point B (Figure 62 on page 52).
+
+                 Figure 60 on page 51, Figure 61 on page 51, and Figure 62 on page 52 show that
+                 solid reference planes (i.e., light blue structures) are provided for the signal lines.
+
+                 Create GND islands when necessary. When creating islands of GND, ensure that other
+                 signals referencing the plane do not pass over the split. If a signal does pass over the
+                 split, its loop increases, also increasing the inductance in the region.
+
+
+
+
+AN 958: Board Design Guidelines                                                                 Send Feedback
+
+50
+5. General Board Design Considerations/Guidelines
+AN-958 | 2023.06.26
+
+
+
+
+Figure 60.     Layer Changes
+
+
+
+
+               At the point of the layer change, GND vias should be provided for the return current
+               paths. If the return path does not have GND vias, the return currents look for the
+               closest path, but these paths may not be close enough. In this scenario, the current
+               takes a longer path, increasing its loop. Because of the number of flux lines going
+               through the loop, increasing the loop also increases the inductance. Although Figure
+               60 on page 51 only shows two vias, it is better to have more vias circling the signal
+               vias.
+
+               Figure 61 on page 51 is a side view of the layer change view in Figure 60 on page
+               51. The signals transmit from layer 1 to the layer 13. Each layer has via pads.
+               Because there is parallel plate capacitance between the pads, the unnecessary pads
+               add capacitive loading. Therefore, remove all of the pads except the ones that directly
+               connect the via to the transmission lines.
+
+Figure 61.     Side View of Layer Changes
+
+
+
+
+     Send Feedback                                                          AN 958: Board Design Guidelines
+
+                                                                                                        51
+                                                            5. General Board Design Considerations/Guidelines
+                                                                                        AN-958 | 2023.06.26
+
+
+
+
+                 In Figure 62 on page 52, a GND island is provided to give a good reference path for
+                 the signal. GND vias (i.e., the light blue structures) are brought up to avoid too much
+                 discontinuity.
+
+                 The PCB in Figure 62 on page 52 does not have enough GND vias, so you should add
+                 more around the signal vias, evenly distributed for the two signal lines. In Figure 62
+                 on page 52, only one side of the differential pair has a GND via close to it.
+
+Figure 62.       Transmission Path to Point B
+
+
+
+
+                 Figure 63 on page 52 shows a TDR plot that contains an example via from the Stratix
+                 GX development board, a 93-mils thick board. The via looks like a capacitive
+                 discontinuity of 0.7 pF. The via connects two transmission lines that are on layer 1 and
+                 layer 13 of an 18-layer board.
+
+Figure 63.       Capacitive Discontinuity Due to a Via on a 93-mil Thick Board
+
+
+
+
+                 •   Higher signal speeds
+                 •   Thicker boards
+                 •   Non-essential extra via pads
+                 •   skin depth = 1/√(πƒµoµrσ)
+                 •   ƒ = frequency
+
+
+
+
+AN 958: Board Design Guidelines                                                               Send Feedback
+
+52
+5. General Board Design Considerations/Guidelines
+AN-958 | 2023.06.26
+
+
+
+
+               •     µo = magnetic permeability of air
+               •     µr = relative magnetic permeability
+               •     σ = conductivity of the material
+               •     Ix = Ioe-x/do
+               •     Ix = current density at x
+               •     Io = current density on skin depth
+               •     x = distance from surface
+               •     do = skin depth
+
+
+
+5.1.5.6.4. Right-Angle Bends Related to a Transmission Path
+
+               To minimize impedance discontinuities on the transmission line, avoid using right-
+               angle bends. At the bend, the effective transmission line width increases, this result in
+               an impedance discontinuity, increasing the capacitance.
+
+               Instead of 90° bends, use mitered 45° bends. Mitered 45° bends reduce reflection on
+               the signal by minimizing impedance discontinuities. Right-angled bends also look like
+               antennas. Figure 64 on page 53 shows a 60-mils transmission line immersed in FR-4
+               dielectric (εr = 4.1, loss tangent = 0.022) with dimensions for 50-Ω impedance. The
+               90° and 45° bend (refer to Figure 65 on page 54) traces are simulated using SPICE
+               models. The parasitics are extracted with a 3D field solver.
+
+Figure 64.     90° Bend on a Transmission Line
+
+
+
+
+     Send Feedback                                                           AN 958: Board Design Guidelines
+
+                                                                                                         53
+                                                           5. General Board Design Considerations/Guidelines
+                                                                                       AN-958 | 2023.06.26
+
+
+
+
+Figure 65.       45° Bend on a Transmission Line
+
+
+
+
+                 Figure 66 on page 54 shows the board’s cross section.
+
+Figure 66.       Board’s Cross Section
+
+
+
+
+                 A 1-ns (rise time) signal is fed to one side of the trace and the output is observed at
+                 the other end. Because of the extra capacitive loading, the output of the 90° bend has
+                 a slight delay and more ringing on it. When driving through long traces or other
+                 stressful conditions, even a little bit of ringing is destructive. For instance, adding
+                 more closure to an almost closed eye can result in the receiver failing to recognize
+                 some bits of data. The 90° bend affects signals running at 3.125 Gbps even more
+                 severely. Figure 67 on page 55 shows the effects of bends on signals.
+
+
+
+
+AN 958: Board Design Guidelines                                                              Send Feedback
+
+54
+5. General Board Design Considerations/Guidelines
+AN-958 | 2023.06.26
+
+
+
+
+Figure 67.     Effects of Bends on Signals
+
+
+
+
+5.1.6. Ground Bounce
+               As digital devices become faster, their output switching times decrease. Faster
+               switching times cause higher transient currents in outputs as they discharge load
+               capacitances. These higher currents, which are generated when multiple outputs of a
+               device switch simultaneously from a logic high to a logic low, can cause a board-level
+               phenomenon known as ground bounce.
+
+               Many factors contribute to ground bounce. Therefore, no standard test method
+               predicts ground bounce magnitude for all possible PCB environments. Determine each
+               condition's and each device's relative contributions to ground bounce by testing the
+               device under these conditions: Load capacitance, socket inductance, and the number
+               of switching outputs, which are the predominant conditions that influence the
+               magnitude of ground bounce in programmable logic devices (PLDs).
+
+5.1.6.1. Design Guidelines
+
+               It is recommended to follow the below design methods to reduce ground bounce:
+
+Figure 68.     Suggested Via Location that Connects to Capacitor Pad
+
+
+
+
+     Send Feedback                                                          AN 958: Board Design Guidelines
+
+                                                                                                        55
+                                                            5. General Board Design Considerations/Guidelines
+                                                                                        AN-958 | 2023.06.26
+
+
+
+
+                 These design guidelines provide information and help for high-speed logic designs
+                 operating over a range of PCB conditions.
+                 •   Add decoupling capacitors for as many VCC/GND pairs as possible.
+                 •   Place the decoupling capacitors as close as possible to the power and ground pins
+                     of the device.
+                 •   Add external buffers at the output of a counter to minimize the loading on Intel®
+                     device pins.
+                 •   Configure the unused I/O pin as an output pin and then drive the output low. This
+                     configuration acts as a virtual ground. Connect this low driving output pin to
+                     GNDINT and/or the board's ground plane.
+                 •   Any unused I/O pin may be driven to ground by programming the “programmable
+                     ground” bit (one per I/O cell). In doing so, the macrocell does not need to be
+                     sacrificed, but can be used as a buried macrocell.
+                 •   When speed is not critical, turn on the slow slew rate logic option.
+                 •   Limit load capacitance by buffering loads with an external device, or by reducing
+                     the number of devices that drive the bus.
+                 •   Eliminate sockets whenever possible.
+                 •   Reduce the number of outputs that can switch simultaneously and/or distribute
+                     them evenly throughout the device.
+                 •   Move switching outputs close to a package ground pin.
+                 •   Create a programmable ground next to switching pins.
+                 •   Eliminate pull-up resistors or use pull-down resistors.
+                 •   Use multi-layer PCBs that provide separate VCC and ground planes.
+                 •   Add appropriate resistors in series to each of the switching outputs to limit the
+                     current flow into each of the outputs.
+                 •   Create synchronous designs that are not affected by momentarily switching pins.
+                 •   Assign I/O pins to minimize local bunching of output pins.
+                 •   Place the power and ground pins next to each other. The total inductance is
+                     reduced by mutual inductance, because current flows in opposite directions in
+                     power and ground pins.
+                 •   Use a bigger via size to connect the capacitor pad to the power and ground plane
+                     to minimize the inductance in decoupling capacitors.
+                 •   Use the wide and short trace between the via and the capacitor pad or place the
+                     via adjacent to the capacitor pad. Refer to Figure 68 on page 55.
+                 •   Use surface mount capacitors to minimize the lead inductance.
+                 •   Use low effective series resistance (ESR) capacitors. The ESR should be < 400
+                     mÎ©.
+                 •   Each GND pin/via should be connected to the ground plane individually.
+                 •   To add extra capacitance on the board, Intel recommends placing a ground plane
+                     next to each power (VCC) plane. This placement gives zero lead inductance and no
+                     ESR. The dielectric thickness between the two planes should be ~5 mils.
+
+
+
+
+AN 958: Board Design Guidelines                                                               Send Feedback
+
+56
+5. General Board Design Considerations/Guidelines
+AN-958 | 2023.06.26
+
+
+
+
+5.1.6.2. Analyzing Ground Bounce
+
+               Figure 69 on page 57 shows a simple model for analyzing ground bounce. The
+               external components driven by the device appear as capacitance loads to that device
+               (C1 to Cn). These capacitive loads store a charge determined by the following
+               equation:
+
+               Thus, the charge increases as the voltage and/or load capacitance increases.
+
+Figure 69.     Ground Bounce Model
+
+
+
+
+               A device's environment and ground path have intrinsic inductances (shown in Figure
+               69 on page 57 as L1, L2, and L3). L1 is the inductance of the bond wire from the
+               device's die to its package pin, and of the pin itself. L2 is the inductance of the
+               connection mechanism between the device's ground pin and the PCB. This inductance
+               is greatest when the device is connected to the PCB through a socket. L3 is the
+               inductance of the PCB trace between the device and the PCB location where the power
+               supply's reference ground is connected.
+
+               Ground bounce occurs when multiple outputs switch from high to low. The transition
+               causes the charge stored in the load capacitance to flow into the device. The sudden
+               rush of current (di/dt) exits the device through the inductances (L) to board ground,
+               generating a voltage (V) determined by the equation V = L × (di/dt). This voltage
+               difference between board ground and device ground causes the relative ground level
+               for low or quiet outputs to temporarily rise or bounce. Although the rush of current is
+               brief, the magnitude of the bounce can be large enough to trigger other devices on the
+               PCB.
+
+               In synchronous designs, ground bounce is less often a problem because synchronous
+               outputs have enough time to settle before the next clock edge. Also, synchronous
+               circuits are not as likely to be falsely triggered by a voltage spike on a quiet output.
+
+               Capacitive loading on the switching outputs and quiet outputs affect ground bounce
+               differently.
+               •     Charge (Q) = [voltage (V) × capacitance (C)]
+
+5.1.6.3. Switching Outputs
+
+               When the capacitive loading on the switching outputs increases, the amount of charge
+               available for instantaneous switching increases, which in turn increases the magnitude
+               of ground bounce. Depending on the device, ground bounce increases with capacitive
+
+
+
+
+     Send Feedback                                                            AN 958: Board Design Guidelines
+
+                                                                                                          57
+                                                            5. General Board Design Considerations/Guidelines
+                                                                                        AN-958 | 2023.06.26
+
+
+
+
+                 loading until the loading is approximately 100 pF per device output. At this point, the
+                 device output buffers reach their maximum current-carrying capacity and inductive
+                 factors become dominant.
+
+                 One method of reducing the capacitive load and, consequently, ground bounce is to
+                 connect the device's switching outputs to a bus driver integrated circuit (IC). The
+                 outputs of this IC drive the heavy capacitive loads, reducing the loading on the device
+                 and minimizing ground bounce for the device's quiet outputs.
+
+                 Some bus applications use pull-up resistors to create a default high value for the bus.
+                 These resistors cause the load capacitances to charge up to the maximum voltage.
+                 Consequently, the driving device produces a higher level of ground bounce. Eliminate
+                 pull-up resistors in applications in which ground bounce is a concern, or design bus
+                 logic that uses pull-down resistors instead.
+
+                 The number of switching outputs also affects ground bounce. As the number of
+                 switching outputs increases, the total charge stored also increases. The total charge is
+                 equal to the sum of the stored charges for each switching output. Therefore, the
+                 amount of current that must sink to ground increases as the number of switching
+                 outputs increases. Ground bounce can increase by as much as 40 to 50 mV for each
+                 additional output that is switching.
+
+                 To counteract these effects, Intel devices provide multiple VCC and GND pin pairs.
+                 Reduce ground bounce by moving switching outputs close to a ground pin and
+                 distributing simultaneously switching outputs throughout the device.
+
+                 Besides placing switching pins next to a ground pin, create a programmable ground
+                 pin by creating an output pin in the design that drives only ground. By connecting this
+                 output pin to ground on the board, the device ground has another connection to the
+                 board ground, which helps reduce ground bounce.
+
+                 Many Intel FPGA devices have slew rate options for the output drivers. Turning on the
+                 slow slew rate option for all or most of the drivers slows down the drivers, decreasing
+                 di/dt and reducing ground bounce.
+
+                 To further reduce ground bounce, limit the number of outputs that can switch
+                 simultaneously in the design. For functions such as counters, use Gray coding as an
+                 alternative to standard sequential binary coding, because only one bit switches at a
+                 time.
+
+                 In extreme cases, adding resistors in series to each of the switching outputs in a high-
+                 speed logic device can limit the current flow into each of the outputs and, thus, reduce
+                 ground bounce to an acceptable level.
+
+
+
+5.1.6.4. Quiet Outputs
+
+                 An increase in capacitive loading on quiet outputs acts as a low-pass filter and tends
+                 to dampen ground bounce. Capacitive loading on a quiet output can reduce ground
+                 bounce by as much as 200 to 300 mV. However, an increase in capacitive loading on a
+                 quiet output can increase the noise seen on other quiet outputs when the capacitive-
+                 loaded pin does switch.
+
+
+
+
+AN 958: Board Design Guidelines                                                               Send Feedback
+
+58
+5. General Board Design Considerations/Guidelines
+AN-958 | 2023.06.26
+
+
+
+
+5.1.6.5. Minimizing Lead Inductance
+
+               Using multi-layer PCBs that provide separate VCC and ground planes can also reduce
+               the ground bounce caused by PCB trace inductance. Wirewrapping the VCC and
+               ground supplies usually increases the amount of ground bounce. To reduce unwanted
+               inductance, use low-inductance bypass capacitors between the VCC supply pins and
+               the board ground plane, as close to the package supply pins as possible. It is required
+               to use low ESR decoupling surface mount capacitors of 0.01 μF to 0.1 μF in parallel to
+               reduce ground bounce. Adding a 0.001 μF capacitor in parallel to these capacitors
+               filters high frequency noise (>100 MHz).
+
+               For more information see the Minimizing Ground Bounce & VCC Sag white paper
+               (PDF).
+
+5.1.7. Understanding Transmission Lines
+               The transmission line is a trace and has a distributed mixture of resistance (R),
+               inductance (L), and capacitance (C). There are two types of transmission line layouts:
+
+               Figure 70 on page 59 shows a microstrip layout, which refers to a trace routed as the
+               top or bottom layer of a PCB and has only one voltage-reference plane (i.e., power or
+               GND). Figure 71 on page 59 shows a stripline layout, which uses a trace routed on
+               the inside layer of a PCB and has two voltage-reference planes (i.e., power and/or
+               GND).
+
+Figure 70.     Microstrip Transmission Line Layout
+
+
+
+
+Figure 71.     Stripline Transmission Line Layout
+
+
+
+
+               Notes to Figure 70 on page 59 and Figure 71 on page 59:
+               •     Microstrip
+               •     Stripline
+               •     W = width of trace, T = thickness of trace, and H = height between trace and
+                     reference plane.
+               •     W = width of trace, T = thickness of trace, and H = height between trace and two
+                     reference planes.
+
+
+
+
+     Send Feedback                                                          AN 958: Board Design Guidelines
+
+                                                                                                        59
+                                                            5. General Board Design Considerations/Guidelines
+                                                                                        AN-958 | 2023.06.26
+
+
+
+
+5.1.8. Impedance Calculation
+                 Any circuit trace on the PCB has characteristic impedance associated with it. This
+                 impedance is dependent on the width (W) of the trace, thickness (T) of the trace,
+                 dielectric constant (εr) of the material used, and height (H) between the trace and
+                 reference plane.
+
+5.1.8.1. Microstrip Impedance
+
+                 A circuit trace routed on an outside layer of the PCB with a reference plane (i.e., GND
+                 or VCC) below it constitutes a microstrip layout. Use the following equation to
+                 calculate the impedance of a microstrip trace layout.
+
+                 Using typical values of W = 8 mil, H = 5 mil, T = 1.4 mil, εr and (FR-4) = 4.1 and
+                 solving for microstrip impedance (Z0) yields:
+
+                 The measurement unit in the equation is mils (i.e., 1 mil = .001 inches). Also, copper
+                 (Cu) trace thickness (T) is usually measured in ounces (i.e., 1 oz = 1.4 mil).
+
+                 Figure 72 on page 60 shows microstrip trace impedance versus trace width (W) using
+                 the values in the equation, keeping dielectric height and trace thickness constant.
+
+Figure 72.       Microstrip Trace Impedance with Changing Trace Width
+
+
+
+
+                 Figure 73 on page 61 shows microstrip trace impedance versus height (H), using the
+                 values in the microstrip trace impedance equation, keeping trace width and trace
+                 thickness constant.
+
+
+
+
+AN 958: Board Design Guidelines                                                               Send Feedback
+
+60
+5. General Board Design Considerations/Guidelines
+AN-958 | 2023.06.26
+
+
+
+
+Figure 73.     Microstrip Trace Impedance with Changing Height
+
+
+
+
+               The impedance graphs show that the change in impedance is inversely proportional to
+               trace width and directly proportional to trace height above the ground plane.
+
+               Figure 74 on page 61 plots microstrip trace impedance versus trace thickness (T)
+               using the values in the microstrip trace impedance equation, keeping trace width and
+               dielectric height constant. This figure shows that as trace thickness increases, trace
+               impedance decreases.
+
+Figure 74.     Microstrip Trace Impedance with Changing Trace Thickness
+
+
+
+
+               •     Z0 = [(87/√(εr + 1.41)) ln [(5.98 ×H)/(0.8W + T)] Ω
+               •     Z0 = [(87/√(4.1+1.41)) ln (5.98×(5)/0.8(.8)=1.4)] Ω
+               •     Z0 ~ 50 Ω
+
+
+
+
+     Send Feedback                                                          AN 958: Board Design Guidelines
+
+                                                                                                        61
+                                                            5. General Board Design Considerations/Guidelines
+                                                                                        AN-958 | 2023.06.26
+
+
+
+
+5.1.8.2. Stripline Impedance
+
+                 A circuit trace routed on the inside layer of the PCB with two low-voltage reference
+                 planes (i.e., power and/or GND) constitutes a stripline layout. Use the following
+                 equation to calculate the impedance of a stripline trace layout.
+
+                 Equation 2:
+
+                 Using typical values of W= 9 mil, H= 24 mil, T = 1.4 mil, εr and (FR-4) = 4.1 and
+                 solving for stripline impedance (Zo) yields:
+
+                 Figure 75 on page 62 shows impedance versus trace width using the stripline trace
+                 impedance equation, keeping height and thickness constant for stripline trace.
+
+Figure 75.       Stripline Trace Impedance with Changing Trace Width
+
+
+
+
+                 Figure 76 on page 63 shows stripline trace impedance versus dielectric height (H)
+                 using the stripline trace impedance equation, keeping trace width and trace thickness
+                 constant.
+
+
+
+
+AN 958: Board Design Guidelines                                                               Send Feedback
+
+62
+5. General Board Design Considerations/Guidelines
+AN-958 | 2023.06.26
+
+
+
+
+Figure 76.     Stripline Trace Impedance with Changing Dielectric Height
+
+
+
+
+               As with microstrip layout, the stripline layout impedance also changes inversely
+               proportional to line width and directly proportional to height. However, the rate of
+               change with trace height above GND is much slower in a stripline layout compared to
+               a microstrip layout. A stripline layout has a signal sandwiched by FR-4 material,
+               whereas a microstrip layout has one conductor open to air. This exposure causes a
+               higher, effective dielectric constant stripline layout compared to microstrip layouts.
+               Thus, to achieve the same impedance, the dielectric span must be greater in stripline
+               layouts than in microstrip layouts. Therefore, stripline layout PCBs with controlled
+               impedance lines are thicker than microstrip layout PCBs.
+
+               Figure 77 on page 63 shows stripline trace impedance versus trace thickness using
+               Equation 2, keeping trace width and dielectric height constant. This figure shows that
+               the characteristic impedance decreases as the trace thickness increases.
+
+Figure 77.     Stripline Trace Impedance with Changing Trace Thickness
+
+
+
+
+     Send Feedback                                                          AN 958: Board Design Guidelines
+
+                                                                                                        63
+                                                            5. General Board Design Considerations/Guidelines
+                                                                                        AN-958 | 2023.06.26
+
+
+
+
+                 •   Z0 = [(60/√εr) ln (4H/0.67π(T+0.8w))] Ω
+                 •   Z0 = [(60/√(4.1)) ln (4(24)/0.67π(1.4)=0.8(9))] Ω
+                 •   Z0 ~50 Ω
+
+5.1.8.3. Propagation Delay
+
+                 Propagation delay (tPD) is the time required for a signal to travel from one point to
+                 another. Transmission line propagation delay is a function of the dielectric constant of
+                 the material.
+
+5.1.8.3.1. Microstrip Layout Propagation Delay
+
+                 Use the following equation to calculate the microstrip trace layout propagation delay.
+
+
+                 •   tPD(microstrip) = 85 √(0.475εr +0.67) ps per inch
+
+5.1.8.3.2. Stripline Layout Propagation Delay
+
+                 Use the following equation to calculate the stripline trace layout propagation delay.
+
+                 Figure 78 on page 64 shows the propagation delay versus the dielectric constant for
+                 microstrip and stripline traces. As the εr increases, the propagation delay (tPD) also
+                 increases.
+
+Figure 78.       Propagation Delay vs. Dielectric Constant for Microstrip and Stripline Traces
+
+
+
+
+                 •   tPD(stripline) = 85 √εr ps per inch
+
+
+
+
+AN 958: Board Design Guidelines                                                               Send Feedback
+
+64
+5. General Board Design Considerations/Guidelines
+AN-958 | 2023.06.26
+
+
+
+
+5.1.9. Coplanar Wave Guides
+               There are three types of coplanar wave guides: simple, grounded, and grounded
+               differential.
+
+5.1.9.1. Simple Coplanar Wave Guide
+
+               The simple coplanar wave guide, shown in Figure 79 on page 65, is used primarily in
+               microwave systems. This structure does not require vias, and you can easily mount
+               passive or active devices in the signal path, resulting in a low-loss, high-speed
+               transmission line. The simple coplanar wave guide requires that the substrate
+               thickness (H) be “infinite,” so that the fields remain outside the dielectric. You cannot
+               use this structure on multilayer boards because it cannot have a second layer.
+
+Figure 79.     Simple Coplanar Wave Guide
+
+
+
+
+5.1.9.2. Grounded Coplanar Wave Guide
+
+               The grounded differential coplanar wave guide is the differential version of the
+               grounded coplanar wave guide and is used in high-speed digital systems that require
+               maximum noise immunity. Figure 80 on page 65 shows the topology. The same
+               limitations for S and G apply in this topology as for the grounded coplanar wave guide.
+
+Figure 80.     Grounded Coplanar Wave Guide
+
+
+
+
+     Send Feedback                                                            AN 958: Board Design Guidelines
+
+                                                                                                          65
+                                                           5. General Board Design Considerations/Guidelines
+                                                                                       AN-958 | 2023.06.26
+
+
+
+
+5.1.9.3. Grounded Differential Coplanar Wave Guide
+
+                 The grounded differential coplanar wave guide is the differential version of the
+                 grounded coplanar wave guide and is used in high-speed digital systems that require
+                 maximum noise immunity. Figure 81 on page 66 shows the topology. The same
+                 limitations for S and G apply in this topology as for the grounded coplanar wave guide.
+
+Figure 81.       Grounded Differential Coplanar Wave Guide
+
+
+
+
+5.1.10. Simultaneous Switching Noise Guidelines
+                 Simultaneous switching noise (SSN) is another important factor to consider when
+                 designing a PCB. Although SSN is dominant on the device package, the board layout
+                 can help reduce some of the noise.
+
+                 Every current loop has an inductance value. The current loop in Figure 82 on page 66
+                 has the following inductance:
+
+Figure 82.       Inductance Due to a Current Loop
+
+
+
+
+                 When a driver switches from high to low, a voltage develops in the GND plane, thus:
+
+                 The noise that develops in the GND plane can become a problem for signal-integrity,
+                 especially when there are a lot of drivers switching simultaneously. The noise
+                 generated by SSNs can couple to adjacent structures. Proper layout and decoupling
+                 reduces noise coupling. The high number of simultaneously switching drivers can
+                 cause the power supply to collapse. Thus, the power supply voltage at a certain region
+                 loses some of its strength, depending on where the switching is concentrated.
+
+
+
+
+AN 958: Board Design Guidelines                                                              Send Feedback
+
+66
+5. General Board Design Considerations/Guidelines
+AN-958 | 2023.06.26
+
+
+
+
+               For more information, refer to the following:
+
+
+               •     Lloop = L1 (signal) + L2 (GND) – 2 LM (mutual inductance)
+               •     V = Lloop (di/dt)
+               •     AN 472: Stratix II GX SSN Design Guidelines (PDF)
+               •     AN 508: Cyclone III Simultaneous Switching Noise (SSN) Design Guidelines (PDF)
+
+
+5.2. Design Security Features in FPGAs
+               Please refer to the following documents:
+               •     Design Security in Stratix III Devices (PDF) chapter of the Stratix III Device
+                     Handbook
+               •     AN 341: Using the Design Security Feature in Stratix II and Stratix II GX Devices
+                     (PDF)
+
+
+5.3. EMI
+               Electromagnetic interference (EMI) is directly proportional to the change in current or
+               voltage with respect to time. EMI is also directly proportional to the series inductance
+               of the circuit. Every PCB generates EMI.
+
+               Precautions such as minimizing crosstalk, proper grounding, and proper layer stack-up
+               can significantly reduce EMI problems.
+
+               Place each signal layer in between the ground plane and power plane. Inductance is
+               directly proportional to the distance an electric charge has to cover from the source of
+               an electric charge to ground. As the distance gets shorter, the inductance becomes
+               smaller as well. Therefore, placing ground planes close to a signal source reduces
+               inductance and helps contain EMI. Figure 83 on page 67 shows an example of an
+               eight-layer stack-up. In the stack-up, the stripline signal layers are the quietest
+               because they are centered by power and GND planes. A solid ground plane next to the
+               power plane creates distribution capacitances with low equivalent series inductance
+               (ESL). With IC edge rates becoming faster, these techniques help to contain EMI.
+
+Figure 83.     Example Eight-Layer Stack-Up
+
+
+
+
+               Component selection and proper placement on the board is very important to
+               controlling EMI. The following guidelines can help reduce EMI:
+
+
+
+
+     Send Feedback                                                             AN 958: Board Design Guidelines
+
+                                                                                                           67
+                                                           5. General Board Design Considerations/Guidelines
+                                                                                       AN-958 | 2023.06.26
+
+
+
+
+                 •   Select low-inductance components, such as surface mount capacitors with low ESR
+                     and ESL
+                 •   Provide good return path to minimize lop inductance
+                 •   Use solid ground planes next to power planes
+                 •   Use adjacent ground planes next to each segmented power plane for analog and
+                     digital circuits
+
+
+5.4. Discrete Component Selection for High-Speed Design
+                 Deciding which components to use is an important part of board design. Information
+                 and guidelines for selecting discrete components for the PCB is provided below.
+
+5.4.1. Resistors and Capacitors
+                 Choose the smallest footprint available when selecting discrete components such as
+                 resistors and capacitors. The small footprint means that the pad on the board can be
+                 small and that the parasitic capacitance and inductance will also be small. Intel
+                 typically uses 40 mil × 20 mil (0402) package components for high-speed signals.
+
+                 Inductors typically require bigger footprints because they are often used for power
+                 supply filtering and must be bigger to support high currents without saturating.
+
+                 The three parameters of interest when choosing ferrite beads are:
+                 •   DC resistance
+                 •   AC impedance
+                 •   Current handling capability
+
+
+
+
+5.4.2. Inductors and Ferrite Beads
+                 A good ferrite bead has low DC resistance, high AC impedance, and high current
+                 handling capability. However, as the current handling capability increases, the AC
+                 impedance tends to drop, so there is a tradeoff involved. Figure 84 on page 69 shows
+                 the impedance versus frequency plot of a typical ferrite bead.
+
+
+
+
+AN 958: Board Design Guidelines                                                              Send Feedback
+
+68
+5. General Board Design Considerations/Guidelines
+AN-958 | 2023.06.26
+
+
+
+
+Figure 84.     Typical Impedence Profile of a Ferrite Bead
+
+
+
+
+               In Figure 84 on page 69, the impedance at 2 GHz is more than 100 Ω. The ratio
+               between that impedance and the power supply impedance, which is often lower than 1
+               Ω, is more than 100. As a result, most of the noise is blocked by the ferrite bead and
+               is shunted to ground instead.
+
+               Some ferrite beads that meet performance are:
+               •     The Steward MI0805M221R-00 ferrite beads for transceiver power and ground
+                     planes. The DC resistance for this part is lower than 50 mΩ, and it can handle 2.5
+                     A of current. The impedance is over 200 Ω at 1 GHz.
+               •     Two Steward ferrite beads connected in parallel can provide 5 A of current
+                     capability with 25 mΩ of DC resistance and over 100 Ω of AC impedance. This
+                     performance level is adequate for most applications.
+               •     The Murata BLM31PG500SN1 ferrite bead has 25 mΩ of DC resistance, 3 A of
+                     current, and 75 Ω of AC impedance at 1 GHz.
+
+5.4.3. SMA Connectors
+               SMA connectors are typically used for high-speed signals because of their controlled
+               impedance, mechanical robustness, and good signal integrity. These connectors come
+               in the form of edge launch or vertical launch. For edge launch, the connector is
+               connected to the board edge, the central conductor stays flush with the board, and the
+               board is sandwiched between the ground conductors.
+
+               The vertical launch type is through-hole or surface mount. For the through-hole type,
+               all the legs and the center conductor go through the board. For a surface mount type,
+               the center conductor barely touches the top layer of the board.
+
+               The type of launch technique does not affect the signal quality very much. However, a
+               long center conductor adds inductance to the transmission path and degrades the
+               signal.
+
+
+
+
+     Send Feedback                                                            AN 958: Board Design Guidelines
+
+                                                                                                          69
+                                                           5. General Board Design Considerations/Guidelines
+                                                                                       AN-958 | 2023.06.26
+
+
+
+
+                 With vertical launch surface mount, you can often strip the center conductor down to
+                 below 20 mils. This stripping might be slightly harder to achieve in edge launch
+                 configuration, but the choice is dependent on the capability of the SMA manufacturers.
+                 Intel has stripped the center conductor down to less than 20 mils short in its designs.
+                 Intel uses Lighthorse Technologies and Northrop Grumman for SMA connector
+                 requirements.
+
+
+5.5. S-Parameters
+                 It is difficult to define voltages or currents in transmission lines and to measure them
+                 at microwave frequencies, because direct measurements usually involve the
+                 magnitude (inferred from power) and phase of a wave traveling in a given direction or
+                 the standing wave. Thus, equivalent voltages and currents, and the related impedance
+                 and admittance matrices, become somewhat of an abstraction when dealing with high-
+                 frequency networks.
+
+                 A representation more consistent with direct measurements, and with the ideas of
+                 incident, reflected, and transmitted waves, is provided by the scattering matrix (S-
+                 parameters). S-parameters are often used to quantify the impedance, total losses,
+                 input return loss, insertion loss, and isolation and crosstalk for the different
+                 transmission lines structures. These concepts are most useful at those frequencies
+                 where you must consider distributed rather than lumped parameters.
+
+                 To understand S-parameters, consider the two-port network shown in Figure 85 on
+                 page 70. The network can contain a transmission line or any linear time invariant
+                 component. The incident voltages at ports 1 and 2 are E11 and E12; and the reflected
+                 voltages are ER1 and ER2. Z0 is the characteristic impedance of the transmission line.
+                 ZS and ZL are the source and the load impedances.
+
+Figure 85.       S-Parameters
+
+
+
+
+                 Taking the incident and reflected voltage waves on each side of the two port network
+                 and dividing them by the square root of the characteristic impedance, Z0, results in
+                 new variables (a1, a2, b1, and b2), which are the normalized voltage wave amplitudes
+                 at each port.
+
+                 The square of the magnitude of a1 (| a1|2) represents the incident power in port 1,
+                 and (| b1|2) represents the reflected power from this port. The same relations apply to
+                 port 2.
+
+
+
+
+AN 958: Board Design Guidelines                                                              Send Feedback
+
+70
+5. General Board Design Considerations/Guidelines
+AN-958 | 2023.06.26
+
+
+
+
+               The resulting parameters relate the scattered wave (reflected wave) from the network
+               to the incidents waves. These parameters are called S-parameters and are defined by:
+
+               Where, S11 is the input reflection coefficient, S21 is the forward transmission through
+               the network, S12 is the reverse transmission through the network, and S22 is the
+               output reflection coefficient.
+
+               The measurement setup for S-parameters is shown in Figure 86 on page 71 and
+               Figure 87 on page 71. Apply the following conditions for these measurements:
+
+Figure 86.     Measurement Setup for S11 and S21
+
+
+
+
+Figure 87.     Measurement Setup for S22 and S12
+
+
+
+
+               For example, to measure S11, ensure that a2 = 0. Do this by making sure that there is
+               no reflection from the load (in other words, set ZL = Z0).
+
+               S-parameters are typically measured using network analyzers.
+               •     a1=EI1/√Z0 a2=EI2/√Z0
+               •     b1=ER1/√Z0 b2=EI2/√Z0
+               •     b1=S11a1+S12a2
+               •     b2=S21a1+S22a2
+               •     S11=(a2/b1) | a2=0
+               •     S21=(b2/a1) | a2=0
+               •     S12=(b1/a2) | a1=0
+               •     S22=(b2/a2) | a1=0
+
+
+
+
+     Send Feedback                                                           AN 958: Board Design Guidelines
+
+                                                                                                         71
+                                                             5. General Board Design Considerations/Guidelines
+                                                                                         AN-958 | 2023.06.26
+
+
+
+
+5.6. Smith Chart
+                 The Smith Chart is a graphical representation of the impedances in a complex plane.
+                 You can use this to analyze transmission line impedance matching networks and
+                 capacitive or inductive behavior of loads. Figure 88 on page 72 shows a typical Smith
+                 Chart. If the impedance is inductive, it shows up in the top half of the circle; if it is
+                 capacitive, it shows up in the bottom half. The far-right point in the middle represents
+                 an open circuit; the far left represents a short circuit. The middle point (label 1.0)
+                 represents a perfect load match to the characteristic impedance of the line.
+
+Figure 88.       Smith Chart
+
+
+
+
+5.7. AC Versus DC Coupling
+                 AC coupling refers to the use of a series capacitor on a signal to block the DC signals
+                 from going through. DC coupling refers to the case where this capacitor is not present
+                 and the signal passes through without any interruption. In AC coupling, a DC restore
+                 circuit is generally required after the capacitor to ensure that the common mode
+                 voltage requirements of the receiver are met. In Intel devices with transceivers, the
+                 DC restore circuitry is built into the device. In that case, external DC restore circuitry
+                 is not necessary. DC coupling works only in cases where the output common mode
+                 voltage of the transmitter is in the required range of the input common mode voltage
+                 of the receiver.
+
+
+
+
+AN 958: Board Design Guidelines                                                                Send Feedback
+
+72
+5. General Board Design Considerations/Guidelines
+AN-958 | 2023.06.26
+
+
+
+
+               The advantage of AC coupling is that it allows chips with different common mode
+               voltages to interface with each other. The disadvantage is that it requires an extra
+               capacitor, which can add some jitter or other degradation if not properly selected.
+
+               If you are certain that the common mode voltage requirements of the receiver are a
+               subset of the common mode voltage output of the transmitter, use DC coupling. If you
+               are in a borderline case, or if the requirements are not satisfied, then use AC coupling.
+
+               In choosing the value of the coupling capacitor, consider what happens if the capacitor
+               is too big or too small. If the capacitor is too big, it can significantly slow the signal
+               down and can also respond poorly to fast changing input signals because of the long
+               charge and discharge times. If the capacitor is too small, it presents a fair amount of
+               impedance and can increase attenuation and change the characteristic impedance of
+               the path. A good balance between these two conflicting requirements is a 0.01 μF
+               capacitor, which Intel uses for its 3.125 Gbps transceiver designs.
+
+               When selecting components, use the smallest size possible, because smaller size
+               components have smaller size pads, which reduce the discontinuity. Intel has used
+               0402 components (40 mils x 20 mils) in its designs.
+
+               You can design the DC restore circuitry in a variety of ways. Intel typically uses a
+               simple resistive voltage divider (refer to Figure 89 on page 73). Be sure to use
+               precision resistors (0.1% or 1%) for differential signals, so that the restored DC levels
+               on the positive and negative signals are very closely matched. In Figure 89 on page
+               73, the DC restore circuitry restores the DC level to 3.3 * 78.7/(140 + 78.7) =
+               1.1875 volts.
+
+Figure 89.     AC Coupling
+
+
+
+
+     Send Feedback                                                            AN 958: Board Design Guidelines
+
+                                                                                                          73
+                                                           5. General Board Design Considerations/Guidelines
+                                                                                       AN-958 | 2023.06.26
+
+
+
+
+                 Transceiver devices have DC biasing on the high-speed transceivers inputs and
+                 reference clock inputs designed for the 1.5-V PCML standard, so AC coupling is not
+                 required. This saves components and board space. If you are using other I/O
+                 standards such as LVPECL or LVDS, then you need to AC-couple them, because their
+                 common mode voltage is different from the 1.5-V PCML common mode voltage.
+                 External biasing networks are not needed, because the common mode is generated
+                 internally in the device.
+
+
+5.8. Additional Resources
+                 •   Stratix III Signal Integrity white paper (PDN section) (PDF)
+                 •   Signal and Power Integrity Design Techniques for Board Layout
+                 •   AN472: Stratix II GX SNN Design Guideline
+
+
+
+
+AN 958: Board Design Guidelines                                                              Send Feedback
+
+74
+ AN-958 | 2023.06.26
+
+       Send Feedback
+
+
+
+
+6. Memory Interfacing Guidelines
+
+6.1. DDR3 Board Design Guidelines
+                •    AN 436: Design Guidelines for Implementing DDR3 SDRAM Interfaces in Stratix III
+                     Devices (PDF)
+
+
+6.2. DDR2 Board Design Guidelines
+                •    AN 328: Interfacing DDR2 SDRAM with Stratix II, Stratix II GX, and Arria GX
+                     Devices (PDF)
+                •    DDR2 and DDR3 SDRAM Board Design Guidelines, External Memory Interface
+                     Handbook Volume 2: Design Guidelines: For UniPHY-based Device Families
+                •    AN 361: Interfacing DDR & DDR2 SDRAM with Cyclone II Devices (PDF)
+
+
+6.3. DDR Board Design Guidelines
+                •    AN 361: Interfacing DDR & DDR2 SDRAM with Cyclone II Devices (PDF)
+                •    AN 348: Interfacing DDR SDRAM with Cyclone Devices (PDF)
+                •    AN 342: Interfacing DDR SDRAM with Stratix and Stratix GX Devices (PDF)
+                •    AN 336: Using External Series and Parallel Termination with Stratix and Stratix GX
+                     Devices (PDF)
+                •    AN 327: Interfacing DDR SDRAM with Stratix II Devices (PDF)
+
+
+6.4. QDR II and QDR II+
+                •    AN 326: Interfacing QDRII+ & QDRII with Stratix II Stratix II GX, Stratix, &
+                     Stratix GX Devices (PDF)
+
+
+6.5. RLDRAM II
+                •    AN 325: Interfacing RLDRAM II with Stratix II, Stratix, & Stratix GX Devices (PDF)
+
+
+6.6. Additional Resources
+                •    AN449: External Memory Interface Design Guideline for Stratix II, Stratix II GX
+                     and Arria GX Devices
+
+
+
+
+ © Altera Corporation. Altera, the Altera logo, the ‘a’ logo, and other Altera marks are trademarks of Altera Corporation. Altera
+
+ reserves the right to make changes to any products and services at any time without notice. Altera assumes no responsibility or
+ liability arising out of the application or use of any information, product, or service described herein except as expressly agreed
+ to in writing by Altera. Altera customers are advised to obtain the latest version of device specifications before relying on any
+ published information and before placing orders for products or services.
+ *Other names and brands may be claimed as the property of others.
+ AN-958 | 2023.06.26
+
+       Send Feedback
+
+
+
+
+7. Power Dissipation and Thermal Management
+
+7.1. Power Management Guidelines
+                •    Power Management Resource Center
+                •    AN 448: Stratix III Power Management Design Guide (PDF)
+
+
+7.2. Heat Sinking and Thermal Managment for FPGAs
+                •    Thermal Resistance
+                •    AN 358: Thermal Management for FPGAs (PDF)
+                •    AN 185: Thermal Management Using Heat Sinks (PDF)
+
+
+7.3. Additional Resources
+                •    High-Speed Board Design Advisor: Thermal Management technical brief (PDF)
+                     Stratix III Programmable Power white paper (PDF)
+
+
+
+
+ © Altera Corporation. Altera, the Altera logo, the ‘a’ logo, and other Altera marks are trademarks of Altera Corporation. Altera
+
+ reserves the right to make changes to any products and services at any time without notice. Altera assumes no responsibility or
+ liability arising out of the application or use of any information, product, or service described herein except as expressly agreed
+ to in writing by Altera. Altera customers are advised to obtain the latest version of device specifications before relying on any
+ published information and before placing orders for products or services.
+ *Other names and brands may be claimed as the property of others.
+ AN-958 | 2023.06.26
+
+       Send Feedback
+
+
+
+
+8. Tools, Models, and Libraries
+
+8.1. Design Tools
+                •    Early Power Estimator
+                •    PDN Design Tool and User Guide
+                •    Stratix V Early SSN Estimator and user guide (PDF)
+                •    Stratix II GX Early SSN Estimator and user guide (PDF)
+                •    Stratix III Early SSN Estimator and user guide (PDF)
+                •    Arria V Early SSN Estimator and user guide (PDF)
+
+
+8.2. I/O Buffer Models
+                •    IBIS
+                •    HSPICE
+
+
+8.3. Device Libraries
+                •    Intel FPGA Schematic Symbols—provides orcad symbols by device and package.
+
+
+8.4. Net Length Reports
+                •    Intel Agilex 7 Net Length Information
+                •    Intel Stratix 10 Net Length Information
+                •    Intel MAX 10 Net Length Information
+                •    Stratix V Net Length Information
+                •    Stratix IV GT Net Length Information
+                •    Stratix IV GX Net Length Information
+                •    Stratix IV E Net Length Information
+                •    Stratix III Net Length Information
+                •    Stratix II GX Net Length Information
+                •    Stratix II Net Length Information
+                •    HardCopy® II Net Length Information
+                •    Intel Cyclone 10 GX Net Length Information
+                •    Intel Cyclone 10 LP Net Length Information
+                •    Cyclone V Net Length Information
+
+
+
+
+ © Altera Corporation. Altera, the Altera logo, the ‘a’ logo, and other Altera marks are trademarks of Altera Corporation. Altera
+
+ reserves the right to make changes to any products and services at any time without notice. Altera assumes no responsibility or
+ liability arising out of the application or use of any information, product, or service described herein except as expressly agreed
+ to in writing by Altera. Altera customers are advised to obtain the latest version of device specifications before relying on any
+ published information and before placing orders for products or services.
+ *Other names and brands may be claimed as the property of others.
+                                                             8. Tools, Models, and Libraries
+                                                                      AN-958 | 2023.06.26
+
+
+
+
+                 •   Cyclone V SoC Net Length Information
+                 •   Cyclone III Net Length Information
+                 •   Cyclone II Net Length Information
+                 •   Intel Arria 10 Net Length Information
+                 •   Arria V GX/GT Net Length Information
+                 •   Arria V GZ Net Length Information
+                 •   Arria V SoC Net Length Information
+                 •   Arria II GX Net Length Information
+                 •   Arria GX Net Length Information
+
+
+8.5. Thermal Models
+                 •   Stratix IV GT Flowtherm Models
+                 •   Stratix IV GX Flowtherm Models
+                 •   Stratix IV E Flowtherm Models
+                 •   Stratix III Flotherm Models
+                 •   Stratix II Flotherm Models
+                 •   Cyclone III Flotherm Models
+
+
+
+
+AN 958: Board Design Guidelines                                             Send Feedback
+
+78
+ AN-958 | 2023.06.26
+
+       Send Feedback
+
+
+
+
+9. Reference Designs and Development Kits
+
+9.1. Development Kits
+                •    Intel FPGA Development Kits
+                •    Intel FPGA Boards
+                •    Intel FPGA Device and Product Support Collections—provides links to FPGA devices
+                     and product collections including mature and legacy devices
+
+
+
+
+ © Altera Corporation. Altera, the Altera logo, the ‘a’ logo, and other Altera marks are trademarks of Altera Corporation. Altera
+
+ reserves the right to make changes to any products and services at any time without notice. Altera assumes no responsibility or
+ liability arising out of the application or use of any information, product, or service described herein except as expressly agreed
+ to in writing by Altera. Altera customers are advised to obtain the latest version of device specifications before relying on any
+ published information and before placing orders for products or services.
+ *Other names and brands may be claimed as the property of others.
+AN-958 | 2023.06.26
+
+       Send Feedback
+
+
+
+
+10. Document Revision History for AN 958: Board Design
+Guidelines
+      Document                                                         Changes
+       Version
+
+      2023.06.26       •   Updated links.
+                       •   Removed links to obsolete resources.
+                       •   Removed the Development Kits by Technology section because all the links are no longer available.
+                       •   Updated product family name to "Intel Agilex 7".
+
+      2022.01.28       Updated for latest Intel branding standards.
+
+      2021.09.27       Initial release.
+
+
+
+
+ © Altera Corporation. Altera, the Altera logo, the ‘a’ logo, and other Altera marks are trademarks of Altera Corporation. Altera
+
+ reserves the right to make changes to any products and services at any time without notice. Altera assumes no responsibility or
+ liability arising out of the application or use of any information, product, or service described herein except as expressly agreed
+ to in writing by Altera. Altera customers are advised to obtain the latest version of device specifications before relying on any
+ published information and before placing orders for products or services.
+ *Other names and brands may be claimed as the property of others.
+

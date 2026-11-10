@@ -1,0 +1,565 @@
+                 1                                     2                                3                                      4                                               5                                                  6                                     7                                      8
+
+    SOLIDWORKS GENERATED DRAWING, DO NOT CHANGE BY HAND                                                                                                                                                                                                                          REV.      ECN. NO.            APPD.
+
+
+                                                  0.50                                                                                                  NOTES:                                                            A    BC-13-0069770                                                                   C.S Li
+                     0.15 ±0.02                                           CL OF CONNECTOR                     1.00 ±0.05                                1. ELECTRICAL CHARACTERISTICS:                                    B   BC-14-0031202                                                                    C.S Li
+                        TYP.                      TYP.                                                                                                  1.1. CONTACT CURRENT RATING: 0.5 AMPERE MAX. PER PIN.             C    BC-14-0038912                                                                   C.S Li
+                                                                                                                                                        1.2. VOLTAGE RATING: 25V AC.                                      D   BC-14-0054778                                                                    C.S Li
+                                                                                                                                                        1.3. INSULATION RESISTANCE: 100 MEGAOHMS MIN. AT 500V DC.
+A                                                                                                                                                                                                                                                                                                                          A
+                                                                                                                                                        1.4. DIELECTRIC WITHSTANDING VOLTAGE: 250V AC RMS AT 60Hz,FOR 1 MINUTE.
+      4.77
+      3.62
+
+
+                                                                                                                                                        1.5. CONTACT RESISTANCE: 60 MILLIOHMS MAX. PER PIN INITIAL
+
+
+
+
+                                                                                                                1.45 ±0.05
+                                                                                                                                                              10 MILLIOHMS PER PIN AFTER FULL ENVIRONMENTAL TESTING.
+
+
+
+
+                                                                                                  3.0(2X)
+                                  0.9                                                                                                                   2. MECHANICAL CHARACTERISTICS:DURABILITY: 60 MATING CYCLES.
+                                     0   ±0                                                                                                             3. OPERATION TEMPERATURE: -55 C TO +85 C.
+                                           .05
+                                                                                                                                                        4. RECOMMENDED PROCESS CONDITION:SMT,PEAK TEMPERATURE:260 C 10~20S.
+                                     3                     1          2                                                                                 5. PLEASE CONTACT FOXCONN SALES REPRESENTATIVE TO VERIFY PRODUCT DETAILS
+                                                                                                                                                          & AVAILABILITY.
+                                                                                            1.9(2X)                                                                                               A          S      0 A8          2          * - H 2 R B - 7            H
+                                    4
+                                                                                                                                                                                                                                                                                H=HALOGEN FREE&LEAD FREE
+                                                                                                                                                                      MEMORY MODULE
+                                                                                                                                                                      SOCKET
+B                                                              68.80 ±0.05                                                                                            HORIZONTAL TYPE                                                                                           7=TAPE REEL                                B
+                                                                                                                                                                             SINGLE ROW
+                                                     3.50                                                                                                                                                                                                                       B=NORMAL TYPE,BLACK COLOR
+                                                                                                                                                                               NO. OF POS.
+                                                                                                                                                                               A8 = 260 POS.                                                                                    R=REVERSE
+                                                                                                                                                                                          SMT                                                                                   2=5.2mm HEIGHT
+                                                                            0.00                                                                                                                                                                                                 H=DDR SODIMM
+                                                                   0.94 - 0.05                                                                                   CONTACT AREA PLATING
+                                                                                                                                                                 1=GOLD FLASH
+                                                                                                                                                                 Y=5u"GOLD PLATING
+                                                                                                                                                                 6=10u"GOLD PLATING
+                                                  78.0 MAX.(LATCH OPEN)                                                                                          7=15u"GOLD PLATING
+                                                                                                                                                                 3=30u" GOLD PLATING
+C                                                                 72.1                                                       COMPONENT KEEP                                                                                                                                                                                C
+                                                                                                                             OUT ZONE
+                                                                  66.7                                                                                                                                                                         (BETWEEN RAM TOP
+                                                                                                                                                                                                                                               SURFACE AND SMT SURFACE)
+                                                                  68.8                                                                                                                                                     6.0MAX.
+                                                                                                                                                                                                                              E
+                                                                65.7 ±0.5                                                                                                                                                  AT
+                                                                                                                                                                                                                    RO
+                                                                                                                                                                                                                       T
+                                                                                                                                                                                                                                      3 0°                1.4MIN.
+                                                                                                                                                                          CL OF PAD                            EN                                        (BETWEEN RAM BOTTOM
+                                                                                                                                                                                                             TH
+
+
+
+
+                                                                                                                                        26.0MIN. (2X)
+                                                  1.125                                                                                                                                                 RT                                               SURFACE AND SMT SURFACE)
+                                                                                                                                                                                                      SE
+                                  28.50                                            35.50                                                                                                         IN
+
+
+
+
+                                                                                                                                                          25.7
+
+
+
+
+                                                                                                                                                                            12.0
+                                                                      1.375                       PIN#1
+                      PIN#259             PIN#145
+                                                                     PIN#143                  A
+
+
+                                                                                                                                    12.7(2X)
+
+
+
+
+                                                                                                                                                                                                                                                                                                                   0.80
+D                                                                                                                                                                                                                                                                                                                          D
+                                                                                                                             7.25                                                               RAM MODULE
+                                                                                                               5.40
+
+                                                     DATE CODE
+                     DDR4 REV
+                                                                                                                                                                                   +0.05
+                      PIN#260             PIN#146                    PIN#144                  A                                                                            0.35 - 0.10
+                                                                      1.125                    PIN#2                                                                                                                                                                              0.7         0.7
+
+
+
+
+                                                                                                                                                                                                                                                                                                                     3.3
+                                  28.50                                            35.50                                                                                   5.2
+                                                                                                                                                                                                                                                                                  4.2         4.2
+                                             1.375                                                                                                                                                                     0.10
+                                                                                                                                                                                                         260X CONTACT PLUS
+                                                 70.00 ±0.15(SLOT WIDTH)                                                                                                                                 2X SOLDER PADS
+                                                                                                                                                                                                                                                                                        SECTION A-A
+                                                              71.6
+                                                              73.3                                                                                                                                      UNITS mm                      NAME(INTENDED USE)                                            R
+                                                                                                                                                          X. ±     0.30            X. ±
+E                                                                                                                                                                                                                                                                                                                          E
+                                                                                                                                                                                                                                              DDR4 SO DIMM CONN.            FOXCONN INTERCONNECT TECHNOLOGY LIMITED.
+                                                                                                                                                          .X ±     0.25            .X ±                 MAT'L
+     4   METAL SPRING     2       STAINLESS STEEL              ULTRASONIC CLEANING                                                                                                                                                    PART NO.(INTENDED USE)            CLASS:
+                                                                                                                                                                                                                                                                          CONFIDENTIAL         SECRECT        GENERAL
+     3    METAL PAD       2       STAINLESS STEEL              10u" NICKEL UNDER PLATING                                                                  .XX ± 0.15               .XX ±
+                                                               100u" MATTE TIN PLATING OVER SOLDER PAD AREA                                                                                                                                   AS0A82*-H2RB-7H               TITLE:    CUSTOMER DRAWING
+                                                                                                                                                                                                        FINISH                                                                       260PIN SODDR4 5.2 REV.
+                                                               50u" NICKEL UNDER PLATING                                                                  .XXX ±                   .XXX ±
+     2     CONTACT       260       COPPER ALLOY                GOLD FLASH OR 5u" OR 10u" OR 15u"OR 30u" GOLD PLATING AT                                                                                                               APPD:     C.S Li                      DWG NO.:
+                                                                                                                                                          THESE DRAWINGS AND SPECIFICATIONS ARE                                                                                            317-0000-2253
+                                                               CONTACT AREA;GOLD FLASH PLATING AT TAIL                                                    THE PROPERTY OF FOXCONN INTERCONNECT
+                                                                                                                                                          TECHNOLOGY LIMITED. AND SHALL NOT BE     Q'TY                               CHKD:
+                                                                                                                                                          REPRODUCED.COPIED OR USED IN ANY MANNER                                               Alex Wang
+     1     HOUSING        1       THERMOPLASTIC                UL94V-0, HALOGEN FREE, BLACK COLOR                                                         WITHOUT THE PRIOR WRITTEN CONSENT OF                                                                                              SCALE SHEET             REV.
+                                                                                                                                                          FOXCONN INTERCONNECT TECHNOLOGY LIMITED.
+    ITEM DESCRIPTION Q'TY            MATERIAL                                         TREATMENT                                                                                                                                       DRAW: Gary Xu                                           N/A       1/5           D
+                                                                                                                                                                                                                                                            2014/9/24
+
+                 1                                     2                                3                                      4                                               5                                                  6                                     7                                      8
+                                      1                            2                                 3                                       4                                      5                                                  6                                             7                                          8
+
+                                                                                                                                                                                                                                                                                              REV.      ECN. NO.                 APPD.
+
+
+                                                                                                                                                           3.70 MAX.
+                                                                       69.60 ±0.15                                                                                                                                                                                                 4.00
+                                                                                                                                                                                                                                                                                                  RULL R
+A
+                                                                       0.10 M     C B A                                                                                                                                                                                                                                                    A
+
+
+
+
+                                                                                                                                                                                                                                                                                                             4.00 ±0.10
+                                                                                                                                                                                                                                              4.20 MIN.
+                                                                                                                                                                                                                                               4.0 MIN.
+                                                                                                                                                                   5.10 MIN. (2X)
+
+
+
+
+                                                                                                                                                                                               4.00 MIN. (2X)
+                                                    COMPONENT AREA
+    30.00 ±0.15
+
+
+
+
+                                                        FRONT                                                              3.00 MIN.(4X)
+                               6.00
+
+
+
+
+                                                                                                                                                                                                                                                                                           C OR R 0.25 MAX
+                                                                                                                                                                                                                                                                                            2X OPTIONAL
+B                                                                                                                                                                                                                                                                                                                                          B
+                                                                                                                                                                                                                                                                                          1.00 ±0.05
+                                                                                                                                                                                          C 0.25X0.05 MAX                                                    1.375
+                                                                                                                                                                                           2X OPTIONAL
+                                                                                                                                             1.80(2X)                                     0.80 MAX.（2X）                                                                                     A
+                                                                                                                                                               1.20 ±0.10
+                                          PIN #1                       PIN #143
+                                B                                                           PIN #145          PIN #259                                           0.15 M                                   C                                                                  DETAIL A
+                                           1.425                                                             DETAIL B
+                                                                        3.50              DETAIL A                                  1.675
+                                                                          2.50
+                                                           35.50                                     28.50
+                                                                                                                                                                                                                   0.35 ±0.03
+                                                                                  65.60
+C                                                                                                                                                                                                               0.15 C B A                                0.50                                                                             C
+                                                                                                                                                                                                                0.05 C
+
+
+
+
+                                                                                                                                                                                                                                                           0.30 MAX.
+                                                           35.50                                         28.50
+
+
+
+
+                                                                                                                                                                                                                   2.55
+                                                                         2.50
+                                                                        1.125
+    1.675                                                                                                                   1.425
+                                           PIN #2                      PIN #144           PIN #146
+D                                                                                                                                                                                                                                                         EDGE OF CONTACT PADS                                                             D
+                                                                                                                           PIN #260                                                                                                  DETAIL B             SHALL BE FREE OF BURRS
+             18.00 ±0.10(2X)
+
+
+
+
+                                                                                                                            4.00 ±0.10(2X)
+
+
+
+
+                                                     COMPONENT AREA
+    R0.65
+                                                          BACK                                                                                          X. ±     0.25                   X. ±
+                                                                                                                                                                                                                          UNITS mm         NAME(INTENDED USE)                                                      R
+
+E                                                                                                                                                                                                                                                                                                                                          E
+                                                                                                                                                                                                                                                   DDR4 SO DIMM CONN.                    FOXCONN INTERCONNECT TECHNOLOGY LIMITED.
+                                                                                                                                                        .X ±     0.10                   .X ±                              MAT'L
+                                                                                                                                                                                                                                           PART NO.(INTENDED USE)                    CLASS:
+                                                                                                                         1.75(2X)                                                                                                                                                      CONFIDENTIAL         SECRECT             GENERAL
+                                                                                                                                                        .XX ± 0.05                      .XX ±
+                                                                                                                                                                                                                                                   AS0A82*-H2RB-7H                       TITLE:    CUSTOMER DRAWING
+                                          2.00 MIN. (4X)                                                                                                                                                                  FINISH                                                                  260PIN SODDR4 5.2 REV.
+                                                                                                                                                        .XXX ±                          .XXX ±
+                                                                                                                                                                                                                                           APPD:     C.S Li                              DWG NO.:
+                                                                                                                                                        THESE DRAWINGS AND SPECIFICATIONS ARE                                                                                                           317-0000-2253
+                                                       DDRIV SO DIMM MODULE BOARD LAYOUT                                                                THE PROPERTY OF FOXCONN INTERCONNECT
+                                                                                                                                                        TECHNOLOGY LIMITED. AND SHALL NOT BE
+                                                                                                                                                        REPRODUCED.COPIED OR USED IN ANY MANNER
+                                                                                                                                                                                                 Q'TY                                      CHKD:     Alex Wang
+                                                                                                                                                        WITHOUT THE PRIOR WRITTEN CONSENT OF                                                                                                             SCALE SHEET                REV.
+                                                                                                                                                        FOXCONN INTERCONNECT TECHNOLOGY LIMITED.
+                                                                                                                                                                                                                                           DRAW: Gary Xu                                                   N/A            2/5        D
+                                                                                                                                                                                                                                                                       2014/9/24
+
+                                      1                            2                                 3                                       4                                      5                                                  6                                             7                                          8
+           1                    2                    3      4                                  5                                                            6                                      7                                                     8
+
+                                                                                                                                                                                                            REV.        ECN. NO.                         APPD.
+
+
+
+
+A                                                                                                                                                                                                                                                                             A
+
+                                      AS0A82*-H2RB-7H
+
+
+
+
+                                                                                                                                                                    46.7
+               DDR4 REV
+
+
+
+
+                                                                                                          34.7
+
+
+
+
+                                                                                                                                                     12.0
+B                                                                                                                                                                                                                                                                             B
+
+               DDR4 REV
+
+
+
+
+                                                                                                                                                                    67.60
+
+
+
+
+                                                                                                                                                                                                                                                             0.05 U - V
+                                                                                                                                                                                                                                        4.60 ±0.10(2X)
+                                                           CONNECTOR OUTLINE                                         28.50                                                                  35.50
+C                                                                                                                                                                                                                                                                             C
+
+
+
+
+                                                                                                                               0.05 U - V
+                                                                               0.60                                                              2.50                                              3.50 ±0.10(2X)
+
+
+
+
+                                                                                                                  1.75 ±0.03
+                                                                                                                                                                                                      0.05 U - V
+                                                                                                                                                                                     0.30 ±0.03
+                                                                                                                                                                                        0.05 U - V
+                                                                                                                                                                                                                1.025
+
+
+
+
+                                                                           12.00
+
+
+
+
+                                                                                                                                                                                                                                                                  12.00
+                                                                                     4.10
+                                                                                                                                                                                                                                    0.60
+                                                                                                   PIN #259                                 PIN #145                         PIN #143                      PIN #1
+                                                                                                   PIN #260                                 PIN #146                         PIN #144                      PIN #2
+
+
+
+
+                                                                                   4.10
+D                                                                                                                                                                                                                                                                             D
+
+                                                                                                                                                                                                                                    1.60 0.05
+    12.0
+
+
+
+
+                                                                                                                                                                                    0.50 (PITCH)                1.275               (HOLE)
+                                                                                                                                              2.50
+                                                                          1.10 0.05
+                                                                2.0
+
+                                                                                                                   28.50                                                                    35.50
+                                                                              0.10 V
+                                                                                                                                                                                                                                                                          V
+                                                                                                                                                                    68.80
+                                                                      U
+                                                                                                                 P.C.B. LAYOUT(RECOMMEND THICKNESS=1.40MM)
+
+                                                                                                                               UNITS mm                         NAME(INTENDED USE)                                              R
+                                                                            X. ±       0.25        X. ±
+E                                                                                                                                                                                                                                                                             E
+                                                                                                                                                                        DDR4 SO DIMM CONN.             FOXCONN INTERCONNECT TECHNOLOGY LIMITED.
+                                                                            .X ±       0.10        .X ±                        MAT'L
+                      P.C.B. LAYOUT(STACKED ORIENTATION)                                                                                                        PART NO.(INTENDED USE)              CLASS:
+                                                                                                                                                                                                      CONFIDENTIAL         SECRECT                 GENERAL
+                                                                            .XX ± 0.05             .XX ±
+                                                                                                                                                                        AS0A82*-H2RB-7H                TITLE:     CUSTOMER DRAWING
+                                                                                                                               FINISH                                                                            260PIN SODDR4 5.2 REV.
+                                                                            .XXX ±                 .XXX ±
+                                                                                                                                                                APPD:      C.S Li                      DWG NO.:
+                                                                           THESE DRAWINGS AND SPECIFICATIONS ARE                                                                                                        317-0000-2253
+                                                                           THE PROPERTY OF FOXCONN INTERCONNECT
+                                                                           TECHNOLOGY LIMITED. AND SHALL NOT BE     Q'TY                                        CHKD:
+                                                                           REPRODUCED.COPIED OR USED IN ANY MANNER                                                         Alex Wang
+                                                                           WITHOUT THE PRIOR WRITTEN CONSENT OF                                                                                                          SCALE SHEET                           REV.
+                                                                           FOXCONN INTERCONNECT TECHNOLOGY LIMITED.
+                                                                                                                                                                DRAW: Gary Xu                                             N/A       3/5                             D
+                                                                                                                                                                                       2014/9/24
+
+           1                    2                    3      4                                  5                                                            6                                      7                                                     8
+           1                2                         3              4                          5                                 6                                     7                                      8
+
+                                                                                                                                                                                 REV.        ECN. NO.           APPD.
+
+
+
+
+A                                                                                                                                                                                                                         A
+                                                                                                                   AS0A82*-H2RB-7H
+                                      AS0A82*-H2RB-7H
+
+
+
+
+               DDR4 REV                                                  DDR4 REV
+
+
+B                                                                                                                                                                                                                         B
+
+
+
+               DDR4 REV                                                  DDR4 REV
+
+
+
+
+C                                                                                                                                                                                                                         C
+
+
+
+
+               PIN #259    PIN #145        PIN #143       PIN #1         PIN #259           PIN #145                  PIN #143                           PIN #1
+                PIN #260   PIN #146        PIN #144       PIN #2          PIN #260           PIN #146                  PIN #144                          PIN #2
+
+
+
+
+                                                                                                                                                                                12.0
+    12.0
+
+
+
+
+D                                                                                                                                                                                                                         D
+               PIN #259    PIN #145        PIN #143        PIN #1        PIN #259            PIN #145                 PIN #143                            PIN #1
+               PIN #260    PIN #146        PIN #144        PIN #2        PIN #260            PIN #146                 PIN #144                             PIN #2
+
+                                                                         3.35
+                                                              3.35
+
+
+
+
+                                                                                                                     UNITS mm         NAME(INTENDED USE)                                             R
+                                                                            X. ±     0.25           X. ±
+E                                                                                                                                                                                                                         E
+                                                                                                                                              DDR4 SO DIMM CONN.            FOXCONN INTERCONNECT TECHNOLOGY LIMITED.
+                                                                            .X ±     0.10           .X ±             MAT'L
+                                                                                                                                      PART NO.(INTENDED USE)            CLASS:
+                                                                                                                                                                          CONFIDENTIAL          SECRECT        GENERAL
+                                                                            .XX ± 0.05              .XX ±
+                                                                                                                                              AS0A82*-H2RB-7H               TITLE:      CUSTOMER DRAWING
+                                                                                                                     FINISH                                                            260PIN SODDR4 5.2 REV.
+                                                                            .XXX ±                  .XXX ±
+                                                                                                                                      APPD:     C.S Li                      DWG NO.:
+                                                                            THESE DRAWINGS AND SPECIFICATIONS ARE                                                                           317-0000-2253
+                                                                            THE PROPERTY OF FOXCONN INTERCONNECT
+                                                                            TECHNOLOGY LIMITED. AND SHALL NOT BE     Q'TY             CHKD:
+                                                                            REPRODUCED.COPIED OR USED IN ANY MANNER                             Alex Wang
+                                                                            WITHOUT THE PRIOR WRITTEN CONSENT OF                                                                             SCALE SHEET           REV.
+                                                                            FOXCONN INTERCONNECT TECHNOLOGY LIMITED.
+                                                                                                                                      DRAW: Gary Xu                                            N/A       4/5        D
+                                                                                                                                                            2014/9/24
+
+           1                2                         3              4                          5                                 6                                     7                                      8
+                                 1                          2                                                                  3                                                       4                               5                                             6                                          7                                     8
+
+                                                                                                                                                                                                                                                                                                                         REV.      ECN. NO.            APPD.
+                                                                                                                                                                                 ROUND SPROCKET HOLES                 COVER TAPE
+                                                                                                                                                .1
+                                                                                                                                              +0 . 0                                  CARRIER TAPE
+                                                      2.0 ±0.2                                                                                  0
+                                     4.0 ±0.1                                            32.0 ±0.1                               5
+                                                                                                                              1.5
+                                                                                                                                                                                                                  2                                      SKEW 0.10MAX.
+                                                                                                          A
+                    42.2 ±0.30
+A                   1.75 ±0.10                                                                                                                                                                                                                                                    .0
+                                                                                                                                                                                                                                                                                     5
+                                                                                                                                                                                                                                                                                                   EPE 1
+                                                                                                                                                                                                                                                                                                                                                                 A
+
+
+
+
+                                                                DDR4 REV
+
+
+
+
+                                                                                         DDR4 REV
+
+
+
+
+                                                                                                                                   DDR4 REV
+
+
+
+
+                                                                                                                                                                      DDR4 REV
+                                                                                                                                                                                                                                                                                +0 .00                                            LABEL
+                                                                                                                                                                                                                                                                                   0
+                                                                                                                                                                                                                                                                                 5
+     88.0 ±0.30
+
+
+
+
+                                                                                                                                                                                                                                                                            0 .7
+                                                                                                                                                                                                                                                                          R
+                                                                                                                                                                                                                                                              L   L
+                                                                                                                                                                                                                                                           FU
+
+
+
+
+                                                                                                                                                                                                                                    84.4 ±0.1
+
+
+
+
+                                                                                                                                                                                                                                                             0.20 ±0.05
+                                                                                                                                                                                  3 POCKETS MIN.
+B                                                                                       ELONGATED SPROCKET HOLES                                                                                                                                                                                                                                                 B
+
+                                       5 POCKETS MIN.                                  CONNECTOR LOADED AREA                                                                          400mm MIN.                             DETAIL:
+                                                                                                                                                                                                                             ELONGATION AND SKEW
+                                                                                                                                                                                                                             OF SPROCKET HOLES                                                                 SHIPPING
+                                                                                                                                                                                                                                                                                                               CARTON
+
+
+
+                                                        FEEDING DIRECTION
+
+
+
+
+                                                                                                                                                150 ±1.0
+                                                                                                                                                                                                                                                         EPE 2
+                                                                                                                                                                                    TRANSPARENT
+C
+                                                                                                                                                                                    SEAL TAPE                         FOLDER                                                                                                                                     C
+                                                                                                    1                                                                                                                 PAPER
+
+
+
+                                                                                                                                                           381 ±2.0
+                                                                                                                                                                                                                      BOARD                                                                                                            WATER
+                                                                                                                                                                                                                                                                                                                                       PROOF
+                                                                                                                                                                                                                                                                                                                                       BAG
+                                          2.0 ±0.5
+                                                                           20.2 MIN.
+
+
+
+
+                                                                                                                               89.50 ±1.0
+                                                        3
+                                                                                                                               105(MAX.)
+D                                                                                                                                                                                                                                                                                                                                                                D
+                                                                                                                                                                                                                                           LABEL
+
+                  NOTES:
+                  1. 10 POCKETS HOLE PITCH CUMULATIVE TOLERANCE ±0.20mm.
+                  2. COVER TAPE PEELING STRENGTH : 0.01 kgf MIN. 0.15 kgf MAX. AT 300mm/min.
+                                                                                                                                                                                                                                                                                                     3     REEL                       POLYSTYRENE
+                                                                                                          165                                                                                                                                                                                        2  COVER TAPE                     POLYESTER
+                                                                                                                .0 0                                                                                                                                                                                 1 CARRIER TAPE                   POLYSTYRENE
+                                                                                                                       ° ~1
+                                                 COVER TAPE                                                                   80
+                                                                                                                                                                                                                                                                                                   ITEM DESCRIPTION                     MATERIAL
+                                                                                                                                                                                                                                                UNITS mm                  NAME(INTENDED USE)                                                R
+                                                                                                                                                                                                   X. ±     1.5            X. ±
+E                                                                                                                                                                                                                                                                                                                                                                E
+                                      PEELING DIRECTION                                                                                                                                                                                                                              DDR4 SO DIMM CONN.             FOXCONN INTERCONNECT TECHNOLOGY LIMITED.
+                                                                                                                                                                                                   .X ±     1.0            .X ±                 MAT'L
+                                                                                                                                                                                                                                                                          PART NO.(INTENDED USE)                CLASS:
+                                                                                                                                                                                                                                                                                                                  CONFIDENTIAL         SECRECT        GENERAL
+                                                                                                                                                                                                   .XX ± 0.2               .XX ±
+                                                CARRIER TAPE                                            FEEDING DIRECTION                                                                                                                                                            AS0A82*-H2RB-7H                TITLE:    CUSTOMER DRAWING
+                                                                                                                                                                                                                                                FINISH                                                                       260PIN SODDR4 5.2 REV.
+                                                                                                                                                                                                   .XXX ±                  .XXX ±
+                                                                                                                                                                                                                                                                           APPD:       C.S Li                       DWG NO.:
+                  3. PACKING CAPACITY :310 PCS/REEL, 3 REELS/BOX, TOTAL 930 PCS/BOX.                                                                                                               THESE DRAWINGS AND SPECIFICATIONS ARE                                                                                           317-0000-2253
+                                                                                                                                                                                                   THE PROPERTY OF FOXCONN INTERCONNECT
+                                                                                                                                                                                                   TECHNOLOGY LIMITED. AND SHALL NOT BE     Q'TY                           CHKD:
+                                                                                                                                                                                                   REPRODUCED.COPIED OR USED IN ANY MANNER                                             Alex Wang
+                                                                                                                                                                                                   WITHOUT THE PRIOR WRITTEN CONSENT OF                                                                                             SCALE SHEET           REV.
+                                                                                                                                                                                                   FOXCONN INTERCONNECT TECHNOLOGY LIMITED.
+    CONNECTOR P/N AS0A82*-H2RB-7H                                                                                                                                                                                                                                          DRAW: Gary Xu                                              N/A       5/5        D
+                                                                                                                                                                                                                                                                                                   2014/9/24
+
+                                 1                          2                                                                  3                                                       4                               5                                             6                                          7                                     8
+

@@ -1,0 +1,2024 @@
+www.ti.com                                                                                                                                                              Table of Contents
+
+Application Note
+DDR3 Design Requirements for KeyStone Devices
+
+
+                                                                                                                   High-Performance and Multicore Processors
+
+
+                                                                            Table of Contents
+1 Introduction.............................................................................................................................................................................3
+2 Background.............................................................................................................................................................................3
+3 Migrating Designs From DDR2 to DDR3 (Features and Comparisons)............................................................................. 3
+   3.1 Topologies.......................................................................................................................................................................... 3
+   3.2 ECC (Error Correction).......................................................................................................................................................4
+   3.3 DDR3 Features and Improvements................................................................................................................................... 4
+4 Prerequisites........................................................................................................................................................................... 6
+   4.1 High Speed Designs.......................................................................................................................................................... 6
+   4.2 JEDEC DDR3 Specification – Compatibility and Familiarity.............................................................................................. 6
+   4.3 Memory Types....................................................................................................................................................................6
+   4.4 Memory Speeds................................................................................................................................................................. 6
+   4.5 Addressable Memory Space.............................................................................................................................................. 6
+   4.6 DDR3 SDRAM/UDIMM Memories, Topologies, and Configurations.................................................................................. 6
+   4.7 DRAM Electrical Interface Requirements...........................................................................................................................9
+5 Package Selection................................................................................................................................................................ 12
+   5.1 Summary..........................................................................................................................................................................12
+6 Physical Design and Implementation................................................................................................................................. 13
+   6.1 Electrical Connections......................................................................................................................................................13
+   6.2 Signal Terminations..........................................................................................................................................................14
+   6.3 Mechanical Layout and Routing Considerations..............................................................................................................15
+   6.4 Timing Considerations......................................................................................................................................................27
+   6.5 Impedance Considerations.............................................................................................................................................. 27
+   6.6 Switching and Output Considerations.............................................................................................................................. 30
+7 Simulation and Modeling..................................................................................................................................................... 30
+   7.1 Simulation and Modeling..................................................................................................................................................30
+   7.2 Tools.................................................................................................................................................................................31
+   7.3 Models..............................................................................................................................................................................31
+   7.4 TI Commitment.................................................................................................................................................................31
+8 Power..................................................................................................................................................................................... 31
+   8.1 DDR3 SDRAM Power Requirements...............................................................................................................................31
+   8.2 DSP DDR3 Power Requirements.................................................................................................................................... 32
+   8.3 DDR3 Power Estimation.................................................................................................................................................. 32
+   8.4 DSP DDR3 Interface Power Estimation........................................................................................................................... 32
+   8.5 Sequencing – DDR3 and DSP......................................................................................................................................... 32
+9 Disclaimers............................................................................................................................................................................32
+10 References.......................................................................................................................................................................... 33
+11 Revision History..................................................................................................................................................................33
+
+                                                                               List of Figures
+Figure 3-1. Typical DDR Balanced Line Topology....................................................................................................................... 3
+Figure 3-2. Typical DDR3 Fly-By Architecture............................................................................................................................. 4
+Figure 4-1. Control and Address Overshoot and Undershoot Requirements............................................................................ 10
+Figure 4-2. Data, Clock, Strobe, and Mask Overshoot and Undershoot Requirements............................................................ 10
+Figure 4-3. Signal Overshoot Calculations.................................................................................................................................11
+Figure 4-4. Signal Undershoot Calculations...............................................................................................................................11
+Figure 6-1. DSP-to-SDRAM Connection Example.................................................................................................................... 13
+Figure 6-2. DSP to UDIMM Connection.....................................................................................................................................14
+Figure 6-3. Interface Topology for Single and Dual Rank.......................................................................................................... 17
+Figure 6-4. DDRCLKOUT and DQ/ DQS Routing From the DSP to SDRAMs..........................................................................20
+
+
+SPRABI1D – JANUARY 2018 – REVISED JULY 2022                                                                               DDR3 Design Requirements for KeyStone Devices                       1
+Submit Document Feedback
+                                                                 Copyright © 2022 Texas Instruments Incorporated
+Trademarks                                                                                                                                                          www.ti.com
+
+Figure 6-5. Data Group Impedances During Write Cycles on KeyStone I................................................................................. 28
+Figure 6-6. Data Group Impedances During Read Cycles on KeyStone I.................................................................................28
+Figure 6-7. Fly-By Impedances on KeyStone I.......................................................................................................................... 28
+Figure 6-8. Data Group Impedances During Write Cycles on KeyStone II................................................................................ 29
+Figure 6-9. Data Group Impedances During Read Cycles on KeyStone II................................................................................29
+Figure 6-10. Fly-By Impedances on KeyStone II....................................................................................................................... 30
+Figure 7-1. DDR3 Simulations................................................................................................................................................... 31
+
+                                                                           List of Tables
+Table 4-1. ×8 Width DDR3 SDRAM Possible Configurations Supported.....................................................................................7
+Table 4-2. ×16 Width DDR3 SDRAM Possible Configurations Supported...................................................................................7
+Table 4-3. ×32 Width DDR3 SDRAM Possible Configurations Supported...................................................................................8
+Table 4-4. Discrete SDRAM Configurations With ECC................................................................................................................8
+Table 4-5. DDR3 SDRAM Selection Criteria for KeyStone I and KeyStone II Devices................................................................9
+Table 4-6. OS and US Requirements for Address and Control Lines..........................................................................................9
+Table 4-7. OS and US Requirements for CK, CK, DQ, DQS, DQS, and DM Lines................................................................... 10
+Table 4-8. DDR3 Single-Ended Output Levels.......................................................................................................................... 12
+Table 4-9. DDR3 Differential Output Levels............................................................................................................................... 12
+Table 6-1. SDRAM Net Class Routing Rules.............................................................................................................................17
+Table 6-2. Address and Command Line Numeric Routing Rules.............................................................................................. 18
+Table 6-3. Control Line Numeric Routing Rules.........................................................................................................................18
+Table 6-4. Data Lane Numeric Routing Rules........................................................................................................................... 19
+Table 6-5. Data and Data Strobe Byte Lane Grouping.............................................................................................................. 19
+Table 6-6. Clock Lane Numeric Routing Rules.......................................................................................................................... 20
+Table 6-7. Maximum Write Leveling Skew Example.................................................................................................................. 23
+Table 6-8. Minimum Write Leveling Skew Example................................................................................................................... 23
+Table 6-9. Maximum Round Trip Delay Example - Invert Clock Out Enabled and Disabled..................................................... 25
+
+Trademarks
+All trademarks are the property of their respective owners.
+
+
+
+
+2       DDR3 Design Requirements for KeyStone Devices                                                                  SPRABI1D – JANUARY 2018 – REVISED JULY 2022
+                                                                                                                                          Submit Document Feedback
+                                                             Copyright © 2022 Texas Instruments Incorporated
+www.ti.com                                                                                                                         Introduction
+
+
+1 Introduction
+The primary goal of this document is to establish a minimum set of requirements necessary to help assure
+functional success in new application designs for Texas Instruments high performance multiprocessor DSPs
+incorporating DDR3 memory interfaces.
+2 Background
+Technological advances in memory architecture in both speed and densities for DDR3 require a different mindset
+when it comes to application implementation and design compared to the customary and traditional SRAM,
+DDR, and DDR2 devices.
+3 Migrating Designs From DDR2 to DDR3 (Features and Comparisons)
+This section is not intended to present a detailed listing of differences between DDR2 and DDR3 designs, but to
+provide key insight into specific differences that will have a positive impact as customers migrate from a DDR2 to
+a DDR3 platform (based on the assumption the DDR3 interface is implemented correctly).
+3.1 Topologies
+In a DDR2 to DDR3 comparison, the single greatest improvement from a topology standpoint is the change from
+a Balanced T to a Fly-By architecture. Each architecture is described briefly below.
+3.1.1 Balanced Line Topology
+In a traditional DDR2 design, a balanced T style topology is typically recommended (if not required) for address
+and control lines (depending on the number of SDRAMs used). This is generally recommended to balance
+any delays to each SDRAM device. The general concept of a balanced line topology is not used in DDR3
+implementations in favor of fly-by topology, which better accommodates the higher-performance SDRAMs.
+Figure 3-1 shows the general concept of the balanced line topology found in a typical DDR2 design.
+
+                                                DDR2                              DDR2
+                                               Address                           Address
+
+                                                Control                          Control
+
+
+
+                                                 Data                               Data
+
+
+
+
+                                                         Data             Control
+                                                                Address
+                                                           DDR2 Interface
+
+                                                                  DSP
+
+
+
+
+                                   Figure 3-1. Typical DDR Balanced Line Topology
+
+3.1.1.1 Balanced Line Topology Issues
+The down side to the use of a balanced T line topology for DDR2 designs is that it may introduce a varying
+amount of additional skew because of the inclusion of multiple stubs and stub lengths for each individual
+net. The addition of multiple loads on respective address and control nets limits bandwidth. Skews normally
+encountered between the address/control and data nets also cause bandwidth limitations.
+
+SPRABI1D – JANUARY 2018 – REVISED JULY 2022                                                DDR3 Design Requirements for KeyStone Devices     3
+Submit Document Feedback
+                                              Copyright © 2022 Texas Instruments Incorporated
+Migrating Designs From DDR2 to DDR3 (Features and Comparisons)                                                                                www.ti.com
+
+3.1.2 Fly-By Topology
+The DDR3 fly-by architecture provides a benefit to layout and routing of control and address signals. In this
+topology, each respective signal from the DSP DDR3 controller is routed sequentially from one SDRAM to
+the next, thus eliminating reflections associated with any stub or superfluous traces previously seen in DDR2
+designs. Figure 3-2 shows a typical DDR3 SDRAM fly-by interface in a single rank topology.
+
+                                                         DDR3                    DDR3
+                                                       DQS/DQS#                DQS/DQS#
+                                                                                                            DQS/DQS#/DQM
+                               DVDD15/2 (VTT)
+                                                        Address                 Address
+
+
+
+
+                                                                                                                       DDR3 Interface
+                                                R                                                           Address
+                  DVDD15
+
+
+
+
+                                                        Control                 Control                                                 DSP
+                                                R                                                           Control
+                                                         Data                     Data
+                                                                                                            Data
+
+
+                           R                            CLKIN                    CLKIN
+                                                                                                            DDRCLKOUT
+
+
+A.   DVDD15 is a 1.5-V supply rail common to both the SDRAM and DSP.
+B.   DVDD15/2 or VTT refers to 750 mV.
+C.   Differential-ended terminations require dedicated discrete components per complementary net.
+
+                                                    Figure 3-2. Typical DDR3 Fly-By Architecture
+
+3.1.2.1 Balanced Line Topology Issues
+The down side to the use of a fly-by topology for DDR3 designs is the induced delay from the DSP DDR3
+controller to the SDRAMs. In fact, the delay is different at each SDRAM. Correction or compensation for the
+different controller-to-DRAM lengths is handled through read and write leveling. Also keep in mind the following:
+•    Data nets are point-to-point unless designed as a dual rank implementation.
+•    Clock nets are point-to-multipoint and end-terminated (differently than control, command, or address nets).
+•    Control nets are point-to-multipoint and end-terminated to VTT.
+•    Address/Command nets are point-to-multipoint and are end-terminated to VTT.
+3.2 ECC (Error Correction)
+Error correction has not been supported in previous TI DSPs using JEDEC-compliant SDRAM (DDR or DDR2).
+Error correction is now supported in TI’s new KeyStone DSP processor family. Supporting ECC allows for the
+automatic detection and correction of single-bit and double-bit errors. ECC software configuration and control is
+described in detail in the KeyStone Architecture DDR3 Memory Controller User's Guide (SPRUGV8).
+3.3 DDR3 Features and Improvements
+In addition to TI’s DDR3 controller now supporting ECC, the DSP DDR3 controller and new DDR3 SDRAMs offer
+five notable additional features:
+•    Read leveling
+•    Write leveling
+•    Change in pre-fetch size
+•    ZQ calibration
+•    A reset pin
+These features are described briefly below. Detailed configuration is described in the KeyStone Architecture
+DDR3 Memory Controller User's Guide (SPRUGV8).
+
+
+
+
+4     DDR3 Design Requirements for KeyStone Devices                                                        SPRABI1D – JANUARY 2018 – REVISED JULY 2022
+                                                                                                                              Submit Document Feedback
+                                                         Copyright © 2022 Texas Instruments Incorporated
+www.ti.com                                                             Migrating Designs From DDR2 to DDR3 (Features and Comparisons)
+
+3.3.1 Read Leveling
+The memory controller also automatically corrects for delay skew between SDRAMs during read leveling. Read
+leveling takes advantage of values loaded into the SDRAMs multi-purposed register (MPR). The values loaded
+into this register are used by the DSP DDR3 controller to calibrate each signal path relative to skew. Each
+respective SDRAM byte is then internally corrected thus improving performance.
+3.3.2 Write Leveling
+The memory controller automatically corrects for delay skew between SDRAMs during write leveling. During
+write leveling, correction for SDRAM skew (the tDQSS, tDSS, and tDSH) is handled using a programmable DQS
+delay which aligns the timing relationship to the clock and strobe signals. During the write-leveling procedure, the
+DSP controller delays the DQS until a valid change of state is detected at the SDRAM clock (CK) signal (see
+Section 6.3 for additional details).
+3.3.3 Pre-fetch
+The new DDR3 architecture now supports an eight-bit pre-fetch to improve back-to-back accesses (DDR2
+allowed only a four-bit pre-fetch).
+3.3.4 ZQ Calibration
+ZQ calibration is intended to control the on-die termination (ODT) values and output drivers (RTT and RON
+respectively) of the SDRAM. ZQ calibration is not a controllable feature from the DSP. It is controlled using a
+precision (≤ 1% tolerance) 240-Ω resistor.
+The DDR3 SDRAM ZQ calibration cycle is made up of an initial long calibration cycle (ZQCL) requiring 512 clock
+cycles to complete (which is why it is typically performed during the initial boot or reset conditions) and a shorter
+ZQ calibration period.
+The subsequent short (ZQCS) calibration requires only 64 clock cycles and used when the SDRAM is idle.
+The periodic short calibrations cycles accommodate minor variations in temperature and voltage. The short
+calibration cycle (ZQCS) is designed to correct for a minimum 0.5% impedance error within the allotted 64 clock
+cycles.
+See the selected SDRAM data sheet for the maximum ODT, temperature and voltage sensitivity values. The ZQ
+calibration is intended to help minimize PCB impedance discontinuities between traces and SDRAM drivers.
+
+                                                                  Note
+      Texas Instruments requires the use of a dedicated ZQ resistor (240-Ω) to be connected to each
+      SDRAM ZQ pin (cannot share pins).
+
+3.3.5 Reset Pin Functionality
+The new DDR3 architecture also supports a reset pin. This reset pin is designed to allow the user to clear all
+data (information) stored the DDR3 SDRAM. The advanced benefit of this feature is that there is no need to
+reset each control register separately or restart (power down and up again) each individual DDR3 SDRAM. By
+initiating a reset, the SDRAM will recover in a known good state (if needed).
+The reset function of the UDIMM or SDRAM are an active-low ( RESET) LVCMOS input and referenced to VSS.
+The SDRAM/UDIMM input pin functions rail-to-rail with a DC HIGH ≥ 0.8 × VDD (1.5 V × 0.8 = 1.2 V) and DC
+LOW ≤ 0.2 × VDD (1.5 V × 0.2 V = 0.3 V).
+
+                                                              CAUTION
+       The TI DSP DDR3 controller cannot be held in reset for more than one hour during the initial
+       power-up. Also, the TI DSP DDR3 controller cannot be held in reset for more than 5% of its total
+       power-on hours. Exceeding these limits will cause a gradual reduction in the reliability of the part.
+
+
+
+
+SPRABI1D – JANUARY 2018 – REVISED JULY 2022                                               DDR3 Design Requirements for KeyStone Devices   5
+Submit Document Feedback
+                                              Copyright © 2022 Texas Instruments Incorporated
+Migrating Designs From DDR2 to DDR3 (Features and Comparisons)                                                                    www.ti.com
+
+3.3.6 Additional DDR2 to DDR3 Differences
+The change from supporting both a single-ended and differential DQS (DDR2) to only a differential DQS (DDR3)
+improves noise immunity, and allows for longer signal paths without compromising signal integrity.
+4 Prerequisites
+4.1 High Speed Designs
+The goal of this document is to make the DDR3 system implementation and integration easier while reducing
+the added risk of designing in a high performance interface. It is still expected that the PCB design work
+(design, layout, and fabrication) is performed, supervised, or reviewed by a highly knowledgeable high-speed
+PCB designer. This includes a thorough understanding of all high-speed design rules. Specific areas to avoid
+include ground plane cuts, incorrect spacing, and signal skew mis-matches as well as timing violations. The total
+system should be evaluated for such areas including power, filtering, termination, crosstalk, and EMI.
+4.2 JEDEC DDR3 Specification – Compatibility and Familiarity
+The DDR3 interface on KeyStone I devices is designed to be compatible with the JEDEC JESD79-3C DDR3
+specification. The DDR3 interface on KeyStone II devices is designed to be compatible with the JEDEC
+JESD79-3E DDR3 specification. It is assumed that the reader is familiar with these specifications and the
+basic electrical operation of the interface. In addition, several memory manufacturers provide detailed application
+reports on DDR3 operation.
+4.3 Memory Types
+Devices from many manufacturers were available at the time this document was prepared. It is recommended
+that only high-quality DRAM parts that fully comply with the latest DDR3 JEDEC specification and are from
+well-known manufacturers be used. Incorrect DRAM part or manufacturer selection can cause performance
+problems that may not be resolvable within the available software or configuration limitations of the DSP.
+The TI Keystone family of DSPs supports DDR3 devices at 1.5 V or DDR3L devices at 1.35 or 1.5 V, and
+supports SDRAMs including ECC (error correction) or UDIMMs (unbuffered).
+4.4 Memory Speeds
+The KeyStone DSP memory interface currently supports various configurations as specified in the JEDEC DDR3
+standard. KeyStone devices support data rates of DDR3 1600 MT/s and lower. For supported data rates, see the
+device-specific data manual.
+4.5 Addressable Memory Space
+KeyStone devices can address up to 8GB of contiguous memory. Note that some DDR3 memory interfaces are
+limited to a smaller memory space such as 2GB. For more information, see the specific device-specific data
+manual.
+4.6 DDR3 SDRAM/UDIMM Memories, Topologies, and Configurations
+4.6.1 Topologies
+The current DDR3 controller design implementation supports several different DRAM topologies. The following
+list describes the known available topologies to be used with the TI KeyStone DSPs. For a definitive confirmation
+on available memory topologies for the DSP before proceeding, see the device-specific data manual.
+•   ×8 (×16 is the minimum supported width, two ×8 devices are required)
+•   ×16
+•   ×32 (with and without ECC)
+•   ×64 (with and without ECC)
+•   UDIMM (unbuffered DIMM) [×72 & ×36]
+
+
+
+
+6     DDR3 Design Requirements for KeyStone Devices                                               SPRABI1D – JANUARY 2018 – REVISED JULY 2022
+                                                                                                                     Submit Document Feedback
+                                                Copyright © 2022 Texas Instruments Incorporated
+www.ti.com                                                                                                                      Prerequisites
+
+4.6.2 Configurations
+The current DDR3 controller design implementation allows multiple DRAM configurations to be used. The
+following list describes the known usable
+DRAM configurations compatible with TI KeyStone family of DSPs. For a definitive confirmation on usable
+memory configurations and bus widths before proceeding, see the device-specific data manual.
+Table 4-1through Table 4-4 are intended to provide a general overview of the possible DDR3 DRAM topologies
+usable with the KeyStone DSP. In all cases, only JEDEC-compliant (JESD79-3C) SDRAMs are supported. For
+all of the tables below, the notation * implies possible support, not a plan of record.
+                      Table 4-1. ×8 Width DDR3 SDRAM Possible Configurations Supported
+ Device Width                Total Memory / Memory Topology                                     Rank Width                 Total Size
+ ×8 SDRAM                    1Gb / (16M × 8 × 8) × 2 SDRAMs                                         ×16                      256MB
+                             1Gb / (16M × 8 × 8) × 4 SDRAMs                                         ×32                      512MB
+                             1Gb / (16M × 8 × 8) × 8 SDRAMs                                         ×64                     1024MB
+                             1Gb / (16M × 8 × 8) × 8 SDRAMs × 2 ranks                               ×64                     2048MB
+                             2Gb / (32M × 8 × 8) × 2 SDRAMs                                         ×16                      512MB
+                             2Gb / (32M × 8 × 8) × 4 SDRAMs                                         ×32                     1024MB
+                             2Gb / (32M × 8 × 8) × 8 SDRAMs                                         ×64                     2048MB
+                             2Gb / (32M × 8 × 8) × 8 SDRAMs × 2 ranks                               ×64                     4096MB
+                             4Gb / (64M × 8 × 8) × 2 SDRAMs                                         ×16                     1024MB
+                             4Gb / (64M × 8 × 8) × 4 SDRAMs                                         ×32                     2048MB
+                             4Gb / (64M × 8 × 8) × 8 SDRAMs                                         ×64                     4096MB
+                             4Gb / (64M × 8 × 8) × 8 SDRAMs × 2 ranks                               ×64                     8192MB
+                             8Gb / (128M × 8 × 8) × 2 SDRAMs                                        ×16                     2048MB
+                             8Gb / (128M × 8 × 8) × 4 SDRAMs                                        ×32                     4096MB
+                             8Gb / (128M × 8 × 8) × 8 SDRAMs                                        ×64                     8192MB
+
+                     Table 4-2. ×16 Width DDR3 SDRAM Possible Configurations Supported
+ Device Width              Total Memory / Memory Topology                                        Rank Width                 Total Size
+ ×16 SDRAM                 1Gb / (8M × 16 × 8) × 1 SDRAMs                                             ×16             128MB
+                           1Gb / (8M × 16 × 8) × 2 SDRAMs                                             ×32             256MB
+                           1Gb / (8M × 16 × 8) × 4 SDRAMs                                             ×64             512MB
+                           1Gb / (8M × 16 × 8) × 4 SDRAMs × 2 ranks                                   ×64             1024MB
+                           2Gb / (16M × 16 × 8) × 1 SDRAM                                             ×16             256MB
+                           2Gb / (16M × 16 × 8) × 2 SDRAMs                                            ×32             512MB
+                           2Gb / (16M × 16 × 8) × 4 SDRAMs                                            ×64             1024MB
+                           2Gb / (16M × 16 × 8) × 4 SDRAMs × 2 ranks                                  ×64             2048MB
+                           4Gb / (32M × 16 × 8) × 1 SDRAMs                                            ×16             512MB
+                           4Gb / (32M × 16 × 8) × 2 SDRAMs                                            ×32             1024MB
+                           4Gb / (32M × 16 × 8) × 4 SDRAMs                                            ×64             2048MB
+                           4Gb / (32M × 16 × 8) × 4 SDRAMs × 2 ranks                                  ×64             4096MB
+                           8Gb / (64M × 16 × 8) × 1 SDRAMs                                            ×16             1024MB
+                           8Gb / (64M × 16 × 8) × 2 SDRAMs                                            ×32             2048MB
+                           8Gb / (64M × 16 × 8) × 4 SDRAMs                                            ×64             4096MB
+                           8Gb / (64M × 16 × 8) × 4 SDRAMs × 2 ranks                                  ×64             8192MB
+
+
+
+
+SPRABI1D – JANUARY 2018 – REVISED JULY 2022                                               DDR3 Design Requirements for KeyStone Devices    7
+Submit Document Feedback
+                                              Copyright © 2022 Texas Instruments Incorporated
+Prerequisites                                                                                                                         www.ti.com
+
+                        Table 4-3. ×32 Width DDR3 SDRAM Possible Configurations Supported
+    Device Width            Total Memory / Memory Topology                                     Rank Width                  Total Size
+    ×32 SDRAM               2Gb / (8M × 32 ×8) × 1 SDRAM                                            ×32                      256MB*
+                            2Gb / (8M × 32 × 8) × 2 SDRAMs                                          ×64                      512MB*
+                            2Gb / (8M × 32 × 8) × 1 SDRAM × 2 ranks                                 ×32                      512MB*
+                            2Gb / (8M × 32 × 8) × 2 SDRAMs × 2 ranks                                ×64                     1024MB*
+                            4Gb / (16M × 32 × 8) × 1 SDRAM                                          ×32                      512MB*
+                            4Gb / (16M × 32 × 8) × 2 SDRAM                                          ×64                     1024MB*
+                            4Gb / (16M × 32 × 8) × 1 SDRAM × 2 ranks                                ×32                     1024MB*
+                            4Gb / (16M × 32 × 8) × 2 SDRAMs × 2 ranks                               ×64                     2048MB*
+
+
+In addition to the discrete SDRAM devices configurations listed above, the following ECC configurations are
+supported.
+                                     Table 4-4. Discrete SDRAM Configurations With ECC
+    Device Width            Memory Rank Topology                                                       Rank Width              Total Size
+    ×8 SDRAM                1Gb (16M × 8 × 8) × 5 SDRAMs                                                   ×36                   512MB
+                            1Gb (16M × 8 × 8) × 9 SDRAMs                                                   ×72                  1024MB
+                            1Gb (16M × 8 × 8) × 9 SDRAMs × 2 ranks                                         ×72                  2048MB
+                            2Gb (32M × 8 × 8) × 5 SDRAMs                                                   ×36                  1024MB
+                            2Gb (32M × 8 × 8) × 9 SDRAMs                                                   ×72                  2048MB
+                            2Gb (32M × 8 × 8) × 9 SDRAMs × 2 ranks                                         ×72                  4096MB
+                            4Gb (64M × 8 × 8) × 5 SDRAMs                                                   ×36                  2048MB
+                            4Gb (64M × 8 × 8) × 9 SDRAMs                                                   ×72                  4096MB
+                            4Gb (64M × 8 × 8) × 9 SDRAMs × 2 ranks                                         ×72                  8192MB
+                            8Gb (64M × 8 × 8) × 5 SDRAMs                                                   ×36                  4096MB
+                            8Gb (64M × 8 × 8) × 9 SDRAMs                                                   ×72                  8192MB
+    ×16 SDRAM (1)           1Gb (8M × 16 × 8) × 3 SDRAMs                                                   ×36                   256MB
+                            1Gb (8M × 16 × 8) × 5 SDRAMs                                                   ×72                   512MB
+                            1Gb (8M × 16 × 8) × 5 SDRAMs × 2 ranks                                         ×72                  1024MB
+                            2Gb (16M × 16 × 8) × 3 SDRAMs                                                  ×36                   512MB
+                            2Gb (16M × 16 × 8) × 5 SDRAMs                                                  ×72                  1024MB
+                            2Gb (16M × 16 × 8) × 5 SDRAMs × 2 ranks                                        ×72                  2048MB
+                            4Gb (32M × 16 × 8) × 3 SDRAMs                                                  ×36                  1024MB
+                            4Gb (32M × 16 × 8) × 5 SDRAMs                                                  ×72                  2048MB
+                            4Gb (32M × 16 × 8) × 5 SDRAMs × 2 ranks                                        ×72                  4096MB
+                            8Gb (64M × 16 × 8) × 3 SDRAMs                                                  ×36                  2048MB
+                            8Gb (64M × 16 × 8) × 5 SDRAMs                                                  ×72                  4096MB
+                            8Gb (64M × 16 × 8) × 5 SDRAMs × 2 ranks                                        ×72                  8192MB
+
+(1)     The ECC device can be either ×8 or ×16 as long as the number of row and column address bits match for all devices in the memory
+        array.
+
+
+
+
+8       DDR3 Design Requirements for KeyStone Devices                                               SPRABI1D – JANUARY 2018 – REVISED JULY 2022
+                                                                                                                       Submit Document Feedback
+                                                  Copyright © 2022 Texas Instruments Incorporated
+www.ti.com                                                                                                                        Prerequisites
+
+4.6.2.1 Memories – SDRAM Selection Criteria
+Table 4-5 shows the DDR3 SDRAM selection criteria necessary for KeyStone I and KeyStone II devices.
+               Table 4-5. DDR3 SDRAM Selection Criteria for KeyStone I and KeyStone II Devices
+ Description                     Min      Max          Unit    Notes
+ Width                            ×8      ×16           bit    Minimum supported total bus width is ×16 (2- ×8)
+ Depth (Density)                512M     8192M          bit    Definition may also include ranked devices (UDIMM)
+ Data Rate                       800      1600         MT/s
+ Clock Rate                      400      800          MHz
+ Temperature Range                0           95        °C     Depends on end-use application
+ VDD                            1.425     1.575         V
+ VDDq                           1.425     1.575         V
+ Latency                          5           11               All CAS latencies supported between 5 and 11
+ JEDEC-compliant DDR3
+ SDRAM
+
+
+DIMM support extends to modules whose SDRAMs fall within the above specifications. DIMM bus width may be
+×64 or ×72 with ECC support. DIMMs must be unbuffered (UDIMMS), and may have up to two ranks. KeyStone I
+devices do not support address mirroring. KeyStone II devices support UDIMM topologies that have the address
+bits in the second rank mirrored.
+4.7 DRAM Electrical Interface Requirements
+This section briefly defines the electrical interface requirements for using JEDEC-compliant DDR3 SDRAM
+with the KeyStone DSP. Additional information and requirements may exist. Where different or conflicting
+requirements exist (between applicable standards, SDRAM and DSP data sheets, and this design guide), this
+design guide should take precedence. Details provided in the following subsection were obtained from TI internal
+reference material and applicable JEDEC DDR3 SDRAM standards.
+4.7.1 Slew
+The released JEDEC standard describes in detail skew requirements imposed on the SDRAM, in particular CK,
+CK, DQS, and DQS. In order to meet these requirements, loading, SDRAM component selection, and trace
+routing will have a large impact. For additional information regarding meeting slew rate requirements, see the
+modeling and simulation section of this guide.
+4.7.2 Overshoot and Undershoot Specifications
+Overshoot (OS) and undershoot (US) limitations are defined in the following tables and figures. A theoretical
+instantaneous maximum upper and lower amplitude limit of 400 mV is allowed for overshoots and undershoots
+(assuming zero time is involved). Because each overshoot and undershoot has a component of time, each
+applicable signal must be further independently evaluated. Table 4-6 shows the limitations as listed in the current
+released standard for all address and control signals. Measurements are obtained at the pin of the memory
+DRAM and not the DSP.
+                        Table 4-6. OS and US Requirements for Address and Control Lines
+                                                                          Max OS Area Above VDD (V-           Max US Area Below VSS (V-
+ Speed         Max pk OS Amplitude (V) Max pk US Amplitude (V)                       ns)                                 ns)
+ DDR3-800                 0.4                          0.4                              0.67                               0.67
+ DDR3-1066                0.4                          0.4                               0.5                               0.5
+ DDR3-1333                0.4                          0.4                               0.4                               0.4
+ DDR3-1600                0.4                          0.4                              0.33                               0.33
+
+
+
+
+SPRABI1D – JANUARY 2018 – REVISED JULY 2022                                                DDR3 Design Requirements for KeyStone Devices     9
+Submit Document Feedback
+                                               Copyright © 2022 Texas Instruments Incorporated
+Prerequisites                                                                                                                      www.ti.com
+
+Figure 4-1 shows the limitations as listed in the current released standard for all address and control pins.
+
+                                    Maximum Amplitude
+
+
+                                                                    Overshoot
+
+
+                      Volts
+                                                                                                                     Vdd
+                                                                                                                     Vss
+                                                                   Undershoot
+
+                                      Maximum Amplitude
+
+                                                                       Time
+
+
+                     Figure 4-1. Control and Address Overshoot and Undershoot Requirements
+
+Table 4-7 shows the limitations as listed in the current released standard for all data, clock, strobe, and mask
+signals.
+                   Table 4-7. OS and US Requirements for CK, CK, DQ, DQS, DQS, and DM Lines
+                                                                                                                Max US Area Below VSS (V-
+ Speed          Max pk OS Amplitude (V) Max pk US Amplitude (V) Max OS Area Above VDD (V-ns)                               ns)
+ DDR3-800                     0.4                       0.4                               0.25                             0.25
+ DDR3-1066                    0.4                       0.4                               0.19                             0.19
+ DDR3-1333                    0.4                       0.4                               0.15                             0.15
+ DDR3-1600                    0.4                       0.4                               0.13                             0.13
+
+
+Figure 4-2 shows the limitations as listed in the current released standard for all data, clock, strobe, and mask
+signals.
+
+                                    Maximum Amplitude
+
+
+                                                                   Overshoot
+                     Volts
+
+
+
+
+                                                                                                                    Vddq
+                                                                                                                    Vssq
+                                                                   Undershoot
+
+                                     Maximum Amplitude
+
+                                                                       Time
+
+
+                Figure 4-2. Data, Clock, Strobe, and Mask Overshoot and Undershoot Requirements
+
+4.7.2.1 Overshoot and Undershoot Example Calculations
+The following is provided as an example of the necessary steps to calculate the overshoots and undershoots for
+any waveform.
+Assumptions: VDD = 1.5 V; VSS = 0.00 V; Vref = 0.75 V (VDD/2)
+Overshoot example (Figure 4-3)
+1. Determine amplitude over VDD
+2. Determine the duration of the amplitude
+3. Calculate the final value
+   a. OS = Amplitude × Duration
+   b. OS = 180 mV × 1 ns
+   c. OS = 0.18 V-ns
+
+
+
+10     DDR3 Design Requirements for KeyStone Devices                                               SPRABI1D – JANUARY 2018 – REVISED JULY 2022
+                                                                                                                      Submit Document Feedback
+                                                 Copyright © 2022 Texas Instruments Incorporated
+www.ti.com                                                                                                                             Prerequisites
+
+4. Compare results to the applicable SDRAM row and column (Section 4.7.2) paying attention to speed grade
+   and signal type differences. If the SDRAM speed was DDR3-800 or DDR3-1066 and this were a data,
+   clock, strobe, or mask net, the overshoot would be acceptable. In the case of data, clock, strobe, or mask
+   DDR3-1333 and DDR3-1600 speed grades, this level of overshoot is not acceptable.
+
+                                                             Note
+             This level is acceptable for all speed grades of control and address lines.
+
+                                                                1.6
+                                                                1.5
+                                                                1.4
+                                                                1.3
+                                                                1.2
+                                                                1.1
+                                                                1.0
+                                                                0.9
+
+
+
+
+                                                 Volts
+                                                                0.8
+                                                                0.7
+                                                                0.6
+                                                                0.5
+                                                                0.4
+                                                                0.3
+                                                                0.2
+                                                                0.1
+                                                                 0,0   1   2   3   4
+                                                                                           nS
+
+
+                                       Figure 4-3. Signal Overshoot Calculations
+
+Undershoot example (Figure 4-4)
+1. Determine amplitude under VSS
+2. Determine the duration of the amplitude
+3. Calculate the final value
+   a. US = Amplitude × Duration
+   b. US = 215 mV × 1.5 ns
+   c. US = 0.322 V-ns
+4. Compare results to the applicable SDRAM row and column (Section 4.7.2 paying attention to speed grade
+   and signal type differences). If the SDRAM was DDR3-800 or DDR3-1066 and this were a data net, this
+   overshoot would be acceptable. In the case of DDR3-1333 and DDR3-1600, this level of undershoot is not
+   acceptable. Compare results to the applicable SDRAM row and column (notice speed grade differences).
+   This example undershoot is unacceptable for all speed grades for all data, clock, strobe, and mask signals. It
+   is acceptable for all speed grades of address and control signals.
+
+                                                             Note
+             This level is acceptable for all speed grades of control and address lines.
+                                                 Volts
+
+
+
+
+                                                                0.7
+                                                                0.6
+                                                                0.5
+                                                                0.4
+                                                                0.3
+                                                                0.2
+                                                                0.1
+                                                         0, 0
+
+
+
+
+                                                           -0.1
+                                                           -0.2                             nS
+                                                                       1   2   3   4   5
+
+
+                                      Figure 4-4. Signal Undershoot Calculations
+
+
+
+
+SPRABI1D – JANUARY 2018 – REVISED JULY 2022                                                      DDR3 Design Requirements for KeyStone Devices   11
+Submit Document Feedback
+                                              Copyright © 2022 Texas Instruments Incorporated
+Prerequisites                                                                                                                      www.ti.com
+
+4.7.3 Typical DDR3 AC and DC Characteristics
+                                         Table 4-8. DDR3 Single-Ended Output Levels
+ Symbol                   Parameter                                                        DDR3-800, 1066, 1333, and 1600          Unit
+ VOH(DC)                  DC output high measurement level (for IV curve linearity)        0.8 × VDDQ                               V
+ VOM(DC)                  DC output mid measurement level (for IV curve linearity)         0.5 × VDDQ                               V
+ VOL(DC)                  DC output low measurement level (for IV curve linearity)         0.2 × VDDQ                               V
+ VOH(AC)                  AC output high measurement level (for output SR)                 VTT + 0.1 × VDDQ                         V
+ VOL(AC)                  AC output low measurement level (for output SR)                  VTT - 0.1 × VDDQ                         V
+
+                                           Table 4-9. DDR3 Differential Output Levels
+ Symbol                   Parameter                                                         DDR3-800, 1066, 1333, and 1600         Unit
+ VOHdiff(AC)              AC differential output high measurement level (for output SR) + 0.2 × VDDQ                                 V
+ VOLdiff(AC)              AC differential output low measurement level (for output SR)      - 0.2 × VDDQ                             V
+
+
+4.7.4 DDR3 Tolerances and Noise – Reference Signals
+Limitations on DC voltage tolerance and AC noise for all reference voltages is well defined in the applicable
+JEDEC standard (pg. 129 of JESD79-3C). Strict conformity to these limitations is important to help ensure
+proper functionality of the DDR3 SDRAM interface. The Vref tolerance is ±1% or VDD/2 ±1%, which equates to
+0.7425 V – 0.7575 V. To achieve this tight tolerance, it is recommended (when using a standard resistor divider
+network) that better than 1% tolerance components be used. The alternative would be an active reference
+voltage source. Proper component selection and decoupling is critical. For additional details, see the layout and
+routing section.
+It is important to properly design the reference supply voltage to track VDD/VDDq.
+5 Package Selection
+Individual SDRAMs are available in four different packages that support the various memory device densities,
+and widths. The following summarizes and describes the primary differences between package and density for
+common ×8 and ×16 SDRAMs.
+5.1 Summary
+The following packaging subsection summarizes at a high level each DDR3 SDRAM configuration and pinout.
+For the latest information, see the manufacturers data sheets.
+5.1.1 ×4 SDRAM
+•    KeyStone devices do not support DDR3 SDRAMs in an ×4 configuration.
+5.1.2 ×8 SDRAM
+•    ×8 devices are compatible in both the 106-pin and 78-pin packages provided the layout is correct and
+     accounts for the larger package inclusive of the NC (support ball) pin placements.
+
+                                                            Note
+           If designed for the larger package, there is no difference in routing required.
+
+•    1Gb and 2Gb devices are pin-compatible in the 106-pin and 78-pin packages
+•    The 1Gb, 2Gb, and 4Gb devices are pin-compatible in the 78-pin package
+
+                                                          Note
+           Other packages not available at the time this document was prepared.
+
+•    1Gb devices, regardless of package, are not compatible between ×16 and ×8 devices. For additional details,
+     see the device-specific data sheets.
+
+
+
+
+12     DDR3 Design Requirements for KeyStone Devices                                               SPRABI1D – JANUARY 2018 – REVISED JULY 2022
+                                                                                                                      Submit Document Feedback
+                                                 Copyright © 2022 Texas Instruments Incorporated
+www.ti.com                                                                                                                 Package Selection
+
+                                                           Note
+          It is possible to layout for both ×16 and ×8 devices but this requires additional consideration on
+          switching signals and net attachments, which vary between packages. As a general rule, Texas
+          Instruments does not recommend designing the application board for both topologies [×8 and
+          ×16]).
+
+•   The twin-die version of the ×8 SDRAM is not compatible with the monolithic version of the same density.
+5.1.3 ×16 SDRAM
+•   1Gb and 2Gb ×16 devices are compatible in the 96-pin package.
+
+                                                    Note
+          Some pinouts may change across manufacturers – review the data sheets before selecting the
+          DRAMs.
+
+•   The twin-die version of the ×16 SDRAM are not compatible with the monolithic version of the same density.
+5.1.4 ×32 SDRAM
+•   At the time this document was prepared, no ×32 devices exist. Texas Instruments cannot ensure functionality
+    or support for ×32 SDRAM devices.
+5.1.5 ×64 SDRAM
+•   At the time this document was prepared, no ×64 devices exists. Texas Instruments cannot ensure
+    functionality or support for ×64 SDRAM devices.
+6 Physical Design and Implementation
+6.1 Electrical Connections
+This section discusses the proper electrical interface between JEDEC-compliant DDR3 SDRAMs and UDIMMs
+to the Texas Instruments KeyStone DSP family DDR3 controller. These sections also provide details for the
+electrical pin connectivity between the DSP DDR3 interface and DDR3 SDRAM or UDIMM. This is not an
+all-inclusive listing of available parts as DRAM manufacturers are continuously developing higher density parts
+or obsoleting others. It should also be noted that not all DSPs will have the same bus width. For details, see the
+device-specific data sheet. This section assumes both 32-bit and 64-bit wide buses are used.
+6.1.1 Pin Connectivity and Unused Pins – SDRAM Examples
+Correct DDR3 pin connectivity is vital to help insure the performance and reliability of the DSP/DRAM system.
+An example set of pin connections from DSP-to-SDRAM are shown in Figure 6-1.
+
+                        DVDD15
+                                          TI
+                                                               DM[3:2]
+                                                          DQS[3:2 ] / DQS#[3:2]                            DVDD15
+                                                            DQ[ 31:16]
+                             DDRVref
+                                       Keystone
+                                        DDR3
+                                                               BA[2:1]                             DDR3
+                                       Controller
+                                       Interface           Command/ Control                         x16
+
+                                                                                                            Vtt
+                                                              ADD[13:0]              DDR3
+                                                             CLK0 / CLK0#             x16
+                                                               DM[1:0]
+                                                               DQ[15:0]
+
+                                                          DQS[1:0 ] / DQS#[1:0]
+
+
+
+                                   Figure 6-1. DSP-to-SDRAM Connection Example
+
+
+
+
+SPRABI1D – JANUARY 2018 – REVISED JULY 2022                                               DDR3 Design Requirements for KeyStone Devices   13
+Submit Document Feedback
+                                              Copyright © 2022 Texas Instruments Incorporated
+Physical Design and Implementation                                                                                                www.ti.com
+
+Pin nomenclatures are identified in detail in the device-specific DSP and SDRAM data sheets and should be
+confirmed before releasing the design to layout, PCB fabrication, or production. This section does not include
+details for non-JEDEC compliant (JESD79-3C) SDRAM components nor does TI recommend the use of any
+non-compliant JEDEC SDRAMs.
+6.1.2 Pin Connectivity – ECC UDIMM and Non-ECC UDIMM Examples
+This section defines the recommended configurations when using a standard DDR3 UDIMM (unbuffered DIMM)
+with and without ECC (Error Detection and Correction). Additional details pertaining to UDIMM implementation
+can be found in the JEDEC DDR3 UDIMM standard 21C, the JEDEC UDIMM mechanical standard, MO-269,
+and the JEDEC socket standard, SO-007B (latest revision). For additional details pertaining to routing
+requirements, see Section 6.3.2.
+Correct DDR3 pin connectivity is vital to ensure the performance and reliability of the DSP/UDIMM system. For
+pin connectivity, see the device-specific data manual.
+Pin nomenclatures are identified in detail in the device-specific DSP and UDIMM data sheets and should be
+confirmed before releasing the design to layout, PCB fabrication, or production. This section does not include
+specific details for non-JEDEC compliant UDIMMs nor does TI recommend the use of any non-compliant JEDEC
+UDIMMs.
+Figure 6-2 shows the basic interconnection between the TI KeyStone DSP and device-specific ECC UDIMM.
+                         DVDD15                                                                              DVDD15
+
+
+                                                                                                     DDR3
+                                                                                                    UDIMM
+                                              TI
+                                                                  Command/ Address
+
+                                DDRVref                             CKE / CS # / ODT                          Vtt
+
+
+
+                                           Keystone
+                                            DDR3
+                                                                     CLK0 / CLK0#
+                                           Controller
+                                           Interface                 CLK1 / CLK1#
+
+                                                                        CB[7:0]
+                                                                 DQS[8:0 ] / DQS#[8:0]
+
+                                                                       DM[8:0]
+                                                                       DQ[63:0]
+
+
+
+
+                                            Figure 6-2. DSP to UDIMM Connection
+
+6.2 Signal Terminations
+The following subsection describes the two signal termination methods (leveling and non-leveling) used
+for DDR3 interfaces, specific termination placement, and the impact of incorrect termination schemes and
+component values. Terminations are placed at the end of the signal path. In the current fly-by architecture,
+placing the terminations at the last SDRAM improves the overall signal characteristics, which is an improvement
+over previous DDR2 SDRAM topology.
+6.2.1 External Terminations – When Using Read and Write Leveling
+As a rule of thumb, terminations should be applied to all clock, address, and control lines. Although all address,
+control, and command lines should be end-terminated when using leveling, clocking nets may require different
+termination values than that used on the command and address nets. Each respective address and command
+net should be end-terminated using a resistor (in the range of 39 Ω to 42 Ω) and connected to VTT (preferred
+value is 39 Ω, 1%). VTT is defined as VDDq/2 or 0.75 V.
+
+
+
+
+14    DDR3 Design Requirements for KeyStone Devices                                               SPRABI1D – JANUARY 2018 – REVISED JULY 2022
+                                                                                                                     Submit Document Feedback
+                                                Copyright © 2022 Texas Instruments Incorporated
+www.ti.com                                                                                               Physical Design and Implementation
+
+The DDR3 clock nets also must be end-terminated. However, instead of end-terminating the clock nets
+(DDRCLKOUTP/Nx where x is DDRCLKOUTP/N0 or DDRCLKOUTP/N1, whichever is used), each net should
+be terminated with a series 39-Ω, 1% resistor to a 0.1-µF capacitor to DVDD15 (VDDq). Figure 3-2 (and
+respective notes) show the required clock termination implementation. All components should be 1% tolerance
+or better. VTT should be generated using a resistor divider network (1% tolerance or better). For proper
+operation, the VTT termination must track VDDq/2.
+Again, an important point is that the parallel termination should be placed at the last SDRAM in the fly-by or
+daisy-chained architecture. Each trace to the respective termination should be ≤ within 500 mils and the opposite
+side of the termination resistor should tie directly to the VTT rail.
+External terminations may not be required – the only way to determine if your topology requires end terminations
+is to perform complete simulations inclusive of all topology parasitics.
+
+                                                      Note
+      All VTT terminations should be placed at the end of the transmission line (net). Incorrect placement
+      will have an impact on performance and functionality.
+
+6.2.2 External Terminations – When Read and Write Leveling is Not Used
+Texas Instruments does not recommend the use of DDR3 without leveling. The use of DDR3 SDRAMs without
+read and write leveling places an undue burden and constraints on the physical design and topology. In essence,
+any DDR3 design not making use of read and write leveling becomes nothing more than a DDR2 layout with all
+of the negative implications associated with DDR2 and none of the benefits of DDR3 (except possibly speed).
+6.2.3 Internal Termination – On-Die Terminations
+Prior DSPs supporting DDR2 interfaces did not support on-die terminations (ODT), whereas, the KeyStone
+family of DSPs now supports ODT. One of the primary advantages to using DDR3 is the fact that the data
+lines no longer require series terminations to optimize signal overshoots and undershoots. The current DDR3
+instantiation allows for a wider range of values. In addition, DDR3 now supports dynamic ODT, which has
+enormous benefits in a complex application board topology. For DDR3, the DSP controller ODT pins (connected
+to each SDRAM) serve to turn on or off the SDRAM internal termination. The actual ODT functionality of each
+SDRAM is controlled using the mode registers. For additional information, see the device-specific SDRAM data
+sheets.
+6.2.4 Active Terminations
+Active terminations, regardless of configuration, are not required. The combination of TI’s new DSP controller
+and the new DDR3 DRAM architecture in the supported configurations eliminates the need for active
+terminations.
+6.2.5 Passive Terminations
+Unlike DDR2, the addition of series passive components is no longer necessary when using DDR3 (with
+leveling). The only passive terminations to be used (when using DDR3 with leveling) are the end-termination
+pull-up resistors identified in Section 8.1.2.
+6.2.6 Termination Component Selection
+All termination components should be 1% tolerance, component size (form factor) will be dependent upon
+power requirements and parasitics. Texas Instruments recommends 0402 size discrete (passive) components to
+improve routing, and reduce parasitic inductance.
+6.3 Mechanical Layout and Routing Considerations
+This subsection defines the basic requirements regarding mechanical layout and PCB routing. These are
+general guidelines, which, when followed in conjunction with the remainder of sections in this design guide
+(and good engineering practices), will help provide a functional DDR3 interface. In all cases, it is recommended
+that the DDR3 interface be modeled to verify functionality and performance.
+6.3.1 Routing Considerations – SDRAMs
+This subsection describes the specific requirements for discrete SDRAM implementations.
+
+
+SPRABI1D – JANUARY 2018 – REVISED JULY 2022                                               DDR3 Design Requirements for KeyStone Devices   15
+Submit Document Feedback
+                                              Copyright © 2022 Texas Instruments Incorporated
+Physical Design and Implementation                                                                                                www.ti.com
+
+6.3.1.1 Mechanical Layout – SDRAMs
+This subsection provides basic information regarding mechanical DDR3 → DSP layout constraints. Included are
+such topics as routing, stack up, trace lengths, and the use of net classes. Issues not covered (in any great
+detail) within this document include thermal considerations, part density, pick and place issues, and different
+packages / footprints.
+This document assumes that you have an above average level of understanding regarding mechanical layout
+and design – including the impact of trace width, spacing, via size, bulk and decoupling capacitance selection,
+and placement.
+6.3.1.2 Stack Up – SDRAMs
+Stack up refers to the mechanical layer assembly of the printed circuit board. In all high-speed designs it is good
+practice to maintain symmetry between the top half of the board and the bottom half of the board. Referencing
+(sandwiching) signal routing layers containing high speed signals between ground planes reduces EMI problems
+and provides a constant and controlled impedance transmission path. DDR3 IO power planes can also be used
+as reference layers for address/command/control signals as long as there are decoupling capacitors distributed
+across the plane to provide a low-impedance return path to ground. Power and ground planes should ideally be
+solid planes without breaks. Power planes can have breaks or splits outside of the DDR3 routing region.
+Proper stack up must also provide the proper characteristic printed circuit board (PCB) impedance. Most DSP
+application board systems require a PCB impedance of 50 Ω.
+It is recommended that a DDR3 implementation make use of a minimum of four routing layers: two for address/
+command/control signals and two for data-group signals. Data-group routing should be on layers close to the
+bottom of the board to minimize stubs. An end-application PCB will likely have a minimum total of 8 layers if
+sufficient board area is available, but high-performance boards or boards making use of an extended peripheral
+set may consist of 12 or more layers.
+6.3.1.3 Routing Rules – General Overview (SDRAMs)
+Several key points to remember when routing any signals on the application board:
+•    Organize the power, ground, and signal planes so that you eliminate or significantly reduce the number of
+     split or cut planes present in the design (no splits are allowed under any DDR3 routes).
+•    It is strongly recommended that all SDRAMs are mounted on the top side of the PCB alongside the SoC for
+     single rank designs.
+•    Apply net classes, for example, group key signals together.
+•    Maintain an acceptable level of skew across the entire DDR3 interface (by net class).
+•    Use proper low-pass filtering on the Vref pins.
+•    Follow the fly-by architecture concept for all address, command, clock, and control lines.
+•    Increase the size of the decoupling capacitor trace width to as large as possible, keep the stub length as
+     short as possible.
+•    Center-to-center spacing, including serpentine, must be at least 5 W where W is the trace width. Additional
+     spacing can be added between differential pairs and other routing groups to minimize crosstalk. Spacing of 4
+     W can be used, but is not appropriate for bus speeds over 1066 MT/s.
+•    Maintain a common ground reference for all bypass/decoupling capacitors, DSPs, and SDRAMs.
+•    Take into account the differences in propagation delays between microstrip and stripline nets when evaluating
+     timing constraints. All long routes should be stripline to reduce EMI and timing skew, and any microstrip
+     routed for BGA breakouts should be as short as possible.
+•    All length-matching is based on an equivalent stripline length. An equivalent stripline length is defined as the
+     length of a stripline trace that will have the same delay as the microstrip portion of the route (see the JEDEC
+     UDIMM specification for more information on velocity compensation).
+•    There can not be any mid-point vias in the design on any data group net. Extra vias that are located on the
+     data group will negatively impact signal integrity.
+•    It is strongly recommended that all nets be simulated to assure proper design, performance, and signal
+     integrity.
+•    Routes along the same path and routing segment must have the same number of vias. Vias can be blind,
+     buried, or HDI microvia for improved SI but are not required for standard data rates. Similarly, back drilling
+     vias is not required for standard data rates but can be used to eliminate via stubs.
+
+16    DDR3 Design Requirements for KeyStone Devices                                               SPRABI1D – JANUARY 2018 – REVISED JULY 2022
+                                                                                                                     Submit Document Feedback
+                                                Copyright © 2022 Texas Instruments Incorporated
+www.ti.com                                                                                                                                          Physical Design and Implementation
+
+•     It is strongly recommended that the routing channels between the DSP to SDRAM be dedicated solely to the
+      SDRAM interface and that no other signals be routed in the area. Other signals routed on the same layers
+      must be kept apart from the DDR3 routes. There must be additional separation of the DDR3 nets of at least
+      6W. In addition, these other traces should not be referenced to the DDR3 IO power planes. If other signals
+      must be routed through this area, they need to be isolated to their own routing planes and shielded from the
+      DDR3 routes by a solid ground plane.
+Net classes are an important concept when routing high speed signals that incorporate timing constraints or
+timing relationships. When routing the DDR3 nets, there are four basic groups (net classes) to consider – Table
+6-1 shows the recommended net classes.
+                                                                  Table 6-1. SDRAM Net Class Routing Rules
+ Net Class               Signals
+ Data                    DQS[8:0], DQS[8:0], DQ[n:0], CB[7:0], DM[8:0] (1),(2), (4)
+ Address/Command         BA[2:0], A[n:0], RAS, CAS, WE (2), (3)
+ Control                 CS, CKE, ODT (2), (5)
+ Clock                   DDRCLKOUTP/N[1:0] (5)
+
+(1)     CB[7:0] refer to ECC devices.
+(2)     n refers to some number of lines and is dependent upon device selected.
+(3)     Observe relationship between DQ, DQS, DQS, DDRCLKOUT, and DDRCLKOUT.
+(4)     The data net class will be subdivided into multiple byte lane routing groups each containing a DQS/ DQS pair and the associated DM
+        and 8 data bits.
+(5)     Some nets in class may be used only in dual-rank topologies.
+
+Figure 6-3 shows the typical interface topology when connecting single-rank and dual-rank designs. Note that
+the dual-rank illustration shows only the connections for byte lane 0, and fly-by connections will still need to
+include SDRAMs on subsequent byte lanes.
+                                                                               Single Rank DDR3 Implementation
+
+                                                                              DDR3                DDR3
+                                                                            DQS/DQS#            DQS/DQS#
+                                                                                                                     DQS/DQS#/DQM
+                                                 DVDD15/2 (VTT)
+
+
+
+
+                                                                             Address             Address
+                                                                                                                               DDR3 Interface
+
+                                                                     R                                               Address
+                                 DVDD15
+
+
+
+
+                                                                             Control             Control                                          DSP
+                                                                    R                                                Control
+                                                                              Data                Data
+                                                                                                                     Data
+
+
+                                             R                               CLKIN                CLKIN
+                                                                                                                     DDRCLKOUT
+
+
+
+
+                                                                                     Dual Rank DDR3 Implementation
+
+                                                                              DDR3                DDR3
+                                                                             RANK 2              RANK 1
+                                                                            DQS/DQS#            DQS/DQS#
+                                                                                                                     DQS/DQS#/DQM
+                                                 DVDD15/2 (VTT)
+
+
+
+
+                                                                             Address             Address
+                                                                                                                                 DDR3 Interface
+
+
+
+
+                                                                     R                                               Address
+                                 DVDD15
+
+
+
+
+                                                                             Control             Control
+                                                                     R                                               Control                      DSP
+                                                                              Data                Data
+                                                                                                                     Data
+                                             R
+                                             R
+                                                                                                  CLKIN
+                                                                                                                     DDRCLKOUT0
+                                                                             CLKIN
+                                                                                                                     DDRCLKOUT1
+
+
+A.    The CLKOUT, CS, ODT, and CKE pins will be unique to each rank in a dual rank design.
+
+                                          Figure 6-3. Interface Topology for Single and Dual Rank
+
+
+
+
+SPRABI1D – JANUARY 2018 – REVISED JULY 2022                                                                          DDR3 Design Requirements for KeyStone Devices                 17
+Submit Document Feedback
+                                                                         Copyright © 2022 Texas Instruments Incorporated
+Physical Design and Implementation                                                                                                 www.ti.com
+
+6.3.1.4 Routing Rules – Address and Command Lines (SDRAMs)
+The following rules must be followed when routing address/command nets in a DDR3 design:
+•    50-Ω (±5%) single-ended impedance required.
+•    All nets in the address and command fly-by groups must route along the same path from the controller to
+     each SDRAM sequentially, and then to the VTT termination.
+•    All nets in the address and command fly-by groups must be length-matched from the controller to each
+     SDRAM separately within ±20 mils of the clock along the same route.
+•    All nets in the address and command fly-by groups must have the same number of vias in each length-
+     matched segment.
+•    Address lines cannot be swapped to simplify routing.
+•    Address and command fly-by groups must have stubs less than 80 mils and be length-matched within ±10
+     mils.
+•    All nets in the address and command fly-by groups must route adjacent to a solid ground plane or a solid
+     DVDD15 power plane with adequate distributed decoupling to provide high frequency return.
+•    All nets in the address and command fly-by groups should be routed on close layers to minimize via skew –
+     these are normally close to the center or upper layers of the board.
+Table 6-2 shows the numeric routing rules listed above for address/command lines.
+                             Table 6-2. Address and Command Line Numeric Routing Rules
+     Rule Number     Parameter                                                                                          Value         Unit
+          1          Net Impedance (single-ended)                                                                        50            Ω
+          2          Skew between fly-by group nets                                                                     ± 20          mils
+          3          Stub length                                                                                        < 80          mils
+          4          Stub skew                                                                                          ± 10          mils
+
+
+6.3.1.5 Routing Rules – Control Lines (SDRAMs)
+The following rules must be followed when routing control nets in a DDR3 design:
+•    50-Ω (±5%) single-ended impedance required.
+•    All nets in the control fly-by groups must route along the same path from the controller to each SDRAM
+     sequentially, and then to the VTT termination.
+•    All nets in the control fly-by-groups must be length matched from the controller to each SDRAM separately
+     within ±20 mils of the clock along the same route.
+•    All nets in the control fly-by groups must have the same number of vias in each length-matched segment.
+•    Control fly-by-groups must have stubs less than 80 mils and be length-matched within ±10 mils.
+•    All nets in the control fly-by groups must route adjacent to a solid ground plane or a solid DVDD15 power
+     plane with adequate distributed decoupling to provide high frequency return.
+•    All nets in the control fly-by groups should be routed on close layers to minimize via skew – these are
+     normally close to the center or upper layers of the board.
+Table 6-3 shows the numeric routing rules listed above for control lines.
+                                        Table 6-3. Control Line Numeric Routing Rules
+     Rule Number     Parameter                                                                                          Value         Unit
+          1          Net Impedance (Single-Ended)                                                                         50           Ω
+          2          Skew between fly-by group nets                                                                      ±20          mils
+          3          Stub length                                                                                         < 80         mils
+          4          Stub skew                                                                                           ±10          mils
+
+
+
+
+18     DDR3 Design Requirements for KeyStone Devices                                               SPRABI1D – JANUARY 2018 – REVISED JULY 2022
+                                                                                                                      Submit Document Feedback
+                                                 Copyright © 2022 Texas Instruments Incorporated
+www.ti.com                                                                                                   Physical Design and Implementation
+
+6.3.1.6 Routing Rules – Data Lines (SDRAMs)
+The following rules must be followed when routing data nets in a DDR3 design:
+•   100-Ω (±5%) differential impedance required on data strobe (DQS) pairs.
+•   DQS/ DQS pairs must be routed differentially.
+•   50-Ω (±5%) single-ended impedance required on point-to-point routes.
+•   All nets in each data group must have same number of vias - maximum of two. The number per signal within
+    each byte group must match.
+•   All nets in a single byte-lane group should be routed on the same layer to eliminate the addition of length-
+    skew from the via barrels.
+•   All data-group nets must route adjacent to a solid ground plane.
+•   All data strobe pairs must be length-matched with ±1 mils of each other.
+•   All nets within a single data group must be length-matched with ±10 mils.
+•   Data bits within a byte-lane can be swapped to simplify routing.
+•   Data group nets are routed point-to-point and do not have VTT terminations.
+Table 6-4 shows the numeric routing rules listed above for data lines.
+                                       Table 6-4. Data Lane Numeric Routing Rules
+    Rule Number    Parameter                                                                                              Value          Unit
+         1         Net Impedance (Single-Ended)                                                                             50               Ω
+         2         Net Impedance (Differential)                                                                            100               Ω
+         3         Skew between DQS pairs                                                                                   ±1           mils
+         4         Skew between data group nets for given byte lane                                                        ±10           mils
+
+
+Table 6-5 shows the required data signal byte lane groupings.
+                                  Table 6-5. Data and Data Strobe Byte Lane Grouping
+ Data Group                              Data                       Data Strobe                     Data Strobe                  Data Mask
+ BYTE LANE 0                            DQ[7:0]                         DQS0                          DQS0                         DM0
+ BYTE LANE 1                           DQ[15:8]                         DQS1                          DQS1                         DM1
+ BYTE LANE 2                           DQ[23:16]                        DQS2                          DQS2                         DM2
+ BYTE LANE 3                           DQ[31:24]                        DQS3                          DQS3                         DM3
+ BYTE LANE 4                           DQ[39:32]                        DQS4                          DQS4                         DM4
+ BYTE LANE 5                           DQ[47:40]                        DQS5                          DQS5                         DM5
+ BYTE LANE 6                           DQ[55:48]                        DQS6                          DQS6                         DM6
+ BYTE LANE 7                           DQ[63:56]                        DQS7                          DQS7                         DM7
+ ECC BYTE LANE                          CB[7:0]                         DQS8                          DQS8                         DM8
+
+
+
+
+SPRABI1D – JANUARY 2018 – REVISED JULY 2022                                                   DDR3 Design Requirements for KeyStone Devices      19
+Submit Document Feedback
+                                                  Copyright © 2022 Texas Instruments Incorporated
+Physical Design and Implementation                                                                                                    www.ti.com
+
+6.3.1.7 Routing Rules – Clock Lines (SDRAMs)
+The following rules must be followed when routing clock nets in a DDR3 design:
+•    CK/ CK pairs must be routed differentially.
+•    100-Ω (±5%) differential impedance required on all clock pairs.
+•    Each CK/ CK pair is managed as a separate routing group.
+•    Each CK/ CK pair must be routed to all SDRAMs within a single rank.
+•    All nets in the clock fly-by groups must route along the same path from the controller to each SDRAM
+     sequentially and then to an AC VTT termination.
+•    All clock pairs must be length-matched from the controller to each SDRAM separately within ±1 mils of each
+     other.
+•    All nets in the clock fly-by group must have the same number of vias in each length-matched segment.
+•    Clock pair stubs must be less than 40 mils and length-matched within ±mil.
+•    All clock pair nets must route adjacent to a solid ground plane.
+Table 6-6 shows the numeric routing rules listed above for data lines.
+                                         Table 6-6. Clock Lane Numeric Routing Rules
+     Rule Number     Parameter                                                                                          Value          Unit
+          1          Net Impedance (differential)                                                                       100             Ω
+          2          Skew between CK/ CK pairs                                                                           ±1            mils
+          3          Stub length                                                                                        <40            mils
+          4          Stub skew                                                                                           ±1
+
+
+Figure 6-4 shows the required DDRCLKOUT and DQ/ DQS → DQ/DQS/ DQS routing from the DSP to SDRAMs
+for a single-rank topology.
+
+                                   DQS0p/n                                 DQS0p/n
+                                      CLK                          a       CLKa
+                                                                                DQS1p/n
+                                   DQS1p/n                                   b
+                        DSP                                                     CLKb
+                                                                       SDRAM
+
+
+
+
+                                   DQS2p/n                                           DQS2p/n
+                                                                                   c
+                                                                                      CLKc
+                                                                                 SDRAM
+
+
+
+
+                                   DQS3p/n                                                                    DQS3p/n
+                                                                                                      d
+                                                                                                              CLKd
+                                                                                            SDRAM
+
+
+                                                                                                          SDRAM
+
+
+
+
+                     Figure 6-4. DDRCLKOUT and DQ/ DQS Routing From the DSP to SDRAMs
+
+6.3.1.8 Routing Rules – Power (SDRAMs)
+When routing the DDR3 SDRAM Vref voltages, it is necessary to decouple them at the SDRAMs and not at the
+source. The use of 0.01-µF and 0.1-µF ceramic capacitors (0402 or smaller recommended) should be distributed
+across the Vref power rail with one 0.01-µF and 0.1-µF ceramic capacitor located at each Vref pin, and one
+0.1-µF capacitor directly at the source. Traces between the decoupling capacitors and Vref pins should be a
+minimum of 30 mils (0.762 mm) wide and as short as possible. The Vref pins and interconnection to decoupling
+capacitors should maintain a minimum of 15 mils (0.381 mm) spacing from all other nets. All Vref nets should be
+routed on the top layer. Vref pins should be isolated with, or shielded with ground.
+
+
+
+
+20     DDR3 Design Requirements for KeyStone Devices                                                  SPRABI1D – JANUARY 2018 – REVISED JULY 2022
+                                                                                                                         Submit Document Feedback
+                                                    Copyright © 2022 Texas Instruments Incorporated
+www.ti.com                                                                                               Physical Design and Implementation
+
+When routing the SDRAM VTT power supply, the regulator should be kept close to the VTT pin on the respective
+SDRAMs. In most cases, a VTT voltage island will be used, and it is recommended that the voltage island be
+placed on the component side signal layer. There should be a minimum of one 0.1-µF decoupling capacitor
+close to each VTT SDRAM pin and a minimum of one 10-µF to 22-µF bulk ceramic (low ESR) capacitor on the
+VTT island. The number of VTT bulk capacitors is based on the size of the island, and topology and loading.
+6.3.1.9 Write Leveling Limit Impact on Routing – KeyStone I
+The write-leveling process in the DDR3 interface imposes a limit on the maximum and minimum skew between
+the command delay and the data delay. If these limits are exceeded, the DDR3 interface may fail the write
+leveling process and data corruption may occur. These limits are sufficiently large that well-controlled topologies
+will not likely exceed the limits.
+The command delay is defined as delay for the clock, command, control, and address group signals from the
+DSP to a given SDRAM. The data delay is the delay for the data group signals to that same SDRAM. The
+write-leveling result is effectively the difference, or skew, between these two delays.
+The maximum write-leveling skew is the largest difference between the two delays in the topology to a single
+SDRAM. Likewise, the minimum write-leveling skew is the smallest difference between the two delays in the
+topology to a single SDRAM.
+The write-leveling logic has a theoretical upper limit of 2500 ps. This limit does not scale with SDRAM data rate.
+The theoretical upper limit equates to two full clock cycles when the clock frequency is 800 MHz for DDR3-1600.
+It is reduced by half a clock cycle when invert clock out is enabled, as this effectively lengthens the clock by this
+amount.
+The following set of equations provides an approximation of the maximum and minimum write-leveling skew
+allowed:
+•   ddrclkoutperiod – period of reference clock the DSP is providing to SDRAM
+•   tWLS – from JEDEC DDR3 SDRAM specification, write-leveling setup time from rising CK, CK crossing to
+    rising DQS, DQS crossing
+•   tJIT(per, lck) – clock period jitter during DLL locking period
+•   commanddelay – delay for the clock, command, control and address group signals from the DSP to a given
+    SDRAM
+•   datadelay – delay for the data group signals to that same SDRAM
+•   write_levelingskew – defined as the value commanddelay - datadelay
+•   margin - additional margin added for preliminary use
+Maximum write-leveling skew:
+•   Case 1: Invert clock disabled
+    – write_levelingskew < 2500 ps - tWLS - tJIT(per, lck) - margin
+•   Case 2: Invert clock enabled (adds an additional half-clock period of delay to the command delay term)
+    – commanddelay + (0.5 *ddrclkoutperiod) - datadelay = write_levelingskew < 2500 ps - tWLS - tJIT(per, lck) -
+      margin
+    – write_levelingskew < 2500 ps - tWLS - tJIT(per, lck) - (0.5 *ddrclkoutperiod) - margin
+Minimum write-leveling skew:
+•   Case 1: Invert clock disabled
+    – write_levelingskew > tWLS + tJIT(per, lck) + margin
+•   Case 2: Invert clock enabled (adds an additional half-clock period of delay to the command delay term)
+    – commanddelay + (0.5 *ddrclkoutperiod) - datadelay = write_levelingskew > tWLS + tJIT(per, lck) + margin
+    – write_levelingskew > tWLS + tJIT(per, lck) - (0.5 *ddrclkoutperiod) + margin
+tWLS and tJIT(per, lck) are standard JEDEC DDR3 SDRAM timing parameters that can be obtained from the
+specific data sheet of the SDRAM chosen.
+
+
+
+
+SPRABI1D – JANUARY 2018 – REVISED JULY 2022                                               DDR3 Design Requirements for KeyStone Devices   21
+Submit Document Feedback
+                                              Copyright © 2022 Texas Instruments Incorporated
+Physical Design and Implementation                                                                                                www.ti.com
+
+                                                        Note
+       Because this is preliminary guidance, some small margin should be subtracted from these delays to
+       account for additional terms such as multi-rank delay skew. TI currently recommends setting the extra
+       margin term to 100 ps.
+
+Based on the previous equations, the following calculations and summary table shows the write-leveling skew
+limitations for both invert clock out enabled and disabled given the DDR3-1333 and DDR3-1600 JEDEC
+SDRAM specification. The first column for each speed-grade category lists the maximum write-leveling skew
+in picoseconds. The second column for each lists the maximum write-leveling skew in inches, assuming a signal
+propagation rate of 180 ps/in.
+For DDR3-1333:
+•    ddrclkoutperiod = 1500 ps
+•    tWLS = 195 ps
+•    tJIT(per, lck) = ±70 ps
+•    margin = 100 ps
+Maximum write-leveling skew:
+•    Case 1: Invert clock disabled
+     – write_levelingskew < 2500 ps - tWLS - tJIT(per, lck) - margin
+     – write_levelingskew < 2500 ps - 195 ps - 70 ps -100 ps
+     – write_levelingskew < 2500 ps - 195 ps - 70 ps -100 ps
+     – write_levelingskew < 2135 ps
+•    Case 2: Invert clock enabled (adds an additional half-clock period of delay to the command delay term)
+     – write_levelingskew < 2500 ps - tWLS - tJIT(per, lck) - (0.5 *ddrclkoutperiod) - margin
+     – write_levelingskew < 2500 ps - 195 ps - 70 ps - (0.5 *1500 ps) - 100 ps
+     – write_levelingskew < 1385 ps
+Minimum write-leveling skew:
+•    Case 1: Invert Clock disabled
+     – write_levelingskew > tWLS + tJIT(per, lck) + margin
+     – write_levelingskew > 195 ps + 70 ps + 100 ps
+     – write_levelingskew > 365 ps
+•    Case 2: Invert clock enabled (adds an additional half-clock period of delay to the command delay term)
+     – write_levelingskew > tWLS + tJIT(per, lck) - (0.5 *ddrclkoutperiod) + margin
+     – write_levelingskew > 195 ps + 70 ps - (0.5 *1500 ps) + 100 ps
+     – write_levelingskew > -385 ps
+
+                                                        Note
+       This minimum write-leveling skew calculation with invert clock enabled shows how the invert clock
+       mode can be used to correct a small amount of negative skew between the command and data
+       groups. However, as specified in Section 6.3.1.7, all topologies should be designed for a positive skew
+       between the command delay and data delay to avoid this situation.
+
+For DDR3-1600:
+•    ddrclkoutperiod = 1250 ps
+•    tWLS = 165 ps
+•    tJIT(per, lck) = ± 60 ps
+•    margin = 100 ps
+Maximum write-leveling skew:
+•    Case 1: Invert clock disabled
+     – write_levelingskew < 2500 ps - 165 ps - 60 ps -100 ps
+     – write_levelingskew < 2500 ps - 165 ps - 60 ps -100 ps
+     – write_levelingskew < 2175 ps
+
+
+22    DDR3 Design Requirements for KeyStone Devices                                               SPRABI1D – JANUARY 2018 – REVISED JULY 2022
+                                                                                                                     Submit Document Feedback
+                                                Copyright © 2022 Texas Instruments Incorporated
+www.ti.com                                                                                                Physical Design and Implementation
+
+•   Case 2: Invert clock enabled (adds an additional half-clock period of delay to the command delay term)
+    – write_levelingskew < 2500 ps - 165 ps - 60 ps - (0.5 *1250 ps) - 100 ps
+    – write_levelingskew < 1610 ps
+Minimum write-leveling skew:
+•   Case 1: Invert clock disabled
+    – write_levelingskew > 165 ps + 60 ps + 100 ps
+    – write_levelingskew > 325 ps
+•   Case 2: Invert clock enabled (adds an additional half-clock period of delay to the command delay term)
+    – write_levelingskew > 165 ps + 60 ps - (0.5 *1250 ps) + 100 ps
+    – write_levelingskew > -300 ps
+
+                                                       Note
+      This minimum write-leveling skew calculation with invert clock enabled shows how the invert clock
+      mode can be used to correct a small amount of negative skew between the command and data
+      groups. However, as specified in Section 6.3.1.7, all topologies should be designed for a positive skew
+      between the command delay and data delay to avoid this situation.
+
+                                  Table 6-7. Maximum Write Leveling Skew Example
+                                                                        Invert Clock Out State
+                                                  Disabled                                                   Enabled
+ Speed Grade                      Skew in ps                 Skew in Inches                     Skew in ps             Skew in Inches
+ DDR3-1333                           2135                         11.861                          1385                      7.694
+ DDR3-1600                           2175                         12.083                          1610                      8.944
+
+                                  Table 6-8. Minimum Write Leveling Skew Example
+                                                                        Invert Clock Out State
+                                                  Disabled                                                   Enabled
+ Speed Grade                      Skew in ps                 Skew in Inches                     Skew in ps             Skew in Inches
+ DDR3-1333                            365                          2.027                           -385                     2.138
+ DDR3-1600                            325                          1.805                           -300                     1.666
+
+
+                                                       Note
+      Because this is preliminary guidance and some small margin should be subtracted or added from
+      these delays to account for additional terms such as multi-rank delay skew, TI recommends that the
+      maximum routing lengths be reduced by 10% and the minimum routing lengths be increased by 10%.
+
+6.3.1.10 Round-Trip Delay Impact on Routing – KeyStone I
+The leveling processes in the DDR3 interface impose an upper limit on the maximum round-trip delay. If this
+limit is exceeded, the DDR3 interface may fail the leveling process and data corruption may occur. This limit is
+sufficiently large that well-controlled topologies will not likely exceed the limit.
+The round-trip delay for a given SDRAM is defined as the sum of two delays. The first is the longest delay for the
+clock, command, control, and address groups to that SDRAM. The second is the delay for the data group to that
+same SDRAM. This round-trip delay must be calculated for each byte-lane to each SDRAM device implemented
+in the DDR3 memory topology, including SDRAM devices on DIMM. All of these individual sums must be below
+the limit to help ensure robust operation.
+
+
+
+
+SPRABI1D – JANUARY 2018 – REVISED JULY 2022                                               DDR3 Design Requirements for KeyStone Devices   23
+Submit Document Feedback
+                                              Copyright © 2022 Texas Instruments Incorporated
+Physical Design and Implementation                                                                                                www.ti.com
+
+Internally, the DDR3 controller logic has a theoretical upper limit of four clock cycles. There are multiple
+processes that have variation terms that reduce this time window, as listed below:
+•    ddrclkoutperiod – period of reference clock the DSP is providing to SDRAM
+•    tDQSCK - DQS to CK skew limit from SDRAM data sheet – this is stated for each standard speed grade in
+     the JEDEC DDR3 SDRAM standard
+•    Invert clock out – delay of half a clock cycle if enabled – option normally used only in very small memory
+     topologies
+•    adjustment_sum – sum that accounts for all of the leveling errors, buffer delays, and jitter terms associated
+     with the circuitry, and the leveling adjustment – upper limit is defined to be half a clock period plus 225 ps.
+The following equation provides an approximation of the maximum round trip delay:
+•    Case 1: Invert clock out disabled
+     – round_tripdelay < (4 * ddrclkoutperiod) - tDQSCK - adjustment_sum
+     – round_tripdelay < (4 * ddrclkoutperiod) - tDQSCK - 0.5 * ddrclkoutperiod - 225 ps
+     – round_tripdelay < (3.5 * ddrclkoutperiod) - tDQSCK - 225 ps
+•    Case 2: Invert clock out enabled (adds an additional half-clock period of delay to the command delay term)
+     – round_tripdelay < (4 * ddrclkoutperiod) - tDQSCK - 0.5 * ddrclkoutperiod - adjustment_sum
+     – round_tripdelay < (4 * ddrclkoutperiod) - tDQSCK - 0.5 * ddrclkoutperiod - 0.5 * drclkoutperiod - 225 ps
+     – round_tripdelay < (3 * ddrclkoutperiod) - tDQSCK - 225 ps
+Based on the previous equations, the following calculations and summary table show the write leveling skew
+limitations for both invert clock out enabled and disabled, given the DDR3-1333 and DDR3-1600 JEDEC
+SDRAM specification. The first column for each speed-grade category lists the maximum write leveling skew
+in picoseconds. The second column for each lists the maximum write leveling skew in inches assuming a signal
+propagation rate of 180 ps/in.
+For DDR3-1333:
+•    ddrclkoutperiod = 1500 ps
+•    tDQSCK = ±255 ps
+•    margin = 100 ps
+•    Case 1: Invert clock out disabled:
+     – round_tripdelay < (3.5 * ddrclkoutperiod) - tDQSCK - 225 ps
+     – round_tripdelay < (3.5 * 1500 ps) - 255 ps - 225 ps
+     – round_tripdelay < 4770 ps
+•    Case 2: Invert clock out enabled (adds an additional half-clock period of delay to the command delay term):
+     – round_tripdelay < (3 * ddrclkoutperiod) - tDQSCK - 225 ps
+     – round_tripdelay < (3 * 1500 ps) - 255 ps - 225 ps
+     – round_tripdelay < 4020 ps
+For DDR3-1600:
+•    ddrclkoutperiod = 1250 ps
+•    tDQSCK = ±225 ps
+•    margin = 100 ps
+•    Case 1: Invert clock out disabled
+     – round_tripdelay < (3.5 * ddrclkoutperiod) - tDQSCK - 225 ps
+     – round_tripdelay < (3.5 * 1250 ps) - 225 ps - 225 ps
+     – round_tripdelay < 3925 ps
+•    Case 2: Invert clock out enabled (adds an additional half-clock period of delay to the command delay term)
+     – round_tripdelay < (3 * ddrclkoutperiod) - tDQSCK - 225 ps
+     – round_tripdelay < (3 * 1250 ps) - 225 ps - 225 ps
+     – round_tripdelay < 3300 ps
+
+
+
+
+24    DDR3 Design Requirements for KeyStone Devices                                               SPRABI1D – JANUARY 2018 – REVISED JULY 2022
+                                                                                                                     Submit Document Feedback
+                                                Copyright © 2022 Texas Instruments Incorporated
+www.ti.com                                                                                                Physical Design and Implementation
+
+Table 6-9 shows the round trip delay limitations for both invert clock out enabled and disabled. The first column
+for each lists the maximum round-trip delay in picoseconds. The second column for each lists the maximum
+routing length in inches assuming a signal propagation rate of 180 ps/in.
+             Table 6-9. Maximum Round Trip Delay Example - Invert Clock Out Enabled and Disabled
+ Speed Grade                            Invert Clock Out Disabled                                   Invert Clock Out Enabled
+ DDR3-1333                          4770 ps                       26.50 in                      4020 ps                    22.33 in
+ DDR3-1600                          3925 ps                       21.81 in                      3300 ps                    18.33 in
+
+
+Because this is preliminary guidance and some small margin should be subtracted from these delays to account
+for additional terms such as multi-rank delay skew, TI recommends that the maximum routing lengths be
+reduced by 10%.
+6.3.1.11 Write Leveling Limit Impact on Routing – KeyStone II
+The write-leveling process in the DDR3 interface imposes a limit on the maximum and minimum skew between
+the command delay and the data delay. If these limits are exceeded, the DDR3 interface may fail the write
+leveling process and data corruption may occur. These limits are sufficiently large that well-controlled topologies
+will not likely exceed the limits.
+The command delay is defined as delay for the clock, command, control, and address group signals from the
+DSP to a given SDRAM. The data delay is the delay for the data group signals to that same SDRAM. The
+write-leveling result is effectively the difference, or skew, between these two delays.
+The maximum write-leveling skew is the largest difference between the two delays in the topology to a single
+SDRAM. Likewise, the minimum write-leveling skew is the smallest difference between the two delays in the
+topology to a single SDRAM. The write-leveling logic has an upper limit which is the lower of 1.75 clock periods
+or 2500 ps. For instance, when operating at 1600MT/s, the clock is 800MHz which has a period of 1250ps.
+The maximum skew is 1.75 clock periods or 2187ps. At a propagation delay of 180ps per inch, this limits the
+write-leveling routing skew length to just over 12.1 inches.
+The minimum write leveling skew occurs when the command delay is less than the data delay. The minimum
+write-leveling skew is -0.75 times the clock period. At 1600MT/s, this minimum skew is 937ps or about 5.2
+inches. The DDR3 PHY implemented on KeyStone II can operate within these limits without the need to invert
+the clock to the DDR3 SDRAMs.
+6.3.1.12 Round-Trip Delay Impact on Routing – KeyStone II
+The leveling processes in the DDR3 interface impose an upper limit on the maximum round-trip delay. If this
+limit is exceeded, the DDR3 interface may fail the leveling process and data corruption may occur. This limit is
+sufficiently large that well-controlled topologies will not likely exceed the limit.
+The round-trip delay for a given SDRAM is defined as the sum of two delays. The first is the delay for the clock,
+command, control, and address groups to that SDRAM. The second is the delay for the data group to that same
+SDRAM. This round-trip delay must be calculated for each byte-lane to each SDRAM device implemented in the
+DDR3 memory topology. All of these individual sums must be below the limit to ensure robust operation.
+The DDR3 PHY logic has an upper limit of 6 clock cycles. For instance, when operating at 1600MT/s, the clock
+is 800MHz which has a period of 1250ps. The maximum round trip delay is 6 clock periods or 7500ps. At a
+propagation delay of 180ps per inch, this limits the maximum round trip routed length to over 41.6 inches.
+6.3.2 Routing Considerations – UDIMMs
+6.3.2.1 Mechanical Layout – UDIMMs
+When designing the application hardware to use an UDIMM (unbuffered DIMM), there are several issues to
+take into account that may differ when using individual SDRAMs, including power and route lengths. Key issues
+including stack-up and power/ground-plane referencing do not differ between the two topologies (SDRAM versus
+UDIMM).
+
+
+
+
+SPRABI1D – JANUARY 2018 – REVISED JULY 2022                                               DDR3 Design Requirements for KeyStone Devices   25
+Submit Document Feedback
+                                              Copyright © 2022 Texas Instruments Incorporated
+Physical Design and Implementation                                                                                                www.ti.com
+
+6.3.2.2 Stack Up – UDIMMs
+The board stack-up should not change regardless of whether you are using an UDIMM or individual SDRAMs.
+General guidelines for stack-up under the SDRAMs section apply. It is worth mentioning that a good-quality
+connector and proper impedance is critical to minimize signal reflections.
+6.3.2.3 Routing Rules – General Overview (UDIMMs)
+General routing rules between the KeyStone DSP DDR3 interface and UDIMM are the same as those identified
+for discrete components (SDRAMs). Note that a single DDR3 interface on any KeyStone DSP cannot currently
+support multiple DIMMs in a design. Return ground paths and power-plane decoupling also are critical and
+should be evaluated properly.
+All aspects of this application report and especially those pertaining to the use and implementation of UDIMMs
+assumes that the user has an above average level of understanding regarding mechanical layout and design
+– including the impact of trace width, spacing, via size, and bulk and decoupling capacitance selection and
+placement.
+6.3.2.4 Routing Rules – Address and Command Lines (UDIMMs)
+All address and command nets between the DSP and UDIMM must be referenced to a solid ground or solid
+power plane — the best option would be a solid ground plane. The entire address bus and/or command nets
+can be referenced to the DVDD15 power plane as long a sufficient distributed decoupling is located near the
+endpoints and vias of all routes to provide a low-impedance current return path. All address and command nets
+routing from the DSP to the UDIMM socket must be adjacent to the referenced plane.
+The address bus and command nets between the DSP and UDIMM should be routed away from the data bus
+and respective nets.
+6.3.2.5 Routing Rules – Control Lines (UDIMMs)
+All control nets between the DSP and UDIMM must be referenced to a solid ground or solid power plane — the
+best option would be a solid ground plane. The control nets can be referenced to the DVDD15 power plane as
+long a sufficient distributed decoupling is located near the endpoints and vias of all control routes to provide a
+low impedance current return path. All control nets routing from the DSP to the UDIMM socket must be adjacent
+to the referenced plane.
+The control nets between the DSP and UDIMM should be routed away from the data bus and respective nets.
+6.3.2.6 Routing Rules – Data Lines (UDIMMs)
+All data-group signals must be routed adjacent to a solid ground plane.
+If possible, all data-group nets should be routed internally and close to the bottom of the board. All nets in a
+single byte-group should be routed on the same layer to eliminate addition length skew from the via barrels.
+All data nets should be skew-matched between data/strobe within the respective byte lane. The byte lanes are
+identified in the SDRAM routing rules in Table 6-5.
+6.3.2.7 Routing Rules – Clock Lines (UDIMMs)
+All DDR3 clocks between the DSP and respective UDIMM must be routed as differential pairs. Each differential
+clock pair must be length-matched to the address, command, and control signals.
+6.3.2.8 Routing Rules – Power (UDIMMs)
+For the UDIMM, there exist three separate power supplies, all derived from a common rail. The first is the
+1.5-V supply that provides power to all the DDR3 UDIMM I/Os. The second supply is the VREF supply, which
+must track the VDD15 supply and establishes a reference voltage for the UDIMM. The last supply is the bus
+termination supply (VTT).
+
+
+
+
+26    DDR3 Design Requirements for KeyStone Devices                                               SPRABI1D – JANUARY 2018 – REVISED JULY 2022
+                                                                                                                     Submit Document Feedback
+                                                Copyright © 2022 Texas Instruments Incorporated
+www.ti.com                                                                                               Physical Design and Implementation
+
+Each of the Vref supplies to the UDIMM (VrefCA and VrefDQ) can originate from a common rail but must
+be individually decoupled at the UDIMM. VREF must be 50% of the VDD/VDDQ level and meet the tolerances
+identified in the respective UDIMM data manual. The typical method for establishing each of these reference
+voltages is through a 1% (or better) resistor divider network. It is important that the VREF (VrefCA and VrefDQ)
+voltages track the VDD/VDDQ level across all corners (process, temperature, and noise). See the applicable data
+manual for transient (AC & DC) requirements.
+When routing the UDIMM VREF voltages, properly decouple them as close to the socket as possible. The use of
+0.01-µF and 0.1-µF ceramic capacitors (0402 or smaller recommended) should be distributed across the VREF
+power rail with one 0.01-µF and one 0.1-µF ceramic capacitor located at each VREF pin and one 0.1-µF capacitor
+directly at the source. Traces between the decoupling capacitors and VREF pins should be a minimum of 0.030
+inch (0.762 mm) wide and as short as possible. The VREF pins and interconnection to decoupling capacitors
+should maintain a minimum of 0.015 inch (0.381 mm) spacing from all other nets. All VREF nets should be routed
+on the top layer. VREF pins should be isolated with, or shielded with ground.
+The UDIMM termination voltage (VTT) must be at a constant level of 0.750 V and must be capable of sinking a
+reasonable amount of current while maintaining voltage regulation. VTT must remain stable at all times for the
+UDIMM to function properly. Issues including noise and crosstalk must be eliminated or reduced to a negligible
+amount. VTT like VREF must track all variations with respect to VDD/VDDq.
+When routing the UDIMM VTT power supply the regulator should be kept as close to the VTT pin on the
+respective SDRAMs. In most cases a VTT voltage island will be used and it is recommended that the voltage
+island be placed on the component-side signal layer. There should be a minimum of one 0.1-µF decoupling
+capacitor close to each VTT SDRAM pin and a minimum of one 10-µF to 22-µF bulk capacitor on the VTT island.
+The number of VTT bulk capacitors is based on the size of island and topology.
+6.3.2.9 Write-Leveling Limit Impact on Routing
+The write-leveling process in the DDR3 interface imposes an upper and lower limit on the maximum and
+minimum skew between the command delay and the data delay. If this limit is exceeded, the DDR3 interface
+may fail the write leveling process and data corruption may occur. This limit is sufficiently large so that well-
+controlled topologies will not likely exceed the limit.
+The same write-leveling limits in KeyStone I designs outlined for SDRAMs in Section 6.3.1.9 also apply to
+UDIMMS. Any calculations performed must take both board and UDIMM routing into consideration.
+6.4 Timing Considerations
+DDR3 requires strict timing relationships between CK (and CK) and the address/control lines, and between
+data and the DQS (and DQS) lines. The TI DSP DDR3 interface is designed to comply with the DDR3 JEDEC
+standard with regards to timing constraints. See the applicable standard when evaluating timing. Additional
+timing considerations or constraints may be included in the respective DSP or SDRAM data sheets.
+6.5 Impedance Considerations
+The guidelines below review the impedance considerations for routing and device configuration.
+6.5.1 Routing Impedances – KeyStone I Devices
+The DDR3 interface on KeyStone I devices has, in general, been verified to operate up to 1333 MT/s with up
+to nine loads on the fly-by nets (address, control, command and clock). Validation has focused on single-rank
+memory topologies with only a single load on the data group signals. Topologies with fewer than nine loads
+should all operate at a 1333 MT/s level of performance or below.
+6.5.1.1 Data Group Signals
+All data-group signals are point-to-point in the validated topologies. The data-group signals are driven by the
+KeyStone device on writes and driven by the SDRAM memories during reads. No external resistors are needed
+on these routes. The receivers in both cases (SDRAMs on writes and KeyStone device on reads) will assert
+on-die terminations (ODT) at the appropriate times. The following diagrams show the impedances seen on these
+nets during write and read cycles.
+
+
+
+
+SPRABI1D – JANUARY 2018 – REVISED JULY 2022                                               DDR3 Design Requirements for KeyStone Devices   27
+Submit Document Feedback
+                                              Copyright © 2022 Texas Instruments Incorporated
+Physical Design and Implementation                                                                                                   www.ti.com
+
+Figure 6-5 shows the impedances seen on the nets during a write cycle. During writes, the output impedance of
+the KeyStone I device is approximately 45 Ω. It is recommended that the SDRAM be implemented with a 240-Ω
+RZQ resistor and be configured to present an ODT of RZQ/4 for an effective termination of 40 Ω.
+
+                                     DSP                                                                 SDRAM
+
+
+                                                                       PCB
+                                               :
+
+
+
+                                                                                                       DDR_TERM =
+                                                                                                       default RZQ/6 =
+                                                                                                       40: disable
+                                                                   SDRAM WRITE                         DYN_ODT)
+
+
+
+                      Figure 6-5. Data Group Impedances During Write Cycles on KeyStone I
+
+Figure 6-6 shows the impedances seen on the nets during a read cycle. During reads, it is recommended that
+the SDRAM be configured for an effective drive impedance of RZQ/7 or 34 Ω (assuming RZQ resistor is 240 Ω).
+The on-die termination (ODT) within the KeyStone I device will have an effective Thevenin impedance of 45 Ω.
+
+                                     DSP                                                              SDRAM
+
+
+                                                                         PCB
+
+
+
+
+                               ODT =       :                                                      SDRAM_DRIVE ±
+                                                                                                 default RZQ/7 = 34:
+
+                                                                   SDRAM READ
+
+
+                      Figure 6-6. Data Group Impedances During Read Cycles on KeyStone I
+
+6.5.1.2 Fly-By Signals
+The fly-by signals include the address, control, command, and clock routing groups. The fly-by signals consist
+of the fly-by routing from the DSP, stubs at each SDRAM, and terminations after the last SDRAM. The address,
+control, and command groups will be terminated through a 39.2-Ω resistor to VTT. The clock pairs will be
+terminated through 39.2-Ω resistors to a common node connected to a capacitor that is then connected
+to VDDQ. The KeyStone I device will present a 45-Ω output impedance when driving these signals. These
+relationships are shown in Figure 6-7.
+
+                               DSP                                                     SDRAM
+
+                                                                                                                           VTT
+                                           :
+
+                                                                     PCB                                               :
+
+
+
+                                                    ADDRESS / CONTROL / COMMAND / CLOCK
+
+
+                                           Figure 6-7. Fly-By Impedances on KeyStone I
+
+6.5.2 Routing Impedances – KeyStone II Devices
+The DDR3 interface on KeyStone II devices has, in general, been verified to operate up to 1600 MT/s with up
+to nine loads on the fly-by nets (address, control, command, and clock). Validation has focused on single-rank
+memory topologies with only a single load on the data group signals. Topologies with fewer than nine loads
+should all operate at a 1600 MT/s level of performance or below.
+
+28    DDR3 Design Requirements for KeyStone Devices                                                  SPRABI1D – JANUARY 2018 – REVISED JULY 2022
+                                                                                                                        Submit Document Feedback
+                                                   Copyright © 2022 Texas Instruments Incorporated
+www.ti.com                                                                                               Physical Design and Implementation
+
+6.5.2.1 Data Group Signals
+All data-group signals are point-to-point in the validated topologies. The data-group signals are driven by the
+KeyStone device on writes and driven by the SDRAM memories during reads. No external resistors are needed
+on these routes. The receivers in both cases (SDRAMs on writes and KeyStone device on reads) will assert
+on-die terminations (ODT) at the appropriate times. The following diagrams show the impedances seen on these
+nets during write and read cycles.
+Figure 6-8 shows the impedances seen on the nets during a write cycle. During writes, the output impedance of
+the KeyStone II device is approximately 40 Ω. It is recommended that the SDRAM be implemented with a 240 Ω
+RZQ resistor and be configured to present an ODT of RZQ/4 for an effective termination of 60 Ω.
+
+                                  DSP                                                             SDRAM
+                                          ZO ±
+                                         RZQ/6 =                  PCB
+                                            :
+
+
+
+                                                                                                DDR_TERM
+                                                                                                - RZQ/4 =
+                                                              SDRAM WRITE                       60: disable
+                                                                                                DYN_ODT)
+
+                     Figure 6-8. Data Group Impedances During Write Cycles on KeyStone II
+
+Figure 6-9 shows the impedances seen on the nets during a read cycle. During reads, it is recommended that
+the SDRAM be configured for an effective drive impedance of RZQ/7 or 34 Ω (assuming RZQ resistor is 240 Ω).
+The ODT within the KeyStone II device will have an effective Thevenin impedance of 60 Ω.
+
+                                  DSP                                                           SDRAM
+
+
+                                                                    PCB
+
+
+
+                                ODT ±                                                    SDRAM_DRIVE ±
+                               RZQ/4 =                                                     RZQ/7 = 34:
+                                 6 :
+                                                              SDRAM READ
+
+
+                     Figure 6-9. Data Group Impedances During Read Cycles on KeyStone II
+
+6.5.2.2 Fly-By Signals
+The fly-by signals include the address, control, command, and clock routing groups. The fly-by signals are
+composed of the fly-by routing from the DSP, stubs at each SDRAM, and terminations after the last SDRAM. The
+address, control, and command groups will be terminated through a 39.2-Ω resistor to VTT. The clock pairs will
+be terminated through 39.2-Ω resistors to a common node connected to a capacitor that is then connected to
+VDDQ. The KeyStone II device can be configured to present either a 40-Ω output impedance when configured
+for RZQ/6 (recommended for discrete components) or a 34-Ω output impedance when configured for RZQ/7
+(recommended for UDIMMs). These relationships are shown in Figure 6-10.
+
+
+
+
+SPRABI1D – JANUARY 2018 – REVISED JULY 2022                                               DDR3 Design Requirements for KeyStone Devices   29
+Submit Document Feedback
+                                              Copyright © 2022 Texas Instruments Incorporated
+Physical Design and Implementation                                                                                                www.ti.com
+
+
+                               DSP                                                  SDRAM
+
+                                                                                                                   VTT
+
+
+
+                          ZO ± 34: RZQ/                           PCB                                      39.2:
+                         7) for UDIMM and
+                          34: (RZQ/7) or
+                          40: (RZQ/6) for         ADDRESS / CONTROL / COMMAND / CLOCK
+                               discrete
+
+                                       Figure 6-10. Fly-By Impedances on KeyStone II
+
+6.5.3 Comparison to JEDEC UDIMM Impedance Recommendations
+The JEDEC UDIMM specification provides guidance for UDIMM manufacturers including recommendations for
+routing impedances. These recommendations are similar to the routing impedances discussed above. The
+JEDEC UDIMM specification recommends 40-Ω routes on the fly-by nets between the controller and the first
+SDRAM and then 60-Ω routes between the SDRAMs and to the terminations. However, footnotes under Table
+39 in the JEDEC UDIMM specification state that lightly loaded UDIMMs (like the topologies we expect customers
+to implement with KeyStone devices) should target 49 Ω rather than 60 Ω. Differential routes can be constructed
+from these same single-ended track structures resulting in differential impedances under 100 Ω.
+6.6 Switching and Output Considerations
+Signal switching and output swings can have a significant if not catastrophic impact on signal integrity and
+EMI compliance. Routing, SDRAM placement, stack up, and use cases can also attribute to added dynamic
+switching noise. The concept of dynamic switching noise and induced ground bounce is usually attributed
+to improper layout and stack up, insufficient decoupling, and improper routing. To minimize the output and
+switching problems, system modeling is recommended and usually employed.
+7 Simulation and Modeling
+This section provides a quick overview regarding the importance of simulating and modeling the DSP and DDR3
+interfaces.
+7.1 Simulation and Modeling
+All high-performance interfaces, especially those operating above 300 MHz, should always be modeled.
+Proper simulation and modeling (which must include a complete application board (PCB) stack up, DSP
+DDR3 interface, and SDRAMs) is important to verify and confirm component placement, selection, and signal
+integrity. In a high-performance interface, signal stubs, perturbations, non-monotonic waveforms, inflections, and
+reflections become significant. Time spent properly modeling the DDR3 interface regardless of the topology or
+condition selected will pay off in the long run.
+
+
+
+
+30    DDR3 Design Requirements for KeyStone Devices                                               SPRABI1D – JANUARY 2018 – REVISED JULY 2022
+                                                                                                                     Submit Document Feedback
+                                                Copyright © 2022 Texas Instruments Incorporated
+www.ti.com                                                                                                                     Simulation and Modeling
+
+Figure 7-1 shows the impact of proper placement and routing of high speed signals.
+                                                                              yp      y
+
+                                                                                                                                  V
+                                                                                                                                  V
+
+
+
+
+                       1750.0
+
+
+
+
+                       1550.0
+
+
+
+
+                       1350.0
+
+
+
+
+                       1150.0
+
+
+                   V
+                   o
+                   l
+                   t
+                   a
+                   g    950.0
+                   e
+                   -
+                   m
+                   V
+                   -
+
+
+
+                        750.0
+
+
+
+
+                        550.0
+
+
+
+
+                        350.0
+
+
+
+
+                        150.0
+
+
+
+
+                        -50.0
+                           0.00   500.0   1000.0      1500.0    2000.0     2500.0         3000.0   3500.0   4000.0    4500.0
+                                                                          Time (ps)
+
+
+
+
+                                                     Figure 7-1. DDR3 Simulations
+
+7.2 Tools
+A variety of software tools exists to give customers the ability to model high-performance interfaces. Up until
+recently, the most common simulation tool was Spice or HSpice. These tools are extremely costly, difficult to use,
+and vary between types. Other tools including the IBIS standard and protocol were traditionally avoided because
+of their limitation at high frequencies.
+7.3 Models
+Different simulation models can be found for the DDR3 SDRAMs and will be available from the SDRAM vendor
+you have selected. The available models are typically one of the following three formats: Spice, HSpice, or IBIS.
+Texas Instruments intends to provide IBIS models to our customers.
+7.4 TI Commitment
+Texas Instruments has taken the initiative to provide IBIS models compliant with the latest 5.0 IBIS standard
+for the DDR3 interface. The Texas Instruments DSP IBIS model will be correlated to internal Matlab or Spice
+models, and functionally against timing and performance parameters prior to release (TMS).
+8 Power
+This section briefly describes the DDR3 relative power, DSP DDR3 interface relative power, power assessment,
+and power sequencing.
+8.1 DDR3 SDRAM Power Requirements
+There exists three different power supplies for the SDRAM (1.5-V primary IO supply, Vref, and VTT) and three
+different power supplies for the DSP (1.1 V, 1.5 V, and Vref).
+It is recommended that the KeyStone DSP DDR3 interface and SDRAM share a common 1.5-V supply rail.
+A common 1.5-V supply rail (±5% maximum AC/DC tolerance) simplifies the overall design, and reduces the
+differential between the two devices and minimizes the need for additional layers (power) in the end-use
+application.
+
+
+
+
+SPRABI1D – JANUARY 2018 – REVISED JULY 2022                                                         DDR3 Design Requirements for KeyStone Devices   31
+Submit Document Feedback
+                                                   Copyright © 2022 Texas Instruments Incorporated
+Power                                                                                                                               www.ti.com
+
+8.1.1 Vref Voltage Requirements
+There exist two DDR3 SDRAM Vreference pins: VrefCA and VrefDQ. VrefCA is the reference voltage for all
+command, address, and control pins. VrefDQ is the reference voltage for the data lines. It is not necessary, but
+typically recommended, that both Vreference voltages originate from the same supply source. Both Vreference
+pins must be derived from VDD/2 (VDDq/2). The recommended Vreference (Vref) implementation is by using a
+simple resistor divider with 1% or better accuracy. The distance between the source voltage through the divider
+network and to the decoupled Vreference pins must be short. Each Vreference pin must properly track the
+VDD/2 (VDDq/2) variations over voltage, noise, and temperature differences. The pk-to-pk AC and DC noise on
+the Vreference pins cannot exceed ±2% or 1.5 mV.
+8.1.2 VTT Voltage Requirements
+The DDR3 SDRAM termination voltage is referred to as VTT and requires a 750-mV supply. The recommended
+VTT source is a regulator that is capable of sinking a sufficient amount of current while at the same time
+maintaining a tight voltage tolerance. Like the Vref pins, the distance between the VTT source voltage and
+SDRAM pin must be short and decoupled properly. The VTT pin must be kept stable and properly track the
+VDD/VDDq variations over voltage, noise, and temperature differences. The pk-to-pk AC and DC noise on the
+VTT pin cannot exceed ±2% or 1.5 mV.
+8.2 DSP DDR3 Power Requirements
+On the DSP, the AVDDA2 pins are designed to supply power to the internal DDR3 clock PLL. These pins must
+be connected to a clean 1.8-V supply rail. There exist other DSP 1.8-V supplies that can be used provided the
+voltage tolerance is maintained and a separate filter is used. All DVDD15 pins are designed to supply power to
+the DSP DDR3 IO buffers. As with the 1.5-V power pins, these must also be connected to a clean 1.5-V supply
+rail. The DDR3xVREFSSTL pins provides the reference voltage to the DSP DDR3 interface. This supply pin is
+derived from VDD/2 using 1% or better resistors.
+For power supply requirements, see the device-specific DSP data sheet and application reports.
+8.3 DDR3 Power Estimation
+Actual power for each SDRAM is dependent upon many factors. Most DDR3 SDRAM manufacturers have
+application reports to aid in estimating the DDR3 power. Power can be divided into two categories: active
+and leakage. All SDRAMs contain some element of each. When designing the power supplies, it is strongly
+recommended that you take into account both active and leakage power as well as peak in-rush currents. A
+suitable margin should always be added to the final calculation.
+As a general rule of thumb, a single DDR3 SDRAM in a ×16 (256M Byte) configuration running at 1.333 MT/s
+and assuming 50% reads and 50% writes will consume a maximum total power of 864 mW or 576 mA.
+8.4 DSP DDR3 Interface Power Estimation
+Excluding the DDR3 SDRAM power discussed above, power estimates for the DSP DDR3 interface can be
+obtained using the device-specific KeyStone DSP power application report and spreadsheet.
+8.5 Sequencing – DDR3 and DSP
+The DSP device requires specific power sequencing as well as the DDR3 DRAMs. In all cases, see the
+device-specific data sheet for verification of power up and power down sequencing requirements.
+In all cases, the DRAM cannot be allowed to drive into the DSP until the DSP has been fully powered and
+sequenced properly.
+9 Disclaimers
+Comments and proposals identified within this document are presented as guidelines. Texas Instruments
+can not fully anticipate every possible design permutation, topology, and application variation and therefore
+requires each end user to perform proper due diligence (using good engineering practices and including proper
+component selection) when designing for a DDR3 interface. This includes proper simulation and modeling to
+verify the recommendations provided function in an acceptable manner (in the end-use application).
+
+
+
+
+32      DDR3 Design Requirements for KeyStone Devices                                               SPRABI1D – JANUARY 2018 – REVISED JULY 2022
+                                                                                                                       Submit Document Feedback
+                                                  Copyright © 2022 Texas Instruments Incorporated
+www.ti.com                                                                                                                                    References
+
+This application guide is not intended to be the sole source or reference design guide. Many factors
+not encompassed within this document can force a change in component values, selection, placement, or
+termination type.
+The possible permutations available due to component, layout, and assembly can also induce variations not
+encompassed in the recommendations provided. Voltage rails, manufacturer parts selection, switching levels
+should all be verified before committing the design to production.
+It is the end user’s responsibility to always verify the design, and connectivity between any active or passive
+component and the targeted DSP. This includes verifying against individual data sheets and application reports.
+Simulation and modeling play an important role in system verification and validation. This effort and the need to
+conduct this level of analysis should not be overlooked in any design – regardless of simplicity or complexity.
+This is not a primer for high-speed design. Use of the information provided assumes a strong understanding of
+electrical and mechanical design requirements in a high-performance DSP application environment.
+From time to time there exist DSP or application design changes. It is the end user’s responsibility to verify that
+the appropriate data sheets and application reports are followed.
+Specifications continuously change and are updated. Verify the specifications have not changed and that the
+documents used are correct for the version of silicon you are designing with.
+Prior to final design release it is recommended that a full engineering assessment be performed by the end user
+in order to assure functionality.
+10 References
+•   Texas Instruments: KeyStone Architecture DDR3 Memory Controller User's Guide
+•   Texas Instruments: Hardware Design Guide for KeyStone I Devices
+•   TN-41-04: DDR3 Dynamic On-Die Termination Technical Note (Micron)
+•   TN-41-06: DDR3 Termination Data Strobe Design Note (TDQS) (Micron)
+•   MO-269D: JEDEC Document: MO (Module Outline) {for DDR3}
+•   SO-007B: JEDEC Document: SO (Socket Outline)
+•   TN-42-02: DDR3 ZQ Calibration Design Note (Micron)
+•   TN-04-54: High-Speed DRAM Controller Design Note (Micron)
+•   TN-41-01: Calculating Memory System Power for DDR3 Design Note ( Micron)
+•   TN-41-07: DDR3 Power-Up, Initialization, and Reset Design Note (Micron)
+•   TN-41-08: Design Guide for Two DDR3-1066 UDIMM Systems (Micron)
+•   JEDEC 21-C: Unbuffered DIMM Design Specification
+•   Pub 95 PS-001A: Connector Performance Standards for Outlines of Solid State Related Products – 240 pin
+    DDR3 UDIMM
+•   Texas Instruments: TMS320C6678 Multicore Fixed and Floating-Point Digital Signal Processor Data Sheet
+
+11 Revision History
+NOTE: Page numbers for previous revisions may differ from page numbers in the current version.
+Changes from Revision C (January 2018) to Revision D (July 2022)                                                                                  Page
+• Updated the numbering format for tables, figures and cross-references throughout the document...................3
+• Update was made in Section 4.3........................................................................................................................ 6
+
+
+
+
+SPRABI1D – JANUARY 2018 – REVISED JULY 2022                                                       DDR3 Design Requirements for KeyStone Devices         33
+Submit Document Feedback
+                                                     Copyright © 2022 Texas Instruments Incorporated
+                                       IMPORTANT NOTICE AND DISCLAIMER
+TI PROVIDES TECHNICAL AND RELIABILITY DATA (INCLUDING DATA SHEETS), DESIGN RESOURCES (INCLUDING REFERENCE
+DESIGNS), APPLICATION OR OTHER DESIGN ADVICE, WEB TOOLS, SAFETY INFORMATION, AND OTHER RESOURCES “AS IS”
+AND WITH ALL FAULTS, AND DISCLAIMS ALL WARRANTIES, EXPRESS AND IMPLIED, INCLUDING WITHOUT LIMITATION ANY
+IMPLIED WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE OR NON-INFRINGEMENT OF THIRD
+PARTY INTELLECTUAL PROPERTY RIGHTS.
+These resources are intended for skilled developers designing with TI products. You are solely responsible for (1) selecting the appropriate
+TI products for your application, (2) designing, validating and testing your application, and (3) ensuring your application meets applicable
+standards, and any other safety, security, regulatory or other requirements.
+These resources are subject to change without notice. TI grants you permission to use these resources only for development of an
+application that uses the TI products described in the resource. Other reproduction and display of these resources is prohibited. No license
+is granted to any other TI intellectual property right or to any third party intellectual property right. TI disclaims responsibility for, and you
+will fully indemnify TI and its representatives against, any claims, damages, costs, losses, and liabilities arising out of your use of these
+resources.
+TI’s products are provided subject to TI’s Terms of Sale or other applicable terms available either on ti.com or provided in conjunction with
+such TI products. TI’s provision of these resources does not expand or otherwise alter TI’s applicable warranties or warranty disclaimers for
+TI products.
+TI objects to and rejects any additional or different terms you may have proposed. IMPORTANT NOTICE
+
+                             Mailing Address: Texas Instruments, Post Office Box 655303, Dallas, Texas 75265
+                                            Copyright © 2022, Texas Instruments Incorporated
+

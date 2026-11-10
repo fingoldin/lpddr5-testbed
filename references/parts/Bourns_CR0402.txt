@@ -1,0 +1,676 @@
+                                                                    Features                                                                Additional Information
+                                                                    ■ RoHS compliant*                                                    Click these links for more information:
+                                                                    ■ Tight tolerance of bottom electrode width
+                                                                    ■ 1 % and 5 % tolerance options
+
+                     10C                                            ■ Three layer termination process with
+                                                                      nickel barrier helps prevent leaching and                           PRODUCT TECHNICAL INVENTORY SAMPLES
+                                                                                                                                          SELECTOR LIBRARY
+                                                                                                                                                                                           CONTACT
+
+                                                                      provides excellent solderability
+                                                                    ■ Tape and reel packaging
+
+
+                                                                    CR Series - Thick Film Chip Resistors
+
+   Electrical Characteristics
+
+                                                                                                       Model No.
+Characteristic
+                             CR01005               CR0201                CR0402               CR0603                CR0805               CR1206                CR2010               CR2512
+Power Rating
+                              1/32 W                1/20 W                1/16 W               1/10 W                 1/8 W                1/4 W                 1/2 W                  1W
+@ 70 °C
+Operating
+                                 -55 °C to +125 °C                                                                      -55 °C to +155 °C
+Temp. Range
+Derated to
+                                        +125 °C                                                                                +155 °C
+Zero Load @
+Max. Working
+                                15 V                  30 V                 50 V                  75 V                 150 V                200 V                 200 V                200 V
+Voltage
+Max. Overload
+                                30 V                  50 V                100 V                 150 V                 300 V                400 V                 400 V                400 V
+Voltage
+Resistance
+                                                                                                       ±1 %, ±5 %
+Tolerance
+
+                                                                       1 Ω≤R<10 Ω
+                                                                                             1 Ω≤R<10 Ω            1 Ω≤R<10 Ω           1 Ω≤R<10 Ω            1 Ω≤R<10 Ω           1 Ω≤R<10 Ω
+                                                                       -200~+500
+Temperature                                       1 Ω≤R<10 Ω                               ±200 ppm/°C ±200 ppm/°C ±200 ppm/°C ±200 ppm/°C ±200 ppm/°C
+                           10 Ω≤R<100 Ω                                  ppm/°C
+Coefficient                                       -200~+600
+                          ±300 ppm/°C
+                                                    ppm/°C                                  10 Ω≤R≤1 MΩ          10 Ω≤R≤1 MΩ           10 Ω≤R≤1 MΩ          10 Ω≤R≤1 MΩ           10 Ω≤R≤1 MΩ
+±1 %                                                                  10 Ω≤R≤1 MΩ
+                                                                                           ±100 ppm/°C ±100 ppm/°C ±100 ppm/°C ±100 ppm/°C ±100 ppm/°C
+(E24 & E96                100 Ω≤R<1 MΩ                               ±100 ppm/°C
+                                                 10 Ω≤R≤3 MΩ
+                          ±200 ppm/°C
+Series)                                         ±200 ppm/°C                                1 MΩ<R≤10 MΩ 1 MΩ<R≤10 MΩ 1 MΩ<R≤10 MΩ 1 MΩ<R≤10 MΩ 1 MΩ<R≤10 MΩ
+                                                                     1 MΩ<R≤10 MΩ
+                                                                                           ±200 ppm/°C ±200 ppm/°C ±200 ppm/°C ±200 ppm/°C ±200 ppm/°C
+                                                                     ±200 ppm/°C
+
+                                                                       1 Ω≤R<10 Ω
+                                                                                             1 Ω≤R<10 Ω            1 Ω≤R<10 Ω           1 Ω≤R<10 Ω            1 Ω≤R<10 Ω           1 Ω≤R<10 Ω
+                                                                       -200~+500
+                                                  1 Ω≤R<10 Ω                               ±400 ppm/°C ±400 ppm/°C ±400 ppm/°C ±400 ppm/°C ±400 ppm/°C
+Temperature                10 Ω≤R<100 Ω                                  ppm/°C
+                                                  -200~+600
+Coefficient               ±300 ppm/°C
+                                                    ppm/°C                                 10 Ω≤R≤10 MΩ 10 Ω≤R≤10 MΩ 10 Ω≤R≤10 MΩ 10 Ω≤R≤10 MΩ 10 Ω≤R≤10 MΩ
+                                                                      10 Ω≤R≤10 MΩ
+±5 %                                                                                       ±200 ppm/°C ±200 ppm/°C ±200 ppm/°C ±200 ppm/°C ±200 ppm/°C
+                          100 Ω≤R≤1 MΩ                               ±200 ppm/°C
+                                                10 Ω≤R≤10 MΩ
+(E24 Series)              ±200 ppm/°C
+                                                ±200 ppm/°C                               10 MΩ<R≤20 MΩ 10 MΩ<R≤20 MΩ 10 MΩ<R≤20 MΩ 10 MΩ<R≤20 MΩ 10 MΩ<R≤20 MΩ
+                                                                    10 MΩ<R≤20 MΩ
+                                                                                           ±400 ppm/°C ±400 ppm/°C ±400 ppm/°C ±400 ppm/°C ±400 ppm/°C
+                                                                     ±400 ppm/°C
+Zero Ohm
+                                                                                                  50 milliohms max.
+Jumper
+
+Rated Current                              0.5 A                                       1A                                                               2A
+
+Max. Overload
+                                            1A                                        2.5 A                                                             5A
+Current
+
+   Environmental Characteristics
+Moisture Sensitivity Level ..........................................................................................................................................................................1
+
+
+
+
+                                                               *RoHS Directive 2015/863, Mar 31, 2015 and Annex.
+              WARNING                                          Specifications are subject to change without notice. Users should verify actual device performance in their specific
+              Cancer and Reproductive Harm                     applications. The products described herein and this document are subject to specific legal disclaimers as set forth on the last
+              www.P65Warnings.ca.gov                           page of this document, and at www.bourns.com/docs/legal/disclaimer.pdf.
+         CR Series - Thick Film Chip Resistors
+
+  Product Dimensions
+                                                                                                                                                         L
+     Model                  L                   W                    C                   D                    T
+                      0.40 ± 0.02   0.20 ± 0.03                0.10 ± 0.03         0.10 ± 0.03    0.13 ± 0.02
+   CR01005
+                    (.016 ± .0008) (.008 ± .001)              (.004 ± .001)       (.004 ± .001) (.009 ± .0008)
+                                                                                                                                                                                   W
+                      0.60 ± 0.03         0.30 ± 0.03          0.10 ± 0.05         0.15 ± 0.05          0.23 ± 0.03
+    CR0201
+                     (.024 ± .001)       (.012 ± .001)        (.004 ± .002)       (.006 ± .002)        (.009 ± .001)
+
+                      1.00 ± 0.05         0.50 ± 0.05          0.20 ± 0.10         0.25 ± 0.10          0.32 ± 0.05
+    CR0402                                                                                                                                                           C
+                     (.039 ± .002)       (.020 ± .002)        (.008 ± .004)       (.010 ± .004)        (.013 ± .002)
+
+                      1.60 ± 0.10         0.80 ± 0.10          0.30 ± 0.20         0.30 ± 0.20          0.45 ± 0.10                          C
+    CR0603
+                     (.063 ± .004)       (.031 ± .004)        (.012 ± .008)       (.012 ± .008)        (.018 ± .004)
+
+                      2.00 ± 0.10         1.25 ± 0.10          0.40 ± 0.20         0.40 ± 0.20          0.50 ± 0.10                                                                     T
+    CR0805                                                                                                                                   D
+                     (.079 ± .004)       (.049 ± .004)        (.016 ± .008)       (.016 ± .008)        (.020 ± .004)
+
+                      3.10 ± 0.10         1.55 ± 0.10          0.50 ± 0.30         0.40 ± 0.20          0.55 ± 0.10                                                 MM
+    CR1206                                                                                                                                       DIMENSIONS:
+                     (.122 ± .004)       (.061 ± .004)        (.020 ± .012)       (.016 ± .008)        (.022 ± .004)                                             (INCHES)
+
+                      5.00 ± 0.15         2.50 ± 0.15          0.60 ± 0.30         0.50 ± 0.25          0.60 ± 0.10
+    CR2010
+                     (.197 ± .006)       (.098 ± .006)        (.024 ± .012)       (.020 ± .010)        (.024 ± .004)
+                      6.30 ± 0.20         3.20 ± 0.20          0.60 ± 0.30         0.50 ± 0.25          0.60 ± 0.10
+    CR2512
+                     (.248 ± .008)       (.126 ± .008)        (.024 ± .012)       (.020 ± .010)        (.024 ± .004)
+
+
+  Recommended Pad Layout
+                                                                                                                                                               RESISTOR
+     Model                          a                                 b                                 c
+
+                             0.15 ~ 0.20                       0.50 ~ 0.70                      0.20 ~ 0.25
+   CR01005                                                                                                                                               a
+                                                                                                                                                                                        c
+                            (.006 ~ .008)                     (.020 ~ .028)                    (.008 ~ .010)
+                                                                                                                                                         b
+                             0.25 ~ 0.30                       0.70 ~ 0.90                      0.30 ~ 0.40
+    CR0201
+                            (.010 ~ .012)                     (.028 ~ .035)                    (.012 ~ .016)                                                        MM
+                                                                                                                                                 DIMENSIONS:
+                                                                                                                                                                 (INCHES)
+                             0.50 ~ 0.60                       1.40 ~ 1.60                      0.40 ~ 0.60
+    CR0402
+                            (.020 ~ .024)                     (.055 ~ .063)                    (.012 ~ .024)
+                             0.70 ~ 0.90                       2.00 ~ 2.20                      0.80 ~ 1.00
+    CR0603
+                            (.028 ~ .035)                     (.079 ~ .087)                    (.031 ~ .039)
+                             1.00 ~ 1.40                       3.20 ~ 3.80                      0.90 ~ 1.40
+    CR0805
+                            (.039 ~ .055)                     (.126 ~ .150)                    (.035 ~ .055)
+                             2.00 ~ 2.40                       4.40 ~ 5.00                      1.20 ~ 1.80
+    CR1206
+                            (.079 ~ .094)                     (.173 ~ .197)                    (.047 ~ .071)
+                             3.30 ~ 3.70                       5.70 ~ 6.50                      2.30 ~ 3.50
+    CR2010
+                            (.130 ~ .146)                     (.224 ± .256)                    (.091 ~ .138)
+                             3.60 ~ 4.00                       7.60 ~ 8.60                      2.30 ~ 3.50
+    CR2512
+                            (.142 ~ .157)                     (.299 ~ .339)                    (.091 ~ .138)
+
+
+
+
+Specifications are subject to change without notice.
+Users should verify actual device performance in their specific applications.
+The products described herein and this document are subject to specific legal disclaimers as set forth on the last page of this document, and at www.bourns.com/docs/legal/disclaimer.pdf.
+         CR Series - Thick Film Chip Resistors
+
+  Soldering Profile
+
+                                                275
+                                                                   <1> Maximum of 20 seconds between                                                     260 °C peak
+                                                                         +255 °C and +260 °C                                <1> 255 °C
+
+
+                                                225
+                                                                                                                        220 °C
+                             Temperature (°C)
+
+
+
+
+                                                                                                             190 °C                      60 - 90
+                                                                                                                                         seconds
+                                                175
+                                                              150 °C                                                                                                   Ramp Down
+                                                                                                                                                                       6 °C/second
+
+                                                125
+                                                                                               60 - 120 seconds
+
+                                                                                                                              10 seconds minimum
+
+                                                75
+                                                                                        Ramp Up
+                                                                                        3 °C/second maximum
+
+                                                25
+                                                        0                          50                  100                  150                 200              250                 300
+                                                                                                                       Time (Seconds)
+
+
+  Derating Curve
+
+                                                                        100
+
+
+                                                                        80
+                                                      Power Ratio (%)
+
+
+
+
+                                                                        60
+
+                                                                                                                  70
+                                                                        40                                                                      CR0402~CR2512
+                                                                                                                        CR01005,
+                                                                                                                         CR0201
+                                                                        20
+                                                                                                                                            125          155
+
+                                                                          0
+                                                                           -55          20        40         60        80         100     120      140     160
+
+                                                                                                         Ambient Temperature (°C)
+
+
+
+
+Specifications are subject to change without notice.
+Users should verify actual device performance in their specific applications.
+The products described herein and this document are subject to specific legal disclaimers as set forth on the last page of this document, and at www.bourns.com/docs/legal/disclaimer.pdf.
+         CR Series - Thick Film Chip Resistors
+
+  Performance Characteristics
+
+ Test                                                  Procedure (IEC 60115-1)                                                                             Test Limits ∆R
+                                                                                                                                                           ≤± (1 % + 0.05 Ω )
+                                                                                                                                                           Remarks:
+ Short Time Overload                                   2.5 x rated voltage for 5 seconds                                                                   CR01005, CR0201 .................. ± (3 % + 0.1 Ω)
+                                                                                                                                                           CR0402 ................................... ± (2 % + 0.1 Ω)
+                                                                                                                                                           0 Ω Jumper ................................ 50 mΩ or less
+
+                                                                                                                                                           1 %: ≤± (1 % + 0.05 Ω)
+                                                       3.0 x rated voltage or max. overloading voltage,
+                                                                                                                                                           5 %: ≤± (3 % + 0.1 Ω)
+                                                       1 sec. “ON”, 25 sec. “OFF”,10,000 cycles
+ Intermittent Overload                                                                                                                                     Remarks:
+                                                       Remarks:
+                                                                                                                                                           CR01005, CR0201 .................. ± (5 % + 0.1 Ω)
+                                                       CR01005, CR0201 ..................................................... not applicable
+                                                                                                                                                           CR0402 ................................... ± (3 % + 0.1 Ω)
+                                                       CR0402 ............................... 2.5 x rated continuous working voltage
+                                                                                                                                                           0 Ω Jumper .............................. 100 mΩ or less
+
+                                                                                                                                                           1 %: ≤± (1 % + 0.05 Ω)
+                                                                                                                                                           5 %: ≤± (3 % + 0.1 Ω)
+                                                       1000 hours at rated voltage, 70 ℃ ,                                                                 Remarks:
+ Load Life
+                                                       1.5 hours “ON “, 0.5 hour “OFF”                                                                     CR01005, CR0201 .................. ± (5 % + 0.1 Ω)
+                                                                                                                                                           CR0402 ................................... ± (3 % + 0.1 Ω)
+                                                                                                                                                           0 Ω Jumper .............................. 100 mΩ or less
+                                                                                                                                                           1 %: ≤± (1 % + 0.05 Ω)
+                                                                                                                                                           5 %: ≤± (3 % + 0.1 Ω)
+                                                       1000 hours at rated voltage , 40±2 ℃,                                                               Remarks:
+ Load Life Humidity
+                                                       90~95 % RH 1.5 hours “ON “, 0.5 hour “OFF”                                                          CR01005, CR0201 .................. ± (5 % + 0.1 Ω)
+                                                                                                                                                           CR0402 ................................... ± (3 % + 0.1 Ω)
+                                                                                                                                                           0 Ω Jumper .............................. 100 mΩ or less
+
+                                                                                                                                                           1 %: ≤± (0.5 % + 0.05 Ω)
+                                                                                                                                                           5 %: ≤± (1 % + 0.05 Ω)
+ Rapid Change of Temperature                           -55 ℃ (30 min.) / +155 ℃ (30 min.) 5 cycles                                                         Remarks:
+                                                                                                                                                           CR01005, CR0201 .................. ± (3 % + 0.1 Ω)
+                                                                                                                                                           0 Ω Jumper ................................ 50 mΩ or less
+
+                                                                                                                                                           1 %: ≤± (0.5 % + 0.05 Ω)
+                                                                                                                                                           5 %: ≤± (1 % + 0.05 Ω)
+                                                                                                                                                           Remarks:
+ Resistance to Solder Heat                             270±5 ℃, 10±1 sec.
+                                                                                                                                                           CR01005 ............................... ± (3 % + 0.05 Ω)
+                                                                                                                                                           CR0201 ................................... ± (3 % + 0.1 Ω)
+                                                                                                                                                           0 Ω Jumper ................................ 50 mΩ or less
+
+                                                       245±5 ℃ solder, 2±0.5 seconds dwell                                                                 Over 95 % of termination must be covered
+ Solderability
+                                                       Solder: Sn96.5 / Ag3.0 / Cu0.5                                                                      with solder
+                                                                                                                                                           1 %: ≤± (1 % + 0.05 Ω)
+                                                       155±5 ℃ for 96±4 hours                                                                              5 %: ≤± (1 % + 0.05 Ω)
+ Resistance to Dry Heat                                Remarks:                                                                                            Remarks:
+                                                       CR0201 ............................................................................. 125±5 °C       CR01005, CR0201 .................. ± (1 % + 0.1 Ω)
+                                                                                                                                                           0 Ω Jumper ................................ 50 mΩ or less
+
+                                                                                                                                                           1 %: ≤± (0.5 % + 0.05 Ω)
+                                                                                                                                                           5 %: ≤± (2 % + 0.1 Ω)
+                                                       3 mm deflection
+                                                                                                                                                           Remarks:
+ Bending                                               Remarks:
+                                                                                                                                                           CR01005, CR0201 .................. ± (3 % + 0.1 Ω)
+                                                       CR2010, CR2512 .................................................... 2 mm deflection
+                                                                                                                                                           CR0402 ................................... ± (2 % + 0.1 Ω)
+                                                                                                                                                           0 Ω Jumper ................................ 50 mΩ or less
+
+                                                       500 V, 1 minute
+                                                       Remarks:                                                                                            No abnormalities such as flashover, burning or
+ Dielectric Withstanding Voltage
+                                                       CR01005, CR0201 .................................................................... 50 V           dielectric breakdown shall appear
+                                                       CR0402 ................................................................................... 300 V
+
+                                                       100 V, 1 minute                                                                                     ≥1 GΩ
+ Insulation Resistance                                 Remarks:                                                                                            Remarks:
+                                                       CR0201 ..................................................................................... 50 V   CR01005 ..........................................≥100 MΩ)
+
+
+Specifications are subject to change without notice.
+Users should verify actual device performance in their specific applications.
+The products described herein and this document are subject to specific legal disclaimers as set forth on the last page of this document, and at www.bourns.com/docs/legal/disclaimer.pdf.
+         CR Series - Thick Film Chip Resistors
+
+  How to Order
+
+                                                                                                                                          CR 1206 - F X - 1003 E LF
+Model
+(CR = Chip Resistor)
+Size
+  01005      = 01005 size
+   0201      = 0201 size
+   0402      = 0402 size
+   0603      = 0603 size
+   0805      = 0805 size
+   1206      = 1206 size
+   2010      = 2010 size
+   2512      = 2512 size
+Resistance Tolerance
+  F = ±1 %
+  J = ±5 %
+TCR (ppm/°C) – See Electrical Characteristics Chart
+  X = ±100
+  W = ±200
+  V = ±300
+  Z = ±400
+  / = Used for zero Ω (jumper) and values from 1 Ω through 9.76 Ω.
+Resistance Value
+  For 1 % Tolerance:
+  <100 Ω ..... “R” represents decimal point (example: 24R3 = 24.3 Ω).
+ ≥100 Ω .... First three digits are significant, fourth digit represents number of zeros to follow (example: 8252 = 82.5K Ω).
+  For 5 % Tolerance:
+  <10 Ω ....... “R” represents decimal point (example: 4R7 = 4.7 Ω).
+  ≥10 Ω ....... First two digits are significant, third digit represents number of zeros to follow (example: 474 = 470K Ω; 000 = Jumper).
+Packaging
+  G = Paper Tape (10,000 pcs.) on 7-inch Plastic Reel – CR01005, CR0201, CR0402
+  E = Paper Tape (5,000 pcs.) on 7-inch Plastic Reel – CR0603, CR0805, CR1206 or
+      Embossed Tape (4,000 pcs) on 7-inch Plastic Reel – CR2010, CR2512
+Termination
+  LF = Tin-plated (RoHS Compliant)
+
+
+
+
+Specifications are subject to change without notice.
+Users should verify actual device performance in their specific applications.
+The products described herein and this document are subject to specific legal disclaimers as set forth on the last page of this document, and at www.bourns.com/docs/legal/disclaimer.pdf.
+           CR Series - Thick Film Chip Resistors
+
+  EIA-96 Marking for CR0603, 1 %                                                                                                    Marking Explanation
+
+   Code          R Value             Code      R Value             Code      R Value               Code           R Value
+      01            100               25            178             49               316            73                 562
+                                                                                                                                  0Ω JUMPER:
+                                                                                                                                                                             0
+      02            102               26            182             50               324            74                 576
+      03            105               27            187             51               332            75                 590
+                                                                                                                                 CR01005, CR0201,
+      04            107               28            191             52               340            76                 604       CR0402:
+      05            110               29            196             53               348            77                 619       No marking.
+
+      06            113               30            200             54               357            78                 634
+      07            115               31            205             55               365            79                 649       CR0603, CR0805, CR1206,
+                                                                                                                                 CR2010, CR2512:
+      08            118               32            210             56               374            80                 665       • E-24: 3 digits; first two
+      09            121               33            215             57               383            81                 681         digits are significant,
+                                                                                                                                   third digit is number of
+                                                                                                                                   zeros to follow.
+                                                                                                                                                                         103
+      10            124               34            221             58               392            82                 698
+                                                                                                                                   Letter R is decimal       (Value = 10K Ω)
+      11            127               35            226             59               402            83                 715         point.
+      12            130               36            232             60               412            84                 732
+                                                                                                                                 • E-96: 4 digits; first
+      13            133               37            237             61               422            85                 750
+      14            137               38            243             62               432            86                 768
+                                                                                                                                   three digits are
+                                                                                                                                   significant, fourth digit
+                                                                                                                                   is number of zeros to
+                                                                                                                                                                        4422
+                                                                                                                                   follow.                         (Value = 44.2K Ω)
+      15            140               39            249             63               442            87                 787
+                                                                                                                                   Letter R is decimal
+      16            143               40            255             64               453            88                 806         point.
+      17            147               41            261             65               464            89                 825
+                                                                                                                                 • CR0603 E-96: EIA-96
+      18
+      19
+                    150
+                    154
+                                      42
+                                      43
+                                                    267
+                                                    274
+                                                                    66
+                                                                    67
+                                                                                     475
+                                                                                     487
+                                                                                                    90
+                                                                                                    91
+                                                                                                                       845
+                                                                                                                       866
+                                                                                                                                   marking (see table).
+                                                                                                                                                                         10C
+                                                                                                                                                                   (Value = 12.4K Ω)
+      20            158               44            280             68               499            92                 887
+      21            162               45            287             69               511            93                 909
+      22            165               46            294             70               523            94                 931
+      23            169               47            301             71               536            95                 953
+      24            174               48            309             72               549            96                 976
+
+
+  Multipliers
+
+    Code           A         B         C        D         E         F       G              H       X         Y           Z
+ Multiplier       10   0
+                           10    1
+                                      10   2
+                                               10   3
+                                                          10   4
+                                                                   10   5
+                                                                            10   6
+                                                                                       10      7
+                                                                                                   10   -1
+                                                                                                             10   -2
+                                                                                                                        10-3
+
+
+
+
+Specifications are subject to change without notice.
+Users should verify actual device performance in their specific applications.
+The products described herein and this document are subject to specific legal disclaimers as set forth on the last page of this document, and at www.bourns.com/docs/legal/disclaimer.pdf.
+         CR Series - Thick Film Chip Resistors
+
+  Packaging Dimensions (Conforms to EIA RS-481A)
+                               BOTTOM TAPE                      TOP TAPE                                                                      1.50 ± 0.10
+                                                                                                                                                           DIA.
+                                                                                                                                             (.059 ± .004)                            E
+
+
+
+
+      PAPER TAPE                                                                                                                                                                  F       W
+      (2 mm PITCH)
+                                    RESISTOR
+                                                                                                                                                                             B
+
+                                    PAPER TAPE
+                                                            T                      A                            P1      P2             P0            DIRECTION OF UNREELING
+
+
+                               BOTTOM TAPE                      TOP TAPE                                                                           1.50 ± 0.10
+                                                                                                                                                                DIA.
+                                                                                                                                                  (.059 ± .004)                       E
+
+
+
+
+      PAPER TAPE                                                                                                                                                                  F       W
+      (4 mm PITCH)
+                                    RESISTOR
+                                                                                                                                                                             B
+
+                                    PAPER TAPE
+                                                            T              A                           P1              P2               P0           DIRECTION OF UNREELING
+
+                                                                                    1.50                                                           1.50 ± 0.10
+                            EMBOSSED TAPE                       TOP TAPE                  MIN. DIA.                                                             DIA.
+                                                                                   (.059)                                                         (.059 ± .004)                       E
+
+
+
+
+      EMBOSSED TAPE                                                                                                                                                               F       W
+      (4 mm PITCH)
+                                   RESISTOR
+                                                                                                                                                                             B
+
+                                                            T              A                           P1              P2               P0           DIRECTION OF UNREELING
+
+
+ Model         Tape Type               A                B                  W                F               E                P1                 P2                 P0                     T
+
+               Paper Tape         0.24 ± 0.05      0.45 ± 0.10                                                                                                                     0.15 ± 0.10
+ CR01005
+               (2 mm pitch)      (.010 ± .002)    (.018 ± .004)                                                                                                                  (.006 ± .004)
+
+                                  0.37 ± 0.05      0.67 ± 0.10                                                          2.00 ± 0.10                                               0.37 ± 0.10
+ CR0201
+                                 (.014 ± .002)    (.026 ± .004)                                                        (.079 ± .004)                                             (.015 ± .004)
+               Paper Tape
+               (2 mm pitch)
+                                  0.70 ± 0.05      1.20 ± 0.05                                                                                                                    0.45 ± 0.10
+ CR0402
+                                 (.028 ± .002)    (.047 ± .002)     8.00 ± 0.20         3.50 ± 0.05                                                                              (.018 ± .004)
+
+                                   1.10 ± 0.10     1.90 ± 0.10     (.315 ± .008)       (.138 ± .002)                                                                              0.64 ± 0.10
+ CR0603
+                                 (.043 ± .004)    (.075 ± .004)                                          1.75 ± 0.10                     2.00 ± 0.05          4.00 ± 0.10        (.025 ± .004)
+
+                                  1.60 ± 0.15      2.40 ± 0.20                                         (.069 ± .004)                    (.079 ± .002)        (.157 ± .004)        0.84 ± 0.10
+               Paper Tape (4
+ CR0805
+               mm pitch)         (.063 ± .006)    (.094 ± .008)                                                                                                                  (.033 ± .004)
+
+                                  2.00 ± 0.15      3.60 ± 0.20                                                          4.00 ± 0.10                                               0.84 ± 0.10
+ CR1206
+                                 (.079 ± .006)    (.142 ± .008)                                                        (.157 ± .004)                                             (.033 ± .004)
+
+                                  2.80 ± 0.20      5.30 ± 0.20                                                                                                                    0.85 ± 0.15
+ CR2010
+               Embossed          (.110 ± .008)    (.209 ± .008)    12.00 ± 0.20         5.50 ± 0.05                                                                              (.033 ± .006)
+               Tape
+               (4 mm pitch)       3.60 ± 0.20      6.90 ± 0.20     (.472 ± .008)       (.217 ± .002)                                                                              0.85 ± 0.15
+ CR2512
+                                 (.142 ± .008)    (.272 ± .008)                                                                                                                  (.033 ± .006)
+
+Specifications are subject to change without notice.
+Users should verify actual device performance in their specific applications.
+The products described herein and this document are subject to specific legal disclaimers as set forth on the last page of this document, and at www.bourns.com/docs/legal/disclaimer.pdf.
+         CR Series - Thick Film Chip Resistors
+
+  Packaging Dimensions (Conforms to EIA RS-481A)
+                                                                                                                                W
+
+
+                                                                                         C DIA.
+
+
+
+
+                                                                                                                            B DIA.                                          MM
+                                                                                                                                                        DIMENSIONS:
+                                                                                                                                                                         (INCHES)
+
+
+
+
+                                                                                                                               T
+                                                               A DIA.
+
+
+
+
+       Model              Packaging Quantity                        A                         B                         C                        W                          T
+
+     CR01005
+
+
+      CR0201                   10K pcs./reel
+
+
+      CR0402
+                                                                                                                                            9.0 ± 1.0                 11.5 ± 1.0
+                                                                                                                                          (.354 ± .039)             (.453 ± .039)
+      CR0603
+                                                               178 ± 2.0                60 ± 1.0                  13.0 ± 1.0
+                                                            (7.008 ± .079)           (2.362 ± .039)             (.512 ± .039)
+      CR0805                    5K pcs./reel
+
+
+      CR1206
+
+
+      CR2010
+                                                                                                                                            13.0 ± 1.0                15.5 ± 1.0
+                                4K pcs./reel
+                                                                                                                                          (.512 ± .039)             (.610 ± .039)
+      CR2512
+
+
+
+
+Asia-Pacific: Tel: +886-2 2562-4117 • Email: asiacus@bourns.com
+EMEA: Tel: +36 88 885 877 • Email: eurocus@bourns.com
+The Americas: Tel: +1-951 781-5500 • Email: americus@bourns.com
+www.bourns.com
+
+REV. 03/21
+Specifications are subject to change without notice.
+Users should verify actual device performance in their specific applications.
+The products described herein and this document are subject to specific legal disclaimers as set forth on the last page of this document, and at www.bourns.com/docs/legal/disclaimer.pdf.
+     Legal Disclaimer Notice
+This legal disclaimer applies to purchasers and users of Bourns® products manufactured by or on behalf of Bourns, Inc. and
+P[ZHɉSPH[LZJVSSLJ[P]LS`¸)V\YUZ¹
+
+Unless otherwise expressly indicated in writing, Bourns® products and data sheets relating thereto are subject to change
+^P[OV\[UV[PJL<ZLYZZOV\SKJOLJRMVYHUKVI[HPU[OLSH[LZ[YLSL]HU[PUMVYTH[PVUHUK]LYPM`[OH[Z\JOPUMVYTH[PVUPZJ\YYLU[
+and complete before placing orders for Bourns® products.
+
+The characteristics and parameters of a Bourns® product set forth in its data sheet are based on laboratory conditions, and
+statements regarding the suitability of products for certain types of applications are based on Bourns’ knowledge of typical
+requirements in generic applications. The characteristics and parameters of a Bourns®WYVK\J[PUH\ZLYHWWSPJH[PVUTH`]HY`
+MYVT[OLKH[HZOLL[JOHYHJ[LYPZ[PJZHUKWHYHTL[LYZK\L[VP[OLJVTIPUH[PVUVM[OL)V\YUZ® product with other components
+PU[OL\ZLY»ZHWWSPJH[PVUVYPP[OLLU]PYVUTLU[VM[OL\ZLYHWWSPJH[PVUP[ZLSM;OLJOHYHJ[LYPZ[PJZHUKWHYHTL[LYZVMH)V\YUZ®
+WYVK\J[HSZVJHUHUKKV]HY`PUKPɈLYLU[HWWSPJH[PVUZHUKHJ[\HSWLYMVYTHUJLTH`]HY`V]LY[PTL<ZLYZZOV\SKHS^H`Z]LYPM`
+the actual performance of the Bourns®WYVK\J[PU[OLPYZWLJPÄJKL]PJLZHUKHWWSPJH[PVUZHUKTHRL[OLPYV^UPUKLWLUKLU[
+Q\KNTLU[ZYLNHYKPUN[OLHTV\U[VMHKKP[PVUHS[LZ[THYNPU[VKLZPNUPU[V[OLPYKL]PJLVYHWWSPJH[PVU[VJVTWLUZH[LMVY
+KPɈLYLUJLZIL[^LLUSHIVYH[VY`HUKYLHS^VYSKJVUKP[PVUZ
+
+<USLZZ)V\YUZOHZL_WSPJP[S`KLZPNUH[LKHUPUKP]PK\HS)V\YUZ® product as meeting the requirements of a particular industry
+Z[HUKHYKLN0:6;:  VYHWHY[PJ\SHYX\HSPÄJH[PVULN<3SPZ[LKVYYLJVNUPaLK)V\YUZPZUV[YLZWVUZPISLMVYHU`
+MHPS\YLVMHUPUKP]PK\HS)V\YUZ®WYVK\J[[VTLL[[OLYLX\PYLTLU[ZVMZ\JOPUK\Z[Y`Z[HUKHYKVYWHY[PJ\SHYX\HSPÄJH[PVU<ZLYZ
+of Bourns® products are responsible for ensuring compliance with safety-related requirements and standards applicable to
+[OLPYKL]PJLZVYHWWSPJH[PVUZ
+
+Bourns®WYVK\J[ZHYLUV[YLJVTTLUKLKH\[OVYPaLKVYPU[LUKLKMVY\ZLPUU\JSLHYSPMLZH]PUNSPMLJYP[PJHSVYSPMLZ\Z[HPUPUN
+HWWSPJH[PVUZUVYPUHU`V[OLYHWWSPJH[PVUZ^OLYLMHPS\YLVYTHSM\UJ[PVUTH`YLZ\S[PUWLYZVUHSPUQ\Y`KLH[OVYZL]LYLWYVWLY[`
+VYLU]PYVUTLU[HSKHTHNL<USLZZL_WYLZZS`HUKZWLJPÄJHSS`HWWYV]LKPU^YP[PUNI`[^VH\[OVYPaLK)V\YUZYLWYLZLU[H[P]LZ
+on a case-by-case basis, use of any Bourns®WYVK\J[ZPUZ\JO\UH\[OVYPaLKHWWSPJH[PVUZTPNO[UV[ILZHMLHUK[O\ZPZH[
+[OL\ZLY»ZZVSLYPZR3PMLJYP[PJHSHWWSPJH[PVUZPUJS\KLKL]PJLZPKLU[PÄLKI`[OL<:-VVKHUK+Y\N(KTPUPZ[YH[PVUHZ*SHZZ000
+KL]PJLZHUKNLULYHSS`LX\P]HSLU[JSHZZPÄJH[PVUZV\[ZPKLVM[OL<UP[LK:[H[LZ
+
+)V\YUZL_WYLZZS`PKLU[PÄLZ[OVZL)V\YUZ®Z[HUKHYKWYVK\J[Z[OH[HYLZ\P[HISLMVY\ZLPUH\[VTV[P]LHWWSPJH[PVUZVUZ\JO
+WYVK\J[Z»KH[HZOLL[ZPU[OLZLJ[PVULU[P[SLK¸(WWSPJH[PVUZ¹<USLZZL_WYLZZS`HUKZWLJPÄJHSS`HWWYV]LKPU^YP[PUNI`[^V
+H\[OVYPaLK)V\YUZYLWYLZLU[H[P]LZVUHJHZLI`JHZLIHZPZ\ZLVMHU`V[OLY)V\YUZ®Z[HUKHYKWYVK\J[ZPUHUH\[VTV[P]L
+HWWSPJH[PVUTPNO[UV[ILZHMLHUK[O\ZPZUV[YLJVTTLUKLKH\[OVYPaLKVYPU[LUKLKHUKPZH[[OL\ZLY»ZZVSLYPZR0M)V\YUZ
+L_WYLZZS`PKLU[PÄLZHZ\IJH[LNVY`VMH\[VTV[P]LHWWSPJH[PVUPU[OLKH[HZOLL[MVYP[ZZ[HUKHYKWYVK\J[ZZ\JOHZPUMV[HPUTLU[
+VYSPNO[PUNZ\JOPKLU[PÄJH[PVUTLHUZ[OH[)V\YUZOHZYL]PL^LKP[ZZ[HUKHYKWYVK\J[HUKOHZKL[LYTPULK[OH[PMZ\JO)V\YUZ®
+Z[HUKHYKWYVK\J[PZJVUZPKLYLKMVYWV[LU[PHS\ZLPUH\[VTV[P]LHWWSPJH[PVUZP[ZOV\SKVUS`IL\ZLKPUZ\JOZ\IJH[LNVY`VM
+H\[VTV[P]LHWWSPJH[PVUZ(U`YLMLYLUJL[V)V\YUZ®Z[HUKHYKWYVK\J[PU[OLKH[HZOLL[HZJVTWSPHU[^P[O[OL(,*8Z[HUKHYK
+VY¸H\[VTV[P]LNYHKL¹KVLZUV[I`P[ZLSMTLHU[OH[)V\YUZOHZHWWYV]LKZ\JOWYVK\J[MVY\ZLPUHUH\[VTV[P]LHWWSPJH[PVU
+
+Bourns®Z[HUKHYKWYVK\J[ZHYLUV[[LZ[LK[VJVTWS`^P[O<UP[LK:[H[LZ-LKLYHS(]PH[PVU(KTPUPZ[YH[PVUZ[HUKHYKZNLULYHSS`
+VYHU`V[OLYNLULYHSS`LX\P]HSLU[NV]LYUTLU[HSVYNHUPaH[PVUZ[HUKHYKHWWSPJHISL[VWYVK\J[ZKLZPNULKVYTHU\MHJ[\YLKMVY
+\ZLPUHPYJYHM[VYZWHJLHWWSPJH[PVUZ)V\YUZL_WYLZZS`PKLU[PÄLZ)V\YUZ® standard products that are suitable for use in aircraft
+VYZWHJLHWWSPJH[PVUZVUZ\JOWYVK\J[Z»KH[HZOLL[ZPU[OLZLJ[PVULU[P[SLK¸(WWSPJH[PVUZ¹<USLZZL_WYLZZS`HUKZWLJPÄJHSS`
+HWWYV]LKPU^YP[PUNI`[^VH\[OVYPaLK)V\YUZYLWYLZLU[H[P]LZVUHJHZLI`JHZLIHZPZ\ZLVMHU`V[OLY)V\YUZ® standard
+WYVK\J[PUHUHPYJYHM[VYZWHJLHWWSPJH[PVUTPNO[UV[ILZHMLHUK[O\ZPZUV[YLJVTTLUKLKH\[OVYPaLKVYPU[LUKLKHUKPZH[
+the user’s sole risk.
+
+;OL\ZLHUKSL]LSVM[LZ[PUNHWWSPJHISL[V)V\YUZ® custom products shall be negotiated on a case-by-case basis by Bourns
+and the user for which such Bourns®J\Z[VTWYVK\J[ZHYLZWLJPHSS`KLZPNULK(IZLU[H^YP[[LUHNYLLTLU[IL[^LLU)V\YUZ
+HUK[OL\ZLYYLNHYKPUN[OL\ZLHUKSL]LSVMZ\JO[LZ[PUN[OLHIV]LWYV]PZPVUZHWWSPJHISL[V)V\YUZ® standard products shall
+also apply to such Bourns® custom products.
+
+Users shall not sell, transfer, export or re-export any Bourns®WYVK\J[ZVY[LJOUVSVN`MVY\ZLPUHJ[P]P[PLZ^OPJOPU]VS]L[OL
+KLZPNUKL]LSVWTLU[WYVK\J[PVU\ZLVYZ[VJRWPSPUNVMU\JSLHYJOLTPJHSVYIPVSVNPJHS^LHWVUZVYTPZZPSLZUVYZOHSS[OL`\ZL
+Bourns®WYVK\J[ZVY[LJOUVSVN`PUHU`MHJPSP[`^OPJOLUNHNLZPUHJ[P]P[PLZYLSH[PUN[VZ\JOKL]PJLZ;OLMVYLNVPUNYLZ[YPJ[PVUZ
+HWWS`[VHSS\ZLZHUKHWWSPJH[PVUZ[OH[]PVSH[LUH[PVUHSVYPU[LYUH[PVUHSWYVOPIP[PVUZPUJS\KPUNLTIHYNVZVYPU[LYUH[PVUHS
+YLN\SH[PVUZ-\Y[OLY)V\YUZ® products and Bourns technology and technical data may not under any circumstance be
+exported or re-exported to countries subject to international sanctions or embargoes. Bourns® products may not, without
+WYPVYH\[OVYPaH[PVUMYVT)V\YUZHUKVY[OL<:.V]LYUTLU[ILYLZVSK[YHUZMLYYLKVYYLL_WVY[LK[VHU`WHY[`UV[LSPNPISL
+[VYLJLP]L<:JVTTVKP[PLZZVM[^HYLHUK[LJOUPJHSKH[H
+
+;V[OLTH_PT\TL_[LU[WLYTP[[LKI`HWWSPJHISLSH^)V\YUZKPZJSHPTZPHU`HUKHSSSPHIPSP[`MVYZWLJPHSW\UP[P]LJVUZLX\LU[PHS
+PUJPKLU[HSVYPUKPYLJ[KHTHNLZVYSVZ[YL]LU\LZVYSVZ[WYVÄ[ZHUKPPHU`HUKHSSPTWSPLK^HYYHU[PLZPUJS\KPUNPTWSPLK^HYYHU[PLZ
+VMÄ[ULZZMVYWHY[PJ\SHYW\YWVZLUVUPUMYPUNLTLU[HUKTLYJOHU[HIPSP[`
+)RU\RXUFRQYHQLHQFHFRSLHVRIWKLV/HJDO'LVFODLPHU1RWLFHZLWK*HUPDQ6SDQLVK-DSDQHVH7UDGLWLRQDO&KLQHVHDQG6LPSOLÀHG&KLQHVH
+bilingual versions are available at:
+                     Web Page: http://www.bourns.com/legal/disclaimers-terms-and-policies
+                         PDF: http://www.bourns.com/docs/Legal/disclaimer.pdf
+                                                                                                                          *9
+

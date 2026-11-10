@@ -1,0 +1,2032 @@
+                                                                                                                                  TPS74701
+                                                                                           SBVS099H – NOVEMBER 2007 – REVISED APRIL 2023
+
+    TPS74701 500-mA, Low-Dropout Linear Regulator With Programmable Soft-Start
+
+1 Features                                                               3 Description
+•   VOUT range: 0.8 V to 3.6 V                                           The TPS74701 low-dropout (LDO) linear regulator
+•   Ultra-low VIN range: 0.8 V to 5.5 V                                  provides an easy-to-use, robust power management
+•   VBIAS range 2.7 V to 5.5 V                                           solution for a wide variety of applications. User-
+•   Low dropout:                                                         programmable soft-start minimizes stress on the
+    – 50 mV typically at 500 mA, VBIAS = 5 V                             input power source by reducing capacitive inrush
+•   Power-good (PG) output allows supply monitoring                      current on start-up. The soft-start is monotonic
+    or provides a sequencing signal for other supplies                   and designed for powering many different types of
+•   Accuracy over line, load, and temperature: 2%                        processors and application-specific integrated circuits
+•   Programmable soft-start provides linear voltage                      (ASICs). The enable input and power-good output
+    start-up                                                             allow easy sequencing with external regulators.
+•   VBIAS permits low VIN operation with good transient                  This complete flexibility allows a solution to be
+    response                                                             configured that meets the sequencing requirements
+•   Stable with any output capacitor ≥ 2.2 μF                            of field-programmable gate arrays (FPGAs), digital
+•   Available in a small 3-mm × 3-mm × 1-mm 10-pin                       signal processors (DSPs), and other applications with
+    package                                                              special start-up requirements.
+
+2 Applications                                                           A precision reference and error amplifier deliver 2%
+                                                                         accuracy over load, line, temperature, and process.
+•   Network attached storage - enterprise                                The device is stable with any type of capacitor greater
+•   Rack servers                                                         than or equal to 2.2 μF, and is fully specified from
+•   Network interface cards (NIC)                                        –40°C to +125°C. The TPS74701 is offered in a small
+•   Merchant network and server PSU                                      3-mm × 3-mm VSON-10 package for compatibility
+                                                                         with the TPS74801.
+                                                                                               Package Information
+                                                                               PART NUMBER            PACKAGE(1)          BODY SIZE (NOM)
+                                                                         TPS74701                 DRC (VSON, 10)         3.00 mm × 3.00 mm
+
+                                                                         (1)    For all available packages, see the orderable addendum at
+                                                                                the end of the data sheet.
+
+
+
+
+                                                                                     CSS = 0nF
+
+                                                                                                 CSS = 560pF
+     VIN                    IN                PG                          0.5V/div                             CSS = 5600pF          VOUT
+              CIN           BIAS                    R3
+
+                                   TPS74701   OUT               VOUT
+                            EN
+    VBIAS                                           R1
+                            SS                           COUT
+              CBIAS                  GND       FB                                              3.8V
+                                                                                                                                     VEN
+                      CSS                           R2
+                                                                           1V/div       1.8V
+
+
+
+                                                                                                      Time (2ms/div)
+            Typical Application Circuit (Adjustable)                                           Turn-On Response
+
+
+
+
+       An IMPORTANT NOTICE at the end of this data sheet addresses availability, warranty, changes, use in safety-critical applications,
+       intellectual property matters and other important disclaimers. PRODUCTION DATA.
+TPS74701
+SBVS099H – NOVEMBER 2007 – REVISED APRIL 2023                                                                                                                      www.ti.com
+
+
+                                                                         Table of Contents
+1 Features............................................................................1     7 Detailed Description......................................................17
+2 Applications..................................................................... 1         7.1 Overview................................................................... 17
+3 Description.......................................................................1         7.2 Functional Block Diagram......................................... 17
+4 Revision History.............................................................. 2            7.3 Feature Description...................................................18
+5 Pin Configuration and Functions...................................3                         7.4 Device Functional Modes..........................................20
+6 Specifications.................................................................. 4        8 Application and Implementation.................................. 21
+  6.1 Absolute Maximum Ratings........................................ 4                      8.1 Application Information............................................. 21
+  6.2 ESD Ratings............................................................... 4            8.2 Typical Application.................................................... 24
+  6.3 Recommended Operating Conditions.........................4                              8.3 Power Supply Recommendations.............................25
+  6.4 Thermal Information....................................................5                8.4 Layout....................................................................... 25
+  6.5 Electrical Characteristics: Other Orderable                                           9 Device and Documentation Support............................28
+    Devices (non-M3 Suffix)................................................ 6                 9.1 Device Support......................................................... 28
+  6.6 Electrical Characteristics: Orderable Device (M3                                        9.2 Documentation Support............................................ 28
+    Suffix)............................................................................ 7     9.3 Receiving Notification of Documentation Updates....28
+  6.7 Typical Characteristics: VEN = VIN (All Other                                           9.4 Support Resources................................................... 28
+    Orderable Devices, Non-M3 Suffix)...............................8                         9.5 Trademarks............................................................... 28
+  6.8 Typical Characteristics: VEN = VIN = 1.8 V, VOUT                                        9.6 Electrostatic Discharge Caution................................28
+    = 1.5 V (All Other Orderable Devices, Non-M3                                              9.7 Glossary....................................................................29
+    Suffix)...........................................................................11    10 Mechanical, Packaging, and Orderable
+  6.9 Typical Characteristics: IOUT = 50 mA (M3 Suffix).... 12                                Information.................................................................... 29
+  6.10 Typical Characteristics: VEN = VIN = 1.8 V, VOUT
+    = 1.5 V (M3 Suffix).......................................................16
+
+
+
+4 Revision History
+NOTE: Page numbers for previous revisions may differ from page numbers in the current version.
+
+Changes from Revision G (September 2015) to Revision H (April 2023)                                                                            Page
+• Updated the numbering format for tables, figures, and cross-references throughout the document ................ 1
+• Changed SON to VSON throughout document.................................................................................................. 1
+• Added M3-suffix devices to document................................................................................................................1
+• Added M3-suffix Typical Characteristics sections.............................................................................................12
+
+Changes from Revision F (November 2010) to Revision G (September 2015)                                    Page
+• Added ESD Ratings table, Feature Description section, Device Functional Modes, Application and
+  Implementation section, Power Supply Recommendations section, Layout section, Device and
+  Documentation Support section, and Mechanical, Packaging, and Orderable Information section .................. 1
+
+
+
+
+2       Submit Document Feedback                                                                                           Copyright © 2023 Texas Instruments Incorporated
+
+                                                                      Product Folder Links: TPS74701
+                                                                                                                                          TPS74701
+www.ti.com                                                                                       SBVS099H – NOVEMBER 2007 – REVISED APRIL 2023
+
+
+5 Pin Configuration and Functions
+                                                               IN 1                10 OUT
+                                                               IN 2                9 OUT
+                                                                         Thermal
+                                                              PG 3                 8 FB
+                                                                           Pad
+                                                             BIAS 4                7 SS
+                                                              EN 5                 6 GND
+
+
+                                        Figure 5-1. DRC Package, 10-Pin VSON (Top View)
+
+                                                           Table 5-1. Pin Functions
+                 PIN
+                                         TYPE                                               DESCRIPTION
+ NAME                      NO.
+ IN                        1, 2             I     Input to the device.
+                                                  Enable pin. Driving this pin high enables the regulator. Driving this pin low puts the regulator
+ EN                         5               I
+                                                  into shutdown mode. This pin must not be left unconnected.
+ SS                         7              —      Soft-start pin. A capacitor connected on this pin to ground sets the start-up time. If this pin is
+                                                  left unconnected, the regulator output soft-start ramp time is typically 200 μs.
+ BIAS                       4               I     Bias input voltage for error amplifier, reference, and internal control circuits.
+                                                  Power-good pin. An open-drain, active-high output that indicates the status of VOUT. When
+                                                  VOUT exceeds the PG trip threshold, the PG pin goes into a high-impedance state. When
+                                                  VOUT is below this threshold the pin is driven to a low-impedance state. A pullup resistor from
+ PG                         3              O
+                                                  10 kΩ to 1 MΩ must be connected from this pin to a supply of up to 5.5 V. The supply can
+                                                  be higher than the input voltage. Alternatively, the PG pin can be left unconnected if output
+                                                  monitoring is not necessary.
+                                                  Feedback pin. The feedback connection to the center tap of an external resistor divider
+ FB                         8               I
+                                                  network that sets the output voltage. This pin must not be left floating.
+ OUT                      9, 10            O      Regulated output voltage. A small capacitor (total typical capacitance ≥ 2.2 μF, ceramic) is
+                                                  needed from this pin to ground to assure stability.
+ NC                        N/A              I     No connection. This pin can be left floating or connected to GND to allow better thermal
+                                                  contact to the top-side plane.
+ GND                        6               I     Ground
+ Thermal Pad                —               I     Solder this pad to the ground plane for increased thermal performance.
+
+
+
+
+Copyright © 2023 Texas Instruments Incorporated                                                                   Submit Document Feedback             3
+
+                                                          Product Folder Links: TPS74701
+TPS74701
+SBVS099H – NOVEMBER 2007 – REVISED APRIL 2023                                                                                                               www.ti.com
+
+
+6 Specifications
+6.1 Absolute Maximum Ratings
+over operating temperature range (unless otherwise noted)(1)
+                                                                                                                            MIN                MAX           UNIT
+    VIN, VBIAS          Input voltage                                                                                       –0.3                     6        V
+    VEN                 Enable voltage                                                                                      –0.3                     6        V
+    VPG                 Power good voltage                                                                                  –0.3                     6        V
+    IPG                 PG sink current                                                                                        0                    1.5      mA
+    VSS                 Soft-start voltage                                                                                  –0.3                     6        V
+                                                                                                                            –0.3
+    VFB                 Feedback voltage                                                                                                             6        V
+
+    VOUT                Output voltage                                                                                      –0.3            VIN + 0.3         V
+    IOUT                Maximum output current                                                                         Internally limited
+                        Output short-circuit duration                                                                       Indefinite
+    PDISS               Continuous total power dissipation                                                       See Thermal Information
+    TJ                  Junction Temperature                                                                                –40                  150
+                                                                                                                                                              °C
+    Tstg                Storage Temperature                                                                                 –55                  150
+
+(1)          Stresses beyond those listed under Absolute Maximum Ratings may cause permanent damage to the device. These are stress
+             ratings only, which do not imply functional operation of the device at these or any other conditions beyond those indicated under
+             Recommended Operating Conditions. Exposure to absolute-maximum-rated conditions for extended periods may affect device
+             reliability.
+
+
+6.2 ESD Ratings
+                                                                                                                                            VALUE            UNIT
+                                             Human body model (HBM), per ANSI/ESDA/JEDEC JS-001, all pins(1)                                ±2000
+    V(ESD)        Electrostatic discharge                                                                                                                      V
+                                             Charged device model (CDM), per JEDEC specification JESD22-C101, all pins(2)                   ±500
+
+(1)          JEDEC document JEP155 states that 500-V HBM allows safe manufacturing with a standard ESD control process.
+(2)          JEDEC document JEP157 states that 250-V CDM allows safe manufacturing with a standard ESD control process.
+
+
+6.3 Recommended Operating Conditions
+over operating free-air temperature range (unless otherwise noted)
+                                                                                                                    MIN            NOM              MAX       UNIT
+                                                                                                            VOUT + VDO
+    VIN            Input supply voltage                                                                                     VOUT + 0.3                5.5      V
+                                                                                                                  (VIN)
+    VEN            Enable supply voltage                                                                               0            VIN               5.5      V
+                                                                                                            VOUT + VDO          VOUT +
+    VBIAS ((1))    BIAS supply voltage                                                                                                                5.5      V
+                                                                                                             (VBIAS)((2))       1.4 ((2))
+    VOUT           Output voltage                                                                                    0.8                              3.3      V
+    IOUT           Output current                                                                                      0                             500      mA
+    COUT           Output capacitor                                                                                  2.2                                       µF
+    CIN            Input capacitor((3))                                                                                1                                       µF
+    CBIAS          Bias capacitor                                                                                    0.1               1                       µF
+    TJ             Operating junction temperature                                                                   –40                              125       ℃
+
+(1)          BIAS supply is required when VIN is below VOUT + 1.62 V.
+(2)          VBIAS has a minimum voltage of 2.7 V or VOUT + VDO (VBIAS), whichever is higher.
+(3)          If VIN and VBIAS are connected to the same supply, the recommended minimum capacitor for the supply is 4.7 μF.
+
+
+
+
+4            Submit Document Feedback                                                                            Copyright © 2023 Texas Instruments Incorporated
+
+                                                                  Product Folder Links: TPS74701
+                                                                                                                                            TPS74701
+www.ti.com                                                                                      SBVS099H – NOVEMBER 2007 – REVISED APRIL 2023
+
+
+6.4 Thermal Information
+                                                                                                                   TPS747(2)
+                                                                                                                                 DRC
+                                            THERMAL METRIC(1)                                             DRC (VSON)                          UNIT
+                                                                                                                               (VSON) (2)
+                                                                                                           10 PINS              10 PINS
+ RθJA           Junction-to-ambient thermal resistance                                                       41.5                47.2         °C/W
+ RθJC(top)      Junction-to-case (top) thermal resistance                                                     78                 63.7         °C/W
+ RθJB           Junction-to-board thermal resistance                                                         N/A                 19.5         °C/W
+ ψJT            Junction-to-top characterization parameter                                                    0.7                 4.2         °C/W
+ ψJB            Junction-to-board characterization parameter                                                 11.3                19.4         °C/W
+ RθJC(bot)      Junction-to-case (bottom) thermal resistance                                                  6.6                 3.3         °C/W
+
+(1)     For more information about traditional and new thermal metrics, see the Semiconductor and IC package thermal metrics application
+        report.
+(2)     M3 suffix.
+
+
+
+
+Copyright © 2023 Texas Instruments Incorporated                                                              Submit Document Feedback                5
+
+                                                               Product Folder Links: TPS74701
+TPS74701
+SBVS099H – NOVEMBER 2007 – REVISED APRIL 2023                                                                                            www.ti.com
+
+6.5 Electrical Characteristics: Other Orderable Devices (non-M3 Suffix)
+At VEN = 1.1 V, VIN = VOUT + 0.3 V, CBIAS = 0.1 μF, CIN = COUT = 10 μF, CNR = 1 nF, IOUT = 50 mA, VBIAS = 5.0 V, and TJ =
+–40°C to 125°C, (unless otherwise noted); typical values are at TJ = 25°C
+                    PARAMETER                                        TEST CONDITIONS                          MIN        TYP        MAX      UNIT
+    VREF               Internal reference (Adj.)    TA = +25°C                                              0.796         0.8      0.804       V
+                       Output voltage range         VIN = 5 V, IOUT = 0.5 A                                  VREF                     3.6      V
+    ΔVOUT (ΔVIN)
+                       Accuracy(1)                  2.97 V ≤ VBIAS ≤ 5.5 V, 50 mA ≤ IOUT ≤ 0.5 A               –2        ±0.5           2      %
+    ΔVOUT (ΔIOUT)      Line regulation              VOUT(nom) + 0.3 ≤ VIN ≤ 5.5 V                                        0.03                 %/V
+    VOUT               Load regulation              50 mA ≤ IOUT ≤ 0.5 A                                                 0.09                 %/A
+                       VIN dropout voltage(2)       IOUT = 0.5 A, VBIAS – VOUT(nom) ≥ 3.25 V(3)                            50        120      mV
+    VDO
+                       VBIAS   dropout voltage(2)   IOUT = 0.5 A, VIN = VBIAS                                            1.31        1.39      V
+    ICL                Output current limit         VOUT = 80% × VOUT(nom)                                    800                   1350      mA
+    IBIAS              BIAS pin current                                                                                     1           2     mA
+                       Shutdown supply current
+    ISHDN                                      VEN ≤ 0.4 V                                                                  1          50     µA
+                       (IGND)
+    IFB                Feedback pin current                                                                    –1        0.15           1     µA
+
+                       Power-supply rejection       1 kHz, IOUT = 0.5 A, VIN = 1.8 V, VOUT = 1.5 V                         60                 dB
+                       (VIN to VOUT)                300 kHz, IOUT = 0.5 A, VIN = 1.8 V, VOUT = 1.5 V                       30                 dB
+    PSRR
+                       Power-supply rejection       1 kHz, IOUT = 0.5 A, VIN = 1.8 V, VOUT = 1.5 V                         50                 dB
+                       (VBIAS to VOUT)              300 kHz, IOUT = 0.5 A, VIN = 1.8 V, VOUT = 1.5 V                       30                 dB
+                                                                                                                                            μVrms x
+    Vn                 Output noise voltage         BW = 100 Hz to 100 kHz, IOUT = 0.5 A, CSS = 1 nF                       25
+                                                                                                                                             Vout
+                                                                                                                        25 ×
+    Vn                 Output noise voltage         BW = 100 Hz to 100 kHz, IOUT = 0.5 A, CSS = 1 nF                                        μVrms
+                                                                                                                        VOUT
+    tSTR               Minimum start-up time        RLOAD for IOUT = 0.5 A, CSS = open                                    200                  µs
+                       Soft-start charging
+    ISS                                             VSS = 0.4 V                                                           440                 nA
+                       current
+    VEN(hi)            Enable input high level                                                                 1.1                    5.5      V
+    VEN(lo)            Enable input low level                                                                    0                    0.4      V
+    VEN(hys)           Enable pin hysteresis                                                                               50                 mV
+    VEN(dg)            Enable pin deglitch time                                                                            20                  µs
+    IEN                Enable pin current           VEN = 5 V                                                             0.1           1     µA
+    VIT                PG trip threshold            VOUT decreasing                                            85          90          94   %VOUT
+    VHYS               PG trip hysteresis                                                                                   3               %VOUT
+    VPG(lo)            PG output low voltage        IPG = 1 mA (sinking), VOUT < VIT                                                  0.3      V
+    IPG(lkg)           PG leakage current           VPG = 5.25 V, VOUT > VIT                                              0.1           1     µA
+
+                       Thermal shutdown             Shutdown, temperature increasing                                      165
+    TSD                                                                                                                                        ℃
+                       temperature                  Reset, temperature decreasing                                         140
+
+(1)         Adjustable devices tested at 0.8 V; resistor tolerance is not taken into account.
+(2)         Dropout is defined as the voltage from VIN to VOUT when VOUT is 3% below nominal.
+(3)         3.25 V is a test condition of this device and can be adjusted by referring to Figure 6-6.
+
+
+
+
+6           Submit Document Feedback                                                                    Copyright © 2023 Texas Instruments Incorporated
+
+                                                                Product Folder Links: TPS74701
+                                                                                                                                        TPS74701
+www.ti.com                                                                                         SBVS099H – NOVEMBER 2007 – REVISED APRIL 2023
+
+
+6.6 Electrical Characteristics: Orderable Device (M3 Suffix)
+At VEN = 1.1 V, VIN = VOUT + 0.3 V, CBIAS = 0.1 μF, CIN = COUT = 10 μF, CNR = 1 nF, IOUT = 50 mA, VBIAS = 5.0 V, and TJ =
+–40°C to 125°C, (unless otherwise noted); typical values are at TJ = 25°C
+                 PARAMETER                                         TEST CONDITIONS                            MIN      TYP      MAX       UNIT
+ VREF               Internal reference (Adj.)     TA = +25°C                                                0.796       0.8     0.804      V
+                    Output voltage range          VIN = 5 V, IOUT = 500 mA                                   VREF                 3.6      V
+ ΔVOUT (ΔVIN)
+                    Accuracy(1)                   2.97 V ≤ VBIAS ≤ 5.5 V, 50 mA ≤ IOUT ≤ 500 mA             –0.95      ±0.3      0.95      %
+ ΔVOUT (ΔIOUT)      Line regulation               VOUT(nom) + 0.3 ≤ VIN ≤ 5.5 V                                       0.001               %/V
+ VOUT               Load regulation               50 mA ≤ IOUT ≤ 500 mA                                                0.11               %/A
+                    VIN dropout voltage(2)        IOUT = 500 mA, VBIAS – VOUT(nom) ≥ 1.62 V((3))                         20       35       mV
+ VDO
+                    VBIAS   dropout voltage(2)    IOUT = 500 mA, VIN = VBIAS                                            1.1      1.25      V
+ ICL                Output current limit          VOUT = 80% × VOUT(nom)                                      800               1300       mA
+ IBIAS              BIAS pin current                                                                                      1       1.2      mA
+                    Shutdown supply current
+ ISHDN                                      VEN ≤ 0.4 V                                                                0.85      2.75      µA
+                    (IGND)
+ IFB                Feedback pin current                                                                      –30      0.15       30       nA
+
+                    Power-supply rejection        1 kHz, IOUT = 500 mA, VIN = 1.8 V, VOUT = 1.5 V                        76                dB
+                    (VIN to VOUT)                 300 kHz, IOUT = 500 mA, VIN = 1.8 V, VOUT = 1.5 V                      50                dB
+ PSRR
+                    Power-supply rejection        1 kHz, IOUT = 500 mA, VIN = 1.8 V, VOUT = 1.5 V                        59                dB
+                    (VBIAS to VOUT)               300 kHz, IOUT = 500 mA, VIN = 1.8 V, VOUT = 1.5 V                      49                dB
+                                                                                                                                         μVrms x
+ Vn                 Output noise voltage          BW = 100 Hz to 100 kHz, IOUT = 500 mA, CSS = 1 nF                      20
+                                                                                                                                          Vout
+ tSTR               Minimum start-up time         RLOAD for IOUT = 1.0 A, CSS = open                                    250                µs
+                    Soft-start charging
+ ISS                                              VSS = 0.4 V                                                           530                nA
+                    current
+ VEN(hi)            Enable input high level                                                                    1.1                5.5      V
+ VEN(lo)            Enable input low level                                                                      0                 0.4      V
+ VEN(hys)           Enable pin hysteresis                                                                                55                mV
+ VEN(dg)            Enable pin deglitch time                                                                             20                µs
+ IEN                Enable pin current            VEN = 5 V                                                             0.1      0.25      µA
+ VIT                PG trip threshold             VOUT decreasing                                              85        90       94     %VOUT
+ VHYS               PG trip hysteresis                                                                                    3              %VOUT
+ VPG(lo)            PG output low voltage         IPG = 1 mA (sinking), VOUT < VIT                                               0.12      V
+ IPG(lkg)           PG leakage current            VPG = 5.25 V, VOUT > VIT                                            0.001      0.05      µA
+
+                    Thermal shutdown              Shutdown, temperature increasing                                      165
+ TSD                                                                                                                                       ℃
+                    temperature                   Reset, temperature decreasing                                         140
+
+(1)      Adjustable devices tested at 0.8 V; resistor tolerance is not taken into account.
+(2)      Dropout is defined as the voltage from VIN to VOUT when VOUT is 3% below nominal.
+(3)      3.25 V is a test condition of this device and can be adjusted by referring to Figure 6-29.
+
+
+
+
+Copyright © 2023 Texas Instruments Incorporated                                                                 Submit Document Feedback           7
+
+                                                              Product Folder Links: TPS74701
+TPS74701
+SBVS099H – NOVEMBER 2007 – REVISED APRIL 2023                                                                                                                                                                     www.ti.com
+
+6.7 Typical Characteristics: VEN = VIN (All Other Orderable Devices, Non-M3 Suffix)
+at TJ = 25°C, VIN = VOUT(TYP) + 0.3 V, VBIAS = 5 V, IOUT = 50 mA, VEN = VIN, CIN = 1 μF, CBIAS = 4.7 μF, and COUT = 10 μF
+(unless otherwise noted)
+
+                                0.20                                                                                                      0.5
+
+                                0.15                                                                                                      0.4
+                                                                                                                                          0.3
+                                0.10
+    Change in VOUT (%)
+
+
+
+
+                                                                                                                  Change in VOUT (%)
+                                                                                                  -40°C                                   0.2
+                                                                                                                                                            -40°C
+                                0.05
+                                                                                                                                          0.1
+                                  0                                                                                                        0
+                                                       +25°C                                +125°C
+                               -0.05                                                                                                     -0.1
+                                                                                                                                                        +125°C                      +25°C
+                                                                                                                                         -0.2
+                               -0.01
+                                                                                                                                         -0.3
+                               -0.15
+                                                                                                                                         -0.4
+                               -0.20                                                                                                     -0.5
+                                       0   0.5     1.0   1.5    2.0    2.5      3.0   3.5   4.0     4.5   5.0                                   0.5    1.0          1.5       2.0       2.5         3.0         3.5    4.0
+                                                                VIN - VOUT (V)                                                                                              VBIAS - VOUT (V)
+
+
+                                            Figure 6-1. VIN Line Regulation                                                                           Figure 6-2. VBIAS Line Regulation
+                                1.2                                                                                                       0.5
+                                                                                                                                          0.4
+                                1.0
+                                                                                                                                          0.3
+         Change in VOUT (%)
+
+
+
+
+                                                                                                                 Change in VOUT (%)
+
+
+
+
+                                                                                                                                          0.2
+                                0.8                                                                                                                             +125°C
+                                                                                                                                          0.1
+                                0.6                                                                                                        0
+                                                                                                                                         -0.1
+                                0.4                                                                                                                                            -40°C              +25°C
+                                                                                                                                         -0.2
+
+                                0.2                                                                                                      -0.3
+                                                                                                                                         -0.4
+                                  0                                                                                                      -0.5
+                                       0          10           20            30             40            50                                    0            100            200             300           400          500
+                                                                    IOUT (mA)                                                                                                 IOUT (mA)
+
+
+
+                                                 Figure 6-3. Load Regulation                                                                                Figure 6-4. Load Regulation
+                               100                                                                                                       200
+                                                                                                                                                                                                            IOUT = 0.5A
+                                90                                                                                                       180
+                                80                                                                                                       160
+                                                                                                                 VDO (VIN - VOUT) (mV)
+       VDO (VIN - VOUT) (mV)
+
+
+
+
+                                70                                                                                                       140
+                                60                                                                                                       120
+                                50                                                                                                       100
+                                                                                                                                                                          +25°C
+                                40                                                                                                        80
+                                                                                                 +125°C                                                                           +125°C
+                                30                                                                                                        60
+                                                                                   +25°C
+                                20                                                                                                        40
+                                                                                                                                                            -40°C
+                                10                                                                                                        20
+                                                                                                  -40°C
+                                 0                                                                                                          0
+                                       0         100           200           300            400           500                                   0     0.5     1.0     1.5      2.0     2.5        3.0     3.5    4.0   4.5
+                                                                 IOUT (mA)                                                                                                  VBIAS - VOUT (V)
+
+
+
+                Figure 6-5. Dropout Voltage vs IOUT and Temperature (TJ)                                        Figure 6-6. Dropout Voltage vs (VBIAS – VOUT) and Temperature
+                                                                                                                                             (TJ)
+
+
+
+
+8                              Submit Document Feedback                                                                                                              Copyright © 2023 Texas Instruments Incorporated
+
+                                                                                             Product Folder Links: TPS74701
+                                                                                                                                                                                                                                                 TPS74701
+www.ti.com                                                                                                                                                                                    SBVS099H – NOVEMBER 2007 – REVISED APRIL 2023
+
+
+6.7 Typical Characteristics: VEN = VIN (All Other Orderable Devices, Non-M3 Suffix) (continued)
+at TJ = 25°C, VIN = VOUT(TYP) + 0.3 V, VBIAS = 5 V, IOUT = 50 mA, VEN = VIN, CIN = 1 μF, CBIAS = 4.7 μF, and COUT = 10 μF
+(unless otherwise noted)
+
+                                                    2200                                                                                                                  90
+
+
+
+
+                                                                                                                                      Power-Supply Rejection Ratio (dB)
+                                                    2000                                                                                                                  80
+                                                                                                                                                                                                                       IOUT = 0.1A
+    VDO (VBIAS - VOUT) (mV)
+
+
+
+
+                                                    1800                                                                                                                  70
+
+                                                                                                                                                                          60
+                                                    1600
+                                                                                                                                                                          50
+                                                    1400
+                                                                                                        +125°C                                                            40
+                                                                                                                                                                                                                                  IOUT = 0.5A
+                                                    1200
+                                                                                                                                                                          30
+                                                    1000                                                                                                                            VIN = 1.8V
+                                                                                                                                                                          20        VOUT = 1.2V
+                                                                                                        +25°C          -40°C
+                                                     800                                                                                                                  10        VBIAS = 5V
+                                                                                                                                                                                    CSS = 1nF
+                                                     600                                                                                                                   0
+                                                            0           100          200          300            400           500                                              10        100          1k           10k        100k       1M        10M
+                                                                                           IOUT (mA)                                                                                                        Frequency (Hz)
+
+
+  Figure 6-7. VBIAS Dropout Voltage vs IOUT and Temperature (TJ)                                                                                                                      Figure 6-8. VBIAS PSRR vs Frequency
+                                                     90                                                                              Power-Supply Rejection Ratio (dB)    90
+          Power-Supply Rejection Ratio (dB)
+
+
+
+
+                                                     80                                                                                                                   80
+
+                                                     70                                                                                                                   70                                                   1kHz
+
+                                                     60                                                                                                                   60
+                                                                                                               IOUT = 100mA                                                                                                           10kHz
+                                                     50                                                                                                                   50
+
+                                                     40                                                                                                                   40
+                                                                                                                                                                                                                           100kHz
+                                                     30                                                                                                                   30
+                                                                VIN = 1.8V
+                                                                                                                                                                                                                      500kHz
+                                                     20         VOUT = 1.2V                                                                                               20                                                            VOUT = 1.2V
+                                                     10         COUT = 10mF                                                                                                                                                           IOUT = 500mA
+                                                                                                                                                                          10
+                                                                CSS = 1nF                                      IOUT = 500mA                                                                                                               CSS = 1nF
+                                                      0                                                                                                                    0
+                                                           10        100       1k          10k         100k       1M       10M                                                  0      0.25   0.50    0.75    1.00     1.25    1.50   1.75     2.00 2.25
+                                                                                    Frequency (Hz)                                                                                                          VIN - VOUT (V)
+
+
+
+                                                                  Figure 6-9. VIN PSRR vs Frequency                                                                                   Figure 6-10. VIN PSRR vs (VIN – VOUT)
+                                                      1                                                                                                                   2.0
+           Output Spectral Noise Density (mV/ÖHz)
+
+
+
+
+                                                                IOUT = 100mA
+                                                                VOUT = 1.2V                                                                                               1.8
+                                                                                                                                                                                                    +125°C
+                                                                                                                                                                          1.6
+                                                                                                                                                                          1.4
+                                                                                                                                                                          1.2
+                                                                                                                                     IBIAS (mA)
+
+
+
+
+                                                                                                              CSS = 0nF
+                                                     0.1                                                                                                                  1.0
+                                                                                                                                                                          0.8
+                                                                                                                                                                                                                                 +25°C
+                                                                                                                                                                          0.6
+                                                                                         CSS = 10nF                                                                                                                -40°C
+                                                                                                          CSS = 1nF                                                       0.4
+                                                                                                                                                                          0.2
+                                                    0.01                                                                                                                   0
+                                                           100                 1k                      10k                 100k                                                 0             100            200           300           400         500
+                                                                                    Frequency (Hz)                                                                                                                 IOUT (mA)
+
+
+                                                                  Figure 6-11. Noise Spectral Density                                Figure 6-12. BIAS Pin Current vs IOUT and Temperature (TJ)
+
+
+
+
+Copyright © 2023 Texas Instruments Incorporated                                                                                                                                                                    Submit Document Feedback                9
+
+                                                                                                                  Product Folder Links: TPS74701
+TPS74701
+SBVS099H – NOVEMBER 2007 – REVISED APRIL 2023                                                                                                                                                                www.ti.com
+
+6.7 Typical Characteristics: VEN = VIN (All Other Orderable Devices, Non-M3 Suffix) (continued)
+at TJ = 25°C, VIN = VOUT(TYP) + 0.3 V, VBIAS = 5 V, IOUT = 50 mA, VEN = VIN, CIN = 1 μF, CBIAS = 4.7 μF, and COUT = 10 μF
+(unless otherwise noted)
+
+                                     2.0                                                                                                500
+                                     1.8                                                                                                475
+                                                                                       +125°C
+                                     1.6
+                                                                                                                                        450
+                                     1.4
+                                                                                                                                        425
+               IBIAS (mA)
+
+
+
+
+                                     1.2
+
+
+
+
+                                                                                                                   ISS (nA)
+                                                             +25°C
+                                     1.0                                                                                                400
+                                     0.8                                                                                                375
+                                     0.6
+                                                                           -40°C                                                        350
+                                     0.4
+                                     0.2                                                                                                325
+
+                                      0                                                                                                 300
+                                           2.0   2.5       3.0       3.5         4.0       4.5    5.0    5.5                                  -50   -25          0         25         50         75       100     125
+                                                                       VBIAS (V)                                                                                 Junction Temperature (°C)
+
+
+
+     Figure 6-13. BIAS Pin Current vs VBIAS and Temperature (TJ)                                                  Figure 6-14. Soft-Start Charging Current (ISS) vs Temperature
+                                                                                                                                               (TJ)
+                                     1.0                                                                                                1.5
+                                                                                                                                                                                                        VOUT = 0.8V
+                                     0.9                                                                                                1.4
+     VOL Low-Level PG Voltage (V)
+
+
+
+
+                                     0.8                                                                                                1.3
+                                                                                                                                                                                            +125°C
+                                     0.7                                                                                                1.2
+                                                                                                                    Current Limit (A)
+
+
+
+
+                                     0.6                                                                                                1.1
+                                     0.5                                                                                                1.0
+                                                                                                                                                          -40°C                             +25°C
+                                     0.4                                                                                                0.9
+                                     0.3                                                                                                0.8
+                                     0.2                                                                                                0.7
+                                     0.1                                                                                                0.6
+                                       0                                                                                                0.5
+                                             0         2         4           6            8        10      12                                 1.0   1.5    2.0       2.5        3.0        3.5    4.0      4.5    5.0
+
+                                                                     PG Current (mA)                                                                                  VBIAS - VOUT (V)
+
+
+
+                                           Figure 6-15. Low-Level PG Voltage vs Current                                                        Figure 6-16. Current Limit vs (VBIAS – VOUT)
+
+
+
+
+10                                  Submit Document Feedback                                                                                                     Copyright © 2023 Texas Instruments Incorporated
+
+                                                                                                 Product Folder Links: TPS74701
+                                                                                                                                                           TPS74701
+www.ti.com                                                                                                        SBVS099H – NOVEMBER 2007 – REVISED APRIL 2023
+
+
+6.8 Typical Characteristics: VEN = VIN = 1.8 V, VOUT = 1.5 V (All Other Orderable Devices, Non-M3
+Suffix)
+at TJ = 25°C, VIN = VOUT(TYP) + 0.3 V, VBIAS = 5 V, IOUT = 50 mA, VEN = VIN = 1.8 V, VOUT = 1.5 V, CIN = 1 μF, CBIAS = 4.7 μF,
+and COUT = 10 μF (unless otherwise noted)
+
+                   CSS = 1nF
+
+                                                        COUT = 2.2mF (Ceramic)                                                              COUT = 2.2mF (Ceramic)
+    50mV/div                                                                               50mV/div
+
+
+
+
+                                                                                                                                                       CSS = 1nF
+                                                                                                                           3.8V
+                                 5.0V
+
+                                                                                                1V/div
+       1V/div
+                   3.3V                                                 1V/ms                              1.8V                                             1V/ms
+
+                                    Time (50ms/div)                                                                           Time (50ms/div)
+
+
+                    Figure 6-17. VBIAS Line Transient                                                         Figure 6-18. VIN Line Transient
+
+                                                   COUT = 470mF (OSCON)                                  CSS = 0nF
+       100mV/div
+                                                                                                                      CSS = 560pF
+                                                                  CSS = 1nF
+                                                                                          0.5V/div                                  CSS = 5600pF               VOUT
+       100mV/div
+                                                        COUT = 10mF (Ceramic)
+
+
+       100mV/div
+                                                    COUT = 2.2mF (Ceramic)                                         3.8V
+                                                                                                                                                               VEN
+
+                                                                                            1V/div          1.8V
+       500mA/div     50mA                                 1A/ms
+
+                                    Time (50ms/div)
+                                                                                                                           Time (2ms/div)
+
+
+            Figure 6-19. Output Load Transient Response
+                                                                                                             Figure 6-20. Turn-On Response
+
+
+
+
+                                                                                                  VIN = VBIAS = VEN
+                                               1V/div
+
+
+
+
+                                                                                   VOUT
+
+                                                                                          VPG
+
+
+
+                                                                                Time (20ms/div)
+
+
+                                                             Figure 6-21. Power-Up and Power-Down
+
+
+
+
+Copyright © 2023 Texas Instruments Incorporated                                                                                   Submit Document Feedback            11
+
+                                                                  Product Folder Links: TPS74701
+TPS74701
+SBVS099H – NOVEMBER 2007 – REVISED APRIL 2023                                                                                    www.ti.com
+
+6.9 Typical Characteristics: IOUT = 50 mA (M3 Suffix)
+at TJ = 25°C, VIN = VOUT(nom) + 0.3 V, VBIAS = 5 V, IOUT = 50 mA, VEN = VIN, CIN = 1 μF, CBIAS = 4.7 μF, and COUT = 10 μF
+(unless otherwise noted)
+
+
+
+
+                   Figure 6-22. VIN Line Regulation                                    Figure 6-23. VBIAS Line Regulation
+
+
+
+
+                     Figure 6-24. Load Regulation                               Figure 6-25. Load Regulation at Light Load
+
+
+
+
+     Figure 6-26. VIN Dropout Voltage vs IOUT and Temperature (TJ)   Figure 6-27. VIN Dropout Voltage vs VIN and Temperature (TJ) for
+                                                                                              IOUT = 500 mA
+
+
+
+12      Submit Document Feedback                                                                Copyright © 2023 Texas Instruments Incorporated
+
+                                                      Product Folder Links: TPS74701
+                                                                                                                         TPS74701
+www.ti.com                                                                            SBVS099H – NOVEMBER 2007 – REVISED APRIL 2023
+
+
+6.9 Typical Characteristics: IOUT = 50 mA (M3 Suffix) (continued)
+at TJ = 25°C, VIN = VOUT(nom) + 0.3 V, VBIAS = 5 V, IOUT = 50 mA, VEN = VIN, CIN = 1 μF, CBIAS = 4.7 μF, and COUT = 10 μF
+(unless otherwise noted)
+
+
+
+
+ Figure 6-28. VIN Dropout Voltage vs VIN and Temperature (TJ) for       Figure 6-29. VIN Dropout Voltage vs (VBIAS – VOUT) and
+                           IOUT = 1.5 A                                                    Temperature (TJ)
+
+
+
+
+       Figure 6-30. VIN Dropout Voltage vs (VBIAS – VOUT) and       Figure 6-31. VBIAS Dropout Voltage vs IOUT and Temperature (TJ)
+                          Temperature (TJ)
+
+
+
+
+                Figure 6-32. VBIAS PSRR vs Frequency                             Figure 6-33. VIN PSRR vs Frequency
+
+
+
+
+Copyright © 2023 Texas Instruments Incorporated                                                    Submit Document Feedback       13
+
+                                                   Product Folder Links: TPS74701
+TPS74701
+SBVS099H – NOVEMBER 2007 – REVISED APRIL 2023                                                                                www.ti.com
+
+6.9 Typical Characteristics: IOUT = 50 mA (M3 Suffix) (continued)
+at TJ = 25°C, VIN = VOUT(nom) + 0.3 V, VBIAS = 5 V, IOUT = 50 mA, VEN = VIN, CIN = 1 μF, CBIAS = 4.7 μF, and COUT = 10 μF
+(unless otherwise noted)
+
+
+
+
+                 Figure 6-34. VIN PSRR vs (VIN – VOUT)                            Figure 6-35. Noise Spectral Density
+
+
+
+
+         Figure 6-36. BIAS Pin Current vs Output Current and          Figure 6-37. BIAS Pin Current vs VBIAS and Temperature (TJ)
+                           Temperature (TJ)
+
+
+
+
+     Figure 6-38. Soft-Start Charging Current (ISS) vs Temperature           Figure 6-39. Low-Level PG Voltage vs Current
+                                  (TJ)
+
+
+
+
+14      Submit Document Feedback                                                            Copyright © 2023 Texas Instruments Incorporated
+
+                                                     Product Folder Links: TPS74701
+                                                                                                                             TPS74701
+www.ti.com                                                                                 SBVS099H – NOVEMBER 2007 – REVISED APRIL 2023
+
+
+6.9 Typical Characteristics: IOUT = 50 mA (M3 Suffix) (continued)
+at TJ = 25°C, VIN = VOUT(nom) + 0.3 V, VBIAS = 5 V, IOUT = 50 mA, VEN = VIN, CIN = 1 μF, CBIAS = 4.7 μF, and COUT = 10 μF
+(unless otherwise noted)
+
+
+
+
+                                                  Figure 6-40. Current Limit vs (VBIAS – VOUT)
+
+
+
+
+Copyright © 2023 Texas Instruments Incorporated                                                         Submit Document Feedback     15
+
+                                                        Product Folder Links: TPS74701
+TPS74701
+SBVS099H – NOVEMBER 2007 – REVISED APRIL 2023                                                                                 www.ti.com
+
+6.10 Typical Characteristics: VEN = VIN = 1.8 V, VOUT = 1.5 V (M3 Suffix)
+at TJ = 25°C, VIN = VOUT(TYP) + 0.3 V, VBIAS = 5 V, IOUT = 50 mA, VEN = VIN = 1.8 V, VOUT = 1.5 V, CIN = 1 μF, CBIAS = 4.7 μF,
+and COUT = 10 μF (unless otherwise noted)
+
+
+
+
+                Figure 6-41. VBIAS Line Transient                                    Figure 6-42. VIN Line Transient
+
+
+
+
+          Figure 6-43. Output Load Transient Response
+                                                                                     Figure 6-44. Turn-On Response
+
+
+
+
+                                             Figure 6-45. Power-Up and Power-Down
+
+
+
+
+16    Submit Document Feedback                                                               Copyright © 2023 Texas Instruments Incorporated
+
+                                                    Product Folder Links: TPS74701
+                                                                                                                                   TPS74701
+www.ti.com                                                                                       SBVS099H – NOVEMBER 2007 – REVISED APRIL 2023
+
+
+7 Detailed Description
+7.1 Overview
+The TPS74701 is a low-dropout (LDO) regulator that features soft-start capability. This regulator uses a low
+current bias input to power all internal control circuitry, allowing the NMOS pass transistor to regulate very low
+input and output voltages.
+The use of an NMOS pass transistor offers several critical advantages for many applications. Unlike a p-channel
+metal-oxide-semiconductor field effect transistor (PMOS) topology device, the output capacitor has little effect
+on loop stability. This architecture allows the TPS74701 to be stable with any capacitor type of value 2.2 μF or
+greater. Transient response is also superior to PMOS topologies, particularly for low VIN applications.
+The TPS74701 features a programmable voltage-controlled soft-start circuit that provides a smooth, monotonic
+start-up and limits start-up inrush currents that can be caused by large capacitive loads. A power-good (PG)
+output is available to allow supply monitoring and sequencing of other supplies. An enable (EN) pin with
+hysteresis and deglitch allows slow-ramping signals to be used for sequencing the device. The low VIN and
+VOUT capability allows for inexpensive, easy-to-design, and efficient linear regulation between the multiple supply
+voltages often present in processor-intensive systems.
+7.2 Functional Block Diagram
+
+                                                     Current                                                OUT
+                          IN                                                                                           VOUT
+                                                      Limit
+
+
+                       BIAS                           UVLO
+                                                                                       Thermal
+                                            0.44mA                                      Limit                         R1
+                               SS
+                           CSS
+                                    Soft-Start                    0.8V
+                                    Discharge                     Reference
+                                                                                                            FB
+
+                                                                                                                 PG
+
+                                      Hysteresis
+                         EN                                                                                           R2
+                                     and Deglitch
+
+
+
+                                                                                         0.9 ´ VREF
+
+
+
+
+                                                                        GND
+
+
+
+
+Copyright © 2023 Texas Instruments Incorporated                                                               Submit Document Feedback     17
+
+                                                               Product Folder Links: TPS74701
+TPS74701
+SBVS099H – NOVEMBER 2007 – REVISED APRIL 2023                                                                     www.ti.com
+
+7.3 Feature Description
+7.3.1 Programmable Soft-Start
+The TPS74701 features a programmable, monotonic, voltage-controlled soft-start that is set with an external
+capacitor (CSS). This feature is important for many applications because soft-start eliminates power-up
+initialization problems when powering FPGAs, DSPs, or other processors. The controlled voltage ramp of the
+output also reduces peak inrush current during start-up, minimizing start-up transient events to the input power
+bus.
+To achieve a linear and monotonic soft-start, the TPS74701 error amplifier tracks the voltage ramp of the
+external soft-start capacitor until the voltage exceeds the internal reference. The soft-start ramp time depends on
+the soft-start charging current (ISS), soft-start capacitance (CSS), and the internal reference voltage (VREF), and
+can be calculated using Equation 1:
+
+             (VREF ´ CSS)
+     tSS =
+                 ISS                                                                                                  (1)
+
+If large output capacitors are used, the device current limit (ICL) and the output capacitor can set the start-up
+time. In this case, the start-up time is given by Equation 2:
+
+               (VOUT(NOM) ´ COUT)
+     tSSCL =
+                       ICL(MIN)                                                                                       (2)
+
+where:
+•    VOUT(NOM) is the nominal output voltage
+•    COUT is the output capacitance
+•    ICL(MIN) is the minimum current limit for the device
+In applications where monotonic start-up is required, the soft-start time given by Equation 1 must be set greater
+than Equation 2.
+The maximum recommended soft-start capacitor is 0.015 μF. Larger soft-start capacitors can be used, and
+do not damage the device; however, the soft-start capacitor discharge circuit can possibly be unable to fully
+discharge the soft-start capacitor when enabled.
+Soft-start capacitors larger than 0.015 μF can be a problem in applications where the enable pin must be rapidly
+pulsed while still requiring the device to soft-start from ground. CSS must be low-leakage; X7R, X5R, or C0G
+dielectric materials are preferred. See Table 8-2 for suggested soft-start capacitor values.
+7.3.2 Enable and Shutdown
+The enable (EN) pin is active high and is compatible with standard digital signaling levels. VEN below 0.4 V turns
+the regulator off, while VEN above 1.1 V turns the regulator on. Unlike many regulators, the enable circuitry has
+hysteresis and deglitching for use with relatively slowly ramping analog signals. This configuration allows the
+TPS74701 to be enabled by connecting the output of another supply to the EN pin. The enable circuitry typically
+has 50 mV of hysteresis and a deglitch circuit to help avoid on-off cycling as a result of small glitches in the VEN
+signal.
+The enable threshold is typically 0.8 V and varies with temperature and process variations. Temperature
+variation is approximately –1 mV/°C; process variation accounts for most of the rest of the variation to the
+0.4-V and 1.1-V limits. If precise turn-on timing is required, a fast rise-time signal must be used to enable the
+TPS74701.
+If not used, EN can be connected to either IN or BIAS. If EN is connected to IN, connect this pin as close as
+possible to the largest capacitance on the input to prevent voltage droops on that line from triggering the enable
+circuit.
+
+
+
+18    Submit Document Feedback                                                   Copyright © 2023 Texas Instruments Incorporated
+
+                                                Product Folder Links: TPS74701
+                                                                                                                     TPS74701
+www.ti.com                                                                         SBVS099H – NOVEMBER 2007 – REVISED APRIL 2023
+
+
+7.3.3 Power Good
+The power-good (PG) pin is an open-drain output and can be connected to any 5.5-V or lower rail through
+an external pullup resistor. This pin requires at least 1.1 V on VBIAS to have a valid output. The PG output is
+high-impedance when VOUT is greater than VIT + VHYS. If VOUT drops below VIT or if VBIAS drops below 1.9 V, the
+open-drain output turns on and pulls the PG output low. The PG pin also asserts when the device is disabled.
+The recommended operating condition of the PG pin sink current is up to 1 mA, so the pullup resistor for PG
+must be in the range of 10 kΩ to 1 MΩ. If output voltage monitoring is not needed, the PG pin can be left floating.
+7.3.4 Internal Current Limit
+The TPS74701 features a factory-trimmed, accurate current limit that is flat over temperature and supply voltage.
+The current limit allows the device to supply surges of up to 1 A and maintain regulation. The current limit
+responds in approximately 10 μs to reduce the current during a short-circuit fault.
+The internal current limit protection circuitry of the TPS74701 is designed to protect against overload conditions.
+This circuitry is not intended to allow operation above the rated current of the device. Continuously running the
+TPS74701 above the rated current degrades device reliability.
+7.3.5 Thermal Shutdown
+Thermal protection disables the output when the junction temperature rises to approximately 160°C, allowing
+the device to cool. When the junction temperature cools to approximately 140°C, the output circuitry is enabled.
+Depending on power dissipation, thermal resistance, and ambient temperature the thermal protection circuit can
+cycle on and off. This cycling limits the dissipation of the regulator, protecting the regulator from damage as a
+result of overheating.
+Activation of the thermal protection circuit indicates excessive power dissipation or inadequate heat sinking. For
+reliable operation, junction temperature must be limited to 125°C maximum. To estimate the margin of safety in a
+complete design (including heat sink), increase the ambient temperature until thermal protection is triggered; use
+worst-case loads and signal conditions. For good reliability, thermal protection must trigger at least 40°C above
+the maximum expected ambient condition of the application. This condition produces a worst-case junction
+temperature of 125°C at the highest expected ambient temperature and worst-case load.
+The internal protection circuitry of the TPS74701 is designed to protect against overload conditions. This circuitry
+is not intended to replace proper heat sinking. Continuously running the TPS74701 into thermal shutdown
+degrades device reliability.
+
+
+
+
+Copyright © 2023 Texas Instruments Incorporated                                                 Submit Document Feedback     19
+
+                                                  Product Folder Links: TPS74701
+TPS74701
+SBVS099H – NOVEMBER 2007 – REVISED APRIL 2023                                                                                     www.ti.com
+
+7.4 Device Functional Modes
+Table 7-1 shows the conditions that lead to the different modes of operation.
+                                    Table 7-1. Device Functional Mode Comparison
+                                                                               PARAMETER
+      OPERATING MODE
+                                             VIN                   VEN                   VBIAS                    IOUT               TJ
+ Normal mode                     VIN > VOUT(nom) + VDO (VIN)   VEN > VEN, HI     VBIAS ≥ VOUT + 1.39 V         IOUT < ICL       TJ < 125°C
+ Dropout mode                    VIN < VOUT(nom) + VDO (VIN)   VEN > VEN, HI     VBIAS < VOUT + 1.39 V             —            TJ < 125°C
+ Disabled mode
+ (any true condition disables           VIN < VIN(min)         VEN < VEN, LO       VBIAS < VBIAS(min)              —            TJ > 165°C
+ the device)
+
+
+7.4.1 Normal Operation
+The device regulates to the nominal output voltage under the following conditions:
+•    The input voltage and bias voltage are both at least at the respective minimum specifications
+•    The enable voltage has previously exceeded the enable rising threshold voltage and has not decreased
+     below the enable falling threshold
+•    The output current is less than the current limit
+•    The device junction temperature is less than the maximum specified junction temperature
+7.4.2 Dropout Operation
+If the input voltage is lower than the nominal output voltage plus the specified dropout voltage, but all other
+conditions are met for normal operation, the device operates in dropout mode. In this condition, the output
+voltage is the same as the input voltage minus the dropout voltage. The transient performance of the device is
+significantly degraded because the pass transistor is in a triode state and no longer controls the current through
+the LDO. Line or load transients in dropout can result in large output voltage deviations.
+7.4.3 Disabled
+The device is disabled under the following conditions:
+•    The input or bias voltages are below the respective minimum specifications
+•    The enable voltage is less than the enable falling threshold voltage or has not yet exceeded the enable rising
+     threshold
+•    The device junction temperature is greater than the thermal shutdown temperature
+
+
+
+
+20    Submit Document Feedback                                                                   Copyright © 2023 Texas Instruments Incorporated
+
+                                                    Product Folder Links: TPS74701
+                                                                                                                                   TPS74701
+www.ti.com                                                                                       SBVS099H – NOVEMBER 2007 – REVISED APRIL 2023
+
+
+8 Application and Implementation
+                                                                          Note
+       Information in the following applications sections is not part of the TI component specification,
+       and TI does not warrant its accuracy or completeness. TI’s customers are responsible for
+       determining suitability of components for their purposes, as well as validating and testing their design
+       implementation to confirm system functionality.
+
+8.1 Application Information
+R1 and R2 can be calculated for any output voltage using the formula in Figure 8-4. Table 8-1 lists sample
+resistor values of common output voltages. To achieve the maximum accuracy specifications, R2 must be less
+than or equal to 4.99 kΩ. Table 8-2 lists the capacitor values for setting the soft-start time.
+                                             Table 8-1. Standard 1% Resistor Values for
+                                                Programming the Output Voltage(1)
+                                                  R1 (kΩ)                R2 (kΩ)               VOUT (V)
+                                                   Short                   Open                    0.8
+                                                  0.619                    4.99                    0.9
+                                                   1.13                    4.53                     1
+                                                   1.37                    4.42                    1.05
+                                                   1.87                    4.99                    1.1
+                                                   2.49                    4.99                    1.2
+                                                   4.12                    4.75                    1.5
+                                                   3.57                    2.87                    1.8
+                                                   3.57                    1.69                    2.5
+                                                   3.57                    1.15                    3.3
+
+                                      (1)    VOUT = 0.8 × (1 + R1 / R2).
+
+                                                  Table 8-2. Standard Capacitor Values for
+                                                    Programming the Soft-Start Time(1)
+                                                            CSS                    SOFT-START TIME
+                                                           Open                           0.1 ms
+                                                          270 pF                          0.5 ms
+                                                          560 pF                          1 ms
+                                                          2.7 nF                          5 ms
+                                                          5.6 nF                          10 ms
+                                                       0.01 μF                            18 ms
+
+                                                            VREF × CSS 0.8V × CSS(F)
+                                             tSS(s) =                 =
+                                      (1)                       ISS       0.44mA     where tSS(s) = soft-
+                                             start time in seconds.
+
+8.1.1 Input, Output, and Bias Capacitor Requirements
+The device is designed to be stable for all available types and values of output capacitors greater than or equal
+to 2.2 μF. The device is also stable with multiple capacitors in parallel, which can be of any type or value.
+The capacitance required on the IN and BIAS pins strongly depends on the input supply source impedance.
+To counteract any inductance in the input, the minimum recommended capacitor for VIN and VBIAS is 1 μF. If
+VIN and VBIAS are connected to the same supply, the recommended minimum capacitor for VBIAS is 4.7 μF.
+Use good-quality, low-ESR capacitors on the input; ceramic X5R and X7R capacitors are preferred. Place these
+capacitors as close the pins as possible for optimum performance.
+
+
+Copyright © 2023 Texas Instruments Incorporated                                                               Submit Document Feedback     21
+
+                                                              Product Folder Links: TPS74701
+TPS74701
+SBVS099H – NOVEMBER 2007 – REVISED APRIL 2023                                                                                                     www.ti.com
+
+8.1.2 Transient Response
+The TPS74701 was designed to have excellent transient response for most applications with a small amount
+of output capacitance. In some cases, the transient response can be limited by the transient response of
+the input supply. This limitation is especially true in applications where the difference between the input and
+output is less than 300 mV. In this case, adding additional input capacitance improves the transient response
+much more than just adding additional output capacitance otherwise does. With a solid input supply, adding
+additional output capacitance reduces undershoot and overshoot during a transient event; see Figure 6-43 in
+the Typical Characteristics section. Because the TPS74701 is stable with output capacitors as low as 2.2 μF,
+many applications can then need very little capacitance at the LDO output. For these applications, local bypass
+capacitance for the powered device can be sufficient to meet the transient requirements of the application. This
+design reduces the total solution cost by avoiding the need to use expensive, high-value capacitors at the LDO
+output.
+8.1.3 Dropout Voltage
+The TPS74701 offers very low dropout performance, making the device designed for high-current, low VIN and
+low VOUT applications. The low dropout of the TPS74701 allows the device to be used in place of a DC/DC
+converter and still achieve good efficiency. This feature provides designers with the power architecture for
+applications to achieve the smallest, simplest, and lowest cost solution.
+There are two different specifications for dropout voltage with the TPS74701. The first specification (shown in
+Figure 8-1) is referred to as VIN dropout and is used when an external bias voltage is applied to achieve low
+dropout. This specification assumes that VBIAS is at least 1.39 V1 above VOUT, which is the case for VBIAS when
+powered by a 3.3-V rail with 5% tolerance and with VOUT = 1.5 V. If VBIAS is higher than VOUT +1.39 V1, VIN
+dropout is less than specified.1
+The second specification (shown in Figure 8-2) is referred to as VBIAS dropout and applies to applications where
+IN and BIAS are tied together. This option allows the device to be used in applications where an auxiliary bias
+voltage is not available or low dropout is not required. Dropout is limited by BIAS in these applications because
+VBIAS provides the gate drive to the pass transistor; therefore, VBIAS must be 1.39 V above VOUT. Because of
+this usage, IN and BIAS tied together easily consume a huge amount of power. Pay attention not to exceed the
+power rating of the device package.
+
+                                  BIAS     IN                                                                           VIN
+                                                 VBIAS = 5V ±5%
+                                                 VIN = 1.8V
+                                                                                                                               VBIAS = 3.3V ±5%
+                                                 VOUT = 1.5V                                             BIAS          IN
+                                                                                                                               VIN = 3.3V ± 5V
+                                                 IOUT = 500 mA
+                Reference                        Efficiency = 83%                                                              VOUT = 1.5V
+                                                OUT                                                                            IOUT = 500 mA
+                                                                     VOUT                  Reference                           Efficiency = 45%
+                                                                                                                              OUT
+                                                                                                                                               VOUT
+                                                              COUT
+
+                                                FB                                                                                        COUT
+             Simplified Block Diagram
+                                                                                                                              FB
+                                                                                       Simplified Block Diagram
+
+     Figure 8-1. Typical Application of the TPS74701
+               Using an Auxiliary Bias Rail                                      Figure 8-2. Typical Application of the TPS74701
+                                                                                          Without an Auxiliary Bias Rail
+
+
+
+
+     1   1.62 V is a test condition of this device and can be adjusted by referring to Figure 6-6.
+
+
+22       Submit Document Feedback                                                                           Copyright © 2023 Texas Instruments Incorporated
+
+                                                               Product Folder Links: TPS74701
+                                                                                                                                TPS74701
+www.ti.com                                                                                    SBVS099H – NOVEMBER 2007 – REVISED APRIL 2023
+
+
+8.1.4 Sequencing Requirements
+VIN, VBIAS, and VEN can be sequenced in any order without causing damage to the device. However, for the
+soft-start function to work as intended, certain sequencing rules must be applied. Connecting EN to IN is
+acceptable for most applications, as long as VIN is greater than 1.1 V and the ramp rate of VIN and VBIAS is
+faster than the set soft-start ramp rate. If the ramp rate of the input sources is slower than the set soft-start
+time, the output tracks the slower supply minus the dropout voltage until the set output voltage is reached. If EN
+is connected to BIAS, the device soft-starts as programmed, provided that VIN is present before VBIAS. If VBIAS
+and VEN are present before VIN is applied and the set soft-start time has expired, then VOUT tracks VIN. If the
+soft-start time has not expired, the output tracks VIN until VOUT reaches the value set by the charging soft-start
+capacitor. Figure 8-3 shows the use of an RC-delay circuit to hold off VEN until VBIAS has ramped. This technique
+can also be used to drive EN from VIN. An external control signal can also be used to enable the device after VIN
+and VBIAS are present.
+
+                                                                      Note
+       When VBIAS and VEN are present and VIN is not supplied, this device outputs approximately 50 μA
+       of current from OUT. Although this condition does not cause any damage to the device, the output
+       current can charge up the OUT node if total resistance between OUT and GND (including external
+       feedback resistors) is greater than 10 kΩ.
+
+                                         VIN                    IN              OUT                   VOUT
+
+                                                  CIN                                        R1
+                                                                                                   COUT
+                                                                BIAS TPS74701    FB
+
+                                       VBIAS               R                                 R2
+
+                                                  CBIAS         EN     GND       SS
+
+                                                            C                          CSS
+
+
+
+
+                           Figure 8-3. Soft-Start Delay Using an RC Circuit to Enable the Device
+
+8.1.5 Output Noise
+The TPS74701 provides low-output noise when a soft-start capacitor is used. When the device reaches the end
+of the soft-start cycle, the soft-start capacitor serves as a filter for the internal reference. By using a 0.001-μF
+soft-start capacitor, the output noise is reduced by half and is typically 30 μVRMS for a 1.2-V output (10 Hz to
+100 kHz). Further increasing CSS has little effect on noise. Because most of the output noise is generated by
+the internal reference, the noise is a function of the set output voltage. The RMS noise with a 0.001-μF soft-start
+capacitor is given in Equation 3:
+
+                         mVRMS
+      VN(mVRMS) = 25   ( V )x V        OUT(V)
+                                                                                                                                   (3)
+
+The low-output noise of the TPS74701 makes the device a good choice for powering transceivers, PLLs, or
+other noise-sensitive circuitry.
+
+
+
+
+Copyright © 2023 Texas Instruments Incorporated                                                              Submit Document Feedback    23
+
+                                                          Product Folder Links: TPS74701
+TPS74701
+SBVS099H – NOVEMBER 2007 – REVISED APRIL 2023                                                                                                         www.ti.com
+
+8.2 Typical Application
+Figure 8-4 shows a typical application circuit for the TPS74701 adjustable output device.
+                                 VIN                              IN                     PG
+                                            CIN                                                   R3
+                                                                  BIAS
+                                            1mF
+                                                                                     OUT                                  VOUT
+                                                                  EN     TPS74701
+                               VBIAS                                                              R1            COUT
+                                                                  SS
+                                            CBIAS                          GND           FB                     10mF
+                                            1mF
+                                                            CSS                                   R2
+
+
+
+
+                                                                                    R1
+                                                            VOUT = 0.8 ´ 1 +(       R2
+                                                                                         )
+                         Figure 8-4. Typical Application Circuit for the TPS74701 (Adjustable)
+
+8.2.1 Design Requirements
+Table 8-3 shows the design parameters for this application.
+                                                      Table 8-3. Design Parameters
+                                       DESIGN PARAMETER                                  EXAMPLE VALUE
+                                                      VIN                                      1.8 V ± 10%
+                                                     VBIAS                                     3.3 V ±10%
+                                                     VOUT                                      1.5 V ± 3%
+                                                     IOUT                                        500 mA
+                                                 Start-up time                                   < 2 ms
+
+
+8.2.2 Detailed Design Procedure
+1. Select R1 and R2 based on the required output voltage. Table 8-1 gives example calculations for many
+   common output voltages.
+2. Select CSS to be the highest capacitance while still achieving the desired start-up time. Table 8-2 gives
+   examples of this calculation.
+3. Select a minimum of a 2.2-µF ceramic output capacitor. Increased output capacitance helps the output load
+   transient response. Figure 8-6 gives examples of the load transient response with different output capacitor
+   values and types.
+8.2.3 Application Curves
+
+                                           COUT = 470mF (OSCON)                                   CSS = 0nF
+      100mV/div
+                                                                                                                CSS = 560pF
+                                                          CSS = 1nF
+                                                                                    0.5V/div                                     CSS = 5600pF              VOUT
+      100mV/div
+                                            COUT = 10mF (Ceramic)
+
+
+      100mV/div
+                                            COUT = 2.2mF (Ceramic)                                            3.8V
+                                                                                                                                                           VEN
+
+                                                                                     1V/div            1.8V
+      500mA/div   50mA                            1A/ms
+
+                               Time (50ms/div)
+                                                                                                                        Time (2ms/div)
+
+
+     Figure 8-5. Output Load Transient Response
+                                                                                                  Figure 8-6. Turn-On Response
+
+
+
+
+24    Submit Document Feedback                                                                                       Copyright © 2023 Texas Instruments Incorporated
+
+                                                            Product Folder Links: TPS74701
+                                                                                                                     TPS74701
+www.ti.com                                                                         SBVS099H – NOVEMBER 2007 – REVISED APRIL 2023
+
+
+8.3 Power Supply Recommendations
+The TPS74701 is designed to operate from an input voltage up to 5.5 V, provided the bias rail is at least 1.39-V
+higher than the input supply and dropout requirements are met. The bias rail and the input supply must both
+provide adequate headroom and current for the device to operate normally. Connect a low-output impedance
+power supply directly to the IN pin of the TPS74701. This supply must have at least 1 μF of capacitance near the
+IN pin for optimal performance. A supply with similar requirements must also be connected directly to the bias
+rail with a separate 1-μF or larger capacitor. If the IN pin is tied to the bias pin, a minimum 4.7 μF of capacitance
+is needed for performance. To increase the overall PSRR of the solution at higher frequencies, use a pi-filter or
+ferrite bead before the input capacitor.
+8.4 Layout
+8.4.1 Layout Guidelines
+An optimal layout can greatly improve transient performance, PSRR, and noise. To minimize the voltage droop
+on the input of the device during load transients, connect the capacitance on IN, OUT, and BIAS as close
+as possible to the device. If BIAS is connected to IN, connect BIAS as close to the input supply as possible.
+This connection minimizes the voltage droop on BIAS during transient conditions and can improve the turn-on
+response.
+8.4.1.1 Power Dissipation
+An optimal layout can greatly improve transient performance, PSRR, and noise. To minimize the voltage drop on
+the input of the device during load transients, the capacitance on IN and BIAS must be connected as close as
+possible to the device. This capacitance also minimizes the effects of parasitic inductance and resistance of the
+input source and can therefore improve stability. To achieve optimal transient performance and accuracy, the top
+side of R1 in Figure 8-4 must be connected as close as possible to the load. If BIAS is connected to IN, connect
+BIAS as close to the sense point of the input supply as possible. This connection minimizes the voltage drop on
+BIAS during transient conditions and can improve the turn-on response.
+Knowing the device power dissipation and proper sizing of the thermal plane that is connected to the thermal
+pad is critical to avoiding thermal shutdown and ensuring reliable operation. Power dissipation of the device
+depends on input voltage and load conditions and can be calculated using Equation 4:
+
+      PD = (VIN - VOUT) ´ IOUT                                                                                          (4)
+
+Power dissipation can be minimized and greater efficiency can be achieved by using the lowest possible input
+voltage necessary to achieve the required output voltage regulation.
+On the VSON (DRC) package, the primary conduction path for heat is through the exposed pad to the
+printed-circuit-board (PCB). The pad can be connected to ground or be left floating; however, the pad must
+be attached to an appropriate amount of copper PCB area to make sure the device does not overheat. The
+maximum junction-to-ambient thermal resistance depends on the maximum ambient temperature, maximum
+device junction temperature, and power dissipation of the device and can be calculated using Equation 5:
+
+                (+125°C - TA)
+      RqJA =
+                     PD                                                                                                 (5)
+
+Knowing the maximum RθJA, the minimum amount of PCB copper area needed for appropriate heat sinking can
+be estimated using Figure 8-7.
+
+
+
+
+Copyright © 2023 Texas Instruments Incorporated                                                 Submit Document Feedback      25
+
+                                                  Product Folder Links: TPS74701
+TPS74701
+SBVS099H – NOVEMBER 2007 – REVISED APRIL 2023                                                                                                  www.ti.com
+
+                                                     140
+
+                                                     120
+
+                                                     100
+
+
+
+
+                                        qJA (°C/W)
+                                                      80
+
+                                                      60
+
+                                                      40
+
+                                                      20
+
+                                                       0
+                                                           0    1      2    3    4    5    6      7   8   9    10
+                                                                            Board Copper Area (in2)
+
+     RθJA value at board size of 9 in2 (that is, 3 inches × 3 inches) is a JEDEC standard.
+
+                                                               Figure 8-7. RθJA vs Board Size
+
+Figure 8-7 shows the variation of RθJA as a function of ground plane copper area in the board. This figure is
+intended only as a guideline to demonstrate the effects of heat spreading in the ground plane and is not meant to
+be used to estimate actual thermal performance in real application environments.
+
+                                                                                Note
+      When the device is mounted on an application PCB, TI strongly recommends using ΨJT and ΨJB, as
+      explained in the Estimating Junction Temperature section.
+
+8.4.1.2 Estimating Junction Temperature
+Using the thermal metrics ΨJT and ΨJB, as shown in the Thermal Information table, the junction temperature can
+be estimated with corresponding formulas (given in Equation 6). For backwards compatibility, an older RθJC, Top
+parameter is listed as well.
+
+     YJT: TJ = TT + YJT · PD
+     YJB: TJ = TB + YJB · PD                                                                                                                       (6)
+
+where:
+•    PD is the power dissipation shown by Equation 5
+•    TT is the temperature at the center-top of the device package
+•    TB is the PCB temperature measured 1mm away from the device package on the PCB surface (as Figure 8-9
+     shows)
+
+                                                                                Note
+      Both TT and TB can be measured on actual application boards using a thermo-gun (an infrared
+      thermometer).
+
+For more information about measuring TT and TB, see the Using New Thermal Metrics application note,
+available for download at www.ti.com.
+From Figure 8-8, the new thermal metrics (ΨJT and ΨJB) obviously have very little dependency on board size.
+That is, using ΨJT or ΨJB with Equation 6 is a good way to estimate TJ by simply measuring TT or TB, regardless
+of the application board size.
+
+
+
+
+26    Submit Document Feedback                                                                                Copyright © 2023 Texas Instruments Incorporated
+
+                                                                    Product Folder Links: TPS74701
+                                                                                                                                                                                     TPS74701
+www.ti.com                                                                                                                                  SBVS099H – NOVEMBER 2007 – REVISED APRIL 2023
+
+                                                                   12
+                                                                                                                 YJB
+                                                                   10
+
+
+
+
+                                             YJT and YJB (°C/W)
+                                                                    8
+
+
+                                                                    6
+
+
+                                                                    4
+
+
+                                                                    2
+                                                                                                                       YJT
+
+                                                                    0
+                                                                         0        1        2     3     4     5         6       7        8         9     10
+                                                                                                  Board Copper Area (in2)
+
+                                                                        Figure 8-8. ΨJT and ΨJB vs Board Size
+
+For a more detailed discussion of why TI does not recommend using RθJC(top) to determine thermal
+characteristics, see the Using New Thermal Metrics application note, available for download at www.ti.com.
+For further information, see the Semiconductor and IC Package Thermal Metrics application note, also available
+on the TI website.
+
+                                                                                                 TT on top
+                                                                                                 of IC surface
+                                                                                                                                            TB
+                          TB on PCB
+                                                                                                                                                             TT
+                                                                                                                                    1mm
+
+
+                                  1mm
+
+
+
+
+                                                              Figure 8-9. Measuring Points for TT and TB
+
+8.4.2 Layout Example
+
+
+                                                                  CIN                          Input GND Plane
+
+
+
+
+                                                                             IN        1                               10          OUT                Vout
+                                    Vin                                                                                                     R1                COUT
+                                                                             IN        2                                   9       OUT
+
+                                                                             PG        3                                   8       FB
+
+                                          CBIAS                          BIAS          4                                   7       SS       Css       R2
+
+                                                                             EN        5                                   6       GND
+
+
+
+                                                                                               Output GND Plane
+
+
+
+
+                                             Figure 8-10. TPS547 Layout Recommendation
+
+
+
+
+Copyright © 2023 Texas Instruments Incorporated                                                                                                                   Submit Document Feedback   27
+
+                                                                                      Product Folder Links: TPS74701
+TPS74701
+SBVS099H – NOVEMBER 2007 – REVISED APRIL 2023                                                                                        www.ti.com
+
+
+9 Device and Documentation Support
+9.1 Device Support
+9.1.1 Development Support
+9.1.1.1 Evaluation Module
+An evaluation module (EVM) is available to assist in the initial circuit performance evaluation using the
+TPS74701. The TPS74701EVM-177 evaluation module (and related user guide) can be requested at the Texas
+Instruments website through the product folders or purchased directly from the TI eStore.
+9.1.1.2 Spice Models
+Computer simulation of circuit performance using SPICE is often useful when analyzing the performance of
+analog circuits and systems. A SPICE model for TPS74701 is available through the product folders under
+Simulation Models.
+9.1.2 Device Nomenclature
+                                                 Table 9-1. Device Nomenclature(1)
+            PRODUCT                                                                   VOUT (2)
+                                    xx is the nominal output voltage (for example, 12 = 1.2 V, 15 = 1.5 V, 01 = Adjustable).(3)
+         TPS747xxyyyz               YYY is the package designator.
+                                    Z is the package quantity.
+
+(1)   For the most current package and ordering information see the Package Option Addendum at the end of this document, or visit the
+      device product folder on www.ti.com.
+(2)   Fixed output voltages from 0.8 V to 3.3 V are available; minimum order quantities may apply. Contact factory for details and availability.
+(3)   For fixed 0.8-V operation, tie FB to OUT.
+
+9.2 Documentation Support
+9.2.1 Related Documentation
+For related documentation see the following:
+• Texas Instruments, Using New Thermal Metrics application note
+• Texas Instruments, Semiconductor and IC Package Thermal Metrics application note
+9.3 Receiving Notification of Documentation Updates
+To receive notification of documentation updates, navigate to the device product folder on ti.com. Click on
+Subscribe to updates to register and receive a weekly digest of any product information that has changed. For
+change details, review the revision history included in any revised document.
+9.4 Support Resources
+TI E2E™ support forums are an engineer's go-to source for fast, verified answers and design help — straight
+from the experts. Search existing answers or ask your own question to get the quick design help you need.
+Linked content is provided "AS IS" by the respective contributors. They do not constitute TI specifications and do
+not necessarily reflect TI's views; see TI's Terms of Use.
+9.5 Trademarks
+TI E2E™ is a trademark of Texas Instruments.
+All trademarks are the property of their respective owners.
+9.6 Electrostatic Discharge Caution
+                  This integrated circuit can be damaged by ESD. Texas Instruments recommends that all integrated circuits be handled
+                  with appropriate precautions. Failure to observe proper handling and installation procedures can cause damage.
+                  ESD damage can range from subtle performance degradation to complete device failure. Precision integrated circuits may
+                  be more susceptible to damage because very small parametric changes could cause the device not to meet its published
+                  specifications.
+
+
+
+
+28    Submit Document Feedback                                                                      Copyright © 2023 Texas Instruments Incorporated
+
+                                                       Product Folder Links: TPS74701
+                                                                                                                     TPS74701
+www.ti.com                                                                         SBVS099H – NOVEMBER 2007 – REVISED APRIL 2023
+
+
+9.7 Glossary
+ TI Glossary             This glossary lists and explains terms, acronyms, and definitions.
+
+10 Mechanical, Packaging, and Orderable Information
+The following pages include mechanical, packaging, and orderable information. This information is the most
+current data available for the designated devices. This data is subject to change without notice and revision of
+this document. For browser-based versions of this data sheet, refer to the left-hand navigation.
+
+
+
+
+Copyright © 2023 Texas Instruments Incorporated                                                 Submit Document Feedback     29
+
+                                                  Product Folder Links: TPS74701
+                                                                                                                                                                     PACKAGE OPTION ADDENDUM
+
+       www.ti.com                                                                                                                                                                                                    9-Nov-2025
+
+
+
+
+PACKAGING INFORMATION
+
+       Orderable part number          Status     Material type      Package | Pins      Package qty | Carrier       RoHS             Lead finish/               MSL rating/          Op temp (°C)               Part marking
+                                        (1)            (2)                                                            (3)            Ball material              Peak reflow                                           (6)
+                                                                                                                                          (4)                       (5)
+
+          TPS74701DRCR                Active      Production       VSON (DRC) | 10       3000 | LARGE T&R            Yes               NIPDAU           Level-2-260C-1 YEAR            -40 to 125                    CEG
+         TPS74701DRCR.A               Active      Production       VSON (DRC) | 10       3000 | LARGE T&R            Yes               NIPDAU           Level-2-260C-1 YEAR            -40 to 125                    CEG
+         TPS74701DRCRG4               Active      Production       VSON (DRC) | 10       3000 | LARGE T&R            Yes               NIPDAU           Level-2-260C-1 YEAR            -40 to 125                    CEG
+         TPS74701DRCRM3               Active      Production       VSON (DRC) | 10       3000 | LARGE T&R            Yes               NIPDAU           Level-2-260C-1 YEAR            -40 to 125                    CEG
+        TPS74701DRCRM3.A              Active      Production       VSON (DRC) | 10       3000 | LARGE T&R            Yes               NIPDAU           Level-2-260C-1 YEAR            -40 to 125                    CEG
+          TPS74701DRCT                Active      Production       VSON (DRC) | 10        250 | SMALL T&R            Yes               NIPDAU           Level-2-260C-1 YEAR            -40 to 125                    CEG
+         TPS74701DRCT.A               Active      Production       VSON (DRC) | 10        250 | SMALL T&R            Yes               NIPDAU           Level-2-260C-1 YEAR            -40 to 125                    CEG
+         TPS74701DRCTG4               Active      Production       VSON (DRC) | 10        250 | SMALL T&R            Yes               NIPDAU           Level-2-260C-1 YEAR            -40 to 125                    CEG
+
+(1)
+      Status: For more details on status, see our product life cycle.
+
+(2)
+   Material type: When designated, preproduction parts are prototypes/experimental devices, and are not yet approved or released for full production. Testing and final process, including without limitation quality assurance,
+reliability performance testing, and/or process qualification, may not yet be complete, and this item is subject to further changes or possible discontinuation. If available for ordering, purchases will be subject to an additional
+waiver at checkout, and are intended for early internal evaluation purposes only. These items are sold without warranties of any kind.
+
+(3)
+      RoHS values: Yes, No, RoHS Exempt. See the TI RoHS Statement for additional information and value definition.
+
+(4)
+   Lead finish/Ball material: Parts may have multiple material finish options. Finish options are separated by a vertical ruled line. Lead finish/Ball material values may wrap to two lines if the finish value exceeds the maximum
+column width.
+
+(5)
+  MSL rating/Peak reflow: The moisture sensitivity level ratings and peak solder (reflow) temperatures. In the event that a part has multiple moisture sensitivity ratings, only the lowest level per JEDEC standards is shown.
+Refer to the shipping label for the actual reflow temperature that will be used to mount the part to the printed circuit board.
+
+(6)
+      Part marking: There may be an additional marking, which relates to the logo, the lot trace code information, or the environmental category of the part.
+
+Multiple part markings will be inside parentheses. Only one part marking contained in parentheses and separated by a "~" will appear on a part. If a line is indented then it is a continuation of the previous line and the two
+combined represent the entire part marking for that device.
+
+Important Information and Disclaimer:The information provided on this page represents TI's knowledge and belief as of the date that it is provided. TI bases its knowledge and belief on information provided by third parties, and
+makes no representation or warranty as to the accuracy of such information. Efforts are underway to better integrate information from third parties. TI has taken and continues to take reasonable steps to provide representative
+and accurate information but may not have conducted destructive testing or chemical analysis on incoming materials and chemicals. TI and TI suppliers consider certain information to be proprietary, and thus CAS numbers
+and other limited information may not be available for release.
+
+
+
+                                                                                                          Addendum-Page 1
+                                                                                                                                                                      PACKAGE OPTION ADDENDUM
+
+    www.ti.com                                                                                                                                                                            9-Nov-2025
+
+
+
+
+In no event shall TI's liability arising out of such information exceed the total purchase price of the TI part(s) at issue in this document sold by TI to Customer on an annual basis.
+
+OTHER QUALIFIED VERSIONS OF TPS74701 :
+
+• Automotive : TPS74701-Q1
+
+NOTE: Qualified Version Definitions:
+
+        • Automotive - Q100 devices qualified for high-reliability automotive applications targeting zero defects
+
+
+
+
+                                                                                                          Addendum-Page 2
+                                                                               PACKAGE MATERIALS INFORMATION
+
+www.ti.com                                                                                                                                    10-Sep-2026
+
+
+
+TAPE AND REEL INFORMATION
+
+       REEL DIMENSIONS                                                                      TAPE DIMENSIONS
+                                                                                       K0       P1
+
+
+
+                                                                                                                      B0 W
+                                        Reel
+                                      Diameter
+                                                                                    Cavity           A0
+                                                                A0   Dimension designed to accommodate the component width
+                                                                B0   Dimension designed to accommodate the component length
+                                                                K0   Dimension designed to accommodate the component thickness
+                                                                W    Overall width of the carrier tape
+                                                                P1   Pitch between successive cavity centers
+
+
+                                       Reel Width (W1)
+                              QUADRANT ASSIGNMENTS FOR PIN 1 ORIENTATION IN TAPE
+
+                                                                                                     Sprocket Holes
+
+
+                                                 Q1        Q2          Q1    Q2
+
+                                                 Q3        Q4          Q3    Q4                  User Direction of Feed
+
+
+
+                                                            Pocket Quadrants
+
+
+*All dimensions are nominal
+             Device           Package Package Pins              SPQ        Reel   Reel   A0                 B0         K0     P1     W     Pin1
+                               Type Drawing                              Diameter Width (mm)               (mm)       (mm)   (mm)   (mm) Quadrant
+                                                                           (mm) W1 (mm)
+     TPS74701DRCR              VSON     DRC           10        3000        330.0        12.4        3.3    3.3       1.1    8.0    12.0    Q2
+   TPS74701DRCRM3              VSON     DRC           10        3000        330.0        12.4        3.3    3.3       1.1    8.0    12.0    Q2
+     TPS74701DRCT              VSON     DRC           10         250        180.0        12.4        3.3    3.3       1.1    8.0    12.0    Q2
+
+
+
+
+                                                                       Pack Materials-Page 1
+                                                                PACKAGE MATERIALS INFORMATION
+
+www.ti.com                                                                                                              10-Sep-2026
+
+
+
+ TAPE AND REEL BOX DIMENSIONS
+
+
+
+
+                                                               Width (mm)
+                                                                              H
+                      W
+
+
+
+
+                                                          L
+
+
+
+
+*All dimensions are nominal
+             Device           Package Type   Package Drawing   Pins         SPQ    Length (mm)   Width (mm)   Height (mm)
+     TPS74701DRCR                VSON             DRC           10          3000      360.0        360.0         36.0
+    TPS74701DRCRM3               VSON             DRC           10          3000      367.0        367.0         35.0
+     TPS74701DRCT                VSON             DRC           10          250       210.0        185.0         35.0
+
+
+
+
+                                                        Pack Materials-Page 2
+                                                                  GENERIC PACKAGE VIEW
+DRC 10                                                                     VSON - 1 mm max height
+3 x 3, 0.5 mm pitch                                                         PLASTIC SMALL OUTLINE - NO LEAD
+
+
+
+
+               This image is a representation of the package family, actual package may vary.
+                             Refer to the product data sheet for package details.
+
+
+
+
+                                                                                                   4226193/A
+
+
+
+
+                                                    www.ti.com
+                                                                                                                          PACKAGE OUTLINE
+ DRC0010J                                                              SCALE 4.000
+                                                                                                                       VSON - 1 mm max height
+                                                                                                                          PLASTIC SMALL OUTLINE - NO LEAD
+
+
+
+
+                                                       3.1                                       B
+                                 A
+                                                       2.9
+
+
+
+
+              PIN 1 INDEX AREA
+                                                                                                 3.1
+                                                                                                 2.9
+
+
+
+
+                          1.0                                                                                C
+                          0.8
+
+                                                                                                                 SEATING PLANE
+                         0.05
+                         0.00                                                                                    0.08 C
+
+                                                    1.65 0.1
+                                                                               2X (0.5)
+                                                                                                                                        (0.2) TYP
+                       EXPOSED                                                       4X (0.25)
+                    THERMAL PAD
+
+                                     5                                                    6
+
+
+
+                            2X                       11                                          SYMM
+                             2
+                                                                                                             2.4 0.1
+
+
+
+                                                                                          10
+                                     1
+                       8X 0.5                                                                                0.30
+                                                                                                       10X
+                                                                                                             0.18
+                             PIN 1 ID                SYMM
+                                                                                                             0.1     C A B
+                          (OPTIONAL)
+                                                                 0.5                                         0.05     C
+                                                             10X
+                                                                 0.3
+
+
+                                                                                                                                         4218878/B 07/2018
+
+NOTES:
+
+1. All linear dimensions are in millimeters. Any dimensions in parenthesis are for reference only. Dimensioning and tolerancing
+   per ASME Y14.5M.
+2. This drawing is subject to change without notice.
+3. The package thermal pad must be soldered to the printed circuit board for optimal thermal and mechanical performance.
+
+
+
+
+                                                                       www.ti.com
+                                                                                        EXAMPLE BOARD LAYOUT
+ DRC0010J                                                                                             VSON - 1 mm max height
+                                                                                                          PLASTIC SMALL OUTLINE - NO LEAD
+
+
+
+                                                                     (1.65)
+                                                                        (0.5)
+
+
+                               10X (0.6)
+
+                                           1
+                                                                                                     10
+
+                         10X (0.24)
+                                                                   11
+                                  SYMM                                                                             (2.4)
+                                                                                                                           (3.4)
+
+
+                                                                                                          (0.95)
+                               8X (0.5)
+
+                                           5                                                         6
+
+                         (R0.05) TYP
+
+                                 ( 0.2) VIA
+                                 TYP
+                                                       (0.25)
+                                                                           (0.575)
+                                                                    SYMM
+
+                                                                        (2.8)
+
+                                                      LAND PATTERN EXAMPLE
+                                                          EXPOSED METAL SHOWN
+                                                               SCALE:20X
+
+
+
+                                                                                                              0.07 MIN
+                    0.07 MAX                        EXPOSED METAL                                             ALL AROUND
+                ALL AROUND
+                                                                                EXPOSED METAL
+
+
+
+                  SOLDER MASK                       METAL                            METAL UNDER                            SOLDER MASK
+                  OPENING                                                            SOLDER MASK                            OPENING
+                                 NON SOLDER MASK
+                                                                                                         SOLDER MASK
+                                     DEFINED
+                                                                                                           DEFINED
+                                   (PREFERRED)
+
+                                                           SOLDER MASK DETAILS
+                                                                                                                                   4218878/B 07/2018
+
+NOTES: (continued)
+
+4. This package is designed to be soldered to a thermal pad on the board. For more information, see Texas Instruments literature
+   number SLUA271 (www.ti.com/lit/slua271).
+5. Vias are optional depending on application, refer to device data sheet. If any vias are implemented, refer to their locations shown
+   on this view. It is recommended that vias under paste be filled, plugged or tented.
+
+
+
+
+                                                                         www.ti.com
+                                                                                     EXAMPLE STENCIL DESIGN
+ DRC0010J                                                                                     VSON - 1 mm max height
+                                                                                                PLASTIC SMALL OUTLINE - NO LEAD
+
+
+
+
+                                                                     2X (1.5)
+                                                                      (0.5)
+                                                                     SYMM
+                                                                                           EXPOSED METAL
+                                                                11                         TYP
+
+
+                                     10X (0.6)
+                                 1
+                                                                                                   10
+                                                                                                                    (1.53)
+                 10X (0.24)                                                                                  2X
+                                                                                                           (1.06)
+
+
+
+                       SYMM
+
+
+
+                                                                                                        (0.63)
+
+
+                      8X (0.5)
+
+                                                                                                   6
+                                 5
+
+                (R0.05) TYP
+                                                    4X (0.34)
+
+
+                                                                         4X (0.25)
+                                                                      (2.8)
+
+
+                                                     SOLDER PASTE EXAMPLE
+                                                   BASED ON 0.125 mm THICK STENCIL
+
+                                                           EXPOSED PAD 11:
+                                                 80% PRINTED SOLDER COVERAGE BY AREA
+                                                               SCALE:25X
+
+
+
+
+                                                                                                                       4218878/B 07/2018
+
+NOTES: (continued)
+
+6. Laser cutting apertures with trapezoidal walls and rounded corners may offer better paste release. IPC-7525 may have alternate
+   design recommendations.
+
+
+
+
+                                                                        www.ti.com
+                                         IMPORTANT NOTICE AND DISCLAIMER
+TI PROVIDES TECHNICAL AND RELIABILITY DATA (INCLUDING DATASHEETS), DESIGN RESOURCES (INCLUDING REFERENCE
+DESIGNS), APPLICATION OR OTHER DESIGN ADVICE, WEB TOOLS, SAFETY INFORMATION, AND OTHER RESOURCES “AS IS”
+AND WITH ALL FAULTS, AND DISCLAIMS ALL WARRANTIES, EXPRESS AND IMPLIED, INCLUDING WITHOUT LIMITATION ANY
+IMPLIED WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE OR NON-INFRINGEMENT OF THIRD
+PARTY INTELLECTUAL PROPERTY RIGHTS.
+These resources are intended for skilled developers designing with TI products. You are solely responsible for (1) selecting the appropriate
+TI products for your application, (2) designing, validating and testing your application, and (3) ensuring your application meets applicable
+standards, and any other safety, security, regulatory or other requirements.
+These resources are subject to change without notice. TI grants you permission to use these resources only for development of an
+application that uses the TI products described in the resource. Other reproduction and display of these resources is prohibited. No license
+is granted to any other TI intellectual property right or to any third party intellectual property right. TI disclaims responsibility for, and you fully
+indemnify TI and its representatives against any claims, damages, costs, losses, and liabilities arising out of your use of these resources.
+TI’s products are provided subject to TI’s Terms of Sale, TI’s General Quality Guidelines, or other applicable terms available either on
+ti.com or provided in conjunction with such TI products. TI’s provision of these resources does not expand or otherwise alter TI’s applicable
+warranties or warranty disclaimers for TI products. Unless TI explicitly designates a product as custom or customer-specified, TI products
+are standard, catalog, general purpose devices.
+TI objects to and rejects any additional or different terms you may propose.
+IMPORTANT NOTICE
+
+                                                Copyright © 2026, Texas Instruments Incorporated
+                                                                Last updated 10/2025
+

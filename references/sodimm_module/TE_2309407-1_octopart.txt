@@ -1,0 +1,219 @@
+             Welcome to TE.com, you are viewing information for visitors in                          CHOOSE ANOTHER SITE        STAY ON THIS SITE
+
+
+TE CONNECTIVITY (TE)   Need Help? +1 800 522 6752 o r  Live Chat                                                                    Track Your Order    US-EN
+
+
+                                                                                      Industries &
+                               Search by part # or keyword             Products
+                                                                                        Solutions
+                                                                                                      Resources       Shop TE             Sign In        
+                                                                                                                      ▲
+                                                                                                           Purchase items directly
+      Connectors  Sockets  Memory Sockets  SO DIMMs                                                          from TE.com
+
+
+      2309407-1
+      DDR4 DIMM, SO DIMM Sockets, Small Outline (SO), Stack Height .157 in [4 mm], Right Angle
+      Module Orientation, Surface Mount, Cable-to-Board
+
+                                                         DDR4 DIMM                                            We are here to help!
+                                                                                                              Get in touch with our product experts.
+                                                         TE Internal #: 2309407-1
+                                                         TE Internal Description: DDR4 SODIMM 260P
+                                                         4.0H STD
+                                                                                                                               CHAT WITH US
+
+                                                         DRAM Type : Small Outline (SO)
+                                                         Stack Height : 4 mm [ .157 in ]
+                                                                                                                                 EMAIL US
+                                                         Module Orientation : Right Angle
+                                                         PCB Mounting Style : Surface Mount
+                                                         Connector System : Cable-to-Board                                       CALL US
+
+                                                                Digital Datasheet
+
+
+
+                                                                       ORDER SAMPLES
+
+
+
+                                                               Compatible Parts & Tooling
+
+
+
+              Documents                     Features                Product Compliance
+
+
+
+          Product Drawings             DDR4 SODIMM 260P 4.0H STD
+                                        DDR4 SODIMM 260P 4.0H STD
+                                        English
+
+
+
+          CAD Files                    PCB Design
+
+                                       Download symbol & footprint (SnapEDA)
+
+                                       3D PDF
+
+                                        3D_CVM_CVM_2309407-1_1.pdf
+                                       3D
+
+                                       Customer View Model
+
+                                        ENG_CVM_CVM_2309407-1_1.2d_dxf.zip
+                                       English
+
+                                        ENG_CVM_CVM_2309407-1_1.3d_igs.zip
+                                       English
+
+                                        ENG_CVM_CVM_2309407-1_1.3d_stp.zip
+                                       English
+
+
+
+
+          Product                      Application Specification
+          Specifications                ENG_SS_114-115015_A.pdf
+                                       English
+
+                                       Product Specification
+
+                                        ENG_SS_108-115122_A1.pdf
+                                       English
+                           Qualification Test Report
+
+                            ENG_SS_501-115133_A.pdf
+                           English
+
+
+
+
+Product                    Product Compliance
+Environmental               ENG_PC_MD_2309407-1_A(770383).xlsx
+Compliance                 English
+
+                           Product Compliance
+
+                            ENG_PC_MD_2309407-1_A(695386).xml
+                           English
+
+
+
+
+Please review product documents or contact us for the latest agency approval
+information. Please Note: Use the Product Drawing for all design activity.
+
+
+
+
+Product Type               DRAM Type : Small Outline (SO)
+Features                   Connector System : Cable-to-Board
+                           Sealable : No
+                           Connector & Contact Terminates To : Printed Circuit Board
+                           Center Post : Without
+                           Product Type : Socket
+
+
+
+
+Configuration              Module Orientation : Right Angle
+Features                   Number of Positions : 260
+                           Number of Rows : 2
+                           Keying : Standard
+                           Number of Keys : 1
+                           Center Key : Offset Left
+
+
+
+
+Electrical                 DRAM Voltage (V): 1.2
+Characteristics
+
+
+Signal                     SGRAM Voltage (V): 1.2
+Characteristics
+
+
+Body Features              Ejector Type : Locking
+                           Connector Profile : Low
+                           Module Key Type : Offset Left
+                           Retention Post Location : Both Ends
+                           Latch Material : High Temperature Thermoplastic
+                           Ejector Location : Both Ends
+                           Retention Post Material : Stainless Steel
+
+
+
+
+Contact Features           Contact Base Material : Copper Alloy
+                           PCB Contact Termination Area Plating Material : Gold Flash
+                           Contact Mating Area Plating Material : Gold Flash
+                           Contact Current Rating (Max) (A): .5
+                           Socket Type : Memory Card
+                           Socket Style : SO DIMM
+
+
+
+
+Termination                Insertion Style : Cam-In
+Features
+ Mechanical               PCB Mount Retention Type : Solder Peg
+ Attachment               PCB Mount Retention : With
+                          PCB Mounting Style : Surface Mount
+                          Connector Mounting Type : Board Mount
+
+
+
+
+ Housing Features         Centerline (Pitch) (mm): .5, 2.1
+                          Centerline (Pitch) (in): .0197, .082
+                          Housing Material : High Temperature Thermoplastic
+                          Housing Color : Black
+
+
+
+
+ Dimensions               Stack Height : 4 mm [ .157 in ]
+                          Row-to-Row Spacing : 8.2 mm [ .322 in ]
+
+
+
+
+ Usage Conditions         Operating Temperature Range : -55 – 85 °C [ -67 – 185 °F ]
+
+
+
+
+ Operation/Application Circuit Application : Power
+
+
+
+ Industry                 UL Flammability Rating : UL 94V-0
+ Standards
+
+
+ Packaging                Packaging Method : Tape & Reel
+ Features                 Packaging Quantity : 900
+
+
+
+
+ Statement of             Statement of Compliance pdf
+ Compliance
+
+
+
+
+Also in the Series           DDR4 DIMM
+
+
+
+
+ DIMM Sockets (69)                  SO DIMM Sockets
+                                    (39)
+ABOUT TE CONNECTIVITY   FOR PARTNERS   SUPPORT   CALL US   LIVE CHAT   UNITED STATES (EN)
+

@@ -1,0 +1,180 @@
+Source: https://jlcpcb.com/blog/Free-Via-in-Pad-on-6-20-Layer-PCBs-with-POFV
+Retrieved 2026-10-02 (text of the server-rendered HTML, including collapsed sections; layout is in jlc_pofv_via_in_pad_blog.pdf)
+
+Free Via-in-Pad on 6-20 Layer PCBs with POFVThis website requires JavaScript.
+Account Restriction Notice
+Get Coupon Here
+Coupons
+Country / Region
+Language
+undefined
+Currency
+USD $
+The currency you select is for reference only, payments must be made in US dollars.
+Save
+Language Coming Soon
+Ship to
+JLCPCB PCB Service
+FR-4 PCBs
+Flexible PCBs
+Metal Core PCBs
+High-Frequency PCBs
+PCBA Service
+PCB Assembly
+Parts Library
+More
+SMT Stencil
+PCB Layout
+Mechanical Services
+JLC3DP - 3D Printing
+JLCCNC - CNC Machining
+JLCCNC - Sheet Metal
+JLCMC - Mechanical Components
+Tools
+EasyEDA - PCB Design Tool
+JLCDFM - DFM Check
+Impedance Calculator
+PI Stiffener Calculator
+More
+OSHWLAB - Open Source Hardware
+JLCPCB - Flexible Heater
+Products
+Capabilities Contact Us
+Online Chat>
+Mon-Fri: 24 hours, Sat: 9am-6pm, GMT+8
+Email Us>
+Mon-Fri: 24 hours, Sat: 9am-6pm, GMT+8
+WhatsApp>
+Mon-Fri: 24 hours, Sat: 9am-6pm, GMT+8
+Support
+Help Center Get instant answers. 24/7 Available.
+Blog
+Community
+Support
+About Us
+JLCPCB delivers one-stop electronic and mechanical manufacturing solutions to empower hardware innovators worldwide.
+Explore Us
+Why JLCPCB?
+Quality Assurance
+How We Work
+Certifications
+Company News
+About Us
+Search
+0
+Order Now
+Sign In
+Sign In
+Home
+Newsroom
+Free Via-in-Pad on 6-20 Layer PCBs with POFV
+Free Via-in-Pad on 6-20 Layer PCBs with POFV
+Product Update
+Nov 02, 2022
+Table of Contents
+Comparison with JLCPCB Via in Pad(POFV) and Standard Via in Pad
+For international market, JLCPCB via-in-pad on 6- 20 layer PCBs are upgraded to POFV (Plated Over Filled Via) for free and will continue to be the free default for all upcoming high layer count boards. This means its costs will no longer be added to the total price whether it’s a sample or batch order, allowing everyone to truly enjoy the benefits of JLCPCB’s advanced fabrication. (POFV for 4-layer PCBs still requires charges.)
+Via-in-pad has been widely used in high-end PCBs for many years now, but the process has always been a “premium feature” inaccessible to independent designers and hobbyists due to its high cost. Now JLCPCB is going to change this situation with its improved via-in-pad process guaranteeing more stability and reliability than regular tented and plugged vias, using a copper plating thickness of up to 25μm. This improved process is called POFV. It allows flexible, compact routing and makes connections more robust and reliable than with regular vias.
+Comparison with JLCPCB Via in Pad(POFV) and Standard Via in Pad
+The four pads on the left were made with POFV: the via holes in the pads have been plugged with epoxy and then plated over with copper (“capped”) to create an almost-flat surface. The pad on the right was produced with a regular process and the via hole is exposed; this is undesirable because during reflow soldering the solder can be wicked into the hole, leaving too little on the surface to secure the component.
+Outside of pads, the same process is still superior to regular tented/plugged vias, giving a smooth, even appearance and avoiding problems such as insufficiently plugged vias and gas bubbles in the plugging material causing unevenness under BGA components.
+                                                                                 
+1. Benefits of JLCPCB’s POFV Process
+POFV technology allows vias to be placed directly within pads. This gives a lot of extra flexibility in routing, especially under BGA components.
+Better Electrical Performance
+Placing vias directly in pads helps shorten traces and save board space. Whereas regular vias have to keep some distance from the pads they connect to, POFV vias don’t have this limitation. Decoupling components in particular benefit a lot from more direct connections, which in turn means the board runs with more stability.
+Protection for the Vias in Harsh Environments
+Since vias made with POFV technology are plugged with epoxy and fully plated over, they are protected from corrosion, ensuring reliable operation of the board in moist or warm environments.
+2. How They're Made
+JLCPCB's high-quality and stable POFV is a combination of plugging and capping. This process creates the following via structure:
+As for regular vias, these capped vias are first drilled and then plated; but unlike conventional vias they undergo many extra steps: epoxy filling, heating to dry the epoxy, surface levelling, and then a second plating step to create the cap (surface plating) over the via. Although more complex to produce, their excellent performance and the convenience they bring into the design process are definitely worth the extra steps.
+3. POFV Design Requirements
+Annular ring: 0.05 mm minimum, 0.075 mm preferred
+Via hole size: 0.2 to 0.5 mm
+Via hole size | 0.2 | 0.2 | 0.25 | 0.3 | 0.3 (Free)
+Via diameter | 0.3 | 0.35 | 0.4 | 0.4 | 0.45
+Should be placed more than 0.45 mm from regular PTHs or NPTHs
+By making via-in-pad the free default for six layer boards and readily affordable for four-layer boards, JLCPCB aims to continue its mission of providing the most cost-effective service for its customers and making PCB design and prototyping more accessible to everyone.
+                                                                                     
+Recent News
+JLCPCB Officially Launches HDI PCB Manufacturing Services
+• JLCPCB Officially Launches HDI PCB Manufacturing Services
+Sep 14, 2026
+JLCPCB Launches OSP Starting from 2-Layer PCBs: High Quality at No Extra Charge
+• JLCPCB Launches OSP Starting from 2-Layer PCBs: High Quality at No Extra Charge
+Jul 31, 2026
+JLCPCB Completes Website Upgrade for Enhanced Clarity and Mobile Experience
+• JLCPCB Completes Website Upgrade for Enhanced Clarity and Mobile Experience
+Jan 04, 2026
+Table of Contents
+Comparison with JLCPCB Via in Pad(POFV) and Standard Via in Pad
+Recent News
+JLCPCB Officially Launches HDI PCB Manufacturing Services
+• JLCPCB Officially Launches HDI PCB Manufacturing Services
+Sep 14, 2026
+JLCPCB Launches OSP Starting from 2-Layer PCBs: High Quality at No Extra Charge
+• JLCPCB Launches OSP Starting from 2-Layer PCBs: High Quality at No Extra Charge
+Jul 31, 2026
+JLCPCB Completes Website Upgrade for Enhanced Clarity and Mobile Experience
+• JLCPCB Completes Website Upgrade for Enhanced Clarity and Mobile Experience
+Jan 04, 2026
+Online Chat >
+Chat with our live agent for fast reply.
+Mon-Fri: 24 hours, Sat: 9am-6pm, GMT+8
+Email Us >
+Contact us at supportjlcpcb.com
+Typically reply within hours.
+Help Center >
+Get instant answers.
+24/7 Available.
+Products
+FR-4 PCBs
+Flexible PCBs
+Metal Core PCBs
+High-Frequency PCBs
+PCBA Service
+PCB Layout
+SMT Stencil
+Flex Heater
+Support
+Help Center
+Contact Us
+Community
+Shipping & Delivery
+Payment Methods
+How to Order
+How to Track
+After-Sales Service
+Blog
+Company
+About Us
+Quality Assurance
+How We Work
+Certifications
+Security
+Environment
+JLCAPI
+News
+Cooperation
+Electronics
+EasyEDA
+JLCPCB
+JLCDFM
+LCSC
+OSHWLAB
+Mechanical
+JLC3DP
+JLCCNC
+JLCMC
+CONNECT WITH US
+© 2026 JLCPCB.COM All Rights Reserved.
+Privacy Policy
+Terms & Conditions
+Cookies Policy
+Get Coupon >
+Live Chat >
+Home
+Cart
+Files
+Message
+Me

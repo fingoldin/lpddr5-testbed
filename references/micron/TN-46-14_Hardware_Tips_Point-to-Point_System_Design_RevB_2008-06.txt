@@ -1,0 +1,873 @@
+                                                             TN-46-14: Hardware Tips for Point-to-Point System Design
+                                                                                                          Introduction
+
+
+Technical Note
+Hardware Tips for Point-to-Point System Design: Termination, Layout,
+and Routing
+
+
+
+
+Introduction
+                                                 Designers can benefit from a set of proven techniques for termination, layout, and
+                                                 routing for SDRAM and DDR devices used in point-to-point interfaces. Derived from
+                                                 electronic theory and Micron design experience, the guidelines in this technical note are
+                                                 meant to be used for signal integrity (SI) optimization in point-to-point systems.
+                                                 This technical note is the practical companion to Micron technical note TN-46-06,
+                                                 “Termination for Point-to-Point Systems,” which discusses transmission line theory and
+                                                 the effects of series resistance. Micron recommends that designers using SDRAM or
+                                                 DDR components in a point-to-point system consult TN-46-06 regarding theory and use
+                                                 this technical note as a primary memory-subsystem design recommendation for printed
+                                                 circuit boards (PCBs).
+                                                 The guidelines and examples of Micron design requirements in this technical note
+                                                 should not be considered the only acceptable methods, nor are they applicable to all
+                                                 point-to-point designs. Micron recommends designers also analyze other factors that
+                                                 can affect SI, such as system data width, number of non-DRAM loads, controller I/O
+                                                 drive strength, and AC timing.
+
+Definitions
+                                                 In this technical note, VSS refers to digital ground, VSSQ refers to DQ and signal ground;
+                                                 the two are equivalent unless otherwise noted. VDD is digital power for the device core
+                                                 and VDDQ is power for the DQ and I/O signals; they also are equivalent unless otherwise
+                                                 noted.
+
+
+Recommended Six-Layer PCB Stackups
+                                                 A well-designed PCB stackup is critical in eliminating digital switching noise. The
+                                                 ground plane must provide a low-impedance (Low-Z) return path for digital circuits.
+                                                 Micron recommends a PCB design with a minimum of six layers: layers 1 (top) and 6
+                                                 (bottom) for signals; layers 2, 3, and 5 for ground/power; and layer 4 for as ground/
+                                                 power or for signals, as shown in Figures 1 and 2 on page 2.
+                                                 Figure 1 shows a three-signal-layer stackup, while Figure 2 shows a four-signal-layer
+                                                 stackup. Poor SI and other problems render three- or four-layer PCBs unusable except
+                                                 in very limited cases.
+
+
+
+
+PDF: 09005aef820bf582/Source: 09005aef820bf578                                          Micron Technology, Inc., reserves the right to change products or specifications without notice.
+TN4614.fm - Rev. B 6/30/08 EN                                                  1                                                      ©2006 Micron Technology, Inc. All rights reserved.
+
+ Products and specifications discussed herein are for evaluation and reference purposes only and are subject to change by
+   Micron without notice. Products are only warranted by Micron to meet Micron’s production data sheet specifications.
+                                                               TN-46-14: Hardware Tips for Point-to-Point System Design
+                                                                                 Recommended Six-Layer PCB Stackups
+
+Figure 1:               Micron-Recommended Three-Signal-Layer PCB Stackup
+
+
+
+                                                  0.7 mil                             L1                                                Signal 1
+                                                  4.5 mil
+                                                    1oz                               L2–VSS
+
+                                                  6.5 mil
+                                                    1oz                               L3–VDD
+
+                                                   30 mil
+                                                                                      L4                                                Signal 2
+
+                                                  5.0 mil
+                                                    1oz                               L5–VSS
+
+                                                  4.5 mil
+                                                  0.7 mil                             L6                                                Signal 3
+
+
+
+                               Notes:            1. Layer L1 has controlled impedance to L2 (VSS).
+                                                 2. Layer L4 has controlled impedance to L5 (VSS).
+                                                 3. Layer L6 has controlled impedance to L5 (VSS).
+                                                 4. Impedance on L1, L4, and L6 is 50–60Ω for a trace 4 mil wide.
+                                                 5. To balance copper weight in signal areas and reduce PCB wrapping, copper-flood the L4
+                                                    layer where there are no signals.
+                                                 6. Micron recommends 10 mil drill sizes.
+                                                 7. Micron recommends 0.35mm pads.
+                                                 8. Solder mask thickness varies, but averages 7 mil.
+
+Figure 2:               Micron-Recommended Four-Signal-Layer PCB Stackup
+
+
+                                                     0.7 mil                           L1                                                           Signal 1
+
+                                                     4.5 mil
+                                                      1oz                              L2–VSS                                                       VSS
+
+                                                     6.5 mil
+                                                      1oz                              L3                                                           Signal 2
+
+
+                                                     30 mil
+                                                                                       L4                                                           Signal 3
+
+                                                     5.0 mil
+                                                      1oz                              L5–VDD                                                       VDD
+
+                                                     4.5 mil
+                                                     0.7 mil                           L6                                                           Signal 4
+
+
+                               Notes:            1. Recommended total PCB thickness = 1.57mm (62 mil).
+                                                 2. Typical dielectric thicknesses; “prepreg” thickness can vary from 4–6 mil.
+
+
+
+
+PDF: 09005aef820bf582/Source: 09005aef820bf578                                              Micron Technology, Inc., reserves the right to change products or specifications without notice.
+TN4614.fm - Rev. B 6/30/08 EN                                                     2                                                       ©2006 Micron Technology, Inc. All rights reserved.
+                                                              TN-46-14: Hardware Tips for Point-to-Point System Design
+                                                                                                 PCB Dielectric Material
+
+TSOP Packages
+                                                 For TSOP-packaged SDRAM and DDR components, typical routing requires two internal
+                                                 signal layers, two surface signal layers, and two other layers (VDD and VSS) as solid refer-
+                                                 ence planes. Memory devices have VDD and VDDQ pins, which are both normally tied to
+                                                 the PCB VDD plane. Likewise, component VSS and VSSQ pins are tied to the PCB Vss
+                                                 plane. Each plane provides a low-inductance path to the memory devices to deliver
+                                                 VSSQ. Dedicating a single plane for both power and ground does not enable strong signal
+                                                 referencing.
+                                                 Most DDR designs reference DQ, strobe, and clock signals to VSS, while address,
+                                                 command, and control signals are referenced to VDD. DQ signals are generally routed on
+                                                 the outer layers of the PCB.
+
+FBGA Packages
+                                                 Systems using FBGA-packaged DDR components typically split PCB planes between
+                                                 VDD and VSS such that DQ, DQS, DM, and clock signals maintain a VSS reference, while
+                                                 address, command, and control signals maintain a VDD reference. These split planes
+                                                 require additional effort to ensure good power delivery to the memory device; the usual
+                                                 solution is to flood the outer PCB layers—where no signal is present—with VDD.
+                                                 Standard characteristic impedance (ZO) of 50–60Ω is recommended for all traces. The
+                                                 60Ω level also provides a good match to the sum of the output impedance of the
+                                                 controller/FPGA driver and any series resistors used; 60Ω ±6Ω (10 percent tolerance) is
+                                                 Micron’s module and reference design target. Designers are advised to specify ZO,
+                                                 enabling board manufacturers to adjust dielectric thickness and line width to achieve
+                                                 the specification.
+                                                 Minimizing the length of the signal return path (loop area) reduces transient currents
+                                                 and electromagnetic interference (EMI). Micron recommends placing VSS and VDD
+                                                 layers adjacent to each other on PCB layers 2 and 3 of a six-layer stackup, and placing the
+                                                 return signal on the plane immediately under the trace (such as plane 2 and plane 5) for
+                                                 the smallest loop area.
+
+
+PCB Dielectric Material
+                                                 The dielectric constant of PCB materials for most memory applications is 3.6 to 4.5,
+                                                 varying slightly with frequency, temperature, material, and resin-to-glass ratio. FR-4, one
+                                                 commonly used dielectric material, averages 4.2 with signaling at 100 MHz. The FR-4 is
+                                                 copper-clad laminate that offers exceptional dimensional stability, dielectric thickness
+                                                 control, and high-quality manufacturing repeatability.
+                                                 Micron recommends FR-4 for PCBs, because of its low cost, low moisture absorption,
+                                                 and low electrical conductivity in module fabrication.
+
+
+DDR VREF
+                                                 DDR device receivers compare the difference between a steady reference voltage (VREF )
+                                                 and the signal received. Because only the differential voltage (ΔV) is processed internally,
+                                                 it is important that the reference voltage matches data sheet limits and remains as close
+                                                 to constant as possible, ±1 percent of nominal (VDDQ/2) after power up.
+
+
+
+
+PDF: 09005aef820bf582/Source: 09005aef820bf578                                           Micron Technology, Inc., reserves the right to change products or specifications without notice.
+TN4614.fm - Rev. B 6/30/08 EN                                                   3                                                      ©2006 Micron Technology, Inc. All rights reserved.
+                                                             TN-46-14: Hardware Tips for Point-to-Point System Design
+                                                                                                             DDR VREF
+
+                                                 Nominal VREF is expected to track variations in the DC voltage; thus, with VDD specified
+                                                 as 2.5V nominal, VREF ’s range is 1.237–1.262V. However, VDD is specified as 2.3–2.7V for
+                                                 2.5V nominal and 2.5–2.7V for 2.6V nominal (DDR400), as measured at the nearest VREF
+                                                 bypass capacitor. VREF also must adhere precisely to all other data sheet requirements
+                                                 for proper device operation.
+                                                 Because VREF is an input to a differential-pair, common-source amplifier, there is no
+                                                 significant current draw. Any standard regulator integrated circuit (IC) with generation
+                                                 capability of ≥5mA is adequate. To minimize the noise effects on VREF, Micron recom-
+                                                 mends a decoupling capacitor at each DDR device input.
+
+Accuracy Requirements
+                                                 Meeting VREF ’s stringent accuracy requirements requires careful design consideration.
+                                                 In addition to tracking changes in VDDQ, VREF requires both minimal ripple and minimal
+                                                 noise. Peak-to-peak noise on VREF must not exceed ±2 percent of the DC value; ripple on
+                                                 VREF must maintain a maximum of ±25mV for DC error and a maximum of ±25mV for AC
+                                                 noise.
+                                                 Micron recommends:
+                                                 • Route VREF at least 2cm away from other signals to minimize coupling.
+                                                 • Design traces as short and wide as possible between the voltage source and VREF.
+                                                 • Place a single low-inductance (0.1µF) bypass capacitor as close to the device VREF pin
+                                                   as possible.
+
+VREF Generation
+                                                 VREF generation is a straightforward process. Micron recommends the following VREF
+                                                 generating solutions:
+                                                 • For light loads (fewer than four DDR components), connect VDDQ to VSSQ through a
+                                                   simple resistor divider made up of two equivalent 1kΩ resistors, each with ±1 percent
+                                                   tolerance, as shown in Figure 3 on page 5. This enables VREF to track any changes in
+                                                   VDDQ. Resistor values should be calculated so that any error caused by component
+                                                   leakage currents (typically <3µA) is small relative to other error sources.
+                                                 • For heavier loads (four or more components), design in a regulator IC configured to
+                                                   output 1.25V on VREF. Micron has successfully used various switching regulators with
+                                                   integrated MOSFETs in DDR reference designs.
+                                                   The regulator can absorb or generate up to 3A for the VTT circuit and has a separate,
+                                                   linear, regulated output for VREF at 3mA. With an active driver for VREF, leakage cur-
+                                                   rents can be ignored.
+                                                 Appropriate DDR termination regulator vendors offering products with VTT, VREF, VDDQ,
+                                                 and VDD outputs include:
+                                                 • Fairchild—ML6554 and FAN1655
+                                                 • Linear Technology—LTC3413 and LTC3831
+                                                 • National Semiconductor—LP2995 and LP2996
+                                                 • Phillips—NE57810 and NE47814
+                                                 Micron does not endorse one vendor over another and recommends engineers choosing
+                                                 one of these regulator ICs to verify performance through prototype testing.
+
+
+
+
+PDF: 09005aef820bf582/Source: 09005aef820bf578                                          Micron Technology, Inc., reserves the right to change products or specifications without notice.
+TN4614.fm - Rev. B 6/30/08 EN                                                  4                                                      ©2006 Micron Technology, Inc. All rights reserved.
+                                                             TN-46-14: Hardware Tips for Point-to-Point System Design
+                                                                                                              DDR VTT
+
+Figure 3:               VREF Generation with Resistor Divider
+
+                                                                   VREF
+
+                                                         1kΩ ±1%          1kΩ ±1%
+                                                 VDDQ
+
+
+
+
+Miscellaneous VREF Design Guidelines
+                                                 Micron recommends the following:
+                                                 • Route VREF with a 20–25 mil minimum trace to reduce inductance
+                                                 • Maintain at least a 15–25 mil clearance from VREF to other adjacent traces
+                                                 • Place a 0. 1µF capacitor between VREF and VDDQ
+                                                 • Place a 0.1µF capacitor between VREF and VSSQ
+                                                 • Decouple at each device or connector to minimize noise at each component
+
+
+DDR VTT
+                                                 When designing with DDR memory, special power considerations must be addressed,
+                                                 because DDR requires three highly accurate voltages: VDDQ, VTT, and VREF. VTT is a
+                                                 memory bus termination voltage equaling VDDQ/2.
+                                                 To place VTT in perspective, it is necessary to understand how system voltages are
+                                                 related. DDR devices generally have two PCB power supplies (rails): VDD, supplying both
+                                                 device VDD and VDDQ, and VSS, for device VSS and VSSQ. As stated in “Definitions” on
+                                                 page 1, VDD is the main high-current voltage used for both the DDR core and compo-
+                                                 nent I/O lines. VREF is a low-power reference voltage equal to VDD/2. DDR devices
+                                                 compare internal signals to VREF. Other voltage relationships are VDD = VDDQ, and VTT =
+                                                 VREF = VDD/2.
+                                                 VTT transient current can be as high as ±3.5A during heavy activity on the DQ and
+                                                 address buses. This transient current averages 0A, but can be somewhat random in
+                                                 nature, depending upon address/data patterns.
+                                                 Some system designs can operate without requiring VTT. The approximate system
+                                                 boundaries enabling VTT exclusion are:
+                                                 • Two or fewer DDR components in the system
+                                                 • Moderate current draw
+                                                 • Trace length <2in (5cm)
+                                                 • SI and drive strengths within data sheet limits (determined through simulation)
+                                                 VTT is recommended for maximum voltage accuracy and current delivery and requires a
+                                                 regulator with ±3 percent tolerance; VTT is not applied directly to the device, but
+                                                 connected, as shown in Figure 4 on page 6.
+                                                 VTT regulators are available as standalone devices and as devices with integrated VREF
+                                                 generation. Suitable VTT regulators (with or without VREF generation) are available from
+                                                 Intersil, Philips Semiconductors, California Micro Devices, Fairchild, Champion Micro-
+                                                 electronics, National, and Texas Instruments.
+
+
+
+
+PDF: 09005aef820bf582/Source: 09005aef820bf578                                          Micron Technology, Inc., reserves the right to change products or specifications without notice.
+TN4614.fm - Rev. B 6/30/08 EN                                                   5                                                     ©2006 Micron Technology, Inc. All rights reserved.
+                                                              TN-46-14: Hardware Tips for Point-to-Point System Design
+                                                                                                               DDR VTT
+
+Miscellaneous VTT Design Guidelines
+                                                 Figure 4 shows recommended VTT layout for a system with multiple DDR components.
+                                                 When a regulator has been selected, Micron recommends the following:
+                                                 • VTT terminates command and address signals to VDD/2, using a parallel resistor (RT).
+                                                 • VTT terminates DQ and DQS on PCB; DQS charge = VDDQ/2 when data transfers are
+                                                   not occurring,
+                                                 • VTT does not terminate any DDR clock pairs. CK and CK# termination is a parallel
+                                                   100–121Ω resistor between the two lines; Micron has found that only differential
+                                                   termination on CK and CK# produces optimal SI.
+                                                 • VTT and VREF islands must be separated by a minimum of 150 mil if placed on the
+                                                   same PCB layer. Placing the islands on different layers is preferred.
+                                                 • VTT islands must be placed at the end of the memory channel, as close as possible to
+                                                   the last device.
+                                                 • VTT islands require at least two additional decoupling capacitors (4–7µF) and two
+                                                   bulk capacitors (100µF) at each end.
+                                                 • VTT island surface trace = 150 mil MIN; 250 mil preferred.
+                                                 • VTT power at initialization must be applied after VDDQ to avoid device latch-up; VTT
+                                                   power is nominally coincident with VREF power.
+                                                 • Balanced-T routing (shown in Figure 5 on page 7) is recommended where a signal
+                                                   must go to more than one point; place the memory controller/ASIC and series resistor
+                                                   (RS) at the bottom of the T, the VTT terminator at the top of the T, and DDR devices at
+                                                   the left and right arms of the T.
+
+Figure 4:               VTT Island and Regulator PCB Layout for Multiple DDR Components
+
+
+                                                                                                                                                               VTT/VREF
+                                                                                                                                                              Generator
+
+
+
+
+                                                                                                                                                                   VTT Termination Island
+                                                                                                 Address/Command/Control
+
+                                                               CK                   DDR
+                                                  Memory
+                                                 Controller    CK#                 Devices
+                                                              SSTL_2
+                                                                                                       Data/Strobe/Mask
+
+
+
+
+                                                                            Regulator        VTT Power Plane              Decoupling               VTT Termination
+                                                              VTT Island
+                                                                                                                           Capacitors                  Resistors
+
+
+
+
+PDF: 09005aef820bf582/Source: 09005aef820bf578                                           Micron Technology, Inc., reserves the right to change products or specifications without notice.
+TN4614.fm - Rev. B 6/30/08 EN                                                  6                                                       ©2006 Micron Technology, Inc. All rights reserved.
+                                                            TN-46-14: Hardware Tips for Point-to-Point System Design
+                                                        Layout: Trace Widths, Interpair Spacing, and Intrapair Spacing
+
+Figure 5:               Balanced T Routing Using Four DDR Devices and SSTL-2 Type 1 Topology
+
+                                                                             VTT        {   • Up to 16 per address group (A13–A0, BA1, BA0) per device
+                                                                                            • 10 per each data group (DQ7–DQ0, DQS, DM)
+                                                                                              (two groups per device)
+                                                                                   RT
+                                                                                            • 5 per command group RAS#, CAS#, WE#, CS#, CKE
+                                                   DDR          DDR                            DDR                 DDR
+                                                  SDRAM        SDRAM                          SDRAM               SDRAM
+
+
+
+
+                                                                                   RS   {   • Up to 16 per address group (A13–A0, BA1, BA0)
+                                                                                            • 10 per data group (DQ7–DQ0, DQS, DM)
+                                                                                            • 5 per command group RAS#, CAS#, WE#, CS#, CKE
+
+
+                                                                  Memory controller/ASIC
+
+
+                               Notes:            1. Position the VTT source as close as possible to the RT resistors.
+                                                 2. All trace lengths are equal.
+                                                 3. For unidirectional address, command, and control signals, optimal RS placement will be
+                                                    determined through simulation. Generally, this is near the middle of the bus or close to the
+                                                    controller, but it is not required to be in exactly the same place for DQ and command/
+                                                    address groups if skew specifications are met.
+                                                 4. For bidirectional data signals with parallel topology, place the RS close to the source proces-
+                                                    sor/FPGA.
+                                                 5. Values for RS and RT are system-dependent; derive through simulation and prototype test-
+                                                    ing.
+                                                 6. The RT recommended range is 22–27Ω with 56Ω MAX. Use simulation results to optimize RT
+                                                    and reiterate until simulations have VIH and VIL margins before testing prototypes.
+                                                 7. For systems with four or more DDR devices with trace length >2in (5cm), parallel terminat-
+                                                    ing resistors are strongly advised (also see Figure 8 on page 11).
+
+
+Layout: Trace Widths, Interpair Spacing, and Intrapair Spacing
+                                                 There are two types of trace spacing that play a role in system SI: interpair spacing and
+                                                 intrapair spacing.
+                                                 Interpair spacing (S1) is the distance between two adjacent traces within a related set of
+                                                 signals with similar or equivalent functionality. The control signals group, clocks,
+                                                 address bus, data bus, and data/strobes are all signal sets. The data bus is sometimes
+                                                 broken down into data bytes, which are sets of eight signals, and the associated strobe
+                                                 and mask signal.
+                                                 Intrapair spacing (S2) is the distance between the two outermost signals of different sets.
+                                                 For example, if the control signal set is routed together and adjacent to the address
+                                                 signal set, intrapair spacing is the distance between the two individual signals from
+                                                 control and address sets that are closest together.
+                                                 Figure 6 illustrates the difference between S1, S2, and trace width (S3) using the control
+                                                 and address groups.
+                                                 In general, Micron recommends an average S2 of 6 mil, with 4 mil minimum. Going
+                                                 lower than recommended minimum for S1 or S2 can increase cost (specific guidelines
+                                                 are shown in Table 1 on page 8). If all signals are routed at exactly 4 mil spacing for their
+                                                 full length, crosstalk is likely to disrupt SI, but if spacing limits are not met for short
+                                                 segments, SI is not likely to suffer.
+
+
+PDF: 09005aef820bf582/Source: 09005aef820bf578                                                     Micron Technology, Inc., reserves the right to change products or specifications without notice.
+TN4614.fm - Rev. B 6/30/08 EN                                                       7                                                            ©2006 Micron Technology, Inc. All rights reserved.
+                                                            TN-46-14: Hardware Tips for Point-to-Point System Design
+                                                        Layout: Trace Widths, Interpair Spacing, and Intrapair Spacing
+
+                                                 Crosstalk is a function of trace spacing and slew rate; for systems with slew rates <1 V/ns,
+                                                 trace spacing can be closer. Slower systems generally have more timing budget, which
+                                                 allows more crosstalk without affecting SI.
+
+Trace Width (S3) Design Guidelines
+                                                 Recommended S3 for functional signal sets:
+                                                 • DQ lines = 4 mil minimum, 6 mil nominal
+                                                 • DQS lines = 4 mil minimum, 6 mil nominal
+                                                 • Address lines = 4 mil minimum, 6 mil nominal
+                                                 • Command/control lines = 4 mil minimum, 6 mil nominal
+                                                 • Clock lines = 4 mil minimum, 6–10 mil nominal
+                                                 VDD, VDDQ, VSS, and VSSQ must be composed of planes only, not traces. Short connec-
+                                                 tions (~8 mil) are commonly used to attach vias to planes in Micron designs. Any
+                                                 connections required from VSS to vias, for terminating resistors or decoupling capaci-
+                                                 tors, should be as short as possible to minimize trace inductance; Micron recommends
+                                                 an 8 mil trace width.
+
+Figure 6:               S1, S2, and S3 Spacing
+
+                                                                     Address Signal Set
+                                                                                              Control
+                                                                S3                            Signal Set
+                                                                                 S2       }
+
+                                                          S1
+
+                               Notes:            1. S3 is trace width.
+                                                 2. Only RAS#, CAS#, and WE# control traces are shown. Other control signals are CS# and CKE.
+
+Table 1:               Interpair and Intrapair Spacing Design Guidelines
+
+                                                                                              Spacing
+       Signal Set                 Signals                                                      Type               Min            Nom              Max             Unit           Notes
+ Data/Data strobe                 DQ to DQ                                                        S1                 8              12               –              mil
+                                  DQ to DQS                                                       S2                 8              12               –              mil
+                                  DQS in byte lane #1 to DQS in byte lane #2                      S1                 –               –               –              mil               1
+                                  DQ and DM                                                       S2                 8              12               –              mil
+ Address                          Adjacent address lines                                          S1                 6              12               –              mil
+                                  Address lines                                                   S2                 6              12               –              mil
+ Command/Control                  CAS#, RAS#, WE#, CS#, CKE                                       S1                 6              15               –              mil
+ Clock                            CK#-to-CK                                                       S1                 4               –               6              mil
+                                  CK# (or CK in group of two) to DQS line                         S2                 –               –               –              mil               2
+                                  Differential pair (CK, CK#) to any other signal                 S2                 8              12               –              mil
+
+                               Notes:            1. DQS signals are generally routed in the midst of related nibbles or bytes, so DQS-to-DQS
+                                                    spacing is not relevant.
+                                                 2. Generally not an issue as they are not adjacent.
+
+
+
+
+PDF: 09005aef820bf582/Source: 09005aef820bf578                                                 Micron Technology, Inc., reserves the right to change products or specifications without notice.
+TN4614.fm - Rev. B 6/30/08 EN                                                         8                                                      ©2006 Micron Technology, Inc. All rights reserved.
+                                                             TN-46-14: Hardware Tips for Point-to-Point System Design
+                                                         Layout: Trace Widths, Interpair Spacing, and Intrapair Spacing
+
+Expandability
+                                                 Check component data sheets for “NC” pins in lower-density components that are used
+                                                 as upper-address pins in higher-density components. For example, pin 36 is “NC” in the
+                                                 128Mb (8 Meg x 16) SDRAM component, but is A12 in the 256Mb (16 Meg x 16) SDRAM
+                                                 component. Increase design expandability by placing a 0Ω series resistor between the
+                                                 pin and the controller such that it can be depopulated when switching to the lower
+                                                 density component (shown in Figure 7), enabling the PCB to be reused without signifi-
+                                                 cant redesign.
+
+Figure 7:               Single PCB Layout to Accommodate Different Densities of Pin-Compatible SDRAM
+
+                                                 Accomodating a 128Mb or 256Mb SDRAM component
+                                                 (pinout difference is A12 only)
+
+                                                                                   Depopulate for 128Mb
+
+                                                                                   Populate for 256Mb
+
+
+                                                   Memory Controller                                             SDRAM: 128Mb or 256Mb,
+                                                                                                                 x16, 54-pin, 400 mil TSOP
+                                                                        Addr12                                   Pin 36:
+                                                                                       0Ω                        NC for 128Mb
+                                                     (most significant address)                                  A12 for 256Mb
+                                                                                                  10KΩ
+
+                                                                  Populate for 128Mb
+                                                                Depopulate for 256Mb
+
+
+                               Notes:            1. 128Mb SDRAM components require AUTO REFRESH cycles at a maximum interval of
+                                                    15.625µs, while 256Mb SDRAM components require AUTO REFRESH cycles every 7.8125µs.
+                                                    The controller must adjust timing according to the refresh requirements for each device.
+                                                 2. Some upper-column address lines change from “Don’t Care” for lower-density components
+                                                    to the most-significant column address inputs for higher-density components. If the control-
+                                                    ler does not account for extra address pins, the system will experience addressing issues.
+
+Unused DQ Pins
+                                                 Occasionally, a x16 DDR device dedicated for error checking and correcting (ECC) will
+                                                 only use the lower 8 bits of data, and the upper DQ lines will be unused. In this case, if
+                                                 the x16 DDR component’s DQ15:8 are not used, tie its corresponding UDM/DQMH
+                                                 mask pin HIGH to mask activity on this portion of the DQ bus. In addition, each pin in
+                                                 the DQ15:8 group should be tied LOW through a pull-down resistor (1–10 kΩ) to prevent
+                                                 noise from WRITE bursts. The same recommendation applies to the lower byte: If DQ7:0
+                                                 are not used, tie the LDM/DQML mask pin HIGH and ground each unused DQ pin
+                                                 through a pull-down resistor.
+                                                 For the x16 SDRAM device, unused DQ and DQM pins should be NC (no connect) or left
+                                                 floating. NC means the designated pins should not be connected to VSS, VDD, or any
+                                                 other pin. If only 8 bits of data are needed for the ECC on the SDRAM, design in a x8
+                                                 component.
+
+
+
+
+PDF: 09005aef820bf582/Source: 09005aef820bf578                                              Micron Technology, Inc., reserves the right to change products or specifications without notice.
+TN4614.fm - Rev. B 6/30/08 EN                                                      9                                                      ©2006 Micron Technology, Inc. All rights reserved.
+                                                              TN-46-14: Hardware Tips for Point-to-Point System Design
+                                                                              Termination: Topology, Value, Placement
+
+Termination: Topology, Value, Placement
+                                                 Termination type (series or parallel) and values depend primarily upon device type
+                                                 (SDRAM or DDR), trace lengths, and number of components connected to the ASIC/
+                                                 FPGA/controller. Micron recommends series termination for SDRAM designs and DDR
+                                                 designs having fewer than four components, with trace lengths of ≤2in (5cm). Parallel
+                                                 termination is recommended for DDR designs with trace lengths >2in (5cm).
+
+Series Termination
+                                                 Series termination lowers power requirements (there is no DC current to be grounded),
+                                                 simplifies routing, and dampens overshoots occurring after signal transitions. However,
+                                                 determining resistor values can be difficult for series termination, and in some cases the
+                                                 optimum value depends on the output driver state (HIGH or LOW). Simulation will
+                                                 determine whether series termination is adequate.
+                                                 Choose series resistor values such that the sum of the resistor impedance and controller
+                                                 output driver impedance equals ZO.
+                                                 If resistor packs are integrated as series impedance, use the same value of resistor for all
+                                                 signals in each group; it is also important to place the resistor pack physically in the
+                                                 same location (e.g., midpoint) for each data lane in the data bus.
+                                                 Starting-point impedance values for the address, control, clock, and data signals are:
+                                                 • SDRAM: For signals with lead-in termination <2in (5cm), place a 51–70Ω series
+                                                    resistor in the middle of the lead-in or close to the transmitting device. ZO equals the
+                                                    value of the resistor.
+                                                 • DDR: For signals with lead-in termination <2in (5cm) and full-strength drive enabled,
+                                                    place an ~50Ω series resistor in the middle of the lead-in or close to the transmitting
+                                                    device.
+                                                 • DDR: For signals with lead-in termination <2in (5cm) and reduced-strength drive
+                                                    enabled, place an ~35Ω series resistor in the middle of the lead-in or close to the
+                                                    transmitting device, if required.
+                                                 Verify that signaling meets data sheet requirements and those in “Simulation” on page
+                                                 15. If the initial series termination values yield poor SI or data-eye aperture in simulation
+                                                 or prototypes, resistor values can be decreased to the ranges shown in Table 2.
+
+Table 2:               Minimal Series Termination Resistor Ranges
+                       Place RS terminators (if used) close to the memory device
+
+                                                 Memory Type                          Resistor                                Location                    Range              Units
+                                                 SDRAM                               CLK                                     midpoint                     22–36                  Ω
+                                                 DDR                              CK, CK#                                    midpoint1                      –                    Ω
+                                                                         DQ/DQS2, address, command/
+                                                 DDR and SDRAM                                                                                            10–33                  Ω
+                                                                                   control
+                               Notes:            1. DDR does not use series termination on clock signals, only differential termination to mini-
+                                                    mize skew.
+                                                 2. Do not share a DQS signal resistor pack with a non-data-group signal.
+
+
+
+
+PDF: 09005aef820bf582/Source: 09005aef820bf578                                              Micron Technology, Inc., reserves the right to change products or specifications without notice.
+TN4614.fm - Rev. B 6/30/08 EN                                                    10                                                       ©2006 Micron Technology, Inc. All rights reserved.
+                                                                  TN-46-14: Hardware Tips for Point-to-Point System Design
+                                                                                                                   Routing
+
+                                                 Simulations and prototype validation will confirm optimal values. Any additional
+                                                 timing margin that can be achieved through termination fine-tuning merits pursuit.
+                                                 For bidirectional I/O signals, such as DQ, minimize ringing, overshoot, and undershoots
+                                                 by placing the RS halfway between source and sink devices.
+                                                 For unidirectional I/O signals, such as address and control, optimal RS placement is
+                                                 close to the source processor/FPGA or at the midpoint of the signal line to minimize
+                                                 ringing and noise. Most of the energy is dissipated by reflection at the driver before it can
+                                                 propagate back down the trace a second time.
+
+Parallel Termination
+                                                 Parallel termination is only used with DDR and only required where at least one of the
+                                                 following is true:
+                                                 • Five or more DDR devices
+                                                 • >2in (5cm) trace lengths
+                                                 • Poor simulation results
+                                                 • Single- or multibit errors during prototyping (after simulation)
+                                                 When parallel termination is required, Micron recommends the topology shown in
+                                                 Figure 8, which shows typical RT and RS values (SI determines optimal RS and RT values).
+                                                 Micron recommends values of RT ≈ 2 × RS, with RS typically 10–33Ω and RT typically 22–
+                                                 57Ω.
+
+Figure 8:               Single-Ended Parallel Termination for DDR Component(s)
+
+                                                                            VTT = 1.25V nom = VDDQ/2
+
+                                                  Output buffer                                 Input buffer
+                                                                                    50Ω
+                                                                  ~25Ω      Z0 = ~60Ω
+
+
+                                                                  VREF = VDDQ/2 = 1.25V
+
+                               Notes:            1. Dashed lines indicate inside of the controller or DRAM device.
+
+
+                                                 All Micron DDR component address, data, command, and control signals are SSTL-2
+                                                 compatible and should be terminated with single-ended parallel termination, when
+                                                 necessary. CKE is both SSTL-2 and LVCMOS compatible but can be terminated with
+                                                 single-ended parallel termination as well.
+                                                 Point-to-point system topology progresses from no termination/unterminated, to series
+                                                 termination only, to single-ended parallel termination based on SI. As data rates
+                                                 increase, extra time spent optimizing termination will provide beneficial system results.
+
+
+Routing
+                                                 Though there are many signals on a DDR or SDRAM component, most of them have
+                                                 similar functionality and work together. Groups of I/O signals have one of four purposes:
+                                                 carry a binary address, transmit or receive data, relay a command to the device, or latch
+                                                 in address/data or a command.
+
+
+PDF: 09005aef820bf582/Source: 09005aef820bf578                                              Micron Technology, Inc., reserves the right to change products or specifications without notice.
+TN4614.fm - Rev. B 6/30/08 EN                                                      11                                                     ©2006 Micron Technology, Inc. All rights reserved.
+                                                              TN-46-14: Hardware Tips for Point-to-Point System Design
+                                                                                                               Routing
+
+                                                 The address group consists of row/column address and bank address pins. The
+                                                 command group includes the row address strobe (RAS#), the column address strobe
+                                                 (CAS#), and write enable (WE#). The control group includes chip select (CS#), and clock
+                                                 enable (CKE). Each data group/lane contains 10 signals: the eight DQ (DQ7–DQ0), the
+                                                 strobe (DQS), and the data mask (DM). Devices with x8 bus widths have only one data
+                                                 group, while x16 and x32 bus-width devices have two and four lanes, respectively.
+                                                 To facilitate fanout of DDR data lanes, Micron recommends placing alternate adjacent
+                                                 10-line data lanes on different critical PCB stackup layers. To decrease crosstalk, when
+                                                 data and address/control tracks coexist on the same layer they must be isolated from
+                                                 each other by at least 20 mil. Place data tracks on different layers from address and
+                                                 control lanes, if possible.
+                                                 Related functionality makes minimizing skew critical, which requires signals of each
+                                                 group to be routed to similar electrical lengths. Routing address lines together on the
+                                                 same layer, and isolating data lanes from the address, command, and control groups will
+                                                 also help minimize skew.
+                                                 Match trace lengths for the data group within ±50 mil of each other to diminish skew;
+                                                 serpentine traces (back and forth traces in an “S” pattern to increase trace length) can be
+                                                 used to match lengths. In addition, some controllers require byte lanes to have matched
+                                                 trace lengths. If the controller does not specify this, route byte lanes so that ±500 mil is
+                                                 the largest trace-length difference relative to the clock group trace length.
+                                                 “S” pattern traces contribute the desired delay, but there is some coupling; simulations
+                                                 will validate timing.
+
+Clock Signals
+DDR Devices
+                                                 All DDR differential clock pairs (CK and CK#) must be routed on the same layer. Placing
+                                                 the clock signals on an internal layer minimizes the noise (EMI).
+                                                 For DDR systems, match CK trace length to CK# trace length ±20 mil, and CK/CK# trace
+                                                 lengths to DQS trace length ±500 mil. If multiple clock pairs are transmitted from the
+                                                 controller to components, all clock-pair traces should be equivalent within ±20 mil.
+                                                 Matching trace lengths to this level of accuracy helps meet the clock input midpoint
+                                                 voltage (VMP [DC]) data sheet specification. As stated in “Miscellaneous VTT Design
+                                                 Guidelines” on page 6, place a differential termination resistor (RT) of 100–200Ω
+                                                 between CK# and CK near the DDR component input pins.
+                                                 Figures 9 and 10 show recommended DDR routing topology and RT placement for two
+                                                 clock pairs.
+                                                 • If the trace lengths from split point to DDR components are less than ~1in (2.5cm),
+                                                    use a single 100–120Ω resistor (RT) at the split point (Figure 9).
+                                                 • If the lengths from the split point to the DRAM devices are greater than ~1in (2.5cm),
+                                                    use two resistors located near the respective DDR components (Figure 10). These
+                                                    resistors are in parallel, so each RT should be 200–240Ω to keep the effective resis-
+                                                    tance at 100–120Ω.
+
+
+
+
+PDF: 09005aef820bf582/Source: 09005aef820bf578                                           Micron Technology, Inc., reserves the right to change products or specifications without notice.
+TN4614.fm - Rev. B 6/30/08 EN                                                  12                                                      ©2006 Micron Technology, Inc. All rights reserved.
+                                                               TN-46-14: Hardware Tips for Point-to-Point System Design
+                                                                                                                Routing
+
+Figure 9:               Single CK–CK# Differential Resistor Placement at Split Point
+
+                                                            DDR#1                                                                   DDR#2
+                                                       CK            CK#                                                  CK                         CK#
+
+
+                                                                           2         split point                   2
+
+                                                                                         RT
+                                                    Lenth from                                                                             Lenth from
+                                                  the split point                                                                        the split point
+                                                 to DRAM device                                                                         to DRAM device
+                                                  is <1in (2.5cm)          Memory Controller/ASIC                                        is <1in (2.5cm)
+
+
+
+Figure 10:              Two CK–CK# Differential Resistors Placement at Component
+
+                                                            DDR#1                                                                   DDR#2
+                                                       CK            CK#                                                  CK                          CK#
+                                                               RT                                                                        RT
+
+
+                                                                                     split point
+
+
+
+                                                    Lenth from                                 2                                           Lenth from
+                                                  the split point                                                                        the split point
+                                                 to DRAM device                                                                         to DRAM device
+                                                  is >1in (2.5cm)          Memory Controller/ASIC                                        is >1in (2.5cm)
+
+
+                               Notes:            1. All CK and CK# signal lines have characteristic impedance (Z0) of 50–60Ω.
+                                                 Match clock-pair traces to each signal trace in the address and command groups to
+                                                 within ±400 mil. If clocks cannot be matched to these groups within 400 mil, then all
+                                                 clock trace lengths must be increased as a group. The longest-to-shortest trace length
+                                                 difference must be ≤800 mil, so both longest and shortest traces determine how much
+                                                 length must be added to all clock lines.
+
+SDRAM Devices
+                                                 SDRAM systems have only a single-ended clock (CLK), so the important trace-matching
+                                                 relationship is not to a second differential clock trace but instead to the other groups.
+                                                 Match clock traces to data group traces within ±500 mil. If multiple clocks are trans-
+                                                 mitted from the controller to components, all clock-pair traces should be equivalent to
+                                                 within ±20 mil. Matching trace lengths to this level of accuracy helps minimize skew.
+                                                 For both DDR and SDRAM, also match clock traces to each signal trace in the address
+                                                 and command groups to within ±400 mil. If clock traces cannot be matched to the trace
+                                                 lengths of these groups within 400 mil, then all clock trace lengths must be increased as
+                                                 a group. The longest-to-shortest trace-length difference must be ≤800 mil, so both
+                                                 longest and shortest traces determine how much length must be added to all clock lines.
+
+
+
+
+PDF: 09005aef820bf582/Source: 09005aef820bf578                                                Micron Technology, Inc., reserves the right to change products or specifications without notice.
+TN4614.fm - Rev. B 6/30/08 EN                                                   13                                                          ©2006 Micron Technology, Inc. All rights reserved.
+                                                              TN-46-14: Hardware Tips for Point-to-Point System Design
+                                                                                                            Decoupling
+
+Miscellaneous Routing Recommendations
+                                                 A 400 mil difference in address-, command-, or signal-group trace lengths equates to
+                                                 0.4in × (1,000ps of propagation delay per 6in of trace), or ~67ps of skew. If the timing
+                                                 budget can absorb this minor amount of lane-to-lane skew and other routing delays, the
+                                                 system will perform normally. Total routing-based delays must meet tDQSCK, controller
+                                                 DQS recovery limits, and other data sheet AC timing parameters.
+                                                 Regardless of bus type, all DDR signal groups must be properly referenced to a solid VSS
+                                                 or VDD plane. For both READs and WRITEs the key relationship is between CK/CK#, DQ,
+                                                 DM, and DQS signals (the DDR data group), which operates at twice the speed of other
+                                                 signal groups, which makes SI more critical. DQ, DQS, and clock lines are best refer-
+                                                 enced to VSS to minimize noise. If a VSS layer is not easily accessible, address and
+                                                 command lines can reference a VDD layer, though it is generally more noisy.
+                                                 Keep traces as short as possible. If trace length (from controller pad to DRAM pad) is
+                                                 <2in (5cm) for both DDR and SDRAM point-to-point applications, routing simplifies
+                                                 and signal quality usually increases in proportion. In most cases, trace lengths >2in
+                                                 (5cm) lead to more signal undershoot, overshoot, and ringing—all of which are detri-
+                                                 mental to SI.
+
+Additional Trace-Length Design Guidelines
+                                                 • Match different DQ byte lanes to within 1in (2.5cm) of each other. A 1in trace-length
+                                                   difference equates to 167ps of propagation delay. Thus, the timing budget must be
+                                                   able to absorb 167ps for a 1in difference in byte-lane matching.
+                                                   – Within a byte lane, match all DQ and DQS traces to within ±50 mil.
+                                                   – Route data groups next to a VSS plane to minimize the return path/loop length.
+                                                 • Maintain a solid ground reference (no splits, etc.) for each group to provide a Low-Z
+                                                   return path; high-speed signals must not cross a plane split.
+
+
+Decoupling
+                                                 Adequate power decoupling on the PCB is necessary to prevent excessive VDD noise and
+                                                 memory errors in a situation where power-supply draw can change by magnitudes in a
+                                                 single clock cycle.
+                                                 Optimizing particular capacitor values and benefits can also be done through simula-
+                                                 tion or prototype. From this data, designers can determine the number and location of
+                                                 decoupling capacitors, which are more important factors than the exact value of each
+                                                 capacitor.
+                                                 Micron recommends at least four low (2nH) effective series inductance (ESL) capacitors
+                                                 per DDR component to decouple VDD/VDDQ from VSS/VSSQ. Values from 0.01–0.22µF
+                                                 balance well in bypassing higher-frequency (0.01µF) and lower-frequency (0.22µF)
+                                                 noise. If a frequency spectrum characterizing power-supply noise can be generated,
+                                                 choosing capacitors to optimize decoupling at certain frequencies (where noise peaks)
+                                                 is preferred.
+                                                 Micron recommends tantalum capacitors; while they have a higher purchase cost, they
+                                                 have a more stable service life than electrolytic capacitors. Electrolytic capacitors tend to
+                                                 steadily lose quality as they age.
+
+
+
+
+PDF: 09005aef820bf582/Source: 09005aef820bf578                                            Micron Technology, Inc., reserves the right to change products or specifications without notice.
+TN4614.fm - Rev. B 6/30/08 EN                                                   14                                                      ©2006 Micron Technology, Inc. All rights reserved.
+                                                              TN-46-14: Hardware Tips for Point-to-Point System Design
+                                                                                                             Simulation
+
+                                                 Place ESL capacitors as close as possible to each corner of each DDR or SDRAM device;
+                                                 adjacent devices can share capacitors at the corners that fall between them, but back
+                                                 side components must have their own capacitors. This distributed decoupling mini-
+                                                 mizes capacitor ESL and localizes transient currents and returns.
+                                                 See Micron technical notes TN-46-02, “Decoupling Capacitor Calculation for a DDR
+                                                 Memory Channel” and TN-00-06, “Bypass Capacitor Selection for High Speed Designs”
+                                                 for detailed decoupling discussions. Both are available on Micron’s Web site:
+                                                 www.micron.com.
+
+
+Simulation
+                                                 During the layout phase of a new or revised design, Micron strongly recommends simu-
+                                                 lating I/O performance at regular intervals. Optimizing interface termination values
+                                                 through simulation can decrease noise and increase timing margins before building
+                                                 prototypes. Issues are often easier to solve when found in simulation, as opposed to
+                                                 those found later that require expensive and time-consuming board redesigns or factory
+                                                 recalls.
+                                                 Micron has created many different types of simulation models to match different tools
+                                                 in use. Component simulation models presently posted on Micron’s Web site include
+                                                 IBIS, Verilog, VHDL, Hspice, Denali, and Synopsys.
+                                                 Verifying all simulated conditions is impractical, but there are a few key areas to focus
+                                                 on: DC levels, signal slew rates, undershoot, overshoot, ringing, and waveform shape.
+                                                 Also, verifying that the design has sufficient signal-eye openings to meet both timing
+                                                 and AC input voltage levels is extremely important.
+                                                 Micron Technical Note TN-46-11, “DDR SDRAM Point-to-Point Simulation Process,”
+                                                 provides a detailed discussion and is available at Micron’s Web site. TN-46-11 provides
+                                                 more information on these key areas of DDR point-to-point simulation:
+                                                 • Signal integrity
+                                                 • Board skew and the contributing factors
+                                                 • Return path discontinuities
+
+
+
+
+PDF: 09005aef820bf582/Source: 09005aef820bf578                                           Micron Technology, Inc., reserves the right to change products or specifications without notice.
+TN4614.fm - Rev. B 6/30/08 EN                                                  15                                                      ©2006 Micron Technology, Inc. All rights reserved.
+                                                             TN-46-14: Hardware Tips for Point-to-Point System Design
+                                                                                                      Other Resources
+
+Other Resources
+                                                 Other available design resources at Micron’s Web site:
+                                                 • Technical presentations “Termination for Point-to-Point Systems” and “DDR Mother-
+                                                   board Design” give additional recommendations for SDRAM and DDR device layout,
+                                                   termination, and routing, including reference illustrations and photographs of
+                                                   different motherboards that highlight key areas.
+                                                 • Gerber files for Micron modules are available at www.micron.com/products/
+                                                   modules/ddrsdram/designfiles.html. Designers using five or more components in a
+                                                   point-to-point environment might find these reference designs useful as examples of
+                                                   highly optimized signal routing.
+                                                 • Several JEDEC reference designs are available on the site for module raw cards. JEDEC
+                                                   designs include the schematic, layout, layer stackup, components used, passive
+                                                   values, passive placement, and routing. Designers using five or more components in a
+                                                   point-to-point environment might find these reference designs useful; however, they
+                                                   are less specific than Micron module designs.
+
+
+Conclusion
+                                                 This document contains established system design recommendations to improve SI and
+                                                 reduce noise for DDR and SDRAM devices in point-to-point systems. If implemented,
+                                                 most systems will realize better memory functionality and stability, leading to enhanced
+                                                 production yields for their finished product.
+
+
+
+
+                                                                                    ®
+
+
+
+
+                                      8000 S. Federal Way, P.O. Box 6, Boise, ID 83707-0006, Tel: 208-368-3900
+                                  prodmktg@micron.com www.micron.com Customer Comment Line: 800-932-4992
+                                 Micron, the M logo, and the Micron logo are trademarks of Micron Technology, Inc.
+                                          All other trademarks are the property of their respective owners.
+
+
+
+
+PDF: 09005aef820bf582/Source: 09005aef820bf578                                          Micron Technology, Inc., reserves the right to change products or specifications without notice.
+TN4614.fm - Rev. B 6/30/08 EN                                                 16                                                      ©2006 Micron Technology, Inc. All rights reserved.
+

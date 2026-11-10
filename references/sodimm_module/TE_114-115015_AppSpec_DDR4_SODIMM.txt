@@ -1,0 +1,370 @@
+                                                                                                                                114-115015
+                                      Application Specification
+                                                                                                                                     04 Aug 2017        Rev A
+
+
+
+
+                                      DDR4 SODIMM 260P 0.50mm Pitch Socket
+
+1.          INTRODUCTION
+            This specification covers the requirements for application of DDR4 SODIMM 260 positions, Right
+            Angled sockets with 0.50mm pitch. These surface mount sockets accept modules per JEDEC MO-
+            310, and are available for module in either standard or reversed orientation.
+            The sockets may be placed on the P.C. board by hand or by automatic application tooling (typically
+            vacuum pick and place). The sockets are supplied in tape& reel package.
+      When corresponding with TE personnel, use the terminology provided in this specification to
+      facilitate your inquiries for information. Basic terms and features of these connectors are provided in
+      Figure 1.
+_____________________________________________________________________________________
+
+
+
+
+Fig. 1-1 applies to 4 mm and 5.2 mm Height product; Fig. 1-2 applies to 8 mm and 9.2 mm Height product;
+_____________________________________________________________________________________
+
+                                                                       Figure 1
+
+
+
+2.          REFERENCE MATERIAL
+
+2.1.        Customer Assistance
+            Product Drawing Number 2309407&2309408(4.0H stack height), 2309409&2309410(5.2H stack
+            height), 23094011&2309412(8.0H stack height), 23094013&2309414(9.2H stack height) are
+            representative of TE DDR4 SODIMM 260-position sockets. Use of these numbers will identify the
+            product line and expedite your inquiries through a TE service network established to help you
+            obtain product and tooling information. Such information can be obtained through a local TE
+            Representative (Field Service Engineer, Field Applications Engineer, etc.) or, after purchase, by
+            calling customer service at the numbers listed in our website (www.te.com).
+
+
+
+
+©2011 Tyco Electronics Corporation,    * Trademark
+a TE Connectivity Ltd. Company         | Indicates change
+                                                                                                                                                        1 of 9
+All Rights Reserved
+
+
+TE logo is a trademark.                                     Other products, logos, and company names might be trademarks of their respective owners.   LOC. DY
+                                                                                               114-115015
+
+
+
+
+2.2.    Drawings
+        TE Customer Drawings for product part numbers are available from the service network. The
+        information contained in Customer Drawings and this specification takes priority over any other
+        document available through TE Incorporated. If there is a conflict with the information on the
+        customer drawing and this specification, call customer service at the numbers listed in our website
+        (www.te.com) for assistance.
+
+
+2.3.    Specifications
+        TE Product Specification 108-115122 provides product performance and test information.
+
+
+2.4.    Bulletins
+        TE Corporate Bulletin 402-40 is available upon request and can be used as a guide to soldering.
+        This bulletin provides information on various flux types and characteristics with the commercial
+        designation and flux removal procedures. A checklist is attached to the bulletin as a guide for
+        information on soldering problems.
+
+
+3.      REQUIREMENTS
+
+3.1.    Material
+        The socket housing is made of high temperature thermoplastic. The contact is made of copper alloy
+        plated with gold over nickel, and the solder tine is plated with gold over nickel. The solder peg is
+        made of stainless steel plated with gold flash.
+
+
+3.2.    Storage
+        The sockets should remain in the shipping containers until ready for use to prevent deformation to
+        the contact solder tines or damage to the housings. The sockets should be used on a first in, first
+        out basis to avoid storage contamination that could adversely affect signal transmissions.
+
+
+3.3.    Chemical Exposure
+        Do not store sockets near any chemical listed below as they may cause stress corrosion cracking in
+        the contact solder tines.
+        Alkalies         Ammonia        Citrates         Phosphates Citrates     Sulphur Compounds
+        Amines           Carbonates     Nitrites         Sulphur Nitrites        Tartrates
+
+
+3.4.    P.C. Board
+
+        A.   Material and Thickness
+        Board material must be glass epoxy (FR-4, G-10, or equivalent). Board thickness must be a
+        minimum of 1.57.
+
+
+        B.   Recommended Layout
+        Recommended solder circuit pad pattern and pad dimensions, as well as tolerances, are shown in
+        the respective TE Customer Drawing, figure 2 is stack layout.
+
+
+
+
+Rev A                                                                                                2 of 9
+                                                                                                 114-115015
+
+
+
+
+_____________________________________________________________________________________
+
+
+
+
+_____________________________________________________________________________________
+
+                                Figure 2 Dual stacked compressed SODIMM
+                                                     .
+
+3.5.    Solder Paste Characteristics
+
+        A.   Pb-free solder alloy composition type shall be Sn95.5 Ag3.9 Cu0.6, allowing variation of the
+             Ag content between 3.0-4.0 wt% and Cu content between 0.5-1.0 wt% with the balance being
+             Sn.
+
+
+        B.   Flux incorporated in the paste shall be rosin, mildly active (RMA) type.
+
+
+        C.   Paste will be at least 80% solids by volume.
+
+
+3.6.    Solder Paste Thickness
+        Solder Paste thickness is recommended to be 0.13mm Min.
+        The stencil aperture is determined by the circuit pad size and stencil thickness. It may be any shape
+        as long as it prevents solder bridging from one pad to another. Generally, the thinner stencil will
+        need a larger aperture to maintain the given volume of solder paste.
+
+
+CAUTION. All traces must be covered by solder mask in the solder deposit area. Exposed traces could
+         cause bridging and create a short, or wick solder away from the solder tines, producing a weak
+         solder joint.
+
+
+3.7.    Solder Mask
+        Solder mask is recommended between all pads. If a trace is run between adjacent pads on the
+        solder side of the pc board, a solder mask MUST be applied over the trace to prevent bridging and
+        wicking of solder away from the contact solder tines. Additionally, there should be solder mask
+        covering any traces in the area of the solder foot deposit. Liquid photo image-able or dry film solder
+        masks are recommended.
+
+
+
+Rev A                                                                                                  3 of 9
+                                                                                               114-115015
+
+
+
+
+3.8.    Polarization
+        The sockets are polarized to the P.C. board by the alignment posts.
+        The module is polarized to the socket by a keying feature (notch) and the corresponding voltage
+        key in the socket. This prevents the module from being oriented incorrectly in the socket.
+
+
+3.9.    Socket Placement
+
+        A.   Registration
+        The socket alignment posts must be placed over their intended P.C. board holes, and placed so
+        that the socket is parallel with the pc board, then gently pressed downward on the socket housing.
+        When handling the sockets, pick them up by the housing only.
+
+
+        B.   Seating Forces
+        Because the socket alignment posts are for polarization only (clearance and fit), the force required
+        to seat the socket is minimal. Apply only the force necessary to seat the contact solder tines and
+        each solder peg into the top surface of the solder paste.
+
+
+
+
+Rev A                                                                                                4 of 9
+                                                                                                114-115015
+
+
+
+
+3.10.     Soldering
+
+          A.   Process
+          The socket is compatible with both infrared reflow and forced convection soldering processes.
+          Additional information on soldering and soldering variables can be found in Corporate Bulletin 402-
+          40.
+
+
+          B.   Temperature and Time
+          Refer to IPC/JEDEC J-STD-020 Table 5-2 and Figure 5-1.
+
+
+NOTE.          Due to the many variables involved with reflow processes (component density, location,
+               orientation, etc.), it is recommended that the user conduct trial runs under actual
+               manufacturing conditions to ensure product/process compatibility.
+
+
+          C.   Cleaning
+          Fluxes, residues, and activators must be removed. Cleaning procedures depend on the type of flux
+          used on the solder line. Listed in Figure 3 are cleaning compounds and chemicals that may be used
+          on the sockets for up to five minutes without harmful effects.
+
+
+                                                                          TEMPERATURES
+                         Cleaner                      Time
+                                                                            (Maximum)
+                                                    (Minutes)
+               Name                    Type                          CELSIUS          FAHRENHEIT
+        Alpha 2110 ♠               Aqueous               1               132                270
+        Bioact EC-7 ♣                 Solvent            5               100                212
+        Butyl Carbitol                Solvent            1                  Room Ambient
+        Isopropyl Alcohol             Solvent            5               100                212
+        Kester 5778                Aqueous               5               100                212
+        Kester 5779                Aqueous               5               100                212
+        Loncoterge 520             Aqueous               5               100                212
+        Loncoterge 530             Aqueous               5               100                212
+        Terpene Solvent               Solvent            5               100                212
+    ♠ Product of Fry’s Metals, Inc.                                       ♣ Product of Petrolerm, Inc.
+        Product of Union Carbide Corp.                                      Product of Litton Systems, Inc.
+
+                                                   Figure 3
+
+DANGER. Consideration must be given to toxicity and safety requirements recommended on the Material
+        Safety Data Sheet furnished by the solvent manufacturer.
+
+
+          D.   Drying
+          When drying cleaned assemblies and P.C. boards, ensure that temperature limitations of -18.1 to
+          +40.6°C are met. Temperature extremes outside this range may cause housing degradation.
+
+
+
+
+Rev A                                                                                                    5 of 9
+                                                                                              114-115015
+
+
+
+
+3.11.   Module Assembly and Removal
+        A.   Mating Module with Socket
+        A-1 Refer to Figure 4, and proceed as follows:
+        As for the module boards to be fitted, use such ones as meeting the requirements of the external
+        dimensions stipulated in our Customer drawing for DDR4 SODIMM Socket. If such module boards
+        as not observing the stipulated external dimensions, a trouble of defective performance might be
+        caused in some cases.
+        After confirming that the module card key notch is aligned with connector key, insert the module
+        board at an angle of 20-30 deg. into the innermost part of the connector. Continue until it is hard
+        stopped against the Housing.
+      Now the module card is completely in the connector slot, if not, don’t do next step.
+_____________________________________________________________________________________
+
+
+
+
+_____________________________________________________________________________________
+
+                                                 Figure 4
+
+
+
+
+Rev A                                                                                               6 of 9
+                                                                                                 114-115015
+
+
+
+
+        A-2 Refer to Figure 5, and proceed as follows:
+        Pushing down the module board downwards, when load is kept applied, the latches at both sides
+        will be turned on.
+        * If boards having a low rigidity or varied shape are fitted, no latches well be turned on smoothly in
+        some cases. In such a case, placing the action point near the notch of half circle of module board,
+        apply the latches in such a way as pushing against simultaneously at both sides.
+
+
+_____________________________________________________________________________________
+
+
+
+
+_____________________________________________________________________________________
+
+                                                  Figure 5
+
+
+
+
+Rev A                                                                                                  7 of 9
+                                                                                                114-115015
+
+
+
+
+        A-3 Refer to Figure 6, and proceed as follows:
+        Both latches should automatically rotate inwards during the insertion, then stop pushing down. If the
+        module board is held by the latches and does not get up, mounting will finish. The Module is now
+        fully locked in the Socket.
+        * Be sure to confirm that latches at both sides are turned on correctly. If latches are not applied
+        correctly e.g. half fitting, remove the board in accordance with the next Step (B)_How to remove the
+        module board and refit it once again by starting the fitting procedure with step (A).
+
+_____________________________________________________________________________________
+
+
+
+
+_____________________________________________________________________________________
+
+                                                  Figure 6
+
+
+
+
+Rev A                                                                                                 8 of 9
+                                                                                                 114-115015
+
+
+
+
+        B.   Module Removal
+        Refer to Figure 7, and proceed as follows:
+        Move both side of Latch simultaneously in direction shown in Fig.7-1, and remove the lock from the
+        board.
+        When the lock is released, the board will tilt approximately 25 degrees in angle to the connector.
+        The board must be pulled out straight and softly in the angle direction.
+
+
+CAUTION. Prevent unnecessary deformation of the latch arms, after the lock is released (displacement of
+         1mm on point A in the Fig.7), don’t deform the latch arm any more.
+
+_____________________________________________________________________________________
+
+
+
+
+                      Fig. 7-1                              Fig. 7-2
+_____________________________________________________________________________________
+
+                                                  Figure 7
+
+3.12.   Repair
+        The socket may be removed from the P.C. board by standard de-soldering methods and replaced
+        with a new socket.
+        When manual mounting of connector is performed, be careful not to deform the Latch and the tine
+        part of the Upper Contact and Lower Contact, and mount it parallel to the surface of the board. After
+        mounting, softly push housing top surface in order to tighten the grip.
+        Number of reflow times should be kept twice of less. Reflow is the general method of soldering but
+        in case of using a soldering tool, for fixing purpose, for instance, do not touch the part of Contacts
+        with the tool, in order to avoid deformation.
+
+
+
+
+Rev A                                                                                                  9 of 9
+

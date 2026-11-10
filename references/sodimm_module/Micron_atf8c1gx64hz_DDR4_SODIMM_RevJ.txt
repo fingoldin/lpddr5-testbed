@@ -1,0 +1,1188 @@
+                                                                                       8GB (x64, SR) 260-Pin DDR4 SODIMM
+                                                                                                                  Features
+
+
+DDR4 SDRAM SODIMM
+MTA8ATF1G64HZ – 8GB
+
+
+Features                                                                        Figure 1: 260-Pin SODIMM (R/C A1, R/C A2)
+
+• DDR4 functionality and operations supported as                                  Module Height: 30mm (1.181in)
+  defined in the component data sheet
+• 260-pin, small-outline dual in-line memory module
+  (SODIMM)
+• Fast data transfer rates: PC4-3200, PC4-2666, or
+  PC4-2400
+• 8GB (1 Gig x 64)
+• VDD = 1.20V (NOM)
+• VPP = 2.5V (NOM)
+• VDDSPD = 2.5V (NOM)                                                           Options                                                                        Marking
+• Nominal and dynamic on-die termination (ODT) for                              • Operating temperature
+  data, strobe, and mask signals                                                  – Commercial (0°C ≤ T OPER ≤ 95°C)                                                 None
+• Low-power auto self refresh (LPASR)                                           • Package
+• Data bus inversion (DBI) for data bus                                           – 260-pin DIMM (halogen-free)                                                          Z
+• On-die V REFDQ generation and calibration                                     • Frequency/CAS latency
+                                                                                  – 0.62ns @ CL = 22 (DDR4-3200)                                                      -3G2
+• Single-rank
+                                                                                  – 0.75ns @ CL = 19 (DDR4-2666)                                                      -2G6
+• On-board I2C serial presence-detect (SPD) EEPROM                                – 0.83ns @ CL = 17 (DDR4-2400)                                                      -2G3
+• 16 internal banks; 4 groups of 4 banks each
+• Fixed burst chop (BC) of 4 and burst length (BL) of 8
+  via the mode register set (MRS)
+• Selectable BC4 or BL8 on-the-fly (OTF)
+• Gold edge contacts
+• Halogen-free
+• Fly-by topology
+• Terminated control command and address bus
+
+Table 1: Key Timing Parameters
+
+                                                             Data Rate (MT/s)
+                                                                   CL =
+    Speed
+    Grade
+
+
+
+
+                                                           20\     18\         16\          14\             12\             10\           tRCD             tRP             tRC
+
+                   PC4-              24      22     21     19      17          15           13              11               9              ns              ns               ns
+   -3G2            3200             3200,   3200,   2933   2666\   2400\       2133\      1866\           1600\           1333\           13.75           13.75           45.75
+                                    2933    2933           2666    2400        2133       1866            1600              –
+   -2G9            2933               –     2933    2933   2666\   2400\       2133\      1866\           1600\           1333\          14.32    14.32    46.32
+                                                           2666    2400        2133       1866            1600              –           (13.75)1 (13.75)1 (45.75)1
+   -2G6            2666               –       –      –     2666\   2400\       2133\      1866\           1600\           1333\          14.25    14.25    46.25
+                                                           2666    2400        2133       1866            1600              –           (13.75)1 (13.75)1 (45.75)1
+
+
+
+
+CCMTD-1725822587-9885
+atf8c1gx64hz.pdf – Rev. J 3/21 EN                                          1            Micron Technology, Inc. reserves the right to change products or specifications without notice.
+                                                                                                                                    © 2015 Micron Technology, Inc. All rights reserved.
+                           Products and specifications discussed herein are subject to change by Micron without notice.
+                                                                                  8GB (x64, SR) 260-Pin DDR4 SODIMM
+                                                                                                             Features
+
+
+Table 1: Key Timing Parameters (Continued)
+
+                                                       Data Rate (MT/s)
+                                                             CL =
+    Speed
+    Grade
+
+
+
+
+                                                     20\       18\        16\          14\             12\             10\           tRCD             tRP             tRC
+
+                   PC4-             24   22   21     19        17         15           13              11               9              ns              ns              ns
+   -2G3            2400             –    –     –      –       2400\       2133\      1866\           1600\           1333\          14.16    14.16    46.16
+                                                              2400        2133       1866            1600              –           (13.75)1 (13.75)1 (45.75)1
+   -2G1            2133             –    –     –      –         –         2133\      1866\           1600\           1333\           14.06           14.06           47.06
+                                                                          2133       1866            1600            1333           (13.5)1         (13.5)1         (46.5)1
+
+     Note:         1. Down-bin timing, refer to component data sheet Speed Bin Tables for details.
+
+
+Table 2: Addressing
+
+Parameter                                                                                                          8GB
+Row address                                                                                                 64K A[15:0]
+Column address                                                                                                1K A[9:0]
+Device bank group address                                                                                     4 BG[1:0]
+Device bank address per group                                                                                 4 BA[1:0]
+Device configuration                                                                            8Gb (1 Gig x 8), 16 banks
+Module rank address                                                                                              CS0_n
+
+
+
+Table 3: Part Numbers and Timing Parameters – 8GB Modules
+Base device: MT40A1G8,1 8Gb DDR4 SDRAM
+                               Module                                              Module                       Memory Clock/                        Clock Cycles
+Part Number2                   Density                     Configuration          Bandwidth                       Data Rate                         (CL-tRCD-tRP)
+     MTA8ATF1G64HZ-3G2__                      8GB            1 Gig x 64              25.6 GB/s                 0.62ns/3200 MT/s                          22-22-22
+     MTA8ATF1G64HZ-2G6__                      8GB            1 Gig x 64              21.3 GB/s                 0.75ns/2666 MT/s                          19-19-19
+     MTA8ATF1G64HZ-2G3__                      8GB            1 Gig x 64              19.2 GB/s                 0.83ns/2400 MT/s                          17-17-17
+
+    Notes:         1. The data sheet for the base device can be found on micron.com.
+                   2. All part numbers end with a two-place code (not shown) that designates component and PCB revisions.
+                      Consult factory for current revision codes. Example: MTA8ATF1G64HZ-3G2R1.
+
+
+
+
+CCMTD-1725822587-9885
+atf8c1gx64hz.pdf – Rev. J 3/21 EN                                     2            Micron Technology, Inc. reserves the right to change products or specifications without notice.
+                                                                                                                               © 2015 Micron Technology, Inc. All rights reserved.
+                                                                   8GB (x64, SR) 260-Pin DDR4 SODIMM
+                                                                                              Features
+
+Important Notes and Warnings
+Micron Technology, Inc. ("Micron") reserves the right to make changes to information published in this document,
+including without limitation specifications and product descriptions. This document supersedes and replaces all
+information supplied prior to the publication hereof. You may not rely on any information set forth in this docu-
+ment if you obtain the product described herein from any unauthorized distributor or other source not authorized
+by Micron.
+Automotive Applications. Products are not designed or intended for use in automotive applications unless specifi-
+cally designated by Micron as automotive-grade by their respective data sheets. Distributor and customer/distrib-
+utor shall assume the sole risk and liability for and shall indemnify and hold Micron harmless against all claims,
+costs, damages, and expenses and reasonable attorneys' fees arising out of, directly or indirectly, any claim of
+product liability, personal injury, death, or property damage resulting directly or indirectly from any use of non-
+automotive-grade products in automotive applications. Customer/distributor shall ensure that the terms and con-
+ditions of sale between customer/distributor and any customer of distributor/customer (1) state that Micron
+products are not designed or intended for use in automotive applications unless specifically designated by Micron
+as automotive-grade by their respective data sheets and (2) require such customer of distributor/customer to in-
+demnify and hold Micron harmless against all claims, costs, damages, and expenses and reasonable attorneys'
+fees arising out of, directly or indirectly, any claim of product liability, personal injury, death, or property damage
+resulting from any use of non-automotive-grade products in automotive applications.
+Critical Applications. Products are not authorized for use in applications in which failure of the Micron compo-
+nent could result, directly or indirectly in death, personal injury, or severe property or environmental damage
+("Critical Applications"). Customer must protect against death, personal injury, and severe property and environ-
+mental damage by incorporating safety design measures into customer's applications to ensure that failure of the
+Micron component will not result in such harms. Should customer or distributor purchase, use, or sell any Micron
+component for any critical application, customer and distributor shall indemnify and hold harmless Micron and
+its subsidiaries, subcontractors, and affiliates and the directors, officers, and employees of each against all claims,
+costs, damages, and expenses and reasonable attorneys' fees arising out of, directly or indirectly, any claim of
+product liability, personal injury, or death arising in any way out of such critical application, whether or not Mi-
+cron or its subsidiaries, subcontractors, or affiliates were negligent in the design, manufacture, or warning of the
+Micron product.
+Customer Responsibility. Customers are responsible for the design, manufacture, and operation of their systems,
+applications, and products using Micron products. ALL SEMICONDUCTOR PRODUCTS HAVE INHERENT FAIL-
+URE RATES AND LIMITED USEFUL LIVES. IT IS THE CUSTOMER'S SOLE RESPONSIBILITY TO DETERMINE
+WHETHER THE MICRON PRODUCT IS SUITABLE AND FIT FOR THE CUSTOMER'S SYSTEM, APPLICATION, OR
+PRODUCT. Customers must ensure that adequate design, manufacturing, and operating safeguards are included
+in customer's applications and products to eliminate the risk that personal injury, death, or severe property or en-
+vironmental damages will result from failure of any semiconductor component.
+Limited Warranty. In no event shall Micron be liable for any indirect, incidental, punitive, special or consequential
+damages (including without limitation lost profits, lost savings, business interruption, costs related to the removal
+or replacement of any products or rework charges) whether or not such damages are based on tort, warranty,
+breach of contract or other legal theory, unless explicitly stated in a written agreement executed by Micron's duly
+authorized representative.
+
+
+
+
+CCMTD-1725822587-9885
+atf8c1gx64hz.pdf – Rev. J 3/21 EN                          3        Micron Technology, Inc. reserves the right to change products or specifications without notice.
+                                                                                                                © 2015 Micron Technology, Inc. All rights reserved.
+                                                                                      8GB (x64, SR) 260-Pin DDR4 SODIMM
+                                                                                                          Pin Assignments
+
+Pin Assignments
+                                            The pin assignment table below is a comprehensive list of all possible pin assignments
+                                            for DDR4 SODIMM modules. See the Functional Block Diagram located in the module
+                                            MPN data sheet addendum for pins specific to the module.
+
+Table 4: Pin Assignments
+
+                             260-Pin DDR4 SODIMM Front                                               260-Pin DDR4 SODIMM Back
+ Pin       Symbol           Pin     Symbol    Pin   Symbol   Pin   Symbol       Pin   Symbol         Pin       Symbol            Pin      Symbol             Pin       Symbol
+   1           VSS           67      DQ29     133     A1     199   DM5_n/       2      VSS            68           VSS          134 EVENT_n,                 200        DQS5_t
+                                                                   DBI5_n                                                              NF
+   3          DQ5            69       VSS     135    VDD     201    VSS         4      DQ4            70         DQ24           136           VDD            202           VSS
+   5           VSS           71      DQ25     137   CK0_t    203   DQ46         6      VSS            72           VSS          138       CK1_t/NF           204         DQ47
+   7          DQ1            73       VSS     139   CK0_c    205    VSS         8      DQ0            74       DQS3_c           140 CK1_c/NF                 206           VSS
+   9           VSS           75     DM3_n/    141    VDD     207   DQ42         10     VSS            76       DQS3_t           142           VDD            208         DQ43
+                                    DBI3_n
+  11        DQS0_c           77       VSS     143   PARITY   209    VSS         12    DM0_n/          78           VSS          144            A0            210           VSS
+                                                                                      DBI0_n
+  13        DQS0_t           79      DQ30     145    BA1     211   DQ52         14     VSS            80         DQ31           146        A10/AP            212         DQ53
+  15           VSS           81       VSS     147    VDD     213    VSS         16     DQ6            82           VSS          148           VDD            214           VSS
+  17          DQ7            83      DQ26     149   CS0_n    215   DQ49         18     VSS            84         DQ27           150           BA0            216         DQ48
+  19           VSS           85       VSS     151   WE_n/    217    VSS         20     DQ2            86           VSS          152         RAS_n/           218           VSS
+                                                     A14                                                                                     A16
+  21          DQ3            87     CB5/NC    153    VDD     219   DQS6_c       22     VSS            88        CB4/NC          154           VDD            220       DM6_n/
+                                                                                                                                                                       DBI6_n
+  23           VSS           89       VSS     155   ODT0     221   DQS6_t       24    DQ12            90           VSS          156         CAS_n/           222           VSS
+                                                                                                                                             A15
+  25         DQ13            91     CB1/NC    157   CS1_n/   223    VSS         26     VSS            92        CB0/NC          158           A13            224         DQ54
+                                                      NC
+  27           VSS           93       VSS     159    VDD     225   DQ55         28     DQ8            94           VSS          160           VDD            226           VSS
+  29          DQ9            95     DQS8_c/   161   ODT1/    227                30     VSS            96       DM8_n/ 162    C0/                             228         DQ50
+                                                                    VSS
+                                      NC             NC                                                       DBI_n/NC    CS2_n/NC
+  31           VSS           97     DQS8_t/   163    VDD     229   DQ51         32    DQS1_c          98           VSS          164         VREFCA           230           VSS
+                                      NC
+  33       DM1_n/            99       VSS     165 C1, CS3_n, 231    VSS         34    DQS1_t         100        CB6/NC          166           SA2            232         DQ60
+            DBI_n                                     NC
+  35           VSS          101     CB2/NC    167    VSS     233   DQ61         36     VSS           102           VSS          168            VSS           234           VSS
+  37         DQ15           103       VSS     169   DQ37     235    VSS         38    DQ14           104        CB7/NC          170          DQ36            236         DQ57
+  39           VSS          105     CB3/NC    171    VSS     237   DQ56         40     VSS           106           VSS          172            VSS           238           VSS
+  41         DQ10           107       VSS     173   DQ33     239    VSS         42    DQ11           108       RESET_n          174          DQ32            240       DQS7_c
+  43           VSS          109      CKE0     175    VSS     241   DM7_n/       44     VSS           110         CKE1/          176            VSS           242        DQS7_t
+                                                                   DBI7_n                                         NC
+  45         DQ21           111      VDD      177   DQS4_c   243    VSS         46    DQ20           112          VDD           178        DM4_n/            244           VSS
+                                                                                                                                           DBI4_n
+  47           VSS          113      BG1      179   DQS4_t   245   DQ62         48     VSS           114        ACT_n           180            VSS           246         DQ63
+  49         DQ17           115      BG0      181    VSS     247    VSS         50    DQ16           116      ALERT_n           182          DQ39            248           VSS
+  51           VSS          117      VDD      183   DQ38     249   DQ58         52     VSS           118          VDD           184            VSS           250         DQ59
+  53        DQS2_c          119      A12      185    VSS     251    VSS         54    DM2_n/         120          A11           186          DQ35            252           VSS
+                                                                                      DBI2_n
+  55        DQS2_t          121       A9      187   DQ34     253    SCL         56     VSS           122           A7           188            VSS           254          SDA
+  57           VSS          123      VDD      189    VSS     255   VDDSPD       58    DQ22           124          VDD           190          DQ45            256           SA0
+
+
+CCMTD-1725822587-9885
+atf8c1gx64hz.pdf – Rev. J 3/21 EN                                           4           Micron Technology, Inc. reserves the right to change products or specifications without notice.
+                                                                                                                                    © 2015 Micron Technology, Inc. All rights reserved.
+                                                                                     8GB (x64, SR) 260-Pin DDR4 SODIMM
+                                                                                                         Pin Assignments
+
+
+Table 4: Pin Assignments (Continued)
+
+                             260-Pin DDR4 SODIMM Front                                              260-Pin DDR4 SODIMM Back
+ Pin       Symbol           Pin     Symbol   Pin   Symbol   Pin   Symbol       Pin   Symbol         Pin       Symbol            Pin      Symbol             Pin       Symbol
+  59         DQ23           125       A8     191   DQ44     257    VPP         60     VSS           126           A5           192            VSS           258           VTT
+  61           VSS          127       A6     193    VSS     259    VPP         62    DQ18           128           A4           194          DQ41            260           SA1
+  63         DQ19           129      VDD     195   DQ40      –      –          64     VSS           130          VDD           196            VSS             –             –
+  65           VSS          131       A3     197    VSS      –      –          66    DQ28           132           A2           198        DQS5_c              –             –
+
+
+
+
+CCMTD-1725822587-9885
+atf8c1gx64hz.pdf – Rev. J 3/21 EN                                          5           Micron Technology, Inc. reserves the right to change products or specifications without notice.
+                                                                                                                                   © 2015 Micron Technology, Inc. All rights reserved.
+                                                                                 8GB (x64, SR) 260-Pin DDR4 SODIMM
+                                                                                                     Pin Descriptions
+
+Pin Descriptions
+                                      The pin description table below is a comprehensive list of all possible pins for DDR4
+                                      modules. All pins listed may not be supported on this module. See the Functional Block
+                                      Diagram located in the module MPN data sheet addendum for pins specific to the mod-
+                                      ule.
+
+Table 5: Pin Descriptions
+
+            Symbol                  Type                                                Description
+                 Ax                 Input   Address inputs: Provide the row address for ACTIVATE commands and the column address for
+                                            READ/WRITE commands in order to select one location out of the memory array in the respec-
+                                            tive bank (A10/AP, A12/BC_n, WE_n/A14, CAS_n/A15, and RAS_n/A16 have additional functions;
+                                            see individual entries in this table). The address inputs also provide the op-code during the
+                                            MODE REGISTER SET command. A17 is only defined for x4 SDRAM.
+             A10/AP                 Input   Auto precharge: A10 is sampled during READ and WRITE commands to determine whether an
+                                            auto precharge should be performed on the accessed bank after a READ or WRITE operation
+                                            (HIGH = auto precharge; LOW = no auto precharge). A10 is sampled during a PRECHARGE com-
+                                            mand to determine whether the precharge applies to one bank (A10 LOW) or all banks (A10
+                                            HIGH). If only one bank is to be precharged, the bank is selected by the bank group and bank
+                                            addresses.
+           A12/BC_n                 Input   Burst chop: A12/BC_n is sampled during READ and WRITE commands to determine if burst
+                                            chop (on-the-fly) will be performed (HIGH = no burst chop; LOW = burst chopped). See Com-
+                                            mand Truth Table in the DDR4 component data sheet.
+             ACT_n                  Input   Command input: ACT_n defines the ACTIVATE command being entered along with CS_n. The
+                                            input into RAS_n/A16, CAS_n/A15, and WE_n/A14 are considered as row address A16, A15, and
+                                            A14. See Command Truth Table.
+               BAx                  Input   Bank address inputs: Define the bank (with a bank group) to which an ACTIVATE, READ,
+                                            WRITE, or PRECHARGE command is being applied. Also determine which mode register is to be
+                                            accessed during a MODE REGISTER SET command.
+               BGx                  Input   Bank group address inputs: Define the bank group to which a REFRESH, ACTIVATE, READ,
+                                            WRITE, or PRECHARGE command is being applied. Also determine which mode register is to be
+                                            accessed during a MODE REGISTER SET command. BG[1:0] are used in the x4 and x8 configura-
+                                            tions. x16-based SDRAM only has BG0.
+      C0, C1, C2                    Input   Chip ID: These inputs are used only when devices are stacked; that is, 2H, 4H, and 8H stacks for
+ (RDIMM/LRDIMM on-                          x4 and x8 configurations using through-silicon vias (TSVs). These pins are not used in the x16
+          ly)                               configuration. Some DDR4 modules support a traditional DDP package, which uses CS1_n,
+                                            CKE1, and ODT1 to control the second die. All other stack configurations, such as a 4H or 8H,
+                                            are assumed to be single-load (master/slave) type configurations where C0, C1, and C2 are used
+                                            as chip ID selects in conjunction with a single CS_n, CKE, and ODT. Chip ID is considered part of
+                                            the command code.
+              CKx_t                 Input   Clock: Differential clock inputs. All address, command, and control input signals are sampled
+              CKx_c                         on the crossing of the positive edge of CK_t and the negative edge of CK_c.
+               CKEx                 Input   Clock enable: CKE HIGH activates and CKE LOW deactivates the internal clock signals, device
+                                            input buffers, and output drivers. Taking CKE LOW provides PRECHARGE POWER-DOWN and
+                                            SELF REFRESH operations (all banks idle), or active power-down (row active in any bank). CKE is
+                                            asynchronous for self refresh exit. After VREFCA has become stable during the power-on and ini-
+                                            tialization sequence, it must be maintained during all operations (including SELF REFRESH). CKE
+                                            must be maintained HIGH throughout read and write accesses. Input buffers (excluding CK_t,
+                                            CK_c, ODT, RESET_n, and CKE) are disabled during power-down. Input buffers (excluding CKE
+                                            and RESET_n) are disabled during self refresh.
+              CSx_n                 Input   Chip select: All commands are masked when CS_n is registered HIGH. CS_n provides external
+                                            rank selection on systems with multiple ranks. CS_n is considered part of the command code
+                                            (CS2_n and CS3_n are not used on UDIMMs).
+
+
+
+
+CCMTD-1725822587-9885
+atf8c1gx64hz.pdf – Rev. J 3/21 EN                                       6          Micron Technology, Inc. reserves the right to change products or specifications without notice.
+                                                                                                                               © 2015 Micron Technology, Inc. All rights reserved.
+                                                                                      8GB (x64, SR) 260-Pin DDR4 SODIMM
+                                                                                                          Pin Descriptions
+
+
+Table 5: Pin Descriptions (Continued)
+
+            Symbol                    Type                                                   Description
+              ODTx                    Input      On-die termination: ODT (registered HIGH) enables termination resistance internal to the
+                                                 DDR4 SDRAM. When enabled, ODT (RTT) is applied only to each DQ, DQS_t, DQS_c, DM_n/
+                                                 DBI_n/TDQS_t, and TDQS_c signal for x4 and x8 configurations (when the TDQS function is ena-
+                                                 bled via the mode register). For the x16 configuration, RTT is applied to each DQ, DQSU_t,
+                                                 DQSU_c, DQSL_t, DQSL_c, UDM_n, and LDM_n signal. The ODT pin will be ignored if the mode
+                                                 registers are programmed to disable RTT.
+             PARITY                   Input      Parity for command and address: This function can be enabled or disabled via the mode
+                                                 register. When enabled in MR5, the DRAM calculates parity with ACT_n, RAS_n/A16, CAS_n/A15,
+                                                 WE_n/A14, BG[1:0], BA[1:0], A[16:0]. Input parity should be maintained at the rising edge of the
+                                                 clock and at the same time as command and address with CS_n LOW.
+          RAS_n/A16                   Input      Command inputs: RAS_n/A16, CAS_n/A15, and WE_n/A14 (along with CS_n) define the com-
+          CAS_n/A15                              mand and/or address being entered and have multiple functions. For example, for activation
+          WE_n/A14                               with ACT_n LOW, these are addresses like A16, A15, and A14, but for a non-activation com-
+                                                 mand with ACT_n HIGH, these are command pins for READ, WRITE, and other commands de-
+                                                 fined in Command Truth Table.
+            RESET_n                 CMOS Input   Active LOW asynchronous reset: Reset is active when RESET_n is LOW and inactive when RE-
+                                                 SET_n is HIGH. RESET_n must be HIGH during normal operation.
+                                                 Serial address inputs: Used to configure the temperature sensor/SPD EEPROM address range
+                SAx                   Input
+                                                 on the I2C bus.
+                                                 Serial clock for temperature sensor/SPD EEPROM: Used to synchronize communication to
+                SCL                   Input
+                                                 and from the temperature sensor/SPD EEPROM on the I2C bus.
+           DQx, CBx                    I/O       Data input/output and check bit input/output: Bidirectional data bus. DQ represents
+                                                 DQ[3:0], DQ[7:0], and DQ[15:0] for the x4, x8, and x16 configurations, respectively. If cyclic re-
+                                                 dundancy checksum (CRC) is enabled via the mode register, the CRC code is added at the end of
+                                                 the data burst. Any one or all of DQ0, DQ1, DQ2, or DQ3 may be used for monitoring of inter-
+                                                 nal VREF level during test via mode register setting MR[4] A[4] = HIGH; training times change
+                                                 when enabled.
+      DM_n/DBI_n/                      I/O       Input data mask and data bus inversion: DM_n is an input mask signal for write data. Input
+    TDQS_t (DMU_n,                               data is masked when DM_n is sampled LOW coincident with that input data during a write ac-
+    DBIU_n), (DML_n/                             cess. DM_n is sampled on both edges of DQS. DM is multiplexed with the DBI function by the
+        DBIl_n)                                  mode register A10, A11, and A12 settings in MR5. For a x8 device, the function of DM or TDQS
+                                                 is enabled by the mode register A11 setting in MR1. DBI_n is an input/output identifying
+                                                 whether to store/output the true or inverted data. If DBI_n is LOW, the data will be stored/
+                                                 output after inversion inside the DDR4 device and not inverted if DBI_n is HIGH. TDQS is only
+                                                 supported in x8 SDRAM configurations (TDQS is not valid for UDIMMs).
+               SDA                     I/O       Serial Data: Bidirectional signal used to transfer data in or out of the EEPROM or EEPROM/TS
+                                                 combo device.
+             DQS_t                     I/O       Data strobe: Output with read data, input with write data. Edge-aligned with read data, cen-
+            DQS_c                                tered-aligned with write data. For x16 configurations, DQSL corresponds to the data on
+            DQSU_t                               DQ[7:0], and DQSU corresponds to the data on DQ[15:8]. For the x4 and x8 configurations, DQS
+            DQSU_c                               corresponds to the data on DQ[3:0] and DQ[7:0], respectively. DDR4 SDRAM supports a differen-
+            DQSL_t                               tial data strobe only and does not support a single-ended data strobe.
+            DQSL_c
+            ALERT_n                  Output      Alert output: Possesses functions such as CRC error flag and command and address parity error
+                                                 flag as output signal. If a CRC error occurs, ALERT_n goes LOW for the period time interval and
+                                                 returns HIGH. If an error occurs during a command address parity check, ALERT_n goes LOW un-
+                                                 til the on-going DRAM internal recovery transaction is complete. During connectivity test mode,
+                                                 this pin functions as an input. Use of this signal is system-dependent. If not connected as signal,
+                                                 ALERT_n pin must be connected to VDD on DIMMs.
+           EVENT_n                   Output      Temperature event: The EVENT_n pin is asserted by the temperature sensor when critical tem-
+                                                 perature thresholds have been exceeded. This pin has no function (NF) on modules without
+                                                 temperature sensors.
+
+
+
+
+CCMTD-1725822587-9885
+atf8c1gx64hz.pdf – Rev. J 3/21 EN                                            7          Micron Technology, Inc. reserves the right to change products or specifications without notice.
+                                                                                                                                    © 2015 Micron Technology, Inc. All rights reserved.
+                                                                                 8GB (x64, SR) 260-Pin DDR4 SODIMM
+                                                                                                     Pin Descriptions
+
+
+Table 5: Pin Descriptions (Continued)
+
+            Symbol                  Type                                                Description
+             TDQS_t                 Output   Termination data strobe: When enabled via the mode register, the DRAM device enables the
+             TDQS_c                          same RTT termination resistance on TDQS_t and TDQS_c that is applied to DQS_t and DQS_c.
+                                             When the TDQS function is disabled via the mode register, the DM/TDQS_t pin provides the da-
+     (x8 DRAM-based                          ta mask (DM) function, and the TDQS_c pin is not used. The TDQS function must be disabled in
+       RDIMM only)                           the mode register for both the x4 and x16 configurations. The DM function is supported only in
+                                             x8 and x16 configurations. DM, DBI, and TDQS are a shared pin and are enabled/disabled by
+                                             mode register settings. For more information about TDQS, see the DDR4 DRAM component da-
+                                             ta sheet (TDQS_t and TDQS_c are not valid for UDIMMs).
+                VDD                 Supply   Module power supply: 1.2V (TYP).
+                VPP                 Supply   DRAM activating power supply: 2.5V –0.125V/+0.250V.
+              VREFCA                Supply   Reference voltage for control, command, and address pins.
+                VSS                 Supply   Ground.
+                VTT                 Supply   Power supply for termination of address, command, and control VDD/2.
+             VDDSPD                 Supply   Power supply used to power the I2C bus for SPD.
+               RFU                    –      Reserved for future use.
+                NC                    –      No connect: No internal electrical connection is present.
+                 NF                   –      No function: May have internal connection present, but has no function.
+
+
+
+
+CCMTD-1725822587-9885
+atf8c1gx64hz.pdf – Rev. J 3/21 EN                                       8          Micron Technology, Inc. reserves the right to change products or specifications without notice.
+                                                                                                                               © 2015 Micron Technology, Inc. All rights reserved.
+                                                                          8GB (x64, SR) 260-Pin DDR4 SODIMM
+                                                                                                     DQ Maps
+
+DQ Maps
+
+Table 6: Component-to-Module DQ Map (PCB 2265, R/C-A1)
+
+  Component                                                           Component
+   Reference                 Component               Module Pin        Reference           Component                                               Module Pin
+    Number                      DQ       Module DQ    Number            Number                DQ                       Module DQ                    Number
+           U1                       0        3           21              U2                           0                         19                          63
+                                    1        0           8                                            1                         17                          49
+                                    2        2           20                                           2                         18                          62
+                                    3        1           7                                            3                         16                          50
+                                    4        6           16                                           4                         22                          58
+                                    5        4           4                                            5                         21                          45
+                                    6        7           17                                           6                         23                          59
+                                    7        5           3                                            7                         20                          46
+           U4                       0       38          183              U5                           0                         55                         225
+                                    1       36          170                                           1                         52                         211
+                                    2       39          182                                           2                         54                         224
+                                    3       37          169                                           3                         53                         212
+                                    4       35          186                                           4                         50                         228
+                                    5       32          174                                           5                         49                         215
+                                    6       34          187                                           6                         51                         229
+                                    7       33          173                                           7                         48                         216
+           U6                       0       56          237              U7                           0                         40                         195
+                                    1       58          249                                           1                         42                         207
+                                    2       57          236                                           2                         41                         194
+                                    3       59          250                                           3                         43                         208
+                                    4       61          233                                           4                         44                         191
+                                    5       62          245                                           5                         47                         204
+                                    6       60          232                                           6                         45                         190
+                                    7       63          246                                           7                         46                         203
+           U8                       0       29           67              U9                           0                         12                          24
+                                    1       30           79                                           1                         15                          37
+                                    2       28           66                                           2                         13                          25
+                                    3       31           80                                           3                         14                          38
+                                    4       24           70                                           4                          9                          29
+                                    5       26           83                                           5                         10                          41
+                                    6       25           71                                           6                          8                          28
+                                    7       27           84                                           7                         11                          42
+
+
+
+
+CCMTD-1725822587-9885
+atf8c1gx64hz.pdf – Rev. J 3/21 EN                                 9           Micron Technology, Inc. reserves the right to change products or specifications without notice.
+                                                                                                                          © 2015 Micron Technology, Inc. All rights reserved.
+                                                                       8GB (x64, SR) 260-Pin DDR4 SODIMM
+                                                                                                  DQ Maps
+
+
+Table 7: Component-to-Module DQ Map (PCB 2374, R/C-A2)
+
+  Component                                                        Component
+   Reference                 Component               Module Pin     Reference            Component                                               Module Pin
+    Number                      DQ       Module DQ    Number         Number                 DQ                       Module DQ                    Number
+           U1                       0        7           17            U2                           0                         23                          59
+                                    1        5           3                                          1                         21                          45
+                                    2        6           16                                         2                         22                          58
+                                    3        4           4                                          3                         20                          46
+                                    4        3           21                                         4                         19                          63
+                                    5        0           8                                          5                         16                          50
+                                    6        2           20                                         6                         18                          62
+                                    7        1           7                                          7                         17                          49
+           U4                       0       38          183            U5                           0                         55                         225
+                                    1       37          169                                         1                         52                         211
+                                    2       39          182                                         2                         54                         224
+                                    3       36          170                                         3                         53                         212
+                                    4       34          187                                         4                         51                         229
+                                    5       32          174                                         5                         48                         216
+                                    6       35          186                                         6                         50                         228
+                                    7       33          173                                         7                         49                         215
+           U6                       0       60          232            U7                           0                         40                         195
+                                    1       62          245                                         1                         43                         208
+                                    2       61          233                                         2                         41                         194
+                                    3       63          246                                         3                         42                         207
+                                    4       57          236                                         4                         45                         190
+                                    5       58          249                                         5                         46                         203
+                                    6       56          237                                         6                         44                         191
+                                    7       59          250                                         7                         47                         204
+           U8                       0       28           66            U9                           0                         12                          24
+                                    1       30           79                                         1                         15                          37
+                                    2       29           67                                         2                         13                          25
+                                    3       31           80                                         3                         14                          38
+                                    4       25           71                                         4                          9                          29
+                                    5       26           83                                         5                         10                          41
+                                    6       24           70                                         6                          8                          28
+                                    7       27           84                                         7                         11                          42
+
+
+
+
+CCMTD-1725822587-9885
+atf8c1gx64hz.pdf – Rev. J 3/21 EN                                 10        Micron Technology, Inc. reserves the right to change products or specifications without notice.
+                                                                                                                        © 2015 Micron Technology, Inc. All rights reserved.
+                                                                                                             8GB (x64, SR) 260-Pin DDR4 SODIMM
+                                                                                                                        Functional Block Diagram
+
+Functional Block Diagram
+
+Figure 2: Functional Block Diagram
+                CS0_n
+                         DQS0_t                                               DQS4_t                                               BA[1:0]                    BA[1:0]: DDR4 SDRAM
+                         DQS0_c                                               DQS4_c
+                                                                                                                                   BG[1:0]                    BG[1:0]: DDR4 SDRAM
+                   DBI0_n/DM0_n                                         DBI4_n/DM4_n
+                                                                                                                                    ACT_n                     ACT_n: DDR4 SDRAM
+                                               DM_n/ CS_n DQS_t DQS_c                            DM_n/ CS_n DQS_t DQS_c            A[13:0]                    A[13:0]: DDR4 SDRAM
+                                               DBI_n                                             DBI_n                          RAS_n/A16                     RAS_n/A16: DDR4 SDRAM
+                                    DQ0        DQ                                       DQ32    DQ
+                                                                                                                                CAS_n/A15                     CAS_n/A15: DDR4 SDRAM
+                                    DQ1        DQ                                       DQ33    DQ
+                                               DQ                                       DQ34    DQ                               WE_n/A14                     WE_n/A14: DDR4 SDRAM
+                                    DQ2
+                                    DQ3        DQ       U1                              DQ35    DQ        U4                         CKE0                     CKE0: Rank 0
+                                    DQ4        DQ                                       DQ36    DQ                                   ODT0                     ODT0: Rank 0
+                                    DQ5        DQ                                       DQ37    DQ                                  RESET                     RESET_n: DDR4 SDRAM
+                                    DQ6        DQ                                       DQ38    DQ                                 PAR_IN                     PAR: DDR4 SDRAM
+                                    DQ7        DQ                                       DQ39    DQ                            ALERT_CONN                      ALERT_DRAM: DDR4 SDRAM
+                                     Vss       ZQ                                         Vss   ZQ
+                          DQS1_t                                               DQS5_t
+                         DQS1_c                                               DQS5_c                                                     Clock, control, command, and address line terminations:
+                   DBI1_n/DM1_n                                         DBI5_n/DM5_n
+
+                                               DM_n/ CS_n DQS_t DQS_c                            DM_n/ CS_n DQS_t DQS_c                                           DDR4
+                                               DBI_n                                             DBI_n                       CS0_n, BA[1:0], BG[1:0],            SDRAM
+                                     DQ8       DQ                                       DQ40    DQ
+                                                                                                                          ACT_n, A[13:0], RAS_n/A16,
+                                     DQ9       DQ                                       DQ41    DQ                                                                                        VTT
+                                    DQ10       DQ                                       DQ42    DQ                           CAS_n/A15, WE_n/A14,
+                                    DQ11       DQ       U9                              DQ43    DQ        U7                             CKE0, ODT0               DDR4
+                                    DQ12       DQ                                       DQ44    DQ                                                               SDRAM
+                                    DQ13       DQ                                       DQ45    DQ
+                                    DQ14       DQ                                       DQ46    DQ                                         CK0_t
+                                                                                                                                                                                                VDD
+                                    DQ15       DQ                                       DQ47    DQ                                         CK0_c
+                                      Vss      ZQ                                        Vss    ZQ
+                         DQS2_t                                               DQS6_t
+                         DQS2_c                                               DQS6_c                                                                            U3
+                   DBI2_n/DM2_n                                         DBI6_n/DM6_n
+
+                                               DM_n/ CS_n DQS_t DQS_c                            DM_n/ CS_n DQS_t DQS_c                       SCL
+                                                                                                                                                        SPD EEPROM              SDA
+                                               DBI_n                                             DBI_n
+                                    DQ16       DQ                                       DQ48    DQ                                                     EVT A0    A1 A2
+                                    DQ17       DQ                                       DQ49    DQ
+                                    DQ18       DQ                                       DQ50    DQ                                                           SA0 SA1
+                                    DQ19       DQ       U2                              DQ51    DQ        U5                                           Vss             Vss
+
+                                    DQ20       DQ                                       DQ52    DQ
+                                    DQ21       DQ                                       DQ53    DQ
+                                                                                                                                               CK0_t
+                                    DQ22       DQ                                       DQ54    DQ                                                                     Rank 0
+                                                                                                                                               CK0_c
+                                    DQ23       DQ                                       DQ55    DQ
+                                      Vss      ZQ                                         Vss   ZQ
+                                                                                                                                               CK1_t
+                         DQS3_t                                               DQS7_t                                                           CK1_c
+                         DQS3_c                                               DQS7_c
+                   DBI3_n/DM3_n                                         DBI7_n/DM7_n
+                                                                                                                               Vddspd                                        SPD EEPROM
+                                               DM_n/ CS_n DQS_t DQS_c                            DM_n/ CS_n DQS_t DQS_c
+                                               DBI_n                                             DBI_n
+                                    DQ24       DQ                                       DQ56    DQ                                Vdd                                        DDR4 SDRAM
+                                    DQ25       DQ                                       DQ57    DQ                                                                           Control, command, and
+                                    DQ26       DQ                                       DQ58    DQ                                Vtt
+                                                                                                                                                                             address termination
+                                    DQ27       DQ       U8                              DQ59    DQ        U6
+                                    DQ28       DQ                                       DQ60    DQ                             Vref CA                                       DDR4 SDRAM
+                                    DQ29       DQ                                       DQ61    DQ
+                                    DQ30       DQ                                       DQ62    DQ                                Vpp                                        DDR4 SDRAM
+                                    DQ31       DQ                                       DQ63    DQ
+                                     Vss       ZQ                                         Vss   ZQ                                 Vss                                       DDR4 SDRAM
+
+
+
+                                            Note:    1. The ZQ ball on each DDR4 component is connected to an external 240Ω ±1% resistor
+                                                        that is tied to ground. It is used for the calibration of the component’s ODT and output
+                                                        driver.
+
+
+
+
+CCMTD-1725822587-9885
+atf8c1gx64hz.pdf – Rev. J 3/21 EN                                                               11              Micron Technology, Inc. reserves the right to change products or specifications without notice.
+                                                                                                                                                            © 2015 Micron Technology, Inc. All rights reserved.
+                                                                                  8GB (x64, SR) 260-Pin DDR4 SODIMM
+                                                                                                  General Description
+
+General Description
+                                             High-speed DDR4 SDRAM modules use DDR4 SDRAM devices with two or four internal
+                                             memory bank groups. DDR4 SDRAM modules utilizing 4- and 8-bit-wide DDR4 SDRAM
+                                             devices have four internal bank groups consisting of four memory banks each, provid-
+                                             ing a total of 16 banks. 16-bit-wide DDR4 SDRAM devices have two internal bank
+                                             groups consisting of four memory banks each, providing a total of eight banks. DDR4
+                                             SDRAM modules benefit from the DDR4 SDRAM's use of an 8n-prefetch architecture
+                                             with an interface designed to transfer two data words per clock cycle at the I/O pins. A
+                                             single READ or WRITE operation for the DDR4 SDRAM effectively consists of a single
+                                             8n-bit-wide, four-clock data transfer at the internal DRAM core and eight correspond-
+                                             ing n-bit-wide, one-half-clock-cycle data transfers at the I/O pins.
+                                             DDR4 modules use two sets of differential signals: DQS_t and DQS_c to capture data
+                                             and CK_t and CK_c to capture commands, addresses, and control signals. Differential
+                                             clocks and data strobes ensure exceptional noise immunity for these signals and pro-
+                                             vide precise crossing points to capture input signals.
+
+Fly-By Topology
+                                             DDR4 modules use faster clock speeds than earlier DDR technologies, making signal
+                                             quality more important than ever. For improved signal quality, the clock, control, com-
+                                             mand, and address buses have been routed in a fly-by topology, where each clock, con-
+                                             trol, command, and address pin on each DRAM is connected to a single trace and ter-
+                                             minated (rather than a tree structure, where the termination is off the module near the
+                                             connector). Inherent to fly-by topology, the timing skew between the clock and DQS sig-
+                                             nals can be accounted for by using the write-leveling feature of DDR4.
+
+Module Manufacturing Location
+                                             Micron Technology manufactures modules at sites worldwide. Customers may receive
+                                             modules from any of the manufacturing locations listed below.
+
+Table 8: DRAM Module Manufacturing Locations
+
+                         Manufacturing Site Location                                Country of Origin Specified on Label
+                                         Boise, USA                                                                  USA
+                                    Aguadilla, Puerto Rico                                                     Puerto Rico
+                                         Xian, China                                                                China
+                                          Singapore                                                             Singapore
+
+
+
+
+CCMTD-1725822587-9885
+atf8c1gx64hz.pdf – Rev. J 3/21 EN                                         12        Micron Technology, Inc. reserves the right to change products or specifications without notice.
+                                                                                                                                © 2015 Micron Technology, Inc. All rights reserved.
+                                                                               8GB (x64, SR) 260-Pin DDR4 SODIMM
+                                                                                        Address Mapping to DRAM
+
+Address Mapping to DRAM
+Address Mirroring
+                                          To achieve optimum routing of the address bus on DDR4 multirank modules, the ad-
+                                          dress bus will be wired as shown in the table below, or mirrored. For quad-rank mod-
+                                          ules, ranks 1 and 3 are mirrored, and ranks 0 and 2 are non-mirrored. Highlighted ad-
+                                          dress pins have no secondary functions allowing for normal operation when cross-
+                                          wired. Data is still read from the same address it was written. However, LOAD MODE
+                                          operations require a specific address. This requires the controller to accommodate for a
+                                          rank that is mirrored. Systems may reference DDR4 SPD to determine whether the
+                                          module has mirroring implemented or not. See the JEDEC DDR4 SPD specification for
+                                          more details.
+
+Table 9: Address Mirroring
+
+                   Edge Connector Pin                         DRAM Pin, Non-Mirrored                                     DRAM Pin, Mirrored
+                                    A0                                    A0                                                              A0
+                                    A1                                    A1                                                              A1
+                                    A2                                    A2                                                              A2
+                                    A3                                    A3                                                              A4
+                                    A4                                    A4                                                              A3
+                                    A5                                    A5                                                              A6
+                                    A6                                    A6                                                              A5
+                                    A7                                    A7                                                              A8
+                                    A8                                    A8                                                              A7
+                                    A9                                    A9                                                              A9
+                                    A10                                  A10                                                             A10
+                                    A11                                  A11                                                             A13
+                                    A13                                  A13                                                             A11
+                                    A12                                  A12                                                             A12
+                                    A14                                  A14                                                             A14
+                                    A15                                  A15                                                             A15
+                                    A16                                  A16                                                             A16
+                                    A17                                  A17                                                             A17
+                                    BA0                                  BA0                                                             BA1
+                                    BA1                                  BA1                                                             BA0
+                                    BG0                                  BG0                                                             BG1
+                                    BG1                                  BG1                                                             BG0
+
+
+
+
+CCMTD-1725822587-9885
+atf8c1gx64hz.pdf – Rev. J 3/21 EN                                      13        Micron Technology, Inc. reserves the right to change products or specifications without notice.
+                                                                                                                             © 2015 Micron Technology, Inc. All rights reserved.
+                                                                          8GB (x64, SR) 260-Pin DDR4 SODIMM
+                                                                                       SPD EEPROM Operation
+
+SPD EEPROM Operation
+                                    DDR4 SDRAM modules incorporate serial presence detect (SPD). The SPD data is stor-
+                                    ed in a 512-byte JEDEC JC-42.4-compliant EEPROM that is segregated into four 128-
+                                    byte, write-protectable blocks. The SPD content is aligned with these blocks as shown in
+                                    the table below.
+                                    Block            Range                                          Description
+                                      0      0–127     000h–07Fh              Configuration and DRAM parameters
+                                      1     128–255    080h–0FFh                       Module-specific parameters
+                                      2     256–319    100h–13Fh                   Reserved; all bytes coded as 00h
+                                            320–383    140h–17Fh                       Manufacturing information
+                                      3     384–511    180h–1FFh                          End-user programmable
+
+                                    The first 384 bytes are programmed by Micron to comply with JEDEC standard JC-45,
+                                    "Appendix X: Serial Presence Detect (SPD) for DDR4 SDRAM Modules." The remaining
+                                    128 bytes of storage are available for use by the customer.
+                                    The EEPROM resides on a two-wire I2C serial interface and is not integrated with the
+                                    memory bus in any way. It operates as a slave device in the I2C bus protocol, with all
+                                    operations synchronized by the serial clock. Transfer rates of up to 1 MHz are achieva-
+                                    ble at 2.5V (NOM).
+                                    Micron implements reversible software write protection on DDR4 SDRAM-based mod-
+                                    ules. This prevents the lower 384 bytes (bytes 0–383) from being inadvertently program-
+                                    med or corrupted. The upper 128 bytes remain available for customer use and unpro-
+                                    tected.
+
+
+
+
+CCMTD-1725822587-9885
+atf8c1gx64hz.pdf – Rev. J 3/21 EN                                  14      Micron Technology, Inc. reserves the right to change products or specifications without notice.
+                                                                                                                       © 2015 Micron Technology, Inc. All rights reserved.
+                                                                                     8GB (x64, SR) 260-Pin DDR4 SODIMM
+                                                                                                 Electrical Specifications
+
+Electrical Specifications
+                                             Stresses greater than those listed may cause permanent damage to the module. This is a
+                                             stress rating only, and functional operation of the module at these or any other condi-
+                                             tions outside those indicated in each device's data sheet is not implied. Exposure to ab-
+                                             solute maximum rating conditions for extended periods may adversely affect reliability.
+
+Table 10: Absolute Maximum Ratings
+
+   Symbol             Parameter                                                                       Min                       Max                   Units            Notes
+       VDD            VDD supply voltage relative to VSS                                              –0.4                       1.5                     V                  1
+      VDDQ            VDDQ supply voltage relative to VSS                                             –0.4                       1.5                     V                  1
+       VPP            Voltage on VPP pin relative to VSS                                              –0.4                       3.0                     V                  2
+  VIN, VOUT Voltage on any pin relative to VSS                                                        –0.4                       1.5                     V
+
+
+
+Table 11: Operating Conditions
+
+   Symbol             Parameter                                                        Min                    Nom                     Max                 Units          Notes
+       VDD            VDD supply voltage                                               1.14                     1.2                   1.26                    V              1
+        VPP           DRAM activating power supply                                    2.375                     2.5                   2.75                    V              2
+  VREFCA(DC) Input reference voltage command/                                       0.49 × VDD            0.5 × VDD              0.51 × VDD                   V              3
+             address bus
+       IVTT           Termination reference current from VTT                           –500                      –                     500                   mA
+        VTT           Termination reference voltage (DC) –                         0.49 × VDD -           0.5 × VDD            0.51 × VDD +                   V              4
+                      command/address bus                                             20mV                                        20mV
+         IIN          Input leakage current; any input excluding ZQ;                   –2.0                      –                     2.0                   µA              5
+                      0V < VIN < 1.1V
+        IZQ           Input leakage current; ZQ                                       –50.0                      –                    10.0                   µA            5, 6
+      IOZpd           Output leakage current; VOUT = VDD; DQ is High-Z                    –                      –                    10.0                   µA              7
+      IOZpu           Output leakage current; VOUT = VSS; DQ is High-Z;               –50.0                      –                       –                   µA              7
+                      ODT is disabled with ODT input HIGH
+     IVREFCA          VREFCA leakage; VREFCA = VDD/2 (after DRAM is ini-               –2.0                      –                     2.0                   µA              5
+                      tialized)
+
+                                    Notes:     1. VDDQ tracks with VDD; VDDQ and VDD are tied together.
+                                               2. VPP must be greater than or equal to VDD at all times.
+                                               3. VREFCA must not be greater than 0.6 x VDD. When VDD is less than 500mV, VREF may be
+                                                  less than or equal to 300mV.
+                                               4. VTT termination voltages in excess of the specification limit adversely affect the voltage
+                                                  margins of command and address signals and reduce timing margins.
+                                               5. Multiply by the number of DRAM die on the module.
+                                               6. Tied to ground. Not connected to edge connector.
+                                               7. Multiply by the number of module ranks and then times the number of die per package.
+
+
+
+
+CCMTD-1725822587-9885
+atf8c1gx64hz.pdf – Rev. J 3/21 EN                                           15         Micron Technology, Inc. reserves the right to change products or specifications without notice.
+                                                                                                                                   © 2015 Micron Technology, Inc. All rights reserved.
+                                                                                  8GB (x64, SR) 260-Pin DDR4 SODIMM
+                                                                                              Electrical Specifications
+
+
+Table 12: Thermal Characteristics
+
+Symbol                        Parameter/Condition                                                                 Value                     Units                 Notes
+TC                            Commercial operating case temperature                                              0 to 85                       °C                 1, 2, 3
+TC                                                                                                             >85 to 95                       °C               1, 2, 3, 4
+TOPER                         Normal operating temperature range                                                 0 to 85                       °C                   5, 7
+TOPER                         Extended temperature operating range (optional)                                  >85 to 95                       °C                   5, 7
+TSTG                          Non-operating storage temperature                                               –55 to 100                       °C                     6
+RHSTG                         Non-operating Storage Relative Humidity (non-condensing)                           5 to 95                       %
+NA                            Change Rate of Storage Temperature                                                     20                   °C/hour
+
+                                    Notes:   1. Maximum operating case temperature; TC is measured in the center of the package.
+                                             2. A thermal solution must be designed to ensure the DRAM device does not exceed the
+                                                maximum TC during operation.
+                                             3. Device functionality is not guaranteed if the DRAM device exceeds the maximum TC dur-
+                                                ing operation.
+                                             4. If TC exceeds 85°C, the DRAM must be refreshed externally at 2X refresh, which is a 3.9µs
+                                                interval refresh rate.
+                                             5. The refresh rate must double when 85°C < TOPER ≤ 95°C.
+                                             6. Storage temperature is defined as the temperature of the top/center of the DRAM and
+                                                does not reflect the storage temperatures of shipping trays.
+                                             7. For additional information, refer to technical note TN-00-08: "Thermal Applications"
+                                                available at micron.com.
+
+
+
+
+CCMTD-1725822587-9885
+atf8c1gx64hz.pdf – Rev. J 3/21 EN                                         16        Micron Technology, Inc. reserves the right to change products or specifications without notice.
+                                                                                                                                © 2015 Micron Technology, Inc. All rights reserved.
+                                                                           8GB (x64, SR) 260-Pin DDR4 SODIMM
+                                                                                  DRAM Operating Conditions
+
+DRAM Operating Conditions
+                                    Recommended AC operating conditions are given in the DDR4 component data sheets.
+                                    Component specifications are available at micron.com. Module speed grades correlate
+                                    with component speed grades, as shown below.
+
+Table 13: Module and Component Speed Grades
+DDR4 components may exceed the listed module speed grades; module may not be available in all listed speed grades
+                Module Speed Grade                                     Component Speed Grade
+                                    -3G2                                                                       -062E
+                                    -2G9                                                                        -068
+                                    -2G6                                                                        -075
+                                    -2G3                                                                        -083
+                                    -2G1                                                                       -093E
+
+
+
+Design Considerations
+                                    Simulations
+                                    Micron memory modules are designed to optimize signal integrity through carefully de-
+                                    signed terminations, controlled board impedances, routing topologies, trace length
+                                    matching, and decoupling. However, good signal integrity starts at the system level. Mi-
+                                    cron encourages designers to simulate the signal characteristics of the system's memo-
+                                    ry bus to ensure adequate signal integrity of the entire memory system.
+                                    Power
+                                    Operating voltages are specified at the edge connector of the module, not at the DRAM.
+                                    Designers must account for any system voltage drops at anticipated power levels to en-
+                                    sure the required supply voltage is maintained.
+
+                                    IDD, I PP, and I DDQ Specifications
+                                    IDD and IPP values are only for the DDR4 SDRAM and are calculated from values in the
+                                    supporting component data sheet. IPP and IDDQ currents are not included in IDD cur-
+                                    rents. IDD and IDDQ currents are not included in IPP currents. Micron does not specify
+                                    IDDQ currents. In DRAM module application, IDDQ cannot be measured separately be-
+                                    cause V DD and V DDQ use a merged power layer in the module PCB.
+                                    Certain IDD/IPP conditions must be derated for optional modes of operation, such as CA
+                                    parity, DBI, write CRC, additive latency, geardown, CAL, 2X and 4X REF, and DLL disa-
+                                    bled. Refer to the base device data sheet IDD and IPP specification tables for derating val-
+                                    ues for the applicable die revision.
+
+
+
+
+CCMTD-1725822587-9885
+atf8c1gx64hz.pdf – Rev. J 3/21 EN                                  17        Micron Technology, Inc. reserves the right to change products or specifications without notice.
+                                                                                                                         © 2015 Micron Technology, Inc. All rights reserved.
+                                                                 8GB (x64, SR) 260-Pin DDR4 SODIMM
+                                                                                    IDD Specifications
+
+IDD Specifications
+
+Table 14: DDR4 IDD Specifications and Conditions – 8GB (Die Revision D)
+Values are for the MT40A1G8 DDR4 SDRAM only and are computed from values specified in the 8Gb (1 Gig x 8) compo-
+nent data sheet
+Parameter                                                                 Symbol        3200      2666       Units
+One bank ACTIVATE-PRECHARGE current                                                      IDD0                  456                408               mA
+One bank ACTIVATE-PRECHARGE, Word Line Boost, IPP current                                 IPP0                  24                 24               mA
+One bank ACTIVATE-READ-PRECHARGE current                                                 IDD1                  552                504               mA
+Precharge standby current                                                               IDD2N                  296                280               mA
+Precharge standby ODT current                                                          IDD2NT                  480                400               mA
+Precharge power-down current                                                             IDD2P                 200                200               mA
+Precharge quiet standby current                                                         IDD2Q                  240                240               mA
+Active standby current                                                                  IDD3N                  448                408               mA
+Active standby IPP current                                                               IPP3N                  24                 24               mA
+Active power-down current                                                                IDD3P                 344                312               mA
+Burst read current                                                                      IDD4R                 1344              1168                mA
+Burst write current                                                                     IDD4W                 1280              1136                mA
+Burst refresh current (1x REF)                                                          IDD5R                  528                488               mA
+Burst refresh IPP current (1x REF)                                                       IPP5R                  40                 40               mA
+Self refresh current: Normal temperature range (0°C to 85°C)                            IDD6N                  248                248               mA
+Self refresh current: Extended temperature range (0°C to 95°C)                           IDD6E                 288                288               mA
+Self refresh current: Reduced temperature range (0°C to 45°C)                           IDD6R                  168                168               mA
+Auto self refresh current (25°C)                                                        IDD6A                  68.8              68.8               mA
+Auto self refresh current (45°C)                                                        IDD6A                  168                168               mA
+Auto self refresh current (75°C)                                                        IDD6A                  248                248               mA
+Auto self refresh IPP current                                                            IPP6X                  40                 40               mA
+Bank interleave read current                                                             IDD7                 1520              1440                mA
+Bank interleave read IPP current                                                          IPP7                 120                120               mA
+Maximum power-down current                                                               IDD8                  200                200               mA
+
+
+
+
+CCMTD-1725822587-9885
+atf8c1gx64hz.pdf – Rev. J 3/21 EN                         18      Micron Technology, Inc. reserves the right to change products or specifications without notice.
+                                                                                                              © 2015 Micron Technology, Inc. All rights reserved.
+                                                                  8GB (x64, SR) 260-Pin DDR4 SODIMM
+                                                                                     IDD Specifications
+
+
+Table 15: DDR4 IDD Specifications and Conditions – 8GB (Die Revision E)
+Values are for the MT40A1G8 DDR4 SDRAM only and are computed from values specified in the 8Gb (1 Gig x 8) compo-
+nent data sheet
+Parameter                                                          Symbol        3200      2666      2400    Units
+One bank ACTIVATE-PRECHARGE current                                           IDD0                 376              344               328              mA
+One bank ACTIVATE-PRECHARGE, Word Line Boost, IPP current                     IPP0                  24               24                24              mA
+One bank ACTIVATE-READ-PRECHARGE current                                      IDD1                 504              472               456              mA
+Precharge standby current                                                    IDD2N                 264              248               240              mA
+Precharge standby ODT current                                               IDD2NT                 352              320               304              mA
+Precharge power-down current                                                 IDD2P                 176              176               176              mA
+Precharge quiet standby current                                             IDD2Q                  208              208               208              mA
+Active standby current                                                       IDD3N                 344              312               296              mA
+Active standby IPP current                                                   IPP3N                  24               24                24              mA
+Active power-down current                                                    IDD3P                 264              248               240              mA
+Burst read current                                                           IDD4R                1424             1248              1160              mA
+Burst write current                                                         IDD4W                 1200             1056               984              mA
+Burst refresh current (1x REF)                                               IDD5R                 400              384               376              mA
+Burst refresh IPP current (1x REF)                                           IPP5R                  40               40                40              mA
+Self refresh current: Normal temperature range (0°C to +85°C)                IDD6N                 272              272               272              mA
+Self refresh current: Extended temperature range (0°C to +95°C)              IDD6E                 464              464               464              mA
+Self refresh current: Reduced temperature range (0°C to +45°C)               IDD6R                 168              168               168              mA
+Auto self refresh current (25°C)                                             IDD6A                68.8              68.8              68.8             mA
+Auto self refresh current (45°C)                                             IDD6A                 168              168               168              mA
+Auto self refresh current (75°C)                                             IDD6A                 248              248               248              mA
+Auto self refresh current (95°C)                                             IDD6A                 464              464               464              mA
+Auto self refresh IPP current                                                IPP6X                  40               40                40              mA
+Bank interleave read current                                                  IDD7                1520             1440              1400              mA
+Bank interleave read IPP current                                              IPP7                 104              104               104              mA
+Maximum power-down current                                                    IDD8                 144              144               144              mA
+
+
+
+
+CCMTD-1725822587-9885
+atf8c1gx64hz.pdf – Rev. J 3/21 EN                         19       Micron Technology, Inc. reserves the right to change products or specifications without notice.
+                                                                                                               © 2015 Micron Technology, Inc. All rights reserved.
+                                                                 8GB (x64, SR) 260-Pin DDR4 SODIMM
+                                                                                    IDD Specifications
+
+
+Table 16: DDR4 IDD Specifications and Conditions – 8GB (Die Revision H)
+Values are for the MT40A1G8 DDR4 SDRAM only and are computed from values specified in the 8Gb (1 Gig x 8) compo-
+nent data sheet
+Parameter                                                                 Symbol        2666      2400       Units
+One bank ACTIVATE-PRECHARGE current                                                      IDD0                  480                440               mA
+One bank ACTIVATE-PRECHARGE, Word Line Boost, IPP current                                 IPP0                  24                 24               mA
+One bank ACTIVATE-READ-PRECHARGE current                                                 IDD1                  584                544               mA
+Precharge standby current                                                               IDD2N                  336                312               mA
+Precharge standby ODT current                                                          IDD2NT                  384                344               mA
+Precharge power-down current                                                             IDD2P                 216                216               mA
+Precharge quiet standby current                                                         IDD2Q                  288                272               mA
+Active standby current                                                                  IDD3N                  392                376               mA
+Active standby IPP current                                                               IPP3N                  36                 36               mA
+Active power-down current                                                                IDD3P                 312                288               mA
+Burst read current                                                                      IDD4R                 1392              1176                mA
+Burst write current                                                                     IDD4W                 1736              1448                mA
+Burst refresh current (1x REF)                                                          IDD5R                  408                392               mA
+Burst refresh IPP current (1x REF)                                                       IPP5R                  44                 44               mA
+Self refresh current: Normal temperature range (0°C to 85°C)                            IDD6N                  288                288               mA
+Self refresh current: Extended temperature range (0°C to 95°C)                           IDD6E                 392                384               mA
+Self refresh current: Reduced temperature range (0°C to 45°C)                           IDD6R                  208                208               mA
+Auto self refresh current (25°C)                                                        IDD6A                  120                120               mA
+Auto self refresh current (45°C)                                                        IDD6A                  208                208               mA
+Auto self refresh current (75°C)                                                        IDD6A                  288                288               mA
+Auto self refresh IPP current                                                            IPP6X                  40                 40               mA
+Bank interleave read current                                                             IDD7                 1920              1824                mA
+Bank interleave read IPP current                                                          IPP7                 128                128               mA
+Maximum power-down current                                                               IDD8                  168                168               mA
+
+
+
+
+CCMTD-1725822587-9885
+atf8c1gx64hz.pdf – Rev. J 3/21 EN                         20      Micron Technology, Inc. reserves the right to change products or specifications without notice.
+                                                                                                              © 2015 Micron Technology, Inc. All rights reserved.
+                                                                 8GB (x64, SR) 260-Pin DDR4 SODIMM
+                                                                                    IDD Specifications
+
+
+Table 17: DDR4 IDD Specifications and Conditions – 8GB (Die Revision J)
+Values are for the MT40A1G8 DDR4 SDRAM only and are computed from values specified in the 8Gb (1 Gig x 8) compo-
+nent data sheet
+Parameter                                                                 Symbol        3200      2666       Units
+One bank ACTIVATE-PRECHARGE current                                                      IDD0                  352                328               mA
+One bank ACTIVATE-PRECHARGE, Word Line Boost, IPP current                                 IPP0                  24                 24               mA
+One bank ACTIVATE-READ-PRECHARGE current                                                 IDD1                  480                448               mA
+Precharge standby current                                                               IDD2N                  248                240               mA
+Precharge standby ODT current                                                          IDD2NT                  336                304               mA
+Precharge power-down current                                                             IDD2P                 176                176               mA
+Precharge quiet standby current                                                         IDD2Q                  208                208               mA
+Active standby current                                                                  IDD3N                  344                312               mA
+Active standby IPP current                                                               IPP3N                  24                 24               mA
+Active power-down current                                                                IDD3P                 264                248               mA
+Burst read current                                                                      IDD4R                 1352              1184                mA
+Burst write current                                                                     IDD4W                 1136              1000                mA
+Burst refresh current (1x REF)                                                          IDD5R                  376                360               mA
+Burst refresh IPP current (1x REF)                                                       IPP5R                  40                 40               mA
+Self refresh current: Normal temperature range (0°C to 85°C)                            IDD6N                  256                256               mA
+Self refresh current: Extended temperature range (0°C to 95°C)                           IDD6E                 440                440               mA
+Self refresh current: Reduced temperature range (0°C to 45°C)                           IDD6R                  160                160               mA
+Auto self refresh current (25°C)                                                        IDD6A                  65.6              65.6               mA
+Auto self refresh current (45°C)                                                        IDD6A                  160                160               mA
+Auto self refresh current (75°C)                                                        IDD6A                  240                240               mA
+Auto self refresh current (95°C)                                                        IDD6A                  440                440               mA
+Auto self refresh IPP current                                                            IPP6X                  40                 40               mA
+Bank interleave read current                                                             IDD7                 1440              1368                mA
+Bank interleave read IPP current                                                          IPP7                 104                 80               mA
+Maximum power-down current                                                               IDD8                  144                144               mA
+
+
+
+
+CCMTD-1725822587-9885
+atf8c1gx64hz.pdf – Rev. J 3/21 EN                         21      Micron Technology, Inc. reserves the right to change products or specifications without notice.
+                                                                                                              © 2015 Micron Technology, Inc. All rights reserved.
+                                                                 8GB (x64, SR) 260-Pin DDR4 SODIMM
+                                                                                    IDD Specifications
+
+
+Table 18: DDR4 IDD Specifications and Conditions – 8GB (Die Revision R)
+Values are for the MT40A1G8 DDR4 SDRAM only and are computed from values specified in the 8Gb (1 Gig x 8) compo-
+nent data sheet
+Parameter                                                                 Symbol        3200      2666       Units
+One bank ACTIVATE-PRECHARGE current                                                      IDD0                  384                352               mA
+One bank ACTIVATE-PRECHARGE, Word Line Boost, IPP current                                 IPP0                  32                 32               mA
+One bank ACTIVATE-READ-PRECHARGE current                                                 IDD1                  440                408               mA
+Precharge standby current                                                               IDD2N                  304                288               mA
+Precharge standby ODT current                                                          IDD2NT                  328                296               mA
+Precharge power-down current                                                             IDD2P                 240                240               mA
+Precharge quiet standby current                                                         IDD2Q                  272                272               mA
+Active standby current                                                                  IDD3N                  344                312               mA
+Active standby IPP current                                                               IPP3N                  24                 24               mA
+Active power-down current                                                                IDD3P                 264                248               mA
+Burst read current                                                                      IDD4R                  984                840               mA
+Burst write current                                                                     IDD4W                  848                728               mA
+Distributed refresh current (1x REF)                                                    IDD5R                  376                360               mA
+Distributed refresh IPP current (1x REF)                                                 IPP5R                  40                 40               mA
+Self refresh current: Normal temperature range (0°C to 85°C)                            IDD6N                  256                256               mA
+Self refresh current: Extended temperature range (0°C to 95°C)                           IDD6E                 416                416               mA
+Self refresh current: Reduced temperature range (0°C to 45°C)                           IDD6R                  152                152               mA
+Auto self refresh current (25°C)                                                        IDD6A                   64                 64               mA
+Auto self refresh current (45°C)                                                        IDD6A                  152                152               mA
+Auto self refresh current (75°C)                                                        IDD6A                  232                232               mA
+Auto self refresh current (95°C)                                                        IDD6A                  416                416               mA
+Auto self refresh IPP current                                                            IPP6X                  40                 40               mA
+Bank interleave read current                                                             IDD7                 1240              1160                mA
+Bank interleave read IPP current                                                          IPP7                  64                 64               mA
+Maximum power-down current                                                               IDD8                  192                192               mA
+
+
+
+
+CCMTD-1725822587-9885
+atf8c1gx64hz.pdf – Rev. J 3/21 EN                         22      Micron Technology, Inc. reserves the right to change products or specifications without notice.
+                                                                                                              © 2015 Micron Technology, Inc. All rights reserved.
+                                                                                     8GB (x64, SR) 260-Pin DDR4 SODIMM
+                                                                                      SPD EEPROM Operating Conditions
+
+SPD EEPROM Operating Conditions
+                                             For the latest SPD data, refer to Micron's SPD page: micron.com/spd.
+
+Table 19: SPD EEPROM DC Operating Conditions
+
+Parameter/Condition                                                                   Symbol                  Min                 Typ               Max                Units
+Supply voltage                                                                         VDDSPD                  1.7                 2.5                3.6                  V
+Input low voltage: logic 0; All inputs                                                   VIL                  –0.5                  –            VDDSPD ×                  V
+                                                                                                                                                   0.3
+Input high voltage: logic 1; All inputs                                                  VIH              VDDSPD ×                  –            VDDSPD +                  V
+                                                                                                            0.7                                    0.5
+Output low voltage: 3mA sink current VDDSPD > 2V                                         VOL                     –                  –                 0.4                  V
+Input leakage current: (SCL, SDA) VIN = VDDSPD or VSSSPD                                  ILI                    –                  –                 ±5                  µA
+Output leakage current: VOUT = VDDSPD or VSSSPD, SDA in High-Z                           ILO                     –                  –                 ±5                  µA
+
+                                    Notes:     1. Table is provided as a general reference. Consult JEDEC JC-42.4 EE1004 device specifica-
+                                                  tions for complete details.
+                                               2. Operation at tSCL > 100 kHz may require VDDSPD ≤ 2.2.
+                                               3. All voltages referenced to VDDSPD.
+
+
+Table 20: SPD EEPROM AC Operating Conditions
+
+Parameter/Condition                                                    Symbol                   Min                             Max                            Units
+Clock frequency                                                           tSCL                   10                             1000                             kHz
+Clock pulse width HIGH time                                              tHIGH                  260                                –                              ns
+Clock pulse width LOW time                                               tLOW                   500                                –                              ns
+Detect clock LOW timeout                                               tTIMEOUT                  25                               35                              ms
+SDA rise time                                                              tR                     –                              120                              ns
+SDA fall time                                                              tF                     –                              120                              ns
+Data-in setup time                                                      tSU:DAT                  50                                –                              ns
+Data-in hold time                                                       tHD:DI                    0                                –                              ns
+Data out hold time                                                     tHD:DAT                    0                              350                              ns
+Start condition setup time                                              tSU:STA                 260                                –                              ns
+Start condition hold time                                               tHD:STA                 260                                –                              ns
+Stop condition setup time                                               tSU:STO                 260                                –                              ns
+Time the bus must be free before a new transi-                           tBUF                   500                                –                              ns
+tion can start
+Write time                                                                tW                      –                                5                              ms
+Warm power cycle time off                                                tPOFF                    1                                –                              ms
+Time from power-on to first command                                      tINIT                   10                                –                              ms
+
+                                    Notes:     1. Table is provided as a general reference. Consult JEDEC JC-42.4 EE1004 device specifica-
+                                                  tions for complete details.
+                                               2. Operation at tSCL > 100 kHz may require VDDSPD ≤ 2.2.
+
+
+
+CCMTD-1725822587-9885
+atf8c1gx64hz.pdf – Rev. J 3/21 EN                                           23        Micron Technology, Inc. reserves the right to change products or specifications without notice.
+                                                                                                                                  © 2015 Micron Technology, Inc. All rights reserved.
+                                                                                                        8GB (x64, SR) 260-Pin DDR4 SODIMM
+                                                                                                                        Module Dimensions
+
+Module Dimensions
+
+Figure 3: 260-Pin DDR4 SODIMM
+
+
+
+                                                                        Front view                                                                                                   3.7 (0.145)
+                                                                                                                                                                                        MAX
+                                                                          69.73 (2.745)
+                                                                          69.47 (2.735)
+
+
+      .65 (0.025) R0
+                (4X)
+
+                                                                                                                                                     30.13 (1.186)
+                 1.75 (0.07)                   U1           U2                                 U4             U5                                     29.87 (1.176)
+     1.8 (0.071) TYP (2X)                                                                                                             20.0 (0.787)
+            (2X)                                                                       U3
+                                                                                                                                          TYP
+
+                       6.0 (0.236)
+                           TYP
+                                                                                                                                                                                    1.3 (0.051)
+                                                           0.35 (0.014)        1.0 (0.039)          0.5 (0.019)                                                                     1.1 (0.043)
+                       2.0 (0.079)                             TYP                TYP                  TYP
+                           TYP
+                                                        PIN 1                                                                                PIN 259
+                                                                           65.6 (2.58)
+                                                                              TYP
+ 0.6 (0.24) x 45° (4X)                                                  Back view
+
+
+
+                                                                                                                                   4.0 (0.157) TYP (2X)
+
+                                                 U6            U7                                  U8            U9
+
+                 18.0 (0.71)
+                     TYP
+
+                                                                                                                                            4.0 (0.157)
+                                                                                                                                               TYP
+                                                                                0.25 (0.1) x 45° (2X)
+                              2.55 (0.10)     PIN 260      2.5 (0.98)                                                                    PIN 2
+                                 TYP                          TYP
+                                                 28.5 (1.12)                                   35.5 (1.4)
+                                                    TYP                                          TYP
+                                                                                             38.3 (1.51)
+                                                                                                TYP
+
+                                     Notes:   1. All dimensions are in millimeters (inches); MAX/MIN or typical (TYP) where noted.
+                                              2. Tolerance on all dimensions ±0.15mm unless otherwise specified.
+                                              3. The dimensional diagram is for reference only.
+
+
+
+                                 8000 S. Federal Way, P.O. Box 6, Boise, ID 83707-0006, Tel: 208-368-4000
+                                     www.micron.com/products/support Sales inquiries: 800-932-4992
+                                  Micron and the Micron logo are trademarks of Micron Technology, Inc.
+                                     All other trademarks are the property of their respective owners.
+     This data sheet contains minimum and maximum limits specified over the power supply and temperature range set forth herein.
+  Although considered final, these specifications are subject to change, as further product development and data characterization some-
+                                                                 times occur.
+
+
+CCMTD-1725822587-9885
+atf8c1gx64hz.pdf – Rev. J 3/21 EN                                                       24               Micron Technology, Inc. reserves the right to change products or specifications without notice.
+                                                                                                                                                     © 2015 Micron Technology, Inc. All rights reserved.
+

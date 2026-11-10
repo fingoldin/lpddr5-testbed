@@ -1,0 +1,315 @@
+ZCU104 Rev1.0
+0432057
+Rev 01
+
+#          QTY       REFDES                                                DEVICE                    PACKAGE                VALUE          VOLTAGE   TOLERANCE   DIELECTRIC   POWER   MANF              MANF_P/N              Alternate_P/N
+       1           1 B1                                                    TS621E_FL11E              BAT_TS518_TS621_DUAL   TS621E-FL11E   1.5V                                       Seiko             TS621E-FL11E          TS518FE-FL35E
+
+                     C1,C2,C17,C18,C19,C21,C22,C23,C24,C27,C28,C29,C30,C31,C4
+                     2,C43,C45,C47,C48,C49,C53,C54,C55,C57,C58,C59,C60,C61,C6
+                     2,C63,C64,C65,C66,C67,C86,C87,C88,C89,C127,C168,C179,C1
+                     80,C181,C183,C185,C186,C187,C188,C189,C190,C208,C209,C
+                     220,C221,C222,C225,C228,C229,C230,C231,C232,C233,C234,
+                     C278,C400,C402,C403,C405,C515,C516,C517,C518,C519,C520
+                     ,C557,C558,C559,C560,C561,C562,C563,C564,C565,C576,C57
+                     7,C578,C581,C588,C589,C648,C649,C650,C679,C743,C744,C7
+                     46,C749,C750,C751,C754,C767,C768,C769,C771,C772,C781,C
+                     782,C785,C792,C793,C795,C798,C974,C1051,C1052,C1053,C1
+                     054,C1081,C1082,C1093,C1094,C1095,C1096,C1097,C1098,C
+                     1099,C1100,C1101,C1102,C1103,C1104,C1105,C1106,C1107,
+                     C1108,C1109,C1110,C1111,C1112,C1113,C1114,C1204,C1205
+                     ,C1206,C1207,C1208,C1209,C1214,C1225,C1226,C1227,C122
+                     8,C1229,C1230,C1231,C1232,C1233,C1234,C1235,C1238,C12
+                     39,C1242,C1243,C1244,C1245,C1386,C1387,C1388,C1389,C1
+                     390,C1391,C1392,C1393,C1394,C1395,C1396,C1397,C1398,C
+                     1399,C1400,C1401,C1402,C1403,C1404,C1405,C1406,C1407,
+                     C1408,C1409,C1410,C1411,C1412,C1413,C1414,C1415,C1416
+                     ,C1417,C1446,C1447,C1448,C1449,C1463,C1464,C1479,C148
+       2         207 0,C1481,C1503                                            0_1UF_0402             402                    0.1UF          25V       10%         X5R                  TAIYO YUDEN       TMK105BJ104KV-F
+       3           2 C3,C1502                                                 100PF_0402             402                    100PF          50V       10%         X7R                  YAGEO             CC0402KRX7R9BB101
+       4           0 C81                                                      100UF_1206             1206                   DNP            6.3V      20%         X5R                  TAIYO YUDEN       JMK316BJ107ML-T
+                     C85,C90,C128,C129,C276,C468,C469,C470,C471,C472,C482,C
+                     483,C484,C485,C602,C604,C605,C606,C607,C608,C621,C622,
+                     C623,C627,C628,C629,C630,C631,C632,C638,C639,C640,C641
+                     ,C642,C643,C644,C645,C646,C946,C947,C1151,C1152,C1153,
+                     C1200,C1201,C1202,C1217,C1218,C1453,C1454,C1455,C1456
+       5          54 ,C1457,C1458                                             4_7UF_0402             402                    4.7UF          6.3V      20%         X5R                  TDK               C1005X5R0J475M
+                     C157,C158,C159,C160,C161,C162,C163,C182,C184,C197,C123
+       6          15 6,C1237,C1240,C1241,C1499                                0_1UF_0201             201                    0.1UF          25V       10%         X5R                  SAMSUNG           CL03A104KA3NNNC
+                     C169,C170,C191,C192,C193,C194,C195,C196,C264,C266,C271
+                     ,C341,C368,C369,C418,C567,C568,C569,C573,C580,C595,C59
+                     6,C1025,C1210,C1211,C1212,C1213,C1354,C1355,C1356,C13
+       7          32 57,C1358                                                 0_01UF_0402            402                    0.01UF         25V       10%         X5R                  AVX               04023D103KAT2A
+                     C238,C239,C256,C544,C545,C572,C584,C592,C597,C624,C625
+                     ,C626,C634,C635,C652,C902,C909,C910,C911,C912,C917,C11
+       8          23 97,C1203                                                 0_47UF_0402            402                    0.47UF         10V       10%         X5R                  MURATA            GRM155R61A474KE15D
+                     C259,C260,C261,C374,C375,C1128,C1199,C1219,C1418,C141
+                     9,C1420,C1421,C1422,C1423,C1424,C1425,C1426,C1427,C14
+                     28,C1429,C1430,C1431,C1432,C1433,C1434,C1435,C1436,C1
+       9          31 437,C1438,C1451,C1465                                    10UF_0603              603                    10UF           6.3V      20%         X6S                  TDK               C1608X6S0J106M080AC
+                     C277,C280,C282,C307,C308,C314,C315,C323,C324,C325,C326
+      10          13 ,C327,C1493                                              100UF_1206             1206                   100UF          6.3V      20%         X6T                  MURATA            GRM31CD80J107ME39K
+      11           1 C279                                                     2200PF_0402            402                    2200PF         50V       10%         X7R                  MURATA            GRM155R71H222KA01D
+                     C294,C303,C356,C357,C358,C359,C372,C373,C394,C399,C770
+      12          12 ,C975                                                    1000PF_0402            402                    1000PF         50V       10%         X7R                  MURATA            GRM155R71H102KA01D
+                     C334,C533,C546,C547,C548,C549,C550,C551,C552,C553,C554
+                     ,C555,C556,C566,C1144,C1220,C1221,C1222,C1223,C1224,C1
+                     329,C1330,C1335,C1338,C1339,C1340,C1341,C1346,C1349,C
+      13          34 1350,C1351,C1352,C1353,C1494                             1UF_0603               603                    1UF            25V       10%         X5R                  MURATA            GRM188R61E105KA12D
+                     C382,C383,C1301,C1302,C1303,C1304,C1305,C1306,C1307,C
+                     1308,C1309,C1310,C1311,C1312,C1313,C1314,C1315,C1316,
+                     C1317,C1318,C1319,C1320,C1321,C1322,C1323,C1489,C1490
+      14          28 ,C1491                                                   10UF_1210              1210                   10UF           25V       10%         X5R                  MURATA            GRM32DR61E106KA12L
+      15           6 C410,C417,C962,C963,C1441,C1442                          18PF_0402              402                    18PF           50V       5%          NPO                  MURATA            GRM1555C1H180JA01D
+      16           8 C422,C424,C473,C479,C480,C943,C1215,C1216                100UF_1206             1206                   100UF          4V        20%         X6S                  TDK               C3216X6S0G107M160AC
+      17           9 C486,C487,C570,C571,C1028,C1031,C1032,C1165,C1166        10UF_0805              805                    10UF           10V       10%         X5R                  MURATA            GRM21BR61A106KE19L
+                     C488,C489,C490,C491,C534,C535,C536,C537,C538,C539,C540
+      18          16 ,C541,C755,C756,C757,C758                                0_068UF_0402           402                    0.068UF        16V       10%         X7R                  TDK               C1005X7R1C683K050BC
+      19           0 C543,C1061                                               DNP_C_0402_25_ROUND    C402-25                DNP            DNP       DNP         DNP                  DNP               DNP
+      20           2 C657,C874                                                1UF_0402               402                    1UF            16V       10%         X5R                  TDK Corporation   C1005X5R1C105K
+                     C677,C933,C1359,C1360,C1361,C1362,C1363,C1364,C1365,C
+      21          16 1366,C1471,C1472,C1495,C1496,C1497,C1498                 47UF_1210              1210                   47UF           6.3V      20%         X6S                  TDK               C3225X6S0J476M250AC
+      22           9 C696,C697,C1459,C1460,C1461,C1462,C1474,C1475,C1476 470UF_G                     TANT_D                 470UF          2V        20%         SP                   PANASONIC         EEF-GX0D471R
+                     C847,C1324,C1325,C1326,C1327,C1328,C1336,C1337,C1347,
+      23          13 C1348,C1384,C1385,C1492                                  2_2UF_0805             805                    2.2UF          25V       10%         X7R                  TAIYO YUDEN       TMK212B7225KG-TR
+      24           2 C875,C876                                                22PF_0402              402                    22PF           50V       5%          C0G, NP0             MURATA            GRM1535C1H220JDD5D
+      25           1 C914                                                     47UF_1206              1206                   47UF           25V       20%         X5R                  TDK               C3216X5R1E476M
+      26           1 C916                                                     120UF_SX               CAP_SX                 120UF          6.3V      20%         SP                   PANASONIC         EEF-CX0J121R
+      27           5 C918,C1377,C1380,C1381,C1501                             4700PF_0402            402                    4700PF         50V       10%         X7R                  MURATA            GRM155R71H472KA01D
+      28           1 C922                                                     330UF_8_0MMX8_0MM      CAPR_800_350           330UF          25V       20%         ELEC                 PANASONIC-ECG     EEU-FM1E331L
+      29           1 C986                                                     0_01UF_0402_25_ROUND   C402-25                0.01UF         25V       10%         X5R                  AVX               04023D103KAT2A
+30     1 C1033                                                 33PF_0402                          402                      33PF                     50V    5%    C0G, NP0              MURATA             GRM1535C1H330JDD5D
+31     2 C1063,C1070                                           1UF_0201                           201                      1UF                      4V     10%   X5R                   TDK                C0603X5R0G105M030BC
+32     1 C1076                                                 0_47UF_0201                        201                      0.47UF                   6.3V   20%   X5R                   TDK                C0603X5R0J474M030BC
+33     2 C1186,C1187                                           100PF_0805                         805                      100PF                    500V   5%    NP0                   KEMET              C0805C101JCGACTU
+34     2 C1193,C1194                                           27PF_0402                          402                      27PF                     50V    10%   C0G, NP0              KEMET              C0402C270K5GACTU
+         C1246,C1250,C1254,C1259,C1260,C1261,C1262,C1269,C1273
+         ,C1277,C1281,C1282,C1283,C1284,C1285,C1286,C1287,C128
+         8,C1289,C1290,C1291,C1292,C1293,C1294,C1450,C1482,C14
+35    32 83,C1484,C1485,C1486,C1487,C1488                      22UF_1206                          1206                     22UF                     25V    10%   X5R                   MURATA             GRM31CR61E226KE15L
+36     8 C1331,C1332,C1333,C1334,C1342,C1343,C1344,C1345       1UF_0402                           402                      1UF                      35V    10%   X5R                   MURATA             GRM155R6YA105KE11D
+37     6 C1367,C1368,C1369,C1370,C1371,C1372                   0_22UF_0201                        201                      0.22UF                   25V    10%   X5R                   TDK                C0603X5R1E224K030BC
+38     2 C1373,C1500                                           6800PF_0402                        402                      6800PF                   50V    10%   X7R                   KEMET              C0402C682K5RACTU
+39     2 C1374,C1375                                           3300PF_0402                        402                      3300PF                   50V    10%   X7R                   MURATA             GRM155R71H332KA01D
+40     1 C1376                                                 56PF_0201                          201                      56PF                     50V    5%    NP0                   TDK                C0603C0G1H560J030BA
+41     2 C1378,C1379                                           220PF_0402                         402                      220PF                    50V    10%   X7R                   TAIYO YUDEN        UMK105B7221KV-F
+42     2 C1382,C1383                                           150PF_0402                         402                      150PF                    50V    10%   X7R                   KEMET              C0402C151K5RACTU
+43     2 C1439,C1440                                           8PF_0402                           402                      8PF                      50V    5%    C0H                   PANASONIC          ECJ-0EC1H080D
+44     3 C1443,C1444,C1445                                     47PF_0402                          402                      47PF                     25V    5%    C0G, NP0              KEMET              C0402C470J3GACTU
+45     0 C1452                                                 DNP_C_0805                         805                      DNP                      DNP    DNP   DNP                   DNP                DNP
+46     3 C1468,C1469,C1470                                     47UF_0603                          603                      47UF                     2.5V   20%   X6S                   MURATA             GRM188C80E476ME05
+47     2 C1477,C1478                                           47UF                               603                      47UF                     2.5V   20%   X5R                   MURATA             GRM188R60E476ME15D
+48     1 CBL1                                                  PC_POWER_CABLE                                              PC_POWER_CABLE                                              ADAMTECH           PC-0102060AC03
+49     0 CBL2                                                  USB_MICRO_CABLE                                             USB_MICRO_CABLE                                             MONOPRICE          5458
+50     2 D5,D6                                                 BAT54T1G                           SOD_123                  BAT54T1G                 30V                     400MW      ON SEMICONDUCTOR   BAT54T1G
+51     1 D40                                                   BAS40_04_SOT23                     SOT_23                   BAS40-04                 40V                     200MW      MICRO COMMERCIAL   BAS40-04-TP
+52     1 D41                                                   MBRS240LT3G_DO_214AA               DIO_SMB_403A_03          MBRS240LT3G              40V    NA               2A         ON SEMICONDUCTOR   MBRS240LT3G
+53     1 DIMMCAGE1                                             SODIMM_CAGE                        SODIMM_CAGE              SODIMM_CAGE                                                 LEADER TECH        20S-CBSFNSV-1.75x3.0x0.35
+54     1 DS1                                                   HSMF-C155                          HSMF_C15X                LED-GRN-RED              2.0V                    2.0-20MA   AVAGO              HSMF-C155
+         DS2,DS3,DS4,DS5,DS6,DS7,DS8,DS9,DS10,DS21,DS24,DS25,D
+         S26,DS27,DS32,DS33,DS34,DS37,DS38,DS39,DS40,DS49,DS51
+55    26 ,DS53,DS54,DS55                                       LED-GRN-SMT_LED_0603               LED_0603                 LED-GRN-SMT              2.2V                    2.2-20MA   LUMEX              SML-LX0603GW-TR
+56     2 DS35,DS36                                             LED-RED-SMT_LED_0603               LED_0603                 LED-RED-SMT              2.0V                    2.0-20MA   LUMEX              SML-LX0603IW-TR
+57     1 HS1                                                   12VDC_FANSINK                      30-1944-12D              12VDC                                                       COFAN              30-1944-12D
+58     1 J1                                                    DDR4_SO-DIMM                       DDR4_SO-DIMM_SHIELDED    DDR4_SO-DIMM_SHIELDED                                       LOTES              ADDR0067-P001A
+59     1 J5                                                    ASP_134603_01                      ASP_134603_01            ASP_134603_01                                               SAMTEC             ASP_134603_01
+60     6 J12,J13,J20,J21,J22,J178                              HDR_1X2                            HDR_1X2                  HDR_1X2                                                     SULLINS            PBC36SAAN
+
+         J18,J19,J25,J28,J29,J30,J31,J32,J33,J34,J40,J41,J44,J163,J165,
+ 61    0 J166,J167,J168,J169,J170,J171,J172,J173,J174,J176,J177,J179 TP_5000_RED                  TP_KEY_MINI              DNP                                                         KEYSTONE           5000
+ 62    1 J52                                                            39-30-1060_JACK_500X540   CON_MOL_5569_6P          39-30-1060                                                  MOLEX              39-30-1060
+ 63    3 J55,J87,J160                                                   HDR_2X6_F_RA              HDR_F2X6_PMOD            HDR_2X6_F_RA                                                SULLINS            PPPC062LJBN-RC
+ 64    1 J71                                                            WM2701-ND                 HDR_1X3_LOCK_MOLEX       22_11_2032                                                  MOLEX              22-11-2032
+ 65    0 J77                                                            HDR_1X4                   HDR_1X4                  DNP                                                         SULLINS            DNP
+ 66    2 J85,J175                                                       HDR_1X3                   HDR_1X3                  HDR_1X3                                                     SULLINS            PBC36SAAN
+ 67    1 J96                                                            6.92122E+11               CON_CNC_692122030100     6.92122E+11                                                 WURTH              692122030100
+ 68    1 J98                                                            HDR_2X4                   HDR_2X4                  HDR_2X4                                                     SULLINS            PBC36DAAN
+ 69    1 J100                                                           CON_MOL_10P_5025700893    CON_MOL_10P_5025700893   CON_MOL_10P_5025700893                                      MOLEX              5025700893
+ 70    1 J164                                                           ZX62D_AB_5P8              CON_HR_ZX62D_AB_5P8      ZX62D_AB_5P8                                                HIROSE             ZX62D-AB-5P8
+ 71    1 J180                                                           MOLEX-87832-1420          87832_1420               87832-1420                                                  MOLEX              87832-1420
+ 72    4 L6,L11,L32,L33                                                 FERRITE-220_0603          603                      FERRITE-220                                                 TDK                MPZ1608S221A
+ 73    2 L15,L61                                                        BLM15EG121SN1D            402                      FERRITE-120                                                 MURATA             BLM15EG121SN1D
+ 74    4 L16,L17,L18,L19                                                FERRITE-600               805                      FERRITE-600                                                 LAIRD              HZ0805E601R-10
+ 75    8 L22,L23,L26,L27,L31,L34,L37,L40                                LQW15AN20NJ00D_0402       402                      20NH                            5%                          Murata             LQW15AN20NJ00D
+ 76    2 L63,L64                                                        FERRITE-600               805                      FERRITE-600                           X5R                   LAIRD              HZ0805E601R-10
+ 77    1 L66                                                            FERRITE-120_0603          603                      FERRITE-120                                                 Murata             BLM18SG121TN1D
+ 78    2 L69,L70                                                        FERRITE-220_0603          603                      FERRITE-220                                                 TDK                MPZ1608S221A
+ 79    2 L71,L72                                                        SRN2512-R68M_680NH        SRN2512-R68M             680NH                           20%                         BOURNS             SRN2512-R68M
+ 80    2 L73,L75                                                        SRP4020TA-2R2M_2_2UH      SRP4020TA-2R2M           2.2UH                           20%                         BOURNS             SRP4020TA-2R2M
+ 81    3 L74,L78,L81                                                    SRN2512-2R2M_2_2UH        SRN2512-2R2M             2.2UH                           20%                         BOURNS             SRN2512-2R2M
+ 82    3 L76,L77,L80                                                    SRP4020TA-1R5M_1_5UH      SRP4020TA-1R5M           1.5UH                           20%                         BOURNS             SRP4020TA-1R5M
+ 83    1 L79                                                            SRP5030T-4R7M_4_7UH       SRP5030T-4R7M            4.7UH                           20%                         BOURNS             SRP5030T-4R7M
+ 84    1 L82                                                            VLB10050HT-R20M_200NH     VLB10050HT-R20M          200NH                           20%                         TDK                VLB10050HT-R20M
+ 85    1 L83                                                            SRP7028A-R68M_680NH       SRP7028A-R68M            680NH                           20%                         BOURNS             SRP7028A-R68M
+ 86   10 L84,L85,L86,L87,L88,L89,L90,L91,L92,L93                        BLM18BB221SN1D            603                      FERRITE-220                     XXX                         MURATA             BLM18BB221SN1D
+ 87    1 L94                                                            SRP4020TA-1R0M_1_0UH      SRP4020TA-1R0M           1.0UH                           20%                         BOURNS             SRP4020TA-1R0M
+ 88    1 M2CAGE1                                                        M2_CAGE                   M2_CAGE                  M2_CAGE                                                     LEADER TECH        20S-CBSFNSV-1.0x2.25x0.40
+ 89    0 MH1,MH2,MH3,MH4                                                HOLE_MH_156_300           MH_300H156               MH_156_300                                                  DNP                DNP
+ 90    8 MJB1,MJB2,MJB3,MJB4,MJB5,MJB6,MJB7,MJB8                        JUMPER_BLOCK_2-PIN                                 JUMPER_BLOCK_2-PIN                                          ADAMTECH           MSDA-G
+ 91    4 MRB1,MRB2,MRB3,MRB4                                            RUBBER_BUMPER                                      RUBBER_BUMPER                                               KEYSTONE           720
+ 92    7 MS1,MS2,MS3,MS4,MS5,MS6,MS8                                    MACHINE_SCREW_4-40                                 MACHINE_SCREW_4-40                                          OLANDER            4C25PPMZR
+ 93    1 MS7                                                            MACHINE_SCREW_4-40_3-16                            MACHINE_SCREW_4-40                                          OLANDER            4C18PPMZR
+ 94    1 MS13                                                           MACHINE_SCREW_M3                                   MACHINE_SCREW_M3                                            EAGLE              481-0263
+ 95    4 MSO1,MSO2,MSO3,MSO4                                            STANDOFF_2203                                      STANDOFF_0P500                                              KEYSTONE           2203
+ 96    4 MW1,MW2,MW3,MW4                                                WASHER_FLAT_4                                      WASHER_FLAT_4                                               KEYSTONE           3348
+ 97    1 P7                                                             1888811-1                 1888811-1                1888811-1                                                   TE                 1888811-1
+ 98    1 P11                                                            472720001                 CON_MOLEX_47272          472720001                                                   MOLEX              472720001
+ 99    1 P12                                                            L829-1J1T-43              L829-1J1T-43             RJ45                                                        BEL FUSE           L829-1J1T-43
+100    0 PB1                                                            PWR_BRICK_12V                                      PWR_BRICK_12V                                               LTE                LTE60E-S2-1
+101    1 Q4                                                             BSS138                    SOT_23                   BSS138                   50V                     360MW      FAIRCHILD          BSS138
+102    3 Q6,Q8,Q45                                                      2N7002_215                SOT_23                   2N7002_215               60V                     830mW      NXP                2N7002,215
+103    1 Q7                                                     SI7157DP              PWR_56    SI7157DP   20V           104W    VISHAY          SI7157DP
+104    3 Q13,Q14,Q46                                            NDS331N_SOT23         SOT_23    NDS331N    20V           460MW   FAIRCHILD       NDS331N
+105    1 Q23                                                    SI2300DS_SOT23        SOT_23    SI2300DS   30V           1.7W    VISHAY          SI2300DS-T1-GE3
+106    2 R1,R2                                                  5_62K_0402            402       5.49K            1%      1/10W   PANASONIC       ERJ-2RKF5491X
+         R3,R140,R361,R461,R463,R563,R579,R581,R705,R706,R707,R
+107   18 855,R881,R1054,R1055,R1173,R1174,R1175                 0_0402                402       0                5%      1/10W   PANASONIC       ERJ-2GE0R00X
+         R13,R14,R15,R16,R17,R18,R19,R22,R32,R37,R38,R94,R107,R
+         149,R150,R168,R178,R236,R243,R272,R273,R274,R275,R278,
+         R505,R506,R580,R677,R717,R764,R955,R956,R957,R958,R97
+         0,R980,R1098,R1099,R1166,R1169,R1198,R1199,R1200,R120
+108   45 1,R1202                                                4_70K_0402            402       4.70K            1%      1/16W   PANASONIC       ERJ-2RKF4701X
+         R90,R108,R214,R285,R287,R292,R295,R303,R304,R628,R100
+109   15 4,R1124,R1125,R1168,R1195                              100_0402              402       100              1%      1/10W   PANASONIC       ERJ-2RKF1000X
+110    1 R105                                                   1_50K_0402            402       1.50K            1%      1/10W   PANASONIC       ERJ-2RKF1501X
+111    4 R106,R175,R1176,R1177                                  10_0402               402       10               1%      1/10W   PANASONIC       ERJ-2RKF10R0X
+         R109,R210,R211,R222,R230,R235,R290,R291,R297,R299,R30
+         0,R301,R313,R314,R315,R316,R317,R318,R331,R338,R373,R3
+         77,R380,R381,R383,R388,R395,R410,R411,R417,R425,R426,R
+         512,R518,R543,R544,R587,R588,R589,R590,R597,R598,R605,
+         R606,R611,R694,R695,R893,R894,R959,R960,R961,R962,R96
+         3,R964,R965,R966,R971,R1021,R1022,R1025,R1101,R1172,R
+112    0 1196,R1197                                             DNP_R_0402            402       DNP              DNP     DNP     DNP             DNP
+113    2 R132,R133                                              20_5K_0402            402       20.5K            1%      1/10W   PANASONIC       ERJ-2RKF2052X
+114    2 R138,R141                                              2_21K_0402            402       2.21K            1%      1/10W   PANASONIC       ERJ-2RKF2211X
+115    1 R143                                                   4_7M_0402             402       4.7M             5%      1/10W   PANASONIC       ERJ-2GEJ475X
+116    2 R144,R145                                              36_0402               402       36               1%      1/10W   PANASONIC       ERJ-2RKF36R0X
+         R156,R164,R187,R237,R238,R239,R240,R922,R1145,R1149,R
+117   12 1158,R1159                                             499_0402              402       499              1%      1/10W   PANASONIC       ERJ-2RKF4990X
+         R162,R583,R584,R585,R586,R591,R592,R593,R594,R599,R60
+118   19 0,R601,R602,R616,R617,R1183,R1184,R1187,R1193          4_99K_0402            402       4.99K            1%      1/10W   PANASONIC       ERJ-2RKF4991X
+119    0 R180,R967                                              DNP_R_0402_25_ROUND   C402-25   DNP              DNP     DNP     DNP             DNP
+120    1 R181                                                   6_81K_0402            402       6.81K            1%      1/10W   PANASONIC       ERJ-2RKF6811X
+121   10 R182,R185,R188,R189,R190,R191,R192,R194,R685,R686      49_9_0402             402       49.9             1%      1/10W   PANASONIC       ERJ-2RKF49R9X
+122    4 R195,R200,R202,R212                                    61_9K_0402            402       61.9K            1%      1/10W   PANASONIC-ECG   ERJ-2RKF6192X
+123    1 R209                                                   11_0K_0402            402       11.0K            1%      1/10W   PANASONIC       ERJ-2RKF1102X
+124    1 R227                                                   1M_0402               402       1M               1%      1/16W   VISHAY          CRCW04021M00FKED
+125    2 R241,R684                                              8_06K_0402            402       8.06K            1%      1/10W   PANASONIC       ERJ-2RKF8061X
+126    1 R249                                                   500_0402              402       500              0.10%   1/20W   VISHAY          PNM0402E5000BST1
+         R256,R260,R262,R264,R265,R266,R267,R269,R271,R644,R64
+         5,R651,R652,R688,R691,R761,R803,R804,R928,R1011,R1016,
+         R1017,R1018,R1123,R1126,R1127,R1128,R1129,R1171,R117
+127   33 9,R1180,R1181,R1182                                    10_0K_0402            402       10.0K            1%      1/10W   PANASONIC       ERJ-2RKF1002X
+128    8 R268,R448,R630,R631,R632,R633,R1075,R1076              2_00K_0402            402       2.00K            1%      1/16W   PANASONIC       ERJ-S02F2001X
+         R323,R326,R328,R354,R355,R356,R386,R387,R390,R392,R52
+         8,R529,R530,R531,R532,R534,R545,R546,R550,R551,R564,R5
+129   29 70,R629,R640,R641,R709,R914,R1102,R1190                261_0402              402       261              1%      1/10W   PANASONIC       ERJ-2RKF2610X
+         R337,R340,R341,R342,R343,R348,R350,R359,R360,R396,R39
+         7,R398,R400,R402,R404,R405,R406,R407,R412,R435,R607,R6
+         08,R609,R610,R626,R627,R634,R681,R683,R696,R697,R723,R
+         918,R919,R1059,R1071,R1072,R1097,R1142,R1148,R1151,R1
+130   46 162,R1163,R1164,R1165,R1203                            1_00K_0402            402       1.00K            1%      1/16W   ROHM            MCR01MZPF1001
+131    9 R345,R349,R351,R621,R622,R623,R624,R625,R968           240_0402              402       240              1%      1/10W   PANASONIC-ECG   ERJ-2RKF2400X
+132    2 R353,R809                                              200K_0402             402       200K             1%      1/10W   PANASONIC       ERJ-2RKF2003X
+133    8 R357,R358,R660,R665,R666,R667,R668,R676                100_0201              201       100              1%      1/20W   PANASONIC       ERJ-1GEF1000C
+         R477,R478,R479,R480,R481,R482,R483,R484,R485,R486,R48
+         7,R488,R489,R490,R491,R492,R493,R494,R495,R496,R497,R4
+134   25 98,R499,R500,R501                                      39_2_0402             402       39.2             1%      1/10W   PANASONIC       ERJ-2RKF39R2X
+135    1 R554                                                   6_49K_0402            402       6.49K            1%      1/10W   PANASONIC-ECG   ERJ-2RKF6491X
+136    3 R557,R558,R559                                         64_9K_0402            402       64.9K            1%      1/10W   PANASONIC       ERJ-2RKF6492X
+137    4 R637,R700,R701,R702                                    100K_0402             402       100K             1%      1/10W   PANASONIC       ERJ-2RKF1003X
+138    4 R658,R728,R731,R743                                    1_0M_0402             402       1.0M             5%      1/10W   PANASONIC       ERJ-2GEJ105X
+139    1 R687                                                   2_49K_0402            402       2.49K            1%      1/10W   PANASONIC       ERJ-2RKF2491X
+140    1 R712                                                   470K_0402             402       470K             1%      1/10W   PANASONIC       ERJ-2RKF4703X
+141    2 R718,R727                                              60_4_0402             402       60.4             1%      1/10W   PANASONIC       ERJ-2RKF60R4X
+142    2 R846,R1093                                             261_0201              201       261              1%      1/20W   PANASONIC       ERJ-1GEF2610C
+143    1 R883                                                   40_2_0402             402       40.2             1%      1/10W   PANASONIC       ERJ-2RKF40R2X
+144    3 R912,R1103,R1104                                       4_02K_0402            402       4.02K            1%      1/10W   PANASONIC       ERJ-2RKF4021X
+145    1 R913                                                   18_2K_0402            402       18.2K            1%      1/10W   PANASONIC       ERJ-2RKF1822X
+146    1 R915                                                   191_0402              402       191              1%      1/16W   VISHAY          CRCW0402191RFKED
+147    1 R921                                                   20_0402               402       20               1%      1/16W   VISHAY          CRCW040220R0FKED
+         R931,R934,R935,R936,R937,R938,R941,R942,R943,R944,R94
+148   15 5,R946,R947,R948,R949                                  30_0402               402       30               1%      1/10W   PANASONIC       ERJ-2RKF30R0X
+149    7 R995,R996,R1112,R1113,R1114,R1115,R1135                3_32K_0402            402       3.32K            1%      1/10W   PANASONIC       ERJ-2RKF3321X
+150    2 R997,R998                                              40_2K_0402            402       40.2K            1%      1/10W   PANASONIC       ERJ-2RKF4022X
+151    2 R1048,R1130                                            12_0K_0402            402       12.0K            1%      1/10W   PANASONIC       ERJ-2RKF1202X
+152    1 R1105                                                  806_0402              402       806              1%      1/10W   PANASONIC-ECG   ERJ-2RKF8060X
+153    1 R1106                                                  68_1_0402             402       68.1             1%      1/10W   PANASONIC       ERJ-2RKF68R1X
+154    2 R1107,R1152                                            2_32K_0402            402       2.32K            1%      1/10W   PANASONIC       ERJ-2RKF2321X
+155    2 R1108,R1153                                            2_87K_0402            402       2.87K            1%      1/10W   PANASONIC       ERJ-2RKF2871X
+156    3 R1110,R1111,R1194                                      29_4K_0402            402       29.4K            1%      1/10W   PANASONIC       ERJ-2RKF2942X
+157    2 R1116,R1117                                                1_62K_0402                  402                   1.62K                                             1%      1/10W   PANASONIC-ECG   ERJ-2RKF1621X
+158    1 R1118                                                      698_0402                    402                   698                                               1%      1/10W   PANASONIC       ERJ-2RKF6980X
+159    1 R1119                                                      16_5K_0402                  402                   16.5K                                             1%      1/10W   PANASONIC       ERJ-2RKF1652X
+160    1 R1120                                                      2_94K_0402                  402                   2.94K                                             1%      1/10W   PANASONIC       ERJ-2RKF2941X
+161    4 R1121,R1122,R1160,R1161                                    2_2_0603                    603                   2.2                                               1%      1/10W   PANASONIC       ERJ-3RQF2R2V
+162    1 R1150                                                      2_80K_0402                  402                   2.80K                                             1%      1/10W   PANASONIC       ERJ-2RKF2801X
+163    1 R1154                                                      3_01K_0402                  402                   3.01K                                             1%      1/10W   PANASONIC       ERJ-2RKF3011X
+164    1 R1157                                                      23_2K_0402                  402                   23.2K                                             1%      1/10W   PANASONIC       ERJ-2RKF2322X
+165    1 R1170                                                      4_75K_0402                  402                   4.75K                                             1%      1/10W   PANASONIC       ERJ-2RKF4751X
+166    1 R1178                                                      LVK25R005FER                1224_SMT              0.005                                             1%      2W      OHMITE          LVK25R005FER
+167    2 R1191,R1192                                                4_42K_0402                  402                   4.42K                                             1%      1/10W   PANASONIC-ECG   ERJ-2RKF4421X
+168    3 RP1,RP2,RP5                                                10KX4_0603X4                RP_EXB_0603X4         10.0K                                             5%      1/16W   PANASONIC       EXB-V8V103JV
+169    1 SP1                                                        SPACER_6MM_ROUND            9774025360            SPACER_6MM_ROUND                                                  WURTH           9774025360
+170    1 SW1                                                        1101M2S3AQE2                SW_102_1261_EV        1101M2S3AQE2                                                      C&K             1101M2S3AQE2
+171    8 SW3,SW4,SW5,SW14,SW15,SW17,SW18,SW20                       TL3301EF100QG-ND            SW_TL3301_G_4P        TL3301EF100QG                                                     ESWITCH         TL3301EF100QG
+172    2 SW6,SW13                                                   SDA04H1SBD                  SW_SDA_8P             SDA04H1SBD                                                        C&K             SDA04H1SBD
+173    1 U1                                                         SOC_DA6_FFVC1156_IRONWOOD   SOC_1156_1MM_IRON     SOC_DA6_FFVC1156_IRONWOOD                                         XILINX          XCZU7EV-2FFVC1156E
+174    4 U2,U99,U100,U101                                           MT40A256M16GE_083E          FBGA_DDR4_96P         MT40A256M16GE-083E          1.2V                                  MICRON          MT40A256M16GE-083E:B
+175    1 U19                                                        TMDS181IRGZT                TMDS181IRGZT          TMDS181                     3.3, 1.1V                             TI              TMDS181IRGZT
+176    1 U22                                                        MAX16025                    TQFN_16               MAX16025                    28V                                   MAXIM           MAX16025TE+
+177    1 U23                                                        M24C08-WDW6TP               TSSOP8_65P440X300MM   M24C08-WDW6TP               2.5V-5V                               ST MICRO        M24C08-WDW6TP
+178    1 U25                                                        BNX016-01                   MURATA_BNX01          50MOHM                                                            MURATA          BNX016-01
+179    1 U27                                                        NC7SZ66                     SC70_5                NC7SZ66P5X                  1.65V                                 FAIRCHILD       NC7SZ66P5X
+180    1 U33                                                        TXS0104E                    SOIC_14               TXS0104E                    1.7V-5.5V                             TI              TXS0104EDR
+181    1 U34                                                        TCA9548APWR_TSSOP_24        TSSOP_24              TCA9548APWR                 1.65-5.5V                             TI              TCA9548APWR
+182    3 U43,U44,U167                                               SN74AVC1T45                 SC70_6                SN74AVC1T45                 1.2V-3.6V                             TI              SN74AVC1T45DCKR
+183    2 U45,U136                                                   PCA9306DCTR                 DCT_R_PDSO_G8         PCA9306DCTR                 1.2-3.3V, 1.8-5.5V                    TI              PCA9306DCTR
+184    4 U58,U114,U163,U165                                         SN74AVC4T245                QFN_RSV_16            SN74AVC4T245                1.2V-3.6V                             TI              SN74AVC4T245RSVR
+185    2 U66,U68                                                    SN74AVC8T245                TSSOP_24              SN74AVC8T245                1.2V                                  TI              SN74AVC8T245PWR
+186    1 U70                                                        TPD12S016RKTR               TPD12S016RKTR         TPD12S016RKTR               5.5V                                  TI              TPD12S016RKTR
+         U71,U72,U73,U82,U83,U89,U90,U91,U107,U110,U111,U113,
+187   16 U118,U123,U125,U126                                        TPD1E05U06DPYT              TPD1E05U06DPYT        TPD1E05U06DPYT              5.5V                                  TI              TPD1E05U06DPYT
+188    1 U94                                                        SN65DP159RGZ                SN65DP159RGZ          SN65DP159RGZ                3.3, 1.1V                             TI              SN65DP159RGZ
+189    1 U97                                                        TCA6416APWR                 TCA6416APWR           TCA6416A                    1.65V-5.5V                            TI              TCA6416APWR
+190    1 U98                                                        DP83867IRPAP                PQFP_64_EP            DP83867IRPAP                1.8V-3.3V                             TI              DP83867IRPAP
+191    1 U109                                                       M24C64-W                    TSSOP_8               M24C64-W                    2.5V-5V                               ST MICRO        M24C64-WDW6TP
+192    1 U115                                                       TPD2EUSB30DRTR              DRT_R_PDSO_N3         TPD2EUSB30DRTR              5.5V                                  TI              TPD2EUSB30DRTR
+193    1 U116                                                       USB3320_QFN32               USB3320_QFN32         USB3320                     3.3V                                  SMSC            USB3320C-EZK-TR
+194    1 U119                                                       MT25QU512ABB8ESF-0SIT       SO16_50P300X413       MT25QU512ABB8ESF-0SIT       1.7V-2V                               MICRON          MT25QU512ABB8ESF-0SIT         N25Q512A11GSF40
+195    1 U121                                                       MIC2544_1YM_SOP8            SOIC_8                MIC2544A-1YM                2.7V TO 5.5V                          MICREL          MIC2544A-1YM
+196    1 U122                                                       SN65HVD232                  SOIC_8                SN65HVD232                  3.0V-3.6V                             TI              SN65HVD232D
+197    1 U124                                                       FIN1019                     TSSOP_14              FIN1019                     3.3V                                  FAIRCHILD       FIN1019MTC
+198    1 U128                                                       MAX6643                     QSOP16_MAX_E16_1      MAX6643                     3.0-5.0V                              MAXIM           MAX6643LBBAEE+
+199    1 U129                                                       TPD8S009DSMR                SON_15P               TPD8S009DSMR                0-6V                                  TI              TPD8S009DSMR
+200    2 U131,U185                                                  TPD4E05U06DQAR              DQA_R_PSON_N10        TPD4E05U06DQAR              6.5V                                  TI              TPD4E05U06DQAR
+201    1 U132                                                       TPD4E001DRLR                DRL_R_PDSO_N6         TPD4E001DRLR                0.9-5.5V                              TI              TPD4E001DRLR
+202    1 U145                                                       MAX13035E                   TQFN_16               MAX13035E                   1.62V-3.2V,2.2-3.6V                   MAXIM           MAX13035EETE+
+203    1 U148                                                       MAX8902B                    TDFN_8_EP             MAX8902B                    1.7V-5.5V                             MAXIM           MAX8902BATA+T
+204    1 U151                                                       FT4232HL_64LQFP             LQFP64P50W1000        FT4232HL_64LQFP             5V,3.3V                       1/10W   FTDI            FT4232HL-REEL
+205    1 U152                                                       93LC56B_SOIC8               SOIC8P127W390         93LC56B                     2.5V-5.5V                             MICROCHIP       93LC56B-I/SN
+206    1 U157                                                       MAX9100                     SOT23_5               MAX9100                     5.0V                                  MAXIM           MAX9100EUK+T
+207    1 U158                                                       TCA9406DCUR                 DCU_R_PDSO_G8         TCA9406DCUR                 1.65 to 5.0V                          TI              TCA9406DCUR
+208    2 U159,U186                                                  NC7WZ07                     SC70_6                NC7WZ07                     5.5V                                  FAIRCHILD       NC7WZ07P6X
+209    1 U161                                                       TXS0108E                    TSSOP_20              TXS0108E                    1.2V-3.6V,1.6-5.5V                    TI              TXS0108EPWR
+210    1 U166                                                       TL1963A_33DCYR              DCY_R_DPSO_G4         TL1963A_33DCYR              3.3V                                  TI              TL1963A-33DCYR
+211    2 U168,U169                                                  SN74LVC1G08                 SC70_5                SN74LVC1G08                 1.65V-5.5V                            TI              SN74LVC1G08DCKR
+212    1 U170                                                       MDT420M02001                MDT420M02001          MDT420M02001                                                      AMPHENOL        MDT420M02001
+213    1 U171                                                       IR3823MTRPBF_3P5X3P5        IR3823MTRPBF          IR3823MTRPBF                5-21V                                 INFINEON        IR3823MTRPBF
+214    2 U172,U173                                                  IR3883MTRPBF_3X3            IR3883MTRPBF          IR3883MTRPBF                2.5-14V                               INFINEON        IR3883MTRPBF
+215    1 U174                                                       IFX54441LDV_PGTSON10        IFX54441LDV           IFX54441LDV                 5.5V-20V                              INFINEON        IFX54441LDV
+216    2 U175,U176                                                  TDA21240_4X4                TDA21240              TDA21240                    4.5-16V                               INFINEON        TDA21240
+217    3 U177,U178,U184                                             IR3897MTRPBF_4X5QFN         IR3897MTRPBF          IR3897MTRPBF                1-21V                                 INFINEON        IR3897MTRPBF
+218    2 U179,U180                                                  IRPS5401MXI04TRPBF_7X7      IRPS5401MTRPBF        IRPS5401MXI04TRPBF          6-12V                                 INFINEON        IRPS5401MXI04TRP
+219    1 U181                                                       8T49N241                    8T49N241              8T49N241                    2.5-3.3V                              IDT             IDT8T49N241-994NLGI
+220    1 U182                                                       8T49N287                    8T49N287              8T49N287                    3.3V                                  IDT             IDT8T49N287A-501NLGI
+221    1 U183                                                       INA226                      DGS_MSOP_10           INA226                      36V                                   TI              INA226AIDGS
+222    2 X4,X13                                                     25M_FA-238A_XTAL            XTAL_FA238A           25.00MHZ                                          15PPM           EPSON           FA-238A 25.0000ME30A-C
+223    1 X5                                                         32K_FC-13A_XTAL             XTAL_FC13A            32.768KHZ                                         20PPM           EPSON           FC-13A 32.7680KA-A
+224    1 X10                                                        24M_FA-238A_XTAL            XTAL_FA238A           24.00MHZ                                          30PPM           EPSON           FA-238A 24.0000MJ0YYbbJ50RG
+225    1 X11                                                        TPD4S012                    DRY_6_SON             TPD4S012                    20V                   20PPM   60MW    TI              TPD4S012DRYR
+226    1 X12                                                        12M_FA-238A_XTAL            XTAL_FA238A           12.00MHZ                                          20PPM           EPSON           FA-238A 12.0000MA30X-C
+227    1 X14                                                        40M_FA-238A_XTAL            XTAL_FA238A           40.00M                                            10PPM           EPSON           FA-238A 40.00M-COAATTG40RG
+         Z5,Z6,Z7,Z8,Z9,Z10,Z11,Z12,Z13,Z15,Z16,Z17,Z18,Z20,Z21,Z22
+228    0 ,Z23,Z24,Z25,Z26                                           0201_SHORT                  0201_SHORT            0201_SHORT                                                        NA              NA
+

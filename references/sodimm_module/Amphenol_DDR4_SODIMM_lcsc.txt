@@ -1,0 +1,102 @@
+           Storage &
+           Server IO
+
+
+DDR4 SO-DIMM Connectors
+HIGH SPEED HIGH DENSITY
+SO-DIMM SOCKETS
+DDR4 SO-DIMM connectors deliver high-speed and
+bandwidth. Being half the size of regular DIMMs, they
+lower power consumption and promote better thermal
+management. Different key positions aid alignment and
+prevent mismating. 260 position SO-DIMM connectors
+are available in 4.00mm, 5.20mm, 8.00mm, 9.20mm
+height, in standard or reverse options.
+
+§ High density design of 0.50mm pitch saves board space
+§ High speed DDR4 digital validation
+§ Different key positions aid alignment
+§ SMT mechanical hold-downs                                  TARGET MARKETS
+§ Provides both right angle and vertical orientation to
+  support different customer preference
+
+
+
+
+FEATURES                                                  BENEFITS
+
+§ 4.00mm, 5.20mm, 8.00mm, 9.20mm height offerings         § Accommodates different customer applications
+
+§ High density design of 0.50mm pitch                     § Saves board space
+                                                          § Allows more transition channel for signal
+
+§ LCP, Halogen-free, resin housing material               § Withstands high temperature IR flow
+
+§ Different key positions                                 § Helps to align connector and prevent mismating
+
+§ SMT mechanical hold-downs                               § Ensures co-planarity adjustment during mounting
+
+
+
+
+ www.amphenol-cs.com
+     DDR4 SO-DIMM Connectors
+
+
+TECHNICAL INFORMATION
+MATERIAL                                                               TARGET MARKETS/APPLICATIONS
+§ LCP
+                                                                                    Servers
+ELECTRICAL PERFORMANCE                                                              Workstations
+
+§ Data Rate (Mb/s):
+ 1600/1866/2133/2667/3200                                                           Desktop PCs
+                                                                                    Notebook PCs
+MECHANICAL PERFORMANCE
+                                                                                    Routers
+§ Current Per Contact: 0.5A max.                                                    Switches
+§ Voltage Rating: 1.2V max.
+                                                                                    Base Stations
+
+ENVIRONMENTAL                                                                       Embedded Systems
+§ RoHS compliant
+
+§ Halogen-free
+
+SPECIFICATIONS
+§ Product Specification: GS-12-1397
+
+PACKAGING
+§ Tape & Reel
+
+
+
+
+PART NUMBERS
+  Description                           Pitch (mm)         Height (mm)          Orientation         Part Numbers
+
+  DDR4 SO-DIMM Right Angle              0.50               4.00                 Standard            10159014*
+  DDR4 SO-DIMM Right Angle              0.50               4.00                 Reverse             10159190*
+  DDR4 SO-DIMM Right Angle              0.50               4.00                 Standard            10141997*
+  DDR4 SO-DIMM Right Angle              0.50               4.00                 Reverse             10141998*
+  DDR4 SO-DIMM Right Angle              0.50               5.20                 Standard            10141730*
+  DDR4 SO-DIMM Right Angle              0.50               5.20                 Reverse             10141731*
+
+  DDR4 SO-DIMM Right Angle              0.50               8.00                 Standard            10141995*
+  DDR4 SO-DIMM Right Angle              0.50               8.00                 Reverse             10141996*
+  DDR4 SO-DIMM Right Angle              0.50               9.20                 Standard            10141732*
+  DDR4 SO-DIMM Right Angle              0.50               9.20                 Reverse             10141733*
+  DDR4 SO-DIMM Vertical                 0.50               -                    -                   10153311*
+                                                                                                                                                                   SSIODDR4SODIMM1122EA4
+
+
+
+
+*denotes base part number. Please contact Amphenol for complete part numbers.
+
+
+
+
+            www.amphenol-cs.com                                                           Disclaimer
+                                                                                          Please note that the above information is subject to change without notice.
+
