@@ -20,11 +20,6 @@ power-on chain or string together many ICs when a simpler, more dumb design will
 
 Remove any Antmicro or OpenHardware branding in the board files.
 
-Start by:
-- Explore references/. In particular, read references/hs_design, which has the Bible of electromagnetics.
-- Explore how Antmicro does their tester board and how it integrates into their testbed in ./sodimm-ddr5-tester/.
-- Answer carefully: Will the pseudo-differential strategy work for reads? For example, there may be lots of switching noise/crosstalk on the long DC N wires.
-
 Use kicad 10.
 
 Always assume that any gateware change on the host FPGA (zcu104) is trivial and can be done. It's always easier to do that than change the physical PCB design.
@@ -38,3 +33,10 @@ In the end, produce a design that's almost ready for fabrication. No need to tar
 I've already begun a bit with deleting parts of the Antmicro design.
 
 You are only allowed to use git commands that do not modify the state - no adding, commiting, etc.
+
+Start by:
+- Explore references/. In particular, read references/hs_design, which has the Bible of electromagnetics.
+- Explore how Antmicro does their tester board and how it integrates into their testbed in ./sodimm-ddr5-tester/.
+- Answer carefully: Will the pseudo-differential strategy work for reads? For example, there may be lots of switching noise/crosstalk on the long DC N wires.
+Spawn a few subagents to generate a few different ideas for each question above. Generate also a few different ideas for the initial design, being
+the high level parts list and how commands, reads, and writes will work in a bit of detail. The present these findings to me before doing any changes to the board.
