@@ -1,0 +1,3 @@
+[submodule "sodimm-ddr5-tester"]
+	path = sodimm-ddr5-tester
+	url = https://github.com/antmicro/sodimm-ddr5-tester.git

@@ -37,9 +37,6 @@ command-only traffic.
 
 | Folder | Contents |
 |---|---|
-| `kicad/` | the design (schematic, PCB, rules), KiCad 10 format; 3D models in `kicad/3dmodels/` |
-| `fab/` | single-board outputs and `fab/jlc/` (outputs for uploading to JLCPCB) |
-| `fpga/` | PHY gateware generators (`gen_ips.py`, `gen_top.py`, `build.tcl`), testbench (`sim/`), build and xsim results (`results/rev1.1.0/`, `results/rev2.1.0/`) |
 | `references/` | data sheets, user guides, the JEDEC text, models and vendor PCB guidelines used for the design (`references/README.md`) |
 
 
