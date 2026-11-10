@@ -3,6 +3,8 @@ We want to achieve the highest level of signal integrity for the command bus, NO
 which is implemented with a high speed command stream, based on prior literature work like ComputeDRAM. So, reads and writes need to work at reasonable speeds,
 but it's more important that the command bus is solid.
 
+Target the SK Hynix part H58G56BK7BX068N. Assume it has the same pinout as the JEDEC/equivalent Micron parts.
+
 The high level idea is similar to the Antmicro LPDDR5 testbed, but with major differences. We want to have a single LPDDR5 chip soldered onto the DDR4 SODIMM board,
 but it has to communicate differently. Writes and commands are sent with resisitive divider level shifters, while reads are directly wired to the zcu104
 with a pseudo-differential scheme where N pins are wired to a DAC maintaining ~half the swing voltage.
@@ -28,11 +30,23 @@ There is also a full suite of Ansys EDT tools available on a remote server. Expl
 `ssh -i ~/.ssh/id_macbook vassilios-kaxiras@compute-1.hardware.normalcomputing.net` and run `ansysedt` to get started.
 You can use SiWave for large simulations, and HFSS for small scale more accurate 3D simulations (like of the DDR4 sodimm socket).
 
+Vivado is available as version 2026. See ~/.bashrc.
+
 In the end, produce a design that's almost ready for fabrication. No need to target a specific fab vendor for now.
 
 I've already begun a bit with deleting parts of the Antmicro design.
 
 You are only allowed to use git commands that do not modify the state - no adding, commiting, etc.
+
+When you are placing and routing, periodically check the whole layer and the whole board to check that everything still looks good. It's easy to get too focused
+on one aspect and forget to take a step back and realize you're going down a wrong path. Don't be afraid to rip up and restart. Be critical. 
+
+When routing read/write byte groups, and the command bundles, delay match the wires within one group.
+
+When routing high speed wires, follow Antmicro's convention: groups of high speed wires in a layer without much else, sandwiched by ground layers.
+Always route differential pairs tightly together.
+
+Keep the resistive dividers near the card fingers.
 
 Start by:
 - Explore references/. In particular, read references/hs_design, which has the Bible of electromagnetics.
@@ -41,3 +55,4 @@ Start by:
   is how to receive the data; one way is using MIPI_DPHY_DCI, but it's unclear if that will work well with pseudo-differential.
 Spawn a few subagents to generate a few different ideas for each question above. Generate also a few different ideas for the initial design, being
 the high level parts list and how commands, reads, and writes will work in a bit of detail. The present these findings to me before doing any changes to the board.
+
