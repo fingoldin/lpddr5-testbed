@@ -36,3 +36,5 @@ You can use SiWave for large simulations, and HFSS for small scale more accurate
 In the end, produce a design that's almost ready for fabrication. No need to target a specific fab vendor for now.
 
 I've already begun a bit with deleting parts of the Antmicro design.
+
+You are only allowed to use git commands that do not modify the state - no adding, commiting, etc.
