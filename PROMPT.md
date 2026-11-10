@@ -37,6 +37,7 @@ You are only allowed to use git commands that do not modify the state - no addin
 Start by:
 - Explore references/. In particular, read references/hs_design, which has the Bible of electromagnetics.
 - Explore how Antmicro does their tester board and how it integrates into their testbed in ./sodimm-ddr5-tester/.
-- Answer carefully: Will the pseudo-differential strategy work for reads? For example, there may be lots of switching noise/crosstalk on the long DC N wires.
+- Answer carefully: Will the pseudo-differential strategy work for reads? For example, there may be lots of switching noise/crosstalk on the long DC N wires. Another issue
+  is how to receive the data; one way is using MIPI_DPHY_DCI, but it's unclear if that will work well with pseudo-differential.
 Spawn a few subagents to generate a few different ideas for each question above. Generate also a few different ideas for the initial design, being
 the high level parts list and how commands, reads, and writes will work in a bit of detail. The present these findings to me before doing any changes to the board.
