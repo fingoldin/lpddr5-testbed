@@ -1,0 +1,841 @@
+{
+ "method": "HFSS 2026 R1, driven modal: one In3 trace (0.018 mm thick, PEC) between two ground planes 0.488 mm apart, 0.110 mm below the upper one, er 4.29, lossless, PEC box 0.6 mm beside the copper, wave ports on both ends, adaptive at 8 GHz to delta S 0.002 (second-order basis), discrete sweep 0.5 .. 10 GHz. Electrical length added = (delay of the shape - delay of a straight line of the same box length) / 6.9137 ps/mm, from the phase of S21 at 3 GHz; flat to 0.002 mm from 0.5 to 8 GHz. Scripts: scratch only (hf_bend.py, mkpoly2.py); geometry = the vertex lists of scripts/tuning.py",
+ "straight_line_ps_per_mm": 6.9137,
+ "repeatability_mm": 0.002,
+ "repeatability_note": "one final shape (CA2) run again with delta S 0.0005: 2.0722 mm against 2.0732 mm",
+ "calibration": [
+  {
+   "run": "v_dog068_w15",
+   "shape": "parallel shift 0.68 mm (four mitred 45-degree vertices), w 0.15",
+   "width": 0.15,
+   "vertices": [
+    [
+     0.0,
+     -1.0,
+     null
+    ],
+    [
+     0,
+     1.2,
+     null
+    ],
+    [
+     0.68,
+     1.88,
+     null
+    ],
+    [
+     0.68,
+     3.88,
+     null
+    ],
+    [
+     0,
+     4.56,
+     null
+    ],
+    [
+     0.0,
+     6.76,
+     null
+    ]
+   ],
+   "centre_line_added_mm": 0.5633,
+   "hfss_electrical_added_mm": 0.5001,
+   "hfss_at_1_and_8_ghz_mm": [
+    0.5,
+    0.5003
+   ]
+  },
+  {
+   "run": "v_dog068_w10",
+   "shape": "parallel shift 0.68 mm (four mitred 45-degree vertices), w 0.10",
+   "width": 0.1,
+   "vertices": [
+    [
+     0.0,
+     -1.0,
+     null
+    ],
+    [
+     0,
+     1.2,
+     null
+    ],
+    [
+     0.68,
+     1.88,
+     null
+    ],
+    [
+     0.68,
+     3.88,
+     null
+    ],
+    [
+     0,
+     4.56,
+     null
+    ],
+    [
+     0.0,
+     6.76,
+     null
+    ]
+   ],
+   "centre_line_added_mm": 0.5633,
+   "hfss_electrical_added_mm": 0.5087,
+   "hfss_at_1_and_8_ghz_mm": [
+    0.5087,
+    0.5089
+   ]
+  },
+  {
+   "run": "u_acc1_a73_r20_p144",
+   "shape": "one bump 0.73 mm, r 0.20, legs 1.44 mm apart",
+   "width": 0.15,
+   "vertices": [
+    [
+     0.0,
+     -1.0,
+     null
+    ],
+    [
+     0.0,
+     1.2,
+     0.2
+    ],
+    [
+     0.73,
+     1.2,
+     0.2
+    ],
+    [
+     0.73,
+     2.64,
+     0.2
+    ],
+    [
+     0.0,
+     2.64,
+     0.2
+    ],
+    [
+     0.0,
+     4.84,
+     null
+    ]
+   ],
+   "centre_line_added_mm": 1.1161,
+   "hfss_electrical_added_mm": 0.9883,
+   "hfss_at_1_and_8_ghz_mm": [
+    0.9883,
+    0.9884
+   ]
+  },
+  {
+   "run": "u_acc1_a73_r20_p72",
+   "shape": "one bump 0.73 mm, r 0.20, legs 0.72 mm apart",
+   "width": 0.15,
+   "vertices": [
+    [
+     0.0,
+     -1.0,
+     null
+    ],
+    [
+     0.0,
+     1.2,
+     0.2
+    ],
+    [
+     0.73,
+     1.2,
+     0.2
+    ],
+    [
+     0.73,
+     1.92,
+     0.2
+    ],
+    [
+     0.0,
+     1.92,
+     0.2
+    ],
+    [
+     0.0,
+     4.12,
+     null
+    ]
+   ],
+   "centre_line_added_mm": 1.1161,
+   "hfss_electrical_added_mm": 0.9823,
+   "hfss_at_1_and_8_ghz_mm": [
+    0.9822,
+    0.983
+   ]
+  },
+  {
+   "run": "u_acc2_a73_r20_p72",
+   "shape": "two bumps 0.73 mm, r 0.20, legs 0.72 mm apart",
+   "width": 0.15,
+   "vertices": [
+    [
+     0.0,
+     -1.0,
+     null
+    ],
+    [
+     0.0,
+     1.2,
+     0.2
+    ],
+    [
+     0.73,
+     1.2,
+     0.2
+    ],
+    [
+     0.73,
+     1.92,
+     0.2
+    ],
+    [
+     0.0,
+     1.92,
+     0.2
+    ],
+    [
+     0.0,
+     2.64,
+     0.2
+    ],
+    [
+     0.73,
+     2.64,
+     0.2
+    ],
+    [
+     0.73,
+     3.36,
+     0.2
+    ],
+    [
+     0.0,
+     3.36,
+     0.2
+    ],
+    [
+     0.0,
+     5.56,
+     null
+    ]
+   ],
+   "centre_line_added_mm": 2.2321,
+   "hfss_electrical_added_mm": 1.96,
+   "hfss_at_1_and_8_ghz_mm": [
+    1.9602,
+    1.9601
+   ]
+  },
+  {
+   "run": "u_acc2_a73_r20_p48",
+   "shape": "two bumps 0.73 mm, r 0.20, legs 0.48 mm apart",
+   "width": 0.15,
+   "vertices": [
+    [
+     0.0,
+     -1.0,
+     null
+    ],
+    [
+     0.0,
+     1.2,
+     0.2
+    ],
+    [
+     0.73,
+     1.2,
+     0.2
+    ],
+    [
+     0.73,
+     1.68,
+     0.2
+    ],
+    [
+     0.0,
+     1.68,
+     0.2
+    ],
+    [
+     0.0,
+     2.16,
+     0.2
+    ],
+    [
+     0.73,
+     2.16,
+     0.2
+    ],
+    [
+     0.73,
+     2.64,
+     0.2
+    ],
+    [
+     0.0,
+     2.64,
+     0.2
+    ],
+    [
+     0.0,
+     4.84,
+     null
+    ]
+   ],
+   "centre_line_added_mm": 2.2321,
+   "hfss_electrical_added_mm": 1.8839,
+   "hfss_at_1_and_8_ghz_mm": [
+    1.8837,
+    1.8862
+   ]
+  },
+  {
+   "run": "u_acc2_a45_r20_p72_s50",
+   "shape": "shift 0.50 mm + two bumps 0.45 mm, r 0.20, legs 0.72 mm apart",
+   "width": 0.15,
+   "vertices": [
+    [
+     0.0,
+     -1.0,
+     null
+    ],
+    [
+     0.0,
+     1.2,
+     null
+    ],
+    [
+     -0.5,
+     1.7,
+     null
+    ],
+    [
+     -0.5,
+     1.95,
+     0.2
+    ],
+    [
+     -0.05,
+     1.95,
+     0.2
+    ],
+    [
+     -0.05,
+     2.67,
+     0.2
+    ],
+    [
+     -0.5,
+     2.67,
+     0.2
+    ],
+    [
+     -0.5,
+     3.39,
+     0.2
+    ],
+    [
+     -0.05,
+     3.39,
+     0.2
+    ],
+    [
+     -0.05,
+     4.11,
+     0.2
+    ],
+    [
+     -0.5,
+     4.11,
+     0.2
+    ],
+    [
+     -0.5,
+     4.36,
+     null
+    ],
+    [
+     0.0,
+     4.86,
+     null
+    ],
+    [
+     0.0,
+     7.06,
+     null
+    ]
+   ],
+   "centre_line_added_mm": 1.5263,
+   "hfss_electrical_added_mm": 1.2036,
+   "hfss_at_1_and_8_ghz_mm": [
+    1.2041,
+    1.202
+   ]
+  },
+  {
+   "run": "v_acc2_a55_r15_p72",
+   "shape": "two bumps 0.55 mm, r 0.15, legs 0.72 mm apart",
+   "width": 0.15,
+   "vertices": [
+    [
+     0.0,
+     -1.0,
+     null
+    ],
+    [
+     0.0,
+     1.2,
+     0.15
+    ],
+    [
+     0.55,
+     1.2,
+     0.15
+    ],
+    [
+     0.55,
+     1.92,
+     0.15
+    ],
+    [
+     0.0,
+     1.92,
+     0.15
+    ],
+    [
+     0.0,
+     2.64,
+     0.15
+    ],
+    [
+     0.55,
+     2.64,
+     0.15
+    ],
+    [
+     0.55,
+     3.36,
+     0.15
+    ],
+    [
+     0.0,
+     3.36,
+     0.15
+    ],
+    [
+     0.0,
+     5.56,
+     null
+    ]
+   ],
+   "centre_line_added_mm": 1.6834,
+   "hfss_electrical_added_mm": 1.3821,
+   "hfss_at_1_and_8_ghz_mm": [
+    1.3825,
+    1.3807
+   ]
+  },
+  {
+   "run": "v_acc2_a55_r15_p48",
+   "shape": "two bumps 0.55 mm, r 0.15, legs 0.48 mm apart",
+   "width": 0.15,
+   "vertices": [
+    [
+     0.0,
+     -1.0,
+     null
+    ],
+    [
+     0.0,
+     1.2,
+     0.15
+    ],
+    [
+     0.55,
+     1.2,
+     0.15
+    ],
+    [
+     0.55,
+     1.68,
+     0.15
+    ],
+    [
+     0.0,
+     1.68,
+     0.15
+    ],
+    [
+     0.0,
+     2.16,
+     0.15
+    ],
+    [
+     0.55,
+     2.16,
+     0.15
+    ],
+    [
+     0.55,
+     2.64,
+     0.15
+    ],
+    [
+     0.0,
+     2.64,
+     0.15
+    ],
+    [
+     0.0,
+     4.84,
+     null
+    ]
+   ],
+   "centre_line_added_mm": 1.6834,
+   "hfss_electrical_added_mm": 1.3357,
+   "hfss_at_1_and_8_ghz_mm": [
+    1.3359,
+    1.3354
+   ]
+  },
+  {
+   "run": "v_acc2_a55_r10_p48",
+   "shape": "two bumps 0.55 mm, r 0.10, legs 0.48 mm apart",
+   "width": 0.15,
+   "vertices": [
+    [
+     0.0,
+     -1.0,
+     null
+    ],
+    [
+     0.0,
+     1.2,
+     0.1
+    ],
+    [
+     0.55,
+     1.2,
+     0.1
+    ],
+    [
+     0.55,
+     1.68,
+     0.1
+    ],
+    [
+     0.0,
+     1.68,
+     0.1
+    ],
+    [
+     0.0,
+     2.16,
+     0.1
+    ],
+    [
+     0.55,
+     2.16,
+     0.1
+    ],
+    [
+     0.55,
+     2.64,
+     0.1
+    ],
+    [
+     0.0,
+     2.64,
+     0.1
+    ],
+    [
+     0.0,
+     4.84,
+     null
+    ]
+   ],
+   "centre_line_added_mm": 1.854,
+   "hfss_electrical_added_mm": 1.4332,
+   "hfss_at_1_and_8_ghz_mm": [
+    1.4335,
+    1.432
+   ]
+  }
+ ],
+ "features": {
+  "CA5": {
+   "run": "f2_CA5",
+   "shape": {
+    "x": 16.325,
+    "y": [
+     5.85,
+     16.5
+    ],
+    "shift": -0.224,
+    "shift_y": [
+     7.8,
+     11.7
+    ],
+    "pattern": [
+     0
+    ],
+    "rows": [],
+    "amplitude": 0.0,
+    "radius": null
+   },
+   "centre_line_added_mm": 0.1856,
+   "hfss_electrical_added_mm": 0.1264,
+   "hfss_at_1_and_8_ghz_mm": [
+    0.1264,
+    0.1265
+   ]
+  },
+  "CA6": {
+   "run": "f2_CA6",
+   "shape": {
+    "x": 17.125,
+    "y": [
+     5.85,
+     15.8
+    ],
+    "shift": -0.5,
+    "shift_y": [
+     7.8,
+     11.7
+    ],
+    "pattern": [
+     0,
+     1,
+     0,
+     1,
+     0
+    ],
+    "rows": [
+     8.67,
+     9.39,
+     10.11,
+     10.83
+    ],
+    "amplitude": 0.5516,
+    "radius": 0.15
+   },
+   "centre_line_added_mm": 2.104,
+   "hfss_electrical_added_mm": 1.7314,
+   "hfss_at_1_and_8_ghz_mm": [
+    1.7323,
+    1.7288
+   ]
+  },
+  "CA3": {
+   "run": "f2_CA3",
+   "shape": {
+    "x": 17.925,
+    "y": [
+     5.85,
+     16.5
+    ],
+    "shift": -0.28,
+    "shift_y": [
+     7.8,
+     11.7
+    ],
+    "pattern": [
+     0,
+     1,
+     0,
+     1,
+     0
+    ],
+    "rows": [
+     8.67,
+     9.39,
+     10.11,
+     10.83
+    ],
+    "amplitude": 0.4406,
+    "radius": 0.15
+   },
+   "centre_line_added_mm": 1.4777,
+   "hfss_electrical_added_mm": 1.1404,
+   "hfss_at_1_and_8_ghz_mm": [
+    1.1412,
+    1.1381
+   ]
+  },
+  "CA4": {
+   "run": "f2_CA4",
+   "shape": {
+    "x": 18.725,
+    "y": [
+     5.85,
+     15.8
+    ],
+    "shift": -0.14,
+    "shift_y": [
+     7.8,
+     11.7
+    ],
+    "pattern": [
+     0,
+     1,
+     0,
+     1,
+     0
+    ],
+    "rows": [
+     8.67,
+     9.39,
+     10.11,
+     10.83
+    ],
+    "amplitude": 0.4423,
+    "radius": 0.15
+   },
+   "centre_line_added_mm": 1.3685,
+   "hfss_electrical_added_mm": 1.043,
+   "hfss_at_1_and_8_ghz_mm": [
+    1.0435,
+    1.0409
+   ]
+  },
+  "CA2": {
+   "run": "f2_CA2",
+   "shape": {
+    "x": 21.125,
+    "y": [
+     5.85,
+     15.8
+    ],
+    "shift": 0.0,
+    "shift_y": [
+     7.8,
+     11.7
+    ],
+    "pattern": [
+     0,
+     1,
+     0,
+     1,
+     0
+    ],
+    "rows": [
+     8.67,
+     9.39,
+     10.11,
+     10.83
+    ],
+    "amplitude": 0.7381,
+    "radius": 0.15
+   },
+   "centre_line_added_mm": 2.4358,
+   "hfss_electrical_added_mm": 2.1104,
+   "hfss_at_1_and_8_ghz_mm": [
+    2.1108,
+    2.1099
+   ]
+  },
+  "CS0": {
+   "run": "f2_CS0",
+   "shape": {
+    "x": 21.925,
+    "y": [
+     5.85,
+     16.5
+    ],
+    "shift": 0.55,
+    "shift_y": [
+     7.8,
+     11.7
+    ],
+    "pattern": [
+     0,
+     1,
+     0,
+     1,
+     0
+    ],
+    "rows": [
+     8.67,
+     9.39,
+     10.11,
+     10.83
+    ],
+    "amplitude": 0.3835,
+    "radius": 0.15
+   },
+   "centre_line_added_mm": 1.473,
+   "hfss_electrical_added_mm": 1.1739,
+   "hfss_at_1_and_8_ghz_mm": [
+    1.1744,
+    1.1718
+   ]
+  },
+  "CA1": {
+   "run": "f2_CA1",
+   "shape": {
+    "x": 22.725,
+    "y": [
+     5.85,
+     16.5
+    ],
+    "shift": 0.8025,
+    "shift_y": [
+     7.8,
+     11.7
+    ],
+    "pattern": [
+     0
+    ],
+    "rows": [],
+    "amplitude": 0.0,
+    "radius": null
+   },
+   "centre_line_added_mm": 0.6648,
+   "hfss_electrical_added_mm": 0.6001,
+   "hfss_at_1_and_8_ghz_mm": [
+    0.6001,
+    0.6003
+   ]
+  },
+  "CA0": {
+   "run": "f2_CA0",
+   "shape": {
+    "x": 23.525,
+    "y": [
+     5.85,
+     15.8
+    ],
+    "shift": 0.6896,
+    "shift_y": [
+     7.8,
+     11.7
+    ],
+    "pattern": [
+     0
+    ],
+    "rows": [],
+    "amplitude": 0.0,
+    "radius": null
+   },
+   "centre_line_added_mm": 0.5713,
+   "hfss_electrical_added_mm": 0.5065,
+   "hfss_at_1_and_8_ghz_mm": [
+    0.5065,
+    0.5067
+   ]
+  }
+ }
+}

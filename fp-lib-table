@@ -1,0 +1,9 @@
+(fp_lib_table
+  (version 7)
+  (lib (name "lpddr5_testbed")(type "KiCad")(uri "${KIPRJMOD}/lib/lpddr5_testbed.pretty")(options "")(descr "project footprints: card edge, BGA-315, MLF-6"))
+  (lib (name "Capacitor_SMD")(type "KiCad")(uri "${KICAD10_FOOTPRINT_DIR}/Capacitor_SMD.pretty")(options "")(descr "stock KiCad library"))
+  (lib (name "Package_SON")(type "KiCad")(uri "${KICAD10_FOOTPRINT_DIR}/Package_SON.pretty")(options "")(descr "stock KiCad library"))
+  (lib (name "Package_TO_SOT_SMD")(type "KiCad")(uri "${KICAD10_FOOTPRINT_DIR}/Package_TO_SOT_SMD.pretty")(options "")(descr "stock KiCad library"))
+  (lib (name "Resistor_SMD")(type "KiCad")(uri "${KICAD10_FOOTPRINT_DIR}/Resistor_SMD.pretty")(options "")(descr "stock KiCad library"))
+  (lib (name "TestPoint")(type "KiCad")(uri "${KICAD10_FOOTPRINT_DIR}/TestPoint.pretty")(options "")(descr "stock KiCad library"))
+)

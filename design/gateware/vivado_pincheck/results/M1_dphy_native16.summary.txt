@@ -1,0 +1,103 @@
+@@VERSION 2026.1
+@@CASE M1_dphy_native16 rx_slvs=0 cmd_native=1 rdqs_as_clock=0 guard_bitslice=1 cmd_comp_800=0 idelayctrl_sim_device=ULTRASCALE_PLUS extra=
+@@STAGE synth
+@@RESULT synth PASS
+@@STAGE opt
+@@RESULT opt PASS
+@@STAGE drc_preplace
+@@RESULT drc_preplace PASS
+@@STAGE place
+@@RESULT place PASS
+@@LOC g_cmd_native.u_bcmd BUFGCE BUFGCE_X1Y68
+@@LOC g_cmd_native.u_pll PLLE4_ADV PLL_X1Y5
+@@LOC u_b200 BUFGCE BUFGCE_X1Y33
+@@LOC u_bdiv BUFGCE_DIV BUFGCE_DIV_X1Y5
+@@LOC u_bhs BUFGCE BUFGCE_X1Y25
+@@LOC u_idc IDELAYCTRL BITSLICE_CONTROL_X1Y28
+@@LOC u_idc_REPLICATED_0 IDELAYCTRL BITSLICE_CONTROL_X1Y29
+@@LOC u_idc_REPLICATED_0_10 IDELAYCTRL BITSLICE_CONTROL_X1Y12
+@@LOC u_idc_REPLICATED_0_2 IDELAYCTRL BITSLICE_CONTROL_X1Y27
+@@LOC u_idc_REPLICATED_0_3 IDELAYCTRL BITSLICE_CONTROL_X1Y26
+@@LOC u_idc_REPLICATED_0_4 IDELAYCTRL BITSLICE_CONTROL_X1Y31
+@@LOC u_idc_REPLICATED_0_5 IDELAYCTRL BITSLICE_CONTROL_X1Y30
+@@LOC u_idc_REPLICATED_0_6 IDELAYCTRL BITSLICE_CONTROL_X1Y10
+@@LOC u_idc_REPLICATED_0_7 IDELAYCTRL BITSLICE_CONTROL_X1Y15
+@@LOC u_idc_REPLICATED_0_8 IDELAYCTRL BITSLICE_CONTROL_X1Y13
+@@LOC u_idc_REPLICATED_0_9 IDELAYCTRL BITSLICE_CONTROL_X1Y11
+@@LOC u_mmcm MMCME4_ADV MMCM_X1Y1
+@@LOC g_cmd_native.u_nib_l/u_bsc BITSLICE_CONTROL BITSLICE_CONTROL_X1Y16
+@@LOC g_cmd_native.u_nib_u/u_bsc BITSLICE_CONTROL BITSLICE_CONTROL_X1Y17
+@@STAGE route
+@@RESULT route PASS
+@@BANK 64 BANK_TYPE=BT_HIGH_PERFORMANCE DCI_CASCADE= INTERNAL_VREF=0.600
+@@BANK 65 BANK_TYPE=BT_HIGH_PERFORMANCE DCI_CASCADE= INTERNAL_VREF=0.600
+@@BANK 66 BANK_TYPE=BT_HIGH_PERFORMANCE DCI_CASCADE= INTERNAL_VREF=
+@@PORT ca[0] pin=AN22 bank=65 std=SSTL12 dir=OUT drive= slew=FAST outz=RDRV_40_40 diff_term_adv= odt=
+@@PORT ca[1] pin=AP23 bank=65 std=SSTL12 dir=OUT drive= slew=FAST outz=RDRV_40_40 diff_term_adv= odt=
+@@PORT ca[2] pin=AN19 bank=65 std=SSTL12 dir=OUT drive= slew=FAST outz=RDRV_40_40 diff_term_adv= odt=
+@@PORT ca[3] pin=AN23 bank=65 std=SSTL12 dir=OUT drive= slew=FAST outz=RDRV_40_40 diff_term_adv= odt=
+@@PORT ca[4] pin=AM23 bank=65 std=SSTL12 dir=OUT drive= slew=FAST outz=RDRV_40_40 diff_term_adv= odt=
+@@PORT ca[5] pin=AP22 bank=65 std=SSTL12 dir=OUT drive= slew=FAST outz=RDRV_40_40 diff_term_adv= odt=
+@@PORT ca[6] pin=AP21 bank=65 std=SSTL12 dir=OUT drive= slew=FAST outz=RDRV_40_40 diff_term_adv= odt=
+@@PORT ck_n pin=AN21 bank=65 std=DIFF_SSTL12 dir=OUT drive= slew=FAST outz=RDRV_40_40 diff_term_adv= odt=
+@@PORT ck_p pin=AM21 bank=65 std=DIFF_SSTL12 dir=OUT drive= slew=FAST outz=RDRV_40_40 diff_term_adv= odt=
+@@PORT clk300_n pin=AH17 bank=64 std=DIFF_SSTL12 dir=IN drive= slew= outz= diff_term_adv= odt=
+@@PORT clk300_p pin=AH18 bank=64 std=DIFF_SSTL12 dir=IN drive= slew= outz= diff_term_adv= odt=
+@@PORT cmd_open_low pin=AP19 bank=65 std=SSTL12 dir=OUT drive= slew=SLOW outz=RDRV_40_40 diff_term_adv= odt=
+@@PORT cs0 pin=AM19 bank=65 std=SSTL12 dir=OUT drive= slew=FAST outz=RDRV_40_40 diff_term_adv= odt=
+@@PORT led pin=D5 bank=88 std=LVCMOS33 dir=OUT drive=12 slew=SLOW outz= diff_term_adv= odt=
+@@PORT rdq_n[0] pin=AJ11 bank=66 std=MIPI_DPHY_DCI dir=IN drive= slew= outz= diff_term_adv=TERM_NONE odt=
+@@PORT rdq_n[1] pin=AG10 bank=66 std=MIPI_DPHY_DCI dir=IN drive= slew= outz= diff_term_adv=TERM_NONE odt=
+@@PORT rdq_n[2] pin=AH13 bank=66 std=MIPI_DPHY_DCI dir=IN drive= slew= outz= diff_term_adv=TERM_NONE odt=
+@@PORT rdq_n[3] pin=AG8 bank=66 std=MIPI_DPHY_DCI dir=IN drive= slew= outz= diff_term_adv=TERM_NONE odt=
+@@PORT rdq_n[4] pin=AK9 bank=66 std=MIPI_DPHY_DCI dir=IN drive= slew= outz= diff_term_adv=TERM_NONE odt=
+@@PORT rdq_n[5] pin=AL12 bank=66 std=MIPI_DPHY_DCI dir=IN drive= slew= outz= diff_term_adv=TERM_NONE odt=
+@@PORT rdq_n[6] pin=AF12 bank=66 std=MIPI_DPHY_DCI dir=IN drive= slew= outz= diff_term_adv=TERM_NONE odt=
+@@PORT rdq_n[7] pin=AE14 bank=66 std=MIPI_DPHY_DCI dir=IN drive= slew= outz= diff_term_adv=TERM_NONE odt=
+@@PORT rdq_p[0] pin=AH11 bank=66 std=MIPI_DPHY_DCI dir=IN drive= slew= outz= diff_term_adv=TERM_NONE odt=
+@@PORT rdq_p[1] pin=AG11 bank=66 std=MIPI_DPHY_DCI dir=IN drive= slew= outz= diff_term_adv=TERM_NONE odt=
+@@PORT rdq_p[2] pin=AG13 bank=66 std=MIPI_DPHY_DCI dir=IN drive= slew= outz= diff_term_adv=TERM_NONE odt=
+@@PORT rdq_p[3] pin=AF8 bank=66 std=MIPI_DPHY_DCI dir=IN drive= slew= outz= diff_term_adv=TERM_NONE odt=
+@@PORT rdq_p[4] pin=AJ9 bank=66 std=MIPI_DPHY_DCI dir=IN drive= slew= outz= diff_term_adv=TERM_NONE odt=
+@@PORT rdq_p[5] pin=AK12 bank=66 std=MIPI_DPHY_DCI dir=IN drive= slew= outz= diff_term_adv=TERM_NONE odt=
+@@PORT rdq_p[6] pin=AE12 bank=66 std=MIPI_DPHY_DCI dir=IN drive= slew= outz= diff_term_adv=TERM_NONE odt=
+@@PORT rdq_p[7] pin=AD14 bank=66 std=MIPI_DPHY_DCI dir=IN drive= slew= outz= diff_term_adv=TERM_NONE odt=
+@@PORT rdqs_n pin=AL8 bank=66 std=MIPI_DPHY_DCI dir=IN drive= slew= outz= diff_term_adv=TERM_NONE odt=
+@@PORT rdqs_p pin=AK8 bank=66 std=MIPI_DPHY_DCI dir=IN drive= slew= outz= diff_term_adv=TERM_NONE odt=
+@@PORT reset_n pin=AP11 bank=66 std=LVCMOS12 dir=OUT drive=8 slew=SLOW outz= diff_term_adv= odt=
+@@PORT wck_n pin=AG18 bank=64 std=DIFF_SSTL12 dir=OUT drive= slew=FAST outz=RDRV_40_40 diff_term_adv= odt=
+@@PORT wck_p pin=AF18 bank=64 std=DIFF_SSTL12 dir=OUT drive= slew=FAST outz=RDRV_40_40 diff_term_adv= odt=
+@@PORT wdq[0] pin=AL15 bank=64 std=SSTL12 dir=OUT drive= slew=FAST outz=RDRV_40_40 diff_term_adv= odt=
+@@PORT wdq[1] pin=AL16 bank=64 std=SSTL12 dir=OUT drive= slew=FAST outz=RDRV_40_40 diff_term_adv= odt=
+@@PORT wdq[2] pin=AA14 bank=64 std=SSTL12 dir=OUT drive= slew=FAST outz=RDRV_40_40 diff_term_adv= odt=
+@@PORT wdq[3] pin=AA16 bank=64 std=SSTL12 dir=OUT drive= slew=FAST outz=RDRV_40_40 diff_term_adv= odt=
+@@PORT wdq[4] pin=AD16 bank=64 std=SSTL12 dir=OUT drive= slew=FAST outz=RDRV_40_40 diff_term_adv= odt=
+@@PORT wdq[5] pin=AH16 bank=64 std=SSTL12 dir=OUT drive= slew=FAST outz=RDRV_40_40 diff_term_adv= odt=
+@@PORT wdq[6] pin=AL17 bank=64 std=SSTL12 dir=OUT drive= slew=FAST outz=RDRV_40_40 diff_term_adv= odt=
+@@PORT wdq[7] pin=AM16 bank=64 std=SSTL12 dir=OUT drive= slew=FAST outz=RDRV_40_40 diff_term_adv= odt=
+@@VRP AP14 IO_T0U_N12_VRP_64 used_by=
+@@VRP AM20 IO_T0U_N12_VRP_65 used_by=
+@@VRP AP8 IO_T0U_N12_VRP_66 used_by=
+@@TIMING WNS=0.297 WHS=0.020
+@@STAGE drc_routed
+@@RESULT drc_routed PASS
+@@STAGE drc_bitstream
+@@RESULT drc_bitstream PASS
+@@STAGE methodology
+@@RESULT methodology PASS
+@@STAGE reports
+@@RESULT reports PASS
+@@STAGE bitstream
+@@RESULT bitstream PASS
+@@DONE
+@@EXIT 0
+@@TIMING_SUMMARY WNS TNS fail total | WHS THS fail total | WPWS TPWS fail total:      0.297        0.000                      0                  494        0.020        0.000                      0                  494        0.098        0.000                       0                   285  
+@@COUNT errors=0 critical_warnings=0
+@@MESSAGES every ERROR and CRITICAL WARNING line of vivado.log, verbatim (count, text)
+@@DRC_ROUTED violations of drc_routed.rpt (rule, severity, count)
+| Rule | Severity | Description | Checks |
+@@DRC_BITSTREAM
+| Rule | Severity | Description | Checks |
+@@METHODOLOGY
+| Rule    | Severity | Description                               | Checks |
+| CLKC-58 | Advisory | PLLE4 with global clock driver has no LOC | 1      |

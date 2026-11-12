@@ -1,0 +1,775 @@
+                                                                                                  MIC47050
+                                                                                     500mA ULDO™ with Low Input
+                                                                                        and Low Output Voltage
+
+
+
+
+General Description                                                       Features
+The MIC47050 is a high-speed, ultra-low dropout, dual-                     Voltage range
+supply NMOS ULDO™ designed to take advantage of                             – Input Voltage: 1.0V to 3.6V
+point-of-load applications that use multiple supply rails to                – Bias Voltage: 2.3V to 5.5V
+generate a low-voltage, high-current power supply. The
+MIC47050 can source 500mA of output current while only                     0.4V to 2.0V output voltage range
+requiring a 1µF ceramic output capacitor for stability. A                  Low dropout voltage of 44mV at 500mA
+1.5% output voltage accuracy, low dropout voltage (44mV                    ±1.5% initial output voltage accuracy
+@ 500mA), and low ground current makes this device                         High bandwidth – very fast transient response
+ideally suited for mobile and point-of-load applications.
+                                                                           Stable with a 1µF ceramic output capacitor
+The MIC47050 has an NMOS output stage offering very
+                                                                           Logic level enable input
+low output impedance. The NMOS output stage makes for
+a unique ability to respond very quickly to sudden load                    UVLO on both supply voltages
+changes such as that required by a microprocessor, DSP                     Available in thermally-enhanced 2mm x 2mm MLF® and
+or FPGA. The MIC47050 consumes little quiescent current                     Thin MLF® packages
+and therefore can be used for driving the core voltages of                 Junction temperature range of –40C to +125C
+mobile processors, post regulating a core DC/DC
+converter in any processor.
+The MIC47050 is available in fixed and adjustable output                  Applications
+voltages in the tiny 2mm x 2mm MLF® and Thin MLF®                          Point-of-load applications
+packages with an operating junction temperature range of                   PDAs, notebooks, and desktops
+40C to 125C.
+                                                                           Datacom and telecom systems
+Data sheets and support documentation can be found on
+                                                                           DSP, PLD and FPGA power supply
+Micrel’s web site at: www.micrel.com.
+                                                                           Low-voltage post regulation
+
+_________________________________________________________________________________________________________________________
+
+Typical Application
+
+
+
+
+ ULDO is a trademark of Micrel Inc.
+ MLF and MicroLeadFrame are registered trademarks of Amkor Technology, Inc.
+      Micrel Inc. • 2180 Fortune Drive • San Jose, CA 95131 • USA • tel +1 (408) 944-0800 • fax + 1 (408) 474-1000 • http://www.micrel.com
+
+April 2012                                                                                                                  M9999-040312-B
+Micrel, Inc.                                                                                                                MIC47050
+
+
+Ordering Information
+                                                     Marking           Temperature                                        Lead
+ Part Number                        Voltage (1)                                                  Package
+                                                     Code(2)             Range                                           Finish(3)
+ MIC47050-1.2YML(4)                      1.2           Z G4           40C to 125C     6-Pin 2mm x 2mm MLF®           Pb-Free
+
+ MIC47050-1.8YML(4)                      1.8           Z GG           40C to 125C     6-Pin 2mm x 2mm MLF®           Pb-Free
+
+ MIC47050YML(4)                          ADJ           Z GA           40C to 125C     6-Pin 2mm x 2mm MLF®           Pb-Free
+                        (5)(6)                                                                                   ®
+ MIC47050-1.2YMT                         1.2           ZG4            40C to 125C   6-Pin 2mm x 2mm Thin MLF         Pb-Free
+
+ MIC47050-1.8YMT(5)(6)                   1.8           ZGG            40C to 125C   6-Pin 2mm x 2mm Thin MLF®        Pb-Free
+
+ MIC47050YMT(5)                          ADJ           ZGA            40C to 125C   6-Pin 2mm x 2mm Thin MLF®        Pb-Free
+
+Notes:
+1.   Other voltage available. Contact Micrel Marketing for details.
+2.   Overbar ( ¯ ) may not be to scale.
+         ®
+3.   MLF is a GREEN RoHS compliant package. Lead finish is NiPdAu. Mold compound is Halogen Free.
+         ®
+4.   MLF (ML) package (Pin 1 identified = ■).
+               ®
+5.   Thin MLF (MT) package (Pin 1 identified = ▲).
+6.   Contact factory for availability.
+
+
+Pin Configuration
+
+
+
+
+                       6-pin 2mm x 2mm MLF® - Fixed (ML)                     6-pin 2mm x 2mm MLF® - Adjustable (ML)
+
+
+
+
+                    6-pin 2mm x 2mm Thin MLF® - Fixed (MT)                 6-pin 2mm x 2mm Thin MLF® - Adjustable (MT)
+
+
+
+
+April 2012                                                                  2                                         M9999-040312-B
+Micrel, Inc.                                                                                                   MIC47050
+
+
+Pin Description
+    Fixed      ADJ   Pin Name   Pin Function
+                                Bias Supply. The bias supply is the power supply for the internal circuitry of the
+      1         1      BIAS
+                                regulator.
+      2         2      GND      Ground. Ground pins and exposed pad must be connected externally.
+                                Input Supply. Drain of NMOS pass transistor which is the power input voltage for
+      3         3       IN      regulator. The NMOS pass transistor steps down this input voltage to create the
+                                output voltage.
+      4         4      OUT      Output. Output Voltage of Regulator.
+                                Power Good Output. Open-drain output. Output is driven low when the output voltage
+                                is less than the power good threshold of its programmed nominal output voltage.
+      5         –    PGOOD
+                                When the output goes above the power good threshold, the open-drain output goes
+                                high-impedance, allowing it to be pulled up to a fixed voltage.
+      –         5      ADJ      Adjust Input. Connect external resistor divider to program the output voltage.
+                                Enable: TTL/CMOS compatible input. Logic high = enable, logic low = shutdown. Do
+      6         6      EN
+                                not leave floating.
+     EP        EP      GND      Exposed thermal pad. Connect to the ground plane to maximize thermal performance.
+
+
+
+
+April 2012                                             3                                                M9999-040312-B
+Micrel, Inc.                                                                                                                                     MIC47050
+
+
+Absolute Maximum Ratings(1)                                                       Operating Ratings(2)
+IN Supply Voltage (VIN) ................................... –0.3V to +4V          IN Supply Voltage (VIN) ............ +1.0V to +3.6V (VIN < VBIAS)
+Bias Supply Voltage (VBIAS)............................. –0.3V to +6V             Bias Voltage (VBIAS)...................................... +2.3V to +5.5V
+Enable Voltage (VEN)....................................... –0.3V to +6V          Enable Voltage (VEN)........................................... 0V to VBIAS
+Power Good Voltage (VPGOOD) ....................... .–0.3V to +6V                 Power Good Voltage (VPGOOD) ........................... .0V to VBIAS
+ADJ Pin Voltage (VADJ)................................... .–0.3V to +6V           Output Voltage Range …………….. ................ 0.4V to 2.0V
+OUT Pin Voltage (VOUT) ................................... .–0.3V to VIN          Junction Temperature (TJ) ........................ –40°C to +125°C
+Lead Temperature (soldering,10 sec.)....................... 260C                 Ambient Temperature (TA) .......................... –40°C to +85°C
+Storage Temperature (TS).........................–65C to +150C                  Junction Thermal Resistance
+ESD Rating(3) ......................................................... 2kV HBM       2mm x 2mm MLF®-6L (JA)................................90°C/W
+                                                                                      2mm x 2mm MLF®-6L (JC)................................45°C/W
+                                                                                      2mm x 2mm Thin MLF®-6L (JA)........................90°C/W
+                                                                                      2mm x 2mm Thin MLF®-6L (JC) .......................45°C/W
+
+
+
+Electrical Characteristics(4)
+VIN = VOUT + 0.5V; VBIAS = VOUT+2.1V; COUT = 1µF; IOUT = 100µA; TJ = 25°C, bold values indicate –40°C≤ TJ ≤ +125°C, unless noted.
+ Parameter                                                       Condition                                            Min.     Typ.       Max.      Units
+ Input Supply
+ Input Voltage Range (VIN)                                                                                            1.0                  3.6        V
+                          (5)
+ VIN UVLO Threshold                                              VIN Rising                                           0.7       0.85       1.0        V
+ VIN UVLO Hysteresis                                                                                                             40                  mV
+ Ground Current in Shutdown (IGND)                               VEN ≤ 0.2V (Regulator Shutdown)                                0.1        1.0       A
+ Ground Current (IGND)                                           IOUT = 500mA; VIN = VOUT + 0.5V                                 6         15        A
+ Bias Supply
+ BIAS Input Voltage (VBIAS)                                                                                           2.3                  5.5        V
+                                (5)
+ VBIAS UVLO Threshold                                            VBIAS Rising                                         1.7       2.1        2.3        V
+ VBIAS UVLO Hysteresis                                                                                                           75                  mV
+                                                                 IOUT = 100mA                                                   1.15                  V
+ Dropout voltage (VBIAS - VOUT)
+                                                                 IOUT = 500mA                                                   1.25       2.1        V
+ VBIAS Supply Current (IBIAS)                                    IOUT = 1mA; VBIAS = VOUT + 2.1V                                330       500        A
+ VBIAS Supply Current in Shutdown (IBIAS)                        VEN ≤ 0.2V (Regulator Shutdown)                                0.1        1.0       A
+ Output Voltage
+ Dropout voltage
+                                                                 IOUT = 100mA                                                    9         50        mV
+ (VIN - VOUT)
+                                                                 IOUT = 500mA                                                    44       120        mV
+
+                                                                 IOUT = 100A                                         -1.5                +1.5        %
+ Output Voltage Accuracy
+                                                                 IOUT = 100A                                         -2.0                +2.0        %
+ VBIAS Line Regulation                                           VBIAS = VOUT + 2.1V to 5.5V                          -0.1     0.015       0.1      %/V
+
+
+
+
+April 2012                                                                        4                                                     M9999-040312-B
+Micrel, Inc.                                                                                                                              MIC47050
+
+
+Electrical Characteristics(4)
+VIN = VOUT + 0.5V; VBIAS = VOUT+2.1V; COUT = 1µF; IOUT = 100µA; TJ = 25°C, bold values indicate –40°C≤ TJ ≤ +125°C, unless noted.
+Parameter                                               Condition                                             Min.       Typ.      Max.       Units
+VIN Line Regulation                                     VIN = VOUT + 0.5V to 3.6V                             -0.05     0.005      0.05       %/V
+Load Regulation                                         IOUT = 10mA to 500mA                                             0.2        0.5         %
+Current Limit
+Short Circuit Current Limit                             VIN = 2.7V; VOUT = 0V                                  0.6       1.6        2.5         A
+Enable Input
+EN Logic Level High                                                                                            1.0       0.77                   V
+EN Logic Level Low                                                                                                       0.67       0.2         V
+EN Hysteresis                                                                                                            100                   mV
+                                                        VEN ≤ 0.2V (Regulator Shutdown)                                   1          2         A
+Enable Bias Current
+                                                        VEN = 1.0V (Regulator Enabled)                                    6         10         A
+Turn-on Time                                            COUT = 1F; 90% of typical VOUT                                   15        500        s
+Thermal Protection
+Over-Temperature Shutdown                               TJ Rising                                                        160                   C
+Over-Temperature Shutdown Hysteresis                                                                                      20                   C
+Power Good
+                                                        VOUT Rising                                                       91        95          %
+Power Good Threshold Voltage
+                                                        VOUT Falling                                           85         89                    %
+Power Good Hysteresis                                                                                                     2                     %
+Power Good Output Low Voltage                           IPG = 250A                                                      0.02       0.1         V
+Power Good Leakage Current                              VPG = 5.0V                                             -1        0.01       +1         A
+Reference Voltage (Adjustable Option Only)
+                                                        IOUT = 100A                                         0.394                 0.406        V
+Feedback Reference Voltage                                                                                               0.4
+                                                        IOUT = 100A                                         0.392                 0.408        V
+FB Bias Current                                         VFB = 0.8V                                                        20                   nA
+Output Voltage Noise and Ripple Rejection
+Output Voltage Noise                                    f = 10Hz to 100kHz; IOUT = 100mA; COUT=1F                        63                 VRMS
+                                                        f = 10kHz; COUT = 1.0F, IOUT = 100mA                             50                   dB
+Ripple Rejection
+                                                        f = 100kHz; COUT = 1.0F, IOUT = 100mA                            37                   dB
+Notes:
+1. Exceeding the absolute maximum rating may damage the device.
+2. The device is not guaranteed to function outside its operating rating.
+3. Devices are ESD sensitive. Handling precautions recommended. Human body model, 1.5kΩ in series with 100pF.
+4. Specification for packaged product only.
+5. Both VIN and VBIAS UVLO thresholds must be met for the output voltage to turn-on. If either of the two input voltages is below the UVLO thresholds,
+   the output is disabled.
+
+
+
+
+April 2012                                                                    5                                                  M9999-040312-B
+Micrel, Inc.                                                                                                                                                                                                                                      MIC47050
+
+
+Typical Characteristics
+                                        Output Voltage vs.                                                                 Input Dropout Voltage vs.                                                        Input Dropout Voltage vs.
+                                          Input Voltage                                                                         Output Current                                                                    Temperature
+                         2.0                                                                                   50
+                                                                                                                                                                                               70
+                         1.8                                                                                   45
+                                                                                                                                                                                               60          IOUT = 500mA
+
+
+
+
+                                                                                        DROPOUT VOLTAGE (mV)
+                                                                                                               40
+
+
+
+
+                                                                                                                                                                        DROPOUT VOLTAGE (mV)
+                         1.6
+    OUTPUT VOLTAGE (V)
+
+
+
+
+                         1.4                                                                                   35                                                                              50
+                         1.2                                                                                   30
+                                                                                                                                                                                               40
+                         1.0                                                                                   25
+
+                         0.8                                                                                   20                                                                              30                                    IOUT = 100mA
+                                                                                                                                                                                                       VBIAS = 3.6V
+                         0.6                                                                                   15                                                                                      VOUT = 1.2V
+                                                                                                                                                                                               20
+                                                                   VBIAS = 5.0V
+                         0.4                                                                                   10
+                                                                   VOUT = 1.8V                                                                     VBIAS = 5.0V
+                                                                                                                                                                                               10
+                         0.2                                                                                    5
+                                                                   IOUT = 500mA                                                                    VOUT = 1.2V
+                         0.0                                                                                    0                                                                               0
+                               0          1              2            3            4                                 0        100      200   300      400         500                               -40     -20    0     20    40   60     80    100 120
+                                              INPUT VOLTAGE (V)                                                                 OUTPUT CURRENT (mA)                                                                TEMPERATURE (°C)
+
+
+
+                                        Output Voltage vs.                                                                 Bias Dropout Voltage vs.                                                          Bias Dropout Voltage vs.
+                                          Bias Voltage                                                                          Output Current                                                                     Temperature
+                         2.2                                                                                   2.0
+                                                                                                                                                                                               1.9
+                         2.0       IOUT = 100mA                                                                1.8
+                                                                                                                                                                                               1.8
+                                                                                                               1.6
+                                                                                        DROPOUT VOLTAGE (V)
+
+
+
+
+                         1.8                                                                                             VOUT = 2.0V
+
+
+
+
+                                                                                                                                                                        DROPOUT VOLTAGE (V)
+                                                                                                                                                                                               1.7
+    OUTPUT VOLTAGE (V)
+
+
+
+
+                                                                                                                                                                                                          VOUT = 2.0V
+                         1.6                                                                                   1.4
+                                                                                                                                                                                               1.6
+                         1.4                                                                                   1.2                                                                             1.5
+                         1.2                      IOUT = 500mA                                                 1.0                                                                             1.4
+                                                                                                                                                   VOUT = 1.2V
+                         1.0                                                                                   0.8                                                                             1.3
+                         0.8                                                                                   0.6                                                                             1.2
+                                                                                                                                                                                                          VOUT = 1.2V
+                         0.6                                                                                   0.4                                                                             1.1
+                                                                     VIN = 2.5V                                                                                                                                                          VIN = 2.5V
+                         0.4                                                                                   0.2                                   VIN = 2.5V                                1.0
+                                                                     VOUT = 1.8V                                                                                                                                                         IOUT = 500mA
+                         0.2                                                                                   0.0                                                                             0.9
+                               2              3              4                5                                      0        100      200   300      400         500                                -40    -20    0      20   40   60      80   100 120
+                                              BIAS VOLTAGE (V)                                                                  OUTPUT CURRENT (mA)                                                                    TEMPERATURE (°C)
+
+
+
+                                          Bias Current vs.                                                                          Bias Current vs.                                                               Bias Current vs.
+                                            Bias Voltage                                                                            Output Current                                                                  Temperature
+                         440                                                                                   340
+                                                                                                                                                                                               400
+                         420                                                                                   338
+                                                                                                                                                                                               380
+                         400                                                                                   336
+                                                                                        BIAS CURRENT (µA)
+    BIAS CURRENT (µA)
+
+
+
+
+                                                                                                                                                                        BIAS CURRENT (µA)
+
+
+
+
+                                                                                                               334                                                                             360
+                         380
+                         360                                                                                   332                                                                             340
+
+                         340                                                                                   330                                                                             320
+                         320                                                                                   328
+                                                                                                                                                                                               300
+                         300                                                                                   326
+                                                                                                                                                    VBIAS = 3.6V
+                                                                                                                                                                                               280                                        VBIAS = 3.6V
+                         280                                       VIN = 1.8V                                  324                                  VIN = 1.8V
+                                                                                                                                                                                                                                          VIN = 1.8V
+                         260                                       IOUT = 1mA                                  322                                  VOUT = 1.2V                                260
+                                                                                                                                                                                                                                          VOUT = 1.2V
+                         240                                                                                   320                                                                             240
+                               3       3.5          4        4.5          5       5.5                                0        100      200   300      400         500                                -40     -20   0      20   40   60      80   100 120
+                                              BIAS VOLTAGE (V)                                                                  OUTPUT CURRENT (mA)                                                                    TEMPERATURE (°C)
+
+
+
+
+April 2012                                                                                                                                    6                                                                                      M9999-040312-B
+Micrel, Inc.                                                                                                                                                                                                                                                                MIC47050
+
+
+Typical Characteristics (Continued)
+
+                                             Ground Current vs.                                                                               Ground Current vs.                                                                    Output Voltage vs.
+                                                Input Voltage                                                                                    Temperature                                                                         Output Current
+                        30                                                                                                                                                                                          1.208
+                                                                      VBIAS = 5.0V                                         7.00
+                                                                                                                           6.75                                                                                     1.206
+                        25                                            VOUT = 1.2V
+                                                                                                                           6.50
+
+
+
+
+                                                                                                                                                                                             OUTPUT VOLTAGE (V)
+                                                                                                                                                                                                                    1.204
+         GROUND CURRENT (µA)
+
+
+
+
+                                                                                                     GROUND CURRENT (µA)
+                                                                      IOUT = 500mA
+                                                                                                                           6.25
+                        20                                                                                                                                                                                          1.202
+                                                                                                                           6.00
+                                                                                                                           5.75                                                                                     1.200
+                        15                                                                                                 5.50                                                                                     1.198
+                                                                                                                           5.25
+                                                                                                                                                                     VBIAS = 3.6V                                   1.196
+                        10                                                                                                 5.00
+                                                                                                                           4.75                                      VIN = 1.8V                                     1.194
+                                                                                                                                                                                                                                VBIAS = 3.6V
+                               5                                                                                           4.50                                      VOUT = 1.2V                                    1.192       VIN = 1.8V
+                                                                                                                           4.25                                      IOUT = 500mA
+                                                                                                                                                                                                                    1.190
+                                                                                                                           4.00
+                               0                                                                                                                                                                                            0        100       200        300        400      500
+                                                                                                                                  -40   -20    0     20   40    60      80   100 120
+                                   1.2      1.6         2    2.4  2.8         3.2      3.6                                                                                                                                            OUTPUT CURRENT (mA)
+                                                      INPUT VOLTAGE (V)                                                                         TEMPERATURE (°C)
+
+
+
+                                                   Current Limit vs.                                                                           Current Limit vs.                                                                    Output Voltage vs.
+                                                    Input Voltage                                                                               Temperature                                                                           Temperature
+                               1.80                                                                                        1.90                                                                                    1.220
+                                                                                                                           1.85
+                               1.75                                                                                                                                                                                1.215
+                                                                                                                           1.80
+
+
+
+
+                                                                                                                                                                                           OUTPUT VOLTAGE (V)
+                               1.70                                                                                        1.75                                                                                    1.210
+         CURRENT LIMIT (A)
+
+
+
+
+                                                                                                     CURRENT LIMIT (A)
+
+
+
+
+                                                                                                                           1.70
+                               1.65                                                                                                                                                                                1.205
+                                                                                                                           1.65
+                               1.60                                                                                        1.60                                                                                    1.200
+                                                                                                                           1.55
+                               1.55                                                                                                                                                                                1.195
+                                                                                                                           1.50                                                                                                                                VBIAS = 3.6V
+                               1.50                                                                                        1.45                                      VBIAS = 3.6V                                  1.190                                       VIN = 1.8V
+                                                                        VBIAS = 5.0V                                       1.40                                      VIN = 1.8V
+                               1.45                                                                                                                                                                                1.185                                       IOUT = 100µA
+                                                                        VOUT = 1.2V                                        1.35                                      VOUT = 1.2V
+                               1.40                                                                                        1.30                                                                                    1.180
+                                      1.5         2       2.5      3         3.5       4                                          -40   -20    0     20   40    60      80   100 120                                       -40 -20       0     20    40    60      80     100 120
+                                                       INPUT VOLTAGE (V)                                                                        TEMPERATURE (°C)                                                                         TEMPERATURE (°C)
+
+
+
+                                     Power Supply Ripple Rejection                                                                Power Supply Ripple Rejection                                                                          Output Noise
+                                            (Input Voltage)                                                                              (Bias Voltage)
+                90                                                                                         90                                                                                                       10
+                80                                                                                         80
+                                                                                                                                                                                           OUTPUT NOISE (µV/√Hz)
+
+
+
+
+                70                                                                                         70                                                                                                        1
+                60                                                                                         60
+   PSRR (dB)
+
+
+
+
+                                                                                              PSRR (dB)
+
+
+
+
+                50                                                                                         50
+                                                                                                                                                                                                                    0.1
+                40                                                                                         40
+                                                                                                                                                                                                                            VBIAS = 3.6V
+                30                  VBIAS = 3.6V                                                           30                 VBIAS = 3.6V ± 300mV
+                                                                                                                                                                                                                            VIN = 1.8V
+                                    VIN = 1.8V ± 300mV                                                                        VIN = 1.8V                                                                           0.01
+                20                                                                                         20
+                                                                                                                                                                                                                            VOUT = 1.2V
+                                    VOUT = 1.2V                                                                               VOUT = 1.2V
+                10                                                                                         10                                                                                                               Noise (10Hz-100kHz) = 56.19µVRMS
+                             IOUT = 500mA                                                                               IOUT = 500mA
+                         0                                                                                          0                                                                                    0.001
+                          0.01       0.1                  1      10         100        1000                          0.01       0.1                  1         10        100        1000                      0.01                 0.1         1          10        100       1000
+                                                       Frequency (kHz)                                                                             Frequency (kHz)                                                                       FREQUENCY (kHz)
+
+
+
+
+April 2012                                                                                                                                                     7                                                                                               M9999-040312-B
+Micrel, Inc.                          MIC47050
+
+
+Functional Characteristics
+
+
+
+
+April 2012                   8   M9999-040312-B
+Micrel, Inc.                                                         MIC47050
+
+
+Functional Diagram
+
+
+
+
+                       MIC47050 Fixed Output Block Diagram
+
+
+
+
+                     MIC47050 Adjustable Output Block Diagram
+
+
+
+
+April 2012                                 9                    M9999-040312-B
+Micrel, Inc.                                                                                                    MIC47050
+
+
+Functional Description
+The MIC47050 is a high-speed, ultra-low dropout, dual            Tantalum capacitors have a very stable dielectric (10%
+supply NMOS ULDO™ designed to take advantage of                  over their operating temperature range) and can also be
+point-of-load applications that use multiple supply rails to     used with this device. See the Typical Characteristic
+generate a low-voltage, high-current power supply. The           section for examples of load transient response.
+MIC47050 can source 0.5A of output current while only
+requiring a 1µF ceramic output capacitor for stability.          Output Capacitor
+The MIC47050 regulator is fully protected from damage            The MIC47050 requires an output capacitor of 1µF or
+due to fault conditions, offering linear current limiting and    greater to maintain stability. The design is optimized for
+thermal shutdown.                                                use with low-ESR ceramic chip capacitors. High-ESR
+                                                                 capacitors may cause high-frequency oscillation. The
+Bias Supply Voltage                                              output capacitor can be increased, but performance has
+VBIAS, requiring relatively light current, provides power to     been optimized for a 1µF ceramic output capacitor and
+the control portion of the MIC47050. Bypassing on the            does not improve significantly with larger capacitance.
+bias pin is recommended to improve performance of the            The output capacitor type and placement criteria are the
+regulator during line and load transients. Small 0.1µF           same as the input capacitor. See the “Input Capacitor”
+ceramic capacitors from VBIAS-to-ground help reduce              subsection for a detailed description.
+high frequency noise from being injected into the control
+circuitry from the bias rail and are good design practice.       Minimum Load Current
+                                                                 The MIC47050, unlike most other regulators, does not
+Input Supply Voltage
+                                                                 require a minimum load to maintain output voltage
+VIN provides the supply to power the LDO. The minimum            regulation.
+input voltage is 1.0V. This allows conversion from low
+voltage supplies to reduce the power dissipation in the          Adjustable Regulator Design
+pass element.                                                    The MIC47050 adjustable version allows programming
+                                                                 the output voltage from 0.4V to 2.0V. Two external
+Input Capacitor
+                                                                 resistors are required. The R1 resistor value between
+The MIC47050 is a high-performance, high bandwidth               VOUT and the ADJ pin should not exceed 10kΩ, as larger
+device. Therefore, it requires a well-bypassed input             values can cause instability. R2 connects between the
+supply for optimal performance. A 1µF capacitor is the           ADJ pin and ground. The resistor values are calculated
+minimum required for stability. A 10µF ceramic capacitor         as follows:
+is recommended for most applications, especially if the
+LDO’s headroom (VIN –VOUT) is small and/or large load
+transients are present. Fast load transient and low                                          V       
+headroom requires a larger input filter capacitor to                               R1  R2   OUT  1
+ensure that the regulator does not drop out of regulation.                                   V       
+A 10µF will better attenuate any voltage glitches from
+                                                                                              REF 
+exceeding the maximum voltage rating of the part.
+Additional high-frequency capacitors, such as small-             Where VOUT is the desired output voltage and VREF is the
+valued NPO dielectric-type capacitors, help filter out           internal reference voltage.
+high-frequency noise and are good practice in any RF-            Enable/Shutdown
+based circuit.
+                                                                 The MIC47050 comes with a single active-high enable
+X7R and X5R dielectric ceramic capacitors are                    pin that allows the regulator to be disabled. Forcing the
+recommended        because      of   their   temperature         enable pin low disables the regulator and sends it into a
+performance. X7R-type capacitors change capacitance              “zero” off-mode-current state. In this state, current
+by 15% over their operating temperature range and are            consumed by the regulator goes nearly to zero. Forcing
+the most stable type of ceramic capacitors. Z5U and              the enable pin high enables the output voltage. The
+Y5V dielectric capacitors are not recommended since              active-high enable pin uses CMOS technology and the
+they change value by as much as 50% and 60%                      enable pin cannot be left floating; a floating enable pin
+respectively over their operating temperature ranges. To         may cause an indeterminate state on the output.
+use a ceramic-chip capacitor with Y5V dielectric, the
+value must be much higher than an X7R ceramic or a
+tantalum capacitor to ensure the same capacitance
+value over the operating temperature range.
+
+
+April 2012                                                      10                                        M9999-040312-B
+Micrel, Inc.                                                                                                    MIC47050
+
+                                                               TJ(MAX) = 125°C, the maximum junction temperature of
+Power Good (PGOOD)
+                                                               the die.
+The Power Good (PGOOD) pin is an open drain output
+                                                               θJA thermal resistance = 90°C/W.
+that goes low when the output voltage (fixed version)
+drops below the PGOOD threshold voltage.
+The pull-up resistor value should be large enough to           Table 1 shows junction-to-ambient thermal resistance for
+guarantee a proper “low” voltage when the PGOOD pin            the MIC47050 in the MLF® or Thin MLF® package.
+pulls low. The PGOOD low voltage is typically 0.1V at
+250µA current. A 10kΩ resistor or greater is                                               θJA Recommended
+recommended when pulling up to 3.3V bias.                              Package                                       θJC
+                                                                                             Min. Footprint
+If the PGOOD function is not required, the PGOOD pin           6-pin 2mm x 2mm MLF®              90°C/W            45°C/W
+may be left unconnected.
+                                                               6-pin 2mm x 2mm
+                                                                                                 90°C/W            45°C/W
+                                                               Thin MLF®
+Thermal Shutdown
+                                                                              Table 1. Thermal Resistance
+The MIC47050 has an internal over-temperature
+protection feature. This feature is for protection only.
+The device should never be intentionally operated near         Substituting PD for PD(max) and solving for the ambient
+this temperature as this may reduce long term reliability.     operating temperature will give the maximum operating
+The device will turn off when the over-temperature             conditions for the regulator circuit. The junction-to-
+threshold is exceeded. A 20°C hysteresis is built in to        ambient thermal resistance for the minimum footprint is
+allow the device to cool before turning back on.               90°C/W. The maximum power dissipation must not be
+                                                               exceeded for proper operation. For example, when
+Thermal Considerations                                         operating the MIC47050-1.2YML at an input voltage of
+The MIC47050 is designed to provide 0.5A of continuous         1.8V and a 0.5A load with a minimum footprint layout,
+current in a very small package. Maximum ambient               the maximum ambient operating temperature TA can be
+operating temperature can be calculated based on the           determined as follows:
+output current and the voltage drop across the part.
+Given that the input voltage is 1.8V, the output voltage is                  TA  TJ(MAX)  Θ JA  PD(MAX)
+1.2V and the output current is 0.5A. The actual power
+dissipation of the regulator circuit can be determined                       TA  125C  90C/W  0.3W
+using the equation:
+                                                                             TA  98C
+
+                       
+ PD  VIN  VOUT  IOUT  VIN  IGND  VBIAS  IBIAS
+                                                               Therefore, a 1.2V application with 0.5A of output current
+                                                               can accept an ambient operating temperature of 98°C in
+Because this device is CMOS, the ground current is             a 2mm x 2mm MLF® or Thin MLF® package.
+insignificant for power dissipation and can be ignored for
+this calculation.                                              Thermal Measurements
+                                                               Measuring the IC’s case temperature is recommended to
+                              
+               PD  1.8V  1.2V  0.5A  0.3W                  insure it is within its operating limits. Although this might
+                                                               seem like a very elementary task, it is easy to get
+                                                               erroneous results. The most common mistake is to use
+To determine the maximum ambient operating                     the standard thermal couple that comes with a thermal
+temperature of the package, use the junction-to-ambient        meter. This thermal couple wire gauge is large, typically
+thermal resistance of the device and the following basic       22 gauge, and behaves like a heatsink, resulting in a
+equation:                                                      lower case measurement.
+                                                               Two methods of temperature measurement are using a
+                                                               smaller thermal couple wire or an infrared thermometer.
+                             TJ(MAX)  TA                    If a thermal couple wire is used, it must be constructed
+                PD(MAX)                                     of 36 gauge wire or higher (smaller wire size) to
+                                Θ JA                       minimize the wire heat-sinking effect.
+
+
+
+
+April 2012                                                    11                                          M9999-040312-B
+Micrel, Inc.                                                          MIC47050
+
+In addition, the thermal couple tip must be covered in
+either thermal grease or thermal glue to make sure that
+the thermal couple junction is making good contact with
+the case of the IC. Omega brand thermal couple (5SC-
+TT-K-36-36) is adequate for most applications.
+Wherever possible, an infrared thermometer is
+recommended. The measurement spot size of most
+infrared thermometers is too large for an accurate
+reading on a small form factor ICs. However, a IR
+thermometer from Optris has a 1mm spot size, which
+makes it a good choice for the 2mm x 2mm MLF® or
+Thin MLF® package. An optional stand makes it easy to
+hold the beam on the IC for long periods of time.
+For a full discussion of heat sinking and thermal effects
+of voltage regulators, refer to the “Regulator Thermals”
+section of Micrel’s Designing with Low-Dropout Voltage
+Regulators handbook. This information can be found on
+Micrel's website at:
+http://www.micrel.com/_PDF/other/LDOBk_ds.pdf
+
+
+
+
+April 2012                                                  12   M9999-040312-B
+Micrel, Inc.                                                     MIC47050
+
+
+MIC47050 Typical Application Schematic
+
+
+
+
+                               MIC47050 Adjustable Output
+
+
+
+
+                                 MIC47050 Fixed Output
+
+
+
+
+April 2012                                    13            M9999-040312-B
+Micrel, Inc.                                                                                                          MIC47050
+
+
+MIC47050 Bill of Materials
+ Item    Part Number               Manufacturer           Description                                                    Qty.
+                                              (1)
+         GRM21BR60J106ME19           Murata               Ceramic Capacitor, 10µF, 6.3V, X5R, 0603 size
+ C1                                         (2)
+                                                                                                                           1
+         C1608X5R0J106MT              TDK                 Ceramic Capacitor, 10µF, 6.3V, X5R, 0603 size
+         GRM155R61A105KE15D          Murata(1)            Capacitor, 1µF, 10V, X5R, 0402 size
+ C2                                         (2)
+                                                                                                                           1
+         C1005X5R0J105KT              TDK                 Capacitor, 1µF, 10V, X5R, 0402 size
+ C3      06035D104MAT2A               AVX(3)              Ceramic Capacitor, 0.1µF, 50V, X5R, 0603 size                    1
+                                                    (4)
+ R1      CRCW06031001FRT1          Vishay Dale            Resistor, 1k (0603 size), 1%                                     1
+ R2      CRCW06036650FRT1          Vishay Dale(4)         Resistor, 665 (0603 size), 1%                                    1
+ R3      CRCW06031002FRT1          Vishay Dale(4)         Resistor, 10k (0603 size), 1%                                    1
+         MIC47050YML                                      Low Input and Output 500mA ULDO™ - Adjustable Output
+         MIC47050YMT                                      Low Input and Output 500mA ULDO™ - Adjustable Output
+         MIC47050-1.2YML                                  Low Input and Output 500mA ULDO™ - Fixed 1.2V Output
+ U1                                Micrel, Inc.(5)                                                                         1
+         MIC47050-1.2YMT                                  Low Input and Output 500mA ULDO™ - Fixed 1.2V Output
+         MIC47050-1.8YML                                  Low Input and Output 500mA ULDO™ - Fixed 1.8V Output
+         MIC47050-1.8YMT                                  Low Input and Output 500mA ULDO™ - Fixed 1.8V Output
+Notes:
+1. Murata: www.murata.com.
+2. TDK: www.tdk.com.
+3. AVX: www.avx.com.
+4. Vishay: www.vishay.com .
+5. Micrel, Inc.: www.micrel.com.
+
+
+
+
+April 2012                                                              14                                       M9999-040312-B
+Micrel, Inc.                                                MIC47050
+
+
+Package Information
+
+
+
+
+                      6-Pin 2mm  2mm Thin MLF® (MT)
+
+
+
+
+April 2012                             15              M9999-040312-B
+Micrel, Inc.                                                                                                                                 MIC47050
+
+
+Package Information (Continued)
+
+
+
+
+                                                           6-Pin 2mm x 2mm MLF® (ML)
+
+
+
+
+                               MICREL, INC. 2180 FORTUNE DRIVE SAN JOSE, CA 95131 USA
+                                TEL +1 (408) 944-0800 FAX +1 (408) 474-1000 WEB http://www.micrel.com
+
+    Micrel makes no representations or warranties with respect to the accuracy or completeness of the information furnished in this data sheet. This
+     information is not intended as a warranty and Micrel does not assume responsibility for its use. Micrel reserves the right to change circuitry,
+  specifications and descriptions at any time without notice. No license, whether express, implied, arising by estoppel or otherwise, to any intellectual
+ property rights is granted by this document. Except as provided in Micrel’s terms and conditions of sale for such products, Micrel assumes no liability
+   whatsoever, and Micrel disclaims any express or implied warranty relating to the sale and/or use of Micrel products including liability or warranties
+          relating to fitness for a particular purpose, merchantability, or infringement of any patent, copyright or other intellectual property right.
+
+  Micrel Products are not designed or authorized for use as components in life support appliances, devices or systems where malfunction of a product
+can reasonably be expected to result in personal injury. Life support devices or systems are devices or systems that (a) are intended for surgical implant
+    into the body or (b) support or sustain life, and whose failure to perform can be reasonably expected to result in a significant injury to the user. A
+Purchaser’s use or sale of Micrel Products for use in life support appliances, devices or systems is a Purchaser’s own risk and Purchaser agrees to fully
+                                             indemnify Micrel for any damages resulting from such use or sale.
+
+                                                              © 2012 Micrel, Incorporated.
+
+
+
+April 2012                                                                     16                                                    M9999-040312-B
+

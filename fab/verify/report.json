@@ -1,0 +1,662 @@
+{
+ "board": "lpddr5-testbed.kicad_pcb",
+ "board_sha256": "ad7fe7fb7fc2977633b94e019d2710f937414a46d8ac770d9c7f32a83e93a95c",
+ "pixels_per_mm": 80.0,
+ "gerber_counts": {
+  "F.Cu": {
+   "apertures": 31,
+   "macros": 1,
+   "flashes": 982,
+   "draws": 451,
+   "regions": 0
+  },
+  "In1.Cu": {
+   "apertures": 2,
+   "macros": 0,
+   "flashes": 209,
+   "draws": 0,
+   "regions": 1
+  },
+  "In2.Cu": {
+   "apertures": 2,
+   "macros": 0,
+   "flashes": 218,
+   "draws": 0,
+   "regions": 2
+  },
+  "In3.Cu": {
+   "apertures": 4,
+   "macros": 0,
+   "flashes": 40,
+   "draws": 222,
+   "regions": 0
+  },
+  "In4.Cu": {
+   "apertures": 2,
+   "macros": 0,
+   "flashes": 198,
+   "draws": 0,
+   "regions": 2
+  },
+  "B.Cu": {
+   "apertures": 27,
+   "macros": 1,
+   "flashes": 654,
+   "draws": 259,
+   "regions": 6
+  },
+  "F.Mask": {
+   "apertures": 21,
+   "macros": 1,
+   "flashes": 591,
+   "draws": 0,
+   "regions": 1
+  },
+  "B.Mask": {
+   "apertures": 17,
+   "macros": 1,
+   "flashes": 263,
+   "draws": 0,
+   "regions": 1
+  },
+  "F.Paste": {
+   "apertures": 16,
+   "macros": 1,
+   "flashes": 457,
+   "draws": 0,
+   "regions": 0
+  },
+  "B.Paste": {
+   "apertures": 13,
+   "macros": 1,
+   "flashes": 129,
+   "draws": 0,
+   "regions": 0
+  },
+  "F.Silkscreen": {
+   "apertures": 23,
+   "macros": 1,
+   "flashes": 591,
+   "draws": 1368,
+   "regions": 4
+  },
+  "B.Silkscreen": {
+   "apertures": 19,
+   "macros": 1,
+   "flashes": 263,
+   "draws": 677,
+   "regions": 3
+  },
+  "Edge.Cuts": {
+   "apertures": 1,
+   "macros": 0,
+   "flashes": 0,
+   "draws": 24,
+   "regions": 0
+  },
+  "User.Comments": {
+   "apertures": 2,
+   "macros": 0,
+   "flashes": 0,
+   "draws": 39684,
+   "regions": 0
+  },
+  "User.Drawings": {
+   "apertures": 4,
+   "macros": 0,
+   "flashes": 0,
+   "draws": 661,
+   "regions": 0
+  },
+  "F.Fab": {
+   "apertures": 4,
+   "macros": 0,
+   "flashes": 0,
+   "draws": 3475,
+   "regions": 0
+  },
+  "B.Fab": {
+   "apertures": 4,
+   "macros": 0,
+   "flashes": 0,
+   "draws": 3159,
+   "regions": 0
+  }
+ },
+ "vias": {
+  "total": 393,
+  "by_pad_drill": {
+   "0.40/0.15": 235,
+   "0.40/0.20": 127,
+   "0.45/0.20": 31
+  },
+  "filled_and_capped": 253
+ },
+ "copper": {
+  "F.Cu": {
+   "gerber": {
+    "apertures": 31,
+    "macros": 1,
+    "flashes": 982,
+    "draws": 451,
+    "regions": 0
+   },
+   "board_items": {
+    "tracks": 451,
+    "arcs": 0,
+    "via pads": 393,
+    "pads": 589,
+    "zone outlines": 0
+   },
+   "pixels_gerber": 2171781,
+   "pixels_board": 2171017,
+   "xor_pixels": 764,
+   "gerber_only_beyond_1px": 0,
+   "board_only_beyond_1px": 0,
+   "outside_profile_pixels": 0,
+   "min_distance_to_edge_mm": 0.163,
+   "copper_fraction_of_card": 0.164,
+   "lowest_copper_y_mm": 0.15
+  },
+  "In1.Cu": {
+   "gerber": {
+    "apertures": 2,
+    "macros": 0,
+    "flashes": 209,
+    "draws": 0,
+    "regions": 1
+   },
+   "board_items": {
+    "tracks": 0,
+    "arcs": 0,
+    "via pads": 209,
+    "pads": 0,
+    "zone outlines": 1
+   },
+   "pixels_gerber": 12184343,
+   "pixels_board": 12184343,
+   "xor_pixels": 0,
+   "gerber_only_beyond_1px": 0,
+   "board_only_beyond_1px": 0,
+   "outside_profile_pixels": 0,
+   "min_distance_to_edge_mm": 0.302,
+   "copper_fraction_of_card": 0.9198,
+   "lowest_copper_y_mm": 1.0
+  },
+  "In2.Cu": {
+   "gerber": {
+    "apertures": 2,
+    "macros": 0,
+    "flashes": 218,
+    "draws": 0,
+    "regions": 2
+   },
+   "board_items": {
+    "tracks": 0,
+    "arcs": 0,
+    "via pads": 218,
+    "pads": 0,
+    "zone outlines": 2
+   },
+   "pixels_gerber": 12386240,
+   "pixels_board": 12386240,
+   "xor_pixels": 0,
+   "gerber_only_beyond_1px": 0,
+   "board_only_beyond_1px": 0,
+   "outside_profile_pixels": 0,
+   "min_distance_to_edge_mm": 0.301,
+   "copper_fraction_of_card": 0.9351,
+   "lowest_copper_y_mm": 0.5
+  },
+  "In3.Cu": {
+   "gerber": {
+    "apertures": 4,
+    "macros": 0,
+    "flashes": 40,
+    "draws": 222,
+    "regions": 0
+   },
+   "board_items": {
+    "tracks": 182,
+    "arcs": 40,
+    "via pads": 40,
+    "pads": 0,
+    "zone outlines": 0
+   },
+   "pixels_gerber": 301158,
+   "pixels_board": 301159,
+   "xor_pixels": 1,
+   "gerber_only_beyond_1px": 0,
+   "board_only_beyond_1px": 0,
+   "outside_profile_pixels": 0,
+   "min_distance_to_edge_mm": 1.818,
+   "copper_fraction_of_card": 0.0227,
+   "lowest_copper_y_mm": 5.65
+  },
+  "In4.Cu": {
+   "gerber": {
+    "apertures": 2,
+    "macros": 0,
+    "flashes": 198,
+    "draws": 0,
+    "regions": 2
+   },
+   "board_items": {
+    "tracks": 0,
+    "arcs": 0,
+    "via pads": 198,
+    "pads": 0,
+    "zone outlines": 2
+   },
+   "pixels_gerber": 12124966,
+   "pixels_board": 12124966,
+   "xor_pixels": 0,
+   "gerber_only_beyond_1px": 0,
+   "board_only_beyond_1px": 0,
+   "outside_profile_pixels": 0,
+   "min_distance_to_edge_mm": 0.302,
+   "copper_fraction_of_card": 0.9153,
+   "lowest_copper_y_mm": 1.0
+  },
+  "B.Cu": {
+   "gerber": {
+    "apertures": 27,
+    "macros": 1,
+    "flashes": 654,
+    "draws": 259,
+    "regions": 6
+   },
+   "board_items": {
+    "tracks": 259,
+    "arcs": 0,
+    "via pads": 393,
+    "pads": 261,
+    "zone outlines": 6
+   },
+   "pixels_gerber": 2089602,
+   "pixels_board": 2088730,
+   "xor_pixels": 872,
+   "gerber_only_beyond_1px": 0,
+   "board_only_beyond_1px": 0,
+   "outside_profile_pixels": 0,
+   "min_distance_to_edge_mm": 0.163,
+   "copper_fraction_of_card": 0.1577,
+   "lowest_copper_y_mm": 0.15
+  }
+ },
+ "netlist": {
+  "records": 1245,
+  "via_records": 393,
+  "pad_records": 840,
+  "nets": 225,
+  "npth_holes_on_board": 2
+ },
+ "position": {
+  "top": 59,
+  "bottom": 60
+ },
+ "bom": {
+  "lines": 27,
+  "parts": 119,
+  "top": 59,
+  "bottom": 60
+ },
+ "drc": {
+  "kicad_version": "10.0.6",
+  "errors": 0,
+  "warnings": 9,
+  "unconnected": 0,
+  "schematic_parity": 0,
+  "by_type": {
+   "warning:diff_pair_gap_out_of_range": 9
+  },
+  "warning_nets": [
+   "Differential pair gap out of range (CMD_CK_pair_coupling maximum gap 0.1100 mm; actual 0.3950 mm)",
+   "Differential pair gap out of range (CMD_CK_pair_coupling maximum gap 0.1100 mm; actual 0.4000 mm)",
+   "Differential pair gap out of range (CMD_CK_pair_coupling maximum gap 0.1100 mm; actual 0.7000 mm)",
+   "Differential pair gap out of range (RD_RDQS_pair_coupling maximum gap 0.1100 mm; actual 0.9530 mm)",
+   "Differential pair gap out of range (WR_WCK_pair_coupling maximum gap 0.1100 mm; actual 0.2500 mm)",
+   "Differential pair gap out of range (WR_WCK_pair_coupling maximum gap 0.1100 mm; actual 1.0000 mm)"
+  ]
+ },
+ "checks": [
+  {
+   "group": "gerber",
+   "check": "all 17 layer files present and readable",
+   "ok": true,
+   "detail": "17 files"
+  },
+  {
+   "group": "gerber",
+   "check": "six copper layers carry the X2 file functions L1 (Top), L2 .. L5 (Inr), L6 (Bot)",
+   "ok": true,
+   "detail": "F.Cu=Copper,L1,Top; In1.Cu=Copper,L2,Inr; In2.Cu=Copper,L3,Inr; In3.Cu=Copper,L4,Inr; In4.Cu=Copper,L5,Inr; B.Cu=Copper,L6,Bot"
+  },
+  {
+   "group": "gerber",
+   "check": "mask, paste, legend, profile and drawing files carry their X2 file functions",
+   "ok": true,
+   "detail": "all as expected"
+  },
+  {
+   "group": "gerber",
+   "check": "every selected aperture is defined, none has a zero dimension, no unsupported statement",
+   "ok": true,
+   "detail": "apertures per file: F.Cu 31, In1.Cu 2, In2.Cu 2, In3.Cu 4, In4.Cu 2, B.Cu 27, F.Mask 21, B.Mask 17, F.Paste 16, B.Paste 13, F.Silkscreen 23, B.Silkscreen 19, Edge.Cuts 1, User.Comments 2, User.Drawings 4, F.Fab 4, B.Fab 4"
+  },
+  {
+   "group": "gerber",
+   "check": "job file: 6 layers, board thickness of the stackup, edge connector without bevel",
+   "ok": true,
+   "detail": "layers 6, thickness 1.212 mm, finish ENIG, impedance controlled True"
+  },
+  {
+   "group": "profile",
+   "check": "extents of the profile centre line = 0 .. 69.6 x 0 .. 30.0 mm, origin at the lower-left card corner",
+   "ok": true,
+   "detail": "x 0.0000 .. 69.6000, y 0.0000 .. 30.0000"
+  },
+  {
+   "group": "profile",
+   "check": "the profile is ONE closed contour; its area equals the board outline of the board file",
+   "ok": true,
+   "detail": "1 contour(s), 2069.750 mm2 (board 2069.754 mm2, difference area 0.0084 mm2)"
+  },
+  {
+   "group": "drill",
+   "check": "plated file: every hit is a via / plated hole of the board with that diameter, and the reverse",
+   "ok": true,
+   "detail": "file 235 x 0.15 mm, 158 x 0.20 mm; board 235 x 0.15 mm, 158 x 0.20 mm (393 vias)"
+  },
+  {
+   "group": "drill",
+   "check": "non-plated file: the two 1.80 mm tooling holes of the card edge",
+   "ok": true,
+   "detail": "file 2 x 1.80 mm; board 2 x 1.80 mm"
+  },
+  {
+   "group": "drill",
+   "check": "filled = capped on every via that carries either attribute",
+   "ok": true,
+   "detail": "253 filled and capped of 393 vias"
+  },
+  {
+   "group": "drill",
+   "check": "filled-and-capped drill file = the vias with the attribute in the board file",
+   "ok": true,
+   "detail": "file 235 x 0.15 mm, 18 x 0.20 mm"
+  },
+  {
+   "group": "drill",
+   "check": "X2 filling layer = the same 253 vias; header well-formed",
+   "ok": true,
+   "detail": "253 flashes"
+  },
+  {
+   "group": "drill",
+   "check": "X2 capping layer = the same 253 vias; header well-formed",
+   "ok": true,
+   "detail": "253 flashes"
+  },
+  {
+   "group": "drill",
+   "check": "filled_capped_vias.csv lists the same vias",
+   "ok": true,
+   "detail": "253 rows"
+  },
+  {
+   "group": "copper",
+   "check": "F.Cu: the Gerber image equals the layer drawn from the board items (tolerance one pixel = 12.5 um)",
+   "ok": true,
+   "detail": "2171781 / 2171017 copper pixels, 764 differ at edges (0.035 %), beyond one pixel: 0 only in the Gerber, 0 only on the board"
+  },
+  {
+   "group": "copper",
+   "check": "F.Cu: no copper outside the profile",
+   "ok": true,
+   "detail": "nearest copper 0.163 mm from the edge; 16.4 % of the card area is copper"
+  },
+  {
+   "group": "copper",
+   "check": "In1.Cu: the Gerber image equals the layer drawn from the board items (tolerance one pixel = 12.5 um)",
+   "ok": true,
+   "detail": "12184343 / 12184343 copper pixels, 0 differ at edges (0.000 %), beyond one pixel: 0 only in the Gerber, 0 only on the board"
+  },
+  {
+   "group": "copper",
+   "check": "In1.Cu: no copper outside the profile",
+   "ok": true,
+   "detail": "nearest copper 0.302 mm from the edge; 92.0 % of the card area is copper"
+  },
+  {
+   "group": "copper",
+   "check": "In2.Cu: the Gerber image equals the layer drawn from the board items (tolerance one pixel = 12.5 um)",
+   "ok": true,
+   "detail": "12386240 / 12386240 copper pixels, 0 differ at edges (0.000 %), beyond one pixel: 0 only in the Gerber, 0 only on the board"
+  },
+  {
+   "group": "copper",
+   "check": "In2.Cu: no copper outside the profile",
+   "ok": true,
+   "detail": "nearest copper 0.301 mm from the edge; 93.5 % of the card area is copper"
+  },
+  {
+   "group": "copper",
+   "check": "In3.Cu: the Gerber image equals the layer drawn from the board items (tolerance one pixel = 12.5 um)",
+   "ok": true,
+   "detail": "301158 / 301159 copper pixels, 1 differ at edges (0.000 %), beyond one pixel: 0 only in the Gerber, 0 only on the board"
+  },
+  {
+   "group": "copper",
+   "check": "In3.Cu: no copper outside the profile",
+   "ok": true,
+   "detail": "nearest copper 1.818 mm from the edge; 2.3 % of the card area is copper"
+  },
+  {
+   "group": "copper",
+   "check": "In4.Cu: the Gerber image equals the layer drawn from the board items (tolerance one pixel = 12.5 um)",
+   "ok": true,
+   "detail": "12124966 / 12124966 copper pixels, 0 differ at edges (0.000 %), beyond one pixel: 0 only in the Gerber, 0 only on the board"
+  },
+  {
+   "group": "copper",
+   "check": "In4.Cu: no copper outside the profile",
+   "ok": true,
+   "detail": "nearest copper 0.302 mm from the edge; 91.5 % of the card area is copper"
+  },
+  {
+   "group": "copper",
+   "check": "B.Cu: the Gerber image equals the layer drawn from the board items (tolerance one pixel = 12.5 um)",
+   "ok": true,
+   "detail": "2089602 / 2088730 copper pixels, 872 differ at edges (0.042 %), beyond one pixel: 0 only in the Gerber, 0 only on the board"
+  },
+  {
+   "group": "copper",
+   "check": "B.Cu: no copper outside the profile",
+   "ok": true,
+   "detail": "nearest copper 0.163 mm from the edge; 15.8 % of the card area is copper"
+  },
+  {
+   "group": "copper",
+   "check": "edge clearance: outer layers 0.15 mm (the fingers), every inner layer pulled back 0.3 mm or more",
+   "ok": true,
+   "detail": "F.Cu 0.16, In1.Cu 0.30, In2.Cu 0.30, In3.Cu 1.82, In4.Cu 0.30, B.Cu 0.16"
+  },
+  {
+   "group": "drill",
+   "check": "every plated hit lies on copper on F.Cu and on B.Cu (outer via pads are kept)",
+   "ok": true,
+   "detail": "393 of 393 hits"
+  },
+  {
+   "group": "mask",
+   "check": "all 260 fingers of J1 are free of solder mask over their whole land",
+   "ok": true,
+   "detail": "260 lands inside the openings"
+  },
+  {
+   "group": "mask",
+   "check": "test pads and fiducials are open",
+   "ok": true,
+   "detail": "11 pads"
+  },
+  {
+   "group": "mask",
+   "check": "plain vias are tented: the mask covers the centre of each on both faces",
+   "ok": true,
+   "detail": "140 plain vias, 0 openings over a via centre"
+  },
+  {
+   "group": "mask",
+   "check": "the mask-free finger strip ends below the row of finger vias (y = 3.05 mm)",
+   "ok": true,
+   "detail": "57 finger vias covered"
+  },
+  {
+   "group": "paste",
+   "check": "F.Paste: one aperture per pad that has paste",
+   "ok": true,
+   "detail": "457 flashes, 457 pads with paste"
+  },
+  {
+   "group": "paste",
+   "check": "F.Paste: every paste aperture lies inside a mask opening",
+   "ok": true,
+   "detail": "0 pixels outside"
+  },
+  {
+   "group": "paste",
+   "check": "B.Paste: one aperture per pad that has paste",
+   "ok": true,
+   "detail": "129 flashes, 129 pads with paste"
+  },
+  {
+   "group": "paste",
+   "check": "B.Paste: every paste aperture lies inside a mask opening",
+   "ok": true,
+   "detail": "0 pixels outside"
+  },
+  {
+   "group": "paste",
+   "check": "no paste on the fingers, the test pads and the fiducials",
+   "ok": true,
+   "detail": "271 lands checked"
+  },
+  {
+   "group": "legend",
+   "check": "F.Silkscreen: no legend ink on exposed copper, none outside the card",
+   "ok": true,
+   "detail": "152897 pixels of legend, 0 over mask openings, 0 outside"
+  },
+  {
+   "group": "legend",
+   "check": "B.Silkscreen: no legend ink on exposed copper, none outside the card",
+   "ok": true,
+   "detail": "55630 pixels of legend, 0 over mask openings, 0 outside"
+  },
+  {
+   "group": "netlist",
+   "check": "IPC-D-356: one record per via, per numbered pad, per fiducial and per non-plated hole of the board",
+   "ok": true,
+   "detail": "393 via records (393 vias), 844 pad records (844 numbered pads, 840 distinct pins), 6 fiducials, 2 non-plated holes"
+  },
+  {
+   "group": "netlist",
+   "check": "IPC-D-356: net names are in one-to-one relation with the nets of the board (names are cut to 14 characters)",
+   "ok": true,
+   "detail": "225 nets"
+  },
+  {
+   "group": "netlist",
+   "check": "IPC-D-356: vias per net equal the board",
+   "ok": true,
+   "detail": "GND 199, 35 nets with vias"
+  },
+  {
+   "group": "position",
+   "check": "lpddr5-testbed-top.pos.csv: one row per placed part of that face (fingers, test pads and fiducials excluded)",
+   "ok": true,
+   "detail": "59 rows, 59 parts on the board"
+  },
+  {
+   "group": "position",
+   "check": "lpddr5-testbed-top.pos.csv: X / Y = footprint position in the card frame (origin lower-left corner seen from the front, y up, x not mirrored), side column 'top'",
+   "ok": true,
+   "detail": "59 rows"
+  },
+  {
+   "group": "position",
+   "check": "lpddr5-testbed-top.pos.csv: Rot = KiCad orientation; every numbered pad lands where 'counter-clockwise seen from the front' puts it",
+   "ok": true,
+   "detail": "59 parts"
+  },
+  {
+   "group": "position",
+   "check": "lpddr5-testbed-bottom.pos.csv: one row per placed part of that face (fingers, test pads and fiducials excluded)",
+   "ok": true,
+   "detail": "60 rows, 60 parts on the board"
+  },
+  {
+   "group": "position",
+   "check": "lpddr5-testbed-bottom.pos.csv: X / Y = footprint position in the card frame (origin lower-left corner seen from the front, y up, x not mirrored), side column 'bottom'",
+   "ok": true,
+   "detail": "60 rows"
+  },
+  {
+   "group": "position",
+   "check": "lpddr5-testbed-bottom.pos.csv: Rot = KiCad orientation; every numbered pad lands where 'counter-clockwise seen from the front, footprint mirrored top-to-bottom' puts it",
+   "ok": true,
+   "detail": "60 parts"
+  },
+  {
+   "group": "position",
+   "check": "fiducial list = FID1 .. FID6 of the board, three per face",
+   "ok": true,
+   "detail": "6 rows"
+  },
+  {
+   "group": "bom",
+   "check": "BOM: every line agrees with the board (value, footprint, manufacturer, MPN, DNP, quantity, side counts)",
+   "ok": true,
+   "detail": "27 lines"
+  },
+  {
+   "group": "bom",
+   "check": "BOM: every BOM part of the board is listed exactly once; nothing else is",
+   "ok": true,
+   "detail": "119 references in 27 lines; board 119 (59 top, 60 bottom)"
+  },
+  {
+   "group": "bom",
+   "check": "BOM: lines and quantities equal design/netlist.json (bom_summary)",
+   "ok": true,
+   "detail": "27 lines, 119 parts, 0 DNP"
+  },
+  {
+   "group": "bom",
+   "check": "position files and BOM list the same parts",
+   "ok": true,
+   "detail": "119 / 119"
+  },
+  {
+   "group": "bom",
+   "check": "per-part list: one row per BOM part with its face",
+   "ok": true,
+   "detail": "119 rows"
+  },
+  {
+   "group": "drc",
+   "check": "kicad-cli DRC, all severities, with schematic parity: 0 errors, 0 unconnected, 0 parity issues; the only warnings are pair gaps where legs part",
+   "ok": true,
+   "detail": "KiCad 10.0.6: 0 errors, 9 warnings (diff_pair_gap_out_of_range x 9), 0 unconnected, 0 parity issues"
+  },
+  {
+   "group": "board",
+   "check": "the board file is unchanged by the verification",
+   "ok": true,
+   "detail": "ad7fe7fb7fc2977633b94e019d2710f937414a46d8ac770d9c7f32a83e93a95c"
+  }
+ ],
+ "passed": 56,
+ "failed": 0
+}

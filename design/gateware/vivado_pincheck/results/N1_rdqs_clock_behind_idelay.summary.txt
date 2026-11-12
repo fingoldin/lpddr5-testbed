@@ -1,0 +1,44 @@
+@@VERSION 2026.1
+@@CASE N1_rdqs_clock_behind_idelay rx_slvs=0 cmd_native=1 rdqs_as_clock=1 guard_bitslice=1 cmd_comp_800=0 idelayctrl_sim_device=ULTRASCALE_PLUS extra=
+@@STAGE synth
+@@RESULT synth PASS
+@@STAGE opt
+@@RESULT opt PASS
+@@STAGE drc_preplace
+@@RESULT drc_preplace PASS
+@@STAGE place
+@@RESULT place FAIL :: ERROR: [Common 17-39] 'place_design' failed due to earlier errors.
+@@LOC g_cmd_native.u_bcmd BUFGCE 
+@@LOC g_cmd_native.u_pll PLLE4_ADV 
+@@LOC g_rd_strobe.u_brdqs BUFGCE 
+@@LOC u_b200 BUFGCE 
+@@LOC u_bdiv BUFGCE_DIV 
+@@LOC u_bhs BUFGCE 
+@@LOC u_idc IDELAYCTRL 
+@@LOC u_mmcm MMCME4_ADV 
+@@LOC g_cmd_native.u_nib_l/u_bsc BITSLICE_CONTROL 
+@@LOC g_cmd_native.u_nib_u/u_bsc BITSLICE_CONTROL 
+@@RESULT route SKIPPED
+@@STAGE drc_routed
+@@RESULT drc_routed PASS
+@@STAGE drc_bitstream
+@@RESULT drc_bitstream PASS
+@@RESULT methodology SKIPPED
+@@STAGE reports
+@@RESULT reports PASS
+@@RESULT bitstream SKIPPED
+@@DONE
+@@EXIT 0
+@@TIMING_SUMMARY WNS TNS fail total | WHS THS fail total | WPWS TPWS fail total:      1.158        0.000                      0                  421       -0.424      -30.633                    194                  421        0.023        0.000                       0                   200  
+@@COUNT errors=2 critical_warnings=0
+@@MESSAGES every ERROR and CRITICAL WARNING line of vivado.log, verbatim (count, text)
+      1 ERROR: [DRC REQP-1741] IDELAYE3 drives invalid load: IDELAYE3 g_idly[8].u_id DATAOUT pin (net: g_rd_strobe.rdqs_src) may not drive a BUFG*.
+      1 ERROR: [Vivado_Tcl 4-23] Error(s) found during DRC. Placer not run.
+@@DRC_ROUTED violations of drc_routed.rpt (rule, severity, count)
+| Rule      | Severity | Description                  | Checks |
+| REQP-1741 | Error    | IDELAYE3 drives invalid load | 1      |
+@@DRC_BITSTREAM
+| Rule      | Severity | Description                  | Checks |
+| REQP-1741 | Error    | IDELAYE3 drives invalid load | 1      |
+| RTSTAT-12 | Error    | No Routing                   | 1      |
+@@METHODOLOGY

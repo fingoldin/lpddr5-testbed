@@ -1,0 +1,249 @@
+{
+    "$schema": "https://schemas.kicad.org/drc.v1.json",
+    "coordinate_units": "mm",
+    "date": "2026-11-11T04:41:04",
+    "ignored_checks": [
+        {
+            "description": "Footprint has no courtyard defined",
+            "key": "missing_courtyard"
+        },
+        {
+            "description": "Track endpoint not centered on via",
+            "key": "track_not_centered_on_via"
+        },
+        {
+            "description": "Tuning profile track geometries",
+            "key": "tuning_profile_track_geometries"
+        },
+        {
+            "description": "Footprint doesn't match symbol's footprint filters",
+            "key": "footprint_filters_mismatch"
+        },
+        {
+            "description": "PTH inside courtyard",
+            "key": "pth_inside_courtyard"
+        },
+        {
+            "description": "NPTH inside courtyard",
+            "key": "npth_inside_courtyard"
+        }
+    ],
+    "included_severities": [
+        "error",
+        "warning",
+        "exclusion"
+    ],
+    "kicad_version": "10.0.6",
+    "schematic_parity": [],
+    "source": "lpddr5-testbed.kicad_pcb",
+    "unconnected_items": [],
+    "violations": [
+        {
+            "description": "Differential pair gap out of range (RD_RDQS_pair_coupling maximum gap 0.1100 mm; actual 0.9530 mm)",
+            "items": [
+                {
+                    "description": "Track [RDQS_P] on In3.Cu, length 0.1500 mm",
+                    "pos": {
+                        "x": 128.2,
+                        "y": 118.253
+                    },
+                    "uuid": "00000030-0002-4000-8000-0000000000f3"
+                },
+                {
+                    "description": "Track [RDQS_N] on In3.Cu, length 8.8586 mm",
+                    "pos": {
+                        "x": 127.6,
+                        "y": 117.2
+                    },
+                    "uuid": "00000030-0002-4000-8000-00000000010a"
+                }
+            ],
+            "severity": "warning",
+            "type": "diff_pair_gap_out_of_range"
+        },
+        {
+            "description": "Differential pair gap out of range (WR_WCK_pair_coupling maximum gap 0.1100 mm; actual 1.0000 mm)",
+            "items": [
+                {
+                    "description": "Track [WCK_P] on F.Cu, length 0.6800 mm",
+                    "pos": {
+                        "x": 136.125,
+                        "y": 124.68
+                    },
+                    "uuid": "00000030-0002-4000-8000-000000000089"
+                },
+                {
+                    "description": "Track [WCK_N] on F.Cu, length 0.6800 mm",
+                    "pos": {
+                        "x": 134.925,
+                        "y": 124.68
+                    },
+                    "uuid": "00000030-0002-4000-8000-000000000096"
+                }
+            ],
+            "severity": "warning",
+            "type": "diff_pair_gap_out_of_range"
+        },
+        {
+            "description": "Differential pair gap out of range (WR_WCK_pair_coupling maximum gap 0.1100 mm; actual 1.0000 mm)",
+            "items": [
+                {
+                    "description": "Track [WCK_P] on F.Cu, length 0.6800 mm",
+                    "pos": {
+                        "x": 136.125,
+                        "y": 124.0
+                    },
+                    "uuid": "00000030-0002-4000-8000-00000000008a"
+                },
+                {
+                    "description": "Track [WCK_N] on F.Cu, length 0.6800 mm",
+                    "pos": {
+                        "x": 134.925,
+                        "y": 124.0
+                    },
+                    "uuid": "00000030-0002-4000-8000-000000000097"
+                }
+            ],
+            "severity": "warning",
+            "type": "diff_pair_gap_out_of_range"
+        },
+        {
+            "description": "Differential pair gap out of range (WR_WCK_pair_coupling maximum gap 0.1100 mm; actual 0.2500 mm)",
+            "items": [
+                {
+                    "description": "Track [WCK_P] on B.Cu, length 0.2878 mm",
+                    "pos": {
+                        "x": 123.925,
+                        "y": 115.2
+                    },
+                    "uuid": "00000030-0002-4000-8000-00000000008d"
+                },
+                {
+                    "description": "Track [WCK_N] on B.Cu, length 0.8050 mm",
+                    "pos": {
+                        "x": 123.475,
+                        "y": 115.55
+                    },
+                    "uuid": "00000030-0002-4000-8000-00000000009b"
+                }
+            ],
+            "severity": "warning",
+            "type": "diff_pair_gap_out_of_range"
+        },
+        {
+            "description": "Differential pair gap out of range (CMD_CK_pair_coupling maximum gap 0.1100 mm; actual 0.4000 mm)",
+            "items": [
+                {
+                    "description": "Track [CK_P] on F.Cu, length 0.4800 mm",
+                    "pos": {
+                        "x": 120.325,
+                        "y": 124.15
+                    },
+                    "uuid": "00000020-0002-4000-8000-000000000022"
+                },
+                {
+                    "description": "Track [CK_N] on F.Cu, length 0.4800 mm",
+                    "pos": {
+                        "x": 119.525,
+                        "y": 124.15
+                    },
+                    "uuid": "00000020-0002-4000-8000-00000000001c"
+                }
+            ],
+            "severity": "warning",
+            "type": "diff_pair_gap_out_of_range"
+        },
+        {
+            "description": "Differential pair gap out of range (CMD_CK_pair_coupling maximum gap 0.1100 mm; actual 0.4000 mm)",
+            "items": [
+                {
+                    "description": "Track [CK_P] on B.Cu, length 0.5300 mm",
+                    "pos": {
+                        "x": 120.325,
+                        "y": 124.68
+                    },
+                    "uuid": "00000020-0002-4000-8000-000000000021"
+                },
+                {
+                    "description": "Track [CK_N] on B.Cu, length 0.5300 mm",
+                    "pos": {
+                        "x": 119.525,
+                        "y": 124.68
+                    },
+                    "uuid": "00000020-0002-4000-8000-00000000001b"
+                }
+            ],
+            "severity": "warning",
+            "type": "diff_pair_gap_out_of_range"
+        },
+        {
+            "description": "Differential pair gap out of range (CMD_CK_pair_coupling maximum gap 0.1100 mm; actual 0.7000 mm)",
+            "items": [
+                {
+                    "description": "Track [CK_P] on In3.Cu, length 0.2000 mm",
+                    "pos": {
+                        "x": 120.325,
+                        "y": 124.15
+                    },
+                    "uuid": "00000020-0002-4000-8000-000000000044"
+                },
+                {
+                    "description": "Track [CK_N] on In3.Cu, length 0.2000 mm",
+                    "pos": {
+                        "x": 119.525,
+                        "y": 124.15
+                    },
+                    "uuid": "00000020-0002-4000-8000-00000000003d"
+                }
+            ],
+            "severity": "warning",
+            "type": "diff_pair_gap_out_of_range"
+        },
+        {
+            "description": "Differential pair gap out of range (CMD_CK_pair_coupling maximum gap 0.1100 mm; actual 0.7000 mm)",
+            "items": [
+                {
+                    "description": "Track [CK_P] on In3.Cu, length 0.6620 mm",
+                    "pos": {
+                        "x": 120.325,
+                        "y": 113.55
+                    },
+                    "uuid": "00000020-0002-4000-8000-000000000049"
+                },
+                {
+                    "description": "Track [CK_N] on In3.Cu, length 0.7500 mm",
+                    "pos": {
+                        "x": 119.525,
+                        "y": 113.55
+                    },
+                    "uuid": "00000020-0002-4000-8000-000000000042"
+                }
+            ],
+            "severity": "warning",
+            "type": "diff_pair_gap_out_of_range"
+        },
+        {
+            "description": "Differential pair gap out of range (CMD_CK_pair_coupling maximum gap 0.1100 mm; actual 0.3950 mm)",
+            "items": [
+                {
+                    "description": "Track [CK_P] on In3.Cu, length 0.4327 mm",
+                    "pos": {
+                        "x": 120.231,
+                        "y": 112.794
+                    },
+                    "uuid": "00000020-0002-4000-8000-00000000004b"
+                },
+                {
+                    "description": "Track [CK_N] on In3.Cu, length 0.5657 mm",
+                    "pos": {
+                        "x": 119.525,
+                        "y": 112.8
+                    },
+                    "uuid": "00000020-0002-4000-8000-000000000043"
+                }
+            ],
+            "severity": "warning",
+            "type": "diff_pair_gap_out_of_range"
+        }
+    ]
+}

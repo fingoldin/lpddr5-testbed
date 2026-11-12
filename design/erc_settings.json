@@ -1,0 +1,67 @@
+{
+  "about": "ERC settings of the schematic, written by scripts/gen_schematic.py: the value of \"erc\" is the \"erc\" section of lpddr5-testbed.kicad_pro; scripts/check_schematic.py runs ERC with exactly these settings",
+  "erc": {
+    "erc_exclusions": [
+      [
+        "pin_to_pin|774700|1549400|b48a3caa-25a9-5de9-9357-8480da0d60cd|b654954a-c9c1-5460-b6ed-28e74fe616a2|/239015f0-3f9a-4270-9961-5849571f87d5/cfe47657-706d-5ce6-8c1f-cdd7b722d6ec|/239015f0-3f9a-4270-9961-5849571f87d5/cfe47657-706d-5ce6-8c1f-cdd7b722d6ec|/239015f0-3f9a-4270-9961-5849571f87d5/e2c65987-9b01-51eb-bbe6-16815206e024",
+        "DMI0_A (U1.A4) is strapped to VSS on purpose: design/DESIGN.md section 5"
+      ],
+      [
+        "pin_to_pin|774700|1574800|a5ac745e-e44a-59fa-98d6-e6fe3c91dec1|b654954a-c9c1-5460-b6ed-28e74fe616a2|/239015f0-3f9a-4270-9961-5849571f87d5/cfe47657-706d-5ce6-8c1f-cdd7b722d6ec|/239015f0-3f9a-4270-9961-5849571f87d5/cfe47657-706d-5ce6-8c1f-cdd7b722d6ec|/239015f0-3f9a-4270-9961-5849571f87d5/e2c65987-9b01-51eb-bbe6-16815206e024",
+        "DMI1_A (U1.A12) is strapped to VSS on purpose: design/DESIGN.md section 5"
+      ]
+    ],
+    "meta": {
+      "version": 0
+    },
+    "rule_severities": {
+      "bus_definition_conflict": "error",
+      "bus_entry_needed": "error",
+      "bus_to_bus_conflict": "error",
+      "bus_to_net_conflict": "error",
+      "different_unit_footprint": "error",
+      "different_unit_net": "error",
+      "duplicate_reference": "error",
+      "duplicate_sheet_names": "error",
+      "endpoint_off_grid": "warning",
+      "extra_units": "error",
+      "field_name_whitespace": "warning",
+      "footprint_filter": "warning",
+      "footprint_link_issues": "warning",
+      "four_way_junction": "warning",
+      "global_label_dangling": "warning",
+      "ground_pin_not_ground": "warning",
+      "hier_label_mismatch": "error",
+      "isolated_pin_label": "warning",
+      "label_dangling": "error",
+      "label_multiple_wires": "warning",
+      "lib_symbol_issues": "warning",
+      "lib_symbol_mismatch": "warning",
+      "missing_bidi_pin": "warning",
+      "missing_input_pin": "warning",
+      "missing_power_pin": "error",
+      "missing_unit": "warning",
+      "multiple_net_names": "warning",
+      "net_not_bus_member": "warning",
+      "no_connect_connected": "warning",
+      "no_connect_dangling": "warning",
+      "pin_not_connected": "error",
+      "pin_not_driven": "error",
+      "pin_to_pin": "warning",
+      "power_pin_not_driven": "error",
+      "same_local_global_label": "warning",
+      "similar_label_and_power": "warning",
+      "similar_labels": "warning",
+      "similar_power": "warning",
+      "simulation_model_issue": "ignore",
+      "single_global_label": "ignore",
+      "stacked_pin_name": "warning",
+      "unannotated": "error",
+      "unconnected_wire_endpoint": "warning",
+      "undefined_netclass": "error",
+      "unit_value_mismatch": "error",
+      "unresolved_variable": "error",
+      "wire_dangling": "error"
+    }
+  }
+}

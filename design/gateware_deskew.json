@@ -1,0 +1,305 @@
+{
+ "status": "accepted by the user (\"The write group's spread is acceptable\")",
+ "generated_by": "scripts/pcb/check_pcb.py, gate 7, from the delays measured on lpddr5-testbed.kicad_pcb",
+ "what": "NEITHER data group is delay-matched on the card. WRITE (comb with the T at the divider: +/-26.7 ps): each DQ output is delayed in the FPGA by the latest total of the group minus its own total, so that all eight arrive at the balls together; ODELAYE3 of the HP bank, DELAY_FORMAT = TIME, DELAY_VALUE in ps. READ (read end without crossings, the read fingers in the order of the In3 bundle: +/-56.8 ps): each DQ input is delayed by the latest total of the group minus its own total (IDELAYE3, DELAY_FORMAT = TIME, DELAY_VALUE in ps; range 0 .. 1100 ps, 512 taps of 2.1 .. 12 ps), so that all eight reach the capture flops together, 26.6 ps after the strobe edge that launched with them (strobe.dq_after_strobe_with_the_table_ps; the capture delay of the strobe, a quarter of the bit time at DDR, is added to that by the gateware as usual). All values are start values: both directions are refined by training. Host + package figures are good to about +/-5 ps",
+ "read_status": "accepted by the user (\"Same with read group\"): built as the read end without crossings",
+ "write": {
+  "latest_total_ps": 801.51,
+  "spread_half_ps": 26.74,
+  "per_bit": {
+   "DQ0": {
+    "finger": 150,
+    "fpga_ball": "AL15",
+    "fpga_pin": "IO_L8N_T1L_N3_AD5N_64",
+    "bank": 64,
+    "byte_group": "T1L",
+    "card_ps": 148.07,
+    "host_plus_package_ps": 612.7,
+    "total_ps": 760.77,
+    "output_delay_ps": 40.7
+   },
+   "DQ1": {
+    "finger": 145,
+    "fpga_ball": "AL16",
+    "fpga_pin": "IO_L8P_T1L_N2_AD5P_64",
+    "bank": 64,
+    "byte_group": "T1L",
+    "card_ps": 138.45,
+    "host_plus_package_ps": 612.1,
+    "total_ps": 750.55,
+    "output_delay_ps": 51.0
+   },
+   "DQ2": {
+    "finger": 156,
+    "fpga_ball": "AA14",
+    "fpga_pin": "IO_L23P_T3U_N8_64",
+    "bank": 64,
+    "byte_group": "T3U",
+    "card_ps": 165.83,
+    "host_plus_package_ps": 608.6,
+    "total_ps": 774.43,
+    "output_delay_ps": 27.1
+   },
+   "DQ3": {
+    "finger": 151,
+    "fpga_ball": "AA16",
+    "fpga_pin": "IO_L22P_T3U_N6_DBC_AD0P_64",
+    "bank": 64,
+    "byte_group": "T3U",
+    "card_ps": 155.93,
+    "host_plus_package_ps": 604.6,
+    "total_ps": 760.53,
+    "output_delay_ps": 41.0
+   },
+   "DQ4": {
+    "finger": 143,
+    "fpga_ball": "AD16",
+    "fpga_pin": "IO_L24N_T3U_N11_64",
+    "bank": 64,
+    "byte_group": "T3U",
+    "card_ps": 138.83,
+    "host_plus_package_ps": 609.2,
+    "total_ps": 748.03,
+    "output_delay_ps": 53.5
+   },
+   "DQ5": {
+    "finger": 144,
+    "fpga_ball": "AH16",
+    "fpga_pin": "IO_T2U_N12_64",
+    "bank": 64,
+    "byte_group": "T2U",
+    "card_ps": 167.84,
+    "host_plus_package_ps": 610.6,
+    "total_ps": 778.44,
+    "output_delay_ps": 23.1
+   },
+   "DQ6": {
+    "finger": 157,
+    "fpga_ball": "AL17",
+    "fpga_pin": "IO_T1U_N12_64",
+    "bank": 64,
+    "byte_group": "T1U",
+    "card_ps": 185.09,
+    "host_plus_package_ps": 613.0,
+    "total_ps": 798.09,
+    "output_delay_ps": 3.4
+   },
+   "DQ7": {
+    "finger": 161,
+    "fpga_ball": "AM16",
+    "fpga_pin": "IO_L7P_T1L_N0_QBC_AD13P_64",
+    "bank": 64,
+    "byte_group": "T1L",
+    "card_ps": 186.51,
+    "host_plus_package_ps": 615.0,
+    "total_ps": 801.51,
+    "output_delay_ps": 0.0
+   }
+  }
+ },
+ "read": {
+  "matched_on_the_card": false,
+  "read_end_crossings": 0,
+  "latest_total_ps": 949.67,
+  "centre_ps": 892.83,
+  "spread_half_ps": 56.84,
+  "idelay": {
+   "primitive": "IDELAYE3",
+   "delay_format": "TIME",
+   "range_ps": [
+    0,
+    1100
+   ],
+   "taps": 512,
+   "tap_ps": [
+    2.1,
+    12.0
+   ],
+   "largest_value_ps": 113.7
+  },
+  "per_bit": {
+   "DQ0": {
+    "p_finger": 204,
+    "p_fpga_ball": "AH11",
+    "p_fpga_pin": "IO_L14P_T2L_N2_GC_66",
+    "n_finger": 203,
+    "n_fpga_ball": "AJ11",
+    "bank": 66,
+    "byte_group": "T2L",
+    "card_ps": 288.87,
+    "host_plus_package_ps": 608.0,
+    "total_ps": 896.87,
+    "to_centre_ps": 4.04,
+    "to_strobe_ps": -26.24,
+    "input_delay_ps": 52.8
+   },
+   "DQ1": {
+    "p_finger": 208,
+    "p_fpga_ball": "AG11",
+    "p_fpga_pin": "IO_L17P_T2U_N8_AD10P_66",
+    "n_finger": 207,
+    "n_fpga_ball": "AG10",
+    "bank": 66,
+    "byte_group": "T2U",
+    "card_ps": 307.61,
+    "host_plus_package_ps": 604.7,
+    "total_ps": 912.31,
+    "to_centre_ps": 19.48,
+    "to_strobe_ps": -10.81,
+    "input_delay_ps": 37.4
+   },
+   "DQ2": {
+    "p_finger": 190,
+    "p_fpga_ball": "AG13",
+    "p_fpga_pin": "IO_L15P_T2L_N4_AD11P_66",
+    "n_finger": 191,
+    "n_fpga_ball": "AH13",
+    "bank": 66,
+    "byte_group": "T2L",
+    "card_ps": 257.37,
+    "host_plus_package_ps": 604.0,
+    "total_ps": 861.37,
+    "to_centre_ps": -31.46,
+    "to_strobe_ps": -61.75,
+    "input_delay_ps": 88.3
+   },
+   "DQ3": {
+    "p_finger": 194,
+    "p_fpga_ball": "AF8",
+    "p_fpga_pin": "IO_L18P_T2U_N10_AD2P_66",
+    "n_finger": 195,
+    "n_fpga_ball": "AG8",
+    "bank": 66,
+    "byte_group": "T2U",
+    "card_ps": 275.89,
+    "host_plus_package_ps": 604.7,
+    "total_ps": 880.59,
+    "to_centre_ps": -12.24,
+    "to_strobe_ps": -42.53,
+    "input_delay_ps": 69.1
+   },
+   "DQ4": {
+    "p_finger": 215,
+    "p_fpga_ball": "AJ9",
+    "p_fpga_pin": "IO_L12P_T1U_N10_GC_66",
+    "n_finger": 216,
+    "n_fpga_ball": "AK9",
+    "bank": 66,
+    "byte_group": "T1U",
+    "card_ps": 351.07,
+    "host_plus_package_ps": 598.6,
+    "total_ps": 949.67,
+    "to_centre_ps": 56.84,
+    "to_strobe_ps": 26.56,
+    "input_delay_ps": 0.0
+   },
+   "DQ5": {
+    "p_finger": 212,
+    "p_fpga_ball": "AK12",
+    "p_fpga_pin": "IO_L9P_T1L_N4_AD12P_66",
+    "n_finger": 211,
+    "n_fpga_ball": "AL12",
+    "bank": 66,
+    "byte_group": "T1L",
+    "card_ps": 349.08,
+    "host_plus_package_ps": 597.1,
+    "total_ps": 946.18,
+    "to_centre_ps": 53.35,
+    "to_strobe_ps": 23.06,
+    "input_delay_ps": 3.5
+   },
+   "DQ6": {
+    "p_finger": 186,
+    "p_fpga_ball": "AE12",
+    "p_fpga_pin": "IO_L23P_T3U_N8_66",
+    "n_finger": 187,
+    "n_fpga_ball": "AF12",
+    "bank": 66,
+    "byte_group": "T3U",
+    "card_ps": 266.48,
+    "host_plus_package_ps": 577.9,
+    "total_ps": 844.38,
+    "to_centre_ps": -48.45,
+    "to_strobe_ps": -78.74,
+    "input_delay_ps": 105.3
+   },
+   "DQ7": {
+    "p_finger": 182,
+    "p_fpga_ball": "AD14",
+    "p_fpga_pin": "IO_L20P_T3L_N2_AD1P_66",
+    "n_finger": 183,
+    "n_fpga_ball": "AE14",
+    "bank": 66,
+    "byte_group": "T3L",
+    "card_ps": 250.58,
+    "host_plus_package_ps": 585.4,
+    "total_ps": 835.98,
+    "to_centre_ps": -56.84,
+    "to_strobe_ps": -87.13,
+    "input_delay_ps": 113.7
+   }
+  },
+  "strobe": {
+   "RDQS_P": {
+    "finger": 219,
+    "fpga_ball": "AL8",
+    "fpga_pin": "IO_L10N_T1U_N7_QBC_AD4N_66",
+    "bank": 66,
+    "byte_group": "T1U",
+    "card_ps": 326.72,
+    "host_plus_package_ps": 596.4,
+    "total_ps": 923.12
+   },
+   "RDQS_N": {
+    "finger": 221,
+    "fpga_ball": "AK8",
+    "fpga_pin": "IO_L10P_T1U_N6_QBC_AD4P_66",
+    "bank": 66,
+    "byte_group": "T1U",
+    "card_ps": 326.52,
+    "host_plus_package_ps": 596.6,
+    "total_ps": 923.12
+   },
+   "to_centre_of_the_dq_group_ps": 30.29,
+   "to_latest_dq_ps": -26.56,
+   "to_earliest_dq_ps": 87.13,
+   "dq_after_strobe_with_the_table_ps": 26.56,
+   "input_delay_ps": 0.0,
+   "minus_each_dq_before_the_table_ps": {
+    "DQ0": 26.24,
+    "DQ1": 10.81,
+    "DQ2": 61.75,
+    "DQ3": 42.53,
+    "DQ4": -26.56,
+    "DQ5": -23.06,
+    "DQ6": 78.74,
+    "DQ7": 87.13
+   },
+   "route": "In3 from the balls B3 / C4 to a via pair just above fingers 219 / 221 (y = 8.50 mm), then 5.80 mm of F.Cu into the fingers: the same form as a read DQ line. The strobe is NOT on the centre of the read group (it need not be: the group is closed per bit); it arrives inside the span of the eight bits",
+   "note": "the strobe is not delayed by this table: it arrives before the latest DQ, and the DQ are aligned to the latest DQ"
+  },
+  "strobe_polarity": "inverted on the host pair DQS6: RDQS_P (RDQS_t) on the N pin (finger 219, AL8), RDQS_N (RDQS_c) on the P pin (finger 221, AK8)"
+ },
+ "wck": {
+  "per_leg": {
+   "WCK_P": {
+    "finger": 139,
+    "fpga_ball": "AG18",
+    "total_ps": 784.26
+   },
+   "WCK_N": {
+    "finger": 137,
+    "fpga_ball": "AF18",
+    "total_ps": 784.79
+   }
+  },
+  "polarity": "inverted on the host pair CK0: WCK_P (WCK_t) on the N pin, WCK_N (WCK_c) on the P pin",
+  "later_than_the_latest_dq_ps": -17.0
+ },
+ "reset_n": {
+  "finger": 232,
+  "fpga_ball": "AP11",
+  "bank": 66,
+  "io": "static LVCMOS12 output"
+ }
+}

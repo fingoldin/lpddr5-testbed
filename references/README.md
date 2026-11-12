@@ -56,3 +56,7 @@ since 2026-10-13 the proxy model in `sim/si/dram_model/`, `doc/DRAM_MODEL.md`).
 | `jlc/` | JLCPCB capabilities, gold fingers, PCBA, stackups, via covering / POFV, panelisation, thickness, parts sourcing (rendered PDF + text) | `jlc/README.md` |
 | `sodimm_module/` | DDR4 SO-DIMM module drawing (Micron), TE application spec and socket sheets, SPD EEPROMs, PCB-fab edge-connector guides, Antmicro lpddr4-testbed sources | `sodimm_module/MODULE_SIDE_REVIEW.md`, `index.json` |
 | `hs_design/` | TI (SPRACN9, SPRAD66, SPRABI1, SPRAAR7, SCAA082, SZZA009, SLVA118, SWPA222), ADI MT-101, Würth ANP098, AMD XAPP623, Altera AN958 / AN224 / SI white paper | `hs_design/HS_DESIGN_REVIEW.md`, `index.json` |
+
+**Caution, `zcu104/UG1267_ZCU104_user_guide_v1.1`:** the FPGA-ball column of its DDR4 SO-DIMM tables is shifted by one bank (for example it gives
+DQ28 = AN18 and CLK_300 = AH12 / AJ12; the schematic XTP484 and the Vivado board file say AP22 and AH18 / AH17). The pin map of this card
+(`design/ref/zcu104_sodimm_pinmap.csv`) follows the schematic `zcu104/XTP484`; do not take FPGA balls from UG1267.

@@ -29,6 +29,7 @@ Always assume that any gateware change on the host FPGA (zcu104) is trivial and 
 There is also a full suite of Ansys EDT tools available on a remote server. Explore it at 
 `ssh -i ~/.ssh/id_macbook vassilios-kaxiras@compute-1.hardware.normalcomputing.net` and run `ansysedt` to get started.
 You can use SiWave for large simulations, and HFSS for small scale more accurate 3D simulations (like of the DDR4 sodimm socket).
+KiCad supports export in the IPC-2581 format, which can be imported directly into HFSS 3D Layout.
 
 Vivado is available as version 2026. See ~/.bashrc.
 

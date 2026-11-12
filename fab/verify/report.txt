@@ -1,0 +1,57 @@
+[PASS] gerber   all 17 layer files present and readable: 17 files
+[PASS] gerber   six copper layers carry the X2 file functions L1 (Top), L2 .. L5 (Inr), L6 (Bot): F.Cu=Copper,L1,Top; In1.Cu=Copper,L2,Inr; In2.Cu=Copper,L3,Inr; In3.Cu=Copper,L4,Inr; In4.Cu=Copper,L5,Inr; B.Cu=Copper,L6,Bot
+[PASS] gerber   mask, paste, legend, profile and drawing files carry their X2 file functions: all as expected
+[PASS] gerber   every selected aperture is defined, none has a zero dimension, no unsupported statement: apertures per file: F.Cu 31, In1.Cu 2, In2.Cu 2, In3.Cu 4, In4.Cu 2, B.Cu 27, F.Mask 21, B.Mask 17, F.Paste 16, B.Paste 13, F.Silkscreen 23, B.Silkscreen 19, Edge.Cuts 1, User.Comments 2, User.Drawings 4, F.Fab 4, B.Fab 4
+[PASS] gerber   job file: 6 layers, board thickness of the stackup, edge connector without bevel: layers 6, thickness 1.212 mm, finish ENIG, impedance controlled True
+[PASS] profile  extents of the profile centre line = 0 .. 69.6 x 0 .. 30.0 mm, origin at the lower-left card corner: x 0.0000 .. 69.6000, y 0.0000 .. 30.0000
+[PASS] profile  the profile is ONE closed contour; its area equals the board outline of the board file: 1 contour(s), 2069.750 mm2 (board 2069.754 mm2, difference area 0.0084 mm2)
+[PASS] drill    plated file: every hit is a via / plated hole of the board with that diameter, and the reverse: file 235 x 0.15 mm, 158 x 0.20 mm; board 235 x 0.15 mm, 158 x 0.20 mm (393 vias)
+[PASS] drill    non-plated file: the two 1.80 mm tooling holes of the card edge: file 2 x 1.80 mm; board 2 x 1.80 mm
+[PASS] drill    filled = capped on every via that carries either attribute: 253 filled and capped of 393 vias
+[PASS] drill    filled-and-capped drill file = the vias with the attribute in the board file: file 235 x 0.15 mm, 18 x 0.20 mm
+[PASS] drill    X2 filling layer = the same 253 vias; header well-formed: 253 flashes
+[PASS] drill    X2 capping layer = the same 253 vias; header well-formed: 253 flashes
+[PASS] drill    filled_capped_vias.csv lists the same vias: 253 rows
+[PASS] copper   F.Cu: the Gerber image equals the layer drawn from the board items (tolerance one pixel = 12.5 um): 2171781 / 2171017 copper pixels, 764 differ at edges (0.035 %), beyond one pixel: 0 only in the Gerber, 0 only on the board
+[PASS] copper   F.Cu: no copper outside the profile: nearest copper 0.163 mm from the edge; 16.4 % of the card area is copper
+[PASS] copper   In1.Cu: the Gerber image equals the layer drawn from the board items (tolerance one pixel = 12.5 um): 12184343 / 12184343 copper pixels, 0 differ at edges (0.000 %), beyond one pixel: 0 only in the Gerber, 0 only on the board
+[PASS] copper   In1.Cu: no copper outside the profile: nearest copper 0.302 mm from the edge; 92.0 % of the card area is copper
+[PASS] copper   In2.Cu: the Gerber image equals the layer drawn from the board items (tolerance one pixel = 12.5 um): 12386240 / 12386240 copper pixels, 0 differ at edges (0.000 %), beyond one pixel: 0 only in the Gerber, 0 only on the board
+[PASS] copper   In2.Cu: no copper outside the profile: nearest copper 0.301 mm from the edge; 93.5 % of the card area is copper
+[PASS] copper   In3.Cu: the Gerber image equals the layer drawn from the board items (tolerance one pixel = 12.5 um): 301158 / 301159 copper pixels, 1 differ at edges (0.000 %), beyond one pixel: 0 only in the Gerber, 0 only on the board
+[PASS] copper   In3.Cu: no copper outside the profile: nearest copper 1.818 mm from the edge; 2.3 % of the card area is copper
+[PASS] copper   In4.Cu: the Gerber image equals the layer drawn from the board items (tolerance one pixel = 12.5 um): 12124966 / 12124966 copper pixels, 0 differ at edges (0.000 %), beyond one pixel: 0 only in the Gerber, 0 only on the board
+[PASS] copper   In4.Cu: no copper outside the profile: nearest copper 0.302 mm from the edge; 91.5 % of the card area is copper
+[PASS] copper   B.Cu: the Gerber image equals the layer drawn from the board items (tolerance one pixel = 12.5 um): 2089602 / 2088730 copper pixels, 872 differ at edges (0.042 %), beyond one pixel: 0 only in the Gerber, 0 only on the board
+[PASS] copper   B.Cu: no copper outside the profile: nearest copper 0.163 mm from the edge; 15.8 % of the card area is copper
+[PASS] copper   edge clearance: outer layers 0.15 mm (the fingers), every inner layer pulled back 0.3 mm or more: F.Cu 0.16, In1.Cu 0.30, In2.Cu 0.30, In3.Cu 1.82, In4.Cu 0.30, B.Cu 0.16
+[PASS] drill    every plated hit lies on copper on F.Cu and on B.Cu (outer via pads are kept): 393 of 393 hits
+[PASS] mask     all 260 fingers of J1 are free of solder mask over their whole land: 260 lands inside the openings
+[PASS] mask     test pads and fiducials are open: 11 pads
+[PASS] mask     plain vias are tented: the mask covers the centre of each on both faces: 140 plain vias, 0 openings over a via centre
+[PASS] mask     the mask-free finger strip ends below the row of finger vias (y = 3.05 mm): 57 finger vias covered
+[PASS] paste    F.Paste: one aperture per pad that has paste: 457 flashes, 457 pads with paste
+[PASS] paste    F.Paste: every paste aperture lies inside a mask opening: 0 pixels outside
+[PASS] paste    B.Paste: one aperture per pad that has paste: 129 flashes, 129 pads with paste
+[PASS] paste    B.Paste: every paste aperture lies inside a mask opening: 0 pixels outside
+[PASS] paste    no paste on the fingers, the test pads and the fiducials: 271 lands checked
+[PASS] legend   F.Silkscreen: no legend ink on exposed copper, none outside the card: 152897 pixels of legend, 0 over mask openings, 0 outside
+[PASS] legend   B.Silkscreen: no legend ink on exposed copper, none outside the card: 55630 pixels of legend, 0 over mask openings, 0 outside
+[PASS] netlist  IPC-D-356: one record per via, per numbered pad, per fiducial and per non-plated hole of the board: 393 via records (393 vias), 844 pad records (844 numbered pads, 840 distinct pins), 6 fiducials, 2 non-plated holes
+[PASS] netlist  IPC-D-356: net names are in one-to-one relation with the nets of the board (names are cut to 14 characters): 225 nets
+[PASS] netlist  IPC-D-356: vias per net equal the board: GND 199, 35 nets with vias
+[PASS] position lpddr5-testbed-top.pos.csv: one row per placed part of that face (fingers, test pads and fiducials excluded): 59 rows, 59 parts on the board
+[PASS] position lpddr5-testbed-top.pos.csv: X / Y = footprint position in the card frame (origin lower-left corner seen from the front, y up, x not mirrored), side column 'top': 59 rows
+[PASS] position lpddr5-testbed-top.pos.csv: Rot = KiCad orientation; every numbered pad lands where 'counter-clockwise seen from the front' puts it: 59 parts
+[PASS] position lpddr5-testbed-bottom.pos.csv: one row per placed part of that face (fingers, test pads and fiducials excluded): 60 rows, 60 parts on the board
+[PASS] position lpddr5-testbed-bottom.pos.csv: X / Y = footprint position in the card frame (origin lower-left corner seen from the front, y up, x not mirrored), side column 'bottom': 60 rows
+[PASS] position lpddr5-testbed-bottom.pos.csv: Rot = KiCad orientation; every numbered pad lands where 'counter-clockwise seen from the front, footprint mirrored top-to-bottom' puts it: 60 parts
+[PASS] position fiducial list = FID1 .. FID6 of the board, three per face: 6 rows
+[PASS] bom      BOM: every line agrees with the board (value, footprint, manufacturer, MPN, DNP, quantity, side counts): 27 lines
+[PASS] bom      BOM: every BOM part of the board is listed exactly once; nothing else is: 119 references in 27 lines; board 119 (59 top, 60 bottom)
+[PASS] bom      BOM: lines and quantities equal design/netlist.json (bom_summary): 27 lines, 119 parts, 0 DNP
+[PASS] bom      position files and BOM list the same parts: 119 / 119
+[PASS] bom      per-part list: one row per BOM part with its face: 119 rows
+[PASS] drc      kicad-cli DRC, all severities, with schematic parity: 0 errors, 0 unconnected, 0 parity issues; the only warnings are pair gaps where legs part: KiCad 10.0.6: 0 errors, 9 warnings (diff_pair_gap_out_of_range x 9), 0 unconnected, 0 parity issues
+[PASS] board    the board file is unchanged by the verification: ad7fe7fb7fc2977633b94e019d2710f937414a46d8ac770d9c7f32a83e93a95c
+56 checks, 0 failed

@@ -1,0 +1,213 @@
+(version 1)
+# lpddr5-testbed.kicad_dru: written by scripts/pcb/s00_board.py from design/netlist.json. Do not edit by hand.
+# Later rules win over earlier ones and over the net-class values of the project file.
+
+# ---- generic width rules first: a later rule wins, so the class rules below override these ----
+# ---- the 0.09 mm neck-down exists only inside the courtyard of U1 ----
+(rule "neck_only_under_U1"
+  (condition "A.Type == 'Track' && !A.intersectsCourtyard('U1')")
+  (constraint track_width (min 0.1mm)))
+(rule "POWER_width"
+  (condition "A.NetClass == 'POWER' && !A.intersectsCourtyard('U1')")
+  (constraint track_width (min 0.25mm)))
+
+# ---- per-class, per-layer track widths (rules.netclasses[*].layers) ----
+(rule "CMD_SE_In3_Cu_width"
+  (layer "In3.Cu")
+  (condition "A.NetClass == 'CMD_SE'")
+  (constraint track_width (min 0.15mm) (opt 0.15mm) (max 0.15mm)))
+(rule "CMD_CK_In3_Cu_width"
+  (layer "In3.Cu")
+  (condition "A.NetClass == 'CMD_CK'")
+  (constraint track_width (min 0.1mm) (opt 0.1mm) (max 0.1mm)))
+(rule "HOST_SE_F_Cu_width"
+  (layer "F.Cu")
+  (condition "A.NetClass == 'HOST_SE'")
+  (constraint track_width (min 0.15mm) (opt 0.2mm) (max 0.2mm)))
+(rule "HOST_SE_B_Cu_width"
+  (layer "B.Cu")
+  (condition "A.NetClass == 'HOST_SE'")
+  (constraint track_width (min 0.15mm) (opt 0.2mm) (max 0.2mm)))
+(rule "WR_DQ_F_Cu_width"
+  (layer "F.Cu")
+  (condition "A.NetClass == 'WR_DQ'")
+  (constraint track_width (min 0.15mm) (opt 0.15mm) (max 0.2mm)))
+(rule "WR_DQ_F_Cu_neck_under_U1"
+  (layer "F.Cu")
+  (condition "A.NetClass == 'WR_DQ' && A.intersectsCourtyard('U1')")
+  (constraint track_width (min 0.09mm) (opt 0.15mm) (max 0.2mm)))
+(rule "WR_WCK_B_Cu_width"
+  (layer "B.Cu")
+  (condition "A.NetClass == 'WR_WCK'")
+  (constraint track_width (min 0.1mm) (opt 0.1mm) (max 0.1mm)))
+(rule "WR_WCK_F_Cu_width"
+  (layer "F.Cu")
+  (condition "A.NetClass == 'WR_WCK'")
+  (constraint track_width (min 0.2mm) (opt 0.2mm) (max 0.2mm)))
+(rule "RD_DQ_In3_Cu_width"
+  (layer "In3.Cu")
+  (condition "A.NetClass == 'WR_DQ'")
+  (constraint track_width (min 0.15mm) (opt 0.15mm) (max 0.15mm)))
+(rule "RD_DQ_B_Cu_width"
+  (layer "B.Cu")
+  (condition "A.NetClass == 'WR_DQ'")
+  (constraint track_width (min 0.2mm) (opt 0.2mm) (max 0.2mm)))
+(rule "RD_RDQS_In3_Cu_width"
+  (layer "In3.Cu")
+  (condition "A.NetClass == 'RD_RDQS'")
+  (constraint track_width (min 0.1mm) (opt 0.1mm) (max 0.1mm)))
+(rule "RD_RDQS_F_Cu_width"
+  (layer "F.Cu")
+  (condition "A.NetClass == 'RD_RDQS'")
+  (constraint track_width (min 0.1mm) (opt 0.1mm) (max 0.1mm)))
+(rule "VREF_F_Cu_width"
+  (layer "F.Cu")
+  (condition "A.NetClass == 'VREF'")
+  (constraint track_width (min 0.15mm) (opt 0.15mm) (max 0.15mm)))
+(rule "VREF_B_Cu_width"
+  (layer "B.Cu")
+  (condition "A.NetClass == 'VREF'")
+  (constraint track_width (min 0.15mm) (opt 0.15mm) (max 0.15mm)))
+
+# ---- clearances.  The last matching rule wins: general rules first, the intra-pair gap last ----
+(rule "CMD_SE_In3_Cu_clearance"
+  (layer "In3.Cu")
+  (condition "A.NetClass == 'CMD_SE'")
+  (constraint clearance (min 0.12mm)))
+(rule "CMD_CK_In3_Cu_clearance"
+  (layer "In3.Cu")
+  (condition "A.NetClass == 'CMD_CK'")
+  (constraint clearance (min 0.12mm)))
+(rule "CK_pair_to_other_tracks"
+  (layer "In3.Cu")
+  (condition "A.NetClass == 'CMD_CK' && A.Type == 'Track' && B.Type == 'Track' && B.NetClass != 'CMD_CK' && B.NetClass != 'POWER' && A.Net != B.Net && !A.intersectsCourtyard('U1') && !B.intersectsCourtyard('U1')")
+  (constraint clearance (min 0.5mm)))
+(rule "CK_pair_to_via_pads"
+  (layer "In3.Cu")
+  (condition "A.NetClass == 'CMD_CK' && A.Type == 'Track' && B.Type == 'Via' && B.NetClass != 'CMD_CK' && A.Net != B.Net && !A.intersectsCourtyard('U1') && !B.intersectsCourtyard('U1')")
+  (constraint clearance (min 0.4mm)))
+(rule "WCK_pair_to_other_tracks"
+  (layer "B.Cu")
+  (condition "A.NetClass == 'WR_WCK' && A.Type == 'Track' && B.Type == 'Track' && (B.NetClass == 'RD_RDQS' || B.NetClass == 'HOST_SE' || B.NetClass == 'WR_DQ' || B.NetClass == 'CMD_SE' || B.NetClass == 'CMD_CK') && A.Net != B.Net && !A.intersectsCourtyard('U1') && !B.intersectsCourtyard('U1')")
+  (constraint clearance (min 0.8mm)))
+(rule "RDQS_pair_to_other_tracks_In3"
+  (layer "In3.Cu")
+  (condition "A.NetClass == 'RD_RDQS' && A.Type == 'Track' && B.Type == 'Track' && (B.NetClass == 'WR_WCK' || B.NetClass == 'HOST_SE' || B.NetClass == 'CMD_SE' || B.NetClass == 'CMD_CK' || B.NetClass == 'WR_DQ') && A.Net != B.Net && !A.intersectsCourtyard('U1') && !B.intersectsCourtyard('U1')")
+  (constraint clearance (min 0.8mm)))
+(rule "RDQS_pair_to_other_tracks"
+  (layer "F.Cu")
+  (condition "A.NetClass == 'RD_RDQS' && A.Type == 'Track' && B.Type == 'Track' && (B.NetClass == 'WR_WCK' || B.NetClass == 'HOST_SE' || B.NetClass == 'CMD_SE' || B.NetClass == 'CMD_CK') && A.Net != B.Net && !A.intersectsCourtyard('U1') && !B.intersectsCourtyard('U1')")
+  (constraint clearance (min 0.8mm)))
+(rule "RDQS_pair_to_read_tracks"
+  (layer "F.Cu")
+  (condition "A.NetClass == 'RD_RDQS' && A.Type == 'Track' && B.Type == 'Track' && (B.NetClass == 'WR_DQ') && A.Net != B.Net && !A.intersectsCourtyard('U1') && !B.intersectsCourtyard('U1') && !A.enclosedByArea('rdqs_termination') && !A.enclosedByArea('rdqs_via_pair')")
+  (constraint clearance (min 0.8mm)))
+(rule "VREF_to_switching_nets"
+  (condition "A.NetClass == 'VREF' && A.Type == 'Track' && (B.Type == 'Track' || B.Type == 'Via') && (B.NetClass == 'CMD_SE' || B.NetClass == 'CMD_CK' || B.NetClass == 'HOST_SE' || B.NetClass == 'WR_DQ' || B.NetClass == 'WR_WCK' || B.NetClass == 'RD_RDQS') && A.Net != B.Net && !A.intersectsArea('vref_east_end')")
+  (constraint clearance (min 0.9mm)))
+(rule "VREF_to_switching_nets_east_end"
+  (condition "A.NetClass == 'VREF' && A.Type == 'Track' && (B.Type == 'Track' || B.Type == 'Via') && (B.NetClass == 'WR_DQ') && A.Net != B.Net && A.intersectsArea('vref_east_end')")
+  (constraint clearance (min 0.4mm)))
+(rule "VREF_0201_lands"
+  (condition "A.NetClass == 'VREF' && A.Type == 'Pad' && !A.memberOfFootprint('J1')")
+  (constraint clearance (min 0.17mm)))
+(rule "VREF_N_stub_in_the_finger_via_row"
+  (condition "A.NetClass == 'VREF' && A.Type == 'Track' && A.intersectsArea('finger_via_row') && (B.NetClass == 'POWER')")
+  (constraint clearance (min 0.12mm)))
+(rule "RD_DQ_to_RD_DQ_In3"
+  (layer "In3.Cu")
+  (condition "A.NetClass == 'WR_DQ' && A.Type == 'Track' && B.Type == 'Track' && (B.NetClass == 'WR_DQ') && A.Net != B.Net")
+  (constraint clearance (min 0.39mm)))
+(rule "WR_DQ_to_WR_DQ_F_Cu"
+  (layer "F.Cu")
+  (condition "A.NetClass == 'WR_DQ' && A.Type == 'Track' && B.Type == 'Track' && (B.NetClass == 'WR_DQ') && A.Net != B.Net && !A.intersectsCourtyard('U1') && !B.intersectsCourtyard('U1')")
+  (constraint clearance (min 0.39mm)))
+(rule "WR_DQ_F_Cu_to_foreign_via"
+  (layer "F.Cu")
+  (condition "A.NetClass == 'WR_DQ' && A.Type == 'Track' && B.Type == 'Via' && A.Net != B.Net && !A.intersectsCourtyard('U1') && !A.intersectsArea('finger_via_row')")
+  (constraint clearance (min 0.27mm)))
+(rule "pour_to_high_speed_track_F_Cu"
+  (layer "F.Cu")
+  (condition "A.Type == 'Zone' && B.Type == 'Track' && (B.NetClass == 'CMD_SE' || B.NetClass == 'CMD_CK' || B.NetClass == 'HOST_SE' || B.NetClass == 'WR_DQ' || B.NetClass == 'WR_WCK' || B.NetClass == 'RD_RDQS')")
+  (constraint clearance (min 0.3mm)))
+(rule "pour_to_high_speed_pad_F_Cu"
+  (layer "F.Cu")
+  (condition "A.Type == 'Zone' && (B.Type == 'Pad' || B.Type == 'Via') && (B.NetClass == 'CMD_SE' || B.NetClass == 'CMD_CK' || B.NetClass == 'HOST_SE' || B.NetClass == 'WR_DQ' || B.NetClass == 'WR_WCK' || B.NetClass == 'RD_RDQS')")
+  (constraint clearance (min 0.15mm)))
+(rule "pour_to_command_via_F_Cu"
+  (layer "F.Cu")
+  (condition "A.Type == 'Zone' && B.Type == 'Via' && (B.NetClass == 'CMD_SE' || B.NetClass == 'CMD_CK')")
+  (constraint clearance (min 0.3mm)))
+(rule "pour_to_reference_F_Cu"
+  (layer "F.Cu")
+  (condition "A.Type == 'Zone' && B.NetClass == 'VREF'")
+  (constraint clearance (min 0.2mm)))
+(rule "pour_to_high_speed_track_B_Cu"
+  (layer "B.Cu")
+  (condition "A.Type == 'Zone' && B.Type == 'Track' && (B.NetClass == 'CMD_SE' || B.NetClass == 'CMD_CK' || B.NetClass == 'HOST_SE' || B.NetClass == 'WR_DQ' || B.NetClass == 'WR_WCK' || B.NetClass == 'RD_RDQS')")
+  (constraint clearance (min 0.3mm)))
+(rule "pour_to_high_speed_pad_B_Cu"
+  (layer "B.Cu")
+  (condition "A.Type == 'Zone' && (B.Type == 'Pad' || B.Type == 'Via') && (B.NetClass == 'CMD_SE' || B.NetClass == 'CMD_CK' || B.NetClass == 'HOST_SE' || B.NetClass == 'WR_DQ' || B.NetClass == 'WR_WCK' || B.NetClass == 'RD_RDQS')")
+  (constraint clearance (min 0.15mm)))
+(rule "pour_to_command_via_B_Cu"
+  (layer "B.Cu")
+  (condition "A.Type == 'Zone' && B.Type == 'Via' && (B.NetClass == 'CMD_SE' || B.NetClass == 'CMD_CK')")
+  (constraint clearance (min 0.3mm)))
+(rule "pour_to_reference_B_Cu"
+  (layer "B.Cu")
+  (condition "A.Type == 'Zone' && B.NetClass == 'VREF'")
+  (constraint clearance (min 0.2mm)))
+
+# ---- differential pairs.  KiCad pairs nets by a trailing _P / _N: CK_P / CK_N, WCK_P / WCK_N, RDQS_P / RDQS_N.
+#      The finger-side pairs (CK_F, WCK_F) fan from 0.5 mm finger pitch to their divider columns and are
+#      deliberately not under the gap rule. ----
+(rule "CMD_CK_intra_pair_gap"
+  (condition "A.NetClass == 'CMD_CK' && B.NetClass == 'CMD_CK' && A.Net != B.Net")
+  (constraint clearance (min 0.1mm)))
+(rule "CMD_CK_pair_coupling"
+  (condition "A.inDiffPair('CK')")
+  (constraint diff_pair_gap (min 0.09mm) (opt 0.1mm) (max 0.11mm))
+  (constraint diff_pair_uncoupled (max 3.5mm)))
+(rule "CMD_CK_pair_skew"
+  (condition "A.inDiffPair('CK')")
+  (constraint skew (max 0.3mm) (within_diff_pairs)))
+(rule "WR_WCK_intra_pair_gap"
+  (condition "A.NetClass == 'WR_WCK' && B.NetClass == 'WR_WCK' && A.Net != B.Net")
+  (constraint clearance (min 0.1mm)))
+(rule "WR_WCK_pair_coupling"
+  (condition "A.inDiffPair('WCK')")
+  (constraint diff_pair_gap (min 0.09mm) (opt 0.1mm) (max 0.11mm))
+  (constraint diff_pair_uncoupled (max 4mm)))
+(rule "WR_WCK_pair_skew"
+  (condition "A.inDiffPair('WCK')")
+  (constraint skew (max 0.5mm) (within_diff_pairs)))
+(rule "RD_RDQS_intra_pair_gap"
+  (condition "A.NetClass == 'RD_RDQS' && B.NetClass == 'RD_RDQS' && A.Net != B.Net")
+  (constraint clearance (min 0.1mm)))
+(rule "RD_RDQS_pair_coupling"
+  (condition "A.inDiffPair('RDQS')")
+  (constraint diff_pair_gap (min 0.09mm) (opt 0.1mm) (max 0.11mm))
+  (constraint diff_pair_uncoupled (max 4.5mm)))
+(rule "RD_RDQS_pair_skew"
+  (condition "A.inDiffPair('RDQS')")
+  (constraint skew (max 0.5mm) (within_diff_pairs)))
+
+# ---- stubs on the 1.2 V side of the dividers and on the reference fingers ----
+(rule "HOST_SE_stub_length"
+  (condition "A.NetClass == 'HOST_SE'")
+  (constraint length (max 4mm)))
+(rule "VREF_N_stub_length"
+  (condition "A.NetName == 'VREF_N?' || A.NetName == '/VREF_N?'")
+  (constraint length (max 5mm)))
+
+# ---- card edge: finger pads are 0.35 mm on a 0.50 mm pitch and start 0.15 mm from the edge ----
+(rule "finger_pad_to_finger_pad"
+  (condition "A.Type == 'Pad' && B.Type == 'Pad' && A.memberOfFootprint('J1') && B.memberOfFootprint('J1')")
+  (constraint clearance (min 0.14mm)))
+(rule "track_to_foreign_finger_pad"
+  (condition "A.Type == 'Pad' && A.memberOfFootprint('J1') && B.Type != 'Pad'")
+  (constraint clearance (min 0.1mm)))
+(rule "edge_clearance_everything_but_the_fingers"
+  (condition "!A.memberOfFootprint('J1')")
+  (constraint edge_clearance (min 0.3mm)))

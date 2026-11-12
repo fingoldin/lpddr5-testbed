@@ -1,0 +1,157 @@
+{
+ "status": "NO ground pour on F.Cu / B.Cu (removed: the upstream board has none, its outer layers refer to In1 / In4 only). The delay model of scripts/pcb/common.py never contained a coplanar term; gates 6 / 7 give the same delays with and without the floods",
+ "model": "2-D quasi-static field solver of scripts/impedance.py; microstrip over the 0.11 mm prepreg, finished copper 0.040 mm, mask 0.020 mm; grounded copper of the same thickness beside the track at the gap, on one side or on both",
+ "as_built_power_pour_beside_wck_one_side_0p30": [
+  {
+   "track": "0.10 / 0.10 mm pair (WCK on B.Cu, RDQS on F.Cu), differential",
+   "gap_mm": 0.3,
+   "pour_on_sides": 1,
+   "z_free_ohm": 91.77,
+   "z_with_pour_ohm": 91.66,
+   "dz_percent": -0.11,
+   "td_free_ps_mm": 5.6889,
+   "td_with_pour_ps_mm": 5.6855,
+   "dtd_percent": -0.061
+  }
+ ],
+ "as_built_note": "the VDDQ enclave pour under U1 runs 0.30 mm from WCK_N on one side over 2.4 mm (differential mode of the pair, pour at the left): -0.008 ps on the pair, far below the 1 ps pair tolerance; not put into the delay model",
+ "for_the_record_removed_gnd_flood_both_sides_0p45": [
+  {
+   "track": "0.15 mm DQ line (F.Cu)",
+   "gap_mm": 0.45,
+   "pour_on_sides": 2,
+   "z_free_ohm": 52.42,
+   "z_with_pour_ohm": 52.27,
+   "dz_percent": -0.29,
+   "td_free_ps_mm": 6.0159,
+   "td_with_pour_ps_mm": 6.0026,
+   "dtd_percent": -0.22
+  },
+  {
+   "track": "0.20 mm finger track / stub",
+   "gap_mm": 0.45,
+   "pour_on_sides": 2,
+   "z_free_ohm": 45.65,
+   "z_with_pour_ohm": 45.52,
+   "dz_percent": -0.28,
+   "td_free_ps_mm": 6.0685,
+   "td_with_pour_ps_mm": 6.0554,
+   "dtd_percent": -0.215
+  },
+  {
+   "track": "0.09 mm neck",
+   "gap_mm": 0.45,
+   "pour_on_sides": 2,
+   "z_free_ohm": 64.2,
+   "z_with_pour_ohm": 64.01,
+   "dz_percent": -0.29,
+   "td_free_ps_mm": 5.9425,
+   "td_with_pour_ps_mm": 5.9292,
+   "dtd_percent": -0.223
+  },
+  {
+   "track": "0.10 / 0.10 mm pair (WCK on B.Cu, RDQS on F.Cu), differential",
+   "gap_mm": 0.45,
+   "pour_on_sides": 2,
+   "z_free_ohm": 91.77,
+   "z_with_pour_ohm": 91.73,
+   "dz_percent": -0.05,
+   "td_free_ps_mm": 5.6889,
+   "td_with_pour_ps_mm": 5.6871,
+   "dtd_percent": -0.033
+  }
+ ],
+ "for_the_record_note": "what the removed floods did where they flanked a track on both sides: about -0.3 %% impedance, -0.22 %% delay on a single line (0.45 ps on the longest outer-layer path of 34 mm, 0.2 .. 0.3 ps where the flood stood on one side), -0.03 %% on a pair. Without the floods these shifts do not exist",
+ "comparison_both_sides_0p30": [
+  {
+   "track": "0.15 mm DQ line (F.Cu)",
+   "gap_mm": 0.3,
+   "pour_on_sides": 2,
+   "z_free_ohm": 52.42,
+   "z_with_pour_ohm": 51.86,
+   "dz_percent": -1.07,
+   "td_free_ps_mm": 6.0159,
+   "td_with_pour_ps_mm": 5.9745,
+   "dtd_percent": -0.689
+  },
+  {
+   "track": "0.20 mm finger track / stub",
+   "gap_mm": 0.3,
+   "pour_on_sides": 2,
+   "z_free_ohm": 45.65,
+   "z_with_pour_ohm": 45.18,
+   "dz_percent": -1.02,
+   "td_free_ps_mm": 6.0685,
+   "td_with_pour_ps_mm": 6.0282,
+   "dtd_percent": -0.664
+  },
+  {
+   "track": "0.09 mm neck",
+   "gap_mm": 0.3,
+   "pour_on_sides": 2,
+   "z_free_ohm": 64.2,
+   "z_with_pour_ohm": 63.47,
+   "dz_percent": -1.13,
+   "td_free_ps_mm": 5.9425,
+   "td_with_pour_ps_mm": 5.9004,
+   "dtd_percent": -0.707
+  },
+  {
+   "track": "0.10 / 0.10 mm pair (WCK on B.Cu, RDQS on F.Cu), differential",
+   "gap_mm": 0.3,
+   "pour_on_sides": 2,
+   "z_free_ohm": 91.77,
+   "z_with_pour_ohm": 91.56,
+   "dz_percent": -0.23,
+   "td_free_ps_mm": 5.6889,
+   "td_with_pour_ps_mm": 5.6819,
+   "dtd_percent": -0.124
+  }
+ ],
+ "comparison_both_sides_0p20": [
+  {
+   "track": "0.15 mm DQ line (F.Cu)",
+   "gap_mm": 0.2,
+   "pour_on_sides": 2,
+   "z_free_ohm": 52.42,
+   "z_with_pour_ohm": 50.74,
+   "dz_percent": -3.22,
+   "td_free_ps_mm": 6.0159,
+   "td_with_pour_ps_mm": 5.9225,
+   "dtd_percent": -1.552
+  },
+  {
+   "track": "0.20 mm finger track / stub",
+   "gap_mm": 0.2,
+   "pour_on_sides": 2,
+   "z_free_ohm": 45.65,
+   "z_with_pour_ohm": 44.28,
+   "dz_percent": -2.99,
+   "td_free_ps_mm": 6.0685,
+   "td_with_pour_ps_mm": 5.978,
+   "dtd_percent": -1.492
+  },
+  {
+   "track": "0.09 mm neck",
+   "gap_mm": 0.2,
+   "pour_on_sides": 2,
+   "z_free_ohm": 64.2,
+   "z_with_pour_ohm": 61.94,
+   "dz_percent": -3.51,
+   "td_free_ps_mm": 5.9425,
+   "td_with_pour_ps_mm": 5.8475,
+   "dtd_percent": -1.599
+  },
+  {
+   "track": "0.10 / 0.10 mm pair (WCK on B.Cu, RDQS on F.Cu), differential",
+   "gap_mm": 0.2,
+   "pour_on_sides": 2,
+   "z_free_ohm": 91.77,
+   "z_with_pour_ohm": 90.94,
+   "dz_percent": -0.9,
+   "td_free_ps_mm": 5.6889,
+   "td_with_pour_ps_mm": 5.6713,
+   "dtd_percent": -0.31
+  }
+ ]
+}

@@ -1,0 +1,28 @@
+Drill report for lpddr5-testbed.kicad_pcb
+Created on 2026-11-11T04:40:54
+
+Copper Layer Stackup:
+    =============================================================
+    L1 :  F.Cu                      front
+    L2 :  In1.Cu                    in1
+    L3 :  In2.Cu                    in2
+    L4 :  In3.Cu                    in3
+    L5 :  In4.Cu                    in4
+    L6 :  B.Cu                      back
+
+
+Drill file 'lpddr5-testbed-PTH.drl' contains
+    plated through holes:
+    =============================================================
+    T1  0.150mm  0.0059"  (235 holes))
+    T2  0.200mm  0.0079"  (158 holes))
+
+    Total plated holes count 393
+
+
+Drill file 'lpddr5-testbed-NPTH.drl' contains
+    unplated through holes:
+    =============================================================
+    T1  1.800mm  0.0709"  (2 holes))
+
+    Total unplated holes count 2

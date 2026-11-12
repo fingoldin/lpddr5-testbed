@@ -1,0 +1,2369 @@
+                               Product            Sample &      Technical              Tools &          Support &
+                               Folder             Buy           Documents              Software         Community
+
+
+
+                                                                                                                                TLV700
+                                                                                            SLVSA00E – SEPTEMBER 2009 – REVISED APRIL 2015
+
+                 TLV700 200-mA, Low-IQ, Low-Dropout Regulator for Portable Devices
+1 Features                                                              3 Description
+1•    Very Low Dropout:                                                 The TLV700 series of low-dropout (LDO) linear
+                                                                        regulators are low quiescent current devices with
+      – 43 mV at IOUT = 50 mA, VOUT = 2.8 V                             excellent line and load transient performance. These
+      – 85 mV at IOUT = 100 mA, VOUT = 2.8 V                            LDOs are designed for power-sensitive applications.
+      – 175 mV at IOUT = 200 mA, VOUT = 2.35 V                          A precision bandgap and error amplifier provides
+                                                                        overall 2% accuracy. Low output noise, very high
+•     2% Accuracy
+                                                                        power-supply rejection ratio (PSRR), and low dropout
+•     Low IQ: 31 μA                                                     voltage make this series of devices ideal for most
+•     Available in Fixed-Output Voltages from 1.2 V to                  battery-operated handheld equipment. All device
+      4.8 V                                                             versions have thermal shutdown and current limit for
+                                                                        safety.
+•     High PSRR: 68 dB at 1 kHz
+•     Stable With Effective Capacitance of 0.1 μF(1)                    Furthermore, these devices are stable with an
+                                                                        effective output capacitance of only 0.1 μF. This
+•     Thermal Shutdown and Overcurrent Protection
+                                                                        feature enables the use of cost-effective capacitors
+•     Available in 1.5-mm × 1.5-mm SON-6, SOT23-5,                      that have higher bias voltages and temperature
+      and SC-70 Packages                                                derating. The devices regulate to specified accuracy
+(1)
+      See the Input and Output Capacitor Requirements.                  with no output load.
+                                                                        The TLV700 series of LDOs are available in 1.5-mm
+2 Applications                                                          × 1.5-mm SON-6, SOT-5, and SC70 packages.
+•     Wireless Handsets
+                                                                                                  Device Information(1)
+•     Smart Phones, PDAs
+                                                                            PART NUMBER                PACKAGE        BODY SIZE (NOM)
+•     ZigBee® Networks                                                                             SC70 (5)           2.00 mm × 1.25 mm
+•     Bluetooth® Devices                                                   TL700xx                 SOT (5)            2.90 mm × 1.60 mm
+•     Li-Ion Operated Handheld Products                                                            WSON (6)           1.50 mm × 1.50 mm
+•     WLAN and Other PC Add-on Cards                                       (1) For all available packages, see the orderable addendum at
+                                                                               the end of the data sheet.
+
+                                                       Typical Application Circuit
+
+                                    VIN                   IN                  OUT                   VOUT
+                                                                                             1 mF
+                                           CIN                                       COUT
+                                                                                             Ceramic
+                                                                TLV700xx
+                                                  On
+                                            Off           EN
+                                                                  GND
+
+
+
+
+1
+
+
+
+
+        An IMPORTANT NOTICE at the end of this data sheet addresses availability, warranty, changes, use in safety-critical applications,
+        intellectual property matters and other important disclaimers. PRODUCTION DATA.
+TLV700
+SLVSA00E – SEPTEMBER 2009 – REVISED APRIL 2015                                                                                                                                 www.ti.com
+
+
+                                                                             Table of Contents
+    1   Features .................................................................. 1                8     Application and Implementation ........................ 13
+    2   Applications ........................................................... 1                          8.1 Application Information............................................ 13
+    3   Description ............................................................. 1                         8.2 Typical Application .................................................. 13
+    4   Revision History..................................................... 2                      9 Power Supply Recommendations...................... 14
+    5   Pin Configuration and Functions ......................... 4                                  10 Layout................................................................... 15
+    6   Specifications......................................................... 5                           10.1     Layout Guidelines ................................................. 15
+         6.1    Absolute Maximum Ratings ...................................... 5                           10.2     Layout Examples................................................... 15
+         6.2    ESD Ratings.............................................................. 5                 10.3     Thermal Protection................................................ 15
+         6.3    Recommended Operating Conditions....................... 5                                   10.4     Power Dissipation ................................................. 16
+         6.4    Thermal Information .................................................. 5             11 Device and Documentation Support ................. 17
+         6.5    Electrical Characteristics........................................... 6                     11.1     Device Support .................................................... 17
+         6.6    Typical Characteristics .............................................. 7                    11.2     Documentation Support ........................................ 17
+    7   Detailed Description ............................................ 11                                11.3     Trademarks ........................................................... 17
+         7.1    Overview ................................................................. 11               11.4     Electrostatic Discharge Caution ............................ 17
+         7.2    Functional Block Diagram ....................................... 11                         11.5     Glossary ................................................................ 17
+         7.3    Feature Description................................................. 11              12 Mechanical, Packaging, and Orderable
+         7.4    Device Functional Modes........................................ 12                      Information ........................................................... 18
+
+
+
+4 Revision History
+NOTE: Page numbers for previous revisions may differ from page numbers in the current version.
+
+Changes from Revision D (October 2012) to Revision E                                                                                                                                    Page
+
+•   Added ESD Ratings table, Feature Description section, Device Functional Modes, Application and Implementation
+    section, Power Supply Recommendations section, Layout section, Device and Documentation Support section, and
+    Mechanical, Packaging, and Orderable Information section ................................................................................................. 1
+•   Deleted Applications bullet for MP3 Players .......................................................................................................................... 1
+•   Changed front-page graphic .................................................................................................................................................. 1
+•   Changed Pin Configuration and Functions section; updated table format ............................................................................ 4
+•   Changed "free-air temperature" to "junction temperature" in Absolute Maximum Ratings condition statement .................... 5
+•   Deleted Dissipation Ratings table .......................................................................................................................................... 5
+•   Changed Thermal Information table; updated thermal resistance values for all packages ................................................... 5
+
+
+Changes from Revision C (July 2011) to Revision D                                                                                                                                       Page
+
+•   Updated Figure 5.................................................................................................................................................................... 7
+
+
+Changes from Revision B (December, 2010) to Revision C                                                                                                                                  Page
+
+•   Added footnote 2 to Absolute Maximum Ratings table .......................................................................................................... 5
+•   Changed output current limit typical and maximum specifications......................................................................................... 6
+•   Deleted previous Figure 12, Current Limit vs Input Voltage typical characteristic ................................................................. 7
+
+
+Changes from Revision A (April, 2010) to Revision B                                                                                                                                     Page
+
+•   Removed TLV701xx device references throughout document .............................................................................................. 1
+•   Changed minimum output voltage available from 0.7 V to 1.2 V ........................................................................................... 1
+•   Added footnote (1) .................................................................................................................................................................. 1
+•   Deleted VOUT < 1 V specification ............................................................................................................................................ 6
+•   Deleted Active pulldown resistance parameter ...................................................................................................................... 6
+
+2        Submit Documentation Feedback                                                                                  Copyright © 2009–2015, Texas Instruments Incorporated
+
+                                                                            Product Folder Links: TLV700
+                                                                                                                                                                           TLV700
+www.ti.com                                                                                                            SLVSA00E – SEPTEMBER 2009 – REVISED APRIL 2015
+
+
+•   Changed Figure 4 title ............................................................................................................................................................ 7
+•   Changed Figure 5 title ............................................................................................................................................................ 7
+•   Removed TLV701xx block diagram...................................................................................................................................... 11
+•   Revised Shutdown section ................................................................................................................................................... 11
+•   Updated Application Information section to reflect minimum output voltage availability of 1.2 V ........................................ 13
+•   Deleted references to TLV701xx throughout Application Information .................................................................................. 13
+•   Changed footnote 2 for Ordering Information table to reflect minimum output voltage of 1.2 V ......................................... 17
+
+
+
+
+Copyright © 2009–2015, Texas Instruments Incorporated                                                                             Submit Documentation Feedback                        3
+                                                                        Product Folder Links: TLV700
+TLV700
+SLVSA00E – SEPTEMBER 2009 – REVISED APRIL 2015                                                                                           www.ti.com
+
+
+5 Pin Configuration and Functions
+
+                            DSE Package
+                            6-Pin WSON                                                                     DCK Package
+                              Top View                                                                      5-Pin SC70
+                                                                                                             Top View
+                       IN 1          6    EN
+                                                (1)
+                      GND 2          5    N/C                                                         IN     1      5      OUT
+                                                (1)
+                      OUT 3          4    N/C                                                      GND       2
+                                                                                                                                 (1)
+                                                                                                     EN      3      4      N/C
+
+
+
+
+                                                                   DDC Package
+                                                                    5-Pin SOT
+                                                                    Top View
+
+
+                                                             IN      1       5       OUT
+
+                                                            GND      2
+
+                                                                                           (1)
+                                                             EN      3       4       N/C
+
+
+      (1)   No connection.
+
+                                                                  Pin Functions
+                      PIN
+                                                      I/O                                        DESCRIPTION
+    NAME      WSON          SC70    SOT
+                                                              Input pin. A small, 1-μF ceramic capacitor is recommended from this pin to ground
+     IN          1           1       1                 I      to assure stability and good transient performance. See Input and Output
+                                                              Capacitor Requirements for more details.
+    GND          2           2       2                —       Ground pin
+                                                              Enable pin. Driving EN over 0.9 V turns on the regulator. Driving EN below 0.4 V
+     EN          6           3       3                 I      puts the regulator into shutdown mode and reduces operating current to 1 μA,
+                                                              nominal.
+     NC        4, 5          4       4                —       No connection. This pin can be tied to ground to improve thermal dissipation.
+                                                              Regulated output voltage pin. A small, 1-μF ceramic capacitor is needed from this
+    OUT          3           5       5                O       pin to ground to assure stability. See Input and Output Capacitor Requirements for
+                                                              more details.
+
+
+
+
+4         Submit Documentation Feedback                                                          Copyright © 2009–2015, Texas Instruments Incorporated
+
+                                                            Product Folder Links: TLV700
+                                                                                                                                           TLV700
+www.ti.com                                                                                 SLVSA00E – SEPTEMBER 2009 – REVISED APRIL 2015
+
+
+6 Specifications
+6.1 Absolute Maximum Ratings
+over operating junction temperature range (unless otherwise noted) (1)
+                                                                                                 MIN                    MAX                UNIT
+                            VIN                                                                  –0.3                    6
+Voltage                     VEN                                                                  –0.3                   6 (2)               V
+                            VOUT                                                                 –0.3                    6
+Maximum output current IOUT                                                                          Internally limited
+Output short-circuit duration                                                                              Indefinite
+                            Operating junction, TJ                                               –55                    150
+Temperature                                                                                                                                 °C
+                            Storage, Tstg                                                        –55                    150
+
+(1)   Stresses beyond those listed under Absolute Maximum Ratings may cause permanent damage to the device. These are stress ratings
+      only, which do not imply functional operation of the device at these or any other conditions beyond those indicated under Recommended
+      Operating Conditions. Exposure to absolute-maximum-rated conditions for extended periods may affect device reliability.
+(2)   VEN absolute maximum rating is VIN + 0.3 V or 6 V, whichever is less.
+
+6.2 ESD Ratings
+                                                                                                                             VALUE          UNIT
+                                                                                                                (1)
+                                            Human body model (HBM), per ANSI/ESDA/JEDEC JS-001, all pins                        ±2000
+V(ESD)      Electrostatic discharge         Charged device model (CDM), per JEDEC specification JESD22-C101,                                    V
+                                                                                                                                ±500
+                                            all pins (2)
+
+(1)    JEDEC document JEP155 states that 500-V HBM allows safe manufacturing with a standard ESD control process.
+(2)    JEDEC document JEP157 states that 250-V CDM allows safe manufacturing with a standard ESD control process.
+
+6.3 Recommended Operating Conditions
+over operating free-air temperature range (unless otherwise noted)
+                                                                                             MIN              NOM                 MAX      UNIT
+VIN                                                                                             2                                    5.5     V
+VOUT                                                                                          1.2                                    4.8     V
+IOUT                                                                                            0                                   200     mA
+
+
+6.4 Thermal Information
+                                                                                               TLV700
+                         THERMAL METRIC (1)                                 DCK [SC70]        DDC [SOT]                 DSE [WSON]          UNIT
+                                                                              5 PINS             5 PINS                   6 PINS
+RθJA           Junction-to-ambient thermal resistance                          307.6                235.9                    321.3
+RθJC(top)      Junction-to-case (top) thermal resistance                        79.1                61.9                     207.9
+RθJB           Junction-to-board thermal resistance                             93.7                 54                      281.5
+                                                                                                                                            °C/W
+ψJT            Junction-to-top characterization parameter                       1.3                  0.8                     42.4
+ψJB            Junction-to-board characterization parameter                     92.8                53.4                     284.8
+RθJC(bot)      Junction-to-case (bottom) thermal resistance                     n/a                  n/a                     142.3
+
+(1)    For more information about traditional and new thermal metrics, see the IC Package Thermal Metrics application report, SPRA953.
+
+
+
+
+Copyright © 2009–2015, Texas Instruments Incorporated                                                Submit Documentation Feedback                  5
+                                                           Product Folder Links: TLV700
+TLV700
+SLVSA00E – SEPTEMBER 2009 – REVISED APRIL 2015                                                                                           www.ti.com
+
+
+6.5 Electrical Characteristics
+At VIN = VOUT(nom) + 0.3 V or 2 V (whichever is greater); IOUT = 10 mA, VEN = 0.9 V, COUT = 1 μF, and TJ = –40°C to +125°C,
+unless otherwise noted. Typical values are at TJ = 25°C.
+                    PARAMETER                                        TEST CONDITIONS                      MIN        TYP       MAX         UNIT
+VIN               Input voltage range                                                                           2                  5.5       V
+VOUT              DC output accuracy                  –40°C ≤ TJ ≤ +125°C                                   –2%                    2%
+                                                      VOUT(nom) + 0.3 V ≤ VIN ≤ 5.5 V,
+ΔVOUT(ΔVIN)       Line regulation                                                                                          1         5      mV
+                                                      IOUT = 10 mA
+ΔVOUT(ΔIOUT)      Load regulation                     0 mA ≤ IOUT ≤ 200 mA                                                 1        15      mV
+                                                      VIN = 0.98 × VOUT(nom), IOUT = 50 mA,
+                                                                                                                         43
+                                                      VOUT = 2.8 V
+                                                      VIN = 0.98 × VOUT(nom), IOUT = 100 mA,
+VDO               Dropout voltage (1)                                                                                    85                 mV
+                                                      VOUT = 2.8 V
+                                                      VIN = 0.98 × VOUT(nom), IOUT = 200 mA,
+                                                                                                                        175       250
+                                                      VOUT = 2.35 V
+ICL               Output current limit                VOUT = 0.9 × VOUT(nom)                                 220                  860       mA
+                                                      IOUT = 0 mA                                                        31         55
+IGND              Ground pin current                                                                                                        μA
+                                                      IOUT = 200 mA, VIN = VOUT + 0.5 V                                 270
+                                                      VEN ≤ 0.4 V, VIN = 2 V                                            400                  nA
+ISHDN             Ground pin current (shutdown)
+                                                      VEN ≤ 0.4 V, 2 V ≤ VIN ≤ 4.5 V                                       1         2      μA
+                                                      VIN = 2.3 V, VOUT = 1.8 V,
+PSRR              Power-supply rejection ratio                                                                           68                  dB
+                                                      IOUT = 10 mA, f = 1 kHz
+                                                      BW = 100 Hz to 100 kHz,
+Vn                Output noise voltage                                                                                   48                μVRMS
+                                                      VIN = 2.3 V, VOUT = 1.8 V, IOUT = 10 mA
+                                  (2)
+tSTR              Start-up time                       COUT = 1 μF, IOUT = 200 mA                                        100                  μs
+VEN(high)         Enable pin high (enabled)                                                                  0.9                   VIN       V
+VEN(low)          Enable pin low (disabled)                                                                     0                  0.4       V
+IEN               Enable pin current                  VIN = VEN = 5.5 V                                                0.04        0.5      μA
+UVLO              Undervoltage lockout                VIN rising                                                        1.9                  V
+                                                      Shutdown, temperature increasing                                  160
+Tsd               Thermal shutdown temperature                                                                                               °C
+                                                      Reset, temperature decreasing                                     140
+TJ                Operating junction temperature                                                             –40                  125        °C
+
+(1)    VDO is measured for devices with VOUT(nom) ≥ 2.35 V.
+(2)    Start-up time = time from EN assertion to 0.98 × VOUT(nom).
+
+
+
+
+6          Submit Documentation Feedback                                                       Copyright © 2009–2015, Texas Instruments Incorporated
+
+                                                         Product Folder Links: TLV700
+                                                                                                                                                                                                               TLV700
+www.ti.com                                                                                                                                            SLVSA00E – SEPTEMBER 2009 – REVISED APRIL 2015
+
+
+6.6 Typical Characteristics
+Over operating temperature range (TJ = –40°C to +125°C), VIN = VOUT(nom) + 0.5 V or 2 V, whichever is greater; IOUT = 10 mA,
+VEN = VIN, COUT = 1 μF, unless otherwise noted. Typical values are at TJ = 25°C.
+
+                             1.90                                                                                                    1.90
+                                        IOUT = 10 mA                                                                                          IOUT = 200 mA
+                             1.88                                                                                                    1.88
+                             1.86                                                                                                    1.86
+     Output Voltage (V)
+
+
+
+
+                                                                                                               Output Voltage (V)
+                             1.84                                                                                                    1.84
+                             1.82                                                                                                    1.82
+                             1.80                                                                                                    1.80
+                             1.78                                                                                                    1.78
+                             1.76                                                               +125°C                               1.76                                                                +125°C
+                             1.74                                                                +85°C                               1.74                                                                 +85°C
+                                                                                                 +25°C                                                                                                    +25°C
+                             1.72                                                                                                    1.72
+                                                                                                 -40°C                                                                                                    -40°C
+                             1.70                                                                                                    1.70
+                                    2.1      2.6        3.1       3.6      4.1      4.6         5.1   5.6                                   2.1      2.6      3.1        3.6     4.1        4.6          5.1      5.6
+                                                               Input Voltage (V)                                                                                    Input Voltage (V)
+
+
+
+                                             Figure 1. TLV70018 Line Regulation                                                                      Figure 2. TLV70018 Line Regulation
+                             1.90                                                                                                    250
+                                                                                                                                             IOUT = 200 mA
+                             1.88
+                             1.86                                                                                                    200
+                                                                                                              Dropout Voltage (mV)
+    Output Voltage (V)
+
+
+
+
+                             1.84
+                             1.82                                                                                                    150
+                             1.80
+                             1.78                                                                                                    100
+                             1.76                                                               +125°C                                                                                                   +125°C
+                             1.74                                                                +85°C                                50                                                                  +85°C
+                                                                                                 +25°C                                                                                                    +25°C
+                             1.72
+                                                                                                 -40°C                                                                                                    -40°C
+                             1.70                                                                                                      0
+                                    0      20      40   60      80      100 120 140       160    180 200                                2.25           2.75         3.25         3.75             4.25         4.75
+                                                              Output Current (mA)                                                                                   Input Voltage (V)
+
+
+
+                                             Figure 3. TLV70018 Load Regulation                                                                   Figure 4. Dropout Voltage vs Input Voltage
+                             180                                                                                                     1.90
+                             160                                                                                                     1.88
+
+                             140                                                                                                     1.86
+      Dropout Voltage (mV)
+
+
+
+
+                                                                                                              Output Voltage (V)
+
+
+
+
+                                                                                                                                     1.84
+                             120
+                                                                                                                                     1.82
+                             100
+                                                                                                                                     1.80
+                              80
+                                                                                                                                     1.78
+                              60
+                                                                                                +125°C                               1.76
+                              40                                                                                                                                                              IOUT = 200 mA
+                                                                                                 +85°C                               1.74
+                                                                                                 +25°C                                                                                          IOUT = 10 mA
+                              20                                                                                                     1.72
+                                                                                                 -40°C                                                                                        IOUT = 150 mA
+                               0                                                                                                     1.70
+                                    0        30         60        90      120       150     180       210                                   -40 -25 -10       5     20     35   50     65    80     95     110 125
+                                                              Output Current (mA)                                                                                   Temperature (°C)
+
+
+
+                             Figure 5. Dropout Voltage vs Output Current, VOUT = 4.8 V                                                  Figure 6. TLV70018 Output Voltage vs Temperature
+
+
+
+
+Copyright © 2009–2015, Texas Instruments Incorporated                                                                                                             Submit Documentation Feedback                         7
+                                                                                            Product Folder Links: TLV700
+TLV700
+SLVSA00E – SEPTEMBER 2009 – REVISED APRIL 2015                                                                                                                                                                        www.ti.com
+
+
+Typical Characteristics (continued)
+Over operating temperature range (TJ = –40°C to +125°C), VIN = VOUT(nom) + 0.5 V or 2 V, whichever is greater; IOUT = 10 mA,
+VEN = VIN, COUT = 1 μF, unless otherwise noted. Typical values are at TJ = 25°C.
+                                 50                                                                                                                  300
+                                         IOUT = 0 mA
+                                 45
+                                                                                                                                                     250
+                                 40
+
+
+
+
+                                                                                                                        Ground Pin Current (mA)
+       Ground Pin Current (mA)
+
+
+
+
+                                 35
+                                                                                                                                                     200
+                                 30
+                                 25                                                                                                                  150
+                                 20
+                                                                                                                                                     100
+                                 15                                                                   +125°C                                                                                                     +125°C
+                                 10                                                                    +85°C                                                                                                      +85°C
+                                                                                                                                                      50
+                                                                                                       +25°C                                                                                                      +25°C
+                                  5
+                                                                                                       -40°C                                                                                                      -40°C
+                                  0                                                                                                                    0
+                                       2.1    2.6      3.1        3.6          4.1         4.6     5.1      5.6                                            0     20      40    60     80     100 120 140 160 180 200
+                                                                Input Voltage (V)                                                                                                   Output Current (mA)
+
+
+
+                                 Figure 7. TLV70018 Ground Pin Current vs Input Voltage                                                                    Figure 8. TLV70018 Ground Pin Current vs Load
+                                 40                                                                                                                  2.0
+
+                                 35                                                                                                                  1.8
+                                                                                                                                                     1.6
+      Ground Pin Current (mA)
+
+
+
+
+                                                                                                                             Shutdown Current (mA)
+                                 30
+                                                                                                                                                     1.4
+                                 25                                                                                                                  1.2
+                                 20                                                                                                                  1.0
+
+                                 15                                                                                                                  0.8
+                                                                                                                                                     0.6
+                                 10
+                                                                                                                                                     0.4                                                         +125°C
+                                  5                                                                                                                                                                               +85°C
+                                                                                                 IOUT = 0 mA                                         0.2
+                                                                                                                                                                                                                  +25°C
+                                  0                                                                                                                   0
+                                       -40 -25 -10     5     20     35     50        65     80   95    110 125                                             2.1     2.6        3.1      3.6      4.1       4.6   5.1      5.6
+                                                             Temperature (°C)                                                                                                        Input Voltage (V)
+
+
+
+                                 Figure 9. TLV70018 Ground Pin Current vs Temperature                                                                Figure 10. TLV70018 Shutdown Current vs Input Voltage
+                                 100                                                                                                                 80
+                                  90                   IOUT = 10 mA                                                                                               1 kHz
+                                                                                                                                                     70
+                                  80                                                 IOUT = 150 mA
+                                                                                                                                                     60
+                                  70                                                                                                                                       10 kHz
+                                                                                                                                                     50
+    PSRR (dB)
+
+
+
+
+                                                                                                                               PSRR (dB)
+
+
+
+
+                                  60
+                                                                                                                                                                 100 kHz
+                                  50                                                                                                                 40
+                                  40                                                                                                                 30
+                                  30
+                                                                                                                                                     20
+                                  20
+                                  10                                                                                                                 10
+                                                                                          VIN - VOUT = 0.5 V
+                                   0                                                                                                                  0
+                                       10      100         1k           10 k         100 k        1M       10 M                                            2.1     2.2        2.3      2.4      2.5       2.6   2.7      2.8
+                                                                Frequency (Hz)                                                                                                       Input Voltage (V)
+
+
+
+                                 Figure 11. TLV70018 Power-Supply Ripple Rejection vs                                                                Figure 12. TLV70018 Power-Supply Ripple Rejection vs
+                                                      Frequency                                                                                                          Input Voltage
+
+
+
+
+8                                Submit Documentation Feedback                                                                                                        Copyright © 2009–2015, Texas Instruments Incorporated
+
+                                                                                                      Product Folder Links: TLV700
+                                                                                                                                                                                                                TLV700
+www.ti.com                                                                                                                                                        SLVSA00E – SEPTEMBER 2009 – REVISED APRIL 2015
+
+
+Typical Characteristics (continued)
+Over operating temperature range (TJ = –40°C to +125°C), VIN = VOUT(nom) + 0.5 V or 2 V, whichever is greater; IOUT = 10 mA,
+VEN = VIN, COUT = 1 μF, unless otherwise noted. Typical values are at TJ = 25°C.
+                                                         10
+    Output Spectral Noise Density (mV/ÖHz)
+
+
+
+
+                                                                                                                                                       tR = tF = 1 ms                            200 mA
+
+
+
+
+                                                                                                                                          100 mA/div
+                                                          1
+                                                                                                                                                                IOUT                                0 mA
+
+
+                                                   0.1
+
+
+
+
+                                                                                                                                          50 mV/div
+                                                                                                                                                          VOUT
+                                             0.01
+                                                               IOUT = 10 mA
+                                                               CIN = COUT = 1 mF                                                                                                                  VIN = 2.1 V
+                                                          0
+                                                              10          100     1k        10 k       100 k        1M       10 M                                            10 ms/div
+                                                                                       Frequency (Hz)
+
+
+
+                                                   Figure 13. TLV70018 Output Spectral Noise Density vs                                                Figure 14. TLV70018 Load Transient Response
+                                                                     Output Voltage
+
+                                                              tR = tF = 1 ms                                                                           tR = tF = 1 ms
+                                                                                                           10 mA
+                                             20 mA/div
+
+
+
+
+                                                                                                                   0 mA                   50 mA/div      IOUT                                50 mA
+
+                                                                   IOUT                                                                                                                            0 mA
+                                                                                                                                          20 mV/div
+
+
+
+
+                                                                   VOUT                                                                                   VOUT
+                                             5 mV/div
+
+
+
+
+                                                                                                               VIN = 2.3 V                                                                        VIN = 2.3 V
+
+                                                                                       10 ms/div                                                                             10 ms/div
+
+
+
+                                                              Figure 15. TLV70018 Load Transient Response                                              Figure 16. TLV70018 Load Transient Response
+
+                                                                                                     Slew Rate = 1 V/ms                                 VIN                              Slew Rate = 1 V/ms
+                                                                                                                                                                  2.7 V
+                                                                                                                                          1 V/div
+
+
+
+
+                                                                          2.9 V                                       VIN
+                                             1 V/div
+
+
+
+
+                                                                                                                                                                                         2.3 V
+
+                                                                                                   2.3 V
+                                                                                                                                          5 mV/div
+                                             5 mV/div
+
+
+
+
+                                                                                                                     VOUT                                                                              VOUT
+
+
+
+                                                              IOUT = 200 mA                                                                            IOUT = 1 mA
+
+                                                                                       1 ms/div                                                                              1 ms/div
+
+
+
+                                                               Figure 17. TLV70018 Line Transient Response                                              Figure 18. TLV70018 Line Transient Response
+
+
+
+
+Copyright © 2009–2015, Texas Instruments Incorporated                                                                                                                     Submit Documentation Feedback              9
+                                                                                                                     Product Folder Links: TLV700
+TLV700
+SLVSA00E – SEPTEMBER 2009 – REVISED APRIL 2015                                                                                              www.ti.com
+
+
+Typical Characteristics (continued)
+Over operating temperature range (TJ = –40°C to +125°C), VIN = VOUT(nom) + 0.5 V or 2 V, whichever is greater; IOUT = 10 mA,
+VEN = VIN, COUT = 1 μF, unless otherwise noted. Typical values are at TJ = 25°C.
+                                                Slew Rate = 1 V/ms                         IOUT = 1 mA
+
+                         5.5 V                                VIN                                                      VIN
+       1 V/div
+
+
+
+
+                                                2.1 V
+
+
+
+
+                                                                                 1 V/div
+       10 mV/div
+
+
+
+
+                                                             VOUT
+
+
+
+                   IOUT = 200 mA                                                                                                        VOUT
+
+                                     1 ms/div                                                                  200 ms/div
+
+
+
+                    Figure 19. TLV70018 Line Transient Response                 Figure 20. TLV70018 VIN Ramp-Up, Ramp-Down Response
+
+
+
+
+10       Submit Documentation Feedback                                                              Copyright © 2009–2015, Texas Instruments Incorporated
+
+                                                            Product Folder Links: TLV700
+                                                                                                                                    TLV700
+www.ti.com                                                                                      SLVSA00E – SEPTEMBER 2009 – REVISED APRIL 2015
+
+
+7 Detailed Description
+
+7.1 Overview
+The TLV700 series of LDO linear regulators are low quiescent current devices with excellent line and load
+transient performance. These LDOs are designed for power-sensitive applications. A precision bandgap and
+error amplifier provides overall 2% accuracy. Low output noise, very high PSRR, and low dropout voltage make
+this series of devices ideal for most battery-operated handheld equipment. All device versions have integrated
+thermal shutdown, current limit, and undervoltage lockout (UVLO).
+
+7.2 Functional Block Diagram
+
+
+
+                         IN                                                                                         OUT
+
+
+                                                   Current
+                                                    Limit
+
+
+                                                                                           Thermal
+                                                                                          Shutdown
+
+
+
+
+                                                    UVLO
+
+
+
+
+                        EN            Bandgap
+
+
+
+
+                                                                                  LOGIC
+
+                                                                                                TLV700xx Series
+
+
+                                                                       GND
+
+
+7.3 Feature Description
+
+7.3.1 Internal Current Limit
+The TLV700 internal current limit helps to protect the regulator during fault conditions. During current limit, the
+output sources a fixed amount of current that is largely independent of the output voltage. In such a case, the
+output voltage is not regulated, and is VOUT = ICL × RLOAD. The PMOS pass transistor dissipates (VIN – VOUT) ×
+ICL until thermal shutdown is triggered and the device turns off. As the device cools down, it is turned on by the
+internal thermal shutdown circuit. If the fault condition continues, the device cycles between current limit and
+thermal shutdown. See Thermal Protection for more details.
+The PMOS pass element in the TLV700 has a built-in body diode that conducts current when the voltage at OUT
+exceeds the voltage at IN. This current is not limited, so if extended reverse voltage operation is anticipated,
+external limiting to 5% of the rated output current is recommended.
+
+7.3.2 Shutdown
+The enable pin (EN) is active high. The device is enabled when voltage at EN pin goes above 0.9 V. The device
+is turned off when the EN pin is held at less than 0.4 V. When shutdown capability is not required, EN can be
+connected to the IN pin.
+
+
+
+Copyright © 2009–2015, Texas Instruments Incorporated                                                  Submit Documentation Feedback       11
+                                                             Product Folder Links: TLV700
+TLV700
+SLVSA00E – SEPTEMBER 2009 – REVISED APRIL 2015                                                                          www.ti.com
+
+
+Feature Description (continued)
+7.3.3 Dropout Voltage
+The TLV700 uses a PMOS pass transistor to achieve low dropout. When (VIN – VOUT) is less than the dropout
+voltage (VDO), the PMOS pass device is in the linear region of operation and the input-to-output resistance is the
+RDS(on) of the PMOS pass element. VDO scales approximately with output current because the PMOS device
+behaves as a resistor in dropout.
+As with any linear regulator, PSRR and transient response are degraded as (VIN – VOUT) approaches dropout.
+This effect is shown in Figure 12 in Typical Characteristics.
+
+7.3.4 Undervoltage Lockout (UVLO)
+The TLV700 uses a UVLO circuit to keep the output shut off until internal circuitry is operating properly.
+
+7.4 Device Functional Modes
+7.4.1 Normal Operation
+The device regulates to the nominal output voltage under the following conditions:
+•    The input voltage is greater than the nominal output voltage added to the dropout voltage.
+•    The output current is less than the current limit.
+•    The input voltage is greater than the UVLO voltage.
+
+7.4.2 Dropout Operation
+If the input voltage is lower than the nominal output voltage plus the specified dropout voltage, but all other
+conditions are met for normal operation, the device operates in dropout mode. In this condition, the output
+voltage is the same the input voltage minus the dropout voltage. The transient performance of the device is
+significantly degraded because the pass device is in a triode state and no longer regulates the output voltage of
+the LDO. Line or load transients in dropout may result in large output voltage deviations.
+Table 1 lists the conditions that lead to the different modes of operation.
+
+                                       Table 1. Device Functional Mode Comparison
+                                                                      PARAMETER
+                   OPERATING MODE
+                                                             VIN                                 IOUT
+                      Normal mode                   VIN > VOUT(nom) + VDO                     IOUT < ICL
+                      Dropout mode                  VIN < VOUT(nom) + VDO                     IOUT < ICL
+                       Current limit                     VIN > UVLO                           IOUT > ICL
+
+
+
+
+12      Submit Documentation Feedback                                           Copyright © 2009–2015, Texas Instruments Incorporated
+
+                                                 Product Folder Links: TLV700
+                                                                                                                                    TLV700
+www.ti.com                                                                                      SLVSA00E – SEPTEMBER 2009 – REVISED APRIL 2015
+
+
+8 Application and Implementation
+
+                                                           NOTE
+               Information in the following applications sections is not part of the TI component
+               specification, and TI does not warrant its accuracy or completeness. TI’s customers are
+               responsible for determining suitability of components for their purposes. Customers should
+               validate and test their design implementation to confirm system functionality.
+
+
+8.1 Application Information
+The TLV700 belongs to a new family of next-generation value LDO regulators. These devices consume low
+quiescent current and deliver excellent line and load transient performance. These characteristics, combined with
+low noise, very good PSRR with little (VIN – VOUT) headroom, make this family of devices ideal for RF portable
+applications. This family of regulators offers current limit and thermal protection, and is specified from –40°C to
++125°C.
+
+8.2 Typical Application
+Figure 21 shows a typical application circuit.
+
+                                       VIN                   IN                  OUT                      VOUT
+                                                                                                   1 mF
+                                              CIN                                       COUT
+                                                                                                   Ceramic
+                                                                    TLV700xx
+                                                     On
+                                               Off           EN
+                                                                       GND
+
+
+
+
+                                                Figure 21. Typical Application Circuit
+
+8.2.1 Design Requirements
+Table 2 lists the design parameters.
+
+                                                          Table 2. Design Parameters
+                                               PARAMETER                       DESIGN REQUIREMENT
+                                                Input voltage                          2.5 V to 3.3 V
+                                               Output voltage                              1.8 V
+                                               Output current                             100 mA
+
+8.2.2 Detailed Design Procedure
+
+8.2.2.1 Input and Output Capacitor Requirements
+TI recommends using 1-μF X5R- and X7R-type ceramic capacitors because these capacitors have minimal
+variation in value and equivalent series resistance (ESR) over temperature.
+However, the TLV700 is designed to be stable with an effective capacitance of 0.1 μF or larger at the output.
+Thus, the device is stable with capacitors of other dielectric types as well, as long as the effective capacitance
+under operating bias voltage and temperature is greater than 0.1 μF. This effective capacitance refers to the
+capacitance that the LDO sees under operating bias voltage and temperature conditions; that is, the capacitance
+after taking both bias voltage and temperature derating into consideration. In addition to allowing the use of
+cheaper dielectrics, this capability of being stable with 0.1-μF effective capacitance also enables the use of
+smaller footprint capacitors that have higher derating in size- and space-constrained applications.
+Using a 0.1-μF rated capacitor at the output of the LDO does not ensure stability because the effective
+capacitance under the specified operating conditions must not be less than 0.1 μF. Maximum ESR should be
+less than 200 mΩ.
+
+
+Copyright © 2009–2015, Texas Instruments Incorporated                                                    Submit Documentation Feedback     13
+                                                            Product Folder Links: TLV700
+TLV700
+SLVSA00E – SEPTEMBER 2009 – REVISED APRIL 2015                                                                                             www.ti.com
+
+
+Although an input capacitor is not required for stability, it is good analog design practice to connect a 0.1-μF to 1-
+μF, low ESR capacitor across the IN pin and GND in of the regulator. This capacitor counteracts reactive input
+sources and improves transient response, noise rejection, and ripple rejection. A higher-value capacitor may be
+necessary if large, fast rise-time load transients are anticipated, or if the device is not located close to the power
+source. If source impedance is more than 2 Ω, a 0.1-μF input capacitor may be necessary to ensure stability.
+
+8.2.2.2 Transient Response
+As with any regulator, increasing the size of the output capacitor reduces overshoot and undershoot magnitude
+but increases the duration of the transient response.
+
+8.2.3 Application Curves
+
+
+                   tR = tF = 1 ms                                                                                          Slew Rate = 1 V/ms
+
+                     IOUT                        50 mA                                                                                   VIN
+                                                                                                2.9 V
+       50 mA/div
+
+
+
+
+                                                                              1 V/div
+                                                    0 mA
+                                                                                                                         2.3 V
+       20 mV/div
+
+
+
+
+                                                                              5 mV/div
+                      VOUT                                                                                                              VOUT
+
+
+
+                                                   VIN = 2.3 V                           IOUT = 200 mA
+
+                                    10 ms/div                                                                 1 ms/div
+                   Figure 22. TLV70018 Load Transient Response                            Figure 23. TLV70018 Line Transient Response
+
+
+
+9 Power Supply Recommendations
+Connect a low output impedance power supply directly to the INPUT pin of the TLV700. Inductive impedances
+between the input supply and the INPUT pin can create significant voltage excursions at the INPUT pin during
+start-up or load transient events.
+
+
+
+
+14       Submit Documentation Feedback                                                           Copyright © 2009–2015, Texas Instruments Incorporated
+
+                                                         Product Folder Links: TLV700
+                                                                                                                                       TLV700
+www.ti.com                                                                                         SLVSA00E – SEPTEMBER 2009 – REVISED APRIL 2015
+
+
+10 Layout
+
+10.1 Layout Guidelines
+Input and output capacitors should be placed as close to the device pins as possible. To improve AC
+performance such as PSRR, output noise, and transient response, TI recommends designing the printed-circuit-
+boards with separate ground planes for VIN and VOUT, with the ground plane connected only at the GND pin of
+the device. In addition, the ground connection for the output capacitor should be connected directly to the GND
+pin of the device. High ESR capacitors may degrade PSRR performance.
+
+10.2 Layout Examples
+                                                   VIN                                           VOUT
+
+                                                                IN              OUT
+
+                                                    CIN       GND                                COUT
+
+
+                                                               EN               NC
+
+
+
+                                                                                GND PLANE
+
+
+                                                                Represents via used for
+                                                             application specific connections
+
+                                 Figure 24. Layout Example for the DCK and DDC Package
+
+
+                                                    VIN
+
+                                                                 IN              EN
+                                                    CIN
+
+                                                                GND              NC     GND PLANE
+
+
+                                                                OUT              NC
+
+
+
+
+                                                              VOUT       COUT
+
+                                                                 Represents via used for
+                                                              application specific connections
+
+                                        Figure 25. Layout Example for the DSE Package
+
+
+10.3 Thermal Protection
+Thermal protection disables the output when the junction temperature rises to approximately 160°C, allowing the
+device to cool. When the junction temperature cools to approximately 140°C, the output circuitry is again
+enabled. Depending on power dissipation, thermal resistance, and ambient temperature, the thermal protection
+circuit may cycle on and off. This cycling limits the dissipation of the regulator, protecting it from damage as a
+result of overheating.
+Any tendency to activate the thermal protection circuit indicates excessive power dissipation or an inadequate
+heatsink. For reliable operation, junction temperature should be limited to 125°C maximum. To estimate the
+margin of safety in a complete design (including heatsink), increase the ambient temperature until the thermal
+protection is triggered; use worst-case loads and signal conditions.
+For good reliability, thermal protection should trigger at least 35°C above the maximum expected ambient
+condition of the particular application. This configuration produces a worst-case junction temperature of 125°C at
+the highest expected ambient temperature and worst-case load.
+
+
+Copyright © 2009–2015, Texas Instruments Incorporated                                                     Submit Documentation Feedback       15
+                                                          Product Folder Links: TLV700
+TLV700
+SLVSA00E – SEPTEMBER 2009 – REVISED APRIL 2015                                                                          www.ti.com
+
+
+Thermal Protection (continued)
+The internal protection circuitry of the TLV700 has been designed to protect against overload conditions. The
+protection circuitry was not intended to replace proper heatsinking. Continuously running the TLV700 into thermal
+shutdown degrades device reliability.
+
+10.4 Power Dissipation
+The ability to remove heat from the die is different for each package type, presenting different considerations in
+the PCB layout. The PCB area around the device that is free of other components moves the heat from the
+device to the ambient air. Performance data for JEDEC low and high-K boards are given in Thermal Information.
+Using heavier copper increases the effectiveness in removing heat from the device. The addition of plated
+through-holes to heat-dissipating layers also improves heatsink effectiveness.
+Power dissipation depends on input voltage and load conditions. Power dissipation (PD) is equal to the product of
+the output current and the voltage drop across the output pass element, as shown in Equation 1.
+     PD = (VIN - VOUT) ´ IOUT                                                                                 (1)
+
+
+
+
+16     Submit Documentation Feedback                                            Copyright © 2009–2015, Texas Instruments Incorporated
+
+                                                 Product Folder Links: TLV700
+                                                                                                                                  TLV700
+www.ti.com                                                                                   SLVSA00E – SEPTEMBER 2009 – REVISED APRIL 2015
+
+
+11 Device and Documentation Support
+
+11.1 Device Support
+11.1.1 Development Support
+
+11.1.1.1 Evaluation Modules
+Three evaluation modules (EVMs) are available to assist in the initial circuit performance evaluation using the
+TLV700:
+• TLV70033EVM-503
+• TLV70018EVM-503
+• TLV70028EVM-463
+These EVMs can be requested at the Texas Instruments website through the product folders or purchased
+directly from the TI eStore.
+
+11.1.1.2 Spice Models
+Computer simulation of circuit performance using SPICE is often useful when analyzing the performance of
+analog circuits and systems. A SPICE model for the TLV700 is available through the product folders under Tools
+& Software.
+
+11.1.2 Device Nomenclature
+
+                                                        Table 3. Ordering Information (1)
+                  PRODUCT                                                                   VOUT (2)
+                TLV700xx yyyz                     XX is nominal output voltage (for example, 28 = 2.8 V).
+                                                  YYY is the package designator.
+                                                  Z is tape and reel quantity (R = 3000, T = 250).
+
+(1)   For the most current package and ordering information see the Package Option Addendum at the end of this document, or visit the
+      device product folder at www.ti.com.
+(2)   Output voltages from 1.2 V to 4.8 V in 50-mV increments are available. Contact factory for details and availability.
+
+11.2 Documentation Support
+
+11.2.1 Related Documentation
+• Using the TLV700xxEVM-463 Evaluation Module, SLUU390
+• Using the TLV700xxEVM-503 Evaluation Module, SLUU391
+
+11.3 Trademarks
+Bluetooth is a registered trademark of Bluetooth SIG.
+ZigBee is a registered trademark of the ZigBee Alliance.
+All other trademarks are the property of their respective owners.
+11.4 Electrostatic Discharge Caution
+          These devices have limited built-in ESD protection. The leads should be shorted together or the device placed in conductive foam
+          during storage or handling to prevent electrostatic damage to the MOS gates.
+
+
+11.5 Glossary
+SLYZ022 — TI Glossary.
+   This glossary lists and explains terms, acronyms, and definitions.
+
+
+
+
+Copyright © 2009–2015, Texas Instruments Incorporated                                                  Submit Documentation Feedback    17
+                                                           Product Folder Links: TLV700
+TLV700
+SLVSA00E – SEPTEMBER 2009 – REVISED APRIL 2015                                                                          www.ti.com
+
+
+12 Mechanical, Packaging, and Orderable Information
+The following pages include mechanical, packaging, and orderable information. This information is the most
+current data available for the designated devices. This data is subject to change without notice and revision of
+this document. For browser-based versions of this data sheet, refer to the left-hand navigation.
+
+
+
+
+18     Submit Documentation Feedback                                            Copyright © 2009–2015, Texas Instruments Incorporated
+
+                                                 Product Folder Links: TLV700
+                                                                                                                                 PACKAGE OPTION ADDENDUM
+
+  www.ti.com                                                                                                                                                    10-Nov-2025
+
+
+
+
+PACKAGING INFORMATION
+
+ Orderable part number   Status   Material type   Package | Pins   Package qty | Carrier   RoHS         Lead finish/       MSL rating/        Op temp (°C)   Part marking
+                           (1)         (2)                                                  (3)         Ball material      Peak reflow                            (6)
+                                                                                                             (4)                (5)
+
+     TLV70012DCKR        Active    Production     SC70 (DCK) | 5    3000 | LARGE T&R        Yes         NIPDAU | SN     Level-1-260C-UNLIM     -40 to 125       ODT
+    TLV70012DCKR.B       Active    Production     SC70 (DCK) | 5    3000 | LARGE T&R        Yes             SN          Level-1-260C-UNLIM     -40 to 125       ODT
+     TLV70012DCKT        Active    Production     SC70 (DCK) | 5     250 | SMALL T&R        Yes         NIPDAU | SN     Level-1-260C-UNLIM     -40 to 125       ODT
+    TLV70012DCKT.B       Active    Production     SC70 (DCK) | 5     250 | SMALL T&R        Yes             SN          Level-1-260C-UNLIM     -40 to 125       ODT
+     TLV70012DDCR        Active    Production       SOT-23-         3000 | LARGE T&R        Yes         NIPDAU | SN     Level-2-260C-1 YEAR    -40 to 125       ODO
+                                                  THIN (DDC) | 5
+    TLV70012DDCR.B       Active    Production       SOT-23-         3000 | LARGE T&R        Yes           NIPDAU        Level-2-260C-1 YEAR    -40 to 125       ODO
+                                                  THIN (DDC) | 5
+    TLV70012DDCRG4       Active    Production       SOT-23-         3000 | LARGE T&R        Yes           NIPDAU        Level-2-260C-1 YEAR    -40 to 125       ODO
+                                                  THIN (DDC) | 5
+  TLV70012DDCRG4.B       Active    Production       SOT-23-         3000 | LARGE T&R        Yes           NIPDAU        Level-2-260C-1 YEAR    -40 to 125       ODO
+                                                  THIN (DDC) | 5
+     TLV70012DDCT        Active    Production       SOT-23-          250 | SMALL T&R        Yes         NIPDAU | SN     Level-2-260C-1 YEAR    -40 to 125       ODO
+                                                  THIN (DDC) | 5
+    TLV70012DDCT.B       Active    Production       SOT-23-          250 | SMALL T&R        Yes           NIPDAU        Level-2-260C-1 YEAR    -40 to 125       ODO
+                                                  THIN (DDC) | 5
+     TLV70012DSER        Active    Production     WSON (DSE) | 6    3000 | LARGE T&R        Yes      NIPDAU | NIPDAUAG Level-1-260C-UNLIM      -40 to 125        NH
+    TLV70012DSER.B       Active    Production     WSON (DSE) | 6    3000 | LARGE T&R        Yes           NIPDAU        Level-1-260C-UNLIM     -40 to 125        NH
+     TLV70012DSET        Active    Production     WSON (DSE) | 6     250 | SMALL T&R        Yes      NIPDAU | NIPDAUAG Level-1-260C-UNLIM      -40 to 125        NH
+    TLV70012DSET.B       Active    Production     WSON (DSE) | 6     250 | SMALL T&R        Yes           NIPDAU        Level-1-260C-UNLIM     -40 to 125        NH
+     TLV70013DDCR        Active    Production       SOT-23-         3000 | LARGE T&R        Yes         NIPDAU | SN     Level-2-260C-1 YEAR    -40 to 125       SAH
+                                                  THIN (DDC) | 5
+    TLV70013DDCR.B       Active    Production       SOT-23-         3000 | LARGE T&R        Yes           NIPDAU        Level-2-260C-1 YEAR    -40 to 125       SAH
+                                                  THIN (DDC) | 5
+    TLV70013DDCRG4       Active    Production       SOT-23-         3000 | LARGE T&R        Yes           NIPDAU        Level-2-260C-1 YEAR    -40 to 125       SAH
+                                                  THIN (DDC) | 5
+  TLV70013DDCRG4.B       Active    Production       SOT-23-         3000 | LARGE T&R        Yes           NIPDAU        Level-2-260C-1 YEAR    -40 to 125       SAH
+                                                  THIN (DDC) | 5
+     TLV70013DDCT        Active    Production       SOT-23-          250 | SMALL T&R        Yes         NIPDAU | SN     Level-2-260C-1 YEAR    -40 to 125       SAH
+                                                  THIN (DDC) | 5
+    TLV70013DDCT.B       Active    Production       SOT-23-          250 | SMALL T&R        Yes           NIPDAU        Level-2-260C-1 YEAR    -40 to 125       SAH
+                                                  THIN (DDC) | 5
+
+
+
+                                                                                   Addendum-Page 1
+                                                                                                                                PACKAGE OPTION ADDENDUM
+
+www.ti.com                                                                                                                                                     10-Nov-2025
+
+
+
+
+Orderable part number   Status   Material type   Package | Pins   Package qty | Carrier   RoHS         Lead finish/       MSL rating/        Op temp (°C)   Part marking
+                          (1)         (2)                                                  (3)         Ball material      Peak reflow                            (6)
+                                                                                                            (4)                (5)
+
+   TLV70015DCKR         Active    Production     SC70 (DCK) | 5    3000 | LARGE T&R        Yes         NIPDAU | SN     Level-1-260C-UNLIM     -40 to 125       ODU
+  TLV70015DCKR.B        Active    Production     SC70 (DCK) | 5    3000 | LARGE T&R        Yes             SN          Level-1-260C-UNLIM     -40 to 125       ODU
+   TLV70015DCKT         Active    Production     SC70 (DCK) | 5     250 | SMALL T&R        Yes         NIPDAU | SN     Level-1-260C-UNLIM     -40 to 125       ODU
+  TLV70015DCKT.B        Active    Production     SC70 (DCK) | 5     250 | SMALL T&R        Yes             SN          Level-1-260C-UNLIM     -40 to 125       ODU
+   TLV70015DDCR         Active    Production       SOT-23-         3000 | LARGE T&R        Yes         NIPDAU | SN     Level-2-260C-1 YEAR    -40 to 125       ODP
+                                                 THIN (DDC) | 5
+  TLV70015DDCR.B        Active    Production       SOT-23-         3000 | LARGE T&R        Yes           NIPDAU        Level-2-260C-1 YEAR    -40 to 125       ODP
+                                                 THIN (DDC) | 5
+   TLV70015DDCT         Active    Production       SOT-23-          250 | SMALL T&R        Yes         NIPDAU | SN     Level-2-260C-1 YEAR    -40 to 125       ODP
+                                                 THIN (DDC) | 5
+  TLV70015DDCT.B        Active    Production       SOT-23-          250 | SMALL T&R        Yes           NIPDAU        Level-2-260C-1 YEAR    -40 to 125       ODP
+                                                 THIN (DDC) | 5
+   TLV70015DSER         Active    Production     WSON (DSE) | 6    3000 | LARGE T&R        Yes      NIPDAU | NIPDAUAG Level-1-260C-UNLIM      -40 to 125        NJ
+  TLV70015DSER.B        Active    Production     WSON (DSE) | 6    3000 | LARGE T&R        Yes           NIPDAU        Level-1-260C-UNLIM     -40 to 125        NJ
+   TLV70015DSET         Active    Production     WSON (DSE) | 6     250 | SMALL T&R        Yes      NIPDAU | NIPDAUAG Level-1-260C-UNLIM      -40 to 125        NJ
+  TLV70015DSET.B        Active    Production     WSON (DSE) | 6     250 | SMALL T&R        Yes           NIPDAU        Level-1-260C-UNLIM     -40 to 125        NJ
+   TLV70018DCKR         Active    Production     SC70 (DCK) | 5    3000 | LARGE T&R        Yes         NIPDAU | SN     Level-1-260C-UNLIM     -40 to 125       ODV
+  TLV70018DCKR.B        Active    Production     SC70 (DCK) | 5    3000 | LARGE T&R        Yes             SN          Level-1-260C-UNLIM     -40 to 125       ODV
+  TLV70018DCKRG4        Active    Production     SC70 (DCK) | 5    3000 | LARGE T&R        Yes           NIPDAU        Level-1-260C-UNLIM     -40 to 125       ODV
+ TLV70018DCKRG4.B       Active    Production     SC70 (DCK) | 5    3000 | LARGE T&R        Yes           NIPDAU        Level-1-260C-UNLIM     -40 to 125       ODV
+   TLV70018DCKT         Active    Production     SC70 (DCK) | 5     250 | SMALL T&R        Yes         NIPDAU | SN     Level-1-260C-UNLIM     -40 to 125       ODV
+  TLV70018DCKT.B        Active    Production     SC70 (DCK) | 5     250 | SMALL T&R        Yes             SN          Level-1-260C-UNLIM     -40 to 125       ODV
+   TLV70018DDCR         Active    Production       SOT-23-         3000 | LARGE T&R        Yes         NIPDAU | SN     Level-2-260C-1 YEAR    -40 to 125       ODK
+                                                 THIN (DDC) | 5
+  TLV70018DDCR.B        Active    Production       SOT-23-         3000 | LARGE T&R        Yes             SN          Level-2-260C-1 YEAR    -40 to 125       ODK
+                                                 THIN (DDC) | 5
+   TLV70018DDCT         Active    Production       SOT-23-          250 | SMALL T&R        Yes         NIPDAU | SN     Level-2-260C-1 YEAR    -40 to 125       ODK
+                                                 THIN (DDC) | 5
+  TLV70018DDCT.B        Active    Production       SOT-23-          250 | SMALL T&R        Yes             SN          Level-2-260C-1 YEAR    -40 to 125       ODK
+                                                 THIN (DDC) | 5
+   TLV70018DSER         Active    Production     WSON (DSE) | 6    3000 | LARGE T&R        Yes      NIPDAU | NIPDAUAG Level-1-260C-UNLIM      -40 to 125        NK
+  TLV70018DSER.B        Active    Production     WSON (DSE) | 6    3000 | LARGE T&R        Yes           NIPDAU        Level-1-260C-UNLIM     -40 to 125        NK
+   TLV70018DSET         Active    Production     WSON (DSE) | 6     250 | SMALL T&R        Yes      NIPDAU | NIPDAUAG Level-1-260C-UNLIM       -40 to 85        NK
+
+
+                                                                                  Addendum-Page 2
+                                                                                                                                PACKAGE OPTION ADDENDUM
+
+www.ti.com                                                                                                                                                     10-Nov-2025
+
+
+
+
+Orderable part number   Status   Material type   Package | Pins   Package qty | Carrier   RoHS         Lead finish/       MSL rating/        Op temp (°C)   Part marking
+                          (1)         (2)                                                  (3)         Ball material      Peak reflow                            (6)
+                                                                                                            (4)                (5)
+
+  TLV70018DSET.B        Active    Production     WSON (DSE) | 6     250 | SMALL T&R        Yes           NIPDAU        Level-1-260C-UNLIM      -40 to 85        NK
+   TLV70019DDCR         Active    Production       SOT-23-         3000 | LARGE T&R        Yes         NIPDAU | SN     Level-2-260C-1 YEAR    -40 to 125        SCJ
+                                                 THIN (DDC) | 5
+  TLV70019DDCR.B        Active    Production       SOT-23-         3000 | LARGE T&R        Yes           NIPDAU        Level-2-260C-1 YEAR    -40 to 125        SCJ
+                                                 THIN (DDC) | 5
+   TLV70019DDCT         Active    Production       SOT-23-          250 | SMALL T&R        Yes         NIPDAU | SN     Level-2-260C-1 YEAR    -40 to 125        SCJ
+                                                 THIN (DDC) | 5
+  TLV70019DDCT.B        Active    Production       SOT-23-          250 | SMALL T&R        Yes           NIPDAU        Level-2-260C-1 YEAR    -40 to 125        SCJ
+                                                 THIN (DDC) | 5
+   TLV70022DDCR         Active    Production       SOT-23-         3000 | LARGE T&R        Yes         NIPDAU | SN     Level-2-260C-1 YEAR    -40 to 125        SCI
+                                                 THIN (DDC) | 5
+  TLV70022DDCR.B        Active    Production       SOT-23-         3000 | LARGE T&R        Yes           NIPDAU        Level-2-260C-1 YEAR    -40 to 125        SCI
+                                                 THIN (DDC) | 5
+   TLV70022DDCT         Active    Production       SOT-23-          250 | SMALL T&R        Yes         NIPDAU | SN     Level-2-260C-1 YEAR    -40 to 125        SCI
+                                                 THIN (DDC) | 5
+  TLV70022DDCT.B        Active    Production       SOT-23-          250 | SMALL T&R        Yes           NIPDAU        Level-2-260C-1 YEAR    -40 to 125        SCI
+                                                 THIN (DDC) | 5
+   TLV70025DCKR         Active    Production     SC70 (DCK) | 5    3000 | LARGE T&R        Yes         NIPDAU | SN     Level-1-260C-UNLIM     -40 to 125       QTP
+  TLV70025DCKR.B        Active    Production     SC70 (DCK) | 5    3000 | LARGE T&R        Yes             SN          Level-1-260C-UNLIM     -40 to 125       QTP
+  TLV70025DCKRG4        Active    Production     SC70 (DCK) | 5    3000 | LARGE T&R        Yes           NIPDAU        Level-1-260C-UNLIM     -40 to 125       QTP
+ TLV70025DCKRG4.B       Active    Production     SC70 (DCK) | 5    3000 | LARGE T&R        Yes           NIPDAU        Level-1-260C-UNLIM     -40 to 125       QTP
+   TLV70025DCKT         Active    Production     SC70 (DCK) | 5     250 | SMALL T&R        Yes         NIPDAU | SN     Level-1-260C-UNLIM     -40 to 125       QTP
+  TLV70025DCKT.B        Active    Production     SC70 (DCK) | 5     250 | SMALL T&R        Yes             SN          Level-1-260C-UNLIM     -40 to 125       QTP
+   TLV70025DDCR         Active    Production       SOT-23-         3000 | LARGE T&R        Yes         NIPDAU | SN     Level-2-260C-1 YEAR    -40 to 125       DAU
+                                                 THIN (DDC) | 5
+  TLV70025DDCR.B        Active    Production       SOT-23-         3000 | LARGE T&R        Yes             SN          Level-2-260C-1 YEAR    -40 to 125       DAU
+                                                 THIN (DDC) | 5
+   TLV70025DDCT         Active    Production       SOT-23-          250 | SMALL T&R        Yes         NIPDAU | SN     Level-2-260C-1 YEAR    -40 to 125       DAU
+                                                 THIN (DDC) | 5
+  TLV70025DDCT.B        Active    Production       SOT-23-          250 | SMALL T&R        Yes             SN          Level-2-260C-1 YEAR    -40 to 125       DAU
+                                                 THIN (DDC) | 5
+   TLV70025DSER         Active    Production     WSON (DSE) | 6    3000 | LARGE T&R        Yes      NIPDAU | NIPDAUAG Level-1-260C-UNLIM      -40 to 125        QY
+  TLV70025DSER.B        Active    Production     WSON (DSE) | 6    3000 | LARGE T&R        Yes           NIPDAU        Level-1-260C-UNLIM     -40 to 125        QY
+   TLV70025DSET         Active    Production     WSON (DSE) | 6     250 | SMALL T&R        Yes      NIPDAU | NIPDAUAG Level-1-260C-UNLIM      -40 to 125        QY
+
+
+                                                                                  Addendum-Page 3
+                                                                                                                                PACKAGE OPTION ADDENDUM
+
+www.ti.com                                                                                                                                                     10-Nov-2025
+
+
+
+
+Orderable part number   Status   Material type   Package | Pins   Package qty | Carrier   RoHS         Lead finish/       MSL rating/        Op temp (°C)   Part marking
+                          (1)         (2)                                                  (3)         Ball material      Peak reflow                            (6)
+                                                                                                            (4)                (5)
+
+  TLV70025DSET.B        Active    Production     WSON (DSE) | 6     250 | SMALL T&R        Yes           NIPDAU        Level-1-260C-UNLIM     -40 to 125        QY
+   TLV70028DCKR         Active    Production     SC70 (DCK) | 5    3000 | LARGE T&R        Yes         NIPDAU | SN     Level-1-260C-UNLIM     -40 to 125       ODW
+  TLV70028DCKR.B        Active    Production     SC70 (DCK) | 5    3000 | LARGE T&R        Yes             SN          Level-1-260C-UNLIM     -40 to 125       ODW
+  TLV70028DCKRG4        Active    Production     SC70 (DCK) | 5    3000 | LARGE T&R        Yes           NIPDAU        Level-1-260C-UNLIM     -40 to 125       ODW
+ TLV70028DCKRG4.B       Active    Production     SC70 (DCK) | 5    3000 | LARGE T&R        Yes           NIPDAU        Level-1-260C-UNLIM     -40 to 125       ODW
+   TLV70028DCKT         Active    Production     SC70 (DCK) | 5     250 | SMALL T&R        Yes         NIPDAU | SN     Level-1-260C-UNLIM     -40 to 125       ODW
+  TLV70028DCKT.B        Active    Production     SC70 (DCK) | 5     250 | SMALL T&R        Yes             SN          Level-1-260C-UNLIM     -40 to 125       ODW
+   TLV70028DDCR         Active    Production       SOT-23-         3000 | LARGE T&R        Yes         NIPDAU | SN     Level-2-260C-1 YEAR    -40 to 125       ODL
+                                                 THIN (DDC) | 5
+  TLV70028DDCR.B        Active    Production       SOT-23-         3000 | LARGE T&R        Yes             SN          Level-2-260C-1 YEAR    -40 to 125       ODL
+                                                 THIN (DDC) | 5
+   TLV70028DDCT         Active    Production       SOT-23-          250 | SMALL T&R        Yes         NIPDAU | SN     Level-2-260C-1 YEAR    -40 to 125       ODL
+                                                 THIN (DDC) | 5
+  TLV70028DDCT.B        Active    Production       SOT-23-          250 | SMALL T&R        Yes             SN          Level-2-260C-1 YEAR    -40 to 125       ODL
+                                                 THIN (DDC) | 5
+   TLV70028DSER         Active    Production     WSON (DSE) | 6    3000 | LARGE T&R        Yes      NIPDAU | NIPDAUAG Level-1-260C-UNLIM      -40 to 125        NL
+  TLV70028DSER.B        Active    Production     WSON (DSE) | 6    3000 | LARGE T&R        Yes          NIPDAUAG       Level-1-260C-UNLIM     -40 to 125        NL
+   TLV70028DSET         Active    Production     WSON (DSE) | 6     250 | SMALL T&R        Yes      NIPDAU | NIPDAUAG Level-1-260C-UNLIM      -40 to 125        NL
+  TLV70028DSET.B        Active    Production     WSON (DSE) | 6     250 | SMALL T&R        Yes          NIPDAUAG       Level-1-260C-UNLIM     -40 to 125        NL
+   TLV70029DSER         Active    Production     WSON (DSE) | 6    3000 | LARGE T&R        Yes          NIPDAUAG       Level-1-260C-UNLIM     -40 to 125        QJ
+  TLV70029DSER.B        Active    Production     WSON (DSE) | 6    3000 | LARGE T&R        Yes          NIPDAUAG       Level-1-260C-UNLIM     -40 to 125        QJ
+   TLV70029DSET         Active    Production     WSON (DSE) | 6     250 | SMALL T&R        Yes          NIPDAUAG       Level-1-260C-UNLIM     -40 to 125        QJ
+  TLV70029DSET.B        Active    Production     WSON (DSE) | 6     250 | SMALL T&R        Yes          NIPDAUAG       Level-1-260C-UNLIM     -40 to 125        QJ
+   TLV70030DCKR         Active    Production     SC70 (DCK) | 5    3000 | LARGE T&R        Yes         NIPDAU | SN     Level-1-260C-UNLIM     -40 to 125       ODR
+  TLV70030DCKR.B        Active    Production     SC70 (DCK) | 5    3000 | LARGE T&R        Yes             SN          Level-1-260C-UNLIM     -40 to 125       ODR
+  TLV70030DCKRG4        Active    Production     SC70 (DCK) | 5    3000 | LARGE T&R        Yes           NIPDAU        Level-1-260C-UNLIM     -40 to 125       ODR
+ TLV70030DCKRG4.B       Active    Production     SC70 (DCK) | 5    3000 | LARGE T&R        Yes           NIPDAU        Level-1-260C-UNLIM     -40 to 125       ODR
+   TLV70030DCKT         Active    Production     SC70 (DCK) | 5     250 | SMALL T&R        Yes         NIPDAU | SN     Level-1-260C-UNLIM     -40 to 125       ODR
+  TLV70030DCKT.B        Active    Production     SC70 (DCK) | 5     250 | SMALL T&R        Yes             SN          Level-1-260C-UNLIM     -40 to 125       ODR
+   TLV70030DDCR         Active    Production       SOT-23-         3000 | LARGE T&R        Yes         NIPDAU | SN     Level-2-260C-1 YEAR    -40 to 125       ODM
+                                                 THIN (DDC) | 5
+
+
+
+
+                                                                                  Addendum-Page 4
+                                                                                                                                PACKAGE OPTION ADDENDUM
+
+www.ti.com                                                                                                                                                     10-Nov-2025
+
+
+
+
+Orderable part number   Status   Material type   Package | Pins   Package qty | Carrier   RoHS         Lead finish/       MSL rating/        Op temp (°C)   Part marking
+                          (1)         (2)                                                  (3)         Ball material      Peak reflow                            (6)
+                                                                                                            (4)                (5)
+
+  TLV70030DDCR.B        Active    Production       SOT-23-         3000 | LARGE T&R        Yes             SN          Level-2-260C-1 YEAR    -40 to 125       ODM
+                                                 THIN (DDC) | 5
+   TLV70030DDCT         Active    Production       SOT-23-          250 | SMALL T&R        Yes         NIPDAU | SN     Level-2-260C-1 YEAR    -40 to 125       ODM
+                                                 THIN (DDC) | 5
+  TLV70030DDCT.B        Active    Production       SOT-23-          250 | SMALL T&R        Yes             SN          Level-2-260C-1 YEAR    -40 to 125       ODM
+                                                 THIN (DDC) | 5
+   TLV70030DSER         Active    Production     WSON (DSE) | 6    3000 | LARGE T&R        Yes      NIPDAU | NIPDAUAG Level-1-260C-UNLIM      -40 to 125        NP
+  TLV70030DSER.B        Active    Production     WSON (DSE) | 6    3000 | LARGE T&R        Yes           NIPDAU        Level-1-260C-UNLIM     -40 to 125        NP
+   TLV70030DSET         Active    Production     WSON (DSE) | 6     250 | SMALL T&R        Yes      NIPDAU | NIPDAUAG Level-1-260C-UNLIM      -40 to 125        NP
+  TLV70030DSET.B        Active    Production     WSON (DSE) | 6     250 | SMALL T&R        Yes           NIPDAU        Level-1-260C-UNLIM     -40 to 125        NP
+   TLV70031DSER         Active    Production     WSON (DSE) | 6    3000 | LARGE T&R        Yes          NIPDAUAG       Level-1-260C-UNLIM     -40 to 125        C4
+  TLV70031DSER.B        Active    Production     WSON (DSE) | 6    3000 | LARGE T&R        Yes          NIPDAUAG       Level-1-260C-UNLIM     -40 to 125        C4
+   TLV70031DSET         Active    Production     WSON (DSE) | 6     250 | SMALL T&R        Yes          NIPDAUAG       Level-1-260C-UNLIM     -40 to 125        C4
+  TLV70031DSET.B        Active    Production     WSON (DSE) | 6     250 | SMALL T&R        Yes          NIPDAUAG       Level-1-260C-UNLIM     -40 to 125        C4
+   TLV70032DDCR         Active    Production       SOT-23-         3000 | LARGE T&R        Yes         NIPDAU | SN     Level-2-260C-1 YEAR    -40 to 125       SCH
+                                                 THIN (DDC) | 5
+  TLV70032DDCR.B        Active    Production       SOT-23-         3000 | LARGE T&R        Yes           NIPDAU        Level-2-260C-1 YEAR    -40 to 125       SCH
+                                                 THIN (DDC) | 5
+   TLV70032DDCT         Active    Production       SOT-23-          250 | SMALL T&R        Yes         NIPDAU | SN     Level-2-260C-1 YEAR    -40 to 125       SCH
+                                                 THIN (DDC) | 5
+  TLV70032DDCT.B        Active    Production       SOT-23-          250 | SMALL T&R        Yes           NIPDAU        Level-2-260C-1 YEAR    -40 to 125       SCH
+                                                 THIN (DDC) | 5
+   TLV70033DCKR         Active    Production     SC70 (DCK) | 5    3000 | LARGE T&R        Yes         NIPDAU | SN     Level-1-260C-UNLIM     -40 to 125       ODS
+  TLV70033DCKR.B        Active    Production     SC70 (DCK) | 5    3000 | LARGE T&R        Yes             SN          Level-1-260C-UNLIM     -40 to 125       ODS
+  TLV70033DCKRG4        Active    Production     SC70 (DCK) | 5    3000 | LARGE T&R        Yes           NIPDAU        Level-1-260C-UNLIM     -40 to 125       ODS
+ TLV70033DCKRG4.B       Active    Production     SC70 (DCK) | 5    3000 | LARGE T&R        Yes           NIPDAU        Level-1-260C-UNLIM     -40 to 125       ODS
+   TLV70033DCKT         Active    Production     SC70 (DCK) | 5     250 | SMALL T&R        Yes         NIPDAU | SN     Level-1-260C-UNLIM     -40 to 125       ODS
+  TLV70033DCKT.B        Active    Production     SC70 (DCK) | 5     250 | SMALL T&R        Yes             SN          Level-1-260C-UNLIM     -40 to 125       ODS
+   TLV70033DDCR         Active    Production       SOT-23-         3000 | LARGE T&R        Yes         NIPDAU | SN     Level-2-260C-1 YEAR    -40 to 125       ODN
+                                                 THIN (DDC) | 5
+  TLV70033DDCR.B        Active    Production       SOT-23-         3000 | LARGE T&R        Yes             SN          Level-2-260C-1 YEAR    -40 to 125       ODN
+                                                 THIN (DDC) | 5
+
+
+
+
+                                                                                  Addendum-Page 5
+                                                                                                                                                                    PACKAGE OPTION ADDENDUM
+
+       www.ti.com                                                                                                                                                                                                   10-Nov-2025
+
+
+
+
+       Orderable part number          Status     Material type      Package | Pins     Package qty | Carrier       RoHS             Lead finish/             MSL rating/             Op temp (°C)               Part marking
+                                        (1)            (2)                                                            (3)           Ball material            Peak reflow                                              (6)
+                                                                                                                                          (4)                      (5)
+
+           TLV70033DDCT               Active      Production          SOT-23-            250 | SMALL T&R             Yes            NIPDAU | SN         Level-2-260C-1 YEAR            -40 to 125                    ODN
+                                                                    THIN (DDC) | 5
+         TLV70033DDCT.B               Active      Production          SOT-23-            250 | SMALL T&R             Yes                  SN            Level-2-260C-1 YEAR            -40 to 125                    ODN
+                                                                    THIN (DDC) | 5
+           TLV70033DSER               Active      Production       WSON (DSE) | 6       3000 | LARGE T&R             Yes        NIPDAU | NIPDAUAG Level-1-260C-UNLIM                   -40 to 125                    NR
+         TLV70033DSER.B               Active      Production       WSON (DSE) | 6       3000 | LARGE T&R             Yes             NIPDAUAG            Level-1-260C-UNLIM            -40 to 125                    NR
+        TLV70033DSERG4.B              Active      Production       WSON (DSE) | 6       3000 | LARGE T&R              -                 Call TI                 Call TI                -40 to 125
+           TLV70033DSET               Active      Production       WSON (DSE) | 6        250 | SMALL T&R             Yes        NIPDAU | NIPDAUAG Level-1-260C-UNLIM                   -40 to 125                    NR
+          TLV70033DSET.B              Active      Production       WSON (DSE) | 6        250 | SMALL T&R             Yes             NIPDAUAG            Level-1-260C-UNLIM            -40 to 125                    NR
+          TLV70036DDCR                Active      Production          SOT-23-           3000 | LARGE T&R             Yes            NIPDAU | SN         Level-2-260C-1 YEAR            -40 to 125                    SCG
+                                                                    THIN (DDC) | 5
+         TLV70036DDCR.B               Active      Production          SOT-23-           3000 | LARGE T&R             Yes               NIPDAU           Level-2-260C-1 YEAR            -40 to 125                    SCG
+                                                                    THIN (DDC) | 5
+           TLV70036DDCT               Active      Production          SOT-23-            250 | SMALL T&R             Yes            NIPDAU | SN         Level-2-260C-1 YEAR            -40 to 125                    SCG
+                                                                    THIN (DDC) | 5
+         TLV70036DDCT.B               Active      Production          SOT-23-            250 | SMALL T&R             Yes               NIPDAU           Level-2-260C-1 YEAR            -40 to 125                    SCG
+                                                                    THIN (DDC) | 5
+         TLV70036DDCTG4               Active      Production          SOT-23-            250 | SMALL T&R             Yes               NIPDAU           Level-2-260C-1 YEAR            -40 to 125                    SCG
+                                                                    THIN (DDC) | 5
+        TLV70036DDCTG4.B              Active      Production          SOT-23-            250 | SMALL T&R             Yes               NIPDAU           Level-2-260C-1 YEAR            -40 to 125                    SCG
+                                                                    THIN (DDC) | 5
+           TLV70036DSER               Active      Production       WSON (DSE) | 6       3000 | LARGE T&R             Yes             NIPDAUAG            Level-1-260C-UNLIM            -40 to 125                    UG
+         TLV70036DSER.B               Active      Production       WSON (DSE) | 6       3000 | LARGE T&R             Yes             NIPDAUAG            Level-1-260C-UNLIM            -40 to 125                    UG
+           TLV70036DSET               Active      Production       WSON (DSE) | 6        250 | SMALL T&R             Yes             NIPDAUAG            Level-1-260C-UNLIM            -40 to 125                    UG
+          TLV70036DSET.B              Active      Production       WSON (DSE) | 6        250 | SMALL T&R             Yes             NIPDAUAG            Level-1-260C-UNLIM            -40 to 125                    UG
+
+(1)
+      Status: For more details on status, see our product life cycle.
+
+(2)
+   Material type: When designated, preproduction parts are prototypes/experimental devices, and are not yet approved or released for full production. Testing and final process, including without limitation quality assurance,
+reliability performance testing, and/or process qualification, may not yet be complete, and this item is subject to further changes or possible discontinuation. If available for ordering, purchases will be subject to an additional
+waiver at checkout, and are intended for early internal evaluation purposes only. These items are sold without warranties of any kind.
+
+(3)
+      RoHS values: Yes, No, RoHS Exempt. See the TI RoHS Statement for additional information and value definition.
+
+
+
+
+                                                                                                         Addendum-Page 6
+                                                                                                                                                                      PACKAGE OPTION ADDENDUM
+
+       www.ti.com                                                                                                                                                                                                 10-Nov-2025
+
+
+
+
+(4)
+   Lead finish/Ball material: Parts may have multiple material finish options. Finish options are separated by a vertical ruled line. Lead finish/Ball material values may wrap to two lines if the finish value exceeds the maximum
+column width.
+
+(5)
+  MSL rating/Peak reflow: The moisture sensitivity level ratings and peak solder (reflow) temperatures. In the event that a part has multiple moisture sensitivity ratings, only the lowest level per JEDEC standards is shown.
+Refer to the shipping label for the actual reflow temperature that will be used to mount the part to the printed circuit board.
+
+(6)
+      Part marking: There may be an additional marking, which relates to the logo, the lot trace code information, or the environmental category of the part.
+
+Multiple part markings will be inside parentheses. Only one part marking contained in parentheses and separated by a "~" will appear on a part. If a line is indented then it is a continuation of the previous line and the two
+combined represent the entire part marking for that device.
+
+Important Information and Disclaimer:The information provided on this page represents TI's knowledge and belief as of the date that it is provided. TI bases its knowledge and belief on information provided by third parties, and
+makes no representation or warranty as to the accuracy of such information. Efforts are underway to better integrate information from third parties. TI has taken and continues to take reasonable steps to provide representative
+and accurate information but may not have conducted destructive testing or chemical analysis on incoming materials and chemicals. TI and TI suppliers consider certain information to be proprietary, and thus CAS numbers
+and other limited information may not be available for release.
+
+In no event shall TI's liability arising out of such information exceed the total purchase price of the TI part(s) at issue in this document sold by TI to Customer on an annual basis.
+
+
+OTHER QUALIFIED VERSIONS OF TLV700 :
+
+• Automotive : TLV700-Q1
+
+NOTE: Qualified Version Definitions:
+
+           • Automotive - Q100 devices qualified for high-reliability automotive applications targeting zero defects
+
+
+
+
+                                                                                                            Addendum-Page 7
+                                                                                PACKAGE MATERIALS INFORMATION
+
+www.ti.com                                                                                                                                        18-Sep-2026
+
+
+
+TAPE AND REEL INFORMATION
+
+       REEL DIMENSIONS                                                                       TAPE DIMENSIONS
+                                                                                        K0         P1
+
+
+
+                                                                                                                          B0 W
+                                          Reel
+                                        Diameter
+                                                                                     Cavity             A0
+                                                                 A0   Dimension designed to accommodate the component width
+                                                                 B0   Dimension designed to accommodate the component length
+                                                                 K0   Dimension designed to accommodate the component thickness
+                                                                 W    Overall width of the carrier tape
+                                                                 P1   Pitch between successive cavity centers
+
+
+                                         Reel Width (W1)
+                               QUADRANT ASSIGNMENTS FOR PIN 1 ORIENTATION IN TAPE
+
+                                                                                                         Sprocket Holes
+
+
+                                                   Q1       Q2          Q1    Q2
+
+                                                   Q3       Q4          Q3    Q4                    User Direction of Feed
+
+
+
+                                                             Pocket Quadrants
+
+
+*All dimensions are nominal
+             Device           Package Package Pins               SPQ        Reel   Reel   A0                    B0         K0     P1     W     Pin1
+                               Type Drawing                               Diameter Width (mm)                  (mm)       (mm)   (mm)   (mm) Quadrant
+                                                                            (mm) W1 (mm)
+     TLV70012DCKR              SC70       DCK           5        3000        180.0           8.4        2.3    2.55       1.2    4.0    8.0     Q3
+     TLV70012DCKT              SC70       DCK           5         250        180.0           8.4        2.3    2.55       1.2    4.0    8.0     Q3
+     TLV70012DDCR             SOT-23-     DDC           5        3000        180.0           8.4        3.1    3.05       1.1    4.0    8.0     Q3
+                               THIN
+     TLV70012DDCR             SOT-23-     DDC           5        3000        179.0           8.4        3.2     3.2       1.4    4.0    8.0     Q3
+                               THIN
+     TLV70012DDCR             SOT-23-     DDC           5        3000        180.0           8.4        3.2     3.2       1.4    4.0    8.0     Q3
+                               THIN
+   TLV70012DDCRG4             SOT-23-     DDC           5        3000        180.0           8.4        3.1    3.05       1.1    4.0    8.0     Q3
+                               THIN
+     TLV70012DDCT             SOT-23-     DDC           5         250        180.0           8.4        3.2     3.2       1.4    4.0    8.0     Q3
+                               THIN
+     TLV70012DDCT             SOT-23-     DDC           5         250        179.0           8.4        3.2     3.2       1.4    4.0    8.0     Q3
+                               THIN
+     TLV70012DDCT             SOT-23-     DDC           5         250        180.0           8.4        3.1    3.05       1.1    4.0    8.0     Q3
+                               THIN
+     TLV70012DSER             WSON        DSE           6        3000        180.0           8.4        1.83   1.83       0.89   4.0    8.0     Q2
+     TLV70012DSET             WSON        DSE           6         250        180.0           8.4        1.83   1.83       0.89   4.0    8.0     Q2
+
+
+
+
+                                                                        Pack Materials-Page 1
+                                                           PACKAGE MATERIALS INFORMATION
+
+www.ti.com                                                                                                       18-Sep-2026
+
+
+
+             Device   Package Package Pins   SPQ       Reel   Reel   A0            B0     K0     P1     W     Pin1
+                       Type Drawing                  Diameter Width (mm)          (mm)   (mm)   (mm)   (mm) Quadrant
+                                                       (mm) W1 (mm)
+     TLV70013DDCR     SOT-23-   DDC    5     3000      180.0      8.4      3.2    3.2    1.4    4.0    8.0     Q3
+                       THIN
+   TLV70013DDCRG4     SOT-23-   DDC    5     3000      180.0      8.4      3.1    3.05   1.1    4.0    8.0     Q3
+                       THIN
+     TLV70013DDCT     SOT-23-   DDC    5     250       180.0      8.4      3.2    3.2    1.4    4.0    8.0     Q3
+                       THIN
+     TLV70015DCKR      SC70     DCK    5     3000      180.0      8.4      2.3    2.55   1.2    4.0    8.0     Q3
+     TLV70015DCKT      SC70     DCK    5     250       180.0      8.4      2.3    2.55   1.2    4.0    8.0     Q3
+     TLV70015DDCR     SOT-23-   DDC    5     3000      180.0      8.4      3.2    3.2    1.4    4.0    8.0     Q3
+                       THIN
+     TLV70015DDCT     SOT-23-   DDC    5     250       180.0      8.4      3.2    3.2    1.4    4.0    8.0     Q3
+                       THIN
+     TLV70015DSER     WSON      DSE    6     3000      180.0      8.4      1.83   1.83   0.89   4.0    8.0     Q2
+     TLV70015DSET     WSON      DSE    6     250       180.0      8.4      1.83   1.83   0.89   4.0    8.0     Q2
+     TLV70018DCKR      SC70     DCK    5     3000      180.0      8.4      2.3    2.55   1.2    4.0    8.0     Q3
+     TLV70018DCKR      SC70     DCK    5     3000      178.0      9.0      2.4    2.5    1.2    4.0    8.0     Q3
+   TLV70018DCKRG4      SC70     DCK    5     3000      180.0      8.4      2.47   2.3    1.25   4.0    8.0     Q3
+   TLV70018DCKRG4      SC70     DCK    5     3000      178.0      9.0      2.4    2.5    1.2    4.0    8.0     Q3
+   TLV70018DCKRG4      SC70     DCK    5     3000      179.0      8.4      2.2    2.5    1.2    4.0    8.0     Q3
+     TLV70018DCKT      SC70     DCK    5     250       178.0      9.0      2.4    2.5    1.2    4.0    8.0     Q3
+     TLV70018DCKT      SC70     DCK    5     250       180.0      8.4      2.3    2.55   1.2    4.0    8.0     Q3
+     TLV70018DDCR     SOT-23-   DDC    5     3000      180.0      8.4      3.2    3.2    1.4    4.0    8.0     Q3
+                       THIN
+     TLV70018DDCR     SOT-23-   DDC    5     3000      180.0      8.4      3.1    3.05   1.1    4.0    8.0     Q3
+                       THIN
+     TLV70018DDCR     SOT-23-   DDC    5     3000      180.0      8.4      3.2    3.2    1.4    4.0    8.0     Q3
+                       THIN
+     TLV70018DDCT     SOT-23-   DDC    5     250       180.0      8.4      3.2    3.2    1.4    4.0    8.0     Q3
+                       THIN
+     TLV70018DSER     WSON      DSE    6     3000      180.0      8.4      1.83   1.83   0.89   4.0    8.0     Q2
+     TLV70018DSET     WSON      DSE    6     250       180.0      8.4      1.83   1.83   0.89   4.0    8.0     Q2
+     TLV70019DDCR     SOT-23-   DDC    5     3000      180.0      8.4      3.2    3.2    1.4    4.0    8.0     Q3
+                       THIN
+     TLV70019DDCR     SOT-23-   DDC    5     3000      179.0      8.4      3.2    3.2    1.4    4.0    8.0     Q3
+                       THIN
+     TLV70019DDCT     SOT-23-   DDC    5     250       180.0      8.4      3.2    3.2    1.4    4.0    8.0     Q3
+                       THIN
+     TLV70022DDCR     SOT-23-   DDC    5     3000      180.0      8.4      3.2    3.2    1.4    4.0    8.0     Q3
+                       THIN
+     TLV70022DDCT     SOT-23-   DDC    5     250       180.0      8.4      3.2    3.2    1.4    4.0    8.0     Q3
+                       THIN
+     TLV70025DCKR      SC70     DCK    5     3000      180.0      8.4      2.3    2.55   1.2    4.0    8.0     Q3
+   TLV70025DCKRG4      SC70     DCK    5     3000      179.0      8.4      2.2    2.5    1.2    4.0    8.0     Q3
+   TLV70025DCKRG4      SC70     DCK    5     3000      178.0      9.0      2.4    2.5    1.2    4.0    8.0     Q3
+     TLV70025DCKT      SC70     DCK    5     250       180.0      8.4      2.3    2.55   1.2    4.0    8.0     Q3
+
+
+
+
+                                                   Pack Materials-Page 2
+                                                           PACKAGE MATERIALS INFORMATION
+
+www.ti.com                                                                                                       18-Sep-2026
+
+
+
+             Device   Package Package Pins   SPQ       Reel   Reel   A0            B0     K0     P1     W     Pin1
+                       Type Drawing                  Diameter Width (mm)          (mm)   (mm)   (mm)   (mm) Quadrant
+                                                       (mm) W1 (mm)
+     TLV70025DDCR     SOT-23-   DDC    5     3000      180.0      8.4      3.1    3.05   1.1    4.0    8.0     Q3
+                       THIN
+     TLV70025DDCR     SOT-23-   DDC    5     3000      180.0      8.4      3.2    3.2    1.4    4.0    8.0     Q3
+                       THIN
+     TLV70025DDCT     SOT-23-   DDC    5     250       180.0      8.4      3.2    3.2    1.4    4.0    8.0     Q3
+                       THIN
+     TLV70025DSER     WSON      DSE    6     3000      179.0      8.4      1.8    1.8    1.0    4.0    8.0     Q2
+     TLV70025DSER     WSON      DSE    6     3000      180.0      8.4      1.83   1.83   0.89   4.0    8.0     Q2
+     TLV70025DSET     WSON      DSE    6     250       180.0      8.4      1.83   1.83   0.89   4.0    8.0     Q2
+     TLV70025DSET     WSON      DSE    6     250       179.0      8.4      1.8    1.8    1.0    4.0    8.0     Q2
+     TLV70028DCKR      SC70     DCK    5     3000      178.0      9.0      2.4    2.5    1.2    4.0    8.0     Q3
+     TLV70028DCKR      SC70     DCK    5     3000      180.0      8.4      2.3    2.55   1.2    4.0    8.0     Q3
+   TLV70028DCKRG4      SC70     DCK    5     3000      180.0      8.4      2.47   2.3    1.25   4.0    8.0     Q3
+   TLV70028DCKRG4      SC70     DCK    5     3000      178.0      9.0      2.4    2.5    1.2    4.0    8.0     Q3
+     TLV70028DCKT      SC70     DCK    5     250       180.0      8.4      2.3    2.55   1.2    4.0    8.0     Q3
+     TLV70028DDCR     SOT-23-   DDC    5     3000      180.0      8.4      3.2    3.2    1.4    4.0    8.0     Q3
+                       THIN
+     TLV70028DDCR     SOT-23-   DDC    5     3000      180.0      8.4      3.1    3.05   1.1    4.0    8.0     Q3
+                       THIN
+     TLV70028DDCT     SOT-23-   DDC    5     250       180.0      8.4      3.1    3.05   1.1    4.0    8.0     Q3
+                       THIN
+     TLV70028DDCT     SOT-23-   DDC    5     250       180.0      8.4      3.2    3.2    1.4    4.0    8.0     Q3
+                       THIN
+     TLV70028DDCT     SOT-23-   DDC    5     250       179.0      8.4      3.2    3.2    1.4    4.0    8.0     Q3
+                       THIN
+     TLV70028DSER     WSON      DSE    6     3000      178.0      8.4      1.7    1.7    0.95   4.0    8.0     Q2
+     TLV70028DSER     WSON      DSE    6     3000      180.0      8.4      1.83   1.83   0.89   4.0    8.0     Q2
+     TLV70028DSET     WSON      DSE    6     250       178.0      8.4      1.7    1.7    0.95   4.0    8.0     Q2
+     TLV70028DSET     WSON      DSE    6     250       180.0      8.4      1.83   1.83   0.89   4.0    8.0     Q2
+     TLV70029DSER     WSON      DSE    6     3000      180.0      8.4      1.83   1.83   0.89   4.0    8.0     Q2
+     TLV70029DSET     WSON      DSE    6     250       180.0      8.4      1.83   1.83   0.89   4.0    8.0     Q2
+     TLV70030DCKR      SC70     DCK    5     3000      178.0      9.0      2.4    2.5    1.2    4.0    8.0     Q3
+     TLV70030DCKR      SC70     DCK    5     3000      180.0      8.4      2.3    2.55   1.2    4.0    8.0     Q3
+     TLV70030DCKR      SC70     DCK    5     3000      179.0      8.4      2.2    2.5    1.2    4.0    8.0     Q3
+     TLV70030DCKR      SC70     DCK    5     3000      180.0      8.4      2.47   2.3    1.25   4.0    8.0     Q3
+   TLV70030DCKRG4      SC70     DCK    5     3000      178.0      9.0      2.4    2.5    1.2    4.0    8.0     Q3
+   TLV70030DCKRG4      SC70     DCK    5     3000      180.0      8.4      2.47   2.3    1.25   4.0    8.0     Q3
+   TLV70030DCKRG4      SC70     DCK    5     3000      179.0      8.4      2.2    2.5    1.2    4.0    8.0     Q3
+     TLV70030DCKT      SC70     DCK    5     250       180.0      8.4      2.3    2.55   1.2    4.0    8.0     Q3
+     TLV70030DDCR     SOT-23-   DDC    5     3000      180.0      8.4      3.1    3.05   1.1    4.0    8.0     Q3
+                       THIN
+     TLV70030DDCR     SOT-23-   DDC    5     3000      180.0      8.4      3.2    3.2    1.4    4.0    8.0     Q3
+                       THIN
+
+
+
+
+                                                   Pack Materials-Page 3
+                                                           PACKAGE MATERIALS INFORMATION
+
+www.ti.com                                                                                                       18-Sep-2026
+
+
+
+             Device   Package Package Pins   SPQ       Reel   Reel   A0            B0     K0     P1     W     Pin1
+                       Type Drawing                  Diameter Width (mm)          (mm)   (mm)   (mm)   (mm) Quadrant
+                                                       (mm) W1 (mm)
+     TLV70030DDCT     SOT-23-   DDC    5     250       180.0      8.4      3.2    3.2    1.4    4.0    8.0     Q3
+                       THIN
+     TLV70030DSER     WSON      DSE    6     3000      180.0      8.4      1.83   1.83   0.89   4.0    8.0     Q2
+     TLV70030DSET     WSON      DSE    6     250       180.0      8.4      1.83   1.83   0.89   4.0    8.0     Q2
+     TLV70031DSER     WSON      DSE    6     3000      180.0      8.4      1.83   1.83   0.89   4.0    8.0     Q2
+     TLV70031DSET     WSON      DSE    6     250       180.0      8.4      1.83   1.83   0.89   4.0    8.0     Q2
+     TLV70032DDCR     SOT-23-   DDC    5     3000      180.0      8.4      3.2    3.2    1.4    4.0    8.0     Q3
+                       THIN
+     TLV70032DDCT     SOT-23-   DDC    5     250       180.0      8.4      3.2    3.2    1.4    4.0    8.0     Q3
+                       THIN
+     TLV70033DCKR      SC70     DCK    5     3000      178.0      9.0      2.4    2.5    1.2    4.0    8.0     Q3
+     TLV70033DCKR      SC70     DCK    5     3000      180.0      8.4      2.3    2.55   1.2    4.0    8.0     Q3
+   TLV70033DCKRG4      SC70     DCK    5     3000      180.0      8.4      2.47   2.3    1.25   4.0    8.0     Q3
+   TLV70033DCKRG4      SC70     DCK    5     3000      178.0      9.0      2.4    2.5    1.2    4.0    8.0     Q3
+     TLV70033DCKT      SC70     DCK    5     250       180.0      8.4      2.3    2.55   1.2    4.0    8.0     Q3
+     TLV70033DDCR     SOT-23-   DDC    5     3000      180.0      8.4      3.2    3.2    1.4    4.0    8.0     Q3
+                       THIN
+     TLV70033DDCT     SOT-23-   DDC    5     250       180.0      8.4      3.2    3.2    1.4    4.0    8.0     Q3
+                       THIN
+     TLV70033DSER     WSON      DSE    6     3000      180.0      8.4      1.83   1.83   0.89   4.0    8.0     Q2
+     TLV70033DSER     WSON      DSE    6     3000      178.0      8.4      1.7    1.7    0.95   4.0    8.0     Q2
+     TLV70033DSET     WSON      DSE    6     250       180.0      8.4      1.83   1.83   0.89   4.0    8.0     Q2
+     TLV70033DSET     WSON      DSE    6     250       178.0      8.4      1.7    1.7    0.95   4.0    8.0     Q2
+     TLV70036DDCR     SOT-23-   DDC    5     3000      180.0      8.4      3.2    3.2    1.4    4.0    8.0     Q3
+                       THIN
+     TLV70036DDCT     SOT-23-   DDC    5     250       180.0      8.4      3.2    3.2    1.4    4.0    8.0     Q3
+                       THIN
+   TLV70036DDCTG4     SOT-23-   DDC    5     250       180.0      8.4      3.1    3.05   1.1    4.0    8.0     Q3
+                       THIN
+     TLV70036DSER     WSON      DSE    6     3000      180.0      8.4      1.83   1.83   0.89   4.0    8.0     Q2
+     TLV70036DSET     WSON      DSE    6     250       180.0      8.4      1.83   1.83   0.89   4.0    8.0     Q2
+
+
+
+
+                                                   Pack Materials-Page 4
+                                                                PACKAGE MATERIALS INFORMATION
+
+www.ti.com                                                                                                              18-Sep-2026
+
+
+
+ TAPE AND REEL BOX DIMENSIONS
+
+
+
+
+                                                               Width (mm)
+                                                                              H
+                      W
+
+
+
+
+                                                          L
+
+
+
+
+*All dimensions are nominal
+             Device           Package Type   Package Drawing   Pins         SPQ    Length (mm)   Width (mm)   Height (mm)
+     TLV70012DCKR                SC70             DCK           5           3000      210.0        185.0         35.0
+      TLV70012DCKT               SC70             DCK           5           250       210.0        185.0         35.0
+     TLV70012DDCR             SOT-23-THIN         DDC           5           3000      406.0        348.0         63.0
+     TLV70012DDCR             SOT-23-THIN         DDC           5           3000      213.0        191.0         35.0
+     TLV70012DDCR             SOT-23-THIN         DDC           5           3000      210.0        185.0         35.0
+    TLV70012DDCRG4            SOT-23-THIN         DDC           5           3000      406.0        348.0         63.0
+     TLV70012DDCT             SOT-23-THIN         DDC           5           250       210.0        185.0         35.0
+     TLV70012DDCT             SOT-23-THIN         DDC           5           250       213.0        191.0         35.0
+     TLV70012DDCT             SOT-23-THIN         DDC           5           250       202.0        201.0         28.0
+     TLV70012DSER                WSON             DSE           6           3000      183.0        183.0         20.0
+      TLV70012DSET               WSON             DSE           6           250       183.0        183.0         20.0
+     TLV70013DDCR             SOT-23-THIN         DDC           5           3000      210.0        185.0         35.0
+    TLV70013DDCRG4            SOT-23-THIN         DDC           5           3000      202.0        201.0         28.0
+     TLV70013DDCT             SOT-23-THIN         DDC           5           250       210.0        185.0         35.0
+     TLV70015DCKR                SC70             DCK           5           3000      210.0        185.0         35.0
+      TLV70015DCKT               SC70             DCK           5           250       210.0        185.0         35.0
+     TLV70015DDCR             SOT-23-THIN         DDC           5           3000      210.0        185.0         35.0
+     TLV70015DDCT             SOT-23-THIN         DDC           5           250       210.0        185.0         35.0
+
+
+
+
+                                                        Pack Materials-Page 5
+                                                        PACKAGE MATERIALS INFORMATION
+
+www.ti.com                                                                                                   18-Sep-2026
+
+
+
+             Device   Package Type   Package Drawing   Pins     SPQ     Length (mm)   Width (mm)   Height (mm)
+     TLV70015DSER        WSON             DSE           6       3000       183.0        183.0         20.0
+     TLV70015DSET        WSON             DSE           6       250        183.0        183.0         20.0
+     TLV70018DCKR        SC70             DCK           5       3000       210.0        185.0         35.0
+     TLV70018DCKR        SC70             DCK           5       3000       180.0        180.0         18.0
+    TLV70018DCKRG4       SC70             DCK           5       3000       183.0        183.0         20.0
+    TLV70018DCKRG4       SC70             DCK           5       3000       180.0        180.0         18.0
+    TLV70018DCKRG4       SC70             DCK           5       3000       200.0        183.0         25.0
+     TLV70018DCKT        SC70             DCK           5       250        180.0        180.0         18.0
+     TLV70018DCKT        SC70             DCK           5       250        210.0        185.0         35.0
+     TLV70018DDCR     SOT-23-THIN         DDC           5       3000       210.0        185.0         35.0
+     TLV70018DDCR     SOT-23-THIN         DDC           5       3000       213.0        191.0         35.0
+     TLV70018DDCR     SOT-23-THIN         DDC           5       3000       213.0        191.0         35.0
+     TLV70018DDCT     SOT-23-THIN         DDC           5       250        210.0        185.0         35.0
+     TLV70018DSER        WSON             DSE           6       3000       183.0        183.0         20.0
+     TLV70018DSET        WSON             DSE           6       250        183.0        183.0         20.0
+     TLV70019DDCR     SOT-23-THIN         DDC           5       3000       210.0        185.0         35.0
+     TLV70019DDCR     SOT-23-THIN         DDC           5       3000       213.0        191.0         35.0
+     TLV70019DDCT     SOT-23-THIN         DDC           5       250        210.0        185.0         35.0
+     TLV70022DDCR     SOT-23-THIN         DDC           5       3000       210.0        185.0         35.0
+     TLV70022DDCT     SOT-23-THIN         DDC           5       250        210.0        185.0         35.0
+     TLV70025DCKR        SC70             DCK           5       3000       210.0        185.0         35.0
+    TLV70025DCKRG4       SC70             DCK           5       3000       200.0        183.0         25.0
+    TLV70025DCKRG4       SC70             DCK           5       3000       180.0        180.0         18.0
+     TLV70025DCKT        SC70             DCK           5       250        210.0        185.0         35.0
+     TLV70025DDCR     SOT-23-THIN         DDC           5       3000       213.0        191.0         35.0
+     TLV70025DDCR     SOT-23-THIN         DDC           5       3000       210.0        185.0         35.0
+     TLV70025DDCT     SOT-23-THIN         DDC           5       250        210.0        185.0         35.0
+     TLV70025DSER        WSON             DSE           6       3000       203.0        203.0         35.0
+     TLV70025DSER        WSON             DSE           6       3000       183.0        183.0         20.0
+     TLV70025DSET        WSON             DSE           6       250        183.0        183.0         20.0
+     TLV70025DSET        WSON             DSE           6       250        203.0        203.0         35.0
+     TLV70028DCKR        SC70             DCK           5       3000       180.0        180.0         18.0
+     TLV70028DCKR        SC70             DCK           5       3000       210.0        185.0         35.0
+    TLV70028DCKRG4       SC70             DCK           5       3000       183.0        183.0         20.0
+    TLV70028DCKRG4       SC70             DCK           5       3000       180.0        180.0         18.0
+     TLV70028DCKT        SC70             DCK           5       250        210.0        185.0         35.0
+     TLV70028DDCR     SOT-23-THIN         DDC           5       3000       210.0        185.0         35.0
+     TLV70028DDCR     SOT-23-THIN         DDC           5       3000       213.0        191.0         35.0
+     TLV70028DDCT     SOT-23-THIN         DDC           5       250        213.0        191.0         35.0
+     TLV70028DDCT     SOT-23-THIN         DDC           5       250        210.0        185.0         35.0
+     TLV70028DDCT     SOT-23-THIN         DDC           5       250        213.0        191.0         35.0
+     TLV70028DSER        WSON             DSE           6       3000       205.0        200.0         33.0
+     TLV70028DSER        WSON             DSE           6       3000       183.0        183.0         20.0
+
+
+
+
+                                                Pack Materials-Page 6
+                                                        PACKAGE MATERIALS INFORMATION
+
+www.ti.com                                                                                                   18-Sep-2026
+
+
+
+             Device   Package Type   Package Drawing   Pins     SPQ     Length (mm)   Width (mm)   Height (mm)
+     TLV70028DSET        WSON             DSE           6       250        205.0        200.0         33.0
+     TLV70028DSET        WSON             DSE           6       250        183.0        183.0         20.0
+     TLV70029DSER        WSON             DSE           6       3000       183.0        183.0         20.0
+     TLV70029DSET        WSON             DSE           6       250        183.0        183.0         20.0
+     TLV70030DCKR        SC70             DCK           5       3000       180.0        180.0         18.0
+     TLV70030DCKR        SC70             DCK           5       3000       210.0        185.0         35.0
+     TLV70030DCKR        SC70             DCK           5       3000       200.0        183.0         25.0
+     TLV70030DCKR        SC70             DCK           5       3000       183.0        183.0         20.0
+    TLV70030DCKRG4       SC70             DCK           5       3000       180.0        180.0         18.0
+    TLV70030DCKRG4       SC70             DCK           5       3000       183.0        183.0         20.0
+    TLV70030DCKRG4       SC70             DCK           5       3000       200.0        183.0         25.0
+     TLV70030DCKT        SC70             DCK           5       250        210.0        185.0         35.0
+     TLV70030DDCR     SOT-23-THIN         DDC           5       3000       213.0        191.0         35.0
+     TLV70030DDCR     SOT-23-THIN         DDC           5       3000       210.0        185.0         35.0
+     TLV70030DDCT     SOT-23-THIN         DDC           5       250        210.0        185.0         35.0
+     TLV70030DSER        WSON             DSE           6       3000       183.0        183.0         20.0
+     TLV70030DSET        WSON             DSE           6       250        183.0        183.0         20.0
+     TLV70031DSER        WSON             DSE           6       3000       183.0        183.0         20.0
+     TLV70031DSET        WSON             DSE           6       250        183.0        183.0         20.0
+     TLV70032DDCR     SOT-23-THIN         DDC           5       3000       210.0        185.0         35.0
+     TLV70032DDCT     SOT-23-THIN         DDC           5       250        210.0        185.0         35.0
+     TLV70033DCKR        SC70             DCK           5       3000       180.0        180.0         18.0
+     TLV70033DCKR        SC70             DCK           5       3000       210.0        185.0         35.0
+    TLV70033DCKRG4       SC70             DCK           5       3000       183.0        183.0         20.0
+    TLV70033DCKRG4       SC70             DCK           5       3000       180.0        180.0         18.0
+     TLV70033DCKT        SC70             DCK           5       250        210.0        185.0         35.0
+     TLV70033DDCR     SOT-23-THIN         DDC           5       3000       210.0        185.0         35.0
+     TLV70033DDCT     SOT-23-THIN         DDC           5       250        210.0        185.0         35.0
+     TLV70033DSER        WSON             DSE           6       3000       183.0        183.0         20.0
+     TLV70033DSER        WSON             DSE           6       3000       205.0        200.0         33.0
+     TLV70033DSET        WSON             DSE           6       250        183.0        183.0         20.0
+     TLV70033DSET        WSON             DSE           6       250        205.0        200.0         33.0
+     TLV70036DDCR     SOT-23-THIN         DDC           5       3000       210.0        185.0         35.0
+     TLV70036DDCT     SOT-23-THIN         DDC           5       250        210.0        185.0         35.0
+    TLV70036DDCTG4    SOT-23-THIN         DDC           5       250        213.0        191.0         35.0
+     TLV70036DSER        WSON             DSE           6       3000       183.0        183.0         20.0
+     TLV70036DSET        WSON             DSE           6       250        183.0        183.0         20.0
+
+
+
+
+                                                Pack Materials-Page 7
+                                                                                                                PACKAGE OUTLINE
+DCK0005A                                                           SCALE 5.600
+                                                                                                                    SOT - 1.1 max height
+                                                                                                                     SMALL OUTLINE TRANSISTOR
+
+
+
+
+                                                                                                                             C
+                                                2.4
+                                                1.8                                                                          0.1 C
+                                                1.4
+                                                               B                                     A                  1.1 MAX
+                       PIN 1                    1.1
+                 INDEX AREA
+
+                                  1                                              5
+
+
+                        2X 0.65                                                  NOTE 4
+
+                                                                                                 2.15
+                  1.3                                         (0.15)                       1.3
+                                  2                                                              1.85
+
+                                                                          (0.1)
+
+                                                                                 4
+                      0.33            3
+                   5X
+                      0.15
+           0.1      C A B                                                                                4X 0 -12                        0.1
+                                                                                                                         (0.9)               TYP
+                   NOTE 5                                                                                                                0.0
+
+
+
+
+                                                                     4X 4 -15
+
+
+
+                    0.15
+          GAGE PLANE                                                                      0.22
+                                                                                               TYP
+                                                                                          0.08
+
+
+
+            8                              0.46
+              TYP                               TYP
+            0                              0.26
+                                                             SEATING PLANE
+
+
+
+
+                                                                                                                                 4214834/G 11/2024
+
+NOTES:
+
+1. All linear dimensions are in millimeters. Any dimensions in parenthesis are for reference only. Dimensioning and tolerancing
+   per ASME Y14.5M.
+2. This drawing is subject to change without notice.
+3. Refernce JEDEC MO-203.
+4. Support pin may differ or may not be present.
+5. Lead width does not comply with JEDEC.
+6. Body dimensions do not include mold flash, protrusions, or gate burrs. Mold flash, protrusions, or gate burrs shall not exceed
+   0.25mm per side
+
+
+
+
+                                                                                 www.ti.com
+                                                                               EXAMPLE BOARD LAYOUT
+DCK0005A                                                                                             SOT - 1.1 max height
+                                                                                                      SMALL OUTLINE TRANSISTOR
+
+
+
+
+                                                                 PKG
+                                                 5X (0.95)
+
+                                             1
+                                                                                         5
+                                  5X (0.4)
+
+
+                                                                                          SYMM
+                                                                                                     (1.3)
+                                             2
+                             2X (0.65)
+
+                                             3                                           4
+
+                            (R0.05) TYP                          (2.2)
+
+
+                                                    LAND PATTERN EXAMPLE
+                                                        EXPOSED METAL SHOWN
+                                                             SCALE:18X
+
+
+
+
+                                                                                                             SOLDER MASK
+                 SOLDER MASK                      METAL                  METAL UNDER                         OPENING
+                 OPENING                                                 SOLDER MASK
+
+
+
+           EXPOSED METAL                                       EXPOSED METAL
+
+
+                                         0.07 MAX                                            0.07 MIN
+                                         ARROUND                                             ARROUND
+
+                                NON SOLDER MASK                                        SOLDER MASK
+                                    DEFINED                                              DEFINED
+                                  (PREFERRED)
+
+                                                      SOLDER MASK DETAILS
+
+
+
+
+                                                                                                                   4214834/G 11/2024
+
+NOTES: (continued)
+
+7. Publication IPC-7351 may have alternate designs.
+8. Solder mask tolerances between and around signal pads can vary based on board fabrication site.
+
+
+
+
+                                                                www.ti.com
+                                                                               EXAMPLE STENCIL DESIGN
+ DCK0005A                                                                                            SOT - 1.1 max height
+                                                                                                       SMALL OUTLINE TRANSISTOR
+
+
+
+
+                                                                 PKG
+                                                5X (0.95)
+                                            1
+                                                                                         5
+                                 5X (0.4)
+
+
+                                                                                             SYMM
+                                                                                                    (1.3)
+                                            2
+                             2X(0.65)
+
+                                            3                                            4
+
+                           (R0.05) TYP
+                                                                (2.2)
+
+                                                  SOLDER PASTE EXAMPLE
+                                                  BASED ON 0.125 THICK STENCIL
+                                                          SCALE:18X
+
+
+
+
+                                                                                                                   4214834/G 11/2024
+
+NOTES: (continued)
+
+9. Laser cutting apertures with trapezoidal walls and rounded corners may offer better paste release. IPC-7525 may have alternate
+    design recommendations.
+10. Board assembly site may have different recommendations for stencil design.
+
+
+
+
+                                                                  www.ti.com
+                                                                                                                  PACKAGE OUTLINE
+ DDC0005A                                                           SCALE 4.000
+                                                                                                                  SOT-23 - 1.1 max height
+                                                                                                                      SMALL OUTLINE TRANSISTOR
+
+
+
+
+                                              3.05
+                                                                                                                         1.1
+                                              2.55
+                                                                                                                         0.7
+                                              1.75                                                                                     0.1 C
+                                                                B                                 A
+                                              1.45
+                 PIN 1
+           INDEX AREA
+
+                            1                                                      5
+
+
+                    0.95                                                          NOTE 4
+                                                                                   (0.15)
+                                                                                              3.05
+            1.9
+                            2                                                                 2.75
+
+                                                                                  (0.2)
+
+
+                            3                                                                          4X 0 -15
+                                                                                   4
+
+                                                                                                                                  0.1
+                                                                                                0.5                                   TYP
+                                                                                             5X                                   0.0
+                                                                                                0.3
+                                                                                               0.2     C A B
+
+
+
+
+                                                                         4X 4 -15
+
+
+
+              0.25
+       GAGE PLANE                                                                           0.20
+                                                                                                 TYP
+                                                                                            0.12
+
+
+
+       0 -8 TYP                          C           SEATING PLANE
+                  0.6
+                      TYP
+                  0.3
+
+
+
+
+                                                                                                                               4220752/C 08/2024
+
+NOTES:
+
+1. All linear dimensions are in millimeters. Any dimensions in parenthesis are for reference only. Dimensioning and tolerancing
+   per ASME Y14.5M.
+2. This drawing is subject to change without notice.
+3. Reference JEDEC MO-193.
+4. Support pin may differ or may not be present.
+
+
+
+
+                                                                                  www.ti.com
+                                                                               EXAMPLE BOARD LAYOUT
+ DDC0005A                                                                                     SOT-23 - 1.1 max height
+                                                                                                     SMALL OUTLINE TRANSISTOR
+
+
+
+
+                                              5X (1.1)        SYMM
+
+                            5X (0.6)
+
+
+                                          1                                            5
+
+
+
+                                                                                           SYMM
+                                          2
+                           4X (0.95)
+
+                                                                                       4
+                                          3
+
+                          (R0.05) TYP
+                                                              (2.7)
+
+
+                                                  LAND PATTERN EXAMPLE
+                                                    EXPLOSED METAL SHOWN
+                                                          SCALE:15X
+
+
+
+
+                                                                       METAL UNDER                       SOLDER MASK
+              SOLDER MASK                     METAL                    SOLDER MASK                       OPENING
+              OPENING
+
+                                                                 EXPOSED METAL
+
+
+                                                     EXPOSED METAL
+
+                                       0.07 MAX                                               0.07 MIN
+                                       ARROUND                                                ARROUND
+
+                             NON SOLDER MASK                                               SOLDER MASK
+                                 DEFINED                                                     DEFINED
+
+
+                                                   SOLDERMASK DETAILS
+
+
+
+
+                                                                                                              4220752/C 08/2024
+
+NOTES: (continued)
+
+4. Publication IPC-7351 may have alternate designs.
+5. Solder mask tolerances between and around signal pads can vary based on board fabrication site.
+
+
+
+
+                                                                 www.ti.com
+                                                                               EXAMPLE STENCIL DESIGN
+ DDC0005A                                                                                       SOT-23 - 1.1 max height
+                                                                                                      SMALL OUTLINE TRANSISTOR
+
+
+
+
+                                                               SYMM
+                                               5X (1.1)
+
+                             5X (0.6)
+
+                                          1                                             5
+
+
+
+                                                                                            SYMM
+                                          2
+                             4X(0.95)
+
+                                                                                        4
+                                          3
+
+                          (R0.05) TYP
+                                                                (2.7)
+
+
+                                                  SOLDER PASTE EXAMPLE
+                                                  BASED ON 0.125 THICK STENCIL
+                                                          SCALE:15X
+
+
+
+
+                                                                                                                   4220752/C 08/2024
+
+NOTES: (continued)
+
+6. Laser cutting apertures with trapezoidal walls and rounded corners may offer better paste release. IPC-7525 may have alternate
+    design recommendations.
+7. Board assembly site may have different recommendations for stencil design.
+
+
+
+
+                                                                  www.ti.com
+                                                                                                                  PACKAGE OUTLINE
+DSE0006A                                                               SCALE 6.000
+                                                                                                              WSON - 0.8 mm max height
+                                                                                                                   PLASTIC SMALL OUTLINE - NO LEAD
+
+
+
+
+                                                1.55                                  A
+                              B
+                                                1.45
+
+
+
+
+                                                                                     1.55
+           PIN 1 INDEX AREA                                                          1.45
+
+
+
+
+                          0.8 MAX
+                                                                                             C
+
+                                                                                                     SEATING PLANE
+
+                                                                                                    0.08 C
+
+                                                                                                                                 (0.2) TYP
+                           0.6                                                                                    0.05
+                        5X                                                                                        0.00
+                           0.4
+
+                                    3
+                                                                   4
+
+
+
+                   2X 1
+
+                          4X 0.5
+
+                                                                   6
+                                    1
+
+                                                                                                 0.3
+                                        0.7                                                 6X
+                                                                                                 0.2
+                                        0.5             PIN 1 ID                                   0.1    C A B
+                                                                                                   0.05    C
+
+
+                                                                                                                                  4220552/B 01/2024
+
+NOTES:
+
+1. All linear dimensions are in millimeters. Any dimensions in parenthesis are for reference only. Dimensioning and tolerancing
+   per ASME Y14.5M.
+2. This drawing is subject to change without notice.
+
+
+
+
+                                                                   www.ti.com
+                                                                                   EXAMPLE BOARD LAYOUT
+DSE0006A                                                                                    WSON - 0.8 mm max height
+                                                                                                     PLASTIC SMALL OUTLINE - NO LEAD
+
+
+
+
+                                                    (0.8)             PKG              5X (0.7)
+
+                                        1
+
+                            6X (0.25)                                                                    6
+
+
+
+
+                                                                                                             SYMM
+
+
+
+                              4X 0.5
+
+
+                                                                                                         4
+                                        3
+
+                        (R0.05) TYP
+                                                                      (1.2)
+
+
+                                                      LAND PATTERN EXAMPLE
+                                                                  SCALE:40X
+
+
+
+
+                                            0.05 MAX                                                 0.05 MIN
+                                            ALL AROUND                                               ALL AROUND
+
+
+
+
+                     SOLDER MASK                       METAL                  METAL UNDER                      SOLDER MASK
+                     OPENING                                                  SOLDER MASK                      OPENING
+                                      PADS 4-6                                                  PADS 1-3
+                                  NON SOLDER MASK                                             SOLDER MASK
+                                      DEFINED                                                   DEFINED
+
+
+                                                            SOLDER MASK DETAILS
+
+
+                                                                                                                    4220552/B 01/2024
+
+NOTES: (continued)
+
+3. For more information, see Texas Instruments literature number SLUA271 (www.ti.com/lit/slua271).
+
+
+
+
+                                                                   www.ti.com
+                                                                               EXAMPLE STENCIL DESIGN
+DSE0006A                                                                                 WSON - 0.8 mm max height
+                                                                                               PLASTIC SMALL OUTLINE - NO LEAD
+
+
+
+
+                                                                   PKG
+                                                   (0.8)                            5X (0.7)
+                        6X (0.25)
+                                        1
+
+                                                                                                    6
+
+
+
+
+                                                                                                        SYMM
+
+
+
+                             4X (0.5)
+
+
+
+                                        3                                                          4
+
+
+                      (R0.05) TYP
+                                                                   (1.2)
+
+
+                                                     SOLDER PASTE EXAMPLE
+                                                   BASED ON 0.125 mm THICK STENCIL
+                                                              SCALE:40X
+
+
+
+
+NOTES: (continued)
+
+4. Laser cutting apertures with trapezoidal walls and rounded corners may offer better paste release. IPC-7525 may have alternate
+   design recommendations.
+
+
+
+
+                                                                 www.ti.com
+                                         IMPORTANT NOTICE AND DISCLAIMER
+TI PROVIDES TECHNICAL AND RELIABILITY DATA (INCLUDING DATASHEETS), DESIGN RESOURCES (INCLUDING REFERENCE
+DESIGNS), APPLICATION OR OTHER DESIGN ADVICE, WEB TOOLS, SAFETY INFORMATION, AND OTHER RESOURCES “AS IS”
+AND WITH ALL FAULTS, AND DISCLAIMS ALL WARRANTIES, EXPRESS AND IMPLIED, INCLUDING WITHOUT LIMITATION ANY
+IMPLIED WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE OR NON-INFRINGEMENT OF THIRD
+PARTY INTELLECTUAL PROPERTY RIGHTS.
+These resources are intended for skilled developers designing with TI products. You are solely responsible for (1) selecting the appropriate
+TI products for your application, (2) designing, validating and testing your application, and (3) ensuring your application meets applicable
+standards, and any other safety, security, regulatory or other requirements.
+These resources are subject to change without notice. TI grants you permission to use these resources only for development of an
+application that uses the TI products described in the resource. Other reproduction and display of these resources is prohibited. No license
+is granted to any other TI intellectual property right or to any third party intellectual property right. TI disclaims responsibility for, and you fully
+indemnify TI and its representatives against any claims, damages, costs, losses, and liabilities arising out of your use of these resources.
+TI’s products are provided subject to TI’s Terms of Sale, TI’s General Quality Guidelines, or other applicable terms available either on
+ti.com or provided in conjunction with such TI products. TI’s provision of these resources does not expand or otherwise alter TI’s applicable
+warranties or warranty disclaimers for TI products. Unless TI explicitly designates a product as custom or customer-specified, TI products
+are standard, catalog, general purpose devices.
+TI objects to and rejects any additional or different terms you may propose.
+IMPORTANT NOTICE
+
+                                                Copyright © 2026, Texas Instruments Incorporated
+                                                                Last updated 10/2025
+

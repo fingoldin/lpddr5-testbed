@@ -1,0 +1,1265 @@
+{
+"source": "U1 pin functions and supply-ball nets exported with kicad-cli (sch export netlist) from the upstream 315-ball LPDDR5 schematic that this repository started from (commit cea331b); used only as an independent ball-by-ball cross-check",
+"balls": {
+"A1": {
+"pin_function": "NC_A1",
+"supply": null
+},
+"A10": {
+"pin_function": "VDD2L_A10",
+"supply": "VDD2L"
+},
+"A11": {
+"pin_function": "VSS_A11",
+"supply": "VSS"
+},
+"A12": {
+"pin_function": "DMI1_A_A12",
+"supply": null
+},
+"A13": {
+"pin_function": "VDDQ_A13",
+"supply": "VDDQ"
+},
+"A14": {
+"pin_function": "NC_A14",
+"supply": null
+},
+"A15": {
+"pin_function": "NC_A15",
+"supply": null
+},
+"A2": {
+"pin_function": "NC_A2",
+"supply": null
+},
+"A3": {
+"pin_function": "VDDQ_A3",
+"supply": "VDDQ"
+},
+"A4": {
+"pin_function": "DMI0_A_A4",
+"supply": null
+},
+"A5": {
+"pin_function": "VSS_A5",
+"supply": "VSS"
+},
+"A6": {
+"pin_function": "VDD2L_A6",
+"supply": "VDD2L"
+},
+"A7": {
+"pin_function": "VDD2H_A7",
+"supply": "VDD2H"
+},
+"A8": {
+"pin_function": "VDD2H_A8",
+"supply": "VDD2H"
+},
+"A9": {
+"pin_function": "VDD2H_A9",
+"supply": "VDD2H"
+},
+"AA1": {
+"pin_function": "NC_AA1",
+"supply": null
+},
+"AA10": {
+"pin_function": "VDD2L_AA10",
+"supply": "VDD2L"
+},
+"AA11": {
+"pin_function": "VSS_AA11",
+"supply": "VSS"
+},
+"AA12": {
+"pin_function": "DMI0_B_AA12",
+"supply": null
+},
+"AA13": {
+"pin_function": "VDDQ_AA13",
+"supply": "VDDQ"
+},
+"AA14": {
+"pin_function": "NC_AA14",
+"supply": null
+},
+"AA15": {
+"pin_function": "NC_AA15",
+"supply": null
+},
+"AA2": {
+"pin_function": "NC_AA2",
+"supply": null
+},
+"AA3": {
+"pin_function": "VDDQ_AA3",
+"supply": "VDDQ"
+},
+"AA4": {
+"pin_function": "DMI1_B_AA4",
+"supply": null
+},
+"AA5": {
+"pin_function": "VSS_AA5",
+"supply": "VSS"
+},
+"AA6": {
+"pin_function": "VDD2L_AA6",
+"supply": "VDD2L"
+},
+"AA7": {
+"pin_function": "VDD2H_AA7",
+"supply": "VDD2H"
+},
+"AA8": {
+"pin_function": "VDD2H_AA8",
+"supply": "VDD2H"
+},
+"AA9": {
+"pin_function": "VDD2H_AA9",
+"supply": "VDD2H"
+},
+"B1": {
+"pin_function": "NC_B1",
+"supply": null
+},
+"B10": {
+"pin_function": "VDD2L_B10",
+"supply": "VDD2L"
+},
+"B11": {
+"pin_function": "DQ12_A_B11",
+"supply": null
+},
+"B12": {
+"pin_function": "VSS_B12",
+"supply": "VSS"
+},
+"B13": {
+"pin_function": "RDQS1_t_A_B13",
+"supply": null
+},
+"B14": {
+"pin_function": "VDDQ_B14",
+"supply": "VDDQ"
+},
+"B15": {
+"pin_function": "NC_B15",
+"supply": null
+},
+"B2": {
+"pin_function": "VDDQ_B2",
+"supply": "VDDQ"
+},
+"B3": {
+"pin_function": "RDQS0_t_A_B3",
+"supply": null
+},
+"B4": {
+"pin_function": "VSS_B4",
+"supply": "VSS"
+},
+"B5": {
+"pin_function": "DQ4_A_B5",
+"supply": null
+},
+"B6": {
+"pin_function": "VDD2L_B6",
+"supply": "VDD2L"
+},
+"B7": {
+"pin_function": "VDD2H_B7",
+"supply": "VDD2H"
+},
+"B8": {
+"pin_function": "VSS_B8",
+"supply": "VSS"
+},
+"B9": {
+"pin_function": "VDD2H_B9",
+"supply": "VDD2H"
+},
+"C1": {
+"pin_function": "VDD1_C1",
+"supply": "VDD1"
+},
+"C10": {
+"pin_function": "DQ13_A_C10",
+"supply": null
+},
+"C11": {
+"pin_function": "VSS_C11",
+"supply": "VSS"
+},
+"C12": {
+"pin_function": "RDQS1_c_A_C12",
+"supply": null
+},
+"C13": {
+"pin_function": "VDDQ_C13",
+"supply": "VDDQ"
+},
+"C14": {
+"pin_function": "DQ9_A_C14",
+"supply": null
+},
+"C15": {
+"pin_function": "VDD1_C15",
+"supply": "VDD1"
+},
+"C2": {
+"pin_function": "DQ1_A_C2",
+"supply": null
+},
+"C3": {
+"pin_function": "VDDQ_C3",
+"supply": "VDDQ"
+},
+"C4": {
+"pin_function": "RDQS0_c_A_C4",
+"supply": null
+},
+"C5": {
+"pin_function": "VSS_C5",
+"supply": "VSS"
+},
+"C6": {
+"pin_function": "DQ5_A_C6",
+"supply": null
+},
+"C7": {
+"pin_function": "VDD2H_C7",
+"supply": "VDD2H"
+},
+"C8": {
+"pin_function": "VSS_C8",
+"supply": "VSS"
+},
+"C9": {
+"pin_function": "VDD2H_C9",
+"supply": "VDD2H"
+},
+"D1": {
+"pin_function": "DQ0_A_D1",
+"supply": null
+},
+"D10": {
+"pin_function": "VSS_D10",
+"supply": "VSS"
+},
+"D11": {
+"pin_function": "WCK1_c_A_D11",
+"supply": null
+},
+"D12": {
+"pin_function": "VDDQ_D12",
+"supply": "VDDQ"
+},
+"D13": {
+"pin_function": "DQ11_A_D13",
+"supply": null
+},
+"D14": {
+"pin_function": "VSS_D14",
+"supply": "VSS"
+},
+"D15": {
+"pin_function": "DQ8_A_D15",
+"supply": null
+},
+"D2": {
+"pin_function": "VSS_D2",
+"supply": "VSS"
+},
+"D3": {
+"pin_function": "DQ3_A_D3",
+"supply": null
+},
+"D4": {
+"pin_function": "VDDQ_D4",
+"supply": "VDDQ"
+},
+"D5": {
+"pin_function": "WCK0_c_A_D5",
+"supply": null
+},
+"D6": {
+"pin_function": "VSS_D6",
+"supply": "VSS"
+},
+"D7": {
+"pin_function": "VSS_D7",
+"supply": "VSS"
+},
+"D8": {
+"pin_function": "VDD2H_D8",
+"supply": "VDD2H"
+},
+"D9": {
+"pin_function": "VSS_D9",
+"supply": "VSS"
+},
+"E1": {
+"pin_function": "VSS_E1",
+"supply": "VSS"
+},
+"E10": {
+"pin_function": "DQ14_A_E10",
+"supply": null
+},
+"E11": {
+"pin_function": "VDDQ_E11",
+"supply": "VDDQ"
+},
+"E12": {
+"pin_function": "WCK1_t_A_E12",
+"supply": null
+},
+"E13": {
+"pin_function": "VSS_E13",
+"supply": "VSS"
+},
+"E14": {
+"pin_function": "DQ10_A_E14",
+"supply": null
+},
+"E15": {
+"pin_function": "VSS_E15",
+"supply": "VSS"
+},
+"E2": {
+"pin_function": "DQ2_A_E2",
+"supply": null
+},
+"E3": {
+"pin_function": "VSS_E3",
+"supply": "VSS"
+},
+"E4": {
+"pin_function": "WCK0_t_A_E4",
+"supply": null
+},
+"E5": {
+"pin_function": "VDDQ_E5",
+"supply": "VDDQ"
+},
+"E6": {
+"pin_function": "DQ6_A_E6",
+"supply": null
+},
+"E7": {
+"pin_function": "VDD2H_E7",
+"supply": "VDD2H"
+},
+"E8": {
+"pin_function": "VSS_E8",
+"supply": "VSS"
+},
+"E9": {
+"pin_function": "VDD2H_E9",
+"supply": "VDD2H"
+},
+"F1": {
+"pin_function": "VDDQ_F1",
+"supply": "VDDQ"
+},
+"F10": {
+"pin_function": "VDD2H_F10",
+"supply": "VDD2H"
+},
+"F11": {
+"pin_function": "DQ15_A_F11",
+"supply": null
+},
+"F12": {
+"pin_function": "VDDQ_F12",
+"supply": "VDDQ"
+},
+"F13": {
+"pin_function": "VDDQ_F13",
+"supply": "VDDQ"
+},
+"F14": {
+"pin_function": "VSS_F14",
+"supply": "VSS"
+},
+"F15": {
+"pin_function": "VDDQ_F15",
+"supply": "VDDQ"
+},
+"F2": {
+"pin_function": "VSS_F2",
+"supply": "VSS"
+},
+"F3": {
+"pin_function": "VDDQ_F3",
+"supply": "VDDQ"
+},
+"F4": {
+"pin_function": "VDDQ_F4",
+"supply": "VDDQ"
+},
+"F5": {
+"pin_function": "DQ7_A_F5",
+"supply": null
+},
+"F6": {
+"pin_function": "VDD2H_F6",
+"supply": "VDD2H"
+},
+"F7": {
+"pin_function": "VDD2H_F7",
+"supply": "VDD2H"
+},
+"F8": {
+"pin_function": "VSS_F8",
+"supply": "VSS"
+},
+"F9": {
+"pin_function": "VDD2H_F9",
+"supply": "VDD2H"
+},
+"G1": {
+"pin_function": "VDDQ_G1",
+"supply": "VDDQ"
+},
+"G10": {
+"pin_function": "CA4_A_G10",
+"supply": null
+},
+"G11": {
+"pin_function": "VSS_G11",
+"supply": "VSS"
+},
+"G12": {
+"pin_function": "CA6_A_G12",
+"supply": null
+},
+"G13": {
+"pin_function": "VSS_G13",
+"supply": "VSS"
+},
+"G14": {
+"pin_function": "VDDQ_G14",
+"supply": "VDDQ"
+},
+"G15": {
+"pin_function": "VDDQ_G15",
+"supply": "VDDQ"
+},
+"G2": {
+"pin_function": "VDDQ_G2",
+"supply": "VDDQ"
+},
+"G3": {
+"pin_function": "VSS_G3",
+"supply": "VSS"
+},
+"G4": {
+"pin_function": "CA0_A_G4",
+"supply": null
+},
+"G5": {
+"pin_function": "VSS_G5",
+"supply": "VSS"
+},
+"G6": {
+"pin_function": "CS1_A_G6",
+"supply": null
+},
+"G7": {
+"pin_function": "VSS_G7",
+"supply": "VSS"
+},
+"G8": {
+"pin_function": "CA2_A_G8",
+"supply": null
+},
+"G9": {
+"pin_function": "VSS_G9",
+"supply": "VSS"
+},
+"H1": {
+"pin_function": "RESET_n_H1",
+"supply": null
+},
+"H10": {
+"pin_function": "VSS_H10",
+"supply": "VSS"
+},
+"H11": {
+"pin_function": "CA3_A_H11",
+"supply": null
+},
+"H12": {
+"pin_function": "VSS_H12",
+"supply": "VSS"
+},
+"H13": {
+"pin_function": "CA5_A_H13",
+"supply": null
+},
+"H14": {
+"pin_function": "VDD2L_H14",
+"supply": "VDD2L"
+},
+"H15": {
+"pin_function": "ZQ_A_H15",
+"supply": null
+},
+"H2": {
+"pin_function": "VDD2L_H2",
+"supply": "VDD2L"
+},
+"H3": {
+"pin_function": "VSS_H3",
+"supply": "VSS"
+},
+"H4": {
+"pin_function": "VSS_H4",
+"supply": "VSS"
+},
+"H5": {
+"pin_function": "CA1_A_H5",
+"supply": null
+},
+"H6": {
+"pin_function": "VSS_H6",
+"supply": "VSS"
+},
+"H7": {
+"pin_function": "CS0_A_H7",
+"supply": null
+},
+"H8": {
+"pin_function": "VSS_H8",
+"supply": "VSS"
+},
+"H9": {
+"pin_function": "CK_t_A_H9",
+"supply": null
+},
+"J1": {
+"pin_function": "VSS_J1",
+"supply": "VSS"
+},
+"J10": {
+"pin_function": "VSS_J10",
+"supply": "VSS"
+},
+"J11": {
+"pin_function": "VDD2H_J11",
+"supply": "VDD2H"
+},
+"J12": {
+"pin_function": "VSS_J12",
+"supply": "VSS"
+},
+"J13": {
+"pin_function": "VSS_J13",
+"supply": "VSS"
+},
+"J14": {
+"pin_function": "VDD2L_J14",
+"supply": "VDD2L"
+},
+"J15": {
+"pin_function": "VSS_J15",
+"supply": "VSS"
+},
+"J2": {
+"pin_function": "VDD2L_J2",
+"supply": "VDD2L"
+},
+"J3": {
+"pin_function": "VSS_J3",
+"supply": "VSS"
+},
+"J4": {
+"pin_function": "RFU_J4",
+"supply": null
+},
+"J5": {
+"pin_function": "VDD2H_J5",
+"supply": "VDD2H"
+},
+"J6": {
+"pin_function": "RFU_J6",
+"supply": null
+},
+"J7": {
+"pin_function": "VSS_J7",
+"supply": "VSS"
+},
+"J8": {
+"pin_function": "VSS_J8",
+"supply": "VSS"
+},
+"J9": {
+"pin_function": "CK_c_A_J9",
+"supply": null
+},
+"K1": {
+"pin_function": "VDD2H_K1",
+"supply": "VDD2H"
+},
+"K10": {
+"pin_function": "VDD2H_K10",
+"supply": "VDD2H"
+},
+"K11": {
+"pin_function": "VDD2H_K11",
+"supply": "VDD2H"
+},
+"K12": {
+"pin_function": "VDD2H_K12",
+"supply": "VDD2H"
+},
+"K13": {
+"pin_function": "VDD2H_K13",
+"supply": "VDD2H"
+},
+"K14": {
+"pin_function": "VDD2H_K14",
+"supply": "VDD2H"
+},
+"K15": {
+"pin_function": "VDD2H_K15",
+"supply": "VDD2H"
+},
+"K2": {
+"pin_function": "VDD2H_K2",
+"supply": "VDD2H"
+},
+"K3": {
+"pin_function": "VDD2H_K3",
+"supply": "VDD2H"
+},
+"K4": {
+"pin_function": "VDD2H_K4",
+"supply": "VDD2H"
+},
+"K5": {
+"pin_function": "VDD2H_K5",
+"supply": "VDD2H"
+},
+"K6": {
+"pin_function": "VDD2H_K6",
+"supply": "VDD2H"
+},
+"K7": {
+"pin_function": "VSS_K7",
+"supply": "VSS"
+},
+"K8": {
+"pin_function": "VSS_K8",
+"supply": "VSS"
+},
+"K9": {
+"pin_function": "VSS_K9",
+"supply": "VSS"
+},
+"L1": {
+"pin_function": "VSS_L1",
+"supply": "VSS"
+},
+"L10": {
+"pin_function": "VDD2H_L10",
+"supply": "VDD2H"
+},
+"L11": {
+"pin_function": "VSS_L11",
+"supply": "VSS"
+},
+"L12": {
+"pin_function": "VSS_L12",
+"supply": "VSS"
+},
+"L13": {
+"pin_function": "VSS_L13",
+"supply": "VSS"
+},
+"L14": {
+"pin_function": "VSS_L14",
+"supply": "VSS"
+},
+"L15": {
+"pin_function": "VSS_L15",
+"supply": "VSS"
+},
+"L2": {
+"pin_function": "VSS_L2",
+"supply": "VSS"
+},
+"L3": {
+"pin_function": "VSS_L3",
+"supply": "VSS"
+},
+"L4": {
+"pin_function": "VSS_L4",
+"supply": "VSS"
+},
+"L5": {
+"pin_function": "VSS_L5",
+"supply": "VSS"
+},
+"L6": {
+"pin_function": "VDD2H_L6",
+"supply": "VDD2H"
+},
+"L7": {
+"pin_function": "VDD2H_L7",
+"supply": "VDD2H"
+},
+"L8": {
+"pin_function": "VDD2H_L8",
+"supply": "VDD2H"
+},
+"L9": {
+"pin_function": "VDD2H_L9",
+"supply": "VDD2H"
+},
+"M1": {
+"pin_function": "VDD2H_M1",
+"supply": "VDD2H"
+},
+"M10": {
+"pin_function": "VDD2H_M10",
+"supply": "VDD2H"
+},
+"M11": {
+"pin_function": "VDD2H_M11",
+"supply": "VDD2H"
+},
+"M12": {
+"pin_function": "VDD2H_M12",
+"supply": "VDD2H"
+},
+"M13": {
+"pin_function": "VDD2H_M13",
+"supply": "VDD2H"
+},
+"M14": {
+"pin_function": "VDD2H_M14",
+"supply": "VDD2H"
+},
+"M15": {
+"pin_function": "VDD2H_M15",
+"supply": "VDD2H"
+},
+"M2": {
+"pin_function": "VDD2H_M2",
+"supply": "VDD2H"
+},
+"M3": {
+"pin_function": "VDD2H_M3",
+"supply": "VDD2H"
+},
+"M4": {
+"pin_function": "VDD2H_M4",
+"supply": "VDD2H"
+},
+"M5": {
+"pin_function": "VDD2H_M5",
+"supply": "VDD2H"
+},
+"M6": {
+"pin_function": "VDD2H_M6",
+"supply": "VDD2H"
+},
+"M7": {
+"pin_function": "VSS_M7",
+"supply": "VSS"
+},
+"M8": {
+"pin_function": "VSS_M8",
+"supply": "VSS"
+},
+"M9": {
+"pin_function": "VSS_M9",
+"supply": "VSS"
+},
+"N1": {
+"pin_function": "VSS_N1",
+"supply": "VSS"
+},
+"N10": {
+"pin_function": "VSS_N10",
+"supply": "VSS"
+},
+"N11": {
+"pin_function": "VDD2H_N11",
+"supply": "VDD2H"
+},
+"N12": {
+"pin_function": "VSS_N12",
+"supply": "VSS"
+},
+"N13": {
+"pin_function": "VSS_N13",
+"supply": "VSS"
+},
+"N14": {
+"pin_function": "VDD2L_N14",
+"supply": "VDD2L"
+},
+"N15": {
+"pin_function": "VSS_N15",
+"supply": "VSS"
+},
+"N2": {
+"pin_function": "VDD2L_N2",
+"supply": "VDD2L"
+},
+"N3": {
+"pin_function": "VSS_N3",
+"supply": "VSS"
+},
+"N4": {
+"pin_function": "VSS_N4",
+"supply": "VSS"
+},
+"N5": {
+"pin_function": "VDD2H_N5",
+"supply": "VDD2H"
+},
+"N6": {
+"pin_function": "VSS_N6",
+"supply": "VSS"
+},
+"N7": {
+"pin_function": "CK_c_B_N7",
+"supply": null
+},
+"N8": {
+"pin_function": "VSS_N8",
+"supply": "VSS"
+},
+"N9": {
+"pin_function": "VSS_N9",
+"supply": "VSS"
+},
+"P1": {
+"pin_function": "RFU_P1",
+"supply": null
+},
+"P10": {
+"pin_function": "VSS_P10",
+"supply": "VSS"
+},
+"P11": {
+"pin_function": "CA1_B_P11",
+"supply": null
+},
+"P12": {
+"pin_function": "VSS_P12",
+"supply": "VSS"
+},
+"P13": {
+"pin_function": "VSS_P13",
+"supply": "VSS"
+},
+"P14": {
+"pin_function": "VDD2L_P14",
+"supply": "VDD2L"
+},
+"P15": {
+"pin_function": "RFU_P15",
+"supply": null
+},
+"P2": {
+"pin_function": "VDD2L_P2",
+"supply": "VDD2L"
+},
+"P3": {
+"pin_function": "CA5_B_P3",
+"supply": null
+},
+"P4": {
+"pin_function": "VSS_P4",
+"supply": "VSS"
+},
+"P5": {
+"pin_function": "CA3_B_P5",
+"supply": null
+},
+"P6": {
+"pin_function": "VSS_P6",
+"supply": "VSS"
+},
+"P7": {
+"pin_function": "CK_t_B_P7",
+"supply": null
+},
+"P8": {
+"pin_function": "VSS_P8",
+"supply": "VSS"
+},
+"P9": {
+"pin_function": "CS0_B_P9",
+"supply": null
+},
+"R1": {
+"pin_function": "VDDQ_R1",
+"supply": "VDDQ"
+},
+"R10": {
+"pin_function": "CS1_B_R10",
+"supply": null
+},
+"R11": {
+"pin_function": "VSS_R11",
+"supply": "VSS"
+},
+"R12": {
+"pin_function": "CA0_B_R12",
+"supply": null
+},
+"R13": {
+"pin_function": "VSS_R13",
+"supply": "VSS"
+},
+"R14": {
+"pin_function": "VDDQ_R14",
+"supply": "VDDQ"
+},
+"R15": {
+"pin_function": "VDDQ_R15",
+"supply": "VDDQ"
+},
+"R2": {
+"pin_function": "VDDQ_R2",
+"supply": "VDDQ"
+},
+"R3": {
+"pin_function": "VSS_R3",
+"supply": "VSS"
+},
+"R4": {
+"pin_function": "CA6_B_R4",
+"supply": null
+},
+"R5": {
+"pin_function": "VSS_R5",
+"supply": "VSS"
+},
+"R6": {
+"pin_function": "CA4_B_R6",
+"supply": null
+},
+"R7": {
+"pin_function": "VSS_R7",
+"supply": "VSS"
+},
+"R8": {
+"pin_function": "CA2_B_R8",
+"supply": null
+},
+"R9": {
+"pin_function": "VSS_R9",
+"supply": "VSS"
+},
+"T1": {
+"pin_function": "VDDQ_T1",
+"supply": "VDDQ"
+},
+"T10": {
+"pin_function": "VDD2H_T10",
+"supply": "VDD2H"
+},
+"T11": {
+"pin_function": "DQ7_B_T11",
+"supply": null
+},
+"T12": {
+"pin_function": "VDDQ_T12",
+"supply": "VDDQ"
+},
+"T13": {
+"pin_function": "VDDQ_T13",
+"supply": "VDDQ"
+},
+"T14": {
+"pin_function": "VSS_T14",
+"supply": "VSS"
+},
+"T15": {
+"pin_function": "VDDQ_T15",
+"supply": "VDDQ"
+},
+"T2": {
+"pin_function": "VSS_T2",
+"supply": "VSS"
+},
+"T3": {
+"pin_function": "VDDQ_T3",
+"supply": "VDDQ"
+},
+"T4": {
+"pin_function": "VDDQ_T4",
+"supply": "VDDQ"
+},
+"T5": {
+"pin_function": "DQ15_B_T5",
+"supply": null
+},
+"T6": {
+"pin_function": "VDD2H_T6",
+"supply": "VDD2H"
+},
+"T7": {
+"pin_function": "VDD2H_T7",
+"supply": "VDD2H"
+},
+"T8": {
+"pin_function": "VSS_T8",
+"supply": "VSS"
+},
+"T9": {
+"pin_function": "VDD2H_T9",
+"supply": "VDD2H"
+},
+"U1": {
+"pin_function": "VSS_U1",
+"supply": "VSS"
+},
+"U10": {
+"pin_function": "DQ6_B_U10",
+"supply": null
+},
+"U11": {
+"pin_function": "VDDQ_U11",
+"supply": "VDDQ"
+},
+"U12": {
+"pin_function": "WCK0_t_B_U12",
+"supply": null
+},
+"U13": {
+"pin_function": "VSS_U13",
+"supply": "VSS"
+},
+"U14": {
+"pin_function": "DQ2_B_U14",
+"supply": null
+},
+"U15": {
+"pin_function": "VSS_U15",
+"supply": "VSS"
+},
+"U2": {
+"pin_function": "DQ10_B_U2",
+"supply": null
+},
+"U3": {
+"pin_function": "VSS_U3",
+"supply": "VSS"
+},
+"U4": {
+"pin_function": "WCK1_t_B_U4",
+"supply": null
+},
+"U5": {
+"pin_function": "VDDQ_U5",
+"supply": "VDDQ"
+},
+"U6": {
+"pin_function": "DQ14_B_U6",
+"supply": null
+},
+"U7": {
+"pin_function": "VDD2H_U7",
+"supply": "VDD2H"
+},
+"U8": {
+"pin_function": "VSS_U8",
+"supply": "VSS"
+},
+"U9": {
+"pin_function": "VDD2H_U9",
+"supply": "VDD2H"
+},
+"V1": {
+"pin_function": "DQ8_B_V1",
+"supply": null
+},
+"V10": {
+"pin_function": "VSS_V10",
+"supply": "VSS"
+},
+"V11": {
+"pin_function": "WCK0_c_B_V11",
+"supply": null
+},
+"V12": {
+"pin_function": "VDDQ_V12",
+"supply": "VDDQ"
+},
+"V13": {
+"pin_function": "DQ3_B_V13",
+"supply": null
+},
+"V14": {
+"pin_function": "VSS_V14",
+"supply": "VSS"
+},
+"V15": {
+"pin_function": "DQ0_B_V15",
+"supply": null
+},
+"V2": {
+"pin_function": "VSS_V2",
+"supply": "VSS"
+},
+"V3": {
+"pin_function": "DQ11_B_V3",
+"supply": null
+},
+"V4": {
+"pin_function": "VDDQ_V4",
+"supply": "VDDQ"
+},
+"V5": {
+"pin_function": "WCK1_c_B_V5",
+"supply": null
+},
+"V6": {
+"pin_function": "VSS_V6",
+"supply": "VSS"
+},
+"V7": {
+"pin_function": "VSS_V7",
+"supply": "VSS"
+},
+"V8": {
+"pin_function": "VDD2H_V8",
+"supply": "VDD2H"
+},
+"V9": {
+"pin_function": "VSS_V9",
+"supply": "VSS"
+},
+"W1": {
+"pin_function": "VDD1_W1",
+"supply": "VDD1"
+},
+"W10": {
+"pin_function": "DQ5_B_W10",
+"supply": null
+},
+"W11": {
+"pin_function": "VSS_W11",
+"supply": "VSS"
+},
+"W12": {
+"pin_function": "RDQS0_c_B_W12",
+"supply": null
+},
+"W13": {
+"pin_function": "VDDQ_W13",
+"supply": "VDDQ"
+},
+"W14": {
+"pin_function": "DQ1_B_W14",
+"supply": null
+},
+"W15": {
+"pin_function": "VDD1_W15",
+"supply": "VDD1"
+},
+"W2": {
+"pin_function": "DQ9_B_W2",
+"supply": null
+},
+"W3": {
+"pin_function": "VDDQ_W3",
+"supply": "VDDQ"
+},
+"W4": {
+"pin_function": "RDQS1_c_B_W4",
+"supply": null
+},
+"W5": {
+"pin_function": "VSS_W5",
+"supply": "VSS"
+},
+"W6": {
+"pin_function": "DQ13_B_W6",
+"supply": null
+},
+"W7": {
+"pin_function": "VDD2H_W7",
+"supply": "VDD2H"
+},
+"W8": {
+"pin_function": "VSS_W8",
+"supply": "VSS"
+},
+"W9": {
+"pin_function": "VDD2H_W9",
+"supply": "VDD2H"
+},
+"Y1": {
+"pin_function": "NC_Y1",
+"supply": null
+},
+"Y10": {
+"pin_function": "VDD2L_Y10",
+"supply": "VDD2L"
+},
+"Y11": {
+"pin_function": "DQ4_B_Y11",
+"supply": null
+},
+"Y12": {
+"pin_function": "VSS_Y12",
+"supply": "VSS"
+},
+"Y13": {
+"pin_function": "RDQS0_t_B_Y13",
+"supply": null
+},
+"Y14": {
+"pin_function": "VDDQ_Y14",
+"supply": "VDDQ"
+},
+"Y15": {
+"pin_function": "NC_Y15",
+"supply": null
+},
+"Y2": {
+"pin_function": "VDDQ_Y2",
+"supply": "VDDQ"
+},
+"Y3": {
+"pin_function": "RDQS1_t_B_Y3",
+"supply": null
+},
+"Y4": {
+"pin_function": "VSS_Y4",
+"supply": "VSS"
+},
+"Y5": {
+"pin_function": "DQ12_B_Y5",
+"supply": null
+},
+"Y6": {
+"pin_function": "VDD2L_Y6",
+"supply": "VDD2L"
+},
+"Y7": {
+"pin_function": "VDD2H_Y7",
+"supply": "VDD2H"
+},
+"Y8": {
+"pin_function": "VSS_Y8",
+"supply": "VSS"
+},
+"Y9": {
+"pin_function": "VDD2H_Y9",
+"supply": "VDD2H"
+}
+}
+}

@@ -1,0 +1,179 @@
+{
+ "question": "what the data re-plan puts beside the CA0 trace inside the land field of U1 (the command bus is the priority bus and stage s20 is not touched): an In3 pad on the via-in-pad of ball C4 (RDQS_N) 0.125 mm from the trace, the RDQS_N In3 leg that leaves it, and two new GND barrels (A4, C5) 0.25 mm from CA0 / CA1.  Limits: CA0 delay change <= 0.3 ps, RDQS -> CA0 coupling <= 1 %",
+ "method": "HFSS 2026 R1, driven modal, lossless, er 4.29, PEC: the CA0 In3 trace (0.15 x 0.018 mm) in its column channel x = 23.525 over 4.4 mm (y 11.3 .. 15.7, rows A .. F) between In4 (z = 0) and In2 (z = 0.488), 0.110 mm below In2; walls 0.7 mm west and 1.075 mm east of the trace; the via barrels of ball columns 5 and 4 as 0.15 mm cylinders: GND / VDDQ barrels join the two planes, signal barrels (WCK, RDQS) end 0.05 mm short of both planes (about the capacitance of their antipads).  Wave ports on both ends of CA0 and, in the three-port cases, on the RDQS_N leg where it leaves the model eastward (y = 13.07).  Adaptive at 8 GHz to delta S 0.002 (second-order basis), discrete sweep 0.25 .. 15 GHz, 60 points.  Scripts: scratch only (hf_ca0.py, post.py, mk_ca0_ref.py); server folder ~/lpddr5_s30_ca0",
+ "geometry_as_built": {
+  "ca0_trace_x": 23.525,
+  "c4_via": [
+   23.925,
+   13.4
+  ],
+  "c4_in3_pad_mm": 0.35,
+  "trace_edge_to_pad_edge_mm": 0.15,
+  "trace_edge_to_barrel_mm": 0.25,
+  "rdqs_n_leg": "0.10 mm, from C4 at 45 degrees to (24.255, 13.07), then east",
+  "rdqs_leg_within_0p6_mm_of_ca0_mm": 0.28,
+  "new_gnd_barrels": {
+   "A4": [
+    23.925,
+    12.0
+   ],
+   "C5": [
+    23.125,
+    13.4
+   ]
+  },
+  "note": "the task text speaks of an RDQS leg 0.275 mm from CA0 for about 2 mm: on the board the leg is 0.275 mm (copper) from CA0 only where it leaves the pad and runs away at 45 degrees; it is within 0.6 mm (centre lines) for 0.28 mm"
+ },
+ "cases": {
+  "before": {
+   "model": "the barrels beside the channel as before the data re-plan: A5, B4 (GND), D4, E5, F4 (VDDQ) as posts between the planes; D5, E4 (WCK) and C4 (RDQS_N) as floating barrels; no In3 pad on C4",
+   "ca0_delay_change_ps": {
+    "1 GHz": 0.0,
+    "3 GHz": 0.0,
+    "5 GHz": 0.0,
+    "8 GHz": 0.0
+   },
+   "ca0_s11": {
+    "1 GHz": 0.0003,
+    "3 GHz": 0.0005,
+    "5 GHz": 0.0007,
+    "8 GHz": 0.0011
+   }
+  },
+  "barrels": {
+   "model": "before + the two new GND barrels A4 and C5, 0.25 mm from the trace",
+   "ca0_delay_change_ps": {
+    "1 GHz": 0.009,
+    "3 GHz": 0.009,
+    "5 GHz": 0.009,
+    "8 GHz": 0.009
+   },
+   "ca0_s11": {
+    "1 GHz": 0.0004,
+    "3 GHz": 0.0005,
+    "5 GHz": 0.0007,
+    "8 GHz": 0.001
+   }
+  },
+  "pad_0p40": {
+   "model": "barrels + In3 pad 0.40 mm on the C4 via-in-pad + the RDQS_N In3 leg (0.10 mm) leaving it at 45 degrees to a third port: the plan as rehearsed",
+   "ca0_delay_change_ps": {
+    "1 GHz": 0.0339,
+    "3 GHz": 0.0335,
+    "5 GHz": 0.0328,
+    "8 GHz": 0.0313
+   },
+   "ca0_s11": {
+    "1 GHz": 0.0015,
+    "3 GHz": 0.0019,
+    "5 GHz": 0.0024,
+    "8 GHz": 0.0032
+   },
+   "rdqs_to_ca0_s31_near_end": {
+    "1 GHz": 0.00336,
+    "3 GHz": 0.00995,
+    "5 GHz": 0.01621,
+    "8 GHz": 0.02464
+   },
+   "rdqs_to_ca0_s32_far_end": {
+    "1 GHz": 0.00336,
+    "3 GHz": 0.00997,
+    "5 GHz": 0.01623,
+    "8 GHz": 0.02465
+   },
+   "coupling_constant_ps": 0.528,
+   "mutual_capacitance_fF": 21.2,
+   "peak_coupled_voltage_percent_of_the_rdqs_swing": {
+    "80 ps (the edge of scripts/read_linesim.py)": 0.6,
+    "50 ps": 0.97,
+    "42 ps (an output slew of 9 V/ns on the 0.38 V read swing, taken as the fastest case)": 1.15
+   }
+  },
+  "pad_0p35": {
+   "model": "as pad_0p40 with the In3 pad of C4 trimmed to 0.35 mm (annular ring 0.10 mm, the board minimum): AS BUILT",
+   "ca0_delay_change_ps": {
+    "1 GHz": 0.0266,
+    "3 GHz": 0.0264,
+    "5 GHz": 0.026,
+    "8 GHz": 0.025
+   },
+   "ca0_s11": {
+    "1 GHz": 0.0006,
+    "3 GHz": 0.0012,
+    "5 GHz": 0.0018,
+    "8 GHz": 0.0025
+   },
+   "rdqs_to_ca0_s31_near_end": {
+    "1 GHz": 0.00277,
+    "3 GHz": 0.00822,
+    "5 GHz": 0.01344,
+    "8 GHz": 0.0206
+   },
+   "rdqs_to_ca0_s32_far_end": {
+    "1 GHz": 0.00276,
+    "3 GHz": 0.00822,
+    "5 GHz": 0.01344,
+    "8 GHz": 0.02062
+   },
+   "coupling_constant_ps": 0.436,
+   "mutual_capacitance_fF": 17.5,
+   "peak_coupled_voltage_percent_of_the_rdqs_swing": {
+    "80 ps (the edge of scripts/read_linesim.py)": 0.5,
+    "50 ps": 0.8,
+    "42 ps (an output slew of 9 V/ns on the 0.38 V read swing, taken as the fastest case)": 0.95
+   }
+  },
+  "no_pad": {
+   "model": "as pad_0p40 without the pad, the leg ending on the barrel: not buildable; splits the coupling into barrel + leg and pad",
+   "ca0_delay_change_ps": {
+    "1 GHz": 0.019,
+    "3 GHz": 0.0189,
+    "5 GHz": 0.0188,
+    "8 GHz": 0.0185
+   },
+   "ca0_s11": {
+    "1 GHz": 0.0004,
+    "3 GHz": 0.001,
+    "5 GHz": 0.0015,
+    "8 GHz": 0.0021
+   },
+   "rdqs_to_ca0_s31_near_end": {
+    "1 GHz": 0.00177,
+    "3 GHz": 0.00527,
+    "5 GHz": 0.00868,
+    "8 GHz": 0.01354
+   },
+   "rdqs_to_ca0_s32_far_end": {
+    "1 GHz": 0.00177,
+    "3 GHz": 0.00527,
+    "5 GHz": 0.00869,
+    "8 GHz": 0.01355
+   },
+   "coupling_constant_ps": 0.279,
+   "mutual_capacitance_fF": 11.2,
+   "peak_coupled_voltage_percent_of_the_rdqs_swing": {
+    "80 ps (the edge of scripts/read_linesim.py)": 0.32,
+    "50 ps": 0.51,
+    "42 ps (an output slew of 9 V/ns on the 0.38 V read swing, taken as the fastest case)": 0.61
+   }
+  }
+ },
+ "reading": {
+  "delay": "the two GND barrels move CA0 by +0.009 ps; pad 0.40 + leg + barrels by +0.034 ps, pad 0.35 by +0.027 ps: a tenth of the 0.3 ps limit and below the repeatability of the tuning runs (0.014 ps). Flat from 1 to 8 GHz",
+  "reflection": "|S11| of CA0 stays below 0.004 up to 8 GHz in every case (before: 0.001)",
+  "coupling": "|S31| = |S32| rises in proportion to the frequency: a lumped mutual capacitance at the pad and barrel (pad 0.40: 21 fF, pad 0.35: 18 fF, barrel and leg alone: 11 fF).  The coupled pulse at either end of CA0 is K x dV/dt of the RDQS edge, K = 0.44 ps as built: 0.50 % at 80 ps / 0.80 % at 50 ps / 0.95 % at 42 ps of the RDQS swing; with the 0.38 V read swing that is at most 3.6 mV on CA0, for the length of the edge.  The 0.40 mm pad of the rehearsed plan gave 0.60 % / 0.97 % / 1.15 %: above 1 % at the fastest edge, which is why the pad was trimmed",
+  "what_is_new": "the barrel of C4 stood beside CA0 before the re-plan as well (RDQS went down it to B.Cu): about 64 % of the coupling as built is that barrel and the leg, the rest is the pad"
+ },
+ "change_made": "the In3 pad of the via-in-pads of C4 and B3 is 0.35 mm instead of 0.40 mm (floorplan.U1.via_in_pad.in3_pad_trim); the leg already leaves the pad on the side away from CA0. The command bus was not re-tuned; gate 6 of scripts/pcb/check_pcb.py runs unchanged except for the stated exception of its layer-purity check",
+ "verdict": {
+  "pass": true,
+  "case": "pad_0p35 (as built)",
+  "ca0_delay_change_ps": 0.0264,
+  "ca0_delay_limit_ps": 0.3,
+  "ca0_s11_max": 0.0025,
+  "coupling_percent": 0.95,
+  "coupling_edge": "42 ps, the fastest edge considered",
+  "coupling_limit_percent": 1.0,
+  "coupling_percent_at_80_ps": 0.5
+ }
+}

@@ -1,0 +1,261 @@
+finger,side,x_mm,ddr4_name,host_net,fpga_ball,fpga_pin_name,bank,byte_nibble,role,pn,partner_finger,host_components,host_layer,host_len_mm,host_len_L1_mm,host_delay_ps_est,host_main_width_mil,host_neck_mm,host_via_stub_mil,host_branch_stub_mm
+1,front,1.425,VSS1,GND,,,,,,,,host GND plane,,,,,,,,
+2,back,1.675,VSS2,GND,,,,,,,,host GND plane,,,,,,,,
+3,front,1.925,DQ5,DDR4_SODIMM_DQ5,AG19,IO_L15P_T2L_N4_AD11P_65,65,T2L,,P,"4 (AG20, DQ4)",none (point-to-point to FPGA ball),L12,63.36,1.86,378.0,5.0,11.7,17.0,0
+4,back,2.175,DQ4,DDR4_SODIMM_DQ4,AG20,IO_L15N_T2L_N5_AD11N_65,65,T2L,,N,"3 (AG19, DQ5)",none (point-to-point to FPGA ball),L12,64.53,1.59,385.0,5.0,0,17.0,0
+5,front,2.425,VSS3,GND,,,,,,,,host GND plane,,,,,,,,
+6,back,2.675,VSS4,GND,,,,,,,,host GND plane,,,,,,,,
+7,front,2.925,DQ1,DDR4_SODIMM_DQ1,AE23,IO_L18P_T2U_N10_AD2P_65,65,T2U,,P,"8 (AE24, DQ0)",none (point-to-point to FPGA ball),L12,66.48,2.39,397.0,5.0,12.9,17.0,0
+8,back,3.175,DQ0,DDR4_SODIMM_DQ0,AE24,IO_L18N_T2U_N11_AD2N_65,65,T2U,,N,"7 (AE23, DQ1)",none (point-to-point to FPGA ball),L12,65.33,1.66,390.0,5.0,12.3,17.0,0
+9,front,3.425,VSS5,GND,,,,,,,,host GND plane,,,,,,,,
+10,back,3.675,VSS6,GND,,,,,,,,host GND plane,,,,,,,,
+11,front,3.925,DQS0_C,DDR4_SODIMM_DQS0_C,AG23,IO_L16N_T2U_N7_QBC_AD3N_65,65,T2U,QBC,N,"13 (AF23, DQS0_T)",none (point-to-point to FPGA ball),L12,65.05,3.37,387.0,6.5,10.3,17.0,0
+12,back,4.175,DM0_N/DBI0_N,DDR4_SODIMM_DM0_B,AH22,IO_L13P_T2L_N0_GC_QBC_65,65,T2L,GC QBC,P,not on socket (AH23: NC),none (point-to-point to FPGA ball),L12,64.24,2.55,383.0,5.0,8.3,17.0,0
+13,front,4.425,DQS0_T,DDR4_SODIMM_DQS0_T,AF23,IO_L16P_T2U_N6_QBC_AD3P_65,65,T2U,QBC,P,"11 (AG23, DQS0_C)",none (point-to-point to FPGA ball),L12,65.1,2.28,388.0,6.5,10.6,17.0,0
+14,back,4.675,VSS7,GND,,,,,,,,host GND plane,,,,,,,,
+15,front,4.925,VSS8,GND,,,,,,,,host GND plane,,,,,,,,
+16,back,5.175,DQ6,DDR4_SODIMM_DQ6,AH21,IO_L14N_T2L_N3_GC_65,65,T2L,GC,N,"17 (AG21, DQ7)",none (point-to-point to FPGA ball),L12,64.57,2.52,385.0,5.0,8.3,17.0,0
+17,front,5.425,DQ7,DDR4_SODIMM_DQ7,AG21,IO_L14P_T2L_N2_GC_65,65,T2L,GC,P,"16 (AH21, DQ6)",none (point-to-point to FPGA ball),L12,64.56,2.57,385.0,5.0,10.4,17.0,0
+18,back,5.675,VSS9,GND,,,,,,,,host GND plane,,,,,,,,
+19,front,5.925,VSS10,GND,,,,,,,,host GND plane,,,,,,,,
+20,back,6.175,DQ2,DDR4_SODIMM_DQ2,AF22,IO_L17N_T2U_N9_AD10N_65,65,T2U,,N,"21 (AF21, DQ3)",none (point-to-point to FPGA ball),L12,67.48,1.39,403.0,5.0,0,17.0,0
+21,front,6.425,DQ3,DDR4_SODIMM_DQ3,AF21,IO_L17P_T2U_N8_AD10P_65,65,T2U,,P,"20 (AF22, DQ2)",none (point-to-point to FPGA ball),L12,68.49,3.21,408.0,5.0,5.6,17.0,0
+22,back,6.675,VSS11,GND,,,,,,,,host GND plane,,,,,,,,
+23,front,6.925,VSS12,GND,,,,,,,,host GND plane,,,,,,,,
+24,back,7.175,DQ12,DDR4_SODIMM_DQ12,AE20,IO_L21N_T3L_N5_AD8N_65,65,T3L,,N,"25 (AD20, DQ13)",none (point-to-point to FPGA ball),L3,70.67,1.61,422.0,5.0,12.2,51.1,0
+25,front,7.425,DQ13,DDR4_SODIMM_DQ13,AD20,IO_L21P_T3L_N4_AD8P_65,65,T3L,,P,"24 (AE20, DQ12)",none (point-to-point to FPGA ball),L3,71.37,1.39,427.0,5.0,13.0,51.1,0
+26,back,7.675,VSS13,GND,,,,,,,,host GND plane,,,,,,,,
+27,front,7.925,VSS14,GND,,,,,,,,host GND plane,,,,,,,,
+28,back,8.175,DQ8,DDR4_SODIMM_DQ8,AA20,IO_L24N_T3U_N11_PERSTN0_65,65,T3U,PERSTN0,N,"29 (AA19, DQ9)",none (point-to-point to FPGA ball),L3,68.37,1.35,409.0,5.0,16.3,51.1,0
+29,front,8.425,DQ9,DDR4_SODIMM_DQ9,AA19,IO_L24P_T3U_N10_PERSTN1_I2C_SDA_65,65,T3U,PERSTN1 I2C_SDA,P,"28 (AA20, DQ8)",none (point-to-point to FPGA ball),L3,68.89,1.48,412.0,5.0,15.9,51.1,0
+30,back,8.675,VSS15,GND,,,,,,,,host GND plane,,,,,,,,
+31,front,8.925,VSS16,GND,,,,,,,,host GND plane,,,,,,,,
+32,back,9.175,DQS1_C,DDR4_SODIMM_DQS1_C,AB18,IO_L22N_T3U_N7_DBC_AD0N_65,65,T3U,DBC,N,"34 (AA18, DQS1_T)",none (point-to-point to FPGA ball),L3,66.53,1.81,397.0,6.5,19.8,51.1,0
+33,front,9.425,DM1_N/DBI1_N,DDR4_SODIMM_DM1_B,AE18,IO_L19P_T3L_N0_DBC_AD9P_65,65,T3L,DBC,P,not on socket (AE19: NC),none (point-to-point to FPGA ball),L3,69.4,3.03,414.0,5.0,15.2,51.1,0
+34,back,9.675,DQS1_T,DDR4_SODIMM_DQS1_T,AA18,IO_L22P_T3U_N6_DBC_AD0P_65,65,T3U,DBC,P,"32 (AB18, DQS1_C)",none (point-to-point to FPGA ball),L3,66.78,1.93,399.0,6.5,20.1,51.1,0
+35,front,9.925,VSS17,GND,,,,,,,,host GND plane,,,,,,,,
+36,back,10.175,VSS18,GND,,,,,,,,host GND plane,,,,,,,,
+37,front,10.425,DQ15,DDR4_SODIMM_DQ15,AB19,IO_L20P_T3L_N2_AD1P_65,65,T3L,,P,"38 (AC19, DQ14)",none (point-to-point to FPGA ball),L3,67.76,3.62,403.0,5.0,19.6,51.1,0
+38,back,10.675,DQ14,DDR4_SODIMM_DQ14,AC19,IO_L20N_T3L_N3_AD1N_65,65,T3L,,N,"37 (AB19, DQ15)",none (point-to-point to FPGA ball),L3,68.61,1.28,410.0,5.0,18.7,51.1,0
+39,front,10.925,VSS19,GND,,,,,,,,host GND plane,,,,,,,,
+40,back,11.175,VSS20,GND,,,,,,,,host GND plane,,,,,,,,
+41,front,11.425,DQ10,DDR4_SODIMM_DQ10,AD19,IO_L23N_T3U_N9_65,65,T3U,,N,"42 (AC18, DQ11)",none (point-to-point to FPGA ball),L3,71.17,1.44,425.0,5.0,13.0,51.1,0
+42,back,11.675,DQ11,DDR4_SODIMM_DQ11,AC18,IO_L23P_T3U_N8_I2C_SCLK_65,65,T3U,I2C_SCLK,P,"41 (AD19, DQ10)",none (point-to-point to FPGA ball),L3,70.77,2.12,422.0,5.0,18.5,51.1,0
+43,front,11.925,VSS21,GND,,,,,,,,host GND plane,,,,,,,,
+44,back,12.175,VSS22,GND,,,,,,,,host GND plane,,,,,,,,
+45,front,12.425,DQ21,DDR4_SODIMM_DQ21,AJ19,IO_L9P_T1L_N4_AD12P_65,65,T1L,,P,"46 (AK19, DQ20)",none (point-to-point to FPGA ball),L7,60.5,4.42,359.0,5.0,7.9,35.5,0
+46,back,12.675,DQ20,DDR4_SODIMM_DQ20,AK19,IO_L9N_T1L_N5_AD12N_65,65,T1L,,N,"45 (AJ19, DQ21)",none (point-to-point to FPGA ball),L7,60.33,1.42,360.0,5.0,7.0,35.5,0
+47,front,12.925,VSS23,GND,,,,,,,,host GND plane,,,,,,,,
+48,back,13.175,VSS24,GND,,,,,,,,host GND plane,,,,,,,,
+49,front,13.425,DQ17,DDR4_SODIMM_DQ17,AJ21,IO_L12P_T1U_N10_GC_65,65,T1U,GC,P,"50 (AJ22, DQ16)",none (point-to-point to FPGA ball),L7,64.54,2.09,385.0,5.0,8.3,35.5,0
+50,back,13.675,DQ16,DDR4_SODIMM_DQ16,AJ22,IO_L12N_T1U_N11_GC_65,65,T1U,GC,N,"49 (AJ21, DQ17)",none (point-to-point to FPGA ball),L7,65.09,2.1,388.0,5.0,9.8,35.5,0
+51,front,13.925,VSS25,GND,,,,,,,,host GND plane,,,,,,,,
+52,back,14.175,VSS26,GND,,,,,,,,host GND plane,,,,,,,,
+53,front,14.425,DQS2_C,DDR4_SODIMM_DQS2_C,AK23,IO_L10N_T1U_N7_QBC_AD4N_65,65,T1U,QBC,N,"55 (AK22, DQS2_T)",none (point-to-point to FPGA ball),L7,63.72,1.48,381.0,6.5,7.5,35.5,0
+54,back,14.675,DM2_N/DBI2_N,DDR4_SODIMM_DM2_B,AL20,IO_L7P_T1L_N0_QBC_AD13P_65,65,T1L,QBC,P,not on socket (AL21: NC),none (point-to-point to FPGA ball),L7,60.19,1.46,360.0,5.0,6.2,35.5,0
+55,front,14.925,DQS2_T,DDR4_SODIMM_DQS2_T,AK22,IO_L10P_T1U_N6_QBC_AD4P_65,65,T1U,QBC,P,"53 (AK23, DQS2_C)",none (point-to-point to FPGA ball),L7,63.72,1.58,381.0,6.5,7.4,35.5,0
+56,back,15.175,VSS27,GND,,,,,,,,host GND plane,,,,,,,,
+57,front,15.425,VSS28,GND,,,,,,,,host GND plane,,,,,,,,
+58,back,15.675,DQ22,DDR4_SODIMM_DQ22,AL23,IO_L8N_T1L_N3_AD5N_65,65,T1L,,N,"59 (AL22, DQ23)",none (point-to-point to FPGA ball),L7,62.71,1.55,375.0,5.0,6.3,35.5,0
+59,front,15.925,DQ23,DDR4_SODIMM_DQ23,AL22,IO_L8P_T1L_N2_AD5P_65,65,T1L,,P,"58 (AL23, DQ22)",none (point-to-point to FPGA ball),L7,64.41,2.06,384.0,5.0,6.4,35.5,0
+60,back,16.175,VSS29,GND,,,,,,,,host GND plane,,,,,,,,
+61,front,16.425,VSS30,GND,,,,,,,,host GND plane,,,,,,,,
+62,back,16.675,DQ18,DDR4_SODIMM_DQ18,AK20,IO_L11N_T1U_N9_GC_65,65,T1U,GC,N,"63 (AJ20, DQ19)",none (point-to-point to FPGA ball),L7,63.86,1.5,381.0,5.0,7.4,35.5,0
+63,front,16.925,DQ19,DDR4_SODIMM_DQ19,AJ20,IO_L11P_T1U_N8_GC_65,65,T1U,GC,P,"62 (AK20, DQ18)",none (point-to-point to FPGA ball),L7,63.62,1.53,380.0,5.0,8.1,35.5,0
+64,back,17.175,VSS31,GND,,,,,,,,host GND plane,,,,,,,,
+65,front,17.425,VSS32,GND,,,,,,,,host GND plane,,,,,,,,
+66,back,17.675,DQ28,DDR4_SODIMM_DQ28,AP22,IO_L3N_T0L_N5_AD15N_65,65,T0L,,N,"67 (AP21, DQ29)",none (point-to-point to FPGA ball),L5,62.55,1.46,374.0,5.0,2.9,43.2,0
+67,front,17.925,DQ29,DDR4_SODIMM_DQ29,AP21,IO_L3P_T0L_N4_AD15P_65,65,T0L,,P,"66 (AP22, DQ28)",none (point-to-point to FPGA ball),L5,61.96,1.68,370.0,5.0,2.7,43.2,0
+68,back,18.175,VSS33,GND,,,,,,,,host GND plane,,,,,,,,
+69,front,18.425,VSS34,GND,,,,,,,,host GND plane,,,,,,,,
+70,back,18.675,DQ24,DDR4_SODIMM_DQ24,AN23,IO_L6N_T0U_N11_AD6N_65,65,T0U,,N,"71 (AM23, DQ25)",none (point-to-point to FPGA ball),L5,60.59,2.95,361.0,5.0,5.6,43.2,0
+71,front,18.925,DQ25,DDR4_SODIMM_DQ25,AM23,IO_L6P_T0U_N10_AD6P_65,65,T0U,,P,"70 (AN23, DQ24)",none (point-to-point to FPGA ball),L5,60.81,1.67,363.0,5.0,0,43.2,0
+72,back,19.175,VSS35,GND,,,,,,,,host GND plane,,,,,,,,
+73,front,19.425,VSS36,GND,,,,,,,,host GND plane,,,,,,,,
+74,back,19.675,DQS3_C,DDR4_SODIMM_DQS3_C,AN21,IO_L4N_T0U_N7_DBC_AD7N_65,65,T0U,DBC,N,"76 (AM21, DQS3_T)",none (point-to-point to FPGA ball),L5,60.86,2.79,363.0,6.5,4.8,43.2,0
+75,front,19.925,DM3_N/DBI3_N,DDR4_SODIMM_DM3_B,AP19,IO_L1P_T0L_N0_DBC_65,65,T0L,DBC,P,not on socket (AP20: NC),none (point-to-point to FPGA ball),L5,62.94,2.56,375.0,5.0,2.1,43.2,0
+76,back,20.175,DQS3_T,DDR4_SODIMM_DQS3_T,AM21,IO_L4P_T0U_N6_DBC_AD7P_SMBALERT_65,65,T0U,DBC SMBALERT,P,"74 (AN21, DQS3_C)",none (point-to-point to FPGA ball),L5,60.84,1.53,363.0,6.5,5.0,43.2,0
+77,front,20.425,VSS37,GND,,,,,,,,host GND plane,,,,,,,,
+78,back,20.675,VSS38,GND,,,,,,,,host GND plane,,,,,,,,
+79,front,20.925,DQ30,DDR4_SODIMM_DQ30,AN19,IO_L2N_T0L_N3_65,65,T0L,,N,"80 (AM19, DQ31)",none (point-to-point to FPGA ball),L5,62.37,2.57,372.0,5.0,4.1,43.2,0
+80,back,21.175,DQ31,DDR4_SODIMM_DQ31,AM19,IO_L2P_T0L_N2_65,65,T0L,,P,"79 (AN19, DQ30)",none (point-to-point to FPGA ball),L5,61.45,2.77,366.0,5.0,5.0,43.2,0
+81,front,21.425,VSS39,GND,,,,,,,,host GND plane,,,,,,,,
+82,back,21.675,VSS40,GND,,,,,,,,host GND plane,,,,,,,,
+83,front,21.925,DQ26,DDR4_SODIMM_DQ26,AP23,IO_L5N_T0U_N9_AD14N_65,65,T0U,,N,"84 (AN22, DQ27)",none (point-to-point to FPGA ball),L5,59.95,2.51,357.0,5.0,4.6,43.2,0
+84,back,22.175,DQ27,DDR4_SODIMM_DQ27,AN22,IO_L5P_T0U_N8_AD14P_65,65,T0U,,P,"83 (AP23, DQ26)",none (point-to-point to FPGA ball),L5,61.48,2.27,367.0,5.0,3.9,43.2,0
+85,front,22.425,VSS41,GND,,,,,,,,host GND plane,,,,,,,,
+86,back,22.675,VSS42,GND,,,,,,,,host GND plane,,,,,,,,
+87,front,22.925,CB5/NC,NC,,,,,,,,unconnected on host,,,,,,,,
+88,back,23.175,CB4/NC,NC,,,,,,,,unconnected on host,,,,,,,,
+89,front,23.425,VSS43,GND,,,,,,,,host GND plane,,,,,,,,
+90,back,23.675,VSS44,GND,,,,,,,,host GND plane,,,,,,,,
+91,front,23.925,CB1/NC,NC,,,,,,,,unconnected on host,,,,,,,,
+92,back,24.175,CB0/NC,NC,,,,,,,,unconnected on host,,,,,,,,
+93,front,24.425,VSS45,GND,,,,,,,,host GND plane,,,,,,,,
+94,back,24.675,VSS46,GND,,,,,,,,host GND plane,,,,,,,,
+95,front,24.925,DQS8_C,DDR4_SODIMM_DQS8_C,,,,,,,,R1168 100R to GND (not to FPGA),,,,,,,,
+96,back,25.175,DM8_N/DBI8_N/NC,NC,,,,,,,,unconnected on host,,,,,,,,
+97,front,25.425,DQS8_T,NC,,,,,,,,unconnected on host,,,,,,,,
+98,back,25.675,VSS47,GND,,,,,,,,host GND plane,,,,,,,,
+99,front,25.925,VSS48,GND,,,,,,,,host GND plane,,,,,,,,
+100,back,26.175,CB6/NC,NC,,,,,,,,unconnected on host,,,,,,,,
+101,front,26.425,CB2/NC,NC,,,,,,,,unconnected on host,,,,,,,,
+102,back,26.675,VSS49,GND,,,,,,,,host GND plane,,,,,,,,
+103,front,26.925,VSS50,GND,,,,,,,,host GND plane,,,,,,,,
+104,back,27.175,CB7/NC,NC,,,,,,,,unconnected on host,,,,,,,,
+105,front,27.425,CB3/NC,NC,,,,,,,,unconnected on host,,,,,,,,
+106,back,27.675,VSS51,GND,,,,,,,,host GND plane,,,,,,,,
+107,front,27.925,VSS52,GND,,,,,,,,host GND plane,,,,,,,,
+108,back,28.175,RESET_N,DDR4_SODIMM_RESET_B,AB14,IO_L23N_T3U_N9_64,64,T3U,,N,"156 (AA14, CAS_B)",none (point-to-point to FPGA ball),L12,70.5,4.46,419.0,2.9,all,17.0,0
+109,front,28.425,CKE0,DDR4_SODIMM_CKE0,AD17,IO_L24P_T3U_N10_64,64,T3U,,P,"143 (AD16, PARITY)",R506 4.70k 1% pull-down to GND,L14,85.0,3.44,507.0,5.0,19.9,9.2,3.13
+110,back,28.675,CKE1,DDR4_SODIMM_CKE1,AM15,IO_L7N_T1L_N1_QBC_AD13N_64,64,T1L,QBC,N,"161 (AM16, ODT1)",R505 4.70k 1% pull-down to GND,L12,79.01,2.61,471.0,5.0,4.5,17.0,2.28
+111,front,28.925,VDD1,VCC1V2,,,,,,,,VCC1V2 1.2 V rail (U179 IRPS5401 SW C+D); socket decoupling 4x4.7uF + 10x0.1uF,,,,,,,,
+112,back,29.175,VDD2,VCC1V2,,,,,,,,VCC1V2 1.2 V rail (U179 IRPS5401 SW C+D); socket decoupling 4x4.7uF + 10x0.1uF,,,,,,,,
+113,front,29.425,BG1,DDR4_SODIMM_BG1,AB16,IO_L21P_T3L_N4_AD8P_64,64,T3L,,P,"116 (AB15, ALERT_B)",none (point-to-point to FPGA ball),L12,89.75,2.01,536.0,5.0,15.3,17.0,0
+114,back,29.675,ACT_N,DDR4_SODIMM_ACT_B,AC17,IO_L20P_T3L_N2_AD1P_64,64,T3L,,P,"115 (AC16, BG0)",none (point-to-point to FPGA ball),L12,88.9,5.62,529.0,5.0,11.7,17.0,0
+115,front,29.925,BG0,DDR4_SODIMM_BG0,AC16,IO_L20N_T3L_N3_AD1N_64,64,T3L,,N,"114 (AC17, ACT_B)",none (point-to-point to FPGA ball),L12,90.11,2.83,538.0,5.0,9.8,17.0,0
+116,back,30.175,ALERT_N,DDR4_SODIMM_ALERT_B,AB15,IO_L21N_T3L_N5_AD8N_64,64,T3L,,N,"113 (AB16, BG1)",none (point-to-point to FPGA ball),L12,89.98,5.03,535.0,5.0,12.6,17.0,0
+117,front,30.425,VDD3,VCC1V2,,,,,,,,VCC1V2 1.2 V rail (U179 IRPS5401 SW C+D); socket decoupling 4x4.7uF + 10x0.1uF,,,,,,,,
+118,back,30.675,VDD4,VCC1V2,,,,,,,,VCC1V2 1.2 V rail (U179 IRPS5401 SW C+D); socket decoupling 4x4.7uF + 10x0.1uF,,,,,,,,
+119,front,30.925,A12,DDR4_SODIMM_A12,AL18,IO_L9N_T1L_N5_AD12N_64,64,T1L,,N,"158 (AK18, A13)",none (point-to-point to FPGA ball),L14,82.37,3.42,491.0,5.0,19.8,9.2,0
+120,back,31.175,A11,DDR4_SODIMM_A11,AK15,IO_L10P_T1U_N6_QBC_AD4P_64,64,T1U,QBC,P,"146 (AK14, A10)",none (point-to-point to FPGA ball),L14,79.61,3.04,475.0,5.0,7.6,9.2,0
+121,front,31.425,A9,DDR4_SODIMM_A9,AJ17,IO_L11P_T1U_N8_GC_64,64,T1U,GC,P,"125 (AK17, A8)",none (point-to-point to FPGA ball),L14,82.48,1.38,493.0,5.0,13.9,9.2,0
+122,back,31.675,A7,DDR4_SODIMM_A7,AF17,IO_L15N_T2L_N5_AD11N_64,64,T2L,,N,not on socket (AE17: NC),none (point-to-point to FPGA ball),L12,83.51,1.5,499.0,5.0,0,17.0,0
+123,front,31.925,VDD5,VCC1V2,,,,,,,,VCC1V2 1.2 V rail (U179 IRPS5401 SW C+D); socket decoupling 4x4.7uF + 10x0.1uF,,,,,,,,
+124,back,32.175,VDD6,VCC1V2,,,,,,,,VCC1V2 1.2 V rail (U179 IRPS5401 SW C+D); socket decoupling 4x4.7uF + 10x0.1uF,,,,,,,,
+125,front,32.425,A8,DDR4_SODIMM_A8,AK17,IO_L11N_T1U_N9_GC_64,64,T1U,GC,N,"121 (AJ17, A9)",none (point-to-point to FPGA ball),L14,82.22,2.37,491.0,5.0,13.6,9.2,0
+126,back,32.675,A5,DDR4_SODIMM_A5,AJ14,IO_L16N_T2U_N7_QBC_AD3N_64,64,T2U,QBC,N,"127 (AH14, A6)",none (point-to-point to FPGA ball),L14,79.05,3.05,471.0,5.0,8.6,9.2,0
+127,front,32.925,A6,DDR4_SODIMM_A6,AH14,IO_L16P_T2U_N6_QBC_AD3P_64,64,T2U,QBC,P,"126 (AJ14, A5)",none (point-to-point to FPGA ball),L12,79.38,2.23,474.0,5.0,9.1,17.0,0
+128,back,33.175,A4,DDR4_SODIMM_A4,AF16,IO_L17P_T2U_N8_AD10P_64,64,T2U,,P,"131 (AF15, A3)",none (point-to-point to FPGA ball),L12,83.13,2.5,496.0,5.0,7.6,17.0,0
+129,front,33.425,VDD7,VCC1V2,,,,,,,,VCC1V2 1.2 V rail (U179 IRPS5401 SW C+D); socket decoupling 4x4.7uF + 10x0.1uF,,,,,,,,
+130,back,33.675,VDD8,VCC1V2,,,,,,,,VCC1V2 1.2 V rail (U179 IRPS5401 SW C+D); socket decoupling 4x4.7uF + 10x0.1uF,,,,,,,,
+131,front,33.925,A3,DDR4_SODIMM_A3,AF15,IO_L17N_T2U_N9_AD10N_64,64,T2U,,N,"128 (AF16, A4)",none (point-to-point to FPGA ball),L12,83.72,2.98,499.0,5.0,7.5,17.0,0
+132,back,34.175,A2,DDR4_SODIMM_A2,AG15,IO_L18P_T2U_N10_AD2P_64,64,T2U,,P,"133 (AG14, A1)",none (point-to-point to FPGA ball),L12,80.29,2.8,479.0,5.0,11.0,17.0,0.88
+133,front,34.425,A1,DDR4_SODIMM_A1,AG14,IO_L18N_T2U_N11_AD2N_64,64,T2U,,N,"132 (AG15, A2)",none (point-to-point to FPGA ball),L12,81.16,3.69,484.0,5.0,3.8,17.0,0
+134,back,34.675,EVENT_N/NF,DDR4_SODIMM_EVENT_B,,,,,,,,R243 4.70k pull-up to VCC1V2 (not to FPGA),,,,,,,,
+135,front,34.925,VDD9,VCC1V2,,,,,,,,VCC1V2 1.2 V rail (U179 IRPS5401 SW C+D); socket decoupling 4x4.7uF + 10x0.1uF,,,,,,,,
+136,back,35.175,VDD10,VCC1V2,,,,,,,,VCC1V2 1.2 V rail (U179 IRPS5401 SW C+D); socket decoupling 4x4.7uF + 10x0.1uF,,,,,,,,
+137,front,35.425,CK0_T,DDR4_SODIMM_CK0_T,AF18,IO_L14P_T2L_N2_GC_64,64,T2L,GC,P,"139 (AG18, CK0_C)",none (point-to-point to FPGA ball),L14,89.81,2.84,536.0,6.5,11.3,9.2,0
+138,back,35.675,CK1_T/NF,DDR4_SODIMM_CK1_T,AJ16,IO_L12P_T1U_N10_GC_64,64,T1U,GC,P,"140 (AJ15, CK1_C)",none (point-to-point to FPGA ball),L14,88.26,1.41,528.0,6.5,8.4,9.2,0
+139,front,35.925,CK0_C,DDR4_SODIMM_CK0_C,AG18,IO_L14N_T2L_N3_GC_64,64,T2L,GC,N,"137 (AF18, CK0_T)",none (point-to-point to FPGA ball),L14,89.71,1.62,536.0,6.5,11.0,9.2,0
+140,back,36.175,CK1_C/NF,DDR4_SODIMM_CK1_C,AJ15,IO_L12N_T1U_N11_GC_64,64,T1U,GC,N,"138 (AJ16, CK1_T)",none (point-to-point to FPGA ball),L14,87.65,1.76,524.0,6.5,8.2,9.2,0.88
+141,front,36.425,VDD11,VCC1V2,,,,,,,,VCC1V2 1.2 V rail (U179 IRPS5401 SW C+D); socket decoupling 4x4.7uF + 10x0.1uF,,,,,,,,
+142,back,36.675,VDD12,VCC1V2,,,,,,,,VCC1V2 1.2 V rail (U179 IRPS5401 SW C+D); socket decoupling 4x4.7uF + 10x0.1uF,,,,,,,,
+143,front,36.925,PARITY,DDR4_SODIMM_PARITY,AD16,IO_L24N_T3U_N11_64,64,T3U,,N,"109 (AD17, CKE0)",none (point-to-point to FPGA ball),L12,86.51,2.25,517.0,5.0,0,17.0,0
+144,back,37.175,A0,DDR4_SODIMM_A0,AH16,IO_T2U_N12_64,64,T2U,,single-ended (no pair),,none (point-to-point to FPGA ball),L14,83.42,1.81,498.0,5.0,14.1,9.2,0
+145,front,39.425,BA1,DDR4_SODIMM_BA1,AL16,IO_L8P_T1L_N2_AD5P_64,64,T1L,,P,"150 (AL15, BA0)",none (point-to-point to FPGA ball),L12,80.41,1.57,481.0,5.0,5.6,17.0,0
+146,back,39.675,A10/AP,DDR4_SODIMM_A10,AK14,IO_L10N_T1U_N7_QBC_AD4N_64,64,T1U,QBC,N,"120 (AK15, A11)",none (point-to-point to FPGA ball),L12,79.49,1.84,475.0,5.0,0,17.0,0
+147,front,39.925,VDD13,VCC1V2,,,,,,,,VCC1V2 1.2 V rail (U179 IRPS5401 SW C+D); socket decoupling 4x4.7uF + 10x0.1uF,,,,,,,,
+148,back,40.175,VDD14,VCC1V2,,,,,,,,VCC1V2 1.2 V rail (U179 IRPS5401 SW C+D); socket decoupling 4x4.7uF + 10x0.1uF,,,,,,,,
+149,front,40.425,CS0_N,DDR4_SODIMM_CS0_B,AA15,IO_L22N_T3U_N7_DBC_AD0N_64,64,T3U,DBC,N,"151 (AA16, WE_B)",none (point-to-point to FPGA ball),L14,89.85,1.7,537.0,5.0,24.5,9.2,0
+150,back,40.675,BA0,DDR4_SODIMM_BA0,AL15,IO_L8N_T1L_N3_AD5N_64,64,T1L,,N,"145 (AL16, BA1)",none (point-to-point to FPGA ball),L12,79.93,1.87,478.0,5.0,6.0,17.0,0
+151,front,40.925,WE_N/A14,DDR4_SODIMM_WE_B,AA16,IO_L22P_T3U_N6_DBC_AD0P_64,64,T3U,DBC,P,"149 (AA15, CS0_B)",none (point-to-point to FPGA ball),L14,89.33,4.97,532.0,5.0,26.4,9.2,0
+152,back,41.175,RAS_N/A16,DDR4_SODIMM_RAS_B,AD15,IO_L19P_T3L_N0_DBC_AD9P_64,64,T3L,DBC,P,"155 (AE15, ODT0)",none (point-to-point to FPGA ball),L14,87.42,1.35,523.0,5.0,19.8,9.2,0
+153,front,41.425,VDD15,VCC1V2,,,,,,,,VCC1V2 1.2 V rail (U179 IRPS5401 SW C+D); socket decoupling 4x4.7uF + 10x0.1uF,,,,,,,,
+154,back,41.675,VDD16,VCC1V2,,,,,,,,VCC1V2 1.2 V rail (U179 IRPS5401 SW C+D); socket decoupling 4x4.7uF + 10x0.1uF,,,,,,,,
+155,front,41.925,ODT0,DDR4_SODIMM_ODT0,AE15,IO_L19N_T3L_N1_DBC_AD9N_64,64,T3L,DBC,N,"152 (AD15, RAS_B)",none (point-to-point to FPGA ball),L14,86.55,2.25,517.0,5.0,17.9,9.2,0.89
+156,back,42.175,CAS_N/A15,DDR4_SODIMM_CAS_B,AA14,IO_L23P_T3U_N8_64,64,T3U,,P,"108 (AB14, RESET_B)",none (point-to-point to FPGA ball),L14,89.55,1.92,535.0,5.0,24.6,9.2,0
+157,front,42.425,CS1_N,DDR4_SODIMM_CS1_B,AL17,IO_T1U_N12_64,64,T1U,,single-ended (no pair),,none (point-to-point to FPGA ball),L12,83.57,2.92,499.0,5.0,6.7,17.0,0
+158,back,42.675,A13,DDR4_SODIMM_A13,AK18,IO_L9P_T1L_N4_AD12P_64,64,T1L,,P,"119 (AL18, A12)",none (point-to-point to FPGA ball),L12,82.16,2.03,491.0,5.0,7.5,17.0,0
+159,front,42.925,VDD17,VCC1V2,,,,,,,,VCC1V2 1.2 V rail (U179 IRPS5401 SW C+D); socket decoupling 4x4.7uF + 10x0.1uF,,,,,,,,
+160,back,43.175,VDD18,VCC1V2,,,,,,,,VCC1V2 1.2 V rail (U179 IRPS5401 SW C+D); socket decoupling 4x4.7uF + 10x0.1uF,,,,,,,,
+161,front,43.425,ODT1,DDR4_SODIMM_ODT1,AM16,IO_L7P_T1L_N0_QBC_AD13P_64,64,T1L,QBC,P,"110 (AM15, CKE1)",none (point-to-point to FPGA ball),L12,79.54,2.31,475.0,5.0,0,17.0,0
+162,back,43.675,C0/CS2_N/NC,DDR4_SODIMM_CS2_B,AN17,IO_L6P_T0U_N10_AD6P_64,64,T0U,,P,"165 (AN16, CS3_B)",none (point-to-point to FPGA ball),L7,60.22,2.53,359.0,5.0,4.4,35.5,0
+163,front,43.925,VDD19,VCC1V2,,,,,,,,VCC1V2 1.2 V rail (U179 IRPS5401 SW C+D); socket decoupling 4x4.7uF + 10x0.1uF,,,,,,,,
+164,back,44.175,VREFCA,VREF_SODIMM,,,,,,,,"0.6 V divider R108 100R (to VCC1V2) / R90 100R (to GND), C2 0.1uF to VCC1V2, C45 0.1uF to GND; not to FPGA",,,,,,,,
+165,front,44.425,C1/CS3_N/NC,DDR4_SODIMM_CS3_B,AN16,IO_L6N_T0U_N11_AD6N_64,64,T0U,,N,"162 (AN17, CS2_B)",none (point-to-point to FPGA ball),L14+L7,64.01,2.42,382.0,5.0,26.9,multi,0
+166,back,44.675,SA2,DDR4_SODIMM_SA2,,,,,,,,R38 4.70k to GND (not to FPGA),,,,,,,,
+167,front,44.925,VSS53,GND,,,,,,,,host GND plane,,,,,,,,
+168,back,45.175,VSS54,GND,,,,,,,,host GND plane,,,,,,,,
+169,front,45.425,DQ37,DDR4_SODIMM_DQ37,AE13,IO_L21P_T3L_N4_AD8P_66,66,T3L,,P,"170 (AF13, DQ36)",none (point-to-point to FPGA ball),L3,72.91,2.33,435.0,5.0,16.0,51.1,0
+170,back,45.675,DQ36,DDR4_SODIMM_DQ36,AF13,IO_L21N_T3L_N5_AD8N_66,66,T3L,,N,"169 (AE13, DQ37)",none (point-to-point to FPGA ball),L3,72.46,2.27,432.0,5.0,20.6,51.1,0
+171,front,45.925,VSS55,GND,,,,,,,,host GND plane,,,,,,,,
+172,back,46.175,VSS56,GND,,,,,,,,host GND plane,,,,,,,,
+173,front,46.425,DQ33,DDR4_SODIMM_DQ33,AB13,IO_L24P_T3U_N10_66,66,T3U,,P,"174 (AC13, DQ32)",none (point-to-point to FPGA ball),L3,73.63,2.03,440.0,5.0,18.3,51.1,0
+174,back,46.675,DQ32,DDR4_SODIMM_DQ32,AC13,IO_L24N_T3U_N11_66,66,T3U,,N,"173 (AB13, DQ33)",none (point-to-point to FPGA ball),L3,72.91,5.87,433.0,5.0,15.7,51.1,0
+175,front,46.925,VSS57,GND,,,,,,,,host GND plane,,,,,,,,
+176,back,47.175,VSS58,GND,,,,,,,,host GND plane,,,,,,,,
+177,front,47.425,DQS4_C,DDR4_SODIMM_DQS4_C,AD12,IO_L22N_T3U_N7_DBC_AD0N_66,66,T3U,DBC,N,"179 (AC12, DQS4_T)",none (point-to-point to FPGA ball),L3,73.01,1.8,436.0,6.5,13.5,51.1,0
+178,back,47.675,DM4_N/DBI4_N,DDR4_SODIMM_DM4_B,AF11,IO_L19P_T3L_N0_DBC_AD9P_66,66,T3L,DBC,P,not on socket (AF10: NC),none (point-to-point to FPGA ball),L3,73.13,2.68,436.0,5.0,21.2,51.1,0
+179,front,47.925,DQS4_T,DDR4_SODIMM_DQS4_T,AC12,IO_L22P_T3U_N6_DBC_AD0P_66,66,T3U,DBC,P,"177 (AD12, DQS4_C)",none (point-to-point to FPGA ball),L3,72.95,1.66,436.0,6.5,13.5,51.1,0
+180,back,48.175,VSS59,GND,,,,,,,,host GND plane,,,,,,,,
+181,front,48.425,VSS60,GND,,,,,,,,host GND plane,,,,,,,,
+182,back,48.675,DQ39,DDR4_SODIMM_DQ39,AD14,IO_L20P_T3L_N2_AD1P_66,66,T3L,,P,"183 (AE14, DQ38)",none (point-to-point to FPGA ball),L3,75.79,1.86,453.0,5.0,18.4,51.1,0
+183,front,48.925,DQ38,DDR4_SODIMM_DQ38,AE14,IO_L20N_T3L_N3_AD1N_66,66,T3L,,N,"182 (AD14, DQ39)",none (point-to-point to FPGA ball),L3,75.68,1.41,452.0,5.0,21.8,51.1,0
+184,back,49.175,VSS61,GND,,,,,,,,host GND plane,,,,,,,,
+185,front,49.425,VSS62,GND,,,,,,,,host GND plane,,,,,,,,
+186,back,49.675,DQ35,DDR4_SODIMM_DQ35,AE12,IO_L23P_T3U_N8_66,66,T3U,,P,"187 (AF12, DQ34)",none (point-to-point to FPGA ball),L3,71.91,4.03,428.0,5.0,14.9,51.1,0.88
+187,front,49.925,DQ34,DDR4_SODIMM_DQ34,AF12,IO_L23N_T3U_N9_66,66,T3U,,N,"186 (AE12, DQ35)",none (point-to-point to FPGA ball),L3,73.16,4.97,435.0,5.0,15.4,51.1,0
+188,back,50.175,VSS63,GND,,,,,,,,host GND plane,,,,,,,,
+189,front,50.425,VSS64,GND,,,,,,,,host GND plane,,,,,,,,
+190,back,50.675,DQ45,DDR4_SODIMM_DQ45,AG13,IO_L15P_T2L_N4_AD11P_66,66,T2L,,P,"191 (AH13, DQ44)",none (point-to-point to FPGA ball),L5,71.99,1.64,430.0,5.0,11.6,43.2,0
+191,front,50.925,DQ44,DDR4_SODIMM_DQ44,AH13,IO_L15N_T2L_N5_AD11N_66,66,T2L,,N,"190 (AG13, DQ45)",none (point-to-point to FPGA ball),L5,72.65,4.88,432.0,5.0,18.5,43.2,0
+192,back,51.175,VSS65,GND,,,,,,,,host GND plane,,,,,,,,
+193,front,51.425,VSS66,GND,,,,,,,,host GND plane,,,,,,,,
+194,back,51.675,DQ41,DDR4_SODIMM_DQ41,AF8,IO_L18P_T2U_N10_AD2P_66,66,T2U,,P,"195 (AG8, DQ40)",none (point-to-point to FPGA ball),L5,74.41,1.59,445.0,5.0,0,43.2,0
+195,front,51.925,DQ40,DDR4_SODIMM_DQ40,AG8,IO_L18N_T2U_N11_AD2N_66,66,T2U,,N,"194 (AF8, DQ41)",none (point-to-point to FPGA ball),L5,73.62,2.33,439.0,5.0,0,43.2,0
+196,back,52.175,VSS67,GND,,,,,,,,host GND plane,,,,,,,,
+197,front,52.425,VSS68,GND,,,,,,,,host GND plane,,,,,,,,
+198,back,52.675,DQS5_C,DDR4_SODIMM_DQS5_C,AH9,IO_L16N_T2U_N7_QBC_AD3N_66,66,T2U,QBC,N,"200 (AG9, DQS5_T)",none (point-to-point to FPGA ball),L5,73.9,3.93,440.0,6.5,9.9,43.2,0
+199,front,52.925,DM5_N/DBI5_N,DDR4_SODIMM_DM5_B,AH12,IO_L13P_T2L_N0_GC_QBC_66,66,T2L,GC QBC,P,not on socket (AJ12: NC),none (point-to-point to FPGA ball),L5,75.88,2.81,453.0,5.0,11.6,43.2,0
+200,back,53.175,DQS5_T,DDR4_SODIMM_DQS5_T,AG9,IO_L16P_T2U_N6_QBC_AD3P_66,66,T2U,QBC,P,"198 (AH9, DQS5_C)",none (point-to-point to FPGA ball),L5,74.15,4.03,441.0,6.5,10.0,43.2,0
+201,front,53.425,VSS69,GND,,,,,,,,host GND plane,,,,,,,,
+202,back,53.675,VSS70,GND,,,,,,,,host GND plane,,,,,,,,
+203,front,53.925,DQ46,DDR4_SODIMM_DQ46,AJ11,IO_L14N_T2L_N3_GC_66,66,T2L,GC,N,"204 (AH11, DQ47)",none (point-to-point to FPGA ball),L5,73.46,2.18,439.0,5.0,7.8,43.2,0
+204,back,54.175,DQ47,DDR4_SODIMM_DQ47,AH11,IO_L14P_T2L_N2_GC_66,66,T2L,GC,P,"203 (AJ11, DQ46)",none (point-to-point to FPGA ball),L5,73.28,1.7,438.0,5.0,8.8,43.2,0
+205,front,54.425,VSS71,GND,,,,,,,,host GND plane,,,,,,,,
+206,back,54.675,VSS72,GND,,,,,,,,host GND plane,,,,,,,,
+207,front,54.925,DQ42,DDR4_SODIMM_DQ42,AG10,IO_L17N_T2U_N9_AD10N_66,66,T2U,,N,"208 (AG11, DQ43)",none (point-to-point to FPGA ball),L5,75.79,2.5,452.0,5.0,4.8,43.2,0
+208,back,55.175,DQ43,DDR4_SODIMM_DQ43,AG11,IO_L17P_T2U_N8_AD10P_66,66,T2U,,P,"207 (AG10, DQ42)",none (point-to-point to FPGA ball),L5,75.26,1.66,450.0,5.0,14.7,43.2,0
+209,front,55.425,VSS73,GND,,,,,,,,host GND plane,,,,,,,,
+210,back,55.675,VSS74,GND,,,,,,,,host GND plane,,,,,,,,
+211,front,55.925,DQ52,DDR4_SODIMM_DQ52,AL12,IO_L9N_T1L_N5_AD12N_66,66,T1L,,N,"212 (AK12, DQ53)",none (point-to-point to FPGA ball),L7,71.86,2.58,429.0,5.0,14.7,35.5,0
+212,back,56.175,DQ53,DDR4_SODIMM_DQ53,AK12,IO_L9P_T1L_N4_AD12P_66,66,T1L,,P,"211 (AL12, DQ52)",none (point-to-point to FPGA ball),L7,72.47,1.35,433.0,5.0,7.0,35.5,0
+213,front,56.425,VSS75,GND,,,,,,,,host GND plane,,,,,,,,
+214,back,56.675,VSS76,GND,,,,,,,,host GND plane,,,,,,,,
+215,front,56.925,DQ49,DDR4_SODIMM_DQ49,AJ9,IO_L12P_T1U_N10_GC_66,66,T1U,GC,P,"216 (AK9, DQ48)",none (point-to-point to FPGA ball),L7,69.35,1.75,414.0,5.0,12.5,35.5,0
+216,back,57.175,DQ48,DDR4_SODIMM_DQ48,AK9,IO_L12N_T1U_N11_GC_66,66,T1U,GC,N,"215 (AJ9, DQ49)",none (point-to-point to FPGA ball),L7,69.42,3.12,414.0,5.0,6.7,35.5,0
+217,front,57.425,VSS77,GND,,,,,,,,host GND plane,,,,,,,,
+218,back,57.675,VSS78,GND,,,,,,,,host GND plane,,,,,,,,
+219,front,57.925,DQS6_C,DDR4_SODIMM_DQS6_C,AL8,IO_L10N_T1U_N7_QBC_AD4N_66,66,T1U,QBC,N,"221 (AK8, DQS6_T)",none (point-to-point to FPGA ball),L7,67.96,1.74,406.0,6.5,6.6,35.5,0
+220,back,58.175,DM6_N/DBI6_N,DDR4_SODIMM_DM6_B,AK13,IO_L7P_T1L_N0_QBC_AD13P_66,66,T1L,QBC,P,not on socket (AL13: NC),none (point-to-point to FPGA ball),L7,72.01,1.63,430.0,5.0,7.0,35.5,0
+221,front,58.425,DQS6_T,DDR4_SODIMM_DQS6_T,AK8,IO_L10P_T1U_N6_QBC_AD4P_66,66,T1U,QBC,P,"219 (AL8, DQS6_C)",none (point-to-point to FPGA ball),L7,68.08,1.85,407.0,6.5,6.9,35.5,0
+222,back,58.675,VSS79,GND,,,,,,,,host GND plane,,,,,,,,
+223,front,58.925,VSS80,GND,,,,,,,,host GND plane,,,,,,,,
+224,back,59.175,DQ54,DDR4_SODIMM_DQ54,AL10,IO_L8N_T1L_N3_AD5N_66,66,T1L,,N,"225 (AL11, DQ55)",none (point-to-point to FPGA ball),L7,70.21,2.39,419.0,5.0,5.8,35.5,0
+225,front,59.425,DQ55,DDR4_SODIMM_DQ55,AL11,IO_L8P_T1L_N2_AD5P_66,66,T1L,,P,"224 (AL10, DQ54)",none (point-to-point to FPGA ball),L7,70.97,1.39,424.0,5.0,12.3,35.5,0
+226,back,59.675,VSS81,GND,,,,,,,,host GND plane,,,,,,,,
+227,front,59.925,VSS82,GND,,,,,,,,host GND plane,,,,,,,,
+228,back,60.175,DQ50,DDR4_SODIMM_DQ50,AK10,IO_L11N_T1U_N9_GC_66,66,T1U,GC,N,"229 (AJ10, DQ51)",none (point-to-point to FPGA ball),L7,70.61,2.79,421.0,5.0,6.7,35.5,0
+229,front,60.425,DQ51,DDR4_SODIMM_DQ51,AJ10,IO_L11P_T1U_N8_GC_66,66,T1U,GC,P,"228 (AK10, DQ50)",none (point-to-point to FPGA ball),L7,71.35,2.13,426.0,5.0,14.6,35.5,0
+230,back,60.675,VSS83,GND,,,,,,,,host GND plane,,,,,,,,
+231,front,60.925,VSS84,GND,,,,,,,,host GND plane,,,,,,,,
+232,back,61.175,DQ60,DDR4_SODIMM_DQ60,AP11,IO_L3N_T0L_N5_AD15N_66,66,T0L,,N,"233 (AN11, DQ61)",none (point-to-point to FPGA ball),L3,85.47,3.36,510.0,5.0,2.9,51.1,0
+233,front,61.425,DQ61,DDR4_SODIMM_DQ61,AN11,IO_L3P_T0L_N4_AD15P_66,66,T0L,,P,"232 (AP11, DQ60)",none (point-to-point to FPGA ball),L3,85.99,1.88,514.0,5.0,14.0,51.1,0
+234,back,61.675,VSS85,GND,,,,,,,,host GND plane,,,,,,,,
+235,front,61.925,VSS86,GND,,,,,,,,host GND plane,,,,,,,,
+236,back,62.175,DQ57,DDR4_SODIMM_DQ57,AM9,IO_L6P_T0U_N10_AD6P_66,66,T0U,,P,"237 (AM8, DQ56)",none (point-to-point to FPGA ball),L3,84.48,1.74,505.0,5.0,4.8,51.1,0
+237,front,62.425,DQ56,DDR4_SODIMM_DQ56,AM8,IO_L6N_T0U_N11_AD6N_66,66,T0U,,N,"236 (AM9, DQ57)",none (point-to-point to FPGA ball),L3,82.8,2.16,494.0,5.0,5.2,51.1,0
+238,back,62.675,VSS87,GND,,,,,,,,host GND plane,,,,,,,,
+239,front,62.925,VSS88,GND,,,,,,,,host GND plane,,,,,,,,
+240,back,63.175,DQS7_C,DDR4_SODIMM_DQS7_C,AN8,IO_L4N_T0U_N7_DBC_AD7N_66,66,T0U,DBC,N,"242 (AN9, DQS7_T)",none (point-to-point to FPGA ball),L3,83.47,1.93,499.0,6.5,3.8,51.1,0
+241,front,63.425,DM7_N/DBI7_N,DDR4_SODIMM_DM7_B,AN12,IO_L1P_T0L_N0_DBC_66,66,T0L,DBC,P,not on socket (AP12: NC),none (point-to-point to FPGA ball),L3,85.91,1.28,514.0,5.0,16.2,51.1,0
+242,back,63.675,DQS7_T,DDR4_SODIMM_DQS7_T,AN9,IO_L4P_T0U_N6_DBC_AD7P_66,66,T0U,DBC,P,"240 (AN8, DQS7_C)",none (point-to-point to FPGA ball),L3,83.71,1.91,500.0,6.5,3.9,51.1,0
+243,front,63.925,VSS89,GND,,,,,,,,host GND plane,,,,,,,,
+244,back,64.175,VSS90,GND,,,,,,,,host GND plane,,,,,,,,
+245,front,64.425,DQ62,DDR4_SODIMM_DQ62,AP9,IO_L2N_T0L_N3_66,66,T0L,,N,"246 (AP10, DQ63)",none (point-to-point to FPGA ball),L3,84.15,2.62,502.0,5.0,2.8,51.1,0
+246,back,64.675,DQ63,DDR4_SODIMM_DQ63,AP10,IO_L2P_T0L_N2_66,66,T0L,,P,"245 (AP9, DQ62)",none (point-to-point to FPGA ball),L3,84.36,2.69,503.0,5.0,2.7,51.1,0
+247,front,64.925,VSS91,GND,,,,,,,,host GND plane,,,,,,,,
+248,back,65.175,VSS92,GND,,,,,,,,host GND plane,,,,,,,,
+249,front,65.425,DQ58,DDR4_SODIMM_DQ58,AM10,IO_L5N_T0U_N9_AD14N_66,66,T0U,,N,"250 (AM11, DQ59)",none (point-to-point to FPGA ball),L3,85.2,1.39,509.0,5.0,9.6,51.1,0
+250,back,65.675,DQ59,DDR4_SODIMM_DQ59,AM11,IO_L5P_T0U_N8_AD14P_66,66,T0U,,P,"249 (AM10, DQ58)",none (point-to-point to FPGA ball),L3,86.73,1.73,518.0,5.0,4.8,51.1,0
+251,front,65.925,VSS93,GND,,,,,,,,host GND plane,,,,,,,,
+252,back,66.175,VSS94,GND,,,,,,,,host GND plane,,,,,,,,
+253,front,66.425,SCL,DDR4_SODIMM_SCL,,,,,,,,U34 TCA9548A (0x74) ch7 SC7; R600 4.99k pull-up to UTIL_3V3,,,,,,,,
+254,back,66.675,SDA,DDR4_SODIMM_SDA,,,,,,,,U34 TCA9548A (0x74) ch7 SD7; R599 4.99k pull-up to UTIL_3V3,,,,,,,,
+255,front,66.925,VDDSPD,UTIL_3V3,,,,,,,,UTIL_3V3 3.3 V rail (U180 IRPS5401 phase A + power stage),,,,,,,,
+256,back,67.175,SA0,DDR4_SODIMM_SA0,,,,,,,,R32 4.70k to UTIL_3V3 (not to FPGA),,,,,,,,
+257,front,67.425,VPP1,UTIL_2V5,,,,,,,,UTIL_2V5 2.5 V rail (U172 IR3883),,,,,,,,
+258,back,67.675,VTT,PL_DDR4_VTT,,,,,,,,"U177 IR3897 0.60 V sink/source, 4x47uF; only load is this finger",,,,,,,,
+259,front,67.925,VPP2,UTIL_2V5,,,,,,,,UTIL_2V5 2.5 V rail (U172 IR3883),,,,,,,,
+260,back,68.175,SA1,DDR4_SODIMM_SA1,,,,,,,,R37 4.70k to GND (not to FPGA),,,,,,,,
