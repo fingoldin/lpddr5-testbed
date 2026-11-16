@@ -40,18 +40,18 @@
 [PASS] netlist  IPC-D-356: one record per via, per numbered pad, per fiducial and per non-plated hole of the board: 393 via records (393 vias), 844 pad records (844 numbered pads, 840 distinct pins), 6 fiducials, 2 non-plated holes
 [PASS] netlist  IPC-D-356: net names are in one-to-one relation with the nets of the board (names are cut to 14 characters): 225 nets
 [PASS] netlist  IPC-D-356: vias per net equal the board: GND 199, 35 nets with vias
-[PASS] position lpddr5-testbed-top.pos.csv: one row per placed part of that face (fingers, test pads and fiducials excluded): 59 rows, 59 parts on the board
-[PASS] position lpddr5-testbed-top.pos.csv: X / Y = footprint position in the card frame (origin lower-left corner seen from the front, y up, x not mirrored), side column 'top': 59 rows
-[PASS] position lpddr5-testbed-top.pos.csv: Rot = KiCad orientation; every numbered pad lands where 'counter-clockwise seen from the front' puts it: 59 parts
-[PASS] position lpddr5-testbed-bottom.pos.csv: one row per placed part of that face (fingers, test pads and fiducials excluded): 60 rows, 60 parts on the board
+[PASS] position lpddr5-testbed-top.pos.csv: one row per placed part of that face (fingers, test pads, fiducials and DNP parts excluded): 58 rows, 58 parts on the board
+[PASS] position lpddr5-testbed-top.pos.csv: X / Y = footprint position in the card frame (origin lower-left corner seen from the front, y up, x not mirrored), side column 'top': 58 rows
+[PASS] position lpddr5-testbed-top.pos.csv: Rot = KiCad orientation; every numbered pad lands where 'counter-clockwise seen from the front' puts it: 58 parts
+[PASS] position lpddr5-testbed-bottom.pos.csv: one row per placed part of that face (fingers, test pads, fiducials and DNP parts excluded): 60 rows, 60 parts on the board
 [PASS] position lpddr5-testbed-bottom.pos.csv: X / Y = footprint position in the card frame (origin lower-left corner seen from the front, y up, x not mirrored), side column 'bottom': 60 rows
 [PASS] position lpddr5-testbed-bottom.pos.csv: Rot = KiCad orientation; every numbered pad lands where 'counter-clockwise seen from the front, footprint mirrored top-to-bottom' puts it: 60 parts
 [PASS] position fiducial list = FID1 .. FID6 of the board, three per face: 6 rows
-[PASS] bom      BOM: every line agrees with the board (value, footprint, manufacturer, MPN, DNP, quantity, side counts): 27 lines
-[PASS] bom      BOM: every BOM part of the board is listed exactly once; nothing else is: 119 references in 27 lines; board 119 (59 top, 60 bottom)
-[PASS] bom      BOM: lines and quantities equal design/netlist.json (bom_summary): 27 lines, 119 parts, 0 DNP
-[PASS] bom      position files and BOM list the same parts: 119 / 119
+[PASS] bom      BOM: every line agrees with the board (value, footprint, manufacturer, MPN, DNP, quantity, side counts): 28 lines
+[PASS] bom      BOM: every BOM part of the board is listed exactly once; nothing else is: 119 references in 28 lines; board 119 (59 top, 60 bottom)
+[PASS] bom      BOM: lines and quantities equal design/netlist.json (bom_summary): 28 lines, 119 parts, 1 DNP
+[PASS] bom      position files list exactly the fitted BOM parts; the DNP parts are in the BOM on DNP lines of their own and in no position file: 118 fitted / 118 placed; DNP: ['R332']
 [PASS] bom      per-part list: one row per BOM part with its face: 119 rows
 [PASS] drc      kicad-cli DRC, all severities, with schematic parity: 0 errors, 0 unconnected, 0 parity issues; the only warnings are pair gaps where legs part: KiCad 10.0.6: 0 errors, 9 warnings (diff_pair_gap_out_of_range x 9), 0 unconnected, 0 parity issues
-[PASS] board    the board file is unchanged by the verification: ad7fe7fb7fc2977633b94e019d2710f937414a46d8ac770d9c7f32a83e93a95c
+[PASS] board    the board file is unchanged by the verification: fd5863eec97e7c07b665ff7d598775961a8ed86e63fe5c887b74f703cac9cccd
 56 checks, 0 failed

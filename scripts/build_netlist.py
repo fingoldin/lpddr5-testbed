@@ -34,6 +34,40 @@ OUT = os.path.join(ROOT, "design", "netlist.json")
 CARD_W, CARD_H = 69.6, 30.0
 FINGER_TOP = 2.70   # fingers are 0.35 x 2.55 mm pads from y = 0.15 to y = 2.70 (lib/README.md)
 
+# Divider values (series, shunt) in ohm.  The command, WCK and write-DQ values are separate decisions; keep them apart.
+# History: CA / CK / WCK 91 / 68 and DQ 240 / 150 as first built (every level <= 0.47 V); CA / CK 75 / 56 after the merged system
+# simulation; then, by the user's decision ("we should only deviate from antmicro if there's a very clear reason to do so";
+# "Design the dividers so they give 0.50 typical like the antmicro ones"), the 0.50 V set: CA / CK 75 / 75, WCK 75 / 75, write DQ
+# 110 / 100 (design/ref/system_simulation.json, dividers_0v50).  CS keeps 33 / 100.  All value-only on the same 0201 lands: no copper moved.
+CMD_DIV = (75, 75)
+WCK_DIV = (75, 75)
+DQ_DIV = (110, 100)          # the shunt is also the read load
+RDQS_LOAD = 150              # RDQS legs: load to GND at the read finger (not part of the 0.50 V decision)
+CS_DIV = (33, 100)
+# Read reference network VREF_RD: Ra (DAC_OUT to the bus), Rb (VDDQ to the bus), Rc (bus to GND), ohm.  Rc was 180 until the user's
+# decision ("Change the default-reference resistor R333 from 180R to 160R?" - "Do 1."): with the 100 ohm read load the eye centre is
+# 0.175 V, and 160 ohm puts the unprogrammed default there (value only, same 0402 land, no copper moved).
+REF_NET = (300, 300, 160)
+REF_RC_BEFORE = 180
+# Rb (R332, VDDQ to the bus) is NOT FITTED, by the user's decision ("Make the range of vref go down to 0" - "Drop the VDDQ pull-up"):
+# the pull-up was what gave the range its floor (0.129 V) and the bus its unprogrammed default (0.174 V).  The footprint and all its
+# copper stay; the part is DNP.  Without it VREF_RD = Vdac x Rc / (Ra + Rc), 0 V while the DAC output is Hi-Z.
+REF_RB_FITTED = False
+# FPGA driver HP SSTL12, SLEW FAST, OUTPUT_IMPEDANCE RDRV_40_40, NO DCI: output resistance fast / typ / slow from the Vivado 2026.1
+# IBIS model HP_SSTL12_F_OUT40 (max / typ / min corner).  The merged system simulation uses the same model.  Earlier revisions
+# assumed 26 / 36 / 44 ohm (a range that also covered a DCI driver, DS925 36 .. 44 ohm).
+RS_IBIS = (25.1, 29.3, 34.9)
+RS_DCI_MAX = 44.0            # DS925: 40 ohm DCI driver 36 .. 44 ohm
+RS_48_IBIS_SLOW = 42.0       # IBIS HP_SSTL12_F_OUT48, slow corner (30 / 35 / 42 ohm)
+RS_48_DCI_MAX = 52.8         # a 48 ohm DCI driver at +10 %
+CA_BOOT_FLOOR_V = 0.351      # boot: default VREF(CA) 0.256 V max + 0.095 V
+# Level policy of every divider-driven VDDQ-domain pin (CA, CK, WCK, write DQ), by the user's decision: about 0.50 V typical, as
+# on the Antmicro design.  It REPLACES the earlier rule "every level <= 0.47 V (JEDEC VDDQ minimum)".
+LEVEL_TYP_TARGET_V = 0.500   # nominal driver (IBIS typ), VCCO 1.20 V, nominal resistors
+LEVEL_TYP_TOL_V = 0.015      # the nominal level must be within this of the target
+LEVEL_FAST_MAX_V = 0.550     # stacked fast corner (IBIS max driver, VCCO 1.26 V, both resistors 1 % the bad way): VDDQ typ + 50 mV
+LEVEL_OLD_RULE_V = 0.470     # the rule that was given up (kept for the record and for the previous-value figures)
+
 # Electrical length of bends on In3 (scripts/tuning.py; DESIGN.md section 13).  Fitted to HFSS runs of the tuning
 # shapes used on this board (0.15 mm trace): a mitred vertex loses 0.020 mm per radian turned (k_mitre0 + k_mitre1 x w;
 # 0.017 on the 0.10 mm CK legs), an arc
@@ -169,11 +203,13 @@ RULES = OrderedDict(
                                     ">= 0.15 mm (the trace width), amplitude >= 0.30 mm (2 w). At least 0.33 mm (3 h) "
                                     "to the neighbouring trace everywhere. Shape per net: groups[CMD].tuning.per_net; "
                                     "delays are computed with rules.bend_model"),
-            note="one trace per 0.8 mm BGA column channel; gap 0.65 mm = 4.3 w, Kb 0.2 %; "
-                 "matches the divider back impedance 68 || (91 + 39) = 44.6 ohm; 0.125 mm to the via pads of the "
+            note="one trace per 0.8 mm BGA column channel; gap 0.65 mm = 4.3 w, Kb 0.2 %%; "
+                 "the divider back impedance is %d || (%d + 39) = %.1f ohm (the line was sized for the 44.6 ohm of the first "
+                 "91R / 68R and is frozen with the HFSS-calibrated layout; the 0.50 V set is matched to it again, "
+                 "analysis.system_simulation.dividers_0v50); 0.125 mm to the via pads of the "
                  "channel (0.40 mm pads on 0.8 mm), hence class clearance 0.12 on In3. On the outer layers the class "
                  "keeps 0.10 mm: the F.Cu escape of DQ7 passes row G (CA0 ball) in the "
-                 "0.29 mm row channel, 0.10 mm from the ball lands"),
+                 "0.29 mm row channel, 0.10 mm from the ball lands" % (CMD_DIV[1], CMD_DIV[0], CMD_DIV[1] * (CMD_DIV[0] + 39.0) / (CMD_DIV[1] + CMD_DIV[0] + 39.0))),
         CMD_CK=OrderedDict(
             nets=["CK_P", "CK_N"],
             layers={"In3.Cu": OrderedDict(width=0.10, gap=0.10, zdiff_ohm=84.6, zodd_ohm=42.3)},
@@ -188,7 +224,7 @@ RULES = OrderedDict(
                  "omitted): 0.45 mm to the via pads of columns 8 and 10. At row H the legs split around the H9 via "
                  "(0.15 mm to the pads of H8 / H9 / H10): CK_N goes on to J9, CK_P hooks back into H9 from the "
                  "north-east, which makes up the ball-row difference without a meander; "
-                 "per-leg back impedance 68 || (91 + 33) = 43.9 ohm"),
+                 "per-leg back impedance %d || (%d + 33) = %.1f ohm" % (CMD_DIV[1], CMD_DIV[0], CMD_DIV[1] * (CMD_DIV[0] + 33.0) / (CMD_DIV[1] + CMD_DIV[0] + 33.0))),
         HOST_SE=OrderedDict(
             nets=["CA0_F", "CA1_F", "CA2_F", "CA3_F", "CA4_F", "CA5_F", "CA6_F", "CS0_F", "CK_F_P", "CK_F_N",
                   "WCK_F_P", "WCK_F_N", "RESET_N_F"] + ["DQ%d_WF" % i for i in range(8)],
@@ -634,8 +670,8 @@ RSYM, CSYM = "lpddr5_testbed:R", "lpddr5_testbed:C"
 
 def yageo(size, val):
     """Yageo RC series thick film, 1 %."""
-    code = {"0R": "0R", "22R": "22R", "33R": "33R", "39R": "39R", "68R": "68R", "91R": "91R", "100R": "100R",
-            "150R": "150R", "180R": "180R", "240R": "240R", "300R": "300R", "1k": "1K", "1k37": "1K37",
+    code = {"0R": "0R", "22R": "22R", "33R": "33R", "39R": "39R", "75R": "75R", "100R": "100R", "110R": "110R",
+            "150R": "150R", "160R": "160R", "240R": "240R", "300R": "300R", "1k": "1K", "1k37": "1K37",
             "2k49": "2K49", "4k42": "4K42", "10k": "10K", "47k": "47K"}[val]
     if val == "0R":
         return "RC%sJR-070RL" % size
@@ -700,21 +736,21 @@ def build_parts(pm):
     # ---- command dividers (0201, one column per 0.8 mm BGA channel) -------------------------
     order = ["CA0", "CA1", "CA2", "CA3", "CA4", "CA5", "CA6", "CS0", "CK_P", "CK_N"]
     for k, n in enumerate(order):
-        rs, rp = ("33R", "100R") if n == "CS0" else ("91R", "68R")
+        rs, rp = ("33R", "100R") if n == "CS0" else ("%dR" % CMD_DIV[0], "%dR" % CMD_DIV[1])
         res("R%d" % (101 + k), rs, fnet(n), n, "command", "%s series (finger side of the divider)" % n, size="0201")
         res("R%d" % (111 + k), rp, n, "GND", "command", "%s shunt to GND at the divider node" % n, size="0201")
 
     # ---- write dividers (0201); the read branch starts on the divider node without a part ----
     for i in range(8):
-        res("R%d" % (201 + i), "240R", "DQ%d_WF" % i, "DQ%d" % i, "write", "DQ%d write series" % i, size="0201")
-        res("R%d" % (211 + i), "150R", "DQ%d" % i, "GND", "write", "DQ%d shunt (write divider and read load)" % i, size="0201")
+        res("R%d" % (201 + i), "%dR" % DQ_DIV[0], "DQ%d_WF" % i, "DQ%d" % i, "write", "DQ%d write series" % i, size="0201")
+        res("R%d" % (211 + i), "%dR" % DQ_DIV[1], "DQ%d" % i, "GND", "write", "DQ%d shunt (write divider and read load)" % i, size="0201")
     for k, n in enumerate(["WCK_P", "WCK_N"]):
-        res("R%d" % (209 + k), "91R", fnet(n), n, "write", "%s series" % n, size="0201")
-        res("R%d" % (219 + k), "68R", n, "GND", "write", "%s shunt to GND at the node via" % n, size="0201")
+        res("R%d" % (209 + k), "%dR" % WCK_DIV[0], fnet(n), n, "write", "%s series" % n, size="0201")
+        res("R%d" % (219 + k), "%dR" % WCK_DIV[1], n, "GND", "write", "%s shunt to GND at the node via" % n, size="0201")
 
     # ---- read strobe (true differential, no reference) --------------------------------------
     for k, n in enumerate(["RDQS_P", "RDQS_N"]):
-        res("R%d" % (309 + k), "150R", n, "GND", "read", "%s load to GND at the read finger (sets the read high level like the DQ shunt)" % n,
+        res("R%d" % (309 + k), "%dR" % RDQS_LOAD, n, "GND", "read", "%s load to GND at the read finger (sets the read high level like the DQ shunt)" % n,
             size="0201")
 
     # ---- read reference ---------------------------------------------------------------------
@@ -727,9 +763,10 @@ def build_parts(pm):
          "Package_SON:WSON-8-1EP_2x2mm_P0.5mm_EP0.9x1.6mm", "lpddr5_testbed:DAC53401DSG", "read",
          OrderedDict([(1, "GND"), (2, "SCL"), (3, "SDA"), (4, "DAC_CAP"), (5, "GND"), (6, "V3P3"), (7, "DAC_OUT"),
                       (8, "DAC_OUT"), (9, "GND")]))
-    res("R331", "300R", "DAC_OUT", "VREF_RD", "read", "DAC output to the reference bus (Ra)")
-    res("R332", "300R", "VDDQ", "VREF_RD", "read", "VDDQ-derived power-up default, upper leg (Rb)")
-    res("R333", "180R", "VREF_RD", "GND", "read", "reference bus to GND (Rc)")
+    res("R331", "%dR" % REF_NET[0], "DAC_OUT", "VREF_RD", "read", "DAC output to the reference bus (Ra)")
+    res("R332", "%dR" % REF_NET[1], "VDDQ", "VREF_RD", "read", "VDDQ-derived power-up default, upper leg (Rb)",     # description unchanged: the part is not fitted (DNP)
+        dnp=not REF_RB_FITTED)
+    res("R333", "%dR" % REF_NET[2], "VREF_RD", "GND", "read", "reference bus to GND (Rc)")
     cap("C331", "1u", "VREF_RD", "GND", "read", "reference bus bulk")
     cap("C332", "100n", "V3P3", "GND", "read", "DAC VDD decoupling")
     cap("C333", "1u", "DAC_CAP", "GND", "read", "DAC internal LDO capacitor (0.5..15 uF)")
@@ -1118,7 +1155,7 @@ def dac_links(support):
     add("VREF_RD", "F.Cu", wv, [pd("C331", "1"), (xa, Y_VREF_RAIL)], "C331 (1 uF) to the rail")
     add("VREF_RD", "F.Cu", wv, [(xa, Y_VREF_RAIL), pd("R332", "2")], "rail to R332 (300 ohm to VDDQ)")
     add("VREF_RD", "F.Cu", wv, [pd("R331", "2"), (xb, Y_VREF_RAIL)], "R331 (300 ohm from the DAC) to the rail")
-    add("VREF_RD", "F.Cu", wv, [(xb, Y_VREF_RAIL), pd("R333", "1")], "rail to R333 (180 ohm to GND)")
+    add("VREF_RD", "F.Cu", wv, [(xb, Y_VREF_RAIL), pd("R333", "1")], "rail to R333 (Rc, to GND)")
     for ref, pin in (("R333", "2"), ("C331", "2")):
         vx, vy = DAC_GND_VIAS[ref]
         px, py = pd(ref, pin)
@@ -1851,7 +1888,7 @@ def regions():
     add("write_field_wck", ["F.Cu", "B.Cu"], (34.2, 36.85), (4.0, 8.2),
         "WCK columns: R209, R210 (series), node vias, R219, R220 (shunts), their GND vias; B.Cu: the last 2 mm of the pair")
     add("write_field_dq", ["F.Cu", "B.Cu"], (36.85, 44.3), (4.0, 6.6),
-        "DQ columns: R201..R208 (240R, on the finger's face) and R211..R218 (150R, back to back on the other face), the eight "
+        "DQ columns: R201..R208 (series, on the finger's face) and R211..R218 (shunt, back to back on the other face), the eight "
         "node vias (the T) at y = %.2f, the shunt GND vias south of the row, three return vias" % DATA.Y_NODE)
     add("dq_teeth_f_cu", ["F.Cu"], (36.85, 44.3), (6.6, DATA.Y_FAN_END), "the eight teeth of the comb, straight down the column axes")
     add("dq_lines_f_cu", ["F.Cu"], (26.925, 44.3), (DATA.Y_FAN_END, 16.6), "the eight DQ lines at 0.55 mm pitch and their one parallel 45-degree fan")
@@ -2299,7 +2336,7 @@ def div(vcco, rs, r1, r2):
     return vcco * r2 / (rs + r1 + r2)
 
 
-def corners(r1, r2, rs_set=(26.0, 36.0, 44.0), v_set=(1.14, 1.20, 1.26), tol=0.01):
+def corners(r1, r2, rs_set=RS_IBIS, v_set=(1.14, 1.20, 1.26), tol=0.01):
     lo = div(v_set[0], rs_set[2], r1 * (1 + tol), r2 * (1 - tol))
     nom = div(v_set[1], rs_set[1], r1, r2)
     hi = div(v_set[2], rs_set[0], r1 * (1 - tol), r2 * (1 + tol))
@@ -2313,7 +2350,7 @@ def par(a, b):
     return a * b / (a + b)
 
 
-def first_incident(r1, r2, z_card, z_host=39.0, rs_set=(26.0, 36.0, 44.0), v_set=(1.14, 1.20, 1.26)):
+def first_incident(r1, r2, z_card, z_host=39.0, rs_set=RS_IBIS, v_set=(1.14, 1.20, 1.26)):
     """Level of the first wave at the open ball: launched wave VCCO x Zhost / (Rs + Zhost), transmitted through
     the divider into the card line, doubled at the open end."""
     zp = par(r2, z_card)
@@ -2324,44 +2361,185 @@ def first_incident(r1, r2, z_card, z_host=39.0, rs_set=(26.0, 36.0, 44.0), v_set
 VDDQ_SET = (0.4996 * (1 - 0.024), 0.4996, 0.4996 * (1 + 0.024))
 
 
+def level_policy(r1, r2):
+    """A divider-driven VDDQ-domain level against the level policy (LEVEL_*) and against VDDQ.  Positive margin = inside."""
+    nom = div(1.20, RS_IBIS[1], r1, r2)
+    fast = div(1.26, RS_IBIS[0], r1 * 0.99, r2 * 1.01)
+    fast_nom_r = div(1.26, RS_IBIS[0], r1, r2)
+    slow = div(1.14, RS_IBIS[2], r1 * 1.01, r2 * 0.99)
+    return OrderedDict(
+        typ_target_v=LEVEL_TYP_TARGET_V, typ_tolerance_mV=round(LEVEL_TYP_TOL_V * 1e3, 1),
+        typ_minus_target_mV=round((nom - LEVEL_TYP_TARGET_V) * 1e3, 1),
+        fast_corner_max_v=LEVEL_FAST_MAX_V,
+        fast_corner_v=round(fast, 4),
+        fast_corner_margin_to_max_mV=round((LEVEL_FAST_MAX_V - fast) * 1e3, 1),
+        fast_corner_above_vddq_mV=OrderedDict(card_min=round((fast - VDDQ_SET[0]) * 1e3, 1), typ=round((fast - VDDQ_SET[1]) * 1e3, 1),
+                                              card_max=round((fast - VDDQ_SET[2]) * 1e3, 1)),
+        fast_driver_nominal_resistors_v=round(fast_nom_r, 4),
+        typ_above_vddq_mV=OrderedDict(card_min=round((nom - VDDQ_SET[0]) * 1e3, 1), typ=round((nom - VDDQ_SET[1]) * 1e3, 1)),
+        slow_corner_below_vddq_card_min_mV=round((VDDQ_SET[0] - slow) * 1e3, 1),
+        margin_to_jedec_vddq_max_0p57_v_mV=round((0.570 - fast) * 1e3, 1))
+
+
 def build_analysis():
     a = OrderedDict()
-    a["assumptions"] = ("FPGA driver 26 / 36 / 44 ohm, VCCO 1.14 / 1.20 / 1.26 V, resistors 1 %. The IBIS model "
-                        "HP_SSTL12_F_OUT40 gives 25.1 / 29.3 / 34.9 ohm and DS925 36..44 ohm with DCI; 26..44 ohm covers "
-                        "both to within 1 ohm. The design target for every VDDQ-domain level is 0.47 V (JEDEC VDDQ "
-                        "minimum); the hard limit is the card's own VDDQ minimum, 0.488 V")
+    sim = json.load(open(os.path.join(REF, "system_simulation.json")), object_pairs_hook=OrderedDict)
+    sim50 = sim["dividers_0v50"]
+    a["assumptions"] = ("FPGA driver %s ohm (slow / typ / fast), VCCO 1.14 / 1.20 / 1.26 V, resistors 1 %%. The driver figures are the "
+                        "Vivado 2026.1 IBIS model HP_SSTL12_F_OUT40 (SSTL12, SLEW FAST, RDRV_40_40, no DCI), the model the merged system "
+                        "simulation uses; earlier revisions assumed 26 / 36 / 44 ohm, which also covered a DCI driver (DS925 36 .. 44 "
+                        "ohm). Level policy of every divider-driven VDDQ-domain pin (CA, CK, WCK, write DQ), by the user's decision: "
+                        "%.2f V typical +/-%.0f mV as on the Antmicro design, at most %.2f V in the stacked fast corner. This replaces the "
+                        "earlier rule (every level <= 0.47 V, the JEDEC VDDQ minimum): in the fast corner the lines rest above the "
+                        "card's VDDQ (%.3f .. %.3f V)"
+                        % (" / ".join("%g" % r for r in reversed(RS_IBIS)), LEVEL_TYP_TARGET_V, LEVEL_TYP_TOL_V * 1e3, LEVEL_FAST_MAX_V,
+                           VDDQ_SET[0], VDDQ_SET[2]))
+    a["level_policy"] = OrderedDict(
+        decision="user: 'In general, we should only deviate from antmicro if there's a very clear reason to do so.' and 'Design the "
+                 "dividers so they give 0.50 typical like the antmicro ones'",
+        applies_to="CA0-6, CK_t / CK_c, WCK_t / WCK_c, write DQ0-7. NOT CS0 (VDD2H domain: a 0.50 V CS fails its own mask against the "
+                   "fixed Vref_CS = VDD2H / 3 and sits under the 0.55 V power-down-exit level), NOT RESET_n",
+        typ_target_v=LEVEL_TYP_TARGET_V, typ_tolerance_mV=round(LEVEL_TYP_TOL_V * 1e3, 1), fast_corner_max_v=LEVEL_FAST_MAX_V,
+        fast_corner_definition="IBIS max driver %g ohm, VCCO 1.26 V, series resistor -1 %%, shunt +1 %%" % RS_IBIS[0],
+        boot_floor_v=CA_BOOT_FLOOR_V,
+        replaces="every divider-driven level <= %.2f V (JEDEC VDDQ minimum), hard limit the card's VDDQ minimum %.4f V" % (LEVEL_OLD_RULE_V, VDDQ_SET[0]),
+        vddq_card_v=[round(v, 4) for v in VDDQ_SET],
+        cost="in the fast corner every one of these lines RESTS above VDDQ for as long as it is high (computed here: stacked corner, "
+             "1 %% resistors; simulated with nominal resistors: analysis.system_simulation.dividers_0v50.levels_against_vddq). JESD209-5C "
+             "Table 416 allows 0.3 V and 0.1 V-ns of overshoot beyond VDDQ: the amplitude stays inside everywhere, the transient-only "
+             "area too, but read literally the area allowance is exceeded in the fast corner because of the standing level. The input "
+             "limits of the SK hynix part beyond JEDEC are not known: to be watched at bring-up",
+        simulated_dc_high_slow_typ_fast_v=sim50["static_high_at_the_dram_pin_v"])
+    a["driver"] = OrderedDict(iostandard="SSTL12 / DIFF_SSTL12", slew="FAST", output_impedance="RDRV_40_40", dci=False,
+                              ibis_model="HP_SSTL12_F_OUT40 (Vivado 2026.1)", r_fast_typ_slow_ohm=list(RS_IBIS),
+                              enforced_by="scripts/gen_gateware.py (constraint generator and --check)")
     d = OrderedDict()
-    fi = first_incident(91, 68, 45.6)
-    d["CA0-6"] = OrderedDict(series=91, shunt=68, **corners(91, 68), back_impedance_ohm=round(par(68, 91 + 39), 1),
-                             ibis_fastest_corner_25p1_ohm_v=round(div(1.26, 25.1, 91 * 0.99, 68 * 1.01), 4),
+    cr1, cr2 = CMD_DIV
+    cc = corners(cr1, cr2)
+    fi = first_incident(cr1, cr2, 45.6)
+    vddq_min = round(VDDQ_SET[0], 4)
+
+    def slow(rs):
+        return round(div(1.14, rs, cr1 * 1.01, cr2 * 0.99), 4)
+
+    def nomv(rs):
+        return round(div(1.20, rs, cr1, cr2), 4)
+    drivers = [("RDRV_40_40 no DCI (IBIS %g ohm): the supported driver" % RS_IBIS[2], "RDRV_40_40 no DCI", RS_IBIS[2], RS_IBIS[1]),
+               ("40 ohm DCI at the DS925 limit (%g ohm)" % RS_DCI_MAX, "40 ohm DCI", RS_DCI_MAX, 40.0),
+               ("RDRV_48_48 no DCI (IBIS %g ohm)" % RS_48_IBIS_SLOW, "RDRV_48_48 no DCI", RS_48_IBIS_SLOW, 35.0),
+               ("48 ohm DCI at +10 %% (%g ohm)" % RS_48_DCI_MAX, "48 ohm DCI", RS_48_DCI_MAX, 48.0)]
+    worst_other = min(slow(q[2]) for q in drivers[1:])
+    other = OrderedDict(
+        rule="SSTL12 / DIFF_SSTL12, SLEW FAST, RDRV_40_40 without DCI is the only supported and enforced command driver: every "
+             "simulated margin and the 0.50 V level were obtained with it. The earlier prohibition 'MUST NOT be combined with a DCI "
+             "driver' (75R / 56R: boot-floor margin 8.7 mV with a 40 ohm DCI driver, negative with 48 ohm) is DROPPED as a level "
+             "argument: with %dR / %dR the slowest of these drivers still leaves %.1f mV over the boot floor. A weaker driver lowers "
+             "the level under the 0.50 V target (nominal values below) and was not simulated"
+             % (cr1, cr2, (worst_other - CA_BOOT_FLOOR_V) * 1e3),
+        boot_floor_v=CA_BOOT_FLOOR_V,
+        slow_corner_high_v=OrderedDict((q[0], slow(q[2])) for q in drivers),
+        margin_to_boot_floor_mV=OrderedDict((q[1], round((slow(q[2]) - CA_BOOT_FLOOR_V) * 1e3, 1)) for q in drivers),
+        nominal_high_v=OrderedDict((q[1], nomv(q[3])) for q in drivers),
+        nominal_driver_ohm=OrderedDict((q[1], q[3]) for q in drivers))
+    old = corners(75, 56)
+    d["CA0-6"] = OrderedDict(series=cr1, shunt=cr2, **cc, back_impedance_ohm=round(par(cr2, cr1 + 39), 1),
+                             level_policy=level_policy(cr1, cr2),
+                             simulated_dc_high_slow_typ_fast_v=sim50["static_high_at_the_dram_pin_v"]["CA_CK"],
+                             margin_to_boot_floor_mV=round((slow(RS_IBIS[2]) - CA_BOOT_FLOOR_V) * 1e3, 1),
+                             other_drivers=other,
+                             vref_ca=OrderedDict(wanted_slow_typ_fast_mV=sim50["commands"]["vref_ca_needed_slow_typ_fast_mV"],
+                                                 jedec_range_mV=[75, 350], mr12_start_code="0x4A", mr12_start_percent=47.0,
+                                                 mr12_start_v=round(0.47 * VDDQ_SET[1], 4),
+                                                 mr12_code_meaning="OP[6:0] = 1001010b: 47.0 % of VDDQ (JESD209-5C Table 87)",
+                                                 boot_default="50 % = 0.25 V: now close to the wanted value (it was 0.04 V too high for the "
+                                                              "0.42 V level of the earlier dividers)"),
                              first_incident_at_open_ball_v=fi,
-                             first_incident_over_dc=[round(fi[0] / corners(91, 68)["v_min"], 2), round(fi[2] / corners(91, 68)["v_max"], 2)],
-                             overshoot="fast corner: 0.525 V plateau for one host round trip (about 1.1 ns), 0.56 V peak "
-                                       "at the die = 43..76 mV above the card's VDDQ, 0.02..0.04 V-ns: inside JESD209-5C "
-                                       "Table 416 (0.3 V, 0.1 V-ns)",
-                             limit="DC level <= 0.47 V target, <= 0.488 V (card VDDQ min) hard; >= 0.351 V at boot "
-                                   "(default VREF(CA) 0.256 V max + 0.095 V)")
-    d["CK_P/CK_N (per leg)"] = OrderedDict(series=91, shunt=68, **corners(91, 68),
-                                           back_impedance_ohm=round(par(68, 91 + 33), 1),
-                                           limit="differential >= 0.35 V p-p; each leg within VSS..VDDQ")
-    d["CS0"] = OrderedDict(series=33, shunt=100, **corners(33, 100), back_impedance_ohm=round(par(100, 33 + 39), 1),
-                           limit="0.55 V (ViHPD) .. VDD2H + 0.2 V; Vref_CS = VDD2H / 3 = 0.35 V")
-    odt = [round(div(1.14, 44, 91.91, par(67.32, 36.0)), 3), round(div(1.20, 36, 91, par(68, 40)), 3)]
-    d["WCK_P/WCK_N (per leg)"] = OrderedDict(series=91, shunt=68, **corners(91, 68),
-                                             back_impedance_ohm=round(par(68, 91 + 33), 1),
+                             first_incident_over_dc=[round(fi[0] / cc["v_min"], 2), round(fi[2] / cc["v_max"], 2)],
+                             overshoot="fast corner: first incident %.3f V for one host round trip (about 1.1 ns), %.0f mV above the "
+                                       "card's VDDQ minimum (%.4f V): inside the amplitude allowance of JESD209-5C Table 416 (0.3 V). The "
+                                       "merged system simulation of this set has at most %s V / %s V at the pin (fast corner); the "
+                                       "overshoot AREA is the open point (analysis.level_policy.cost)"
+                                       % (fi[2], (fi[2] - vddq_min) * 1e3, vddq_min, sim50["ca_peak_fast_v"][0], sim50["ca_peak_fast_v"][1]),
+                             previous_values="91R / 68R as first built, 75R / 56R after the merged system simulation (%s V, back impedance "
+                                             "%.1f ohm, under the old 0.47 V rule); the shunt went from 56R to %dR for the 0.50 V level"
+                                             % (" / ".join("%.3f" % old[k] for k in ("v_min", "v_nom", "v_max")), par(56, 75 + 39), cr2),
+                             limit="DC level %.2f V +/-%.0f mV typical, <= %.2f V in the stacked fast corner (above the card's VDDQ: "
+                                   "deliberate, analysis.level_policy); >= 0.351 V at boot (default VREF(CA) 0.256 V max + 0.095 V)"
+                                   % (LEVEL_TYP_TARGET_V, LEVEL_TYP_TOL_V * 1e3, LEVEL_FAST_MAX_V))
+    d["CK_P/CK_N (per leg)"] = OrderedDict(series=cr1, shunt=cr2, **cc,
+                                           back_impedance_ohm=round(par(cr2, cr1 + 33), 1),
+                                           level_policy=level_policy(cr1, cr2),
+                                           limit="differential >= 0.35 V p-p; each leg %.2f V +/-%.0f mV typical, <= %.2f V in the stacked "
+                                                 "fast corner" % (LEVEL_TYP_TARGET_V, LEVEL_TYP_TOL_V * 1e3, LEVEL_FAST_MAX_V))
+    d["CS0"] = OrderedDict(series=CS_DIV[0], shunt=CS_DIV[1], **corners(*CS_DIV), back_impedance_ohm=round(par(CS_DIV[1], CS_DIV[0] + 39), 1),
+                           limit="0.55 V (ViHPD) .. VDD2H + 0.2 V; Vref_CS = VDD2H / 3 = 0.35 V",
+                           not_changed="CS keeps 33R / 100R: simulated as 75R / 75R it has %s V at the pin (slow / typ / fast), under the "
+                                       "0.55 V power-down-exit level in every corner, and fails its own mask (%s mV typ / slow against %s mV "
+                                       "as built); its 0.73 V swing costs the CA lines nothing measurable (worst CA margin +72 mV typ with "
+                                       "either CS divider): the coupling is made before the divider, where CS swings 1.2 V in both cases"
+                                       % (" / ".join("%.3f" % v for v in sim50["cs"]["level_75r_75r_v"]),
+                                          " / ".join("%+d" % v for v in sim50["cs"]["own_margin_75r_75r_typ_slow_mV"]),
+                                          " / ".join("%+d" % v for v in sim50["cs"]["own_margin_33r_100r_typ_slow_mV"])))
+    wr1, wr2 = WCK_DIV
+    wc = corners(wr1, wr2)
+    odt = [round(div(1.14, RS_IBIS[2], wr1 * 1.01, par(wr2 * 0.99, 36.0)), 3), round(div(1.20, RS_IBIS[1], wr1, par(wr2, 40)), 3)]
+    d["WCK_P/WCK_N (per leg)"] = OrderedDict(series=wr1, shunt=wr2, **wc,
+                                             back_impedance_ohm=round(par(wr2, wr1 + 33), 1),
+                                             level_policy=level_policy(wr1, wr2),
+                                             simulated_dc_high_slow_typ_fast_v=sim50["static_high_at_the_dram_pin_v"]["WCK"],
+                                             level_note="changed from 91R / 68R with the 0.50 V set (both resistors of both legs)",
                                              with_40ohm_wck_odt_v=odt,
                                              with_40ohm_wck_odt_differential_vpp=[round(2 * odt[0], 3), round(2 * odt[1], 3)],
-                                             with_40ohm_wck_odt_note="worst case with the ODT at 36 ohm (-10 %); the "
-                                                                     "differential slew is then about 2 V/ns, at the JEDEC minimum: "
-                                                                     "command-bus training with forced WCK ODT is marginal in the "
-                                                                     "slowest driver corner and is not needed for this card",
-                                             limit="differential >= 0.30 V p-p, also with the 40 ohm WCK ODT forced during CBT")
-    d["DQ0-7 write"] = OrderedDict(series=240, shunt=150, **corners(240, 150),
-                                   back_impedance_ohm=round(par(150, 240 + 39), 1),
-                                   ibis_fastest_corner_25p1_ohm_v=round(div(1.26, 25.1, 240 * 0.99, 150 * 1.01), 4),
-                                   limit="<= 0.47 V (VDDQ min); VREF(DQ) programmed to half the level (<= 0.225 V)")
+                                             with_40ohm_wck_odt_note="worst case with the ODT at 36 ohm (-10 %); command-bus training "
+                                                                     "with forced WCK ODT is not needed for this card",
+                                             limit="differential >= 0.30 V p-p, also with the 40 ohm WCK ODT forced during CBT; each leg "
+                                                   "%.2f V +/-%.0f mV typical, <= %.2f V in the stacked fast corner"
+                                                   % (LEVEL_TYP_TARGET_V, LEVEL_TYP_TOL_V * 1e3, LEVEL_FAST_MAX_V))
+    qr1, qr2 = DQ_DIV
+    d["DQ0-7 write"] = OrderedDict(series=qr1, shunt=qr2, **corners(qr1, qr2),
+                                   back_impedance_ohm=round(par(qr2, qr1 + 39), 1),
+                                   level_policy=level_policy(qr1, qr2),
+                                   simulated_dc_high_slow_typ_fast_v=sim50["static_high_at_the_dram_pin_v"]["write_DQ"],
+                                   previous_values="240R / 150R (%s V) until the 0.50 V set" % " / ".join(
+                                       "%.3f" % corners(240, 150)[k] for k in ("v_min", "v_nom", "v_max")),
+                                   vref_dq=OrderedDict(wanted_mV=sim50["writes"]["vref_dq_wanted_mV"], simulated_at_mV=225,
+                                                       mr14_start_code="0x46", mr14_start_percent=45.0,
+                                                       mr14_start_v=round(0.45 * VDDQ_SET[1], 4),
+                                                       mr14_code_meaning="OP[6:0] = 1000110b: 45.0 % of VDDQ (JESD209-5C Table 91: 10.0 % + "
+                                                                         "0.5 % per step)",
+                                                       margin_at_225_mV=sim50["writes"]["dq_margin_at_wck_crossing_typ_slow_fast_mV"],
+                                                       mr14_code_for_the_eye_centre="0x4F (49.5 %% = %.4f V)" % (0.495 * VDDQ_SET[1]),
+                                                       note="the write eye is centred at about 248 mV. The simulation took 225 mV as the "
+                                                            "highest VrefDQ and evaluated every write margin there (20 mV off centre, "
+                                                            "+142 mV or more). JESD209-5C Table 91 note 4 sets that 225 mV ceiling for "
+                                                            "WCK above 1600 MHz; at or below 1600 MHz it allows 350 mV, so on this card "
+                                                            "(100 Mb/s writes) the centre is reachable by training. Start at 0x46, the "
+                                                            "simulated point; no margin was simulated above it"),
+                                   limit="%.2f V +/-%.0f mV typical, <= %.2f V in the stacked fast corner; VREF(DQ) starts at 0.225 V "
+                                         "(MR14 0x46), about 23 mV under the centre of the eye"
+                                         % (LEVEL_TYP_TARGET_V, LEVEL_TYP_TOL_V * 1e3, LEVEL_FAST_MAX_V))
     d["RESET_n"] = OrderedDict(series=100, shunt=1000, **corners(100, 1000, rs_set=(26.0, 60.0, 86.0)),
                                limit="VIH 0.8 x VDD2H = 0.85 V .. VDD2H + 0.2 V = 1.23 V; low with 100 uA pull-up 0.11 V")
+    # current the dividers draw: from the host's bank VCCO through the signal fingers, back through the ground fingers.  It is NOT in
+    # the card's 1.2 V feed (fingers -> island -> strip -> U2 / U4), whose budget does not change with the divider values.
+    i_ca, i_cs, i_wck, i_dq = (1.20 / (RS_IBIS[1] + sum(q)) * 1e3 for q in (CMD_DIV, CS_DIV, WCK_DIV, DQ_DIV))
+    i_old = dict(cmd=8 * 1.20 / (RS_IBIS[1] + 75 + 56) * 1e3, wr=(8 * 1.20 / (RS_IBIS[1] + 240 + 150) + 1.20 / (RS_IBIS[1] + 91 + 68)) * 1e3)
+    imax_pin = max(q["i_max_mA"] for q in d.values())
+    a["divider_currents"] = OrderedDict(
+        path="FPGA bank VCCO (host 1.2 V) -> output pin -> signal finger -> series resistor -> shunt -> card GND -> ground fingers. "
+             "Not through the card's 19 VDD fingers: the card's own 1.2 V budget (power.v1p2_feed, 0.77 A, the drop gate) is unchanged",
+        per_high_pin_typ_mA=OrderedDict(CA_CK=round(i_ca, 2), CS=round(i_cs, 2), WCK=round(i_wck, 2), write_DQ=round(i_dq, 2)),
+        command_bank_65_typ_mA=OrderedDict(seven_CA_and_one_CK_leg_high=round(8 * i_ca, 1), with_CS_high=round(8 * i_ca + i_cs, 1),
+                                           before_75r_56r=round(i_old["cmd"], 1)),
+        write_bank_64_typ_mA=OrderedDict(eight_DQ_and_one_WCK_leg_high=round(8 * i_dq + i_wck, 1), before_240r_150r_wck_91r_68r=round(i_old["wr"], 1)),
+        worst_case_all_high_mA=round(sum(d[k]["i_max_mA"] * n for k, n in (("CA0-6", 7), ("CK_P/CK_N (per leg)", 1), ("CS0", 1),
+                                                                         ("WCK_P/WCK_N (per leg)", 1), ("DQ0-7 write", 8))), 1),
+        per_signal_contact_max_mA=imax_pin, contact_limit_mA=500,
+        resistor_dissipation_max_mW=OrderedDict(
+            (k, round(max(d[k]["i_max_mA"] ** 2 * 1e-3 * q[0] * 0.99, d[k]["i_max_mA"] ** 2 * 1e-3 * q[1] * 1.01), 2))
+            for k, q in (("CA0-6", CMD_DIV), ("CS0", CS_DIV), ("WCK_P/WCK_N (per leg)", WCK_DIV), ("DQ0-7 write", DQ_DIV))),
+        resistor_rating_mW=50,
+        simulated_typ_mA=OrderedDict(command=sim50["currents_typ_mA"]["command_7ca_one_ck_leg"], write=sim50["currents_typ_mA"]["write_8dq_one_wck_leg"]))
     a["dividers"] = d
     # write node: source resistance and the capacitance it drives
     dp = data_plan()
@@ -2373,59 +2551,78 @@ def build_analysis():
     cnode = OrderedDict(read_branch_in3_pf=round(in3_max * 0.1515, 1), read_finger_track_pf=round(trk_max * 0.1147, 1),
                         host_line_pf=11.3, fpga_package_pf=3.2, fpga_pad_pf=3.1, trunk_ball_die_pf=4.5)
     ctot = sum(cnode.values())
-    rsrc = par(150.0, 240.0 + 36.0)
+    rsrc = par(float(DQ_DIV[1]), DQ_DIV[0] + RS_IBIS[1])
+    rsrc_old = par(150.0, 240.0 + RS_IBIS[1])
     a["write_node"] = OrderedDict(
         source_resistance_ohm=round(rsrc, 1), capacitance_pf=cnode, capacitance_total_pf=round(ctot, 1),
         tau_ns=round(rsrc * ctot * 1e-3, 2), rise_10_90_ns=round(2.2 * rsrc * ctot * 1e-3, 1),
-        supported_rate="100 Mb/s (the design target): about 4 %% ISI, eye at the die 0.35 .. 0.43 V high and 5.6 .. 7.6 ns "
-                       "wide at +/-70 mV around VREF 0.21 V in the audit simulation with a 40 mm In3 branch (6.1 pF); the "
-                       "branch of this floorplan (about %.0f mm of In3 and %.0f mm of finger track) is %.1f pF. "
-                       "200 Mb/s is not supported by this node" % (in3_max, trk_max, cnode["read_branch_in3_pf"] + cnode["read_finger_track_pf"]),
+        tau_before_240r_150r_ns=round(rsrc_old * ctot * 1e-3, 2),
+        supported_rate="100 Mb/s (the design target and the only rate simulated): the node settles with %.1f ns (it was %.1f ns with "
+                       "240R / 150R), a unit interval is %.1f time constants; merged system simulation of this set: eye %s mV high "
+                       "(typ / slow / fast), margin %s mV at the WCK crossing with VrefDQ 225 mV. The read branch of this floorplan "
+                       "(about %.0f mm of In3 and %.0f mm of finger track) is %.1f pF. The node no longer limits writes to "
+                       "100 Mb/s by itself; no higher rate was simulated or is claimed"
+                       % (rsrc * ctot * 1e-3, rsrc_old * ctot * 1e-3, 10.0 / (rsrc * ctot * 1e-3),
+                          " / ".join("%d" % v for v in sim50["writes"]["dq_eye_height_typ_slow_fast_mV"]),
+                          " / ".join("%+d" % v for v in sim50["writes"]["dq_margin_at_wck_crossing_typ_slow_fast_mV"]),
+                          in3_max, trk_max, cnode["read_branch_in3_pf"] + cnode["read_finger_track_pf"]),
         note="the read branch (In3 about %.0f mm plus %.0f mm on the finger's outer layer) and the host read line "
              "(73 mm, open at the FPGA) hang on the node " % (in3_max, trk_max) +
-             "directly (the read branch has no series resistor); the shunt is fixed by the read level, "
-             "so the node cannot be made faster without giving up read level")
-    f = (0.766, 0.772, 0.792)   # read high level / VDDQ into 150 ohm, LPDDR4X IBIS proxy corners
+             "directly (the read branch has no series resistor). The shunt is also the read load: lowering it from 150 to %d ohm "
+             "for the 0.50 V write level made the node faster and cost about 40 mV of read level" % DQ_DIV[1])
+    rload = float(DQ_DIV[1])    # the write shunt is the read load
+    f150 = (0.766, 0.772, 0.792)   # read high level / VDDQ into 150 ohm, LPDDR4X IBIS proxy corners
+    r_proxy = [150.0 * (1 - q) / q for q in f150]      # the same proxies as a linear pull-up resistance (45.8 / 44.3 / 39.4 ohm)
+    f = [rload / (rload + q) for q in r_proxy]
     vh = [round(VDDQ_SET[i] * f[i], 3) for i in range(3)]
+    vh150 = [round(VDDQ_SET[i] * f150[i], 3) for i in range(3)]
     rpu = (52.0, 40.0, 28.0)    # JESD209-5C Table 472: un-terminated pull-up 40 ohm x 1.3 / 1.0 / 0.7
-    vj = [round(VDDQ_SET[i] * 150.0 / (rpu[i] + 150.0), 3) for i in range(3)]
+    vj = [round(VDDQ_SET[i] * rload / (rpu[i] + rload), 3) for i in range(3)]
     nb = len(dl["read"])
     barrel = (z_["In3.Cu"] - z_["F.Cu"]) * TD["via"]            # the node via, F.Cu to In3: counted with the line
     per_net_tau = OrderedDict()
-    for n in DATA.LEVELS:        # ball - line - node (150R, 240R - host write line) - read branch - host read line - FPGA pin
+    for n in DATA.LEVELS:        # ball - line - node (shunt, series - host write line) - read branch - host read line - FPGA pin
         r_, w_ = dl["read"][n], dl["write"][n]
         per_net_tau[n] = OrderedDict(trunk_ps=round(r_["trunk_ps"] + barrel, 1), read_branch_ps=round(r_["card_ps"] - r_["trunk_ps"] - barrel, 1),
                                      host_read_ps=r_["host_ps"], host_write_ps=w_["host_ps"])
     tau = OrderedDict((k_, round(sum(q[k_] for q in per_net_tau.values()) / nb, 1)) for k_ in ("trunk_ps", "read_branch_ps", "host_read_ps", "host_write_ps"))
     kw = dict(tau_trunk=tau["trunk_ps"] * 1e-12, tau_rd=tau["read_branch_ps"] * 1e-12, tau_host=tau["host_read_ps"] * 1e-12,
-              tau_wr=tau["host_write_ps"] * 1e-12)
+              tau_wr=tau["host_write_ps"] * 1e-12, r_shunt=rload, r_series=float(DQ_DIV[0]))
     ring = LINESIM.table(0.0, **kw)
     ring22 = LINESIM.table(22.0, **kw)
     per_net_ring = OrderedDict()
     for n, q in per_net_tau.items():     # every net with its own lengths, strong corner (28 / 28 ohm) and nominal (40 / 40)
-        kn_ = dict(tau_trunk=q["trunk_ps"] * 1e-12, tau_rd=q["read_branch_ps"] * 1e-12, tau_host=q["host_read_ps"] * 1e-12, tau_wr=q["host_write_ps"] * 1e-12)
+        kn_ = dict(tau_trunk=q["trunk_ps"] * 1e-12, tau_rd=q["read_branch_ps"] * 1e-12, tau_host=q["host_read_ps"] * 1e-12, tau_wr=q["host_write_ps"] * 1e-12,
+                   r_shunt=rload, r_series=float(DQ_DIV[0]))
         st, no = LINESIM.summary(28.0, 28.0, 0.0, **kn_), LINESIM.summary(40.0, 40.0, 0.0, **kn_)
         per_net_ring[n] = OrderedDict(delays_ps=q, strong=OrderedDict((k_, st[k_]) for k_ in ("peak_v", "min_v", "above_window_ns", "below_window_ns",
                                                                                                 "high_minus_final_mV_at_5ns", "high_minus_final_mV_at_8ns",
                                                                                                 "low_minus_final_mV_at_5ns", "low_minus_final_mV_at_8ns")),
                                       nominal=OrderedDict((k_, no[k_]) for k_ in ("peak_v", "min_v", "above_window_ns", "below_window_ns")))
     worst, nom = ring[0], ring[1]
-    rd = OrderedDict(load_ohm=150, series_ohm=0, vddq_v=[round(v, 4) for v in VDDQ_SET], read_high_v=vh,
-                     read_high_basis="LPDDR4X IBIS proxies (0.766 .. 0.792 x VDDQ into 150 ohm)",
+    rd = OrderedDict(load_ohm=DQ_DIV[1], series_ohm=0, vddq_v=[round(v, 4) for v in VDDQ_SET], read_high_v=vh,
+                     read_high_basis="LPDDR4X IBIS proxies (0.766 .. 0.792 x VDDQ into 150 ohm, taken as a linear pull-up of "
+                                     "%.1f .. %.1f ohm into the %d ohm load)" % (r_proxy[2], r_proxy[0], DQ_DIV[1]),
+                     read_high_before_150r_v=vh150,
+                     read_high_drop_mV=[round((vh150[i] - vh[i]) * 1e3, 1) for i in range(3)],
                      read_high_jedec_bound_v=vj,
-                     read_high_jedec_basis="JESD209-5C Table 472, un-terminated pull-up 28 / 40 / 52 ohm into 150 ohm",
-                     reference_default_v=round(0.4996 * 180 / 480, 4))
-    vn = 0.195
+                     read_high_jedec_basis="JESD209-5C Table 472, un-terminated pull-up 28 / 40 / 52 ohm into %d ohm" % DQ_DIV[1],
+                     reference_default_v=0.0)
+    simr = sim50["reads"]
+    vn = simr["vref_rd_centre_slow_typ_fast_mV"][1] / 1e3        # the set value: the simulated centre of the eye in the typical corner
     rd["reference_v"] = vn
+    rd["reference_v_basis"] = ("merged system simulation of the 0.50 V set: VREF_RD that centres the eye is %s mV slow / typ / fast "
+                               "(it was 173 / 195 / 211 mV with the 150 ohm load)" % " / ".join("%d" % v for v in simr["vref_rd_centre_slow_typ_fast_mV"]))
     rd["static_one"] = OrderedDict(vid_v=[round(v - vn, 3) for v in vh], vicm_v=[round((v + vn) / 2, 3) for v in vh],
                                    jedec_bound_vid_v=[round(vj[0] - vn, 3), round(vj[2] - vn, 3)],
                                    jedec_bound_vicm_v=[round((vj[0] + vn) / 2, 3), round((vj[2] + vn) / 2, 3)])
     rd["static_zero"] = OrderedDict(vid_v=-vn, vicm_v=round(vn / 2, 4))
     rd["margins_at_jedec_bound_mV"] = OrderedDict(
         vicm_to_330=round((0.330 - (vj[2] + vn) / 2) * 1e3, 1), pin_to_460=round((0.460 - vj[2]) * 1e3, 1),
-        slvs_vid_to_140=round((vj[0] - vn - 0.140) * 1e3, 1), vicm_zero_to_70=round((vn / 2 - 0.070) * 1e3, 1))
-    rd["reference_rule"] = ("keep VREF_RD at or below 0.20 V if the measured read high level is above 0.42 V "
-                            "(VICM <= 330 mV); the DAC covers 0.136 .. 0.631 V")
+        mipi_vid_to_70=round((vj[0] - vn - 0.070) * 1e3, 1), vicm_zero_to_70=round((vn / 2 - 0.070) * 1e3, 1))
+    rd["reference_rule"] = ("measure the read high level and set VREF_RD to half of it (simulated centres %s mV slow / typ / fast), never "
+                            "above 0.21 V and never below 0.14 V (VICM of a zero >= 70 mV); the DAC covers 0 .. 0.631 V and the bus is at 0 V until it is written"
+                            % " / ".join("%d" % v for v in simr["vref_rd_centre_slow_typ_fast_mV"]))
     rd["mipi_dphy_dci_hs_window"] = OrderedDict(vid_min_v=0.070, vicm_v=[0.070, 0.330], pin_v=[-0.040, 0.460])
     rd["read_high_at_the_pin"] = ("the same as at the node: the read branch carries no DC current (the FPGA pin is open), so "
                                   "removing the 22 ohm series resistors changes no static level")
@@ -2433,8 +2630,8 @@ def build_analysis():
         question="what the open FPGA end does without a series resistor in the read branch (the 22 ohm taps R301..R308 "
                  "and R311 / R312 were removed on the user's remark: 'is it that bad if it overshoots a little?')",
         model="scripts/read_linesim.py: lossless lines, linear driver, 80 ps edge, 100 Mb/s; trunk 52.4 ohm, read "
-              "branch 45.6 ohm, host lines 39 ohm, 150 ohm shunt, 240 ohm to the Hi-Z write pin; 3.1 pF at each FPGA pin, "
-              "1 pF at the ball. Pessimistic for ringing: no loss, no driver non-linearity",
+              "branch 45.6 ohm, host lines 39 ohm, %d ohm shunt, %d ohm to the Hi-Z write pin; 3.1 pF at each FPGA pin, "
+              "1 pF at the ball. Pessimistic for ringing: no loss, no driver non-linearity" % (DQ_DIV[1], DQ_DIV[0]),
         delays_ps=tau,
         delays_note="means of the eight nets; per_net holds every net with its own lengths",
         per_net=per_net_ring,
@@ -2459,25 +2656,111 @@ def build_analysis():
         gateware_knobs="the same damping is available without parts: MR3 OP[2:0] (pull-down drive strength 48 or 60 ohm "
                        "instead of 40) and the SoC-ODT / pull-up calibration code of MR17. 60 ohm keeps a strong driver "
                        "at %.3f V / %+.3f V; a nominal 48 ohm driver stays inside the window (%.3f V / %+.3f V). The price "
-                       "is read level (150 / (150 + R))"
-                       % (ring[5]["peak_v"], ring[5]["min_v"], ring[4]["peak_v"], ring[4]["min_v"]))
-    rd["slvs_400_18_window"] = OrderedDict(vid_v=[0.140, 0.450], vicm_v=[0.070, 0.330])
+                       "is read level (%d / (%d + R))"
+                       % (ring[5]["peak_v"], ring[5]["min_v"], ring[4]["peak_v"], ring[4]["min_v"], DQ_DIV[1], DQ_DIV[1]))
+    rd["receiver"] = OrderedDict(
+        supported="IBUFDS_DPHY with IOSTANDARD MIPI_DPHY_DCI, no differential termination: the only supported read receiver",
+        slvs_400_18="NOT supported (dropped as a fall-back). It needs VID >= 140 mV; the merged system simulation "
+                    "(analysis.system_simulation) gave +25 / -13 / +34 mV of mask margin typ / slow / fast at VREF_RD 0.195 V against "
+                    "+95 / +57 / +104 mV for MIPI_DPHY_DCI (VID >= 70 mV) with the 150 ohm load; with the 100 ohm load of the 0.50 V set "
+                    "%s mV against %s mV re-centred. Vivado accepts the standard on these pins (legality only: "
+                    "design/gateware/vivado_pincheck, cases M2 / N4, kept as history)"
+                    % (" / ".join("%+d" % v for v in simr["margin_slvs_typ_slow_fast_mV"]),
+                       " / ".join("%+d" % simr["margin_recentred_typ_slow_fast_mV"][i] for i in range(3))))
     rd["rdqs_true_differential"] = OrderedDict(
-        vid_v=vh[1], vicm_v=round(vh[1] / 2, 3), series_ohm=0,
+        load_ohm=RDQS_LOAD, vid_v=vh150[1], vicm_v=round(vh150[1] / 2, 3), series_ohm=0,
+        load_note="the two RDQS loads stay 150 ohm (not part of the 0.50 V decision): the strobe keeps its level while the DQ level "
+                  "drops with the 100 ohm shunt",
         idle="both legs at 0 V whenever the DRAM does not drive (VID 0, VICM 0, outside the receiver window): the "
              "receiver output is valid only inside the read burst and must be gated with the read-enable window")
+    # ---- the reference network: DAC_OUT - Ra - VREF_RD - Rc - GND; Rb (the pull-up to VDDQ) is not fitted
+    assert not REF_RB_FITTED
+    ra_, rb_, rc_ = (float(q) for q in REF_NET)
+    vq = VDDQ_SET[1]
+    cen = [v / 1e3 for v in simr["vref_rd_centre_slow_typ_fast_mV"]]                     # slow, typ, fast
+    fs = 1.815                      # DAC53401 full scale with the internal reference at gain 1.5 (1.21 V x 1.5)
+    kg = rc_ / (ra_ + rc_)
+    rsrc_ref = par(ra_, rc_)
+    lsb = fs / 1024 * kg            # data sheet 8.3.1.1: VOUT = DAC_DATA / 2^N x VREF x GAIN, N = 10
+
+    def code_of(v):
+        return int(round(v / kg / fs * 1024))
+    g3 = 1 / ra_ + 1 / rb_ + 1 / rc_                                                       # the network with Rb fitted, for comparison
+    leak = 8 * 15e-6 * rsrc_ref * 1e3
+    rd["power_up"] = OrderedDict(
+        vref_rd_dac_unprogrammed_v=0.0,
+        statement="with the DAC unprogrammed its output is Hi-Z (factory default, DAC53401 data sheet 8.3.1 and GENERAL_CONFIG reset value DAC_PDN = 10) and "
+                  "VREF_RD is 0 V through R333: a zero has no differential (P 0 V, N 0 V) and the common mode is 0 V, outside the "
+                  "receiver's window. READS DO NOT WORK until the gateware has written the DAC over I2C, or until the DAC's "
+                  "non-volatile default has been programmed once on that board",
+        before="with R332 fitted the bus stood at 0.174 V without any I2C traffic and reads worked from power-up",
+        options=OrderedDict(
+            write_at_every_start="DAC_DATA then GENERAL_CONFIG over I2C before the first read (analysis.reference.i2c_sequence.set_point)",
+            store_once_per_board="the same two writes, then NVM_PROG: the DAC then powers up driving the set point "
+                                 "(analysis.reference.i2c_sequence.store_default); still verify with a read-back or on TP4"),
+        gateware_rule="no READ and no MRR before the DAC write has been acknowledged and the bus has settled (5 tau = %.1f ms)"
+                      % (5 * rsrc_ref * (1e-6 + 8 * 100e-9) * 1e3))
     a["read"] = rd
-    g = 1 / 300 + 1 / 300 + 1 / 180
     a["reference"] = OrderedDict(
-        network="DAC_OUT -300R- VREF_RD ; VDDQ -300R- VREF_RD ; VREF_RD -180R- GND ; 1 uF + 8 x 100 nF on the bus",
-        dac_high_z_v=round(0.4996 * 180 / 480, 4), dac_high_z_source_ohm=round(par(300, 180), 1),
-        dac_active="V = %.4f x Vdac + %.4f V" % ((1 / 300) / g, (0.4996 / 300) / g),
-        dac_active_source_ohm=round(1 / g, 1),
-        range_internal_ref_x1p5_v=[round((0.4996 / 300) / g, 3), round((1.815 / 300 + 0.4996 / 300) / g, 3)],
-        lsb_mV=round(1.815 / 1023 * (1 / 300) / g * 1e3, 3),
-        worst_case_if_misprogrammed_to_3p3_v=round((3.3 / 300 + 0.4996 / 300) / g, 3),
-        leakage_shift_mV_at_8x15uA=round(8 * 15e-6 / g * 1e3, 1),
-        dac_code_for_0p195_v=int(round(((0.195 * g) - 0.4996 / 300) * 300 / 1.815 * 1023)),
+        network="DAC_OUT -%dR- VREF_RD ; VREF_RD -%dR- GND ; 1 uF + 8 x 100 nF on the bus ; R332 (%dR, VDDQ to VREF_RD) NOT FITTED"
+                % (REF_NET[0], REF_NET[2], REF_NET[1]),
+        ra_rb_rc_ohm=list(REF_NET), rb_fitted=REF_RB_FITTED,
+        decision="user: 'Make the range of vref go down to 0'; of the ways offered, 'Drop the VDDQ pull-up'",
+        dac_high_z_v=0.0, dac_high_z_source_ohm=round(rc_, 1),
+        dac_active="V = %.4f x Vdac" % kg,
+        dac_gain=round(kg, 4), dac_offset_v=0.0,
+        dac_active_source_ohm=round(rsrc_ref, 1),
+        range_internal_ref_x1p5_v=[0.0, round(kg * fs * 1023 / 1024, 3)],
+        lsb_mV=round(lsb * 1e3, 3),
+        follows_vddq="no: without R332 nothing ties VREF_RD to VDDQ. The read high level scales with VDDQ (+/-2.4 %% on the card, +/-%.1f mV "
+                     "of half the level); the reference does not follow it any more (it followed with a factor %.2f before)"
+                     % (0.024 * vh[1] / 2 * 1e3, (1 / rb_) / g3),
+        dac_noise_attenuation=round(kg, 3), dac_noise_attenuation_before=round((1 / ra_) / g3, 3),
+        dac_noise_note="DAC output noise and code glitches reach the bus x %.3f (x %.3f with R332), behind the pole of %.1f ohm and "
+                       "1.8 uF at %.0f Hz; data sheet 7.5: 0.7 uV/rtHz at 1 kHz and 70 uVpp in 0.1 .. 10 Hz at gain 4, less at gain 1.5"
+                       % (kg, (1 / ra_) / g3, rsrc_ref, 1 / (2 * math.pi * rsrc_ref * 1.8e-6)),
+        worst_case_at_dac_full_scale_v=round(kg * fs, 3),
+        worst_case_if_misprogrammed_to_3p3_v=round(kg * 3.3, 3),
+        worst_case_if_misprogrammed_to_3p3_v_plus_5pct=round(kg * 3.3 * 1.05, 3),
+        fpga_pin_recommended_max_v=1.40,
+        fpga_pin_note="DS925: VIN of an HP bank at VCCO 1.2 V is -0.20 .. 1.40 V recommended; the reference reaches the N pins through 39 ohm",
+        leakage_shift_mV_at_8x15uA=round(leak, 1),
+        static_error_budget_mV=OrderedDict(pin_leakage=round(leak, 1), vddq=0.0, dac_and_resistors=2.4, total=round(leak + 2.4, 1),
+                                           note="it was 10 + 3.3 + 2.4 = 16 mV in the simulation record (n_branch.level_mV): the leakage "
+                                                "term is larger with the higher source resistance, the VDDQ term is gone"),
+        dac_code_for_reference_v=code_of(vn),
+        dac_data_register_for_reference_v="0x%04X" % (code_of(vn) << 2),
+        dac_codes_for_the_simulated_centres=OrderedDict((k_, OrderedDict(v=c_, code=code_of(c_))) for k_, c_ in zip(("slow", "typ", "fast"), cen)),
+        lowest_usable_dac_code=int(math.ceil(0.140 / kg / fs * 1024)),
+        lowest_usable_v=0.140,
+        lowest_usable_dac_code_note="the network now reaches 0 V, but below 0.14 V the common mode of a zero (VREF_RD / 2) is under the "
+                                    "70 mV minimum of the MIPI D-PHY HS receiver: settings below this code are reachable and NOT usable "
+                                    "for reads with this receiver",
+        highest_recommended_dac_code=int(math.floor(0.210 / kg / fs * 1024)),
+        dac_load="the DAC drives %d ohm + %d ohm = %d ohm to GND (%.1f mA at full scale, %.2f mA at the set point); the 1 uF + 8 x 100 nF "
+                 "stay behind the %d ohm of R331, as before (data sheet: capacitive load directly at OUT <= 1 nF; short-circuit current "
+                 "25 mA at 2.7 V). With R332 fitted the DAC saw 300 + (300 || 160) ohm: the load is lighter now"
+                 % (REF_NET[0], REF_NET[2], REF_NET[0] + REF_NET[2], fs / (ra_ + rc_) * 1e3, vn / rc_ * 1e3, REF_NET[0]),
+        settling_tau_ms=round(rsrc_ref * 1.8e-6 * 1e3, 3),
+        i2c_sequence=OrderedDict(
+            source="references/parts/TI_DAC53401.txt: 8.3.3 (NVM), Table 1 (NVM programmable registers), 8.6.1 STATUS (D0h), 8.6.2 "
+                   "GENERAL_CONFIG (D1h), 8.6.4 TRIGGER (D3h), 9.2.1.2 (pseudocode with the same three writes). 16-bit registers, MSB first",
+            set_point=["WRITE DAC_DATA (0x21) = 0x%04X      code %d << 2 (bits 11:2): VREF_RD = %.3f V" % (code_of(vn) << 2, code_of(vn), vn),
+                       "WRITE GENERAL_CONFIG (0xD1) = 0x01E4      DAC_PDN = 00 (power up), REF_EN = 1 (internal 1.21 V), DAC_SPAN = 00 (gain 1.5), SLEW_RATE = 1111 (no slew)"],
+            store_default=["the two writes of set_point",
+                           "WRITE TRIGGER (0xD3) = 0x0010      NVM_PROG = 1 (self-resetting): DAC_DATA and GENERAL_CONFIG go to the NVM",
+                           "wait until STATUS (0xD0) bit 13 NVM_BUSY = 0 (EEPROM write 5 / 10 / 15 ms min / typ / max); no write and no read of a DAC register while it is 1",
+                           "power-cycle and check: OUT is driven without any I2C traffic (TP4 = %.3f V)" % vn],
+            nvm="endurance 20000 cycles (-40 .. 85 C), retention 50 years at 25 C; Table 1 lists DAC_DATA under address 10h while the "
+                "register map and the pseudocode use 21h: 21h is used here",
+            undo="WRITE TRIGGER (0xD3) = 0x0200 (DEVICE_CONFIG_RESET: all registers to the factory values), then NVM_PROG again"),
+        before_rb_fitted=OrderedDict(dac_high_z_v=round(vq * rc_ / (rb_ + rc_), 4), dac_active="V = %.4f x Vdac + %.4f V" % ((1 / ra_) / g3, (vq / rb_) / g3),
+                                     range_v=[round((vq / rb_) / g3, 3), round((fs / ra_ + vq / rb_) / g3, 3)], lsb_mV=round(fs / 1024 * (1 / ra_) / g3 * 1e3, 3),
+                                     dac_code_for_0p175_v=101,
+                                     source_ohm=round(1 / g3, 1), leakage_shift_mV=round(8 * 15e-6 / g3 * 1e3, 1),
+                                     worst_case_3p3_v=round((3.3 / ra_ + vq / rb_) / g3, 3)),
+        unused_copper="the lands of R332 and the VDDQ track that ends on its pad 1 (F.Cu, about 19 mm from the VDDQ lane) stay on the "
+                      "board, unused; fitting 300 ohm there restores the 0.174 V default",
         i2c_address="0x48 (A0 to AGND); DDR4 SPD uses 0x50-0x57, 0x30-0x37, 0x18-0x1F: no conflict")
     c_vdd1 = (12e-6, 19.8e-6)     # 4 x 4.7 uF + 1 uF: effective at 1.8 V bias .. nominal
     c_vddq = 9 * 4.7e-6
@@ -2504,6 +2787,8 @@ def build_analysis():
                   "(allowed 400 times); R509 then brings VDD1 below 0.3 V inside the 2 s limit",
         socket=OrderedDict(V1P2_A=0.77, V1P2_contacts=19, V1P2_mA_per_contact=41, V3P3_mA=30, V3P3_contacts=1,
                            contact_limit_A=0.5))
+    # the merged system simulation (host + socket + card): kept as reference data, not recomputed here
+    a["system_simulation"] = sim
     return a
 
 

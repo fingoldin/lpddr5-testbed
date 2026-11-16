@@ -4,8 +4,10 @@ in the read branch?" (DESIGN.md section 3 and section 8 item 29).  Pure numpy, l
 ringing (no skin / dielectric loss, no driver non-linearity, no package inductance to slow the edge).
 
     ball --trunk 52.4 ohm-- node --[Rtap]-- In3 + finger track 45.6 ohm -- host line 39 ohm -- FPGA read pin (open, C)
-                             |- 150 ohm to GND
-                             |- 240 ohm -- host write line 39 ohm -- FPGA write pin (Hi-Z, C)
+                             |- shunt (100 ohm) to GND
+                             |- series (110 ohm) -- host write line 39 ohm -- FPGA write pin (Hi-Z, C)
+
+The two divider values are parameters (r_shunt, r_series); scripts/build_netlist.py passes the values of the board.
 
 Method of characteristics (Bergeron): every line end is a Thevenin source (Z0 in series with the wave that left the
 other end one delay earlier); the nodes are solved with the resistors and with backward-Euler capacitors.
@@ -16,17 +18,19 @@ Run by hand:  python3 scripts/read_linesim.py
 import numpy as np
 
 HS_WINDOW = (-0.040, 0.460)      # MIPI D-PHY HS receiver, single-ended input range (V)
+R_SHUNT, R_SERIES = 100.0, 110.0  # write divider of the board: the shunt is the read load, the series leg ends on the Hi-Z write pin
 
 
 def sim(rpu=40.0, rpd=40.0, rtap=0.0, vddq=0.5, cpin=3.1e-12, cball=1.0e-12, tr=80e-12, tau_trunk=100e-12, tau_rd=190e-12,
-        tau_host=600e-12, tau_wr=610e-12, z_host=39.0, bit=10e-9, pattern=(0, 1, 0), cw=3.1e-12, dt=2e-12):
+        tau_host=600e-12, tau_wr=610e-12, z_host=39.0, bit=10e-9, pattern=(0, 1, 0), cw=3.1e-12, dt=2e-12,
+        r_shunt=R_SHUNT, r_series=R_SERIES):
     """Voltage at the FPGA read pin, sampled every dt, for the bit pattern (one bit = 'bit' seconds; the first bit is
     the settled starting state).  rpu / rpd: pull-up / pull-down resistance of the DRAM driver."""
     n = int(round(len(pattern) * bit / dt))
-    # nodes: 0 ball, 1 divider node, 2 write side of the 240 ohm, 3 write pin, 4 start of the read branch, 5 finger, 6 read pin
+    # nodes: 0 ball, 1 divider node, 2 write side of the series resistor, 3 write pin, 4 start of the read branch, 5 finger, 6 read pin
     nn = 7
     lines = [(0, 1, 52.4, tau_trunk), (2, 3, z_host, tau_wr), (4, 5, 45.6, tau_rd), (5, 6, z_host, tau_host)]
-    res = [(1, -1, 150.0), (1, 2, 240.0), (1, 4, rtap if rtap > 0 else 1e-3)]
+    res = [(1, -1, r_shunt), (1, 2, r_series), (1, 4, rtap if rtap > 0 else 1e-3)]
     caps = [(0, cball), (3, cw), (6, cpin)]
 
     def inverse(rdrv):
@@ -48,7 +52,7 @@ def sim(rpu=40.0, rpd=40.0, rtap=0.0, vddq=0.5, cpin=3.1e-12, cball=1.0e-12, tr=
     delay = [int(round(l[3] / dt)) for l in lines]
     hist = [(np.zeros(n + d + 2), np.zeros(n + d + 2)) for d in delay]      # wave arriving at end a / at end b
     # start from the DC state of the first bit
-    v0 = vddq * 150.0 / (150.0 + rpu) if pattern[0] else 0.0
+    v0 = vddq * r_shunt / (r_shunt + rpu) if pattern[0] else 0.0
     v = np.full(nn, v0)
     for ea, eb in hist:
         ea[:] = v0
@@ -83,7 +87,8 @@ def summary(rpu, rpd, rtap=0.0, dt=2e-12, bit=10e-9, **kw):
     p = sim(rpu=rpu, rpd=rpd, rtap=rtap, dt=dt, bit=bit, **kw)
     k1, k2 = int(round(bit / dt)), int(round(2 * bit / dt))
     hi, lo = p[k1:k2], p[k2:]
-    vh = kw.get("vddq", 0.5) * 150.0 / (150.0 + rpu)
+    r_sh = kw.get("r_shunt", R_SHUNT)
+    vh = kw.get("vddq", 0.5) * r_sh / (r_sh + rpu)
     t_arr = kw.get("tau_trunk", 100e-12) + kw.get("tau_rd", 190e-12) + kw.get("tau_host", 600e-12)
     ka = int(round(t_arr / dt))
 

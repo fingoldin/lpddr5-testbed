@@ -120,7 +120,7 @@ def export_drill(out, B):
 
 def export_positions(out, B):
     for side, name in (("front", "top"), ("back", "bottom")):
-        kicad("pcb", "export", "pos", "--side", side, "--format", "csv", "--units", "mm", "--use-drill-file-origin",
+        kicad("pcb", "export", "pos", "--side", side, "--format", "csv", "--units", "mm", "--use-drill-file-origin", "--exclude-dnp",
               "-o", os.path.join(out, "%s-%s.pos.csv" % (PROJECT, name)), C.BOARD)
     rows = []
     for fp in sorted(B.b.GetFootprints(), key=lambda f: f.GetReference()):
@@ -556,12 +556,17 @@ def assembly_drawing(path, B, spec, sha, svgs, face, lines):
         ctx.paint()
         ctx.restore()
     side = "top" if front else "bottom"
-    placed = [fp for fp in B.b.GetFootprints() if fp.IsFlipped() != front and not fp.GetAttributes() & pcbnew.FP_EXCLUDE_FROM_POS_FILES]
+    placed = [fp for fp in B.b.GetFootprints() if fp.IsFlipped() != front and not fp.GetAttributes() & pcbnew.FP_EXCLUDE_FROM_POS_FILES
+              and not fp.IsDNP()]
+    dnp = sorted((fp.GetReference() for fp in B.b.GetFootprints() if fp.IsFlipped() != front and fp.IsDNP()), key=refkey)
     pg.text(14, 17, "%s SIDE, scale %.1f : 1, %d parts to place.  Black: part outlines and references (Fab layer); blue-grey: legend; grey: mask openings (lands)."
             % (side.upper(), s, len(placed)), 3.0, bold=True)
     pg.text(14, 22, ("Pin 1 of the card (finger 1) is at the lower LEFT; U1 ball A1 is marked by the legend corner." if front else
                      "Seen from the back: finger 2 is at the lower RIGHT.  Card coordinates of the placement file are NOT mirrored (x as seen from the front)."), 2.5)
     y = Y0 + (H + m) * s + 10
+    if dnp:
+        pg.text(14, y - 4.5, "DO NOT FIT (DNP): %s.  The outline is drawn and the lands exist; no part is placed, the part is not in the placement file "
+                             "(paste is printed on its lands)." % ", ".join(dnp), 2.8, bold=True)
     pg.text(14, y, "No polarised two-terminal part.  ICs: pin 1 as drawn on the Fab outline (chamfered corner).  No paste on the fingers, the test pads and the fiducials.  Stencil 0.10 mm.  Fiducials: 3 per face (FID1-3 top, FID4-6 bottom).", 2.4)
     y += 4
     rows = []
@@ -570,7 +575,8 @@ def assembly_drawing(path, B, spec, sha, svgs, face, lines):
         refs = [r for r in sorted(b["refs"], key=refkey) if sides[r] == side]
         if refs:
             rs = " ".join(refs)
-            rows.append([i + 1, len(refs), b["value"], b["footprint"].split(":")[-1][:34], b["mpn"], rs if len(rs) < 150 else rs[:146] + " ..."])
+            rows.append([i + 1, 0 if b["dnp"] else len(refs), b["value"] + (" DNP" if b["dnp"] else ""), b["footprint"].split(":")[-1][:34],
+                         "DO NOT FIT" if b["dnp"] else b["mpn"], rs if len(rs) < 150 else rs[:146] + " ..."])
     pg.table(14, y, [("Item", 10, "r"), ("Qty", 9, "r"), ("Value", 22, "l"), ("Footprint", 56, "l"), ("MPN", 42, "l"), ("References on this face", 252, "l")],
              rows, size=1.9, row_h=3.25, mono=False)
     ctx.show_page()
@@ -712,7 +718,11 @@ def write_readme(out, spec, B, sha, res, lines, filled_rows, fixed, step_note, t
     w("")
     w("| Parameter | Value |")
     w("|---|---|")
-    w("| Parts | %d placements, %d BOM lines, none DNP: %d on the top face, %d on the bottom face (double-sided reflow) |" % (len(parts), len(lines), top, bot))
+    dnp_ = sorted(p["ref"] for p in parts if p["dnp"])
+    dtop = sum(1 for fp in B.b.GetFootprints() if fp.IsDNP() and not fp.IsFlipped())
+    w("| Parts | %d placements in %d BOM lines: %d on the top face, %d on the bottom face (double-sided reflow). %s |"
+      % (len(parts) - len(dnp_), len(lines) - len({(p["value"], p["mpn"]) for p in parts if p["dnp"]}), top - dtop, bot - (len(dnp_) - dtop),
+         "DO NOT FIT (DNP): %s, on a BOM line of its own, not in the placement files; its lands stay and get paste" % ", ".join(dnp_) if dnp_ else "None DNP"))
     w("| Smallest part | 0201 (0603 metric): %d of them |" % sum(1 for p in parts if "0201" in p["footprint"]))
     w("| Fine pitch | U1: 315-ball FBGA, 0.80 x 0.70 mm pitch, lands 0.41 mm, via-in-pad filled and capped; U2 VSON-10 0.5 mm; U5 WSON-8 0.5 mm; U4 MLF-6 0.65 mm |")
     w("| Tallest part | 1.10 mm on either face (module limit 1.20 mm per face); see the open item on the body height of U1 in `design/DESIGN.md` section 8 |")
@@ -849,7 +859,7 @@ def main():
     step_note = "`3d/`: not exported (--no-step)."
     if not a.no_step:
         sp = os.path.join(out, "3d", "%s.step" % PROJECT)
-        kicad("pcb", "export", "step", "-f", "--drill-origin", "--subst-models", "-o", sp, C.BOARD)
+        kicad("pcb", "export", "step", "-f", "--drill-origin", "--subst-models", "--no-dnp", "-o", sp, C.BOARD)
         have = sorted({fp.GetReference() for fp in B.b.GetFootprints() if len(fp.Models()) > 0})
         without = sorted((fp.GetReference() for fp in B.b.GetFootprints() if len(fp.Models()) == 0), key=refkey)
         step_note = ("`3d/%s.step`: board body with the %d parts whose footprint has a 3-D model (stock KiCad models). **No model**: %s "

@@ -1133,7 +1133,7 @@
 		)
 		(uuid "09fe5308-c639-574c-985a-3953e5bbdbc3")
 	)
-	(text "Without a series resistor the open FPGA end rings for 1 .. 2 ns after an edge:\n0.54 V / -0.12 V at worst (strong driver), 0.45 V / -0.06 V nominal; the pin allows\n-0.20 .. 1.40 V. Damping, if wanted: MR3 drive strength 48 / 60 ohm (gateware)."
+	(text "Without a series resistor the open FPGA end rings for 1 .. 2 ns after an edge:\n0.51 V / -0.12 V at worst (strong driver), 0.42 V / -0.06 V nominal; the pin allows\n-0.20 .. 1.40 V. Damping, if wanted: MR3 drive strength 48 / 60 ohm (gateware)."
 		(exclude_from_sim no)
 		(at 25.4 143.32 0)
 		(effects
@@ -1167,7 +1167,7 @@
 		)
 		(uuid "31b4237c-bede-50e2-80cb-734f501158d2")
 	)
-	(text "VREF_RD network:  DAC_OUT -300R- VREF_RD; VDDQ -300R- VREF_RD; VREF_RD -180R- GND; 1 uF + 8 x 100 nF on the bus\n  DAC output Hi-Z (factory default):  0.187 V, 112 ohm source: reads work before any I2C traffic\n  DAC active:  V = 0.2727 x Vdac + 0.1363 V  (0.136 .. 0.631 V, 0.48 mV / LSB, code 121 = 0.195 V)\n  keep VREF_RD at or below 0.20 V if the measured read high level is above 0.42 V (VICM <= 330 mV)\n\nRead levels (150 R shunt on sheet Write is the only DC load; no series resistor):\n  read high 0.374 / 0.386 / 0.405 V  (JEDEC bound 0.362 .. 0.431 V),  reference 0.195 V\n  receiver: IBUFDS_DPHY, IOSTANDARD MIPI_DPHY_DCI, DIFF_TERM = FALSE; read pins are inputs only\n  each N line ends in 39 R = the host line impedance, AC-grounded by 100 nF\n\nRDQS_P / RDQS_N:  VID 0.386 V, VICM 0.193 V while the DRAM drives; both legs 0 V otherwise:\n  gate the receiver output with the read-enable window.\nDQ0-7 read paths are delay matched ball to FPGA die pad within +/-1 ps (In3 bundle)."
+	(text "VREF_RD network:  DAC_OUT -300R- VREF_RD; VREF_RD -160R- GND; 1 uF + 8 x 100 nF on the bus; R332 (300R, VDDQ to VREF_RD)\n    NOT FITTED\n  DAC output Hi-Z (factory default):  0.000 V (160 ohm to GND): READS DO NOT WORK until the DAC is written\n  (I2C at every start, or its NVM default programmed once per board).  R332 is NOT FITTED (DNP).\n  DAC active:  V = 0.3478 x Vdac  (0.000 .. 0.631 V, 0.62 mV / LSB, code 284 = 0.175 V)\n  measure the read high level and set VREF_RD to half of it (simulated centres 156 / 175 / 198 mV slow / typ / fast),\n      never above 0.21 V and never below 0.14 V (VICM of a zero >= 70 mV)\n\nRead levels (100 R shunt on sheet Write is the only DC load; no series resistor):\n  read high 0.334 / 0.346 / 0.367 V  (JEDEC bound 0.321 .. 0.400 V),  reference 0.175 V\n  receiver: IBUFDS_DPHY, IOSTANDARD MIPI_DPHY_DCI, DIFF_TERM = FALSE; read pins are inputs only\n  each N line ends in 39 R = the host line impedance, AC-grounded by 100 nF\n\nRDQS_P / RDQS_N:  VID 0.386 V, VICM 0.193 V while the DRAM drives; both legs 0 V otherwise:\n  gate the receiver output with the read-enable window.\nDQ0-7 read paths are delay matched ball to FPGA die pad within +/-1 ps (In3 bundle)."
 		(exclude_from_sim no)
 		(at 200.66 162.56 0)
 		(effects
@@ -2641,7 +2641,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "180R"
+		(property "Value" "160R"
 			(at 334.64 143.44 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -2674,7 +2674,7 @@
 				)
 			)
 		)
-		(property "Description" "reference bus to GND (Rc), resistor 180R 1 % 0402"
+		(property "Description" "reference bus to GND (Rc), resistor 160R 1 % 0402"
 			(at 332.74 142.24 0)
 			(hide yes)
 			(show_name no)
@@ -2685,7 +2685,7 @@
 				)
 			)
 		)
-		(property "MPN" "RC0402FR-07180RL"
+		(property "MPN" "RC0402FR-07160RL"
 			(at 332.74 142.24 0)
 			(hide yes)
 			(show_name no)
@@ -5799,7 +5799,7 @@
 		(in_bom yes)
 		(on_board yes)
 		(in_pos_files yes)
-		(dnp no)
+		(dnp yes)
 		(uuid "c21767cd-4f1a-54ca-b83f-84c5a5191829")
 		(property "Reference" "R332"
 			(at 319.4 125.8 0)

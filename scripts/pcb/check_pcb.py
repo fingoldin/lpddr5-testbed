@@ -1548,7 +1548,7 @@ def gate_data(board, spec, drc, write_deskew=True):
             t_bad.append((n, "not back to back"))
         t_rows.append("%s T at (%.3f, %.2f): %s" % (n, nv[0], nv[1], "; ".join(row)))
     check(G, "T compactness: for every DQ the F.Cu tooth, the In3 read branch and both divider resistors meet on ONE via (the node via on the column axis); "
-          "the 240 ohm (finger's face) and the 150 ohm (other face) sit back to back; copper from the T to the series land and to the shunt land "
+          "the series resistor (finger's face) and the shunt (other face) sit back to back; copper from the T to the series land and to the shunt land "
           "(through the barrel for the land on B.Cu) <= %.1f mm on all eight; all lands of the %d divider parts within %.2f mm of the card edge "
           "(limit %.1f)" % (lim_t, n_div_parts, top_land, lim_e), not t_bad and n_div_parts == 16 and top_land <= lim_e, str(t_bad))
     for r_ in t_rows:
@@ -1598,9 +1598,9 @@ def gate_data(board, spec, drc, write_deskew=True):
         m = measure([n, fn_], fe, C.ball(board, ball) + ("B.Cu",), n, bridges=[(p1 + (l1,), p2 + (l2,), math.dist(p1, p2), math.dist(p1, p2) * ms20, ser)],
                     extra_ps=(z["B.Cu"] - z["F.Cu"]) * d_via, finger=(ye, lay, we))
         ptab[n] = dict(m, finger=f, host=hp(f), total=m["card"] + hp(f)) if m else None
-    check(G, "every DQ has one copper path finger -> stub -> 240 ohm -> node via -> tooth -> line -> neck -> ball (write) and one ball -> neck -> line -> tooth -> "
+    check(G, "every DQ has one copper path finger -> stub -> series resistor -> node via -> tooth -> line -> neck -> ball (write) and one ball -> neck -> line -> tooth -> "
           "node via -> In3 branch -> read via -> finger track -> finger (read), each RDQS leg ball -> via-in-pad -> In3 -> via -> F.Cu -> finger and each "
-          "WCK leg finger -> stub -> 91 ohm -> node via -> B.Cu -> via-in-pad -> ball", not bad_path and all(ptab.values()), str(bad_path))
+          "WCK leg finger -> stub -> series resistor -> node via -> B.Cu -> via-in-pad -> ball", not bad_path and all(ptab.values()), str(bad_path))
     if bad_path or not all(ptab.values()):
         return
     print("        delay measured on the board, independent of the plan: every track item of the path x ps/mm of its layer and width, every via with the barrel")

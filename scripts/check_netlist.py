@@ -551,7 +551,7 @@ def main():
           "WCK_N %d, WCK_P %d" % (wf["WCK_N"], wf["WCK_P"]))
     rf = {n: fin(n) for n in wr}
     check("each read DQ has exactly one finger, on the net of the ball itself (no part between the ball and the read finger; the write finger is on DQx_WF "
-          "behind the 240 ohm series resistor)", all(len(v) == 1 for v in rf.values()) and not any(n.endswith("_RF") for n in net_pins),
+          "behind the 110 ohm series resistor)", all(len(v) == 1 for v in rf.values()) and not any(n.endswith("_RF") for n in net_pins),
           str({k: v for k, v in rf.items() if len(v) != 1}))
     rf = {n: v[0] for n, v in rf.items()}
     ok = True
@@ -658,7 +658,15 @@ def main():
             return None
         return ohms(s[0]["value"]), ohms(sh[0]["value"])
 
-    def corner(r1, r2, rs=(26.0, 36.0, 44.0), v=(1.14, 1.20, 1.26), tol=0.01):
+    # FPGA driver: HP SSTL12, SLEW FAST, RDRV_40_40, no DCI = Vivado IBIS HP_SSTL12_F_OUT40, fast / typ / slow (the merged system
+    # simulation uses the same model).  Independent of scripts/build_netlist.py on purpose.
+    RS = (25.1, 29.3, 34.9)
+    an0 = d["analysis"]
+    check("driver assumption of the level analysis: the IBIS figures 25.1 / 29.3 / 34.9 ohm of HP_SSTL12_F_OUT40, SSTL12 FAST RDRV_40_40 without DCI",
+          an0.get("driver", {}).get("r_fast_typ_slow_ohm") == list(RS) and an0["driver"]["dci"] is False and an0["driver"]["slew"] == "FAST"
+          and an0["driver"]["output_impedance"] == "RDRV_40_40" and "34.9 / 29.3 / 25.1" in an0["assumptions"], str(an0.get("driver")))
+
+    def corner(r1, r2, rs=RS, v=(1.14, 1.20, 1.26), tol=0.01):
         lo = v[0] * r2 * (1 - tol) / (rs[2] + r1 * (1 + tol) + r2 * (1 - tol))
         nom = v[1] * r2 / (rs[1] + r1 + r2)
         hi = v[2] * r2 * (1 + tol) / (rs[0] + r1 * (1 - tol) + r2 * (1 + tol))
@@ -667,22 +675,96 @@ def main():
 
     lev = []
     ok = True
-    for n in ["CA%d" % i for i in range(7)] + ["CK_P", "CK_N", "WCK_P", "WCK_N"]:
+    BOOT_FLOOR = 0.351           # DESIGN.md section 1: default VREF(CA) 0.256 V max + 95 mV
+    # Level policy of the divider-driven VDDQ-domain pins (CA, CK, WCK, write DQ), by the user's decision: about 0.50 V typical as on the
+    # Antmicro design.  It replaces the earlier gates "<= 0.470 V (JEDEC VDDQ minimum)" / "<= the card's VDDQ minimum less 10 mV".
+    # Independent of scripts/build_netlist.py on purpose.
+    TYP_TARGET, TYP_TOL, FAST_MAX = 0.500, 0.015, 0.550
+    vddq_card = [0.4 * (1 + 2490.0 / 10000.0) * k_ for k_ in (0.976, 1.0, 1.024)]
+    vddq_card_min = vddq_card[0]
+    pol = an0.get("level_policy", {})
+    check("level policy stored with the netlist: %.2f V typical +/-%.0f mV, <= %.2f V in the stacked fast corner, boot floor %.3f V; it names the user's decision, "
+          "the rule it replaces (<= 0.47 V) and its cost (lines rest above VDDQ in the fast corner, Table 416 area, SK hynix limits unknown, bring-up)"
+          % (TYP_TARGET, 1e3 * TYP_TOL, FAST_MAX, BOOT_FLOOR),
+          pol.get("typ_target_v") == TYP_TARGET and abs(pol.get("typ_tolerance_mV", 0) - 1e3 * TYP_TOL) < 1e-6 and pol.get("fast_corner_max_v") == FAST_MAX
+          and pol.get("boot_floor_v") == BOOT_FLOOR and "only deviate from antmicro" in pol.get("decision", "") and "0.47" in pol.get("replaces", "")
+          and "RESTS above VDDQ" in pol.get("cost", "") and "Table 416" in pol["cost"] and "SK hynix" in pol["cost"] and "bring-up" in pol["cost"]
+          and "0.47 V" in an0["assumptions"] and "replaces" in an0["assumptions"], str(pol)[:200])
+
+    def policy(name, dv, floor):
+        """(ok, text) of one divider against the policy; floor = lowest allowed level in the slow corner."""
+        lo, nom, hi, imax = corner(*dv)
+        good = abs(nom - TYP_TARGET) <= TYP_TOL and hi <= FAST_MAX and lo >= floor and imax <= 10.0
+        return good, ("%s %g/%g ohm: %.3f / %.3f / %.4f V, %.1f mA max; typical %+.1f mV from %.2f V (+/-%.0f), fast corner %.1f mV under %.2f V and "
+                      "%.1f / %.1f / %.1f mV ABOVE VDDQ %.4f / %.4f / %.4f V, slow corner %.1f mV over its floor %.3f V"
+                      % (name, dv[0], dv[1], lo, nom, hi, imax, 1e3 * (nom - TYP_TARGET), TYP_TARGET, 1e3 * TYP_TOL, 1e3 * (FAST_MAX - hi), FAST_MAX,
+                         1e3 * (hi - vddq_card[0]), 1e3 * (hi - vddq_card[1]), 1e3 * (hi - vddq_card[2]), vddq_card[0], vddq_card[1], vddq_card[2],
+                         1e3 * (lo - floor), floor))
+
+    def stored_policy(key, dv):
+        """the level_policy block of analysis.dividers[key] is the recomputed one"""
+        lo, nom, hi, imax = corner(*dv)
+        q = an0["dividers"][key].get("level_policy", {})
+        return (abs(q.get("typ_minus_target_mV", 9e9) - 1e3 * (nom - TYP_TARGET)) < 0.06 and abs(q.get("fast_corner_v", 9e9) - hi) < 6e-5
+                and abs(q.get("fast_corner_margin_to_max_mV", 9e9) - 1e3 * (FAST_MAX - hi)) < 0.06
+                and abs(q["fast_corner_above_vddq_mV"]["card_min"] - 1e3 * (hi - vddq_card[0])) < 0.06
+                and abs(q["fast_corner_above_vddq_mV"]["typ"] - 1e3 * (hi - vddq_card[1])) < 0.06
+                and q.get("typ_target_v") == TYP_TARGET and q.get("fast_corner_max_v") == FAST_MAX)
+    cmd_vals = set()
+    for n in ["CA%d" % i for i in range(7)] + ["CK_P", "CK_N"]:
         dv = divider(fside(n), n)
         if not dv:
             ok = False
             lev.append(n + ": divider missing")
             continue
-        lo, nom, hi, imax = corner(*dv)
-        ok &= hi <= 0.470 and lo >= 0.345 + 0.020 and imax <= 10.0
-        if n in ("CA0", "CK_P", "WCK_P"):
-            lev.append("%s %g/%g ohm: %.3f / %.3f / %.3f V, %.1f mA max" % (n, dv[0], dv[1], lo, nom, hi, imax))
-    check("CA / CK / WCK dividers: high level <= 0.470 V (VDDQ min) in the fastest corner, >= 0.365 V in the slowest, pin current <= 10 mA",
-          ok, "; ".join(lev))
+        cmd_vals.add(dv)
+        good, txt = policy(n, dv, BOOT_FLOOR + 0.020)
+        ok &= good
+        if n in ("CA0", "CK_P"):
+            lev.append(txt)
+    check("CA / CK dividers: 75 ohm / 75 ohm on all nine nets; static high %.2f V +/-%.0f mV typical, <= %.2f V in the stacked fast corner (deliberately above "
+          "VDDQ: the 0.47 V gate is replaced by the user's 0.50 V decision), >= 0.351 V (boot floor) + 20 mV in the slowest, pin current <= 10 mA (IBIS driver, no DCI)"
+          % (TYP_TARGET, 1e3 * TYP_TOL, FAST_MAX), ok and cmd_vals == {(75.0, 75.0)}, "; ".join(lev))
+    ca_an = an0["dividers"]["CA0-6"]
+    if len(cmd_vals) == 1:
+        r1, r2 = list(cmd_vals)[0]
+        lo, nom, hi, imax = corner(r1, r2)
+        slow = lambda rs_: 1.14 * r2 * 0.99 / (rs_ + r1 * 1.01 + r2 * 0.99)
+        dci40, dci48 = slow(44.0), slow(52.8)
+        nd = ca_an.get("other_drivers", {})
+        check("stored command levels are the recomputed ones (static high, pin current, policy margins, boot floor). DCI statement recomputed for %g / %g ohm: "
+              "the slow-corner margin to the boot floor is %.1f mV with the supported driver, %.1f mV with a 40 ohm DCI driver (44 ohm) and %.1f mV with a 48 ohm "
+              "one, all >= 20 mV, so the prohibition of DCI is dropped as a level argument (the analysis says so and has no 'not_with_dci'); RDRV_40_40 without DCI "
+              "stays the only supported and enforced driver" % (r1, r2, 1e3 * (lo - BOOT_FLOOR), 1e3 * (dci40 - BOOT_FLOOR), 1e3 * (dci48 - BOOT_FLOOR)),
+              abs(ca_an["v_min"] - lo) < 6e-4 and abs(ca_an["v_nom"] - nom) < 6e-4 and abs(ca_an["v_max"] - hi) < 6e-4 and abs(ca_an["i_max_mA"] - imax) < 6e-3
+              and stored_policy("CA0-6", (r1, r2)) and stored_policy("CK_P/CK_N (per leg)", (r1, r2))
+              and abs(ca_an["margin_to_boot_floor_mV"] - 1e3 * (lo - BOOT_FLOOR)) < 0.06
+              and "not_with_dci" not in ca_an and "margin_to_0p47_v_mV" not in ca_an and "DROPPED" in nd.get("rule", "") and "only supported" in nd.get("rule", "")
+              and abs(nd["margin_to_boot_floor_mV"]["40 ohm DCI"] - 1e3 * (dci40 - BOOT_FLOOR)) < 0.06
+              and abs(nd["margin_to_boot_floor_mV"]["48 ohm DCI"] - 1e3 * (dci48 - BOOT_FLOOR)) < 0.06
+              and dci40 - BOOT_FLOOR >= 0.020 and dci48 - BOOT_FLOOR >= 0.020,
+              "40 ohm DCI %.4f V (%+.1f mV), 48 ohm DCI %.4f V (%+.1f mV)" % (dci40, 1e3 * (dci40 - BOOT_FLOOR), dci48, 1e3 * (dci48 - BOOT_FLOOR)))
+    else:
+        check("command dividers all alike", False, str(cmd_vals))
+    ok, lev, wck_vals = True, [], set()
+    for n in ("WCK_P", "WCK_N"):
+        dv = divider(fside(n), n)
+        if not dv:
+            ok = False
+            lev.append(n + ": divider missing")
+            continue
+        wck_vals.add(dv)
+        good, txt = policy(n, dv, 0.365)
+        ok &= good
+        if n == "WCK_P":
+            lev.append(txt)
+    check("WCK dividers: 75 ohm / 75 ohm on both legs (from 91 / 68 with the 0.50 V set); high level %.2f V +/-%.0f mV typical, <= %.2f V in the stacked fast "
+          "corner, >= 0.365 V in the slowest, pin current <= 10 mA; stored policy figures are the recomputed ones" % (TYP_TARGET, 1e3 * TYP_TOL, FAST_MAX),
+          ok and wck_vals == {(75.0, 75.0)} and stored_policy("WCK_P/WCK_N (per leg)", (75.0, 75.0)), "; ".join(lev))
     dv = divider("WCK_F_P", "WCK_P")
     if dv:
         r1, r2 = dv
-        odt = 1.14 * par(r2 * 0.99, 40) / (44 + r1 * 1.01 + par(r2 * 0.99, 40))
+        odt = 1.14 * par(r2 * 0.99, 40) / (RS[2] + r1 * 1.01 + par(r2 * 0.99, 40))
         check("WCK differential swing with the 40 ohm WCK ODT forced during CBT >= 0.30 V p-p", 2 * odt >= 0.30, "%.3f V p-p worst case" % (2 * odt))
     dv = divider("CS0_F", "CS0")
     if dv:
@@ -703,16 +785,19 @@ def main():
             ok = False
             lev.append(n + ": write divider missing, or something else on the net: %s" % on_net)
             continue
-        lo, nom, hi, imax = corner(*dv)
-        ok &= hi <= 0.470 and lo >= 0.30 and imax <= 10.0 and 120.0 <= dv[1] <= 200.0
+        good, txt = policy("DQ", dv, 0.30)
+        ok &= good and dv == (110.0, 100.0) and 90.0 <= dv[1] <= 200.0
         if i == 0:
             vddq = (0.4876, 0.4996, 0.5116)
-            f = (0.766, 0.772, 0.792)
+            f150 = (0.766, 0.772, 0.792)                                  # LPDDR4X IBIS proxies: read high / VDDQ into 150 ohm
+            f = [dv[1] / (dv[1] + 150.0 * (1 - q_) / q_) for q_ in f150]  # the same proxies as a linear pull-up into the shunt of the board
             vh = [vddq[k] * f[k] for k in range(3)]
-            lev.append("DQ %g/%g ohm: write %.3f / %.3f / %.3f V; read high into %g ohm %.3f / %.3f / %.3f V"
-                       % (dv[0], dv[1], lo, nom, hi, dv[1], vh[0], vh[1], vh[2]))
+            ok &= all(abs(a_ - b_) < 6e-4 for a_, b_ in zip(vh, an0["read"]["read_high_v"])) and an0["read"]["load_ohm"] == dv[1]
+            ok &= stored_policy("DQ0-7 write", dv)
+            lev.append(txt + "; read high into %g ohm %.3f / %.3f / %.3f V" % (dv[1], vh[0], vh[1], vh[2]))
     r22 = sorted(q["ref"] for q in d["parts"] if q["value"] == "22R" and q["sheet"] in ("read", "write"))
-    check("DQ write dividers: level <= 0.470 V in the fastest corner; shunt 120..200 ohm (read load); the net DQx is exactly ball, series resistor, "
+    check("DQ write dividers: 110 ohm / 100 ohm on all eight; level 0.50 V +/-15 mV typical, <= 0.55 V in the stacked fast corner (the 0.47 V gate is replaced, as "
+          "for the commands); shunt 90..200 ohm (read load) and the stored read high level is the one recomputed for it; the net DQx is exactly ball, series resistor, "
           "shunt and read finger - no 22 ohm tap (R301..R308, R311, R312 removed: no 22 ohm part on the read or write sheet, no R30x / R31[12])",
           ok and not r22 and not any(re.fullmatch(r"R30[1-8]|R31[12]", r_) for r_ in parts), "; ".join(lev) + "; 22 ohm parts left: %s" % r22)
     dv = divider("RESET_N_F", "RESET_N")
@@ -734,25 +819,67 @@ def main():
     c100 = [p for p in d["parts"] if p["ref"][0] == "C" and set(p["pins"].values()) == {"VREF_RD", "GND"} and p["value"] == "100n"]
     check("each of the 8 N fingers: 39 ohm to VREF_RD and nothing else on the stub; 8 x 100 nF on VREF_RD", ok and len(c100) == 8,
           "%d x 100 nF" % len(c100))
-    ra, rb, rc = two_pin("DAC_OUT", "VREF_RD"), two_pin("VDDQ", "VREF_RD"), two_pin("VREF_RD", "GND")
-    if len(ra) == len(rb) == len(rc) == 1:
-        ra, rb, rc = ohms(ra[0]["value"]), ohms(rb[0]["value"]), ohms(rc[0]["value"])
-        g = 1 / ra + 1 / rb + 1 / rc
-        v0 = 0.4996 * rc / (rb + rc)
-        vmin, vmax, vbad = (0.4996 / rb) / g, (1.815 / ra + 0.4996 / rb) / g, (3.3 / ra + 0.4996 / rb) / g
-        check("reference network: power-up default 0.17..0.21 V, DAC range covers 0.14..0.42 V, <= 1.40 V even if the DAC is set to 3.3 V, source <= 120 ohm",
-              0.17 <= v0 <= 0.21 and vmin <= 0.14 and vmax >= 0.42 and vbad <= 1.40 and 1 / g <= 120 and par(rb, rc) <= 120,
-              "default %.4f V; DAC 0..1.815 V -> %.3f..%.3f V; at 3.3 V %.3f V; source %.0f ohm (DAC on) / %.0f ohm (DAC high-Z)"
-              % (v0, vmin, vmax, vbad, 1 / g, par(rb, rc)))
-        vn = 0.195
-        vh = (0.4876 * 0.766, 0.5116 * 0.792)
+    ra, rb, rc = two_pin("DAC_OUT", "VREF_RD"), two_pin("VDDQ", "VREF_RD"), two_pin("VREF_RD", "GND")     # two_pin lists fitted parts only
+    r332 = parts.get("R332", {})
+    dnp_all = sorted(p_["ref"] for p_ in d["parts"] if p_["dnp"])
+    check("R332 (the pull-up of the reference bus to VDDQ) is NOT FITTED and still in the design: DNP, 300 ohm 0402 between VDDQ and VREF_RD, in the BOM as a "
+          "DNP line of its own; it is the only DNP part; no fitted part joins VDDQ and VREF_RD",
+          r332.get("dnp") is True and set(r332.get("pins", {}).values()) == {"VDDQ", "VREF_RD"} and ohms(r332["value"]) == 300.0 and "0402" in r332["footprint"]
+          and dnp_all == ["R332"] and rb == [] and [b_["refs"] for b_ in d["bom_summary"] if b_["dnp"]] == [["R332"]]
+          and d["meta"]["part_counts"]["dnp"] == 1, "DNP parts: %s" % dnp_all)
+    if len(ra) == len(rc) == 1 and not rb:
+        ra, rc = ohms(ra[0]["value"]), ohms(rc[0]["value"])
+        FS = 1.21 * 1.5                               # DAC53401: internal reference 1.21 V, gain 1.5; VOUT = code / 1024 x FS
+        kg = rc / (ra + rc)
+        vmin, vmax, lsb = 0.0, kg * FS * 1023 / 1024, FS / 1024 * kg * 1e3
+        vbad, vbad5 = kg * 3.3, kg * 3.3 * 1.05
+        rsrc = par(ra, rc)
+        leak = 8 * 15e-6 * rsrc * 1e3
+        vn = an0["read"]["reference_v"]
+        v0 = 0.0                                      # DAC Hi-Z: the bus is at GND through Rc
+        code = lambda v_: int(round(v_ / kg / FS * 1024))
+        lowest = int(math.ceil(0.140 / kg / FS * 1024))
+        rf0, pu0 = an0["reference"], an0["read"].get("power_up", {})
+        sq = rf0.get("i2c_sequence", {})
+        check("reference network without the VDDQ pull-up: DAC_OUT - 300 ohm - VREF_RD - 160 ohm - GND. V = Vdac x %.4f with no offset; range 0 V .. >= 0.42 V "
+              "on the internal reference; <= 1.40 V (FPGA pin, DS925) even if the DAC is set to the 3.3 V reference at +5 %%; source <= 120 ohm; leakage shift "
+              "<= 15 mV; the set value %.3f V and the three simulated centres are inside the usable window (codes %d .. , 0.14 V: common mode of a zero); the "
+              "stored figures (transfer, range, step, codes, worst cases, leakage, noise attenuation) are the recomputed ones" % (kg, vn, lowest),
+              (ra, rc) == (300.0, 160.0) and vmax >= 0.42 and vbad5 <= 1.40 and rsrc <= 120 and leak <= 15.0
+              and rf0["dac_offset_v"] == 0.0 and abs(rf0["dac_gain"] - kg) < 6e-5 and rf0["range_internal_ref_x1p5_v"][0] == 0.0
+              and abs(rf0["range_internal_ref_x1p5_v"][1] - vmax) < 6e-4 and abs(rf0["lsb_mV"] - lsb) < 6e-4
+              and rf0["dac_code_for_reference_v"] == code(vn) and rf0["dac_data_register_for_reference_v"] == "0x%04X" % (code(vn) << 2)
+              and [q_["code"] for q_ in rf0["dac_codes_for_the_simulated_centres"].values()] == [code(q_["v"]) for q_ in rf0["dac_codes_for_the_simulated_centres"].values()]
+              and rf0["lowest_usable_dac_code"] == lowest and min(q_["code"] for q_ in rf0["dac_codes_for_the_simulated_centres"].values()) >= lowest
+              and "NOT usable" in rf0["lowest_usable_dac_code_note"]
+              and abs(rf0["worst_case_if_misprogrammed_to_3p3_v"] - vbad) < 6e-4 and abs(rf0["worst_case_if_misprogrammed_to_3p3_v_plus_5pct"] - vbad5) < 6e-4
+              and abs(rf0["worst_case_at_dac_full_scale_v"] - kg * FS) < 6e-4 and abs(rf0["leakage_shift_mV_at_8x15uA"] - leak) < 0.06
+              and abs(rf0["dac_active_source_ohm"] - rsrc) < 0.06 and abs(rf0["dac_noise_attenuation"] - kg) < 6e-4 and rf0["follows_vddq"].startswith("no")
+              and rf0["rb_fitted"] is False,
+              "V = %.4f x Vdac; 0 .. %.3f V in %.3f mV steps; code %d (DAC_DATA 0x%04X) = %.3f V; centres %s; lowest usable code %d; full scale %.3f V, at 3.3 V %.3f V, "
+              "at 3.3 V + 5 %% %.3f V; source %.1f ohm; leakage %.1f mV"
+              % (kg, vmax, lsb, code(vn), code(vn) << 2, vn, [q_["code"] for q_ in rf0["dac_codes_for_the_simulated_centres"].values()], lowest, kg * FS, vbad, vbad5, rsrc, leak))
+        check("power-up behaviour is stated, not hidden: with the DAC unprogrammed (output Hi-Z) VREF_RD is 0 V and reads do NOT work; the analysis says so, names both "
+              "ways out (I2C write at every start; NVM default once per board) and carries the I2C sequences (DAC_DATA 0x21, GENERAL_CONFIG 0xD1 = 0x01E4, "
+              "TRIGGER 0xD3 = 0x0010 NVM_PROG, NVM_BUSY in STATUS 0xD0); no key claims an unprogrammed default any more",
+              rf0["dac_high_z_v"] == 0.0 and an0["read"]["reference_default_v"] == 0.0 and pu0.get("vref_rd_dac_unprogrammed_v") == 0.0
+              and "READS DO NOT WORK" in pu0.get("statement", "") and set(pu0.get("options", {})) == {"write_at_every_start", "store_once_per_board"}
+              and "default_reference_check" not in an0["read"] and "dac_code_for_the_unprogrammed_default" not in rf0
+              and any("DAC_DATA (0x21) = 0x%04X" % (code(vn) << 2) in s_ for s_ in sq.get("set_point", []))
+              and any("GENERAL_CONFIG (0xD1) = 0x01E4" in s_ for s_ in sq.get("set_point", []))
+              and any("TRIGGER (0xD3) = 0x0010" in s_ and "NVM_PROG" in s_ for s_ in sq.get("store_default", []))
+              and any("NVM_BUSY" in s_ for s_ in sq.get("store_default", [])), pu0.get("statement", "")[:160])
+        rsh = divider("DQ0_WF", "DQ0")[1]
+        vh = tuple(v_ * rsh / (rsh + 150.0 * (1 - q_) / q_) for v_, q_ in ((0.4876, 0.766), (0.5116, 0.792)))
         vicm1 = [(v + vn) / 2 for v in vh]
-        check("read levels inside MIPI_DPHY_DCI HS (VID >= 70 mV, VICM 70..330 mV, pin <= 460 mV) and SLVS_400_18 (VID >= 140 mV)",
-              min(vh) - vn >= 0.140 and max(vicm1) <= 0.330 and vn / 2 >= 0.070 and max(vh) <= 0.460 and vn >= 0.140,
+        check("read levels inside MIPI_DPHY_DCI HS (VID >= 70 mV, VICM 70..330 mV, pin <= 460 mV), the only supported read receiver, at the set reference "
+              "%.3f V (inside the DAC range %.3f .. %.3f V); NOT at the unprogrammed state (0 V: no read before the DAC write)" % (vn, vmin, vmax),
+              min(vh) - vn >= 0.070 and max(vicm1) <= 0.330 and vn / 2 >= 0.070 and max(vh) <= 0.460 and vn >= 0.070 and vmin <= vn <= vmax
+              and v0 / 2 < 0.070 and abs(vn - 0.175) < 1e-9,
               "one: VID %.0f..%.0f mV, VICM %.0f..%.0f mV; zero: VID -%.0f mV, VICM %.1f mV" %
               (1e3 * (vh[0] - vn), 1e3 * (vh[1] - vn), 1e3 * vicm1[0], 1e3 * vicm1[1], 1e3 * vn, 1e3 * vn / 2))
     else:
-        check("reference network Ra / Rb / Rc present", False)
+        check("reference network: Ra and Rc fitted, Rb (R332) not fitted", False)
     u5 = parts.get("U5", {}).get("pins", {})
     check("DAC53401: VDD = V3P3, SCL/SDA on fingers 253/254, A0 = GND (address 0x48), FB tied to OUT, CAP capacitor present",
           u5.get("6") == "V3P3" and u5.get("2") == "SCL" and u5.get("3") == "SDA" and j1["253"] == "SCL" and j1["254"] == "SDA"
@@ -1817,7 +1944,7 @@ def main():
     gwr = {g["name"]: g for g in d["groups"]}["WR"]
     w_lo, w_hi = min(wr_tot.values()), max(wr_tot.values())
     w_cen, w_half = (w_lo + w_hi) / 2, (w_hi - w_lo) / 2
-    check("write group, every delay re-derived from the centre lines (finger top -> stub -> 240 ohm -> node via -> tooth -> line -> neck -> ball; barrel of the "
+    check("write group, every delay re-derived from the centre lines (finger top -> stub -> 110 ohm -> node via -> tooth -> line -> neck -> ball; barrel of the "
           "node via only for a back finger; every mitred vertex by the bend model): equal to the plan within %.2f ps on all eight nets" % tol_plan,
           not wr_bad and len(wr_tot) == 8, "; ".join(wr_rows) + ("; problems %s" % wr_bad if wr_bad else ""))
     dk = gwr["deskew"]
@@ -1907,7 +2034,7 @@ def main():
           and all(abs(gq_["per_net_planned_total_ps"][n] - pr_tot[n]) <= 0.02 for n in ("RDQS_P", "RDQS_N")),
           str(pr_bad))
     gk_ = {g["name"]: g for g in d["groups"]}["WR_WCK"]
-    check("WCK pair, re-derived (finger top -> stub -> 91 ohm -> 0.20 mm link -> node via -> B.Cu leg -> via-in-pad -> ball): WCK_P %.2f ps, WCK_N %.2f ps "
+    check("WCK pair, re-derived (finger top -> stub -> 75 ohm -> 0.20 mm link -> node via -> B.Cu leg -> via-in-pad -> ball): WCK_P %.2f ps, WCK_N %.2f ps "
           "total = %+.2f ps P to N (limit +/-%.0f), no skew bump; equal to the plan within %.2f ps"
           % (pr_tot["WCK_P"], pr_tot["WCK_N"], pr_tot["WCK_P"] - pr_tot["WCK_N"], gk_["tolerance_ps"], tol_plan),
           not [b_ for b_ in pr_bad if b_[0].startswith("WCK")] and abs(pr_tot["WCK_P"] - pr_tot["WCK_N"]) <= gk_["tolerance_ps"] - 0.2 and gk_["tolerance_ps"] == 1.0
@@ -1925,7 +2052,7 @@ def main():
         sd = fingers[f]["side"]
         okc = (len(nv) == 1 and ser["x"] == sh["x"] == c_["x"] and ser["y"] == sh["y"] and ser["side"] == sd and sh["side"] != sd
                and parts[c_["series"]]["pins"] == {"1": n + "_WF", "2": n} and parts[c_["shunt"]]["pins"] == {"1": n, "2": "GND"}
-               and ser["pad2"][1] > ser["y"] and sh["pad1"][1] > sh["y"] and ohms(parts[c_["series"]]["value"]) == 240.0 and ohms(parts[c_["shunt"]]["value"]) == 150.0)
+               and ser["pad2"][1] > ser["y"] and sh["pad1"][1] > sh["y"] and ohms(parts[c_["series"]]["value"]) == 110.0 and ohms(parts[c_["shunt"]]["value"]) == 100.0)
         # copper from the node via to the two lands: the link to the pad centre, plus the barrel when the land is on the far face from the tooth (F.Cu)
         d_ser = abs(D["rows_y"]["node_via"] - ser["pad2"][1]) + (0.0 if ser["side"] == "F" else zmid["B.Cu"] - zmid["F.Cu"])
         d_sh = abs(D["rows_y"]["node_via"] - sh["pad1"][1]) + (0.0 if sh["side"] == "F" else zmid["B.Cu"] - zmid["F.Cu"])
@@ -1940,7 +2067,7 @@ def main():
         if not okc:
             tbad.append(n)
         trow.append("%s x %.3f: series %s on %s %.2f mm, shunt %s on %s %.2f mm" % (n, c_["x"], c_["series"], ser["side"], d_ser, c_["shunt"], sh["side"], d_sh))
-    check("T at the divider: for every DQ the node via stands on the column axis, the 240 ohm series resistor (finger's face) and the 150 ohm shunt (other face) "
+    check("T at the divider: for every DQ the node via stands on the column axis, the 110 ohm series resistor (finger's face) and the 100 ohm shunt (other face) "
           "sit back to back south of it with their lands 0.25 mm from the via pad, and the F.Cu tooth, the In3 read branch and both links meet on that via. "
           "Copper from the T to each land (through the barrel for the far face) <= %.1f mm; all sixteen lands within %.2f mm of the card edge (limit %.1f)"
           % (ncw["t_to_resistor_max_mm"], edge_far, ncw["divider_to_card_edge_max_mm"]), not tbad, "; ".join(trow))
@@ -2468,7 +2595,7 @@ def main():
     en_pins = sorted(net_pins[en])
     check("VDD1 enable: only U3.EN and the pull-up to V1P2 on the net, no finger and no optional link (a host-driven enable would "
           "switch VDD1 off under a live VDD2H)", en_pins == sorted([("U3", "3"), (two_pin("V1P2", en)[0]["ref"], "1" if two_pin("V1P2", en)[0]["pins"]["1"] == en else "2")])
-          and j1["109"] == "" and not any(p["dnp"] for p in d["parts"]), "%s: %s" % (en, en_pins))
+          and j1["109"] == "" and not any(p["dnp"] for p in d["parts"] if p["ref"] != "R332"), "%s: %s" % (en, en_pins))
     c47 = lambda net: sum({"4u7": 4.7e-6, "22u": 22e-6, "1u": 1e-6, "100n": 0.1e-6, "2n2": 2.2e-9}[p["value"]] for p in d["parts"]
                           if p["ref"][0] == "C" and set(p["pins"].values()) == {net, "GND"})
     b1 = two_pin("VDD1", "GND")
@@ -2496,44 +2623,56 @@ def main():
     an = d["analysis"]
     dv = divider("CA0_F", "CA0")
     ibis = 1.26 * dv[1] * 1.01 / (25.1 + dv[0] * 0.99 + dv[1] * 1.01)
+    wd = divider("WCK_F_P", "WCK_P")
+    ibis_wck = 1.26 * wd[1] * 1.01 / (25.1 + wd[0] * 0.99 + wd[1] * 1.01)
     dq = divider("DQ0_WF", "DQ0")
     ibis_dq = 1.26 * dq[1] * 1.01 / (25.1 + dq[0] * 0.99 + dq[1] * 1.01)
     vddq_min = 0.4 * (1 + 2490.0 / 10000.0) * 0.976
-    check("with the fastest IBIS driver (25.1 ohm) every VDDQ-domain level still stays below the card's own VDDQ minimum",
-          ibis <= vddq_min - 0.010 and ibis_dq <= vddq_min - 0.010, "CA / CK / WCK %.4f V, DQ %.4f V, VDDQ min %.4f V" % (ibis, ibis_dq, vddq_min))
+    check("with the fastest IBIS driver (25.1 ohm, 1.26 V, 1 %% resistors) every divider-driven VDDQ-domain level is <= %.2f V, the stated maximum of the 0.50 V "
+          "policy, and <= 0.57 V (JEDEC VDDQ maximum). It is ABOVE the card's own VDDQ minimum: the earlier gate 'below the card's VDDQ minimum less 10 mV' is "
+          "given up by the user's decision (0.50 V typical like the Antmicro dividers)" % FAST_MAX,
+          max(ibis, ibis_wck, ibis_dq) <= FAST_MAX and max(ibis, ibis_wck, ibis_dq) <= 0.570 and min(ibis, ibis_wck, ibis_dq) > vddq_min,
+          "CA / CK %.4f V, WCK %.4f V, DQ %.4f V (%.1f / %.1f / %.1f mV above VDDQ min %.4f V; %.1f mV under %.2f V at worst)"
+          % (ibis, ibis_wck, ibis_dq, 1e3 * (ibis - vddq_min), 1e3 * (ibis_wck - vddq_min), 1e3 * (ibis_dq - vddq_min), vddq_min,
+             1e3 * (FAST_MAX - max(ibis, ibis_wck, ibis_dq)), FAST_MAX))
     zc = d["rules"]["netclasses"]["CMD_SE"]["layers"]["In3.Cu"]["z0_ohm"]
     zp = par(dv[1], zc)
     k = 4 * zp / (dv[0] + zp + 39.0)
-    fi_fast, dc_fast = k * 1.26 * 39.0 / (26.0 + 39.0), 1.26 * dv[1] / (26.0 + dv[0] + dv[1])
-    check("first-incident level at the open ball (fast corner) exceeds the card's VDDQ by less than the JEDEC overshoot allowance (0.3 V)",
-          fi_fast - vddq_min <= 0.10 and abs(an["dividers"]["CA0-6"]["first_incident_at_open_ball_v"][2] - fi_fast) < 2e-3,
+    fi_fast, dc_fast = k * 1.26 * 39.0 / (25.1 + 39.0), 1.26 * dv[1] / (25.1 + dv[0] + dv[1])
+    check("first-incident level at the open ball (fast corner) exceeds the card's VDDQ minimum by at most 0.20 V (JEDEC overshoot amplitude allowance 0.3 V; "
+          "the gate was 0.10 V under the 0.47 V rule)",
+          fi_fast - vddq_min <= 0.20 and abs(an["dividers"]["CA0-6"]["first_incident_at_open_ball_v"][2] - fi_fast) < 2e-3,
           "first incident %.3f V = %.2f x the DC level; %.0f mV above VDDQ min" % (fi_fast, fi_fast / dc_fast, 1e3 * (fi_fast - vddq_min)))
-    wd = divider("WCK_F_P", "WCK_P")
-    odt36 = 2 * 1.14 * par(wd[1] * 0.99, 36.0) / (44 + wd[0] * 1.01 + par(wd[1] * 0.99, 36.0))
+    odt36 = 2 * 1.14 * par(wd[1] * 0.99, 36.0) / (34.9 + wd[0] * 1.01 + par(wd[1] * 0.99, 36.0))
     check("WCK with the CBT ODT at its low limit (36 ohm): still >= 0.30 V p-p differential, and the stored figure is this worst case",
           odt36 >= 0.30 and abs(an["dividers"]["WCK_P/WCK_N (per leg)"]["with_40ohm_wck_odt_differential_vpp"][0] - odt36) < 2e-3, "%.3f V p-p" % odt36)
     sh = dq[1]
     vj = (0.4876 * sh / (52.0 + sh), 0.5116 * sh / (28.0 + sh))      # JESD209-5C Table 472: 40 ohm x 1.3 / 0.7, un-terminated
     vn = an["read"]["reference_v"]
-    check("read levels over the JEDEC pull-up range (28 .. 52 ohm into the shunt), reference 0.195 V: inside MIPI_DPHY_DCI and SLVS_400_18 windows",
-          vn <= 0.200 and (vj[1] + vn) / 2 <= 0.330 and vj[1] <= 0.460 and vj[0] - vn >= 0.140 and vn / 2 >= 0.070
+    rcv = an["read"].get("receiver", {})
+    check("read receiver: MIPI_DPHY_DCI on IBUFDS_DPHY is the only supported one; SLVS_400_18 is recorded as dropped (no window, no margin key offered)",
+          "only supported" in rcv.get("supported", "") and "NOT supported" in rcv.get("slvs_400_18", "") and "slvs_400_18_window" not in an["read"]
+          and not any("slvs" in k_ for k_ in an["read"]["margins_at_jedec_bound_mV"]), str(rcv)[:200])
+    check("read levels over the JEDEC pull-up range (28 .. 52 ohm into the shunt), reference %.3f V: inside the MIPI_DPHY_DCI window" % vn,
+          vn <= 0.200 and (vj[1] + vn) / 2 <= 0.330 and vj[1] <= 0.460 and vj[0] - vn >= 0.070 and vn / 2 >= 0.070
           and abs(an["read"]["read_high_jedec_bound_v"][0] - vj[0]) < 2e-3 and abs(an["read"]["read_high_jedec_bound_v"][2] - vj[1]) < 2e-3,
-          "read high %.3f .. %.3f V; VICM <= %.0f mV (330), pin <= %.0f mV (460), SLVS VID >= %.0f mV (140)"
+          "read high %.3f .. %.3f V; VICM <= %.0f mV (330), pin <= %.0f mV (460), VID >= %.0f mV (70)"
           % (vj[0], vj[1], 1e3 * (vj[1] + vn) / 2, 1e3 * vj[1], 1e3 * (vj[0] - vn)))
     wn = an["write_node"]
-    rsrc = par(sh, dq[0] + 36.0)
+    rsrc = par(sh, dq[0] + 29.3)
     tau = rsrc * wn["capacitance_total_pf"] * 1e-3
     wrnote = {g["name"]: g for g in d["groups"]}["WR"]["note"]
-    check("write node: time constant computed from the full node capacitance (>= 25 pF with the read branch and host line), unit interval "
-          "at 100 Mb/s >= 3 tau, and no 200 Mb/s claim", wn["capacitance_total_pf"] >= 25.0 and abs(wn["tau_ns"] - tau) < 0.02 and 10.0 >= 3 * tau
-          and "200 Mb/s" not in wrnote and wn["capacitance_pf"]["read_branch_in3_pf"] >= 0.1515 * max(rd_in3.values()) - 0.2,
+    check("write node: time constant computed from the full node capacitance (>= 25 pF with the read branch and host line) and the divider of the board, "
+          "unit interval at 100 Mb/s >= 3 tau, no rate above 100 Mb/s claimed", wn["capacitance_total_pf"] >= 25.0 and abs(wn["tau_ns"] - tau) < 0.02 and 10.0 >= 3 * tau
+          and "200 Mb/s" not in wrnote and "200 Mb/s" not in wn["supported_rate"] and "no higher rate" in wn["supported_rate"] and wn["capacitance_pf"]["read_branch_in3_pf"] >= 0.1515 * max(rd_in3.values()) - 0.2,
           "%.0f ohm x %.1f pF = %.2f ns" % (rsrc, wn["capacitance_total_pf"], tau))
     check("idle RDQS (both legs at 0 V) is documented as invalid outside the read burst", "gated" in an["read"]["rdqs_true_differential"]["idle"])
     # ---- the open FPGA end without a series resistor: the line simulation is re-run here and compared with what the spec states
     import read_linesim as LS
     oe = an["read"]["open_end"]
     kw_ = dict(tau_trunk=oe["delays_ps"]["trunk_ps"] * 1e-12, tau_rd=oe["delays_ps"]["read_branch_ps"] * 1e-12,
-               tau_host=oe["delays_ps"]["host_read_ps"] * 1e-12, tau_wr=oe["delays_ps"]["host_write_ps"] * 1e-12)
+               tau_host=oe["delays_ps"]["host_read_ps"] * 1e-12, tau_wr=oe["delays_ps"]["host_write_ps"] * 1e-12,
+               r_shunt=sh, r_series=dq[0])            # the divider values of the board, read from the parts
     mine = LS.table(0.0, **kw_)
     same_ = len(mine) == len(oe["without_series_resistor"]) and all(
         abs(a_[k_] - b_[k_]) <= 0.002 for a_, b_ in zip(mine, oe["without_series_resistor"]) for k_ in ("peak_v", "min_v"))
@@ -2614,6 +2753,37 @@ def main():
             "%.2f / %.2f" % (gq_["per_net_planned_total_ps"]["RDQS_P"], gq_["per_net_planned_total_ps"]["RDQS_N"]),
             "%+.2f" % gq_["strobe_minus_dq_group_ps"], "y = %.2f" % D["knobs"]["rdqs_via_y"], "RDQS_pair_to_other_tracks_In3", "rdqs_via_pair",
             "intentionally open", "FID1 .. FID6", "%d nets" % len(net_pins), "%d BOM lines" % len(d["bom_summary"]), "design/gateware/", "TSOT-23-5"]
+    # the merged system simulation and what followed: MIPI_DPHY_DCI the only read receiver; then the 0.50 V divider set (the user's decision to
+    # follow Antmicro's level), which replaces the 0.47 V rule: the text must carry the recomputed levels, the policy, its cost and the studies
+    an_ = d["analysis"]
+    ca_, dq_, wk_ = an_["dividers"]["CA0-6"], an_["dividers"]["DQ0-7 write"], an_["dividers"]["WCK_P/WCK_N (per leg)"]
+    fb_ = an_["system_simulation"]["front_back_skew"]
+    rd_, rf_, cur_ = an_["read"], an_["reference"], an_["divider_currents"]
+    need += ["## 16. Merged system simulation", "| CA0-6, CK legs | %d / %d ohm | %.3f / %.3f / %.3f V | %.1f / %.1f mA |"
+             % (ca_["series"], ca_["shunt"], ca_["v_min"], ca_["v_nom"], ca_["v_max"], ca_["i_nom_mA"], ca_["i_max_mA"]),
+             "| DQ0-7 write | %d / %d ohm | %.3f / %.3f / %.3f V | %.1f / %.1f mA |"
+             % (dq_["series"], dq_["shunt"], dq_["v_min"], dq_["v_nom"], dq_["v_max"], dq_["i_nom_mA"], dq_["i_max_mA"]),
+             "| WCK legs | %d / %d ohm | %.3f / %.3f / %.3f V | %.1f / %.1f mA |"
+             % (wk_["series"], wk_["shunt"], wk_["v_min"], wk_["v_nom"], wk_["v_max"], wk_["i_nom_mA"], wk_["i_max_mA"]),
+             "34.9 / 29.3 / 25.1 ohm", "%.1f mV above" % ca_["margin_to_boot_floor_mV"],
+             "deliberate departure", "only deviate from antmicro", "%.2f V +/-%.0f mV" % (an_["level_policy"]["typ_target_v"], an_["level_policy"]["typ_tolerance_mV"]),
+             "%.1f mV under the %.2f V maximum" % (ca_["level_policy"]["fast_corner_margin_to_max_mV"], an_["level_policy"]["fast_corner_max_v"]),
+             "%.1f mV under the %.2f V maximum" % (dq_["level_policy"]["fast_corner_margin_to_max_mV"], an_["level_policy"]["fast_corner_max_v"]),
+             "%.1f mV above the card's VDDQ minimum" % ca_["level_policy"]["fast_corner_above_vddq_mV"]["card_min"],
+             "%.1f mV above the card's VDDQ minimum" % dq_["level_policy"]["fast_corner_above_vddq_mV"]["card_min"],
+             "Table 416", "SK hynix input limits", "0.456 / 0.495 / 0.532 V", "0.461 / 0.496 / 0.530 V",
+             "MR14 0x46", "MR12 0x4A", "Table 91 note 4", "code %d gives %.3f V" % (rf_["dac_code_for_reference_v"], rd_["reference_v"]),
+             "R333 (Rc) is 160 ohm", "R332 is NOT FITTED", "Codes below %d" % rf_["lowest_usable_dac_code"], "V = %.4f x Vdac" % rf_["dac_gain"],
+             "reads do not work until", "DAC_DATA (0x21) = %s" % rf_["dac_data_register_for_reference_v"], "TRIGGER (0xD3) = 0x0010", "0 .. %.3f V" % rf_["range_internal_ref_x1p5_v"][1],
+             "codes %d / %d / %d" % tuple(rf_["dac_codes_for_the_simulated_centres"][k_]["code"] for k_ in ("slow", "typ", "fast")),
+             "%.3f V at 3.3 V + 5 %%" % rf_["worst_case_if_misprogrammed_to_3p3_v_plus_5pct"], "one DNP",
+             "tau %.1f ns" % an_["write_node"]["tau_ns"], "%.3f / %.3f / %.3f V" % tuple(rd_["read_high_v"]),
+             "%.1f mA" % cur_["command_bank_65_typ_mA"]["seven_CA_and_one_CK_leg_high"], "%.1f mA" % cur_["write_bank_64_typ_mA"]["eight_DQ_and_one_WCK_leg_high"],
+             "not a field re-solve", "22R / 27R", "53 ps", "at the input receiver", "Antmicro reference comparison", "100R / 100R what-if",
+             "the revision label is an open question",
+             ", ".join("%s +%d" % (k_, fb_["odelay_start_ps"][k_]) for k_ in sorted(fb_["odelay_start_ps"], key=lambda k_: -fb_["odelay_start_ps"][k_]) if fb_["odelay_start_ps"][k_]),
+             "**Front / back skew: %d ps.**" % fb_["front_minus_back_ps"], "~/lpddr5_sys/stage3/", "design/ref/system_simulation.json",
+             "keep the pad on every layer"]
     # release: the restructured document (rules table, upstream comparison, crossing table, rebuild and fabrication package) and its crossing figures
     cb_, pb_ = fp["data"]["crossing_budget"], fp["power"]["crossing_budget"]
     need += ["## 10. The user's rules and how each is met", "## 11. Comparison with the Antmicro LPDDR5 testbed", "## 12. Crossings", "## Appendix A. History",
@@ -2634,8 +2804,14 @@ def main():
              "not joined on In4", "an In4 island under the finger row",       # the comb before the review of stage s30_data
              "894.7 ps", "-9.72 .. +9.63", "x = 50.894", "data x data 80",     # the comb with the matched read group (20 read-end crossings, RDQS on 198 / 200)
              "308.96 / 308.76", "via pair at x = 49.000", "39-53.3", "rdqs outer run", "unused byte pulldowns", "**905.36 / 905.36**",
-             "Command bundle, all 29", "LPDDR5_RDQS=mid`)", "x 28.7-47.7", "127 items", "28 BOM lines",      # before the final fix pass
-             "Sections 10 to 12 are change logs", "## 16. Final review", "(it was 59.50)", "section 16"]     # before the release restructuring
+             "Command bundle, all 29", "LPDDR5_RDQS=mid`)", "x 28.7-47.7", "127 items",      # before the final fix pass
+             "Sections 10 to 12 are change logs", "## 16. Final review", "(it was 59.50)",     # before the release restructuring ("section 16" is now the simulation)
+             "| CA0-6, CK legs | 91 / 68 ohm", "driver 26 / 36 / 44 ohm", "_rx_slvs.xdc` for the fall-back", "with the SLVS fall-back", "MIPI / SLVS receiver",
+             "CA / CK / WCK 91 ohm + 68 ohm", "RDRV_40_40 and still gives", "SLVS VID >= 140 mV |",     # before the merged system simulation
+             "| CA0-6, CK legs | 75 / 56 ohm", "MUST NOT be combined with a DCI driver", "The WCK dividers stay 91 / 68 ohm", "| DQ0-7 write | 240 / 150 ohm",
+             "| WCK legs | 91 / 68 ohm", "29 BOM lines", "tau 2.6 ns,", "set by the 2.6 ns write node", "200 Mb/s is not supported by this node", "code 121 gives 0.195 V",
+             "0.195 V set", "56R to GND", "PROPOSED, not applied", "code 80 gives 0.175 V", "0.187 V default", "300 / 300 / 180 ohm).", "20 mV above the floor",
+             "code 101 gives 0.175 V", "(none DNP)", "reads work before any I2C", "Reads work before any I2C", "reads work without it", "0.129-0.597 V in", "150 ohm DQ shunt", "limit of 0.47 V at the ball", "0.42 V swing"]     # before the 0.50 V divider set
     check("DESIGN.md carries the current key numbers and none of the superseded ones",
           all(x in md for x in need) and not any(x in md for x in stale),
           "missing: %s; stale: %s" % ([x for x in need if x not in md], [x for x in stale if x in md]))

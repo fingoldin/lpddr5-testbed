@@ -10269,7 +10269,7 @@
 				)
 			)
 		)
-		(property "Value" "91R"
+		(property "Value" "75R"
 			(at 0 1.05 90)
 			(layer "F.Fab")
 			(hide yes)
@@ -10293,7 +10293,7 @@
 				)
 			)
 		)
-		(property "Description" "CA1 series (finger side of the divider), resistor 91R 1 % 0201"
+		(property "Description" "CA1 series (finger side of the divider), resistor 75R 1 % 0201"
 			(at 0 0 90)
 			(unlocked yes)
 			(layer "F.Fab")
@@ -10305,7 +10305,7 @@
 				)
 			)
 		)
-		(property "MPN" "RC0201FR-0791RL"
+		(property "MPN" "RC0201FR-0775RL"
 			(at 0 0 0)
 			(layer "F.SilkS")
 			(hide yes)
@@ -10483,7 +10483,7 @@
 				)
 			)
 		)
-		(property "Value" "91R"
+		(property "Value" "75R"
 			(at 0 1.05 90)
 			(layer "F.Fab")
 			(hide yes)
@@ -10507,7 +10507,7 @@
 				)
 			)
 		)
-		(property "Description" "CA2 series (finger side of the divider), resistor 91R 1 % 0201"
+		(property "Description" "CA2 series (finger side of the divider), resistor 75R 1 % 0201"
 			(at 0 0 90)
 			(unlocked yes)
 			(layer "F.Fab")
@@ -10519,7 +10519,7 @@
 				)
 			)
 		)
-		(property "MPN" "RC0201FR-0791RL"
+		(property "MPN" "RC0201FR-0775RL"
 			(at 0 0 0)
 			(layer "F.SilkS")
 			(hide yes)
@@ -10697,7 +10697,7 @@
 				)
 			)
 		)
-		(property "Value" "91R"
+		(property "Value" "75R"
 			(at 0 1.05 90)
 			(layer "F.Fab")
 			(hide yes)
@@ -10721,7 +10721,7 @@
 				)
 			)
 		)
-		(property "Description" "CA4 series (finger side of the divider), resistor 91R 1 % 0201"
+		(property "Description" "CA4 series (finger side of the divider), resistor 75R 1 % 0201"
 			(at 0 0 90)
 			(unlocked yes)
 			(layer "F.Fab")
@@ -10733,7 +10733,7 @@
 				)
 			)
 		)
-		(property "MPN" "RC0201FR-0791RL"
+		(property "MPN" "RC0201FR-0775RL"
 			(at 0 0 0)
 			(layer "F.SilkS")
 			(hide yes)
@@ -10911,7 +10911,7 @@
 				)
 			)
 		)
-		(property "Value" "91R"
+		(property "Value" "75R"
 			(at 0 1.05 90)
 			(layer "F.Fab")
 			(hide yes)
@@ -10935,7 +10935,7 @@
 				)
 			)
 		)
-		(property "Description" "CA6 series (finger side of the divider), resistor 91R 1 % 0201"
+		(property "Description" "CA6 series (finger side of the divider), resistor 75R 1 % 0201"
 			(at 0 0 90)
 			(unlocked yes)
 			(layer "F.Fab")
@@ -10947,7 +10947,7 @@
 				)
 			)
 		)
-		(property "MPN" "RC0201FR-0791RL"
+		(property "MPN" "RC0201FR-0775RL"
 			(at 0 0 0)
 			(layer "F.SilkS")
 			(hide yes)
@@ -11125,7 +11125,7 @@
 				)
 			)
 		)
-		(property "Value" "68R"
+		(property "Value" "75R"
 			(at 0 1.05 90)
 			(layer "F.Fab")
 			(hide yes)
@@ -11149,7 +11149,7 @@
 				)
 			)
 		)
-		(property "Description" "CA0 shunt to GND at the divider node, resistor 68R 1 % 0201"
+		(property "Description" "CA0 shunt to GND at the divider node, resistor 75R 1 % 0201"
 			(at 0 0 90)
 			(unlocked yes)
 			(layer "F.Fab")
@@ -11161,7 +11161,7 @@
 				)
 			)
 		)
-		(property "MPN" "RC0201FR-0768RL"
+		(property "MPN" "RC0201FR-0775RL"
 			(at 0 0 0)
 			(layer "F.SilkS")
 			(hide yes)
@@ -11339,7 +11339,7 @@
 				)
 			)
 		)
-		(property "Value" "68R"
+		(property "Value" "75R"
 			(at 0 1.05 90)
 			(layer "F.Fab")
 			(hide yes)
@@ -11363,7 +11363,7 @@
 				)
 			)
 		)
-		(property "Description" "CA3 shunt to GND at the divider node, resistor 68R 1 % 0201"
+		(property "Description" "CA3 shunt to GND at the divider node, resistor 75R 1 % 0201"
 			(at 0 0 90)
 			(unlocked yes)
 			(layer "F.Fab")
@@ -11375,7 +11375,7 @@
 				)
 			)
 		)
-		(property "MPN" "RC0201FR-0768RL"
+		(property "MPN" "RC0201FR-0775RL"
 			(at 0 0 0)
 			(layer "F.SilkS")
 			(hide yes)
@@ -11553,7 +11553,7 @@
 				)
 			)
 		)
-		(property "Value" "68R"
+		(property "Value" "75R"
 			(at 0 1.05 90)
 			(layer "F.Fab")
 			(hide yes)
@@ -11577,7 +11577,7 @@
 				)
 			)
 		)
-		(property "Description" "CA5 shunt to GND at the divider node, resistor 68R 1 % 0201"
+		(property "Description" "CA5 shunt to GND at the divider node, resistor 75R 1 % 0201"
 			(at 0 0 90)
 			(unlocked yes)
 			(layer "F.Fab")
@@ -11589,7 +11589,7 @@
 				)
 			)
 		)
-		(property "MPN" "RC0201FR-0768RL"
+		(property "MPN" "RC0201FR-0775RL"
 			(at 0 0 0)
 			(layer "F.SilkS")
 			(hide yes)
@@ -11981,7 +11981,7 @@
 				)
 			)
 		)
-		(property "Value" "68R"
+		(property "Value" "75R"
 			(at 0 1.05 90)
 			(layer "F.Fab")
 			(hide yes)
@@ -12005,7 +12005,7 @@
 				)
 			)
 		)
-		(property "Description" "CK_P shunt to GND at the divider node, resistor 68R 1 % 0201"
+		(property "Description" "CK_P shunt to GND at the divider node, resistor 75R 1 % 0201"
 			(at 0 0 90)
 			(unlocked yes)
 			(layer "F.Fab")
@@ -12017,7 +12017,7 @@
 				)
 			)
 		)
-		(property "MPN" "RC0201FR-0768RL"
+		(property "MPN" "RC0201FR-0775RL"
 			(at 0 0 0)
 			(layer "F.SilkS")
 			(hide yes)
@@ -12195,7 +12195,7 @@
 				)
 			)
 		)
-		(property "Value" "68R"
+		(property "Value" "75R"
 			(at 0 1.05 90)
 			(layer "F.Fab")
 			(hide yes)
@@ -12219,7 +12219,7 @@
 				)
 			)
 		)
-		(property "Description" "CK_N shunt to GND at the divider node, resistor 68R 1 % 0201"
+		(property "Description" "CK_N shunt to GND at the divider node, resistor 75R 1 % 0201"
 			(at 0 0 90)
 			(unlocked yes)
 			(layer "F.Fab")
@@ -12231,7 +12231,7 @@
 				)
 			)
 		)
-		(property "MPN" "RC0201FR-0768RL"
+		(property "MPN" "RC0201FR-0775RL"
 			(at 0 0 0)
 			(layer "F.SilkS")
 			(hide yes)
@@ -12409,7 +12409,7 @@
 				)
 			)
 		)
-		(property "Value" "240R"
+		(property "Value" "110R"
 			(at 0 1.05 90)
 			(layer "F.Fab")
 			(hide yes)
@@ -12433,7 +12433,7 @@
 				)
 			)
 		)
-		(property "Description" "DQ1 write series, resistor 240R 1 % 0201"
+		(property "Description" "DQ1 write series, resistor 110R 1 % 0201"
 			(at 0 0 90)
 			(unlocked yes)
 			(layer "F.Fab")
@@ -12445,7 +12445,7 @@
 				)
 			)
 		)
-		(property "MPN" "RC0201FR-07240RL"
+		(property "MPN" "RC0201FR-07110RL"
 			(at 0 0 0)
 			(layer "F.SilkS")
 			(hide yes)
@@ -12623,7 +12623,7 @@
 				)
 			)
 		)
-		(property "Value" "240R"
+		(property "Value" "110R"
 			(at 0 1.05 90)
 			(layer "F.Fab")
 			(hide yes)
@@ -12647,7 +12647,7 @@
 				)
 			)
 		)
-		(property "Description" "DQ3 write series, resistor 240R 1 % 0201"
+		(property "Description" "DQ3 write series, resistor 110R 1 % 0201"
 			(at 0 0 90)
 			(unlocked yes)
 			(layer "F.Fab")
@@ -12659,7 +12659,7 @@
 				)
 			)
 		)
-		(property "MPN" "RC0201FR-07240RL"
+		(property "MPN" "RC0201FR-07110RL"
 			(at 0 0 0)
 			(layer "F.SilkS")
 			(hide yes)
@@ -12837,7 +12837,7 @@
 				)
 			)
 		)
-		(property "Value" "240R"
+		(property "Value" "110R"
 			(at 0 1.05 90)
 			(layer "F.Fab")
 			(hide yes)
@@ -12861,7 +12861,7 @@
 				)
 			)
 		)
-		(property "Description" "DQ4 write series, resistor 240R 1 % 0201"
+		(property "Description" "DQ4 write series, resistor 110R 1 % 0201"
 			(at 0 0 90)
 			(unlocked yes)
 			(layer "F.Fab")
@@ -12873,7 +12873,7 @@
 				)
 			)
 		)
-		(property "MPN" "RC0201FR-07240RL"
+		(property "MPN" "RC0201FR-07110RL"
 			(at 0 0 0)
 			(layer "F.SilkS")
 			(hide yes)
@@ -13051,7 +13051,7 @@
 				)
 			)
 		)
-		(property "Value" "240R"
+		(property "Value" "110R"
 			(at 0 1.05 90)
 			(layer "F.Fab")
 			(hide yes)
@@ -13075,7 +13075,7 @@
 				)
 			)
 		)
-		(property "Description" "DQ6 write series, resistor 240R 1 % 0201"
+		(property "Description" "DQ6 write series, resistor 110R 1 % 0201"
 			(at 0 0 90)
 			(unlocked yes)
 			(layer "F.Fab")
@@ -13087,7 +13087,7 @@
 				)
 			)
 		)
-		(property "MPN" "RC0201FR-07240RL"
+		(property "MPN" "RC0201FR-07110RL"
 			(at 0 0 0)
 			(layer "F.SilkS")
 			(hide yes)
@@ -13265,7 +13265,7 @@
 				)
 			)
 		)
-		(property "Value" "240R"
+		(property "Value" "110R"
 			(at 0 1.05 90)
 			(layer "F.Fab")
 			(hide yes)
@@ -13289,7 +13289,7 @@
 				)
 			)
 		)
-		(property "Description" "DQ7 write series, resistor 240R 1 % 0201"
+		(property "Description" "DQ7 write series, resistor 110R 1 % 0201"
 			(at 0 0 90)
 			(unlocked yes)
 			(layer "F.Fab")
@@ -13301,7 +13301,7 @@
 				)
 			)
 		)
-		(property "MPN" "RC0201FR-07240RL"
+		(property "MPN" "RC0201FR-07110RL"
 			(at 0 0 0)
 			(layer "F.SilkS")
 			(hide yes)
@@ -13479,7 +13479,7 @@
 				)
 			)
 		)
-		(property "Value" "91R"
+		(property "Value" "75R"
 			(at 0 1.05 90)
 			(layer "F.Fab")
 			(hide yes)
@@ -13503,7 +13503,7 @@
 				)
 			)
 		)
-		(property "Description" "WCK_P series, resistor 91R 1 % 0201"
+		(property "Description" "WCK_P series, resistor 75R 1 % 0201"
 			(at 0 0 90)
 			(unlocked yes)
 			(layer "F.Fab")
@@ -13515,7 +13515,7 @@
 				)
 			)
 		)
-		(property "MPN" "RC0201FR-0791RL"
+		(property "MPN" "RC0201FR-0775RL"
 			(at 0 0 0)
 			(layer "F.SilkS")
 			(hide yes)
@@ -13693,7 +13693,7 @@
 				)
 			)
 		)
-		(property "Value" "91R"
+		(property "Value" "75R"
 			(at 0 1.05 90)
 			(layer "F.Fab")
 			(hide yes)
@@ -13717,7 +13717,7 @@
 				)
 			)
 		)
-		(property "Description" "WCK_N series, resistor 91R 1 % 0201"
+		(property "Description" "WCK_N series, resistor 75R 1 % 0201"
 			(at 0 0 90)
 			(unlocked yes)
 			(layer "F.Fab")
@@ -13729,7 +13729,7 @@
 				)
 			)
 		)
-		(property "MPN" "RC0201FR-0791RL"
+		(property "MPN" "RC0201FR-0775RL"
 			(at 0 0 0)
 			(layer "F.SilkS")
 			(hide yes)
@@ -13907,7 +13907,7 @@
 				)
 			)
 		)
-		(property "Value" "150R"
+		(property "Value" "100R"
 			(at 0 1.05 270)
 			(layer "F.Fab")
 			(hide yes)
@@ -13931,7 +13931,7 @@
 				)
 			)
 		)
-		(property "Description" "DQ0 shunt (write divider and read load), resistor 150R 1 % 0201"
+		(property "Description" "DQ0 shunt (write divider and read load), resistor 100R 1 % 0201"
 			(at 0 0 270)
 			(unlocked yes)
 			(layer "F.Fab")
@@ -13943,7 +13943,7 @@
 				)
 			)
 		)
-		(property "MPN" "RC0201FR-07150RL"
+		(property "MPN" "RC0201FR-07100RL"
 			(at 0 0 0)
 			(layer "F.SilkS")
 			(hide yes)
@@ -14121,7 +14121,7 @@
 				)
 			)
 		)
-		(property "Value" "150R"
+		(property "Value" "100R"
 			(at 0 1.05 270)
 			(layer "F.Fab")
 			(hide yes)
@@ -14145,7 +14145,7 @@
 				)
 			)
 		)
-		(property "Description" "DQ2 shunt (write divider and read load), resistor 150R 1 % 0201"
+		(property "Description" "DQ2 shunt (write divider and read load), resistor 100R 1 % 0201"
 			(at 0 0 270)
 			(unlocked yes)
 			(layer "F.Fab")
@@ -14157,7 +14157,7 @@
 				)
 			)
 		)
-		(property "MPN" "RC0201FR-07150RL"
+		(property "MPN" "RC0201FR-07100RL"
 			(at 0 0 0)
 			(layer "F.SilkS")
 			(hide yes)
@@ -14335,7 +14335,7 @@
 				)
 			)
 		)
-		(property "Value" "150R"
+		(property "Value" "100R"
 			(at 0 1.05 270)
 			(layer "F.Fab")
 			(hide yes)
@@ -14359,7 +14359,7 @@
 				)
 			)
 		)
-		(property "Description" "DQ5 shunt (write divider and read load), resistor 150R 1 % 0201"
+		(property "Description" "DQ5 shunt (write divider and read load), resistor 100R 1 % 0201"
 			(at 0 0 270)
 			(unlocked yes)
 			(layer "F.Fab")
@@ -14371,7 +14371,7 @@
 				)
 			)
 		)
-		(property "MPN" "RC0201FR-07150RL"
+		(property "MPN" "RC0201FR-07100RL"
 			(at 0 0 0)
 			(layer "F.SilkS")
 			(hide yes)
@@ -14549,7 +14549,7 @@
 				)
 			)
 		)
-		(property "Value" "68R"
+		(property "Value" "75R"
 			(at 0 1.05 90)
 			(layer "F.Fab")
 			(hide yes)
@@ -14573,7 +14573,7 @@
 				)
 			)
 		)
-		(property "Description" "WCK_P shunt to GND at the node via, resistor 68R 1 % 0201"
+		(property "Description" "WCK_P shunt to GND at the node via, resistor 75R 1 % 0201"
 			(at 0 0 90)
 			(unlocked yes)
 			(layer "F.Fab")
@@ -14585,7 +14585,7 @@
 				)
 			)
 		)
-		(property "MPN" "RC0201FR-0768RL"
+		(property "MPN" "RC0201FR-0775RL"
 			(at 0 0 0)
 			(layer "F.SilkS")
 			(hide yes)
@@ -14763,7 +14763,7 @@
 				)
 			)
 		)
-		(property "Value" "68R"
+		(property "Value" "75R"
 			(at 0 1.05 90)
 			(layer "F.Fab")
 			(hide yes)
@@ -14787,7 +14787,7 @@
 				)
 			)
 		)
-		(property "Description" "WCK_N shunt to GND at the node via, resistor 68R 1 % 0201"
+		(property "Description" "WCK_N shunt to GND at the node via, resistor 75R 1 % 0201"
 			(at 0 0 90)
 			(unlocked yes)
 			(layer "F.Fab")
@@ -14799,7 +14799,7 @@
 				)
 			)
 		)
-		(property "MPN" "RC0201FR-0768RL"
+		(property "MPN" "RC0201FR-0775RL"
 			(at 0 0 0)
 			(layer "F.SilkS")
 			(hide yes)
@@ -17182,7 +17182,7 @@
 				)
 			)
 		)
-		(attr smd)
+		(attr smd dnp)
 		(duplicate_pad_numbers_are_jumpers no)
 		(fp_line
 			(start -0.153641 0.38)
@@ -17342,7 +17342,7 @@
 				)
 			)
 		)
-		(property "Value" "180R"
+		(property "Value" "160R"
 			(at 0 1.17 90)
 			(layer "F.Fab")
 			(hide yes)
@@ -17366,7 +17366,7 @@
 				)
 			)
 		)
-		(property "Description" "reference bus to GND (Rc), resistor 180R 1 % 0402"
+		(property "Description" "reference bus to GND (Rc), resistor 160R 1 % 0402"
 			(at 0 0 90)
 			(unlocked yes)
 			(layer "F.Fab")
@@ -17378,7 +17378,7 @@
 				)
 			)
 		)
-		(property "MPN" "RC0402FR-07180RL"
+		(property "MPN" "RC0402FR-07160RL"
 			(at 0 0 0)
 			(layer "F.SilkS")
 			(hide yes)
@@ -26459,7 +26459,7 @@
 				(justify mirror)
 			)
 		)
-		(property "Value" "91R"
+		(property "Value" "75R"
 			(at 0 -1.05 270)
 			(layer "B.Fab")
 			(hide yes)
@@ -26485,7 +26485,7 @@
 				(justify mirror)
 			)
 		)
-		(property "Description" "CA0 series (finger side of the divider), resistor 91R 1 % 0201"
+		(property "Description" "CA0 series (finger side of the divider), resistor 75R 1 % 0201"
 			(at 0 0 270)
 			(unlocked yes)
 			(layer "B.Fab")
@@ -26498,7 +26498,7 @@
 				(justify mirror)
 			)
 		)
-		(property "MPN" "RC0201FR-0791RL"
+		(property "MPN" "RC0201FR-0775RL"
 			(at 0 0 0)
 			(layer "B.SilkS")
 			(hide yes)
@@ -26678,7 +26678,7 @@
 				(justify mirror)
 			)
 		)
-		(property "Value" "91R"
+		(property "Value" "75R"
 			(at 0 -1.05 270)
 			(layer "B.Fab")
 			(hide yes)
@@ -26704,7 +26704,7 @@
 				(justify mirror)
 			)
 		)
-		(property "Description" "CA3 series (finger side of the divider), resistor 91R 1 % 0201"
+		(property "Description" "CA3 series (finger side of the divider), resistor 75R 1 % 0201"
 			(at 0 0 270)
 			(unlocked yes)
 			(layer "B.Fab")
@@ -26717,7 +26717,7 @@
 				(justify mirror)
 			)
 		)
-		(property "MPN" "RC0201FR-0791RL"
+		(property "MPN" "RC0201FR-0775RL"
 			(at 0 0 0)
 			(layer "B.SilkS")
 			(hide yes)
@@ -26897,7 +26897,7 @@
 				(justify mirror)
 			)
 		)
-		(property "Value" "91R"
+		(property "Value" "75R"
 			(at 0 -1.05 270)
 			(layer "B.Fab")
 			(hide yes)
@@ -26923,7 +26923,7 @@
 				(justify mirror)
 			)
 		)
-		(property "Description" "CA5 series (finger side of the divider), resistor 91R 1 % 0201"
+		(property "Description" "CA5 series (finger side of the divider), resistor 75R 1 % 0201"
 			(at 0 0 270)
 			(unlocked yes)
 			(layer "B.Fab")
@@ -26936,7 +26936,7 @@
 				(justify mirror)
 			)
 		)
-		(property "MPN" "RC0201FR-0791RL"
+		(property "MPN" "RC0201FR-0775RL"
 			(at 0 0 0)
 			(layer "B.SilkS")
 			(hide yes)
@@ -27335,7 +27335,7 @@
 				(justify mirror)
 			)
 		)
-		(property "Value" "91R"
+		(property "Value" "75R"
 			(at 0 -1.05 270)
 			(layer "B.Fab")
 			(hide yes)
@@ -27361,7 +27361,7 @@
 				(justify mirror)
 			)
 		)
-		(property "Description" "CK_P series (finger side of the divider), resistor 91R 1 % 0201"
+		(property "Description" "CK_P series (finger side of the divider), resistor 75R 1 % 0201"
 			(at 0 0 270)
 			(unlocked yes)
 			(layer "B.Fab")
@@ -27374,7 +27374,7 @@
 				(justify mirror)
 			)
 		)
-		(property "MPN" "RC0201FR-0791RL"
+		(property "MPN" "RC0201FR-0775RL"
 			(at 0 0 0)
 			(layer "B.SilkS")
 			(hide yes)
@@ -27554,7 +27554,7 @@
 				(justify mirror)
 			)
 		)
-		(property "Value" "91R"
+		(property "Value" "75R"
 			(at 0 -1.05 270)
 			(layer "B.Fab")
 			(hide yes)
@@ -27580,7 +27580,7 @@
 				(justify mirror)
 			)
 		)
-		(property "Description" "CK_N series (finger side of the divider), resistor 91R 1 % 0201"
+		(property "Description" "CK_N series (finger side of the divider), resistor 75R 1 % 0201"
 			(at 0 0 270)
 			(unlocked yes)
 			(layer "B.Fab")
@@ -27593,7 +27593,7 @@
 				(justify mirror)
 			)
 		)
-		(property "MPN" "RC0201FR-0791RL"
+		(property "MPN" "RC0201FR-0775RL"
 			(at 0 0 0)
 			(layer "B.SilkS")
 			(hide yes)
@@ -27773,7 +27773,7 @@
 				(justify mirror)
 			)
 		)
-		(property "Value" "68R"
+		(property "Value" "75R"
 			(at 0 -1.05 270)
 			(layer "B.Fab")
 			(hide yes)
@@ -27799,7 +27799,7 @@
 				(justify mirror)
 			)
 		)
-		(property "Description" "CA1 shunt to GND at the divider node, resistor 68R 1 % 0201"
+		(property "Description" "CA1 shunt to GND at the divider node, resistor 75R 1 % 0201"
 			(at 0 0 270)
 			(unlocked yes)
 			(layer "B.Fab")
@@ -27812,7 +27812,7 @@
 				(justify mirror)
 			)
 		)
-		(property "MPN" "RC0201FR-0768RL"
+		(property "MPN" "RC0201FR-0775RL"
 			(at 0 0 0)
 			(layer "B.SilkS")
 			(hide yes)
@@ -27992,7 +27992,7 @@
 				(justify mirror)
 			)
 		)
-		(property "Value" "68R"
+		(property "Value" "75R"
 			(at 0 -1.05 270)
 			(layer "B.Fab")
 			(hide yes)
@@ -28018,7 +28018,7 @@
 				(justify mirror)
 			)
 		)
-		(property "Description" "CA2 shunt to GND at the divider node, resistor 68R 1 % 0201"
+		(property "Description" "CA2 shunt to GND at the divider node, resistor 75R 1 % 0201"
 			(at 0 0 270)
 			(unlocked yes)
 			(layer "B.Fab")
@@ -28031,7 +28031,7 @@
 				(justify mirror)
 			)
 		)
-		(property "MPN" "RC0201FR-0768RL"
+		(property "MPN" "RC0201FR-0775RL"
 			(at 0 0 0)
 			(layer "B.SilkS")
 			(hide yes)
@@ -28211,7 +28211,7 @@
 				(justify mirror)
 			)
 		)
-		(property "Value" "68R"
+		(property "Value" "75R"
 			(at 0 -1.05 270)
 			(layer "B.Fab")
 			(hide yes)
@@ -28237,7 +28237,7 @@
 				(justify mirror)
 			)
 		)
-		(property "Description" "CA4 shunt to GND at the divider node, resistor 68R 1 % 0201"
+		(property "Description" "CA4 shunt to GND at the divider node, resistor 75R 1 % 0201"
 			(at 0 0 270)
 			(unlocked yes)
 			(layer "B.Fab")
@@ -28250,7 +28250,7 @@
 				(justify mirror)
 			)
 		)
-		(property "MPN" "RC0201FR-0768RL"
+		(property "MPN" "RC0201FR-0775RL"
 			(at 0 0 0)
 			(layer "B.SilkS")
 			(hide yes)
@@ -28430,7 +28430,7 @@
 				(justify mirror)
 			)
 		)
-		(property "Value" "68R"
+		(property "Value" "75R"
 			(at 0 -1.05 270)
 			(layer "B.Fab")
 			(hide yes)
@@ -28456,7 +28456,7 @@
 				(justify mirror)
 			)
 		)
-		(property "Description" "CA6 shunt to GND at the divider node, resistor 68R 1 % 0201"
+		(property "Description" "CA6 shunt to GND at the divider node, resistor 75R 1 % 0201"
 			(at 0 0 270)
 			(unlocked yes)
 			(layer "B.Fab")
@@ -28469,7 +28469,7 @@
 				(justify mirror)
 			)
 		)
-		(property "MPN" "RC0201FR-0768RL"
+		(property "MPN" "RC0201FR-0775RL"
 			(at 0 0 0)
 			(layer "B.SilkS")
 			(hide yes)
@@ -28649,7 +28649,7 @@
 				(justify mirror)
 			)
 		)
-		(property "Value" "240R"
+		(property "Value" "110R"
 			(at 0 -1.05 270)
 			(layer "B.Fab")
 			(hide yes)
@@ -28675,7 +28675,7 @@
 				(justify mirror)
 			)
 		)
-		(property "Description" "DQ0 write series, resistor 240R 1 % 0201"
+		(property "Description" "DQ0 write series, resistor 110R 1 % 0201"
 			(at 0 0 270)
 			(unlocked yes)
 			(layer "B.Fab")
@@ -28688,7 +28688,7 @@
 				(justify mirror)
 			)
 		)
-		(property "MPN" "RC0201FR-07240RL"
+		(property "MPN" "RC0201FR-07110RL"
 			(at 0 0 0)
 			(layer "B.SilkS")
 			(hide yes)
@@ -28868,7 +28868,7 @@
 				(justify mirror)
 			)
 		)
-		(property "Value" "240R"
+		(property "Value" "110R"
 			(at 0 -1.05 270)
 			(layer "B.Fab")
 			(hide yes)
@@ -28894,7 +28894,7 @@
 				(justify mirror)
 			)
 		)
-		(property "Description" "DQ2 write series, resistor 240R 1 % 0201"
+		(property "Description" "DQ2 write series, resistor 110R 1 % 0201"
 			(at 0 0 270)
 			(unlocked yes)
 			(layer "B.Fab")
@@ -28907,7 +28907,7 @@
 				(justify mirror)
 			)
 		)
-		(property "MPN" "RC0201FR-07240RL"
+		(property "MPN" "RC0201FR-07110RL"
 			(at 0 0 0)
 			(layer "B.SilkS")
 			(hide yes)
@@ -29087,7 +29087,7 @@
 				(justify mirror)
 			)
 		)
-		(property "Value" "240R"
+		(property "Value" "110R"
 			(at 0 -1.05 270)
 			(layer "B.Fab")
 			(hide yes)
@@ -29113,7 +29113,7 @@
 				(justify mirror)
 			)
 		)
-		(property "Description" "DQ5 write series, resistor 240R 1 % 0201"
+		(property "Description" "DQ5 write series, resistor 110R 1 % 0201"
 			(at 0 0 270)
 			(unlocked yes)
 			(layer "B.Fab")
@@ -29126,7 +29126,7 @@
 				(justify mirror)
 			)
 		)
-		(property "MPN" "RC0201FR-07240RL"
+		(property "MPN" "RC0201FR-07110RL"
 			(at 0 0 0)
 			(layer "B.SilkS")
 			(hide yes)
@@ -29306,7 +29306,7 @@
 				(justify mirror)
 			)
 		)
-		(property "Value" "150R"
+		(property "Value" "100R"
 			(at 0 -1.05 90)
 			(layer "B.Fab")
 			(hide yes)
@@ -29332,7 +29332,7 @@
 				(justify mirror)
 			)
 		)
-		(property "Description" "DQ1 shunt (write divider and read load), resistor 150R 1 % 0201"
+		(property "Description" "DQ1 shunt (write divider and read load), resistor 100R 1 % 0201"
 			(at 0 0 90)
 			(unlocked yes)
 			(layer "B.Fab")
@@ -29345,7 +29345,7 @@
 				(justify mirror)
 			)
 		)
-		(property "MPN" "RC0201FR-07150RL"
+		(property "MPN" "RC0201FR-07100RL"
 			(at 0 0 0)
 			(layer "B.SilkS")
 			(hide yes)
@@ -29525,7 +29525,7 @@
 				(justify mirror)
 			)
 		)
-		(property "Value" "150R"
+		(property "Value" "100R"
 			(at 0 -1.05 90)
 			(layer "B.Fab")
 			(hide yes)
@@ -29551,7 +29551,7 @@
 				(justify mirror)
 			)
 		)
-		(property "Description" "DQ3 shunt (write divider and read load), resistor 150R 1 % 0201"
+		(property "Description" "DQ3 shunt (write divider and read load), resistor 100R 1 % 0201"
 			(at 0 0 90)
 			(unlocked yes)
 			(layer "B.Fab")
@@ -29564,7 +29564,7 @@
 				(justify mirror)
 			)
 		)
-		(property "MPN" "RC0201FR-07150RL"
+		(property "MPN" "RC0201FR-07100RL"
 			(at 0 0 0)
 			(layer "B.SilkS")
 			(hide yes)
@@ -29744,7 +29744,7 @@
 				(justify mirror)
 			)
 		)
-		(property "Value" "150R"
+		(property "Value" "100R"
 			(at 0 -1.05 90)
 			(layer "B.Fab")
 			(hide yes)
@@ -29770,7 +29770,7 @@
 				(justify mirror)
 			)
 		)
-		(property "Description" "DQ4 shunt (write divider and read load), resistor 150R 1 % 0201"
+		(property "Description" "DQ4 shunt (write divider and read load), resistor 100R 1 % 0201"
 			(at 0 0 90)
 			(unlocked yes)
 			(layer "B.Fab")
@@ -29783,7 +29783,7 @@
 				(justify mirror)
 			)
 		)
-		(property "MPN" "RC0201FR-07150RL"
+		(property "MPN" "RC0201FR-07100RL"
 			(at 0 0 0)
 			(layer "B.SilkS")
 			(hide yes)
@@ -29963,7 +29963,7 @@
 				(justify mirror)
 			)
 		)
-		(property "Value" "150R"
+		(property "Value" "100R"
 			(at 0 -1.05 90)
 			(layer "B.Fab")
 			(hide yes)
@@ -29989,7 +29989,7 @@
 				(justify mirror)
 			)
 		)
-		(property "Description" "DQ6 shunt (write divider and read load), resistor 150R 1 % 0201"
+		(property "Description" "DQ6 shunt (write divider and read load), resistor 100R 1 % 0201"
 			(at 0 0 90)
 			(unlocked yes)
 			(layer "B.Fab")
@@ -30002,7 +30002,7 @@
 				(justify mirror)
 			)
 		)
-		(property "MPN" "RC0201FR-07150RL"
+		(property "MPN" "RC0201FR-07100RL"
 			(at 0 0 0)
 			(layer "B.SilkS")
 			(hide yes)
@@ -30182,7 +30182,7 @@
 				(justify mirror)
 			)
 		)
-		(property "Value" "150R"
+		(property "Value" "100R"
 			(at 0 -1.05 90)
 			(layer "B.Fab")
 			(hide yes)
@@ -30208,7 +30208,7 @@
 				(justify mirror)
 			)
 		)
-		(property "Description" "DQ7 shunt (write divider and read load), resistor 150R 1 % 0201"
+		(property "Description" "DQ7 shunt (write divider and read load), resistor 100R 1 % 0201"
 			(at 0 0 90)
 			(unlocked yes)
 			(layer "B.Fab")
@@ -30221,7 +30221,7 @@
 				(justify mirror)
 			)
 		)
-		(property "MPN" "RC0201FR-07150RL"
+		(property "MPN" "RC0201FR-07100RL"
 			(at 0 0 0)
 			(layer "B.SilkS")
 			(hide yes)

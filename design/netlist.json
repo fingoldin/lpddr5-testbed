@@ -18,7 +18,7 @@
   "part_counts": {
    "total": 131,
    "in_bom": 119,
-   "dnp": 0
+   "dnp": 1
   }
  },
  "stackup": {
@@ -242,7 +242,7 @@
      "min_gap_to_neighbour": 0.33,
      "note": "length is added with few, large bends: a parallel shift of the trace (two 45-degree runs, no 90-degree bend) and, where that is not enough, rounded bumps on the shifted run: legs 0.48 mm apart (gap 0.33 mm = 3.0 h, h = 0.11 mm to In2), centre radius >= 0.15 mm (the trace width), amplitude >= 0.30 mm (2 w). At least 0.33 mm (3 h) to the neighbouring trace everywhere. Shape per net: groups[CMD].tuning.per_net; delays are computed with rules.bend_model"
     },
-    "note": "one trace per 0.8 mm BGA column channel; gap 0.65 mm = 4.3 w, Kb 0.2 %; matches the divider back impedance 68 || (91 + 39) = 44.6 ohm; 0.125 mm to the via pads of the channel (0.40 mm pads on 0.8 mm), hence class clearance 0.12 on In3. On the outer layers the class keeps 0.10 mm: the F.Cu escape of DQ7 passes row G (CA0 ball) in the 0.29 mm row channel, 0.10 mm from the ball lands"
+    "note": "one trace per 0.8 mm BGA column channel; gap 0.65 mm = 4.3 w, Kb 0.2 %; the divider back impedance is 75 || (75 + 39) = 45.2 ohm (the line was sized for the 44.6 ohm of the first 91R / 68R and is frozen with the HFSS-calibrated layout; the 0.50 V set is matched to it again, analysis.system_simulation.dividers_0v50); 0.125 mm to the via pads of the channel (0.40 mm pads on 0.8 mm), hence class clearance 0.12 on In3. On the outer layers the class keeps 0.10 mm: the F.Cu escape of DQ7 passes row G (CA0 ball) in the 0.29 mm row channel, 0.10 mm from the ball lands"
    },
    "CMD_CK": {
     "nets": [
@@ -266,7 +266,7 @@
     "max_uncoupled_mm": 3.5,
     "max_skew_mm": 0.3,
     "uncoupled_note": "the DRC adds up every layer: per leg 0.62 mm (node via to the pair) and 1.63 / 1.74 mm (split at row H) on In3, plus the two links of the divider column on the outer layers, 0.53 mm (series pad to node via) and 0.48 mm (node via to shunt pad): 3.26 / 3.37 mm. On In3 alone 2.25 / 2.37 mm, which scripts/pcb/check_pcb.py holds to 2.5 mm",
-    "note": "tightly coupled from the node vias to row G, centred on ball column 9 (via-in-pads of A9..G9 omitted): 0.45 mm to the via pads of columns 8 and 10. At row H the legs split around the H9 via (0.15 mm to the pads of H8 / H9 / H10): CK_N goes on to J9, CK_P hooks back into H9 from the north-east, which makes up the ball-row difference without a meander; per-leg back impedance 68 || (91 + 33) = 43.9 ohm"
+    "note": "tightly coupled from the node vias to row G, centred on ball column 9 (via-in-pads of A9..G9 omitted): 0.45 mm to the via pads of columns 8 and 10. At row H the legs split around the H9 via (0.15 mm to the pads of H8 / H9 / H10): CK_N goes on to J9, CK_P hooks back into H9 from the north-east, which makes up the ball-row difference without a meander; per-leg back impedance 75 || (75 + 33) = 44.3 ohm"
    },
    "HOST_SE": {
     "nets": [
@@ -1482,10 +1482,10 @@
   },
   {
    "ref": "R101",
-   "value": "91R",
-   "mpn": "RC0201FR-0791RL",
+   "value": "75R",
+   "mpn": "RC0201FR-0775RL",
    "manufacturer": "Yageo",
-   "description": "CA0 series (finger side of the divider), resistor 91R 1 % 0201",
+   "description": "CA0 series (finger side of the divider), resistor 75R 1 % 0201",
    "footprint": "Resistor_SMD:R_0201_0603Metric",
    "symbol": "lpddr5_testbed:R",
    "dnp": false,
@@ -1498,10 +1498,10 @@
   },
   {
    "ref": "R111",
-   "value": "68R",
-   "mpn": "RC0201FR-0768RL",
+   "value": "75R",
+   "mpn": "RC0201FR-0775RL",
    "manufacturer": "Yageo",
-   "description": "CA0 shunt to GND at the divider node, resistor 68R 1 % 0201",
+   "description": "CA0 shunt to GND at the divider node, resistor 75R 1 % 0201",
    "footprint": "Resistor_SMD:R_0201_0603Metric",
    "symbol": "lpddr5_testbed:R",
    "dnp": false,
@@ -1514,10 +1514,10 @@
   },
   {
    "ref": "R102",
-   "value": "91R",
-   "mpn": "RC0201FR-0791RL",
+   "value": "75R",
+   "mpn": "RC0201FR-0775RL",
    "manufacturer": "Yageo",
-   "description": "CA1 series (finger side of the divider), resistor 91R 1 % 0201",
+   "description": "CA1 series (finger side of the divider), resistor 75R 1 % 0201",
    "footprint": "Resistor_SMD:R_0201_0603Metric",
    "symbol": "lpddr5_testbed:R",
    "dnp": false,
@@ -1530,10 +1530,10 @@
   },
   {
    "ref": "R112",
-   "value": "68R",
-   "mpn": "RC0201FR-0768RL",
+   "value": "75R",
+   "mpn": "RC0201FR-0775RL",
    "manufacturer": "Yageo",
-   "description": "CA1 shunt to GND at the divider node, resistor 68R 1 % 0201",
+   "description": "CA1 shunt to GND at the divider node, resistor 75R 1 % 0201",
    "footprint": "Resistor_SMD:R_0201_0603Metric",
    "symbol": "lpddr5_testbed:R",
    "dnp": false,
@@ -1546,10 +1546,10 @@
   },
   {
    "ref": "R103",
-   "value": "91R",
-   "mpn": "RC0201FR-0791RL",
+   "value": "75R",
+   "mpn": "RC0201FR-0775RL",
    "manufacturer": "Yageo",
-   "description": "CA2 series (finger side of the divider), resistor 91R 1 % 0201",
+   "description": "CA2 series (finger side of the divider), resistor 75R 1 % 0201",
    "footprint": "Resistor_SMD:R_0201_0603Metric",
    "symbol": "lpddr5_testbed:R",
    "dnp": false,
@@ -1562,10 +1562,10 @@
   },
   {
    "ref": "R113",
-   "value": "68R",
-   "mpn": "RC0201FR-0768RL",
+   "value": "75R",
+   "mpn": "RC0201FR-0775RL",
    "manufacturer": "Yageo",
-   "description": "CA2 shunt to GND at the divider node, resistor 68R 1 % 0201",
+   "description": "CA2 shunt to GND at the divider node, resistor 75R 1 % 0201",
    "footprint": "Resistor_SMD:R_0201_0603Metric",
    "symbol": "lpddr5_testbed:R",
    "dnp": false,
@@ -1578,10 +1578,10 @@
   },
   {
    "ref": "R104",
-   "value": "91R",
-   "mpn": "RC0201FR-0791RL",
+   "value": "75R",
+   "mpn": "RC0201FR-0775RL",
    "manufacturer": "Yageo",
-   "description": "CA3 series (finger side of the divider), resistor 91R 1 % 0201",
+   "description": "CA3 series (finger side of the divider), resistor 75R 1 % 0201",
    "footprint": "Resistor_SMD:R_0201_0603Metric",
    "symbol": "lpddr5_testbed:R",
    "dnp": false,
@@ -1594,10 +1594,10 @@
   },
   {
    "ref": "R114",
-   "value": "68R",
-   "mpn": "RC0201FR-0768RL",
+   "value": "75R",
+   "mpn": "RC0201FR-0775RL",
    "manufacturer": "Yageo",
-   "description": "CA3 shunt to GND at the divider node, resistor 68R 1 % 0201",
+   "description": "CA3 shunt to GND at the divider node, resistor 75R 1 % 0201",
    "footprint": "Resistor_SMD:R_0201_0603Metric",
    "symbol": "lpddr5_testbed:R",
    "dnp": false,
@@ -1610,10 +1610,10 @@
   },
   {
    "ref": "R105",
-   "value": "91R",
-   "mpn": "RC0201FR-0791RL",
+   "value": "75R",
+   "mpn": "RC0201FR-0775RL",
    "manufacturer": "Yageo",
-   "description": "CA4 series (finger side of the divider), resistor 91R 1 % 0201",
+   "description": "CA4 series (finger side of the divider), resistor 75R 1 % 0201",
    "footprint": "Resistor_SMD:R_0201_0603Metric",
    "symbol": "lpddr5_testbed:R",
    "dnp": false,
@@ -1626,10 +1626,10 @@
   },
   {
    "ref": "R115",
-   "value": "68R",
-   "mpn": "RC0201FR-0768RL",
+   "value": "75R",
+   "mpn": "RC0201FR-0775RL",
    "manufacturer": "Yageo",
-   "description": "CA4 shunt to GND at the divider node, resistor 68R 1 % 0201",
+   "description": "CA4 shunt to GND at the divider node, resistor 75R 1 % 0201",
    "footprint": "Resistor_SMD:R_0201_0603Metric",
    "symbol": "lpddr5_testbed:R",
    "dnp": false,
@@ -1642,10 +1642,10 @@
   },
   {
    "ref": "R106",
-   "value": "91R",
-   "mpn": "RC0201FR-0791RL",
+   "value": "75R",
+   "mpn": "RC0201FR-0775RL",
    "manufacturer": "Yageo",
-   "description": "CA5 series (finger side of the divider), resistor 91R 1 % 0201",
+   "description": "CA5 series (finger side of the divider), resistor 75R 1 % 0201",
    "footprint": "Resistor_SMD:R_0201_0603Metric",
    "symbol": "lpddr5_testbed:R",
    "dnp": false,
@@ -1658,10 +1658,10 @@
   },
   {
    "ref": "R116",
-   "value": "68R",
-   "mpn": "RC0201FR-0768RL",
+   "value": "75R",
+   "mpn": "RC0201FR-0775RL",
    "manufacturer": "Yageo",
-   "description": "CA5 shunt to GND at the divider node, resistor 68R 1 % 0201",
+   "description": "CA5 shunt to GND at the divider node, resistor 75R 1 % 0201",
    "footprint": "Resistor_SMD:R_0201_0603Metric",
    "symbol": "lpddr5_testbed:R",
    "dnp": false,
@@ -1674,10 +1674,10 @@
   },
   {
    "ref": "R107",
-   "value": "91R",
-   "mpn": "RC0201FR-0791RL",
+   "value": "75R",
+   "mpn": "RC0201FR-0775RL",
    "manufacturer": "Yageo",
-   "description": "CA6 series (finger side of the divider), resistor 91R 1 % 0201",
+   "description": "CA6 series (finger side of the divider), resistor 75R 1 % 0201",
    "footprint": "Resistor_SMD:R_0201_0603Metric",
    "symbol": "lpddr5_testbed:R",
    "dnp": false,
@@ -1690,10 +1690,10 @@
   },
   {
    "ref": "R117",
-   "value": "68R",
-   "mpn": "RC0201FR-0768RL",
+   "value": "75R",
+   "mpn": "RC0201FR-0775RL",
    "manufacturer": "Yageo",
-   "description": "CA6 shunt to GND at the divider node, resistor 68R 1 % 0201",
+   "description": "CA6 shunt to GND at the divider node, resistor 75R 1 % 0201",
    "footprint": "Resistor_SMD:R_0201_0603Metric",
    "symbol": "lpddr5_testbed:R",
    "dnp": false,
@@ -1738,10 +1738,10 @@
   },
   {
    "ref": "R109",
-   "value": "91R",
-   "mpn": "RC0201FR-0791RL",
+   "value": "75R",
+   "mpn": "RC0201FR-0775RL",
    "manufacturer": "Yageo",
-   "description": "CK_P series (finger side of the divider), resistor 91R 1 % 0201",
+   "description": "CK_P series (finger side of the divider), resistor 75R 1 % 0201",
    "footprint": "Resistor_SMD:R_0201_0603Metric",
    "symbol": "lpddr5_testbed:R",
    "dnp": false,
@@ -1754,10 +1754,10 @@
   },
   {
    "ref": "R119",
-   "value": "68R",
-   "mpn": "RC0201FR-0768RL",
+   "value": "75R",
+   "mpn": "RC0201FR-0775RL",
    "manufacturer": "Yageo",
-   "description": "CK_P shunt to GND at the divider node, resistor 68R 1 % 0201",
+   "description": "CK_P shunt to GND at the divider node, resistor 75R 1 % 0201",
    "footprint": "Resistor_SMD:R_0201_0603Metric",
    "symbol": "lpddr5_testbed:R",
    "dnp": false,
@@ -1770,10 +1770,10 @@
   },
   {
    "ref": "R110",
-   "value": "91R",
-   "mpn": "RC0201FR-0791RL",
+   "value": "75R",
+   "mpn": "RC0201FR-0775RL",
    "manufacturer": "Yageo",
-   "description": "CK_N series (finger side of the divider), resistor 91R 1 % 0201",
+   "description": "CK_N series (finger side of the divider), resistor 75R 1 % 0201",
    "footprint": "Resistor_SMD:R_0201_0603Metric",
    "symbol": "lpddr5_testbed:R",
    "dnp": false,
@@ -1786,10 +1786,10 @@
   },
   {
    "ref": "R120",
-   "value": "68R",
-   "mpn": "RC0201FR-0768RL",
+   "value": "75R",
+   "mpn": "RC0201FR-0775RL",
    "manufacturer": "Yageo",
-   "description": "CK_N shunt to GND at the divider node, resistor 68R 1 % 0201",
+   "description": "CK_N shunt to GND at the divider node, resistor 75R 1 % 0201",
    "footprint": "Resistor_SMD:R_0201_0603Metric",
    "symbol": "lpddr5_testbed:R",
    "dnp": false,
@@ -1802,10 +1802,10 @@
   },
   {
    "ref": "R201",
-   "value": "240R",
-   "mpn": "RC0201FR-07240RL",
+   "value": "110R",
+   "mpn": "RC0201FR-07110RL",
    "manufacturer": "Yageo",
-   "description": "DQ0 write series, resistor 240R 1 % 0201",
+   "description": "DQ0 write series, resistor 110R 1 % 0201",
    "footprint": "Resistor_SMD:R_0201_0603Metric",
    "symbol": "lpddr5_testbed:R",
    "dnp": false,
@@ -1818,10 +1818,10 @@
   },
   {
    "ref": "R211",
-   "value": "150R",
-   "mpn": "RC0201FR-07150RL",
+   "value": "100R",
+   "mpn": "RC0201FR-07100RL",
    "manufacturer": "Yageo",
-   "description": "DQ0 shunt (write divider and read load), resistor 150R 1 % 0201",
+   "description": "DQ0 shunt (write divider and read load), resistor 100R 1 % 0201",
    "footprint": "Resistor_SMD:R_0201_0603Metric",
    "symbol": "lpddr5_testbed:R",
    "dnp": false,
@@ -1834,10 +1834,10 @@
   },
   {
    "ref": "R202",
-   "value": "240R",
-   "mpn": "RC0201FR-07240RL",
+   "value": "110R",
+   "mpn": "RC0201FR-07110RL",
    "manufacturer": "Yageo",
-   "description": "DQ1 write series, resistor 240R 1 % 0201",
+   "description": "DQ1 write series, resistor 110R 1 % 0201",
    "footprint": "Resistor_SMD:R_0201_0603Metric",
    "symbol": "lpddr5_testbed:R",
    "dnp": false,
@@ -1850,10 +1850,10 @@
   },
   {
    "ref": "R212",
-   "value": "150R",
-   "mpn": "RC0201FR-07150RL",
+   "value": "100R",
+   "mpn": "RC0201FR-07100RL",
    "manufacturer": "Yageo",
-   "description": "DQ1 shunt (write divider and read load), resistor 150R 1 % 0201",
+   "description": "DQ1 shunt (write divider and read load), resistor 100R 1 % 0201",
    "footprint": "Resistor_SMD:R_0201_0603Metric",
    "symbol": "lpddr5_testbed:R",
    "dnp": false,
@@ -1866,10 +1866,10 @@
   },
   {
    "ref": "R203",
-   "value": "240R",
-   "mpn": "RC0201FR-07240RL",
+   "value": "110R",
+   "mpn": "RC0201FR-07110RL",
    "manufacturer": "Yageo",
-   "description": "DQ2 write series, resistor 240R 1 % 0201",
+   "description": "DQ2 write series, resistor 110R 1 % 0201",
    "footprint": "Resistor_SMD:R_0201_0603Metric",
    "symbol": "lpddr5_testbed:R",
    "dnp": false,
@@ -1882,10 +1882,10 @@
   },
   {
    "ref": "R213",
-   "value": "150R",
-   "mpn": "RC0201FR-07150RL",
+   "value": "100R",
+   "mpn": "RC0201FR-07100RL",
    "manufacturer": "Yageo",
-   "description": "DQ2 shunt (write divider and read load), resistor 150R 1 % 0201",
+   "description": "DQ2 shunt (write divider and read load), resistor 100R 1 % 0201",
    "footprint": "Resistor_SMD:R_0201_0603Metric",
    "symbol": "lpddr5_testbed:R",
    "dnp": false,
@@ -1898,10 +1898,10 @@
   },
   {
    "ref": "R204",
-   "value": "240R",
-   "mpn": "RC0201FR-07240RL",
+   "value": "110R",
+   "mpn": "RC0201FR-07110RL",
    "manufacturer": "Yageo",
-   "description": "DQ3 write series, resistor 240R 1 % 0201",
+   "description": "DQ3 write series, resistor 110R 1 % 0201",
    "footprint": "Resistor_SMD:R_0201_0603Metric",
    "symbol": "lpddr5_testbed:R",
    "dnp": false,
@@ -1914,10 +1914,10 @@
   },
   {
    "ref": "R214",
-   "value": "150R",
-   "mpn": "RC0201FR-07150RL",
+   "value": "100R",
+   "mpn": "RC0201FR-07100RL",
    "manufacturer": "Yageo",
-   "description": "DQ3 shunt (write divider and read load), resistor 150R 1 % 0201",
+   "description": "DQ3 shunt (write divider and read load), resistor 100R 1 % 0201",
    "footprint": "Resistor_SMD:R_0201_0603Metric",
    "symbol": "lpddr5_testbed:R",
    "dnp": false,
@@ -1930,10 +1930,10 @@
   },
   {
    "ref": "R205",
-   "value": "240R",
-   "mpn": "RC0201FR-07240RL",
+   "value": "110R",
+   "mpn": "RC0201FR-07110RL",
    "manufacturer": "Yageo",
-   "description": "DQ4 write series, resistor 240R 1 % 0201",
+   "description": "DQ4 write series, resistor 110R 1 % 0201",
    "footprint": "Resistor_SMD:R_0201_0603Metric",
    "symbol": "lpddr5_testbed:R",
    "dnp": false,
@@ -1946,10 +1946,10 @@
   },
   {
    "ref": "R215",
-   "value": "150R",
-   "mpn": "RC0201FR-07150RL",
+   "value": "100R",
+   "mpn": "RC0201FR-07100RL",
    "manufacturer": "Yageo",
-   "description": "DQ4 shunt (write divider and read load), resistor 150R 1 % 0201",
+   "description": "DQ4 shunt (write divider and read load), resistor 100R 1 % 0201",
    "footprint": "Resistor_SMD:R_0201_0603Metric",
    "symbol": "lpddr5_testbed:R",
    "dnp": false,
@@ -1962,10 +1962,10 @@
   },
   {
    "ref": "R206",
-   "value": "240R",
-   "mpn": "RC0201FR-07240RL",
+   "value": "110R",
+   "mpn": "RC0201FR-07110RL",
    "manufacturer": "Yageo",
-   "description": "DQ5 write series, resistor 240R 1 % 0201",
+   "description": "DQ5 write series, resistor 110R 1 % 0201",
    "footprint": "Resistor_SMD:R_0201_0603Metric",
    "symbol": "lpddr5_testbed:R",
    "dnp": false,
@@ -1978,10 +1978,10 @@
   },
   {
    "ref": "R216",
-   "value": "150R",
-   "mpn": "RC0201FR-07150RL",
+   "value": "100R",
+   "mpn": "RC0201FR-07100RL",
    "manufacturer": "Yageo",
-   "description": "DQ5 shunt (write divider and read load), resistor 150R 1 % 0201",
+   "description": "DQ5 shunt (write divider and read load), resistor 100R 1 % 0201",
    "footprint": "Resistor_SMD:R_0201_0603Metric",
    "symbol": "lpddr5_testbed:R",
    "dnp": false,
@@ -1994,10 +1994,10 @@
   },
   {
    "ref": "R207",
-   "value": "240R",
-   "mpn": "RC0201FR-07240RL",
+   "value": "110R",
+   "mpn": "RC0201FR-07110RL",
    "manufacturer": "Yageo",
-   "description": "DQ6 write series, resistor 240R 1 % 0201",
+   "description": "DQ6 write series, resistor 110R 1 % 0201",
    "footprint": "Resistor_SMD:R_0201_0603Metric",
    "symbol": "lpddr5_testbed:R",
    "dnp": false,
@@ -2010,10 +2010,10 @@
   },
   {
    "ref": "R217",
-   "value": "150R",
-   "mpn": "RC0201FR-07150RL",
+   "value": "100R",
+   "mpn": "RC0201FR-07100RL",
    "manufacturer": "Yageo",
-   "description": "DQ6 shunt (write divider and read load), resistor 150R 1 % 0201",
+   "description": "DQ6 shunt (write divider and read load), resistor 100R 1 % 0201",
    "footprint": "Resistor_SMD:R_0201_0603Metric",
    "symbol": "lpddr5_testbed:R",
    "dnp": false,
@@ -2026,10 +2026,10 @@
   },
   {
    "ref": "R208",
-   "value": "240R",
-   "mpn": "RC0201FR-07240RL",
+   "value": "110R",
+   "mpn": "RC0201FR-07110RL",
    "manufacturer": "Yageo",
-   "description": "DQ7 write series, resistor 240R 1 % 0201",
+   "description": "DQ7 write series, resistor 110R 1 % 0201",
    "footprint": "Resistor_SMD:R_0201_0603Metric",
    "symbol": "lpddr5_testbed:R",
    "dnp": false,
@@ -2042,10 +2042,10 @@
   },
   {
    "ref": "R218",
-   "value": "150R",
-   "mpn": "RC0201FR-07150RL",
+   "value": "100R",
+   "mpn": "RC0201FR-07100RL",
    "manufacturer": "Yageo",
-   "description": "DQ7 shunt (write divider and read load), resistor 150R 1 % 0201",
+   "description": "DQ7 shunt (write divider and read load), resistor 100R 1 % 0201",
    "footprint": "Resistor_SMD:R_0201_0603Metric",
    "symbol": "lpddr5_testbed:R",
    "dnp": false,
@@ -2058,10 +2058,10 @@
   },
   {
    "ref": "R209",
-   "value": "91R",
-   "mpn": "RC0201FR-0791RL",
+   "value": "75R",
+   "mpn": "RC0201FR-0775RL",
    "manufacturer": "Yageo",
-   "description": "WCK_P series, resistor 91R 1 % 0201",
+   "description": "WCK_P series, resistor 75R 1 % 0201",
    "footprint": "Resistor_SMD:R_0201_0603Metric",
    "symbol": "lpddr5_testbed:R",
    "dnp": false,
@@ -2074,10 +2074,10 @@
   },
   {
    "ref": "R219",
-   "value": "68R",
-   "mpn": "RC0201FR-0768RL",
+   "value": "75R",
+   "mpn": "RC0201FR-0775RL",
    "manufacturer": "Yageo",
-   "description": "WCK_P shunt to GND at the node via, resistor 68R 1 % 0201",
+   "description": "WCK_P shunt to GND at the node via, resistor 75R 1 % 0201",
    "footprint": "Resistor_SMD:R_0201_0603Metric",
    "symbol": "lpddr5_testbed:R",
    "dnp": false,
@@ -2090,10 +2090,10 @@
   },
   {
    "ref": "R210",
-   "value": "91R",
-   "mpn": "RC0201FR-0791RL",
+   "value": "75R",
+   "mpn": "RC0201FR-0775RL",
    "manufacturer": "Yageo",
-   "description": "WCK_N series, resistor 91R 1 % 0201",
+   "description": "WCK_N series, resistor 75R 1 % 0201",
    "footprint": "Resistor_SMD:R_0201_0603Metric",
    "symbol": "lpddr5_testbed:R",
    "dnp": false,
@@ -2106,10 +2106,10 @@
   },
   {
    "ref": "R220",
-   "value": "68R",
-   "mpn": "RC0201FR-0768RL",
+   "value": "75R",
+   "mpn": "RC0201FR-0775RL",
    "manufacturer": "Yageo",
-   "description": "WCK_N shunt to GND at the node via, resistor 68R 1 % 0201",
+   "description": "WCK_N shunt to GND at the node via, resistor 75R 1 % 0201",
    "footprint": "Resistor_SMD:R_0201_0603Metric",
    "symbol": "lpddr5_testbed:R",
    "dnp": false,
@@ -2455,7 +2455,7 @@
    "description": "VDDQ-derived power-up default, upper leg (Rb), resistor 300R 1 % 0402",
    "footprint": "Resistor_SMD:R_0402_1005Metric",
    "symbol": "lpddr5_testbed:R",
-   "dnp": false,
+   "dnp": true,
    "in_bom": true,
    "sheet": "read",
    "pins": {
@@ -2465,10 +2465,10 @@
   },
   {
    "ref": "R333",
-   "value": "180R",
-   "mpn": "RC0402FR-07180RL",
+   "value": "160R",
+   "mpn": "RC0402FR-07160RL",
    "manufacturer": "Yageo",
-   "description": "reference bus to GND (Rc), resistor 180R 1 % 0402",
+   "description": "reference bus to GND (Rc), resistor 160R 1 % 0402",
    "footprint": "Resistor_SMD:R_0402_1005Metric",
    "symbol": "lpddr5_testbed:R",
    "dnp": false,
@@ -21515,7 +21515,7 @@
      "layer": "F.Cu",
      "width": 0.15,
      "group": "REF",
-     "role": "rail to R333 (180 ohm to GND)",
+     "role": "rail to R333 (Rc, to GND)",
      "path": [
       [
        62.0,
@@ -27321,7 +27321,7 @@
     "y": 6.0,
     "diameter": 0.4,
     "drill": 0.2,
-    "role": "node via = the T: F.Cu tooth, In3 read branch, 240R on F.Cu, 150R on B.Cu",
+    "role": "node via = the T: F.Cu tooth, In3 read branch, series resistor on F.Cu, shunt on B.Cu",
     "unused_inner_pads": "removed"
    },
    {
@@ -27339,7 +27339,7 @@
     "y": 6.0,
     "diameter": 0.4,
     "drill": 0.2,
-    "role": "node via = the T: F.Cu tooth, In3 read branch, 240R on B.Cu, 150R on F.Cu",
+    "role": "node via = the T: F.Cu tooth, In3 read branch, series resistor on B.Cu, shunt on F.Cu",
     "unused_inner_pads": "removed"
    },
    {
@@ -27357,7 +27357,7 @@
     "y": 6.0,
     "diameter": 0.4,
     "drill": 0.2,
-    "role": "node via = the T: F.Cu tooth, In3 read branch, 240R on F.Cu, 150R on B.Cu",
+    "role": "node via = the T: F.Cu tooth, In3 read branch, series resistor on F.Cu, shunt on B.Cu",
     "unused_inner_pads": "removed"
    },
    {
@@ -27375,7 +27375,7 @@
     "y": 6.0,
     "diameter": 0.4,
     "drill": 0.2,
-    "role": "node via = the T: F.Cu tooth, In3 read branch, 240R on B.Cu, 150R on F.Cu",
+    "role": "node via = the T: F.Cu tooth, In3 read branch, series resistor on B.Cu, shunt on F.Cu",
     "unused_inner_pads": "removed"
    },
    {
@@ -27384,7 +27384,7 @@
     "y": 6.0,
     "diameter": 0.4,
     "drill": 0.2,
-    "role": "node via = the T: F.Cu tooth, In3 read branch, 240R on F.Cu, 150R on B.Cu",
+    "role": "node via = the T: F.Cu tooth, In3 read branch, series resistor on F.Cu, shunt on B.Cu",
     "unused_inner_pads": "removed"
    },
    {
@@ -27402,7 +27402,7 @@
     "y": 6.0,
     "diameter": 0.4,
     "drill": 0.2,
-    "role": "node via = the T: F.Cu tooth, In3 read branch, 240R on B.Cu, 150R on F.Cu",
+    "role": "node via = the T: F.Cu tooth, In3 read branch, series resistor on B.Cu, shunt on F.Cu",
     "unused_inner_pads": "removed"
    },
    {
@@ -27411,7 +27411,7 @@
     "y": 6.0,
     "diameter": 0.4,
     "drill": 0.2,
-    "role": "node via = the T: F.Cu tooth, In3 read branch, 240R on F.Cu, 150R on B.Cu",
+    "role": "node via = the T: F.Cu tooth, In3 read branch, series resistor on F.Cu, shunt on B.Cu",
     "unused_inner_pads": "removed"
    },
    {
@@ -27429,7 +27429,7 @@
     "y": 6.0,
     "diameter": 0.4,
     "drill": 0.2,
-    "role": "node via = the T: F.Cu tooth, In3 read branch, 240R on F.Cu, 150R on B.Cu",
+    "role": "node via = the T: F.Cu tooth, In3 read branch, series resistor on F.Cu, shunt on B.Cu",
     "unused_inner_pads": "removed"
    },
    {
@@ -27842,7 +27842,7 @@
      4.0,
      6.6
     ],
-    "contents": "DQ columns: R201..R208 (240R, on the finger's face) and R211..R218 (150R, back to back on the other face), the eight node vias (the T) at y = 6.00, the shunt GND vias south of the row, three return vias"
+    "contents": "DQ columns: R201..R208 (series, on the finger's face) and R211..R218 (shunt, back to back on the other face), the eight node vias (the T) at y = 6.00, the shunt GND vias south of the row, three return vias"
    },
    {
     "name": "dq_teeth_f_cu",
@@ -28221,83 +28221,329 @@
   }
  },
  "analysis": {
-  "assumptions": "FPGA driver 26 / 36 / 44 ohm, VCCO 1.14 / 1.20 / 1.26 V, resistors 1 %. The IBIS model HP_SSTL12_F_OUT40 gives 25.1 / 29.3 / 34.9 ohm and DS925 36..44 ohm with DCI; 26..44 ohm covers both to within 1 ohm. The design target for every VDDQ-domain level is 0.47 V (JEDEC VDDQ minimum); the hard limit is the card's own VDDQ minimum, 0.488 V",
+  "assumptions": "FPGA driver 34.9 / 29.3 / 25.1 ohm (slow / typ / fast), VCCO 1.14 / 1.20 / 1.26 V, resistors 1 %. The driver figures are the Vivado 2026.1 IBIS model HP_SSTL12_F_OUT40 (SSTL12, SLEW FAST, RDRV_40_40, no DCI), the model the merged system simulation uses; earlier revisions assumed 26 / 36 / 44 ohm, which also covered a DCI driver (DS925 36 .. 44 ohm). Level policy of every divider-driven VDDQ-domain pin (CA, CK, WCK, write DQ), by the user's decision: 0.50 V typical +/-15 mV as on the Antmicro design, at most 0.55 V in the stacked fast corner. This replaces the earlier rule (every level <= 0.47 V, the JEDEC VDDQ minimum): in the fast corner the lines rest above the card's VDDQ (0.488 .. 0.512 V)",
+  "level_policy": {
+   "decision": "user: 'In general, we should only deviate from antmicro if there's a very clear reason to do so.' and 'Design the dividers so they give 0.50 typical like the antmicro ones'",
+   "applies_to": "CA0-6, CK_t / CK_c, WCK_t / WCK_c, write DQ0-7. NOT CS0 (VDD2H domain: a 0.50 V CS fails its own mask against the fixed Vref_CS = VDD2H / 3 and sits under the 0.55 V power-down-exit level), NOT RESET_n",
+   "typ_target_v": 0.5,
+   "typ_tolerance_mV": 15.0,
+   "fast_corner_max_v": 0.55,
+   "fast_corner_definition": "IBIS max driver 25.1 ohm, VCCO 1.26 V, series resistor -1 %, shunt +1 %",
+   "boot_floor_v": 0.351,
+   "replaces": "every divider-driven level <= 0.47 V (JEDEC VDDQ minimum), hard limit the card's VDDQ minimum 0.4876 V",
+   "vddq_card_v": [
+    0.4876,
+    0.4996,
+    0.5116
+   ],
+   "cost": "in the fast corner every one of these lines RESTS above VDDQ for as long as it is high (computed here: stacked corner, 1 %% resistors; simulated with nominal resistors: analysis.system_simulation.dividers_0v50.levels_against_vddq). JESD209-5C Table 416 allows 0.3 V and 0.1 V-ns of overshoot beyond VDDQ: the amplitude stays inside everywhere, the transient-only area too, but read literally the area allowance is exceeded in the fast corner because of the standing level. The input limits of the SK hynix part beyond JEDEC are not known: to be watched at bring-up",
+   "simulated_dc_high_slow_typ_fast_v": {
+    "note": "slow / typ / fast, real driver, nominal resistors, DC of the transient",
+    "CA_CK": [
+     0.456,
+     0.495,
+     0.532
+    ],
+    "write_DQ": [
+     0.461,
+     0.496,
+     0.53
+    ],
+    "WCK": [
+     0.457,
+     0.496,
+     0.533
+    ],
+    "CS": [
+     0.669,
+     0.728,
+     0.785
+    ],
+    "RESET_n": [
+     0.992,
+     1.05,
+     1.108
+    ]
+   }
+  },
+  "driver": {
+   "iostandard": "SSTL12 / DIFF_SSTL12",
+   "slew": "FAST",
+   "output_impedance": "RDRV_40_40",
+   "dci": false,
+   "ibis_model": "HP_SSTL12_F_OUT40 (Vivado 2026.1)",
+   "r_fast_typ_slow_ohm": [
+    25.1,
+    29.3,
+    34.9
+   ],
+   "enforced_by": "scripts/gen_gateware.py (constraint generator and --check)"
+  },
+  "divider_currents": {
+   "path": "FPGA bank VCCO (host 1.2 V) -> output pin -> signal finger -> series resistor -> shunt -> card GND -> ground fingers. Not through the card's 19 VDD fingers: the card's own 1.2 V budget (power.v1p2_feed, 0.77 A, the drop gate) is unchanged",
+   "per_high_pin_typ_mA": {
+    "CA_CK": 6.69,
+    "CS": 7.39,
+    "WCK": 6.69,
+    "write_DQ": 5.01
+   },
+   "command_bank_65_typ_mA": {
+    "seven_CA_and_one_CK_leg_high": 53.5,
+    "with_CS_high": 60.9,
+    "before_75r_56r": 59.9
+   },
+   "write_bank_64_typ_mA": {
+    "eight_DQ_and_one_WCK_leg_high": 46.8,
+    "before_240r_150r_wck_91r_68r": 29.3
+   },
+   "worst_case_all_high_mA": 116.7,
+   "per_signal_contact_max_mA": 8.04,
+   "contact_limit_mA": 500,
+   "resistor_dissipation_max_mW": {
+    "CA0-6": 3.99,
+    "CS0": 6.53,
+    "WCK_P/WCK_N (per leg)": 3.99,
+    "DQ0-7 write": 3.19
+   },
+   "resistor_rating_mW": 50,
+   "simulated_typ_mA": {
+    "command": 53,
+    "write": 46
+   }
+  },
   "dividers": {
    "CA0-6": {
-    "series": 91,
-    "shunt": 68,
-    "v_min": 0.378,
-    "v_nom": 0.418,
-    "v_max": 0.468,
-    "i_nom_mA": 6.15,
-    "i_max_mA": 6.87,
-    "back_impedance_ohm": 44.6,
-    "ibis_fastest_corner_25p1_ohm_v": 0.4706,
+    "series": 75,
+    "shunt": 75,
+    "v_min": 0.458,
+    "v_nom": 0.502,
+    "v_max": 0.545,
+    "i_nom_mA": 6.69,
+    "i_max_mA": 7.26,
+    "back_impedance_ohm": 45.2,
+    "level_policy": {
+     "typ_target_v": 0.5,
+     "typ_tolerance_mV": 15.0,
+     "typ_minus_target_mV": 2.0,
+     "fast_corner_max_v": 0.55,
+     "fast_corner_v": 0.5451,
+     "fast_corner_margin_to_max_mV": 4.9,
+     "fast_corner_above_vddq_mV": {
+      "card_min": 57.5,
+      "typ": 45.5,
+      "card_max": 33.5
+     },
+     "fast_driver_nominal_resistors_v": 0.5397,
+     "typ_above_vddq_mV": {
+      "card_min": 14.3,
+      "typ": 2.4
+     },
+     "slow_corner_below_vddq_card_min_mV": 29.8,
+     "margin_to_jedec_vddq_max_0p57_v_mV": 24.9
+    },
+    "simulated_dc_high_slow_typ_fast_v": [
+     0.456,
+     0.495,
+     0.532
+    ],
+    "margin_to_boot_floor_mV": 106.8,
+    "other_drivers": {
+     "rule": "SSTL12 / DIFF_SSTL12, SLEW FAST, RDRV_40_40 without DCI is the only supported and enforced command driver: every simulated margin and the 0.50 V level were obtained with it. The earlier prohibition 'MUST NOT be combined with a DCI driver' (75R / 56R: boot-floor margin 8.7 mV with a 40 ohm DCI driver, negative with 48 ohm) is DROPPED as a level argument: with 75R / 75R the slowest of these drivers still leaves 66.4 mV over the boot floor. A weaker driver lowers the level under the 0.50 V target (nominal values below) and was not simulated",
+     "boot_floor_v": 0.351,
+     "slow_corner_high_v": {
+      "RDRV_40_40 no DCI (IBIS 34.9 ohm): the supported driver": 0.4578,
+      "40 ohm DCI at the DS925 limit (44 ohm)": 0.4363,
+      "RDRV_48_48 no DCI (IBIS 42 ohm)": 0.4409,
+      "48 ohm DCI at +10 % (52.8 ohm)": 0.4174
+     },
+     "margin_to_boot_floor_mV": {
+      "RDRV_40_40 no DCI": 106.8,
+      "40 ohm DCI": 85.3,
+      "RDRV_48_48 no DCI": 89.9,
+      "48 ohm DCI": 66.4
+     },
+     "nominal_high_v": {
+      "RDRV_40_40 no DCI": 0.502,
+      "40 ohm DCI": 0.4737,
+      "RDRV_48_48 no DCI": 0.4865,
+      "48 ohm DCI": 0.4545
+     },
+     "nominal_driver_ohm": {
+      "RDRV_40_40 no DCI": 29.3,
+      "40 ohm DCI": 40.0,
+      "RDRV_48_48 no DCI": 35.0,
+      "48 ohm DCI": 48.0
+     }
+    },
+    "vref_ca": {
+     "wanted_slow_typ_fast_mV": [
+      215,
+      235,
+      253
+     ],
+     "jedec_range_mV": [
+      75,
+      350
+     ],
+     "mr12_start_code": "0x4A",
+     "mr12_start_percent": 47.0,
+     "mr12_start_v": 0.2348,
+     "mr12_code_meaning": "OP[6:0] = 1001010b: 47.0 % of VDDQ (JESD209-5C Table 87)",
+     "boot_default": "50 % = 0.25 V: now close to the wanted value (it was 0.04 V too high for the 0.42 V level of the earlier dividers)"
+    },
     "first_incident_at_open_ball_v": [
-     0.372,
-     0.433,
-     0.525
+     0.479,
+     0.546,
+     0.611
     ],
     "first_incident_over_dc": [
-     0.98,
+     1.05,
      1.12
     ],
-    "overshoot": "fast corner: 0.525 V plateau for one host round trip (about 1.1 ns), 0.56 V peak at the die = 43..76 mV above the card's VDDQ, 0.02..0.04 V-ns: inside JESD209-5C Table 416 (0.3 V, 0.1 V-ns)",
-    "limit": "DC level <= 0.47 V target, <= 0.488 V (card VDDQ min) hard; >= 0.351 V at boot (default VREF(CA) 0.256 V max + 0.095 V)"
+    "overshoot": "fast corner: first incident 0.611 V for one host round trip (about 1.1 ns), 123 mV above the card's VDDQ minimum (0.4876 V): inside the amplitude allowance of JESD209-5C Table 416 (0.3 V). The merged system simulation of this set has at most 0.688 V / -0.106 V at the pin (fast corner); the overshoot AREA is the open point (analysis.level_policy.cost)",
+    "previous_values": "91R / 68R as first built, 75R / 56R after the merged system simulation (0.381 / 0.419 / 0.457 V, back impedance 37.6 ohm, under the old 0.47 V rule); the shunt went from 56R to 75R for the 0.50 V level",
+    "limit": "DC level 0.50 V +/-15 mV typical, <= 0.55 V in the stacked fast corner (above the card's VDDQ: deliberate, analysis.level_policy); >= 0.351 V at boot (default VREF(CA) 0.256 V max + 0.095 V)"
    },
    "CK_P/CK_N (per leg)": {
-    "series": 91,
-    "shunt": 68,
-    "v_min": 0.378,
-    "v_nom": 0.418,
-    "v_max": 0.468,
-    "i_nom_mA": 6.15,
-    "i_max_mA": 6.87,
-    "back_impedance_ohm": 43.9,
-    "limit": "differential >= 0.35 V p-p; each leg within VSS..VDDQ"
+    "series": 75,
+    "shunt": 75,
+    "v_min": 0.458,
+    "v_nom": 0.502,
+    "v_max": 0.545,
+    "i_nom_mA": 6.69,
+    "i_max_mA": 7.26,
+    "back_impedance_ohm": 44.3,
+    "level_policy": {
+     "typ_target_v": 0.5,
+     "typ_tolerance_mV": 15.0,
+     "typ_minus_target_mV": 2.0,
+     "fast_corner_max_v": 0.55,
+     "fast_corner_v": 0.5451,
+     "fast_corner_margin_to_max_mV": 4.9,
+     "fast_corner_above_vddq_mV": {
+      "card_min": 57.5,
+      "typ": 45.5,
+      "card_max": 33.5
+     },
+     "fast_driver_nominal_resistors_v": 0.5397,
+     "typ_above_vddq_mV": {
+      "card_min": 14.3,
+      "typ": 2.4
+     },
+     "slow_corner_below_vddq_card_min_mV": 29.8,
+     "margin_to_jedec_vddq_max_0p57_v_mV": 24.9
+    },
+    "limit": "differential >= 0.35 V p-p; each leg 0.50 V +/-15 mV typical, <= 0.55 V in the stacked fast corner"
    },
    "CS0": {
     "series": 33,
     "shunt": 100,
-    "v_min": 0.64,
-    "v_nom": 0.71,
-    "v_max": 0.797,
-    "i_nom_mA": 7.1,
-    "i_max_mA": 7.99,
+    "v_min": 0.675,
+    "v_nom": 0.739,
+    "v_max": 0.802,
+    "i_nom_mA": 7.39,
+    "i_max_mA": 8.04,
     "back_impedance_ohm": 41.9,
-    "limit": "0.55 V (ViHPD) .. VDD2H + 0.2 V; Vref_CS = VDD2H / 3 = 0.35 V"
+    "limit": "0.55 V (ViHPD) .. VDD2H + 0.2 V; Vref_CS = VDD2H / 3 = 0.35 V",
+    "not_changed": "CS keeps 33R / 100R: simulated as 75R / 75R it has 0.456 / 0.494 / 0.531 V at the pin (slow / typ / fast), under the 0.55 V power-down-exit level in every corner, and fails its own mask (-9 / -43 mV typ / slow against +194 / +126 mV as built); its 0.73 V swing costs the CA lines nothing measurable (worst CA margin +72 mV typ with either CS divider): the coupling is made before the divider, where CS swings 1.2 V in both cases"
    },
    "WCK_P/WCK_N (per leg)": {
-    "series": 91,
-    "shunt": 68,
-    "v_min": 0.378,
-    "v_nom": 0.418,
-    "v_max": 0.468,
-    "i_nom_mA": 6.15,
-    "i_max_mA": 6.87,
-    "back_impedance_ohm": 43.9,
+    "series": 75,
+    "shunt": 75,
+    "v_min": 0.458,
+    "v_nom": 0.502,
+    "v_max": 0.545,
+    "i_nom_mA": 6.69,
+    "i_max_mA": 7.26,
+    "back_impedance_ohm": 44.3,
+    "level_policy": {
+     "typ_target_v": 0.5,
+     "typ_tolerance_mV": 15.0,
+     "typ_minus_target_mV": 2.0,
+     "fast_corner_max_v": 0.55,
+     "fast_corner_v": 0.5451,
+     "fast_corner_margin_to_max_mV": 4.9,
+     "fast_corner_above_vddq_mV": {
+      "card_min": 57.5,
+      "typ": 45.5,
+      "card_max": 33.5
+     },
+     "fast_driver_nominal_resistors_v": 0.5397,
+     "typ_above_vddq_mV": {
+      "card_min": 14.3,
+      "typ": 2.4
+     },
+     "slow_corner_below_vddq_card_min_mV": 29.8,
+     "margin_to_jedec_vddq_max_0p57_v_mV": 24.9
+    },
+    "simulated_dc_high_slow_typ_fast_v": [
+     0.457,
+     0.496,
+     0.533
+    ],
+    "level_note": "changed from 91R / 68R with the 0.50 V set (both resistors of both legs)",
     "with_40ohm_wck_odt_v": [
-     0.168,
-     0.199
+     0.205,
+     0.24
     ],
     "with_40ohm_wck_odt_differential_vpp": [
-     0.336,
-     0.398
+     0.41,
+     0.48
     ],
-    "with_40ohm_wck_odt_note": "worst case with the ODT at 36 ohm (-10 %); the differential slew is then about 2 V/ns, at the JEDEC minimum: command-bus training with forced WCK ODT is marginal in the slowest driver corner and is not needed for this card",
-    "limit": "differential >= 0.30 V p-p, also with the 40 ohm WCK ODT forced during CBT"
+    "with_40ohm_wck_odt_note": "worst case with the ODT at 36 ohm (-10 %); command-bus training with forced WCK ODT is not needed for this card",
+    "limit": "differential >= 0.30 V p-p, also with the 40 ohm WCK ODT forced during CBT; each leg 0.50 V +/-15 mV typical, <= 0.55 V in the stacked fast corner"
    },
    "DQ0-7 write": {
-    "series": 240,
-    "shunt": 150,
-    "v_min": 0.389,
-    "v_nom": 0.423,
-    "v_max": 0.46,
-    "i_nom_mA": 2.82,
-    "i_max_mA": 3.06,
-    "back_impedance_ohm": 97.6,
-    "ibis_fastest_corner_25p1_ohm_v": 0.4609,
-    "limit": "<= 0.47 V (VDDQ min); VREF(DQ) programmed to half the level (<= 0.225 V)"
+    "series": 110,
+    "shunt": 100,
+    "v_min": 0.461,
+    "v_nom": 0.501,
+    "v_max": 0.542,
+    "i_nom_mA": 5.01,
+    "i_max_mA": 5.41,
+    "back_impedance_ohm": 59.8,
+    "level_policy": {
+     "typ_target_v": 0.5,
+     "typ_tolerance_mV": 15.0,
+     "typ_minus_target_mV": 1.5,
+     "fast_corner_max_v": 0.55,
+     "fast_corner_v": 0.5415,
+     "fast_corner_margin_to_max_mV": 8.5,
+     "fast_corner_above_vddq_mV": {
+      "card_min": 53.9,
+      "typ": 41.9,
+      "card_max": 29.9
+     },
+     "fast_driver_nominal_resistors_v": 0.5359,
+     "typ_above_vddq_mV": {
+      "card_min": 13.9,
+      "typ": 1.9
+     },
+     "slow_corner_below_vddq_card_min_mV": 27.0,
+     "margin_to_jedec_vddq_max_0p57_v_mV": 28.5
+    },
+    "simulated_dc_high_slow_typ_fast_v": [
+     0.461,
+     0.496,
+     0.53
+    ],
+    "previous_values": "240R / 150R (0.398 / 0.429 / 0.461 V) until the 0.50 V set",
+    "vref_dq": {
+     "wanted_mV": 248,
+     "simulated_at_mV": 225,
+     "mr14_start_code": "0x46",
+     "mr14_start_percent": 45.0,
+     "mr14_start_v": 0.2248,
+     "mr14_code_meaning": "OP[6:0] = 1000110b: 45.0 % of VDDQ (JESD209-5C Table 91: 10.0 % + 0.5 % per step)",
+     "margin_at_225_mV": [
+      144,
+      142,
+      146
+     ],
+     "mr14_code_for_the_eye_centre": "0x4F (49.5 % = 0.2473 V)",
+     "note": "the write eye is centred at about 248 mV. The simulation took 225 mV as the highest VrefDQ and evaluated every write margin there (20 mV off centre, +142 mV or more). JESD209-5C Table 91 note 4 sets that 225 mV ceiling for WCK above 1600 MHz; at or below 1600 MHz it allows 350 mV, so on this card (100 Mb/s writes) the centre is reachable by training. Start at 0x46, the simulated point; no margin was simulated above it"
+    },
+    "limit": "0.50 V +/-15 mV typical, <= 0.55 V in the stacked fast corner; VREF(DQ) starts at 0.225 V (MR14 0x46), about 23 mV under the centre of the eye"
    },
    "RESET_n": {
     "series": 100,
@@ -28311,7 +28557,7 @@
    }
   },
   "write_node": {
-   "source_resistance_ohm": 97.2,
+   "source_resistance_ohm": 58.2,
    "capacitance_pf": {
     "read_branch_in3_pf": 3.7,
     "read_finger_track_pf": 1.1,
@@ -28321,13 +28567,14 @@
     "trunk_ball_die_pf": 4.5
    },
    "capacitance_total_pf": 26.9,
-   "tau_ns": 2.61,
-   "rise_10_90_ns": 5.8,
-   "supported_rate": "100 Mb/s (the design target): about 4 % ISI, eye at the die 0.35 .. 0.43 V high and 5.6 .. 7.6 ns wide at +/-70 mV around VREF 0.21 V in the audit simulation with a 40 mm In3 branch (6.1 pF); the branch of this floorplan (about 24 mm of In3 and 9 mm of finger track) is 4.8 pF. 200 Mb/s is not supported by this node",
-   "note": "the read branch (In3 about 24 mm plus 9 mm on the finger's outer layer) and the host read line (73 mm, open at the FPGA) hang on the node directly (the read branch has no series resistor); the shunt is fixed by the read level, so the node cannot be made faster without giving up read level"
+   "tau_ns": 1.57,
+   "rise_10_90_ns": 3.4,
+   "tau_before_240r_150r_ns": 2.59,
+   "supported_rate": "100 Mb/s (the design target and the only rate simulated): the node settles with 1.6 ns (it was 2.6 ns with 240R / 150R), a unit interval is 6.4 time constants; merged system simulation of this set: eye 438 / 407 / 467 mV high (typ / slow / fast), margin +144 / +142 / +146 mV at the WCK crossing with VrefDQ 225 mV. The read branch of this floorplan (about 24 mm of In3 and 9 mm of finger track) is 4.8 pF. The node no longer limits writes to 100 Mb/s by itself; no higher rate was simulated or is claimed",
+   "note": "the read branch (In3 about 24 mm plus 9 mm on the finger's outer layer) and the host read line (73 mm, open at the FPGA) hang on the node directly (the read branch has no series resistor). The shunt is also the read load: lowering it from 150 to 100 ohm for the 0.50 V write level made the node faster and cost about 40 mV of read level"
   },
   "read": {
-   "load_ohm": 150,
+   "load_ohm": 100,
    "series_ohm": 0,
    "vddq_v": [
     0.4876,
@@ -28335,50 +28582,61 @@
     0.5116
    ],
    "read_high_v": [
+    0.334,
+    0.346,
+    0.367
+   ],
+   "read_high_basis": "LPDDR4X IBIS proxies (0.766 .. 0.792 x VDDQ into 150 ohm, taken as a linear pull-up of 39.4 .. 45.8 ohm into the 100 ohm load)",
+   "read_high_before_150r_v": [
     0.374,
     0.386,
     0.405
    ],
-   "read_high_basis": "LPDDR4X IBIS proxies (0.766 .. 0.792 x VDDQ into 150 ohm)",
-   "read_high_jedec_bound_v": [
-    0.362,
-    0.394,
-    0.431
+   "read_high_drop_mV": [
+    40.0,
+    40.0,
+    38.0
    ],
-   "read_high_jedec_basis": "JESD209-5C Table 472, un-terminated pull-up 28 / 40 / 52 ohm into 150 ohm",
-   "reference_default_v": 0.1873,
-   "reference_v": 0.195,
+   "read_high_jedec_bound_v": [
+    0.321,
+    0.357,
+    0.4
+   ],
+   "read_high_jedec_basis": "JESD209-5C Table 472, un-terminated pull-up 28 / 40 / 52 ohm into 100 ohm",
+   "reference_default_v": 0.0,
+   "reference_v": 0.175,
+   "reference_v_basis": "merged system simulation of the 0.50 V set: VREF_RD that centres the eye is 156 / 175 / 198 mV slow / typ / fast (it was 173 / 195 / 211 mV with the 150 ohm load)",
    "static_one": {
     "vid_v": [
-     0.179,
-     0.191,
-     0.21
+     0.159,
+     0.171,
+     0.192
     ],
     "vicm_v": [
-     0.284,
-     0.29,
-     0.3
+     0.255,
+     0.26,
+     0.271
     ],
     "jedec_bound_vid_v": [
-     0.167,
-     0.236
+     0.146,
+     0.225
     ],
     "jedec_bound_vicm_v": [
-     0.278,
-     0.313
+     0.248,
+     0.287
     ]
    },
    "static_zero": {
-    "vid_v": -0.195,
-    "vicm_v": 0.0975
+    "vid_v": -0.175,
+    "vicm_v": 0.0875
    },
    "margins_at_jedec_bound_mV": {
-    "vicm_to_330": 17.0,
-    "pin_to_460": 29.0,
-    "slvs_vid_to_140": 27.0,
-    "vicm_zero_to_70": 27.5
+    "vicm_to_330": 42.5,
+    "pin_to_460": 60.0,
+    "mipi_vid_to_70": 76.0,
+    "vicm_zero_to_70": 17.5
    },
-   "reference_rule": "keep VREF_RD at or below 0.20 V if the measured read high level is above 0.42 V (VICM <= 330 mV); the DAC covers 0.136 .. 0.631 V",
+   "reference_rule": "measure the read high level and set VREF_RD to half of it (simulated centres 156 / 175 / 198 mV slow / typ / fast), never above 0.21 V and never below 0.14 V (VICM of a zero >= 70 mV); the DAC covers 0 .. 0.631 V and the bus is at 0 V until it is written",
    "mipi_dphy_dci_hs_window": {
     "vid_min_v": 0.07,
     "vicm_v": [
@@ -28393,7 +28651,7 @@
    "read_high_at_the_pin": "the same as at the node: the read branch carries no DC current (the FPGA pin is open), so removing the 22 ohm series resistors changes no static level",
    "open_end": {
     "question": "what the open FPGA end does without a series resistor in the read branch (the 22 ohm taps R301..R308 and R311 / R312 were removed on the user's remark: 'is it that bad if it overshoots a little?')",
-    "model": "scripts/read_linesim.py: lossless lines, linear driver, 80 ps edge, 100 Mb/s; trunk 52.4 ohm, read branch 45.6 ohm, host lines 39 ohm, 150 ohm shunt, 240 ohm to the Hi-Z write pin; 3.1 pF at each FPGA pin, 1 pF at the ball. Pessimistic for ringing: no loss, no driver non-linearity",
+    "model": "scripts/read_linesim.py: lossless lines, linear driver, 80 ps edge, 100 Mb/s; trunk 52.4 ohm, read branch 45.6 ohm, host lines 39 ohm, 100 ohm shunt, 110 ohm to the Hi-Z write pin; 3.1 pF at each FPGA pin, 1 pF at the ball. Pessimistic for ringing: no loss, no driver non-linearity",
     "delays_ps": {
      "trunk_ps": 141.7,
      "read_branch_ps": 151.7,
@@ -28410,20 +28668,20 @@
        "host_write_ps": 609.2
       },
       "strong": {
-       "peak_v": 0.549,
-       "min_v": -0.131,
-       "above_window_ns": 1.7,
-       "below_window_ns": 1.72,
-       "high_minus_final_mV_at_5ns": -5.1,
-       "high_minus_final_mV_at_8ns": -10.6,
-       "low_minus_final_mV_at_5ns": 3.8,
-       "low_minus_final_mV_at_8ns": 9.9
+       "peak_v": 0.522,
+       "min_v": -0.133,
+       "above_window_ns": 0.63,
+       "below_window_ns": 1.57,
+       "high_minus_final_mV_at_5ns": 9.9,
+       "high_minus_final_mV_at_8ns": -6.5,
+       "low_minus_final_mV_at_5ns": -9.9,
+       "low_minus_final_mV_at_8ns": 6.6
       },
       "nominal": {
-       "peak_v": 0.453,
-       "min_v": -0.064,
+       "peak_v": 0.427,
+       "min_v": -0.071,
        "above_window_ns": 0.0,
-       "below_window_ns": 0.46
+       "below_window_ns": 0.4
       }
      },
      "DQ5": {
@@ -28434,20 +28692,20 @@
        "host_write_ps": 610.6
       },
       "strong": {
-       "peak_v": 0.546,
-       "min_v": -0.129,
-       "above_window_ns": 1.68,
-       "below_window_ns": 1.69,
-       "high_minus_final_mV_at_5ns": -5.6,
-       "high_minus_final_mV_at_8ns": -10.1,
-       "low_minus_final_mV_at_5ns": 4.3,
-       "low_minus_final_mV_at_8ns": 9.4
+       "peak_v": 0.519,
+       "min_v": -0.13,
+       "above_window_ns": 0.61,
+       "below_window_ns": 1.55,
+       "high_minus_final_mV_at_5ns": 8.8,
+       "high_minus_final_mV_at_8ns": -5.4,
+       "low_minus_final_mV_at_5ns": -8.9,
+       "low_minus_final_mV_at_8ns": 5.5
       },
       "nominal": {
-       "peak_v": 0.452,
-       "min_v": -0.062,
+       "peak_v": 0.425,
+       "min_v": -0.069,
        "above_window_ns": 0.0,
-       "below_window_ns": 0.44
+       "below_window_ns": 0.31
       }
      },
      "DQ1": {
@@ -28458,20 +28716,20 @@
        "host_write_ps": 612.1
       },
       "strong": {
-       "peak_v": 0.544,
+       "peak_v": 0.517,
        "min_v": -0.127,
-       "above_window_ns": 1.63,
-       "below_window_ns": 1.65,
-       "high_minus_final_mV_at_5ns": -3.7,
-       "high_minus_final_mV_at_8ns": -9.8,
-       "low_minus_final_mV_at_5ns": 2.3,
-       "low_minus_final_mV_at_8ns": 9.0
+       "above_window_ns": 0.54,
+       "below_window_ns": 1.52,
+       "high_minus_final_mV_at_5ns": 10.1,
+       "high_minus_final_mV_at_8ns": -4.8,
+       "low_minus_final_mV_at_5ns": -10.3,
+       "low_minus_final_mV_at_8ns": 4.8
       },
       "nominal": {
-       "peak_v": 0.45,
-       "min_v": -0.061,
+       "peak_v": 0.422,
+       "min_v": -0.066,
        "above_window_ns": 0.0,
-       "below_window_ns": 0.38
+       "below_window_ns": 0.3
       }
      },
      "DQ0": {
@@ -28482,20 +28740,20 @@
        "host_write_ps": 612.7
       },
       "strong": {
-       "peak_v": 0.542,
+       "peak_v": 0.514,
        "min_v": -0.124,
-       "above_window_ns": 1.61,
-       "below_window_ns": 1.62,
-       "high_minus_final_mV_at_5ns": -3.9,
-       "high_minus_final_mV_at_8ns": -8.9,
-       "low_minus_final_mV_at_5ns": 2.4,
-       "low_minus_final_mV_at_8ns": 8.0
+       "above_window_ns": 0.51,
+       "below_window_ns": 1.5,
+       "high_minus_final_mV_at_5ns": 10.3,
+       "high_minus_final_mV_at_8ns": -3.6,
+       "low_minus_final_mV_at_5ns": -10.5,
+       "low_minus_final_mV_at_8ns": 3.6
       },
       "nominal": {
-       "peak_v": 0.448,
-       "min_v": -0.058,
+       "peak_v": 0.42,
+       "min_v": -0.064,
        "above_window_ns": 0.0,
-       "below_window_ns": 0.35
+       "below_window_ns": 0.25
       }
      },
      "DQ3": {
@@ -28506,20 +28764,20 @@
        "host_write_ps": 604.6
       },
       "strong": {
-       "peak_v": 0.536,
-       "min_v": -0.119,
-       "above_window_ns": 1.56,
-       "below_window_ns": 1.57,
-       "high_minus_final_mV_at_5ns": -4.9,
-       "high_minus_final_mV_at_8ns": -9.0,
-       "low_minus_final_mV_at_5ns": 3.2,
-       "low_minus_final_mV_at_8ns": 8.0
+       "peak_v": 0.507,
+       "min_v": -0.117,
+       "above_window_ns": 0.47,
+       "below_window_ns": 1.45,
+       "high_minus_final_mV_at_5ns": 9.3,
+       "high_minus_final_mV_at_8ns": -3.0,
+       "low_minus_final_mV_at_5ns": -9.5,
+       "low_minus_final_mV_at_8ns": 2.9
       },
       "nominal": {
-       "peak_v": 0.443,
-       "min_v": -0.054,
+       "peak_v": 0.414,
+       "min_v": -0.058,
        "above_window_ns": 0.0,
-       "below_window_ns": 0.26
+       "below_window_ns": 0.2
       }
      },
      "DQ2": {
@@ -28530,20 +28788,20 @@
        "host_write_ps": 608.6
       },
       "strong": {
-       "peak_v": 0.532,
-       "min_v": -0.114,
-       "above_window_ns": 1.52,
-       "below_window_ns": 1.54,
-       "high_minus_final_mV_at_5ns": -5.3,
-       "high_minus_final_mV_at_8ns": -8.4,
-       "low_minus_final_mV_at_5ns": 3.5,
-       "low_minus_final_mV_at_8ns": 7.5
+       "peak_v": 0.502,
+       "min_v": -0.111,
+       "above_window_ns": 0.43,
+       "below_window_ns": 1.41,
+       "high_minus_final_mV_at_5ns": 8.8,
+       "high_minus_final_mV_at_8ns": -2.0,
+       "low_minus_final_mV_at_5ns": -9.0,
+       "low_minus_final_mV_at_8ns": 1.9
       },
       "nominal": {
-       "peak_v": 0.439,
-       "min_v": -0.05,
+       "peak_v": 0.409,
+       "min_v": -0.053,
        "above_window_ns": 0.0,
-       "below_window_ns": 0.19
+       "below_window_ns": 0.17
       }
      },
      "DQ6": {
@@ -28554,20 +28812,20 @@
        "host_write_ps": 613.0
       },
       "strong": {
-       "peak_v": 0.527,
-       "min_v": -0.109,
-       "above_window_ns": 1.46,
-       "below_window_ns": 1.48,
-       "high_minus_final_mV_at_5ns": -2.4,
-       "high_minus_final_mV_at_8ns": -6.7,
-       "low_minus_final_mV_at_5ns": 0.8,
-       "low_minus_final_mV_at_8ns": 5.9
+       "peak_v": 0.492,
+       "min_v": -0.102,
+       "above_window_ns": 0.3,
+       "below_window_ns": 1.33,
+       "high_minus_final_mV_at_5ns": 8.2,
+       "high_minus_final_mV_at_8ns": 0.1,
+       "low_minus_final_mV_at_5ns": -8.3,
+       "low_minus_final_mV_at_8ns": -0.1
       },
       "nominal": {
-       "peak_v": 0.435,
+       "peak_v": 0.401,
        "min_v": -0.045,
        "above_window_ns": 0.0,
-       "below_window_ns": 0.13
+       "below_window_ns": 0.1
       }
      },
      "DQ7": {
@@ -28578,27 +28836,27 @@
        "host_write_ps": 615.0
       },
       "strong": {
-       "peak_v": 0.522,
-       "min_v": -0.105,
-       "above_window_ns": 1.44,
-       "below_window_ns": 1.46,
-       "high_minus_final_mV_at_5ns": -2.0,
-       "high_minus_final_mV_at_8ns": -6.9,
-       "low_minus_final_mV_at_5ns": 0.3,
-       "low_minus_final_mV_at_8ns": 6.1
+       "peak_v": 0.486,
+       "min_v": -0.096,
+       "above_window_ns": 0.27,
+       "below_window_ns": 1.31,
+       "high_minus_final_mV_at_5ns": 7.3,
+       "high_minus_final_mV_at_8ns": -0.2,
+       "low_minus_final_mV_at_5ns": -7.3,
+       "low_minus_final_mV_at_8ns": 0.2
       },
       "nominal": {
-       "peak_v": 0.431,
-       "min_v": -0.042,
+       "peak_v": 0.396,
+       "min_v": -0.04,
        "above_window_ns": 0.0,
-       "below_window_ns": 0.08
+       "below_window_ns": 0.0
       }
      }
     },
     "per_net_worst": {
-     "peak_v": 0.549,
-     "min_v": -0.131,
-     "from_final_at_8ns_mV": 10.6
+     "peak_v": 0.522,
+     "min_v": -0.133,
+     "from_final_at_8ns_mV": 6.6
     },
     "without_series_resistor": [
      {
@@ -28606,105 +28864,105 @@
       "pull_up_ohm": 28.0,
       "pull_down_ohm": 28.0,
       "series_ohm": 0.0,
-      "dc_high_v": 0.421,
-      "peak_v": 0.539,
-      "min_v": -0.122,
-      "above_window_ns": 1.58,
-      "below_window_ns": 1.6,
-      "high_minus_final_mV_at_5ns": -4.9,
-      "high_minus_final_mV_at_8ns": -8.8,
-      "low_minus_final_mV_at_5ns": 3.4,
-      "low_minus_final_mV_at_8ns": 8.0
+      "dc_high_v": 0.391,
+      "peak_v": 0.51,
+      "min_v": -0.12,
+      "above_window_ns": 0.5,
+      "below_window_ns": 1.47,
+      "high_minus_final_mV_at_5ns": 9.0,
+      "high_minus_final_mV_at_8ns": -3.3,
+      "low_minus_final_mV_at_5ns": -9.1,
+      "low_minus_final_mV_at_8ns": 3.2
      },
      {
       "corner": "nominal: 40 / 40 ohm (MR3 PDDS 40 ohm)",
       "pull_up_ohm": 40.0,
       "pull_down_ohm": 40.0,
       "series_ohm": 0.0,
-      "dc_high_v": 0.395,
-      "peak_v": 0.445,
-      "min_v": -0.056,
+      "dc_high_v": 0.357,
+      "peak_v": 0.417,
+      "min_v": -0.061,
       "above_window_ns": 0.0,
-      "below_window_ns": 0.29,
-      "high_minus_final_mV_at_5ns": -17.3,
-      "high_minus_final_mV_at_8ns": -10.3,
-      "low_minus_final_mV_at_5ns": 14.7,
-      "low_minus_final_mV_at_8ns": 8.9
+      "below_window_ns": 0.22,
+      "high_minus_final_mV_at_5ns": -4.7,
+      "high_minus_final_mV_at_8ns": -3.8,
+      "low_minus_final_mV_at_5ns": 4.4,
+      "low_minus_final_mV_at_8ns": 3.7
      },
      {
       "corner": "weak: 52 / 52 ohm (40 ohm + 30 %)",
       "pull_up_ohm": 52.0,
       "pull_down_ohm": 52.0,
       "series_ohm": 0.0,
-      "dc_high_v": 0.371,
-      "peak_v": 0.379,
-      "min_v": -0.015,
+      "dc_high_v": 0.329,
+      "peak_v": 0.352,
+      "min_v": -0.025,
       "above_window_ns": 0.0,
       "below_window_ns": 0.0,
-      "high_minus_final_mV_at_5ns": -23.1,
-      "high_minus_final_mV_at_8ns": -13.1,
-      "low_minus_final_mV_at_5ns": 19.6,
-      "low_minus_final_mV_at_8ns": 11.2
+      "high_minus_final_mV_at_5ns": -11.6,
+      "high_minus_final_mV_at_8ns": -5.6,
+      "low_minus_final_mV_at_5ns": 11.1,
+      "low_minus_final_mV_at_8ns": 5.4
      },
      {
       "corner": "48 ohm setting, strong: 33.6 / 33.6 ohm",
       "pull_up_ohm": 33.6,
       "pull_down_ohm": 33.6,
       "series_ohm": 0.0,
-      "dc_high_v": 0.408,
-      "peak_v": 0.491,
-      "min_v": -0.087,
-      "above_window_ns": 0.48,
-      "below_window_ns": 1.33,
-      "high_minus_final_mV_at_5ns": -12.1,
-      "high_minus_final_mV_at_8ns": -9.0,
-      "low_minus_final_mV_at_5ns": 10.1,
-      "low_minus_final_mV_at_8ns": 7.9
+      "dc_high_v": 0.374,
+      "peak_v": 0.462,
+      "min_v": -0.088,
+      "above_window_ns": 0.05,
+      "below_window_ns": 0.51,
+      "high_minus_final_mV_at_5ns": 1.3,
+      "high_minus_final_mV_at_8ns": -3.1,
+      "low_minus_final_mV_at_5ns": -1.5,
+      "low_minus_final_mV_at_8ns": 3.0
      },
      {
       "corner": "48 ohm setting, nominal: 48 / 48 ohm",
       "pull_up_ohm": 48.0,
       "pull_down_ohm": 48.0,
       "series_ohm": 0.0,
-      "dc_high_v": 0.379,
-      "peak_v": 0.399,
-      "min_v": -0.027,
+      "dc_high_v": 0.338,
+      "peak_v": 0.371,
+      "min_v": -0.035,
       "above_window_ns": 0.0,
       "below_window_ns": 0.0,
-      "high_minus_final_mV_at_5ns": -21.5,
-      "high_minus_final_mV_at_8ns": -12.2,
-      "low_minus_final_mV_at_5ns": 18.3,
-      "low_minus_final_mV_at_8ns": 10.5
+      "high_minus_final_mV_at_5ns": -9.7,
+      "high_minus_final_mV_at_8ns": -5.0,
+      "low_minus_final_mV_at_5ns": 9.3,
+      "low_minus_final_mV_at_8ns": 4.9
      },
      {
       "corner": "60 ohm setting, strong: 42 / 42 ohm",
       "pull_up_ohm": 42.0,
       "pull_down_ohm": 42.0,
       "series_ohm": 0.0,
-      "dc_high_v": 0.391,
-      "peak_v": 0.433,
-      "min_v": -0.048,
+      "dc_high_v": 0.352,
+      "peak_v": 0.404,
+      "min_v": -0.053,
       "above_window_ns": 0.0,
-      "below_window_ns": 0.15,
-      "high_minus_final_mV_at_5ns": -18.5,
-      "high_minus_final_mV_at_8ns": -10.8,
-      "low_minus_final_mV_at_5ns": 15.8,
-      "low_minus_final_mV_at_8ns": 9.3
+      "below_window_ns": 0.17,
+      "high_minus_final_mV_at_5ns": -6.1,
+      "high_minus_final_mV_at_8ns": -4.1,
+      "low_minus_final_mV_at_5ns": 5.8,
+      "low_minus_final_mV_at_8ns": 4.0
      },
      {
       "corner": "60 ohm setting, nominal: 60 / 60 ohm",
       "pull_up_ohm": 60.0,
       "pull_down_ohm": 60.0,
       "series_ohm": 0.0,
-      "dc_high_v": 0.357,
-      "peak_v": 0.345,
-      "min_v": 0.004,
+      "dc_high_v": 0.312,
+      "peak_v": 0.319,
+      "min_v": -0.009,
       "above_window_ns": 0.0,
       "below_window_ns": 0.0,
-      "high_minus_final_mV_at_5ns": -25.8,
-      "high_minus_final_mV_at_8ns": -14.7,
-      "low_minus_final_mV_at_5ns": 21.7,
-      "low_minus_final_mV_at_8ns": 12.4
+      "high_minus_final_mV_at_5ns": -14.6,
+      "high_minus_final_mV_at_8ns": -6.6,
+      "low_minus_final_mV_at_5ns": 13.9,
+      "low_minus_final_mV_at_8ns": 6.3
      }
     ],
     "with_22_ohm": [
@@ -28713,105 +28971,105 @@
       "pull_up_ohm": 28.0,
       "pull_down_ohm": 28.0,
       "series_ohm": 22.0,
-      "dc_high_v": 0.421,
-      "peak_v": 0.429,
-      "min_v": -0.012,
+      "dc_high_v": 0.391,
+      "peak_v": 0.389,
+      "min_v": 0.002,
       "above_window_ns": 0.0,
       "below_window_ns": 0.0,
-      "high_minus_final_mV_at_5ns": -13.8,
-      "high_minus_final_mV_at_8ns": -7.8,
-      "low_minus_final_mV_at_5ns": 12.0,
-      "low_minus_final_mV_at_8ns": 6.8
+      "high_minus_final_mV_at_5ns": -8.6,
+      "high_minus_final_mV_at_8ns": -2.7,
+      "low_minus_final_mV_at_5ns": 8.5,
+      "low_minus_final_mV_at_8ns": 2.6
      },
      {
       "corner": "nominal: 40 / 40 ohm (MR3 PDDS 40 ohm)",
       "pull_up_ohm": 40.0,
       "pull_down_ohm": 40.0,
       "series_ohm": 22.0,
-      "dc_high_v": 0.395,
-      "peak_v": 0.385,
-      "min_v": 0.008,
+      "dc_high_v": 0.357,
+      "peak_v": 0.354,
+      "min_v": 0.003,
       "above_window_ns": 0.0,
       "below_window_ns": 0.0,
-      "high_minus_final_mV_at_5ns": -20.8,
-      "high_minus_final_mV_at_8ns": -11.5,
-      "low_minus_final_mV_at_5ns": 17.9,
-      "low_minus_final_mV_at_8ns": 9.8
+      "high_minus_final_mV_at_5ns": -15.0,
+      "high_minus_final_mV_at_8ns": -5.0,
+      "low_minus_final_mV_at_5ns": 14.6,
+      "low_minus_final_mV_at_8ns": 4.9
      },
      {
       "corner": "weak: 52 / 52 ohm (40 ohm + 30 %)",
       "pull_up_ohm": 52.0,
       "pull_down_ohm": 52.0,
       "series_ohm": 22.0,
-      "dc_high_v": 0.371,
-      "peak_v": 0.359,
-      "min_v": 0.01,
+      "dc_high_v": 0.329,
+      "peak_v": 0.324,
+      "min_v": 0.005,
       "above_window_ns": 0.0,
       "below_window_ns": 0.0,
-      "high_minus_final_mV_at_5ns": -27.0,
-      "high_minus_final_mV_at_8ns": -14.7,
-      "low_minus_final_mV_at_5ns": 23.0,
-      "low_minus_final_mV_at_8ns": 12.5
+      "high_minus_final_mV_at_5ns": -20.1,
+      "high_minus_final_mV_at_8ns": -7.2,
+      "low_minus_final_mV_at_5ns": 19.4,
+      "low_minus_final_mV_at_8ns": 6.9
      },
      {
       "corner": "48 ohm setting, strong: 33.6 / 33.6 ohm",
       "pull_up_ohm": 33.6,
       "pull_down_ohm": 33.6,
       "series_ohm": 22.0,
-      "dc_high_v": 0.408,
-      "peak_v": 0.401,
-      "min_v": 0.007,
+      "dc_high_v": 0.374,
+      "peak_v": 0.372,
+      "min_v": 0.002,
       "above_window_ns": 0.0,
       "below_window_ns": 0.0,
-      "high_minus_final_mV_at_5ns": -17.1,
-      "high_minus_final_mV_at_8ns": -9.6,
-      "low_minus_final_mV_at_5ns": 14.8,
-      "low_minus_final_mV_at_8ns": 8.3
+      "high_minus_final_mV_at_5ns": -11.8,
+      "high_minus_final_mV_at_8ns": -3.7,
+      "low_minus_final_mV_at_5ns": 11.5,
+      "low_minus_final_mV_at_8ns": 3.7
      },
      {
       "corner": "48 ohm setting, nominal: 48 / 48 ohm",
       "pull_up_ohm": 48.0,
       "pull_down_ohm": 48.0,
       "series_ohm": 22.0,
-      "dc_high_v": 0.379,
-      "peak_v": 0.367,
-      "min_v": 0.01,
+      "dc_high_v": 0.338,
+      "peak_v": 0.333,
+      "min_v": 0.005,
       "above_window_ns": 0.0,
       "below_window_ns": 0.0,
-      "high_minus_final_mV_at_5ns": -25.0,
-      "high_minus_final_mV_at_8ns": -13.7,
-      "low_minus_final_mV_at_5ns": 21.4,
-      "low_minus_final_mV_at_8ns": 11.6
+      "high_minus_final_mV_at_5ns": -18.6,
+      "high_minus_final_mV_at_8ns": -6.5,
+      "low_minus_final_mV_at_5ns": 18.0,
+      "low_minus_final_mV_at_8ns": 6.3
      },
      {
       "corner": "60 ohm setting, strong: 42 / 42 ohm",
       "pull_up_ohm": 42.0,
       "pull_down_ohm": 42.0,
       "series_ohm": 22.0,
-      "dc_high_v": 0.391,
-      "peak_v": 0.381,
-      "min_v": 0.009,
+      "dc_high_v": 0.352,
+      "peak_v": 0.348,
+      "min_v": 0.004,
       "above_window_ns": 0.0,
       "below_window_ns": 0.0,
-      "high_minus_final_mV_at_5ns": -21.9,
-      "high_minus_final_mV_at_8ns": -12.0,
-      "low_minus_final_mV_at_5ns": 18.8,
-      "low_minus_final_mV_at_8ns": 10.3
+      "high_minus_final_mV_at_5ns": -16.0,
+      "high_minus_final_mV_at_8ns": -5.4,
+      "low_minus_final_mV_at_5ns": 15.5,
+      "low_minus_final_mV_at_8ns": 5.2
      },
      {
       "corner": "60 ohm setting, nominal: 60 / 60 ohm",
       "pull_up_ohm": 60.0,
       "pull_down_ohm": 60.0,
       "series_ohm": 22.0,
-      "dc_high_v": 0.357,
-      "peak_v": 0.343,
-      "min_v": 0.012,
+      "dc_high_v": 0.312,
+      "peak_v": 0.306,
+      "min_v": 0.006,
       "above_window_ns": 0.0,
       "below_window_ns": 0.0,
-      "high_minus_final_mV_at_5ns": -30.6,
-      "high_minus_final_mV_at_8ns": -16.7,
-      "low_minus_final_mV_at_5ns": 25.9,
-      "low_minus_final_mV_at_8ns": 14.0
+      "high_minus_final_mV_at_5ns": -22.8,
+      "high_minus_final_mV_at_8ns": -8.5,
+      "low_minus_final_mV_at_5ns": 21.9,
+      "low_minus_final_mV_at_8ns": 8.1
      }
     ],
     "fpga_pin_recommended_v": [
@@ -28827,40 +29085,120 @@
      -0.04,
      0.46
     ],
-    "answer": "not bad. Worst corner (driver 30 % stronger than nominal at the 40 ohm setting): 0.539 V / -0.122 V at the pin, 1.6 ns per edge outside the single-ended window of the MIPI HS receiver (-0.04 .. 0.46 V), far inside the recommended range of the pin (-0.20 .. 1.40 V). Nominal driver: 0.445 V / -0.056 V, 0.29 ns below the window after a falling edge, never above it. In every corner the pin is within 30 mV of its final level 5 ns after the edge arrives and within 20 mV after 8 ns: the ringing is over long before a mid- or late-UI sample at 100 Mb/s (10 ns). The 22 ohm resistors kept the pin inside the window in all corners (0.429 V / -0.012 V at worst); what is given up is that margin for 1 .. 2 ns after each edge",
-    "gateware_knobs": "the same damping is available without parts: MR3 OP[2:0] (pull-down drive strength 48 or 60 ohm instead of 40) and the SoC-ODT / pull-up calibration code of MR17. 60 ohm keeps a strong driver at 0.433 V / -0.048 V; a nominal 48 ohm driver stays inside the window (0.399 V / -0.027 V). The price is read level (150 / (150 + R))"
+    "answer": "not bad. Worst corner (driver 30 % stronger than nominal at the 40 ohm setting): 0.510 V / -0.120 V at the pin, 1.5 ns per edge outside the single-ended window of the MIPI HS receiver (-0.04 .. 0.46 V), far inside the recommended range of the pin (-0.20 .. 1.40 V). Nominal driver: 0.417 V / -0.061 V, 0.22 ns below the window after a falling edge, never above it. In every corner the pin is within 30 mV of its final level 5 ns after the edge arrives and within 20 mV after 8 ns: the ringing is over long before a mid- or late-UI sample at 100 Mb/s (10 ns). The 22 ohm resistors kept the pin inside the window in all corners (0.389 V / +0.002 V at worst); what is given up is that margin for 1 .. 2 ns after each edge",
+    "gateware_knobs": "the same damping is available without parts: MR3 OP[2:0] (pull-down drive strength 48 or 60 ohm instead of 40) and the SoC-ODT / pull-up calibration code of MR17. 60 ohm keeps a strong driver at 0.404 V / -0.053 V; a nominal 48 ohm driver stays inside the window (0.371 V / -0.035 V). The price is read level (100 / (100 + R))"
    },
-   "slvs_400_18_window": {
-    "vid_v": [
-     0.14,
-     0.45
-    ],
-    "vicm_v": [
-     0.07,
-     0.33
-    ]
+   "receiver": {
+    "supported": "IBUFDS_DPHY with IOSTANDARD MIPI_DPHY_DCI, no differential termination: the only supported read receiver",
+    "slvs_400_18": "NOT supported (dropped as a fall-back). It needs VID >= 140 mV; the merged system simulation (analysis.system_simulation) gave +25 / -13 / +34 mV of mask margin typ / slow / fast at VREF_RD 0.195 V against +95 / +57 / +104 mV for MIPI_DPHY_DCI (VID >= 70 mV) with the 150 ohm load; with the 100 ohm load of the 0.50 V set +19 / -5 / +43 mV against +89 / +65 / +113 mV re-centred. Vivado accepts the standard on these pins (legality only: design/gateware/vivado_pincheck, cases M2 / N4, kept as history)"
    },
    "rdqs_true_differential": {
+    "load_ohm": 150,
     "vid_v": 0.386,
     "vicm_v": 0.193,
     "series_ohm": 0,
+    "load_note": "the two RDQS loads stay 150 ohm (not part of the 0.50 V decision): the strobe keeps its level while the DQ level drops with the 100 ohm shunt",
     "idle": "both legs at 0 V whenever the DRAM does not drive (VID 0, VICM 0, outside the receiver window): the receiver output is valid only inside the read burst and must be gated with the read-enable window"
+   },
+   "power_up": {
+    "vref_rd_dac_unprogrammed_v": 0.0,
+    "statement": "with the DAC unprogrammed its output is Hi-Z (factory default, DAC53401 data sheet 8.3.1 and GENERAL_CONFIG reset value DAC_PDN = 10) and VREF_RD is 0 V through R333: a zero has no differential (P 0 V, N 0 V) and the common mode is 0 V, outside the receiver's window. READS DO NOT WORK until the gateware has written the DAC over I2C, or until the DAC's non-volatile default has been programmed once on that board",
+    "before": "with R332 fitted the bus stood at 0.174 V without any I2C traffic and reads worked from power-up",
+    "options": {
+     "write_at_every_start": "DAC_DATA then GENERAL_CONFIG over I2C before the first read (analysis.reference.i2c_sequence.set_point)",
+     "store_once_per_board": "the same two writes, then NVM_PROG: the DAC then powers up driving the set point (analysis.reference.i2c_sequence.store_default); still verify with a read-back or on TP4"
+    },
+    "gateware_rule": "no READ and no MRR before the DAC write has been acknowledged and the bus has settled (5 tau = 0.9 ms)"
    }
   },
   "reference": {
-   "network": "DAC_OUT -300R- VREF_RD ; VDDQ -300R- VREF_RD ; VREF_RD -180R- GND ; 1 uF + 8 x 100 nF on the bus",
-   "dac_high_z_v": 0.1873,
-   "dac_high_z_source_ohm": 112.5,
-   "dac_active": "V = 0.2727 x Vdac + 0.1363 V",
-   "dac_active_source_ohm": 81.8,
+   "network": "DAC_OUT -300R- VREF_RD ; VREF_RD -160R- GND ; 1 uF + 8 x 100 nF on the bus ; R332 (300R, VDDQ to VREF_RD) NOT FITTED",
+   "ra_rb_rc_ohm": [
+    300,
+    300,
+    160
+   ],
+   "rb_fitted": false,
+   "decision": "user: 'Make the range of vref go down to 0'; of the ways offered, 'Drop the VDDQ pull-up'",
+   "dac_high_z_v": 0.0,
+   "dac_high_z_source_ohm": 160.0,
+   "dac_active": "V = 0.3478 x Vdac",
+   "dac_gain": 0.3478,
+   "dac_offset_v": 0.0,
+   "dac_active_source_ohm": 104.3,
    "range_internal_ref_x1p5_v": [
-    0.136,
+    0.0,
     0.631
    ],
-   "lsb_mV": 0.484,
-   "worst_case_if_misprogrammed_to_3p3_v": 1.036,
-   "leakage_shift_mV_at_8x15uA": 9.8,
-   "dac_code_for_0p195_v": 121,
+   "lsb_mV": 0.617,
+   "follows_vddq": "no: without R332 nothing ties VREF_RD to VDDQ. The read high level scales with VDDQ (+/-2.4 % on the card, +/-4.2 mV of half the level); the reference does not follow it any more (it followed with a factor 0.26 before)",
+   "dac_noise_attenuation": 0.348,
+   "dac_noise_attenuation_before": 0.258,
+   "dac_noise_note": "DAC output noise and code glitches reach the bus x 0.348 (x 0.258 with R332), behind the pole of 104.3 ohm and 1.8 uF at 847 Hz; data sheet 7.5: 0.7 uV/rtHz at 1 kHz and 70 uVpp in 0.1 .. 10 Hz at gain 4, less at gain 1.5",
+   "worst_case_at_dac_full_scale_v": 0.631,
+   "worst_case_if_misprogrammed_to_3p3_v": 1.148,
+   "worst_case_if_misprogrammed_to_3p3_v_plus_5pct": 1.205,
+   "fpga_pin_recommended_max_v": 1.4,
+   "fpga_pin_note": "DS925: VIN of an HP bank at VCCO 1.2 V is -0.20 .. 1.40 V recommended; the reference reaches the N pins through 39 ohm",
+   "leakage_shift_mV_at_8x15uA": 12.5,
+   "static_error_budget_mV": {
+    "pin_leakage": 12.5,
+    "vddq": 0.0,
+    "dac_and_resistors": 2.4,
+    "total": 14.9,
+    "note": "it was 10 + 3.3 + 2.4 = 16 mV in the simulation record (n_branch.level_mV): the leakage term is larger with the higher source resistance, the VDDQ term is gone"
+   },
+   "dac_code_for_reference_v": 284,
+   "dac_data_register_for_reference_v": "0x0470",
+   "dac_codes_for_the_simulated_centres": {
+    "slow": {
+     "v": 0.156,
+     "code": 253
+    },
+    "typ": {
+     "v": 0.175,
+     "code": 284
+    },
+    "fast": {
+     "v": 0.198,
+     "code": 321
+    }
+   },
+   "lowest_usable_dac_code": 228,
+   "lowest_usable_v": 0.14,
+   "lowest_usable_dac_code_note": "the network now reaches 0 V, but below 0.14 V the common mode of a zero (VREF_RD / 2) is under the 70 mV minimum of the MIPI D-PHY HS receiver: settings below this code are reachable and NOT usable for reads with this receiver",
+   "highest_recommended_dac_code": 340,
+   "dac_load": "the DAC drives 300 ohm + 160 ohm = 460 ohm to GND (3.9 mA at full scale, 1.09 mA at the set point); the 1 uF + 8 x 100 nF stay behind the 300 ohm of R331, as before (data sheet: capacitive load directly at OUT <= 1 nF; short-circuit current 25 mA at 2.7 V). With R332 fitted the DAC saw 300 + (300 || 160) ohm: the load is lighter now",
+   "settling_tau_ms": 0.188,
+   "i2c_sequence": {
+    "source": "references/parts/TI_DAC53401.txt: 8.3.3 (NVM), Table 1 (NVM programmable registers), 8.6.1 STATUS (D0h), 8.6.2 GENERAL_CONFIG (D1h), 8.6.4 TRIGGER (D3h), 9.2.1.2 (pseudocode with the same three writes). 16-bit registers, MSB first",
+    "set_point": [
+     "WRITE DAC_DATA (0x21) = 0x0470      code 284 << 2 (bits 11:2): VREF_RD = 0.175 V",
+     "WRITE GENERAL_CONFIG (0xD1) = 0x01E4      DAC_PDN = 00 (power up), REF_EN = 1 (internal 1.21 V), DAC_SPAN = 00 (gain 1.5), SLEW_RATE = 1111 (no slew)"
+    ],
+    "store_default": [
+     "the two writes of set_point",
+     "WRITE TRIGGER (0xD3) = 0x0010      NVM_PROG = 1 (self-resetting): DAC_DATA and GENERAL_CONFIG go to the NVM",
+     "wait until STATUS (0xD0) bit 13 NVM_BUSY = 0 (EEPROM write 5 / 10 / 15 ms min / typ / max); no write and no read of a DAC register while it is 1",
+     "power-cycle and check: OUT is driven without any I2C traffic (TP4 = 0.175 V)"
+    ],
+    "nvm": "endurance 20000 cycles (-40 .. 85 C), retention 50 years at 25 C; Table 1 lists DAC_DATA under address 10h while the register map and the pseudocode use 21h: 21h is used here",
+    "undo": "WRITE TRIGGER (0xD3) = 0x0200 (DEVICE_CONFIG_RESET: all registers to the factory values), then NVM_PROG again"
+   },
+   "before_rb_fitted": {
+    "dac_high_z_v": 0.1738,
+    "dac_active": "V = 0.2581 x Vdac + 0.1289 V",
+    "range_v": [
+     0.129,
+     0.597
+    ],
+    "lsb_mV": 0.457,
+    "dac_code_for_0p175_v": 101,
+    "source_ohm": 77.4,
+    "leakage_shift_mV": 9.3,
+    "worst_case_3p3_v": 0.981
+   },
+   "unused_copper": "the lands of R332 and the VDDQ track that ends on its pad 1 (F.Cu, about 19 mm from the VDDQ lane) stay on the board, unused; fitting 300 ohm there restores the 0.174 V default",
    "i2c_address": "0x48 (A0 to AGND); DDR4 SPD uses 0x50-0x57, 0x30-0x37, 0x18-0x1F: no conflict"
   },
   "rails": {
@@ -28937,6 +29275,727 @@
     "V3P3_mA": 30,
     "V3P3_contacts": 1,
     "contact_limit_A": 0.5
+   }
+  },
+  "system_simulation": {
+   "what": "Merged system simulation of the ZCU104 + DDR4 SO-DIMM socket + this card: headline results kept with the design. Transcribed from the stage-3 report (REPORT.md, results.json), the HFSS block manifest and the merge README; read by scripts/build_netlist.py into netlist.json analysis.system_simulation. Since then extended with three follow-up studies and the 0.50 V divider set now on the board (dividers_0v50, follow_up_studies).",
+   "date": "2026-11-12",
+   "files": {
+    "server": "~/lpddr5_sys/stage3/ on the simulation server (deliver/REPORT.md, results.json, tables/, eyes/, scenarios/, scripts/; inspectable models in inspect/)",
+    "hfss_blocks": "~/lpddr5_sys/stage2/hfss/deliver/manifest.json",
+    "merge": "~/lpddr5_sys/stage2_merge/deliver/README.md",
+    "in_repository": "none: the simulation files are not in the repository"
+   },
+   "board_simulated": "the card as built at the time: CA / CK dividers 91R / 68R. The 75R / 56R result is an equivalent (a correction two-port on the card ports of block A, fitted to an earlier field solve with resistor ports; residual 0.013 of S to 2.4 GHz against a change of 0.085), not a new field solve",
+   "model": {
+    "host": "ZCU104 from the Xilinx ODB++ (16 layers, fabricated line widths)",
+    "socket": "five HFSS blocks cut from the real artwork of both boards with the socket contacts and housing as solids: A command (fingers 60-90, 23 ports), B write (129-176, 48 ports), C read (176-226, 38 ports), D reset (226-238, 7 ports), E I2C / 3.3 V (247-260, 10 ports)",
+    "card": "this card from its IPC-2581 export (6 layers)",
+    "merge": "one SIwave project (host + card + block components), 179 ports, 0 - 5 GHz in 5 MHz steps with the true static row; merged against the plain cascade per wire to 5 GHz: command <= 0.0026, write DQ <= 0.0014, read <= 0.0045, WCK <= 0.0060, RESET_n 0.039",
+    "circuit": "stand-alone Nexxim transients on the 75-port model; Vivado 2026.1 IBIS buffers (HP_SSTL12_F_OUT40, HP_MIPI_DPHY_DCI_F_OUT48 as receiver, HP_LVCMOS12_S_8) on the coupled Vivado package model; behavioural LPDDR5 pins (assumed)",
+    "band_ghz": [
+     0,
+     5
+    ],
+    "runs": "98 Nexxim runs, 0 failed",
+    "corners": "typ / slow / fast = IBIS typ / min / max, VCCO 1.20 / 1.14 / 1.26 V, DRAM read high 0.386 / 0.353 / 0.423 V into 150 ohm; 'paired' = pessimistic DRAM package coupling (assumed)",
+    "modes": "M1 command stream 1.6 Gb/s; M2 writes 100 Mb/s; M3 reads 100 Mb/s; M4R / M4W = data plus the command bus at full rate plus injected noise (pessimistic supersets that this controller cannot produce)",
+    "hfss_convergence": "block A last delta-S 0.0101 (target 0.01), block B 0.021 (target 0.02): not met; C, D, E met. Bound: command margin -12 .. -19 mV, write margin -2 .. -16 mV"
+   },
+   "fpga_driver_ibis_ohm": {
+    "model": "HP_SSTL12_F_OUT40 (SSTL12, SLEW FAST, RDRV_40_40, no DCI)",
+    "slow": 34.9,
+    "typ": 29.3,
+    "fast": 25.1
+   },
+   "margin_definition": "mask margin in mV at the receiver's sampling instant (smallest vertical distance between the JEDEC mask and the folded waveform; negative = violation), worst net of the class; 'best' = with the delay adjustment that training reaches",
+   "verdict": [
+    {
+     "cls": "CA at the DRAM pin, 1.6 Gb/s (mask 155 mV x 112.5 / 187.5 ps)",
+     "typ": "+47 (best +53), height 271 mV, width 467 ps",
+     "slow": "+42 (+47)",
+     "fast": "+47 (+53)",
+     "slow_paired": "+37 (+51)",
+     "verdict": "pass"
+    },
+    {
+     "cls": "CA at the die",
+     "typ": "+45 (+66)",
+     "slow": "+39 (+57)",
+     "fast": "+45 (+70)",
+     "slow_paired": "+37 (+54)",
+     "verdict": "pass"
+    },
+    {
+     "cls": "CA at the pin while data runs (M4R / M4W)",
+     "typ": "+38 / +40",
+     "slow": "+36 / +38",
+     "fast": "",
+     "slow_paired": "",
+     "verdict": "pass"
+    },
+    {
+     "cls": "CS at the pin (mask 180 mV x 275 / 375 ps)",
+     "typ": "+193",
+     "slow": "+135",
+     "fast": "+216",
+     "slow_paired": "+129",
+     "verdict": "pass"
+    },
+    {
+     "cls": "CK swing at the pin (>= 0.35 V p-p)",
+     "typ": "0.91 V",
+     "slow": "0.80 V",
+     "fast": "1.01 V",
+     "slow_paired": "0.76 V",
+     "verdict": "pass"
+    },
+    {
+     "cls": "CK Vix ratio at the pin (<= 25 %)",
+     "typ": "5.3 %",
+     "slow": "5.3 %",
+     "fast": "5.6 %",
+     "slow_paired": "5.2 %",
+     "verdict": "pass"
+    },
+    {
+     "cls": "CK slew at the pin (2 - 14 V/ns)",
+     "typ": "1.67 - 1.94 V/ns",
+     "slow": "1.59 - 1.85",
+     "fast": "1.73 - 2.02",
+     "slow_paired": "1.80 - 2.12",
+     "verdict": "FAIL: below the 2 V/ns minimum in typ and slow"
+    },
+    {
+     "cls": "CK slew at the die",
+     "typ": "4.8 - 6.5 V/ns",
+     "slow": "4.1 - 5.6",
+     "fast": "5.5 - 7.4",
+     "slow_paired": "3.3 - 4.7",
+     "verdict": "pass"
+    },
+    {
+     "cls": "write DQ at the DRAM pin, 100 Mb/s (mask 100 mV), at tWCK2DQI 300 / 900 ps",
+     "typ": "+80 / +82 (best +128)",
+     "slow": "+67 / +72 (+114)",
+     "fast": "+118 / +105 (+141)",
+     "slow_paired": "+67 / +72",
+     "verdict": "pass"
+    },
+    {
+     "cls": "write DQ with commands at full rate (M4W)",
+     "typ": "+65 / +76 (+119)",
+     "slow": "+55 / +68 (+109)",
+     "fast": "",
+     "slow_paired": "",
+     "verdict": "pass"
+    },
+    {
+     "cls": "WCK at the DRAM pin (>= 0.30 V, 2 - 14 V/ns, Vix <= 20 %)",
+     "typ": "1.03 V, 3.7 - 3.9 V/ns, 4.3 %",
+     "slow": "0.86 V, 3.2 - 3.3, 6.0 %",
+     "fast": "1.19 V, 4.2 - 4.4, 3.3 %",
+     "slow_paired": "",
+     "verdict": "pass"
+    },
+    {
+     "cls": "read DQ (P - N) at the FPGA die, 100 Mb/s, MIPI_DPHY_DCI (VID >= 70 mV)",
+     "typ": "+95 (best +99), eye 338 mV",
+     "slow": "+57 (+61)",
+     "fast": "+104 (+107)",
+     "slow_paired": "+57",
+     "verdict": "pass"
+    },
+    {
+     "cls": "read DQ with commands at full rate (M4R), MIPI_DPHY_DCI",
+     "typ": "+86",
+     "slow": "+47",
+     "fast": "",
+     "slow_paired": "",
+     "verdict": "pass"
+    },
+    {
+     "cls": "read DQ, SLVS_400_18 (VID >= 140 mV), VREF_RD 0.195 V",
+     "typ": "+25",
+     "slow": "-13",
+     "fast": "+34",
+     "slow_paired": "-13",
+     "verdict": "FAIL in the slow corner: SLVS_400_18 is no longer a supported receiver"
+    },
+    {
+     "cls": "read common mode at the sampling instant (70 - 330 mV)",
+     "typ": "95 - 290 mV",
+     "slow": "95 - 273",
+     "fast": "98 - 311",
+     "slow_paired": "",
+     "verdict": "pass, 19 mV to the upper limit in the fast corner"
+    },
+    {
+     "cls": "read P pin over the whole UI (HS window -40 .. 460 mV)",
+     "typ": "-53 / 418 mV",
+     "slow": "-37 / 362",
+     "fast": "-76 / 538",
+     "slow_paired": "",
+     "verdict": "outside the window for 1 - 2 ns after each edge, inside it at the sampling instant"
+    },
+    {
+     "cls": "RDQS at the FPGA die (VID >= 70 mV)",
+     "typ": "+294, VICM 189 mV",
+     "slow": "+255, 169 mV",
+     "fast": "+318, 213 mV",
+     "slow_paired": "",
+     "verdict": "pass"
+    },
+    {
+     "cls": "RESET_n at the DRAM (0.85 .. 1.25 V)",
+     "typ": "1.04 - 1.06 V",
+     "slow": "0.96 - 1.00 V",
+     "fast": "1.10 - 1.11 V",
+     "slow_paired": "",
+     "verdict": "pass (lowest instantaneous level 0.90 V)"
+    }
+   ],
+   "static_high_at_the_dram_pin_v": {
+    "note": "slow / typ / fast with the real driver, 91R / 68R as simulated, nominal resistors",
+    "CA_CK": [
+     0.394,
+     0.427,
+     0.458
+    ],
+    "CS": [
+     0.667,
+     0.727,
+     0.783
+    ],
+    "write_DQ": [
+     0.399,
+     0.426,
+     0.452
+    ],
+    "WCK": [
+     0.395,
+     0.428,
+     0.46
+    ],
+    "RESET_n": [
+     0.99,
+     1.049,
+     1.106
+    ],
+    "CA_overshoot_undershoot_v": [
+     0.589,
+     -0.093
+    ]
+   },
+   "failures": {
+    "ck_slew_at_the_pin": {
+     "result_v_per_ns": "1.59 - 1.94 in slow and typ (fast 1.73 - 2.02) against the 2 V/ns minimum; 3.3 - 7.4 V/ns at the die",
+     "cause": "the unterminated pin behind the assumed DRAM package inductance (2.8 nH / 1.25 pF), a ledge at the crossing; not the driver, not the divider values (unchanged with 75R / 56R), not the model band (1.68 / 1.70 / 1.78 V/ns at 5 / 4 / 3 GHz), not jitter",
+     "status": "open: depends on the assumed DRAM package and must be measured on the bench"
+    },
+    "slvs_400_18": {
+     "result_mV": "+25 / -13 / +34 typ / slow / fast at VREF_RD 0.195 V (M4R: +16 / -23)",
+     "cause": "in the weak-driver corner (read high 0.353 V) the high state has only 127 mV of differential against the 140 mV the standard needs",
+     "status": "closed by decision: SLVS_400_18 dropped as a fall-back receiver; MIPI_DPHY_DCI is the only supported read receiver"
+    }
+   },
+   "divider_75r_56r_against_91r_68r": {
+    "evidence": "Nexxim on cascade models; block A changed by the equivalent two-port (post-processed)",
+    "ca_pin_margin_mV": {
+     "typ": [
+      50,
+      70
+     ],
+     "slow": [
+      46,
+      60
+     ],
+     "fast_75_56": 71
+    },
+    "ca_die_margin_typ_mV": [
+     48,
+     80
+    ],
+    "ca_pin_height_typ_mV": [
+     258,
+     308
+    ],
+    "ca_static_high_v": {
+     "typ": [
+      0.427,
+      0.413
+     ],
+     "slow": [
+      0.394,
+      0.379
+     ],
+     "fast_75_56": 0.445
+    },
+    "ck_slew_die_v_per_ns": [
+     4.9,
+     5.3
+    ],
+    "ck_slew_pin": "unchanged (1.6 - 2.0 V/ns)",
+    "cs": "unchanged",
+    "verdict": "an improvement of 14 - 20 mV at the pin, not a repair: 91R / 68R also passes"
+   },
+   "n_branch": {
+    "noise_at_the_fpga_die_mV": {
+     "reads_typ_whole_ui": "17.0 - 26.7 pk-pk, 1.2 - 1.8 rms",
+     "reads_typ_in_the_sampling_window": "2.0 - 3.3 pk-pk, 0.33 - 0.58 rms",
+     "m4r_typ_whole_ui": "29.7 - 44.4 pk-pk",
+     "m4r_typ_in_the_window": "22.4 - 28.9 pk-pk (upper bound: FPGA rail noise as delivered by the IBIS package; 1.5 - 9.3 with 2 nF of die decoupling per bank)"
+    },
+    "sources": "own P wire 20.4 mV pk-pk at the edge, 1.2 mV in the window (FPGA package P / N coupling); the seven neighbours 13.5 / 1.2 mV (made in the socket); RDQS 3.6 / 0.8; the reference network, DAC and shared VREF_RD bus below 0.01 mV in band",
+    "cost_in_mask_margin_mV": {
+     "reads": "0.1 - 1.0",
+     "m4r": "1 - 11 (<= 5 with 2 nF)"
+    },
+    "level_mV": "194 - 196 at the set value 0.195 V; static error budget 16 mV (pin leakage 10, VDDQ 3.3, DAC and resistors 2.4)",
+    "verdict": "acceptable: 2 - 3 mV pk-pk when the receiver samples, at most 1 mV of +95 mV (typ) / +57 mV (slow) over the 70 mV sensitivity of MIPI_DPHY_DCI; with the 16 mV static budget +41 mV remain in the slow corner. What limits is the reference LEVEL, not the noise",
+    "values_39r_100n": "no change needed"
+   },
+   "vref_rd": {
+    "rule": "measure the read high level, set VREF_RD to half of it, keep it <= 0.21 V",
+    "examples": {
+     "slow": "read high 0.353 V -> VREF_RD 0.172 V: +80 mV (MIPI_DPHY_DCI) instead of +57 mV",
+     "fast": "0.212 V: +121 mV, common mode 319 mV (11 mV inside)",
+     "no_i2c": "DAC Hi-Z, 0.187 V: typical corner unchanged (+96 mV)"
+    }
+   },
+   "front_back_skew": {
+    "eye_centre_minus_ck_crossing_at_the_pin_ps": {
+     "CA0": 2,
+     "CA3": 2,
+     "CA5": -5,
+     "CA1": 10,
+     "CA2": 22,
+     "CA4": 15,
+     "CA6": 19
+    },
+    "front_minus_back_ps": 17,
+    "back_fingers": [
+     "CA0",
+     "CA3",
+     "CA5"
+    ],
+    "front_fingers": [
+     "CA1",
+     "CA2",
+     "CA4",
+     "CA6"
+    ],
+    "cause": "front-side fingers arrive later through the socket (contact points 0.84 / 1.85 mm); the card's own match (641.77 ps on all ten nets) does not contain it",
+    "odelay_start_ps": {
+     "CA5": 27,
+     "CA0": 20,
+     "CA3": 20,
+     "CA1": 12,
+     "CA4": 7,
+     "CA6": 3,
+     "CA2": 0
+    },
+    "odelay_note": "starting values for training, not constants; from the final model, typ. An earlier run with CK +15 ps and CS +3 ps brought the centres within 1.3 .. 5.2 ps with margins unchanged within 6 mV",
+    "cs": "launched on the CA edges the CS eye centre is 288 - 301 ps before the rising CK crossing (margin +193 mV); half a UI later centres it; either is acceptable"
+   },
+   "write_return_path": {
+    "finding": "block B has no ground finger between 107 and 167: the write wires return through the 1.2 V fingers and the card's capacitors",
+    "effect_mV": "eight DQ switching together: margin +115 / +100 (independent) -> +109 / +96 (all the same direction); a quiet DQ among seven sees <= 92 mV pk-pk over the UI, 37 - 56 mV in the latch window, >= 75 mV from the mask",
+    "crosstalk": "the seven other DQ sum to 0.13 at 1 GHz where the own through is 0.26 (supply resonance 0.75 - 1.05 GHz); at 100 Mb/s nothing of it is left at the latch instant; no sensitivity case goes below +74 mV",
+    "mitigation": "timing: launch DQ so that the DRAM latches 7 - 9.5 ns after the DQ edge (margin +128 .. +141 mV instead of +80 .. +118). SLEW SLOW on the write pins is not needed and not recommended"
+   },
+   "assumptions": [
+    "DRAM pins, package and drivers are behavioural (no vendor IBIS): the CK slew at the pin, the pin-plane CA eye and the read levels depend on them",
+    "socket contact shapes (no LOTES drawing; Foxconn-based parametric model): front / back skew and echo phase",
+    "FPGA rail noise: the Vivado IBIS package as delivered has no die decoupling (upper bound); 2 nF per bank is assumed for the lower case",
+    "launch phases CA / CK, CS, WCK / DQ and the read capture instant; the split of the jitter bounds; injected noise amplitudes and the DRAM core current",
+    "nothing between 0 Hz and 5 MHz is solved: slow supply and reference effects are analytic",
+    "the mask shape between tIVW1 and tIVW2 (hexagon) and the 1.86 ns read window",
+    "the pin plane of the command bus is not fully converged at 5 GHz: +-12 mV of eye height, 2 - 4 mV of margin, no change of verdict"
+   ],
+   "board_now": "CA0-6 and CK 75R / 75R, WCK 75R / 75R, write DQ 110R / 100R, CS 33R / 100R (the 0.50 V set, dividers_0v50). The keys above this one (verdict, static_high_at_the_dram_pin_v, failures, divider_75r_56r_against_91r_68r, n_branch, vref_rd, write_return_path) are the stage-3 record of the board as it was then (91R / 68R and 75R / 56R on CA / CK, WCK 91R / 68R, DQ 240R / 150R) and are kept as history; front_back_skew and its ODELAY starting values come from that model too and were not re-derived for the 0.50 V set",
+   "dividers_0v50": {
+    "decision": "user: 'In general, we should only deviate from antmicro if there's a very clear reason to do so.' / 'Design the dividers so they give 0.50 typical like the antmicro ones' / 'Simulate these new dividers and generate new eyes.'",
+    "set": {
+     "CA0-6_and_CK": "75R / 75R (only the nine shunts change, 56R -> 75R)",
+     "WCK": "75R / 75R (from 91R / 68R)",
+     "write_DQ": "110R / 100R (from 240R / 150R); the shunt is also the read load",
+     "CS": "33R / 100R, unchanged"
+    },
+    "source": "~/lpddr5_sys/stage3/deliver/div_0v50/ (DIV0V50.md, div050_tables.md, cs_crosstalk.md, eyes/, figures/); model D50_hiz, all five 3D blocks, divider equivalents; 43 Nexxim runs",
+    "evidence": "Nexxim transients on the system model; the dividers are changed by a circuit correction on the solved blocks (divider_changes_are_circuit_corrections), not by a field re-solve",
+    "static_high_at_the_dram_pin_v": {
+     "note": "slow / typ / fast, real driver, nominal resistors, DC of the transient",
+     "CA_CK": [
+      0.456,
+      0.495,
+      0.532
+     ],
+     "write_DQ": [
+      0.461,
+      0.496,
+      0.53
+     ],
+     "WCK": [
+      0.457,
+      0.496,
+      0.533
+     ],
+     "CS": [
+      0.669,
+      0.728,
+      0.785
+     ],
+     "RESET_n": [
+      0.992,
+      1.05,
+      1.108
+     ]
+    },
+    "typ_with_1pct_parts_v": {
+     "CA_CK_WCK": [
+      0.49,
+      0.499
+     ],
+     "write_DQ": [
+      0.49,
+      0.501
+     ]
+    },
+    "back_impedance_ohm": {
+     "CA_CK_WCK": "44-45 (line 45.6)",
+     "write_DQ": 60
+    },
+    "ca_peak_fast_v": [
+     0.688,
+     -0.106
+    ],
+    "commands": {
+     "ca_pin_margin_mV": {
+      "typ": "+72 (best +83); was +69 (+83) with 75R / 56R",
+      "slow": "+66 (+73); was +60 (+63)",
+      "fast": "+73 (+87); was +63 (+81)",
+      "slow_paired": "+59 (+75); was +56 (+70)"
+     },
+     "ca_pin_eye_typ": "302 mV x 501 ps (was 317 x 504)",
+     "ca_die_margin_typ_slow_fast_mV": "+66 / +67 / +66 (was +80 / +72 / +86: the eye sits later against CK; at the best position +91 against +84 typ)",
+     "ca_pin_margin_with_data_running_typ_mV": "+67 (read) / +70 (write)",
+     "vref_ca_needed_slow_typ_fast_mV": [
+      215,
+      235,
+      253
+     ],
+     "vref_ca_range_mV": [
+      75,
+      350
+     ],
+     "cs_pin_margin_typ_slow_fast_mV": [
+      194,
+      126,
+      216
+     ],
+     "ck_pin_slew_v_per_ns": {
+      "typ": "1.80-2.11",
+      "slow": "1.73-2.03",
+      "fast": "1.84-2.18",
+      "slow_paired": "2.06-2.47",
+      "limit": "2-14"
+     },
+     "ck_die_slew_typ_v_per_ns": "5.9-7.8",
+     "ck_pin_swing_v_vix_pct_typ": "1.06 / 4",
+     "verdict": "pass on every mask; CK slew at the ball still starts below 2 V/ns (+0.12 V/ns from the larger swing; the ledge is unchanged, follow_up_studies.ck_slew)"
+    },
+    "writes": {
+     "dq_eye_height_typ_slow_fast_mV": [
+      438,
+      407,
+      467
+     ],
+     "dq_eye_height_before_typ_slow_fast_mV": [
+      381,
+      353,
+      335
+     ],
+     "dq_margin_at_wck_crossing_typ_slow_fast_mV": [
+      144,
+      142,
+      146
+     ],
+     "dq_margin_before_typ_slow_fast_mV": [
+      81,
+      68,
+      90
+     ],
+     "dq_margin_300_900ps_later_typ_mV": [
+      141,
+      137
+     ],
+     "dq_margin_best_position_typ_mV": 171,
+     "dq_margin_everything_active_typ_mV": 137,
+     "vref_dq_used_mV": 225,
+     "vref_dq_wanted_mV": 248,
+     "vref_dq_note": "the simulation took 225 mV as the top of the MR14 range and evaluated there, 20 mV off the centre of the eye. JESD209-5C Table 91 note 4 gives 225 mV as the ceiling for WCK above 1600 MHz and 350 mV at or below 1600 MHz, so the centre is reachable on this card; no run was made above 225 mV",
+     "node_time_constant_ns": {
+      "now": 1.62,
+      "before": 2.63
+     },
+     "back_impedance_ohm": {
+      "now": 59.8,
+      "before": 97.6
+     },
+     "quiet_dq_among_seven_pk_pk_mV": "16.7 in the latch window (94 over the whole UI); before 36.9 (80)",
+     "wck_pin_typ": "swing 1.15 V, slew 4.24-4.32 V/ns, Vix 4.0 % (before 1.03 V, 3.74-3.88 V/ns, 4.3 %)",
+     "wck_pin_slew_slow_fast_v_per_ns": "3.66-3.72 / 4.75-4.84",
+     "verdict": "pass; the margin nearly doubles"
+    },
+    "reads": {
+     "load": "the 100 ohm shunt (150 ohm before); RDQS loads unchanged at 150 ohm",
+     "eye_height_typ_slow_fast_mV": [
+      322,
+      273,
+      375
+     ],
+     "eye_height_before_typ_slow_fast_mV": [
+      338,
+      297,
+      382
+     ],
+     "margin_recentred_typ_slow_fast_mV": [
+      89,
+      65,
+      113
+     ],
+     "margin_before_recentred_typ_slow_fast_mV": [
+      95,
+      80,
+      121
+     ],
+     "margin_at_default_0p187_typ_mV": 77,
+     "margin_at_default_slow_fast": "not run",
+     "vref_rd_centre_slow_typ_fast_mV": [
+      156,
+      175,
+      198
+     ],
+     "vref_rd_centre_before_mV": [
+      173,
+      195,
+      211
+     ],
+     "peak_at_the_p_pin_typ_slow_fast_mV": [
+      386,
+      319,
+      506
+     ],
+     "common_mode_at_the_receiver_mV": {
+      "typ": "86-262",
+      "slow": "77-233",
+      "fast": "98-300",
+      "window": "70-330"
+     },
+     "margin_slvs_typ_slow_fast_mV": [
+      19,
+      -5,
+      43
+     ],
+     "everything_active_typ": "height 310 mV, margin +84 mV (before 328 / +86)",
+     "n_branch_noise_typ_mV": "2.6 pk-pk / 0.38 rms in the window, read alone; 29.0 / 4.17 with everything active; margin lost 0.9 / 8.8",
+     "rdqs_margin_over_70mV_slow_typ_fast_mV": [
+      275,
+      312,
+      335
+     ],
+     "verdict": "pass with MIPI_DPHY_DCI; about 40 mV less read level, 6 mV less margin typ and 15 mV less in the slow corner once VREF_RD is re-centred",
+     "after_the_simulation": "the simulated reference network was 300R (DAC) / 300R (VDDQ) / 180R (GND): default 0.187 V, source 82 ohm. On the board now, by two later decisions of the user: R333 = 160R and R332 (the VDDQ leg) NOT FITTED. VREF_RD = 0.3478 x Vdac, 0 .. 0.631 V, 0 V until the DAC is written, source 104 ohm. The simulated margins hold at the simulated reference values once the DAC is set to them; the N-branch noise with the 104 ohm source was not re-simulated; no run exists with the reference at 0 V (reads do not work there)"
+    },
+    "levels_against_vddq": {
+     "allowance": "JESD209-5C Table 416: 0.3 V and 0.1 V-ns beyond VDDQ. 'standing' = DC level above VDDQ for as long as the line is high; 'transient' = ringing above max(DC level, VDDQ)",
+     "standing_above_vddq_0p500_v_mV": {
+      "CA_fast": 32,
+      "CK_fast": 32,
+      "write_DQ_fast": 30,
+      "WCK_fast": 33,
+      "typ_and_slow": "none against 0.500 V; typ is 7-8 mV above the card's 0.488 V minimum"
+     },
+     "standing_above_vddq_0p488_v_fast_mV": {
+      "CA": 44,
+      "write_DQ": 42
+     },
+     "peak_v": {
+      "CA_slow_typ_fast": [
+       0.546,
+       0.618,
+       0.688
+      ],
+      "CK_leg_typ_fast": [
+       0.568,
+       0.621
+      ],
+      "write_DQ_slow_typ_fast": [
+       0.498,
+       0.54,
+       0.579
+      ],
+      "WCK_leg_typ_fast": [
+       0.562,
+       0.61
+      ]
+     },
+     "total_above_0p500_v_per_event": {
+      "CA": "0.046 V, 0.009 V-ns slow; 0.118, 0.059 typ; 0.188, 0.19 fast",
+      "CK_leg": "0.068, 0.005 typ; 0.121, 0.020 fast",
+      "write_DQ": "none slow; 0.040, 0.011 typ; 0.079, 1.4 fast",
+      "WCK_leg": "0.062, 0.019 typ; 0.110, 0.38 fast"
+     },
+     "transient_only": {
+      "CA_fast": "0.157 V, 0.097 V-ns",
+      "CK_leg_fast": "0.089, 0.007",
+      "write_DQ_fast": "0.049, 0.020",
+      "WCK_leg_fast": "0.077, 0.057"
+     },
+     "share_of_time_above_0p500_v": "CA 1 / 20 / 35 % slow / typ / fast; write DQ 0 / 11 / 52 %; WCK legs 12 / 48 % typ / fast; CK legs 1 / 11 %",
+     "undershoot": "unchanged: at most 0.11 V and 0.068 V-ns",
+     "reading": "amplitude inside 0.3 V everywhere; the transient part alone inside 0.1 V-ns everywhere (CA fast 0.097); read literally the area allowance is exceeded in the fast corner on CA (0.19 V-ns), write DQ (1.4) and WCK (0.38) only because the line rests above VDDQ"
+    },
+    "currents_typ_mA": {
+     "per_high_ca_pin": 6.6,
+     "command_7ca_one_ck_leg": 53,
+     "command_before": 59,
+     "per_high_dq_pin": 4.97,
+     "write_8dq_one_wck_leg": 46,
+     "write_before": 29,
+     "path": "host bank VCCO through the signal fingers; not the card's 1.2 V feed"
+    },
+    "cs": {
+     "question": "what the large CS swing costs the CA lines; CS 33R / 100R as designed against a hypothetical 75R / 75R (typ and slow; fast not run)",
+     "level_33r_100r_v": [
+      0.669,
+      0.728,
+      0.785
+     ],
+     "level_75r_75r_v": [
+      0.456,
+      0.494,
+      0.531
+     ],
+     "worst_ca_margin_typ_mV": {
+      "cs_33r_100r": 72,
+      "cs_75r_75r": 72
+     },
+     "worst_ca_margin_slow_mV": {
+      "cs_33r_100r": 66,
+      "cs_75r_75r": 65
+     },
+     "own_margin_33r_100r_typ_slow_mV": [
+      194,
+      126
+     ],
+     "own_margin_75r_75r_typ_slow_mV": [
+      -9,
+      -43
+     ],
+     "noise_on_ca2_pk_pk_typ_mV": {
+      "cs_33r_100r": 42,
+      "cs_75r_75r": 47
+     },
+     "ca2_jitter_pk_pk_ps": "about 120 with CS toggling, 95 with CS held; its margin does not drop",
+     "where_it_is_made": "before the divider, where CS swings 1.2 V in both cases: mainly the FPGA package (CA2 on ball AN19 beside CS on AM19), then the socket block; the card adds almost nothing",
+     "verdict": "CS at 0.73 V costs the CA lines nothing measurable; a 0.50 V CS fails its own mask (Vref_CS fixed at VDD2H / 3 = 0.35 V) and sits under the 0.55 V power-down-exit level in every corner: CS keeps 33R / 100R"
+    },
+    "variants_not_built": {
+     "82r_82r": "0.464 / 0.502 / 0.539 V; 3 mV closer to 0.500 V but CA pin margin +57 / +58 / +56 mV (8-17 mV worse)",
+     "75r_76r8_and_78r7_78r7_E96": "0.501 / 0.499 V typ, not simulated",
+     "dq_107r_100r_E96": "0.502 V typ, not simulated"
+    },
+    "not_done": "slow and fast corners at the default VREF_RD; fast corner of the CS crosstalk cases; everything-active only in typ; no field re-solve"
+   },
+   "follow_up_studies": {
+    "antmicro_reference_comparison": {
+     "source": "~/lpddr5_sys/stage3/deliver/antmicro_compare/COMPARE.md, compare_tables.md (42 Nexxim runs, 0 failed)",
+     "what": "the Antmicro lpddr5-testbed on its sodimm-ddr5-tester (Kintex-7 XC7K160T, DDR5 SO-DIMM socket, 100R / 100R dividers) through the same pipeline, masks, planes and stimulus; its system model is a cascade (its merged solve is not passive)",
+     "ca_pin_margin_typ_slow_fast_mV": {
+      "antmicro_at_1p6_gbps": "-66 (best +28) / -78 / +74: fails typ and slow",
+      "antmicro_at_its_own_120_mbps": "+186",
+      "antmicro_boards_with_the_zynq_buffer_hypothetical": "+106 / +94 (420 mV x 495 ps)",
+      "this_card_91r_68r": "+47 / +42 / +47",
+      "this_card_75r_56r": "+70 / +60 / +71"
+     },
+     "cause": "the Kintex-7 HSUL_12 SLEW SLOW buffer (0.3 ns edge, 4.68 pF), not the boards or the socket; the larger eye in mV with the same driver is the higher level (0.54 V against 0.43 V), the eye relative to the level is alike (0.77 against 0.68-0.75)",
+     "antmicro_static_high_slow_typ_fast_v": {
+      "CA_CK_WCK": [
+       0.495,
+       0.543,
+       0.583
+      ],
+      "write_DQ": [
+       0.513,
+       0.558,
+       0.595
+      ],
+      "RESET_n": [
+       1.14,
+       1.2,
+       1.26
+      ]
+     },
+     "cs": "Antmicro uses 100R / 100R on CS too (0.54 V against Vref_CS 0.35 V): +4 mV even with the fast buffer; this card's 33R / 100R gives +193 mV",
+     "ck_pin": "Antmicro at 800 MHz 2.4-2.9 V/ns (twice the swing per leg), at its own 60 MHz 1.73-1.77 V/ns and Vix 24.8 %; this card 1.6-2.0 V/ns, Vix 5 %",
+     "writes_100_mbps_mV": "Antmicro +162 / +164 (height 540 mV) against +80 / +82 here with 240R / 150R; at its own 480 Mb/s +5 / +18 / -4 at the best instant",
+     "reads_100_mbps_mV": "Antmicro single-ended against VREF +-100 mV: +64 / +45 / +85; this card P - N with MIPI_DPHY_DCI: +95 / +57 / +104 (150 ohm load)",
+     "read_crosstalk": "11 % in the reference against 5.7 % here (DDR5 pin pattern: two signal contacts between grounds)",
+     "command_skew_ps": "51-60 between the CA eye centres in the reference (not length-matched) against 19-27 here",
+     "not_like_for_like": "Kintex-7 IBIS is not power-aware (ideal rail); socket contact shapes assumed for both; reference blocks A / B missed the HFSS target (0.025 / 0.036 against 0.02)"
+    },
+    "div_100_100_what_if": {
+     "source": "~/lpddr5_sys/stage3/deliver/div_100_100/DIV100.md, div100_tables.md",
+     "what": "Antmicro's literal 100R / 100R on this board: case 1 CA / CK only, case 2 also write DQ and WCK",
+     "static_high_slow_typ_fast_v": [
+      0.48,
+      0.517,
+      0.553
+     ],
+     "ca_pin_margin_typ_slow_fast_mV": "+27 (best +69) / +28 (+59) / +22 (+70): about half of 91R / 68R and a third of 75R / 56R; the loss is a shift of the eye against CK (best position 66-93 ps late), not eye closure",
+     "ca_die_margin_typ_slow_fast_mV": "+20 / +25 / +10",
+     "cs_pin_margin_typ_slow_mV": "+126 / +69",
+     "back_impedance_ohm": 58.2,
+     "ck_pin_slew_typ_v_per_ns": "1.78-2.07",
+     "ca_overshoot_above_0p5_v": "0.137 V / 0.095 V-ns typ; 0.209 V / 0.35 V-ns fast",
+     "write_dq_margin_typ_slow_fast_mV": "+142 / +139 / +144 (VrefDQ 225 mV, wanted about 259 mV)",
+     "read_margin_recentred_typ_slow_fast_mV": "+91 / +67 / +114",
+     "verdict": "not taken: the divider is no longer matched to the 45.6 ohm line, so the CA eye moves against CK. The 0.50 V set (75R / 75R) keeps the match and gives +72 mV where 100R / 100R gives +27 mV, at a level 22 mV lower"
+    },
+    "ck_slew": {
+     "source": "~/lpddr5_sys/stage3/deliver/ck_slew/CK_SLEW.md, ck_tables.md (baseline 75R / 56R; with the 0.50 V set the pin slew is 0.12 V/ns higher, same ledge)",
+     "finding": "low only at the ball: 1.67-2.00 V/ns typ, 1.61-1.91 slow, 1.72-2.09 fast against 2-14; at the die, where the receiver is, 5.3-7.0 / 4.5-6.0 / 6.0-8.0 V/ns. With the 0.50 V set 1.80-2.11 / 1.73-2.03 / 1.84-2.18 at the ball, 5.9-7.8 at the die (typ)",
+     "mechanism": "a ledge at the zero crossing made by the reflection from the un-terminated die: the first wave is about 55 % of the step, the rest arrives twice the package delay later (2 x 59 ps, assumed). The ledge sits inside the +-145 mV measuring window; all edges are monotonic at both planes",
+     "where_jedec_places_it": "JESD209-5C 12.2.1: the input voltage has to satisfy Vindiff_CK 'at input receiver'; Tables 417-422 carry no 'at the pin' note (the CA table 466 does). Read literally the requirement is at the receiver, where the slew is 4.5-8.0 V/ns",
+     "package_delay_threshold_ps": {
+      "typ": 53,
+      "slow": 50,
+      "model_assumed": 59
+     },
+     "what_does_not_help": "nothing that is free: DRAM CK ODT (240 / 120 ohm: 1.57-1.90 / 1.46-1.82 V/ns) and a resistor across the pair (1.44-1.86) cut the swing and leave the ledge; more swing gives +0.05 .. +0.18 V/ns; two buffers in parallel +0.11 (no spare pins); pre-emphasis could not be simulated",
+     "fallback_unverified": "CK legs 22R / 27R (four resistor values): 3.81-6.69 V/ns typ (every edge), 1.73-5.39 slow (99 % of the edges), 4.83-7.96 fast; peaks 0.67 / 0.77 V on a leg (27 mV from the 0.3 V amplitude limit in the fast corner), +7.5 mA, and the CK launch must move by 80-110 ps (CA margin +1 mV unmoved, +86 mV at the best position). The divider equivalent is used at a 4.1x change of the series value, outside the range in which it was checked (2.4x); the model was non-passive above 4.5 GHz and clipped. A re-extraction of the launch block is needed before committing",
+     "status": "bring-up item: measure the CK edge at the ball / estimate the package delay; nothing changed on the board"
+    }
+   },
+   "divider_changes_are_circuit_corrections": {
+    "statement": "the HFSS blocks were solved once, with the resistors of the board as it was then: block A (command) with 91R / 68R, block B (write) with 240R / 150R and WCK 91R / 68R. Every divider value simulated since (75R / 56R, 100R / 100R, 75R / 75R, 82R / 82R, 110R / 100R, the CK-only dividers) is a circuit correction on the ports of those blocks, not a field re-solve",
+    "command_block_residual": {
+     "method": "correction two-port, checked against a solve with explicit resistor ports; S-parameter magnitude up to 2.4 GHz: size of the change / residual of the equivalent",
+     "75r_75r": "0.060 / 0.022 (through path 0.007)",
+     "75r_56r": "0.085 / 0.013",
+     "100r_100r": "0.134 / 0.011",
+     "82r_82r": "0.053 / 0.019",
+     "checked_range": "up to a 2.4x change of the series value (residual 0.069 on a change of 0.31)"
+    },
+    "write_block_residual": {
+     "method": "no resistor-port solve exists: the block is rebuilt around a T-model of each divider",
+     "identity_test": "rebuilt with unchanged values against the solved block: 0.011 to 1 GHz, 0.028 to 2.4 GHz, 0.068 to 5 GHz; 2-3 mV of write margin, 1 mV of read margin",
+     "110r_100r_wck_75r_75r": "non-passive above 4 GHz, clipped (change at most 0.043 above 4 GHz, 0.0005 below); DC exact",
+     "least_certain": "the same ladder tried on the command-launch solve for 240R / 150R -> 110R / 100R leaves 0.05 on the through path up to 2.4 GHz (0.35 at 5 GHz); not quantified in the eye. Write and read data live below 1 GHz, where the error is smallest"
+    },
+    "expect": "about +-5 mV on the margins from the equivalent itself"
    }
   }
  },
@@ -29083,7 +30142,7 @@
    ]
   },
   {
-   "qty": 2,
+   "qty": 10,
    "value": "100R",
    "mpn": "RC0201FR-07100RL",
    "manufacturer": "Yageo",
@@ -29091,17 +30150,6 @@
    "dnp": false,
    "refs": [
     "R118",
-    "R402"
-   ]
-  },
-  {
-   "qty": 10,
-   "value": "150R",
-   "mpn": "RC0201FR-07150RL",
-   "manufacturer": "Yageo",
-   "footprint": "Resistor_SMD:R_0201_0603Metric",
-   "dnp": false,
-   "refs": [
     "R211",
     "R212",
     "R213",
@@ -29110,6 +30158,35 @@
     "R216",
     "R217",
     "R218",
+    "R402"
+   ]
+  },
+  {
+   "qty": 8,
+   "value": "110R",
+   "mpn": "RC0201FR-07110RL",
+   "manufacturer": "Yageo",
+   "footprint": "Resistor_SMD:R_0201_0603Metric",
+   "dnp": false,
+   "refs": [
+    "R201",
+    "R202",
+    "R203",
+    "R204",
+    "R205",
+    "R206",
+    "R207",
+    "R208"
+   ]
+  },
+  {
+   "qty": 2,
+   "value": "150R",
+   "mpn": "RC0201FR-07150RL",
+   "manufacturer": "Yageo",
+   "footprint": "Resistor_SMD:R_0201_0603Metric",
+   "dnp": false,
+   "refs": [
     "R309",
     "R310"
    ]
@@ -29126,21 +30203,13 @@
    ]
   },
   {
-   "qty": 9,
+   "qty": 1,
    "value": "240R",
    "mpn": "RC0201FR-07240RL",
    "manufacturer": "Yageo",
    "footprint": "Resistor_SMD:R_0201_0603Metric",
    "dnp": false,
    "refs": [
-    "R201",
-    "R202",
-    "R203",
-    "R204",
-    "R205",
-    "R206",
-    "R207",
-    "R208",
     "R401"
    ]
   },
@@ -29174,45 +30243,35 @@
    ]
   },
   {
-   "qty": 11,
-   "value": "68R",
-   "mpn": "RC0201FR-0768RL",
-   "manufacturer": "Yageo",
-   "footprint": "Resistor_SMD:R_0201_0603Metric",
-   "dnp": false,
-   "refs": [
-    "R111",
-    "R112",
-    "R113",
-    "R114",
-    "R115",
-    "R116",
-    "R117",
-    "R119",
-    "R120",
-    "R219",
-    "R220"
-   ]
-  },
-  {
-   "qty": 11,
-   "value": "91R",
-   "mpn": "RC0201FR-0791RL",
+   "qty": 22,
+   "value": "75R",
+   "mpn": "RC0201FR-0775RL",
    "manufacturer": "Yageo",
    "footprint": "Resistor_SMD:R_0201_0603Metric",
    "dnp": false,
    "refs": [
     "R101",
+    "R111",
     "R102",
+    "R112",
     "R103",
+    "R113",
     "R104",
+    "R114",
     "R105",
+    "R115",
     "R106",
+    "R116",
     "R107",
+    "R117",
     "R109",
+    "R119",
     "R110",
+    "R120",
     "R209",
-    "R210"
+    "R219",
+    "R210",
+    "R220"
    ]
   },
   {
@@ -29231,8 +30290,8 @@
   },
   {
    "qty": 1,
-   "value": "180R",
-   "mpn": "RC0402FR-07180RL",
+   "value": "160R",
+   "mpn": "RC0402FR-07160RL",
    "manufacturer": "Yageo",
    "footprint": "Resistor_SMD:R_0402_1005Metric",
    "dnp": false,
@@ -29274,14 +30333,24 @@
    ]
   },
   {
-   "qty": 2,
+   "qty": 1,
    "value": "300R",
    "mpn": "RC0402FR-07300RL",
    "manufacturer": "Yageo",
    "footprint": "Resistor_SMD:R_0402_1005Metric",
    "dnp": false,
    "refs": [
-    "R331",
+    "R331"
+   ]
+  },
+  {
+   "qty": 1,
+   "value": "300R",
+   "mpn": "RC0402FR-07300RL",
+   "manufacturer": "Yageo",
+   "footprint": "Resistor_SMD:R_0402_1005Metric",
+   "dnp": true,
+   "refs": [
     "R332"
    ]
   },

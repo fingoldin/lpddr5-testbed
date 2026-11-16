@@ -21,12 +21,12 @@ Implement a custom PHY and controller on the ZCU104 FPGA and talk to the LPDDR5 
 
 FPGA <-> LPDDR5, channel A, byte 0, rank 0 (all three banks at 1.2 V):
 
-- **Bank 65** (byte group T0, fingers 66-84): command bus CK, CA0-6, CS0 through 91 / 68 ohm dividers (CS: 33 / 100 ohm) at the fingers,
+- **Bank 65** (byte group T0, fingers 66-84): command bus CK, CA0-6, CS0 through 75 / 75 ohm dividers (0.50 V typical at the ball, as on the Antmicro design; CS: 33 / 100 ohm) at the fingers,
   then an In3 stripline between two ground planes. The ten nets are delay-matched on the card, FPGA die pad to DRAM ball (641.8 ps).
-- **Bank 64** (fingers 143-161): write data DQ0-7 through 240 / 150 ohm dividers; WCK on fingers 137 / 139 through 91 / 68 ohm,
+- **Bank 64** (fingers 143-161): write data DQ0-7 through 110 / 100 ohm dividers; WCK on fingers 137 / 139 through 75 / 75 ohm (both 0.50 V typical),
   **polarity inverted** on the host pair.
 - **Bank 66** (fingers 182-216): read data DQ0-7 direct, without any part, on the P pin of eight differential pairs; the N pins sit on a
-  common reference VREF_RD (39 ohm + 100 nF per N finger). VREF_RD is 0.187 V without any I2C traffic and adjustable 0.136 .. 0.631 V with
+  common reference VREF_RD (39 ohm + 100 nF per N finger). VREF_RD is 0 V until its DAC has been written (no read works before that) and adjustable 0 .. 0.631 V with
   the DAC53401 on the card (I2C address 0x48 on the socket's SPD bus, fingers 253 / 254). RDQS is a true differential pair on fingers
   219 / 221, **polarity inverted**. RESET_n is on finger 232 (LVCMOS12, static).
 - The DQ bits are permuted on the write pins and on the read pins, and **the two data groups are not delay-matched on the card**
@@ -39,21 +39,25 @@ Pin map, constraints and bring-up sequence: `design/gateware/` (`PINMAP.md`, `lp
 
 - U1: the LPDDR5, with 24 x 4.7 uF decoupling under it.
 - 40 divider resistors (0201) directly above the fingers: commands, writes, WCK.
-- Read reference: DAC53401 (U5) behind a resistor network that gives 0.187 V by default; eight 39 ohm + 100 nF networks at the N fingers;
+- Read reference: DAC53401 (U5) through a 300 / 160 ohm divider (DAC code 284 for 0.175 V, the centre of the simulated read eye; no power-up default: R332, the pull-up to VDDQ, is not fitted); eight 39 ohm + 100 nF networks at the N fingers;
   150 ohm to ground on each RDQS leg.
 - Power, from the socket's 1.2 V (19 fingers) and 3.3 V (finger 255), three linear regulators and no sequencer: VDD1 1.80 V (TLV70018),
   VDD2H = VDD2L 1.05 V (TPS74801), VDDQ 0.50 V (MIC47050). The enable chain gives the JEDEC order by wiring alone.
 - Test pads for VDD1, VDD2H, VDDQ, VREF_RD and GND; none on signal nets.
 
-131 items, 119 placed parts in 27 BOM lines, 5 ICs.
+131 items, 118 placed parts in 27 BOM lines and one part not fitted (R332), 5 ICs.
 
 ### Operating notes
 
 - LPDDR5 ties the data rate to CK (WCK:CK 2:1 or 4:1). Reads and writes at 100 Mb/s run at CK = 25 MHz (2:1) or 12.5 MHz (4:1); CK = 800 MHz
   is for command-only traffic. The controller changes the clock frequency between the two.
-- 200 Mb/s writes are not supported: the write node has a time constant of 2.6 ns.
+- Reads and writes are designed for and simulated at 100 Mb/s only (write node time constant 1.6 ns); no higher data rate is claimed.
+- The divider-driven pins (CA, CK, WCK, write DQ) are 0.50 V typical at the DRAM, as on the Antmicro design. In the fast corner they rest
+  above the card's VDDQ (0.488-0.512 V): a deliberate choice, to be watched at bring-up (`design/DESIGN.md` section 1).
+- The read reference has no power-up default: write the DAC53401 (I2C 0x48: DAC_DATA 0x21 = 0x0470, GENERAL_CONFIG 0xD1 = 0x01E4) before the
+  first read, or store that setting once in the DAC's non-volatile memory (`design/gateware/BRINGUP.md` section 4).
 - The 1.6 Gb/s command bus needs the native-mode I/O primitives of the FPGA (`TX_BITSLICE`) in bank 65.
-- The read receivers are `IBUFDS_DPHY` (MIPI_DPHY_DCI) without differential termination; an SLVS fall-back is prepared.
+- The read receivers are `IBUFDS_DPHY` (MIPI_DPHY_DCI) without differential termination; this is the only supported receiver (no SLVS fall-back). The command pins must be SSTL12 FAST RDRV_40_40 without DCI.
 - Mode-register settings the hardware relies on (single VDD2 rail, data mask off, all DRAM ODT off, pull-up strength), and what must never
   be used because DMI is strapped to ground: `design/DESIGN.md` section 7.
 

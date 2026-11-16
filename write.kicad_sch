@@ -402,7 +402,7 @@
 		)
 		(uuid "c2f30330-e8de-53dd-8428-0f35fd50ba2a")
 	)
-	(text "DQ0-7:  240 R / 150 R   0.389 / 0.423 / 0.460 V   pin current 3.1 mA max\n    limit: <= 0.47 V (VDDQ min); VREF(DQ) programmed to half the level (<= 0.225 V)\n    node source resistance 97 ohm, tau 2.6 ns: design target 100 Mb/s writes\n\nWCK_P, WCK_N:  91 R / 68 R   0.378 / 0.418 / 0.468 V per leg\n    limit: differential >= 0.30 V p-p, also with the 40 ohm WCK ODT forced during CBT\n\nWCK_P on finger 139 (N pin), WCK_N on finger 137 (P pin):\n    the host pair is driven INVERTED by the gateware.\nThe write pins are Hi-Z during reads.\nDQ0-7 are NOT delay matched on the card: die pad to ball +/-26.7 ps (F.Cu comb, the T at\nthe divider); the FPGA closes it with a per-bit output delay (design/gateware_deskew.json).\nWCK_P to WCK_N within +/-1 ps (B.Cu pair); see design/DESIGN.md section 14."
+	(text "DQ0-7:  110 R / 100 R   0.461 / 0.501 / 0.542 V   pin current 5.4 mA max\n    limit: 0.50 V +/-15 mV typical, <= 0.55 V in the stacked fast corner; VREF(DQ) starts at\n        0.225 V (MR14 0x46), about 23 mV under the centre of the eye\n    node source resistance 58 ohm, tau 1.6 ns: design target 100 Mb/s writes\n\nWCK_P, WCK_N:  75 R / 75 R   0.458 / 0.502 / 0.545 V per leg\n    limit: differential >= 0.30 V p-p, also with the 40 ohm WCK ODT forced during CBT; each leg\n        0.50 V +/-15 mV typical, <= 0.55 V in the stacked fast corner\n\nWCK_P on finger 139 (N pin), WCK_N on finger 137 (P pin):\n    the host pair is driven INVERTED by the gateware.\nThe write pins are Hi-Z during reads.\nDQ0-7 are NOT delay matched on the card: die pad to ball +/-26.7 ps (F.Cu comb, the T at\nthe divider); the FPGA closes it with a per-bit output delay (design/gateware_deskew.json).\nWCK_P to WCK_N within +/-1 ps (B.Cu pair); see design/DESIGN.md section 14."
 		(exclude_from_sim no)
 		(at 259.08 49.53 0)
 		(effects
@@ -1673,7 +1673,7 @@
 				)
 			)
 		)
-		(property "Value" "240R"
+		(property "Value" "110R"
 			(at 175.26 114.16 90)
 			(show_name no)
 			(do_not_autoplace no)
@@ -1705,7 +1705,7 @@
 				)
 			)
 		)
-		(property "Description" "DQ7 write series, resistor 240R 1 % 0201"
+		(property "Description" "DQ7 write series, resistor 110R 1 % 0201"
 			(at 175.26 111.76 0)
 			(hide yes)
 			(show_name no)
@@ -1716,7 +1716,7 @@
 				)
 			)
 		)
-		(property "MPN" "RC0201FR-07240RL"
+		(property "MPN" "RC0201FR-07110RL"
 			(at 175.26 111.76 0)
 			(hide yes)
 			(show_name no)
@@ -1775,7 +1775,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "150R"
+		(property "Value" "100R"
 			(at 187.32 59.62 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -1808,7 +1808,7 @@
 				)
 			)
 		)
-		(property "Description" "DQ5 shunt (write divider and read load), resistor 150R 1 % 0201"
+		(property "Description" "DQ5 shunt (write divider and read load), resistor 100R 1 % 0201"
 			(at 185.42 58.42 0)
 			(hide yes)
 			(show_name no)
@@ -1819,7 +1819,7 @@
 				)
 			)
 		)
-		(property "MPN" "RC0201FR-07150RL"
+		(property "MPN" "RC0201FR-07100RL"
 			(at 185.42 58.42 0)
 			(hide yes)
 			(show_name no)
@@ -1877,7 +1877,7 @@
 				)
 			)
 		)
-		(property "Value" "240R"
+		(property "Value" "110R"
 			(at 60.96 114.16 90)
 			(show_name no)
 			(do_not_autoplace no)
@@ -1909,7 +1909,7 @@
 				)
 			)
 		)
-		(property "Description" "DQ2 write series, resistor 240R 1 % 0201"
+		(property "Description" "DQ2 write series, resistor 110R 1 % 0201"
 			(at 60.96 111.76 0)
 			(hide yes)
 			(show_name no)
@@ -1920,7 +1920,7 @@
 				)
 			)
 		)
-		(property "MPN" "RC0201FR-07240RL"
+		(property "MPN" "RC0201FR-07110RL"
 			(at 60.96 111.76 0)
 			(hide yes)
 			(show_name no)
@@ -1979,7 +1979,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "68R"
+		(property "Value" "75R"
 			(at 187.32 181.54 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -2012,7 +2012,7 @@
 				)
 			)
 		)
-		(property "Description" "WCK_N shunt to GND at the node via, resistor 68R 1 % 0201"
+		(property "Description" "WCK_N shunt to GND at the node via, resistor 75R 1 % 0201"
 			(at 185.42 180.34 0)
 			(hide yes)
 			(show_name no)
@@ -2023,7 +2023,7 @@
 				)
 			)
 		)
-		(property "MPN" "RC0201FR-0768RL"
+		(property "MPN" "RC0201FR-0775RL"
 			(at 185.42 180.34 0)
 			(hide yes)
 			(show_name no)
@@ -2159,7 +2159,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "150R"
+		(property "Value" "100R"
 			(at 73.02 181.54 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -2192,7 +2192,7 @@
 				)
 			)
 		)
-		(property "Description" "DQ4 shunt (write divider and read load), resistor 150R 1 % 0201"
+		(property "Description" "DQ4 shunt (write divider and read load), resistor 100R 1 % 0201"
 			(at 71.12 180.34 0)
 			(hide yes)
 			(show_name no)
@@ -2203,7 +2203,7 @@
 				)
 			)
 		)
-		(property "MPN" "RC0201FR-07150RL"
+		(property "MPN" "RC0201FR-07100RL"
 			(at 71.12 180.34 0)
 			(hide yes)
 			(show_name no)
@@ -2262,7 +2262,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "150R"
+		(property "Value" "100R"
 			(at 73.02 151.06 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -2295,7 +2295,7 @@
 				)
 			)
 		)
-		(property "Description" "DQ3 shunt (write divider and read load), resistor 150R 1 % 0201"
+		(property "Description" "DQ3 shunt (write divider and read load), resistor 100R 1 % 0201"
 			(at 71.12 149.86 0)
 			(hide yes)
 			(show_name no)
@@ -2306,7 +2306,7 @@
 				)
 			)
 		)
-		(property "MPN" "RC0201FR-07150RL"
+		(property "MPN" "RC0201FR-07100RL"
 			(at 71.12 149.86 0)
 			(hide yes)
 			(show_name no)
@@ -2442,7 +2442,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "68R"
+		(property "Value" "75R"
 			(at 187.32 151.06 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -2475,7 +2475,7 @@
 				)
 			)
 		)
-		(property "Description" "WCK_P shunt to GND at the node via, resistor 68R 1 % 0201"
+		(property "Description" "WCK_P shunt to GND at the node via, resistor 75R 1 % 0201"
 			(at 185.42 149.86 0)
 			(hide yes)
 			(show_name no)
@@ -2486,7 +2486,7 @@
 				)
 			)
 		)
-		(property "MPN" "RC0201FR-0768RL"
+		(property "MPN" "RC0201FR-0775RL"
 			(at 185.42 149.86 0)
 			(hide yes)
 			(show_name no)
@@ -2544,7 +2544,7 @@
 				)
 			)
 		)
-		(property "Value" "240R"
+		(property "Value" "110R"
 			(at 175.26 53.2 90)
 			(show_name no)
 			(do_not_autoplace no)
@@ -2576,7 +2576,7 @@
 				)
 			)
 		)
-		(property "Description" "DQ5 write series, resistor 240R 1 % 0201"
+		(property "Description" "DQ5 write series, resistor 110R 1 % 0201"
 			(at 175.26 50.8 0)
 			(hide yes)
 			(show_name no)
@@ -2587,7 +2587,7 @@
 				)
 			)
 		)
-		(property "MPN" "RC0201FR-07240RL"
+		(property "MPN" "RC0201FR-07110RL"
 			(at 175.26 50.8 0)
 			(hide yes)
 			(show_name no)
@@ -2723,7 +2723,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "150R"
+		(property "Value" "100R"
 			(at 73.02 90.1 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -2756,7 +2756,7 @@
 				)
 			)
 		)
-		(property "Description" "DQ1 shunt (write divider and read load), resistor 150R 1 % 0201"
+		(property "Description" "DQ1 shunt (write divider and read load), resistor 100R 1 % 0201"
 			(at 71.12 88.9 0)
 			(hide yes)
 			(show_name no)
@@ -2767,7 +2767,7 @@
 				)
 			)
 		)
-		(property "MPN" "RC0201FR-07150RL"
+		(property "MPN" "RC0201FR-07100RL"
 			(at 71.12 88.9 0)
 			(hide yes)
 			(show_name no)
@@ -2826,7 +2826,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "150R"
+		(property "Value" "100R"
 			(at 187.32 120.58 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -2859,7 +2859,7 @@
 				)
 			)
 		)
-		(property "Description" "DQ7 shunt (write divider and read load), resistor 150R 1 % 0201"
+		(property "Description" "DQ7 shunt (write divider and read load), resistor 100R 1 % 0201"
 			(at 185.42 119.38 0)
 			(hide yes)
 			(show_name no)
@@ -2870,7 +2870,7 @@
 				)
 			)
 		)
-		(property "MPN" "RC0201FR-07150RL"
+		(property "MPN" "RC0201FR-07100RL"
 			(at 185.42 119.38 0)
 			(hide yes)
 			(show_name no)
@@ -2928,7 +2928,7 @@
 				)
 			)
 		)
-		(property "Value" "240R"
+		(property "Value" "110R"
 			(at 60.96 53.2 90)
 			(show_name no)
 			(do_not_autoplace no)
@@ -2960,7 +2960,7 @@
 				)
 			)
 		)
-		(property "Description" "DQ0 write series, resistor 240R 1 % 0201"
+		(property "Description" "DQ0 write series, resistor 110R 1 % 0201"
 			(at 60.96 50.8 0)
 			(hide yes)
 			(show_name no)
@@ -2971,7 +2971,7 @@
 				)
 			)
 		)
-		(property "MPN" "RC0201FR-07240RL"
+		(property "MPN" "RC0201FR-07110RL"
 			(at 60.96 50.8 0)
 			(hide yes)
 			(show_name no)
@@ -3107,7 +3107,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "150R"
+		(property "Value" "100R"
 			(at 73.02 59.62 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -3140,7 +3140,7 @@
 				)
 			)
 		)
-		(property "Description" "DQ0 shunt (write divider and read load), resistor 150R 1 % 0201"
+		(property "Description" "DQ0 shunt (write divider and read load), resistor 100R 1 % 0201"
 			(at 71.12 58.42 0)
 			(hide yes)
 			(show_name no)
@@ -3151,7 +3151,7 @@
 				)
 			)
 		)
-		(property "MPN" "RC0201FR-07150RL"
+		(property "MPN" "RC0201FR-07100RL"
 			(at 71.12 58.42 0)
 			(hide yes)
 			(show_name no)
@@ -3209,7 +3209,7 @@
 				)
 			)
 		)
-		(property "Value" "240R"
+		(property "Value" "110R"
 			(at 60.96 144.64 90)
 			(show_name no)
 			(do_not_autoplace no)
@@ -3241,7 +3241,7 @@
 				)
 			)
 		)
-		(property "Description" "DQ3 write series, resistor 240R 1 % 0201"
+		(property "Description" "DQ3 write series, resistor 110R 1 % 0201"
 			(at 60.96 142.24 0)
 			(hide yes)
 			(show_name no)
@@ -3252,7 +3252,7 @@
 				)
 			)
 		)
-		(property "MPN" "RC0201FR-07240RL"
+		(property "MPN" "RC0201FR-07110RL"
 			(at 60.96 142.24 0)
 			(hide yes)
 			(show_name no)
@@ -3387,7 +3387,7 @@
 				)
 			)
 		)
-		(property "Value" "240R"
+		(property "Value" "110R"
 			(at 60.96 83.68 90)
 			(show_name no)
 			(do_not_autoplace no)
@@ -3419,7 +3419,7 @@
 				)
 			)
 		)
-		(property "Description" "DQ1 write series, resistor 240R 1 % 0201"
+		(property "Description" "DQ1 write series, resistor 110R 1 % 0201"
 			(at 60.96 81.28 0)
 			(hide yes)
 			(show_name no)
@@ -3430,7 +3430,7 @@
 				)
 			)
 		)
-		(property "MPN" "RC0201FR-07240RL"
+		(property "MPN" "RC0201FR-07110RL"
 			(at 60.96 81.28 0)
 			(hide yes)
 			(show_name no)
@@ -3489,7 +3489,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "150R"
+		(property "Value" "100R"
 			(at 187.32 90.1 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -3522,7 +3522,7 @@
 				)
 			)
 		)
-		(property "Description" "DQ6 shunt (write divider and read load), resistor 150R 1 % 0201"
+		(property "Description" "DQ6 shunt (write divider and read load), resistor 100R 1 % 0201"
 			(at 185.42 88.9 0)
 			(hide yes)
 			(show_name no)
@@ -3533,7 +3533,7 @@
 				)
 			)
 		)
-		(property "MPN" "RC0201FR-07150RL"
+		(property "MPN" "RC0201FR-07100RL"
 			(at 185.42 88.9 0)
 			(hide yes)
 			(show_name no)
@@ -3668,7 +3668,7 @@
 				)
 			)
 		)
-		(property "Value" "240R"
+		(property "Value" "110R"
 			(at 60.96 175.12 90)
 			(show_name no)
 			(do_not_autoplace no)
@@ -3700,7 +3700,7 @@
 				)
 			)
 		)
-		(property "Description" "DQ4 write series, resistor 240R 1 % 0201"
+		(property "Description" "DQ4 write series, resistor 110R 1 % 0201"
 			(at 60.96 172.72 0)
 			(hide yes)
 			(show_name no)
@@ -3711,7 +3711,7 @@
 				)
 			)
 		)
-		(property "MPN" "RC0201FR-07240RL"
+		(property "MPN" "RC0201FR-07110RL"
 			(at 60.96 172.72 0)
 			(hide yes)
 			(show_name no)
@@ -3770,7 +3770,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "150R"
+		(property "Value" "100R"
 			(at 73.02 120.58 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -3803,7 +3803,7 @@
 				)
 			)
 		)
-		(property "Description" "DQ2 shunt (write divider and read load), resistor 150R 1 % 0201"
+		(property "Description" "DQ2 shunt (write divider and read load), resistor 100R 1 % 0201"
 			(at 71.12 119.38 0)
 			(hide yes)
 			(show_name no)
@@ -3814,7 +3814,7 @@
 				)
 			)
 		)
-		(property "MPN" "RC0201FR-07150RL"
+		(property "MPN" "RC0201FR-07100RL"
 			(at 71.12 119.38 0)
 			(hide yes)
 			(show_name no)
@@ -3872,7 +3872,7 @@
 				)
 			)
 		)
-		(property "Value" "91R"
+		(property "Value" "75R"
 			(at 175.26 144.64 90)
 			(show_name no)
 			(do_not_autoplace no)
@@ -3904,7 +3904,7 @@
 				)
 			)
 		)
-		(property "Description" "WCK_P series, resistor 91R 1 % 0201"
+		(property "Description" "WCK_P series, resistor 75R 1 % 0201"
 			(at 175.26 142.24 0)
 			(hide yes)
 			(show_name no)
@@ -3915,7 +3915,7 @@
 				)
 			)
 		)
-		(property "MPN" "RC0201FR-0791RL"
+		(property "MPN" "RC0201FR-0775RL"
 			(at 175.26 142.24 0)
 			(hide yes)
 			(show_name no)
@@ -3973,7 +3973,7 @@
 				)
 			)
 		)
-		(property "Value" "240R"
+		(property "Value" "110R"
 			(at 175.26 83.68 90)
 			(show_name no)
 			(do_not_autoplace no)
@@ -4005,7 +4005,7 @@
 				)
 			)
 		)
-		(property "Description" "DQ6 write series, resistor 240R 1 % 0201"
+		(property "Description" "DQ6 write series, resistor 110R 1 % 0201"
 			(at 175.26 81.28 0)
 			(hide yes)
 			(show_name no)
@@ -4016,7 +4016,7 @@
 				)
 			)
 		)
-		(property "MPN" "RC0201FR-07240RL"
+		(property "MPN" "RC0201FR-07110RL"
 			(at 175.26 81.28 0)
 			(hide yes)
 			(show_name no)
@@ -4074,7 +4074,7 @@
 				)
 			)
 		)
-		(property "Value" "91R"
+		(property "Value" "75R"
 			(at 175.26 175.12 90)
 			(show_name no)
 			(do_not_autoplace no)
@@ -4106,7 +4106,7 @@
 				)
 			)
 		)
-		(property "Description" "WCK_N series, resistor 91R 1 % 0201"
+		(property "Description" "WCK_N series, resistor 75R 1 % 0201"
 			(at 175.26 172.72 0)
 			(hide yes)
 			(show_name no)
@@ -4117,7 +4117,7 @@
 				)
 			)
 		)
-		(property "MPN" "RC0201FR-0791RL"
+		(property "MPN" "RC0201FR-0775RL"
 			(at 175.26 172.72 0)
 			(hide yes)
 			(show_name no)

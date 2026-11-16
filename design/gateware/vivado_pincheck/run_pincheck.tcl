@@ -12,7 +12,8 @@ puts "@@VERSION [version -short]"
 puts "@@CASE $name rx_slvs=$rx_slvs cmd_native=$cmd_native rdqs_as_clock=$rdqs_clk guard_bitslice=$guard_bs cmd_comp_800=$comp800 idelayctrl_sim_device=$simdev extra=[file tail $extra]"
 read_verilog $here/lpddr5_pincheck_top.v
 read_xdc $gw/lpddr5_testbed_zcu104.xdc
-if {$rx_slvs == 1 || $rx_slvs == 3} { read_xdc $gw/lpddr5_testbed_zcu104_rx_slvs.xdc }
+# SLVS_400_18 is not a supported receiver any more: the two legality cases read their own legacy file in this folder
+if {$rx_slvs == 1 || $rx_slvs == 3} { read_xdc $here/legacy_rx_slvs_400_18.xdc }
 read_xdc $here/pincheck_board.xdc
 if {$extra ne ""} { read_xdc $extra }
 set ok 1

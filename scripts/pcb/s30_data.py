@@ -7,7 +7,7 @@ Everything is drawn from design/netlist.json (floorplan.data.wires, written by s
 in scripts/data_side.py); this stage decides nothing.  Topology ('T at the divider', comb form; DESIGN.md section 14):
 
   DQ      ball - 0.09 mm neck - F.Cu line (0.15 mm) on its level - one parallel 45-degree fan - tooth straight down the
-          column axis into the node via = the T.  At the T: 240 ohm in line on the finger's face, 150 ohm back to back on
+          column axis into the node via = the T.  At the T: series R in line on the finger's face, shunt R back to back on
           the other face (0.20 mm links), shunt GND via south of the row.  The read branch leaves the node via on In3:
           one 45-degree run into the lane beside the column, north to its level, east in an ordered bundle (0.55 mm
           pitch), one 45-degree ramp, a via on its own level above its read finger, finger track (0.20 mm) straight down.

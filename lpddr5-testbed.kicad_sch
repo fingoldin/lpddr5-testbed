@@ -361,7 +361,7 @@
 		)
 		(uuid "a60a017d-dcdf-5e5f-bf8a-a8520597fd88")
 	)
-	(text "design/netlist.json:  parts, pins, fingers, delay targets,\n    stackup, rules, floorplan (single source of truth)\ndesign/DESIGN.md:  rationale\nscripts/gen_schematic.py:  writes these sheets from the netlist\nscripts/check_schematic.py:  ERC and pin-by-pin netlist parity\n\n131 parts, 119 in the BOM, none DNP.\nHost: ZCU104 rev 1.0, XCZU7EV-2FFVC1156,\n      socket J1 (HP banks 64 / 65 / 66 at 1.2 V)"
+	(text "design/netlist.json:  parts, pins, fingers, delay targets,\n    stackup, rules, floorplan (single source of truth)\ndesign/DESIGN.md:  rationale\nscripts/gen_schematic.py:  writes these sheets from the netlist\nscripts/check_schematic.py:  ERC and pin-by-pin netlist parity\n\n131 parts, 119 in the BOM, 1 DNP.\nHost: ZCU104 rev 1.0, XCZU7EV-2FFVC1156,\n      socket J1 (HP banks 64 / 65 / 66 at 1.2 V)"
 		(exclude_from_sim no)
 		(at 297.18 118.11 0)
 		(effects

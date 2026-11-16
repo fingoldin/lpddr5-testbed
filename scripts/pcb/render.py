@@ -43,7 +43,7 @@ CROPS = {       # name: (x0, y0, x1, y1) card frame [, pixels per mm]
     "whole_east": (20.0, 2.0, 62.6, 18.8, 90.0),    # the whole data side: corner, bundle, comb, In3 bundle, read end, RDQS loop
     "corner": (21.4, 9.2, 29.6, 17.6, 240.0),       # byte-0 corner of U1: the eight necks, the WCK diagonal (B.Cu), the RDQS pair (In3)
     "comb": (26.0, 2.2, 45.0, 17.6, 150.0),         # the F.Cu bundle, its 45-degree fan and the eight teeth; WCK pair; RDQS turn north
-    "divider": (33.8, 2.2, 44.8, 8.4, 240.0),       # divider row: node vias (the T), 240R / 150R back to back, shunt GND vias, WCK columns
+    "divider": (33.8, 2.2, 44.8, 8.4, 240.0),       # divider row: node vias (the T), series / shunt back to back, shunt GND vias, WCK columns
     "in3bundle": (36.4, 5.2, 59.2, 15.2, 160.0),    # In3 read bundle: risers, bundle across the teeth, ramp, runs to the read vias
     "readend": (43.4, 2.0, 61.4, 18.6, 180.0),      # read vias on their staircase, return vias, finger tracks, RDQS drop east of them and its loads
     "refnet": (48.0, 2.2, 61.4, 9.6, 240.0),        # reference networks in two rows, VREF_RD bus, bus via, feed, RESET_n parts

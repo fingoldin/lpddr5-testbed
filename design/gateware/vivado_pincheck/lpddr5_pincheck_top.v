@@ -5,9 +5,9 @@
 //                              CMD_NATIVE = 0: component-mode OSERDESE3 at CMD_COMP_HS MHz x2
 //   write    bank 64   OSERDESE3 -> ODELAYE3 (TIME, per-bit value) -> OBUFT; WCK OSERDESE3 -> ODELAYE3 -> OBUFDS
 //   read     bank 66   RX_SLVS = 0: IBUFDS_DPHY (MIPI_DPHY_DCI on the instance, DIFF_TERM FALSE, LP off)
-//                              RX_SLVS = 1: IBUFDS (SLVS_400_18 from the override XDC)
+//                              RX_SLVS = 1: IBUFDS (SLVS_400_18 from legacy_rx_slvs_400_18.xdc): HISTORY, not a supported receiver
 //                              RX_SLVS = 2: IBUFDS_DPHY with IOSTANDARD "DEFAULT" on the instance (the standard from the XDC)
-//                              RX_SLVS = 3: as 2, with the SLVS_400_18 override XDC (negative test)
+//                              RX_SLVS = 3: as 2, with legacy_rx_slvs_400_18.xdc (negative test, history)
 //                              -> IDELAYE3 (TIME, per-bit value) -> ISERDESE3; RDQS the same way (RDQS_AS_CLOCK = 0),
 //                              or RDQS as the capture clock through a BUFGCE: taken behind its IDELAYE3
 //                              (RDQS_AS_CLOCK = 1, negative test) or straight from the receiver (RDQS_AS_CLOCK = 2)

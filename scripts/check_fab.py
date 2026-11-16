@@ -876,7 +876,8 @@ def verify(fab, out, board_path=None, ppm=80.0, view_ppm=30.0, drc=True):
 
     # ------------------------------------------------------------------ position files
     adir = os.path.join(fab, "assembly")
-    placed = {fp.GetReference(): fp for fp in B.b.GetFootprints() if not fp.GetAttributes() & pcbnew.FP_EXCLUDE_FROM_POS_FILES}
+    placed = {fp.GetReference(): fp for fp in B.b.GetFootprints() if not fp.GetAttributes() & pcbnew.FP_EXCLUDE_FROM_POS_FILES and not fp.IsDNP()}
+    not_fitted = sorted(fp.GetReference() for fp in B.b.GetFootprints() if fp.IsDNP())
     res["position"] = {}
     lib_cache = {}
 
@@ -923,7 +924,7 @@ def verify(fab, out, board_path=None, ppm=80.0, view_ppm=30.0, drc=True):
                 if not hit:
                     badpad.append("%s.%s" % (r["Ref"], p.GetNumber()))
                     break
-        R.check("position", "%s: one row per placed part of that face (fingers, test pads and fiducials excluded)" % fname,
+        R.check("position", "%s: one row per placed part of that face (fingers, test pads, fiducials and DNP parts excluded)" % fname,
                 sorted(r["Ref"] for r in rows) == sorted(want), "%d rows, %d parts on the board" % (len(rows), len(want)))
         R.check("position", "%s: X / Y = footprint position in the card frame (origin lower-left corner seen from the front, y up, x not mirrored), side column '%s'" % (fname, face),
                 not badpos, "%d rows" % len(rows))
@@ -975,7 +976,10 @@ def verify(fab, out, board_path=None, ppm=80.0, view_ppm=30.0, drc=True):
     R.check("bom", "BOM: lines and quantities equal design/netlist.json (bom_summary)",
             len(sb) == len(bom_rows) and sorted((b_["mpn"], b_["qty"]) for b_ in sb) == sorted((r["MPN"], int(r["Quantity"])) for r in bom_rows),
             "%d lines, %d parts, %d DNP" % (len(bom_rows), sum(int(r["Quantity"]) for r in bom_rows), sum(1 for r in bom_rows if r["DNP"] == "yes")))
-    R.check("bom", "position files and BOM list the same parts", sorted(seen) == sorted(placed), "%d / %d" % (len(seen), len(placed)))
+    dnp_rows = sorted(ref for r in bom_rows if r["DNP"] == "yes" for ref in r["References"].split())
+    R.check("bom", "position files list exactly the fitted BOM parts; the DNP parts are in the BOM on DNP lines of their own and in no position file",
+            sorted(set(seen) - set(dnp_rows)) == sorted(placed) and dnp_rows == not_fitted and dnp_rows == sorted(p_["ref"] for p_ in spec["parts"] if p_["dnp"]),
+            "%d fitted / %d placed; DNP: %s" % (len(seen) - len(dnp_rows), len(placed), dnp_rows or "none"))
     per = os.path.join(adir, "%s-bom-per-part.csv" % PROJECT)
     if os.path.exists(per):
         rows = list(csv.DictReader(open(per)))

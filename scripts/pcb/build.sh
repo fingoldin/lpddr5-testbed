@@ -23,7 +23,7 @@
 #   s00_board   empty board, stackup, rules, net classes, .kicad_dru, footprints (parts, test pads, fiducials), nets, fabrication notes
 #   s10_escape  U1 fan-out: via-in-pads, links, straps (the unused byte DQ8-15 is open: nothing is drawn for it); field vias; finger vias
 #   s20_cmd     command bus: finger stubs of bank 65, divider links, In3 bundle with its tuning features, CK pair; measured by gate 6
-#   s30_data    the data side as one stage ('T at the divider', comb): write group (finger stubs of bank 64, 240 ohm / 150 ohm back to back at
+#   s30_data    the data side as one stage ('T at the divider', comb): write group (finger stubs of bank 64, series / shunt resistor back to back at
 #               the node via, F.Cu comb from the balls), read group (In3 branches from the node vias, ordered bundle, ramp, read vias, finger
 #               tracks), WCK pair on B.Cu, RDQS pair on In3 from U1 to a via pair just above fingers 219 / 221 and a 5.8 mm F.Cu drop into
 #               them, its skew bump, reference networks with the VREF_RD bus and the DAC network; measured by gate 7 (delays with the bend

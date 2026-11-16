@@ -3,7 +3,7 @@
 #   run_pincheck.sh <work dir> <name> <rx_slvs> <cmd_native> <rdqs_as_clock> <guard_bitslice> <cmd_comp_800> [extra.xdc]
 # The cases whose summaries are in results/ (Vivado 2026.1 unless the name says otherwise):
 #   M1_dphy_native16             0 1 0 1 0   first-choice receiver, native 1.6 Gb/s command bus: THE pin-plan check
-#   M2_slvs_native16             1 1 0 1 0   fall-back receiver
+#   M2_slvs_native16             1 1 0 1 0   HISTORY: IBUFDS / SLVS_400_18 (not a supported receiver; legacy_rx_slvs_400_18.xdc)
 #   M3_dphy_native16_guard_obuf  0 1 0 0 0   the open finger as a plain OBUF inside the native nibble
 #   M4_dphy_comp_1200            0 0 0 0 0   command bus on OSERDESE3 at 600 MHz (1.2 Gb/s)
 #   M5_dphy_comp_1600            0 0 0 0 1   command bus on OSERDESE3 at 800 MHz (1.6 Gb/s): pulse-width violation
@@ -11,7 +11,7 @@
 #   N2_rdqs_clock_from_receiver  0 1 2 1 0   negative: RDQS receiver -> BUFGCE (the pin is not a GC pin)
 #   N2b_rdqs_clock_cdr_false     0 1 2 1 0 <here>/extra_rdqs_clock_dedicated_route_false.xdc
 #   N3_dphy_attr_default         2 1 0 1 0   IBUFDS_DPHY without the IOSTANDARD attribute on the instance (also in 2023.1)
-#   N4_dphy_primitive_with_slvs  3 1 0 1 0   negative: IBUFDS_DPHY on ports constrained to SLVS_400_18
+#   N4_dphy_primitive_with_slvs  3 1 0 1 0   negative, history: IBUFDS_DPHY on ports constrained to SLVS_400_18
 #   <case>_vivado2023                        the same sources in Vivado 2023.1: VIVADO=<2023.1 binary> IDELAYCTRL_SIM_DEVICE=ULTRASCALE
 # Vivado: source /tools/Xilinx/2026.1/Vivado/settings64.sh first (or set VIVADO to the binary).
 set -u

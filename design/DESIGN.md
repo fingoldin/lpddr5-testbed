@@ -3,14 +3,14 @@
 This file describes the board as it is built. It is meant to be read from top to bottom: sections 0 to 9 say what the card is, how commands,
 writes, reads and power work, every value with its reason, how the gateware has to use it, what is still open and how to rebuild it;
 sections 10 to 12 answer the three questions a reviewer asks first (were the user's rules met, how does it differ from the Antmicro board,
-where do high-speed wires cross); sections 13 to 15 are the routing as measured on the copper, stage by stage. The history of the design
-is a short appendix.
+where do high-speed wires cross); sections 13 to 15 are the routing as measured on the copper, stage by stage; section 16 records the
+merged system simulation of host, socket and card, the decisions that followed from it, the three follow-up studies and the 0.50 V divider set now on the board. The history of the design is a short appendix.
 
 **The card.** DDR4 SO-DIMM outline (69.6 x 30.0 mm, 260 fingers) for the PL memory socket J1 of the Xilinx ZCU104. One SK hynix
 H58G56BK7BX068N (LPDDR5, JEDEC 315-ball map); LPDDR5 channel A, byte 0, rank 0 are used. It is a test card for a custom memory controller that does
 processing-in-memory with a fast command stream: **the command bus is the priority bus** (CK up to 800 MHz, 1.6 Gb/s on CA); reads and writes
 only have to work at a moderate rate (100 Mb/s by design).
-131 items: 119 BOM parts (none DNP), 5 test pads, 6 assembly fiducials and the card edge; 5 ICs; 71 nets; 27 BOM lines; 393 vias.
+131 items: 119 BOM parts of which one DNP (R332, not fitted: 118 placed), 5 test pads, 6 assembly fiducials and the card edge; 5 ICs; 71 nets; 28 BOM lines (27 to buy and one DNP line); 393 vias.
 
 **Single source.** `design/netlist.json` is the design: parts, every pad, fingers, groups with delay targets, stackup, rules, floorplan with every
 placement, via and wire of the data and power side as a centre line. It is written by `scripts/build_netlist.py` (the data side by
@@ -31,26 +31,33 @@ uses the same x. This is also the origin of every fabrication file.
 
 ```
                            finger            divider at the fingers                 on the card                          U1 ball
- commands  bank 65 (T0) -- 66 .. 84 ----- 91R --+----------- In3 stripline, 11-13 mm, all ten matched ----------------- CA0-6, CS0, CK_t/c
-           SSTL12 1.2 V                         68R to GND     (CS: 33R / 100R)                                          0.42 V swing
- writes    bank 64 ------- 143 .. 161 --- 240R -+- node via "T" ---- F.Cu line (comb), 20-28 mm ----------------------- DQ0-7
-                                                150R to GND    |                                                         0.42 V swing
+ commands  bank 65 (T0) -- 66 .. 84 ----- 75R --+----------- In3 stripline, 11-13 mm, all ten matched ----------------- CA0-6, CS0, CK_t/c
+           SSTL12 1.2 V                         75R to GND     (CS: 33R / 100R)                                          0.50 V swing
+ writes    bank 64 ------- 143 .. 161 --- 110R -+- node via "T" ---- F.Cu line (comb), 20-28 mm ----------------------- DQ0-7
+                                                100R to GND    |                                                         0.50 V swing
  reads     bank 66 P pin - 182 .. 215 ----- outer-layer track - read via - In3 branch 6-24 mm (same net, no part) -----+
-           bank 66 N pin - 183 .. 216 ----- 39R --+-- VREF_RD = 0.187 V default / 0.195 V set (DAC53401, I2C 0x48)
+           bank 66 N pin - 183 .. 216 ----- 39R --+-- VREF_RD = 0 V until the DAC is written / 0.175 V set (DAC53401, I2C 0x48)
                                                  100 nF
- strobes   bank 64 ------- 137 / 139 ---- 91R / 68R ---- B.Cu pair ---------------------------------------------------- WCK_t/c
+ strobes   bank 64 ------- 137 / 139 ---- 75R / 75R ---- B.Cu pair ---------------------------------------------------- WCK_t/c
            bank 66 ------- 219 / 221 ---- 150R to GND per leg ---- F.Cu 5.8 mm - via pair - In3 pair 41 mm ------------- RDQS_t/c
  reset     bank 66 ------- 232 ---------- 100R, 1 k to GND ---- B.Cu ---- one via ---- F.Cu 2 mm ---------------------- RESET_n
  power     1.2 V (19 fingers), 3.3 V (finger 255) -> three LDOs: VDD1 1.80 V, VDD2H = VDD2L 1.05 V, VDDQ 0.50 V; no sequencer
 ```
 
-- **Commands** (section 1). The FPGA drives 1.2 V SSTL into a resistive divider at the fingers; the divider's back impedance (44.6 ohm)
-  source-terminates a 45.6 ohm stripline on In3, between two ground planes, to the open ball. All ten nets are in one FPGA byte group and are
-  delay-matched on the card from the FPGA die pad to the ball (641.8 ps, 0.0 ps as routed).
-- **Writes** (section 2). Same principle with 240 / 150 ohm. The 150 ohm shunt is also the read load, so one node per DQ (a via, "the T")
+- **Commands** (section 1). The FPGA drives 1.2 V SSTL (FAST, 40 ohm, no DCI) into a resistive divider at the fingers (75 / 75 ohm: 0.50 V typical at the ball, as on the Antmicro design; back
+  impedance 45.2 ohm) that source-terminates a 45.6 ohm stripline on In3, between two ground planes, to the open ball. All ten nets are in one
+  FPGA byte group and are delay-matched on the card from the FPGA die pad to the ball (641.8 ps, 0.0 ps as routed); the socket adds a front / back
+  skew of 17 ps that the card's match does not contain and the FPGA removes per bit (section 16).
+- **Writes** (section 2). Same principle with 110 / 100 ohm (0.50 V typical). The 100 ohm shunt is also the read load, so one node per DQ (a via, "the T")
   joins the line from the ball, the write divider and the read branch.
+- **System simulation** (section 16). Host, socket and card were simulated as one model: every mask passes except the CK slew at the DRAM pin
+  (open, to be measured) and the SLVS_400_18 receiver (dropped): MIPI_DPHY_DCI is the only supported read receiver. The dividers were then
+  changed twice, value only, no copper moved: CA / CK from 91 / 68 to 75 / 56 ohm, and, by the user's rule to follow Antmicro unless there is a very
+  clear reason not to, every divider but CS to **0.50 V typical at the ball** (CA / CK / WCK 75 / 75, DQ 110 / 100 ohm). **This is a deliberate
+  departure from the earlier rule that every level stays under 0.47 V: in the fast corner the lines rest above VDDQ** (section 1).
 - **Reads** (section 3). The DRAM drives the same net; from the T an In3 branch runs to the P pin of a differential pair of bank 66. The N pin
-  of that pair sits on a common reference VREF_RD at about half the read swing (39 ohm + 100 nF per N finger, a DAC behind a default divider).
+  of that pair sits on a common reference VREF_RD at about half the read swing (39 ohm + 100 nF per N finger, set by a DAC through a 300 / 160 ohm divider, 0 .. 0.63 V). **The reference is 0 V until the DAC has been written:
+  reads do not work until then** (section 3).
   RDQS is a true differential pair.
 - **Power** (section 4). Three small linear regulators from the socket's 1.2 V and 3.3 V; the order of the rails follows from what enables what.
 - **Not matched on the card:** the eight write DQ (+/-26.7 ps) and the eight read DQ (+/-56.8 ps). Both spreads are the price of user decisions
@@ -63,10 +70,11 @@ uses the same x. This is also the origin of every fabrication file.
 | Command | bank 65 byte group T0, fingers 66-84; CK_t/CK_c (nets CK_P / CK_N) on 76 (P) / 74 (N); In3 stripline, 0.15 mm, one trace per BGA column channel |
 | Write | bank 64, fingers 143 ... 161 (the finger of a bit follows from the comb, section 14); WCK on the host CK0 pair 137 / 139, **inverted**: WCK_c (WCK_N) on 137 (P pin), WCK_t (WCK_P) on 139 (N pin), section 2. Each DQ is one F.Cu line from its ball to its divider column, no via between the ball and the node, no meander; the WCK pair on B.Cu as the lowest lane, no skew bump |
 | Read | bank 66 byte groups T3 / T2 / T1; DQ on the P pin of eight complete pairs (fingers 182 ... 215), the N pin of each pair on the reference. The pairs are taken in the order of the In3 bundle (DQ7, DQ6, DQ2, DQ3, DQ0, DQ1, DQ5, DQ4 from west to east): the **read end without crossings**. The read branch leaves the node via on In3 and ends on a via above its read finger; the read vias form a regular staircase. RDQS (RDQS_P / RDQS_N) is a true differential pair on the host DQS6 pair, fingers 219 / 221, east of every read finger, **inverted** (RDQS_t on 219, the N pin); it has the same form: In3 from its balls to a via pair at (57.875 / 58.475, y = 8.50) just above its fingers, 5.8 mm of F.Cu into them. The only output in bank 66 is the static RESET_n (finger 232) |
-| Dividers | at the card fingers, all 0201: CA / CK / WCK 91 ohm + 68 ohm, CS 33 + 100 ohm, DQ 240 + 150 ohm; RESET_n 100 ohm + 1 k |
-| Read path | 150 ohm DQ shunt is the read load (0.39 V high); no series part: the In3 branch starts on the node via of the divider column (6.2-24.2 mm, 45.6 ohm) and ends on a via above the read finger; the finger's own outer layer goes down to the finger at 0.20 mm (45.6 ohm) |
-| Net names | pairs end in _P / _N (= JEDEC _t / _c) so that KiCad treats them as differential pairs: CK_P / CK_N, WCK_P / WCK_N, RDQS_P / RDQS_N; finger side CK_F_P / CK_F_N, WCK_F_P / WCK_F_N. DQx and RDQS_x are one net each from the ball to the read finger (no series part); DQx_WF is the write finger behind the 240 ohm |
-| Reference | DAC53401 (0x48) -300R- VREF_RD, VDDQ -300R- VREF_RD -180R- GND; 39 ohm + 100 nF per N finger |
+| Dividers | at the card fingers, all 0201: CA / CK and WCK 75 ohm + 75 ohm, DQ 110 ohm + 100 ohm: 0.50 V typical at the ball, as on the Antmicro design (the user's decision; before it CA / CK 75 + 56, WCK 91 + 68, DQ 240 + 150 for levels under 0.47 V; sections 1, 16); CS 33 + 100 ohm; RESET_n 100 ohm + 1 k |
+| FPGA driver | command pins SSTL12 / DIFF_SSTL12, SLEW FAST, RDRV_40_40, **no DCI** (enforced by `scripts/gen_gateware.py`); read receiver `IBUFDS_DPHY` / MIPI_DPHY_DCI only |
+| Read path | 100 ohm DQ shunt is the read load (0.35 V high); no series part: the In3 branch starts on the node via of the divider column (6.2-24.2 mm, 45.6 ohm) and ends on a via above the read finger; the finger's own outer layer goes down to the finger at 0.20 mm (45.6 ohm) |
+| Net names | pairs end in _P / _N (= JEDEC _t / _c) so that KiCad treats them as differential pairs: CK_P / CK_N, WCK_P / WCK_N, RDQS_P / RDQS_N; finger side CK_F_P / CK_F_N, WCK_F_P / WCK_F_N. DQx and RDQS_x are one net each from the ball to the read finger (no series part); DQx_WF is the write finger behind the 110 ohm |
+| Reference | DAC53401 (0x48) -300R- VREF_RD -160R- GND: V = 0.3478 x Vdac, 0 .. 0.631 V, 0 V until the DAC is written. R332 (300R from VDDQ, the former power-up default) is NOT FITTED (DNP; the user: "Make the range of vref go down to 0"); 39 ohm + 100 nF per N finger |
 | Rails | VDD1 1.80 V TLV70018 (from 3.3 V), VDD2H = VDD2L 1.048 V TPS74801DRCRM3 (from 1.2 V, bias 3.3 V), VDDQ 0.4996 V MIC47050 (from 1.2 V, bias 3.3 V). U2 (VDD2H) stands on F.Cu, U3 (VDD1) and U4 (VDDQ) with their parts on B.Cu (section 15) |
 | Stackup | upstream 6-layer structure, cores 0.40 -> 0.36 mm: 1.192 mm at the fingers (1.20 with finish) |
 | U1 | centre (20.725, 19.0), rotated 180 deg: row A toward the fingers (y = 12.0), byte 0 at the lower right |
@@ -77,12 +85,14 @@ uses the same x. This is also the origin of every fabrication file.
 | Check | Result |
 |---|---|
 | `scripts/pcb/build.sh` on a clean tree | passes; rebuilding an unchanged tree reproduces every generated file byte for byte |
-| `check_netlist.py` (the spec) | 184 checks, 0 failed |
+| `check_netlist.py` (the spec) | 191 checks, 0 failed |
 | `check_schematic.py` | 69 checks, 0 failed; ERC 0 errors, 0 warnings, 2 documented exclusions; netlist parity 0 differences |
 | `check_pcb.py` (gates 1-9 on the board) | 111 checks, 0 failed |
 | KiCad 10.0.6 DRC, all severities, with schematic parity | 0 errors, 0 unconnected, 0 parity issues; 9 warnings, all `diff_pair_gap_out_of_range` where the legs of a pair must part (CK 5, WCK 3, RDQS 1) |
 | `check_fab.py` (the fabrication files read back, section 9) | 56 checks, 0 failed |
 | Command bus | 641.77 ps on all ten nets, CK_P to CK_N 0.00 ps |
+| `gen_gateware.py --check` | 11 files identical; the ten command ports SSTL12 / DIFF_SSTL12, SLEW FAST, RDRV_40_40, no DCI; no SLVS override file |
+| Merged system simulation (section 16; the 0.50 V divider set as built, by circuit correction of the solved blocks) | every mask passes: CA at the pin +72 / +66 / +73 mV typ / slow / fast, write DQ +144 / +142 / +146 mV, read DQ +89 / +65 / +113 mV. Open: CK slew at the ball 1.80-2.11 V/ns typ, 1.73-2.03 slow against 2 V/ns (5.9-7.8 V/ns at the die); the lines rest 20-45 mV above VDDQ in the fast corner (deliberate) |
 | Pairs | WCK P - N -0.54 ps, RDQS P - N 0.00 ps (rule +/-1 ps) |
 | Write group / read group | +/-26.7 ps / +/-56.8 ps on the card, closed per bit in the FPGA |
 | Plan-view crossings with a high-speed wire | 94 on the whole board: command bundle 15, data x data 52, high-speed x VREF 9, high-speed x supply 18; same layer 0 (section 12) |
@@ -219,28 +229,78 @@ trace; its one island (1.2 V under the VDD fingers, x >= 28.7, y <= 5.45: sectio
 no power island under x 15.5-24.5, y < 18.0 (the VDD2H island starts at y = 18.0, 0.2 mm north of
 the via pad of J9, the last command ball).
 
-**Impedance.** In3 0.15 mm = 45.6 ohm (0.09: 56.5, 0.18: 41.7, 0.20: 39.5). The line that matters for matching
-is the divider's back impedance, because the ball end is open: 68 || (91 + 39 ohm host) = 44.6 ohm. 0.15 mm is
-within 2 % of it and is the upstream convention, so it is kept. CK: Zodd 42.3 ohm against 68 || (91 + 33) = 43.9 ohm.
+**Impedance.** In3 0.15 mm = 45.6 ohm (0.09: 56.5, 0.18: 41.7, 0.20: 39.5). The ball end is open, so the line is terminated at
+its source by the divider's back impedance. The line was sized for the 91 / 68 ohm dividers of the first build, 68 || (91 + 39 ohm host) =
+44.6 ohm. With the 75 / 75 ohm dividers now fitted the back impedance is 75 || (75 + 39) = 45.2 ohm, within 1 % of the line (CK: Zodd
+42.3 ohm against 75 || (75 + 33) = 44.3 ohm). The 75 / 56 ohm of the intermediate build had 37.6 ohm. The copper was never changed: the
+command stage is frozen with its HFSS calibration.
 
-**Divider values** (driver 26 / 36 / 44 ohm, VCCO 1.14 / 1.20 / 1.26 V, 1 % resistors; min / nominal / max):
+**The level policy, and the rule it replaces.** Until this build every divider-driven pin of the VDDQ domain was held under 0.47 V, the JEDEC
+VDDQ minimum, in every corner. The user then decided: *"In general, we should only deviate from antmicro if there's a very clear reason to do so."*
+and *"Design the dividers so they give 0.50 typical like the antmicro ones"*. The policy now, on CA, CK, WCK and write DQ (not CS, not RESET_n):
+
+- **0.50 V +/-15 mV typical** at the ball (IBIS typical driver, VCCO 1.20 V, nominal resistors);
+- **at most 0.55 V in the stacked fast corner** (IBIS maximum driver 25.1 ohm, VCCO 1.26 V, series resistor -1 %, shunt +1 %); 0.55 V is the
+  card's nominal VDDQ + 50 mV and 20 mV under the JEDEC VDDQ maximum of 0.57 V;
+- the boot-level floor stays: >= 0.351 V + 20 mV in the slowest corner.
+
+**This is a deliberate departure from the earlier rule.** Its reason is the user's rule to follow Antmicro unless there is a very clear reason
+not to; the simulation found no such reason (every mask passes, CA and write margins are as good or better, section 16). What it costs:
+
+- In the fast corner a high line **rests above the card's VDDQ** (0.488-0.512 V) for as long as it is high. Computed here with 1 % resistors:
+  CA / CK / WCK 0.545 V, 57.5 mV above the card's VDDQ minimum (45.5 mV above its nominal 0.4996 V); write DQ 0.542 V, 53.9 mV above the card's VDDQ minimum.
+  Simulated with nominal resistors: 0.456 / 0.495 / 0.532 V on CA / CK, 0.461 / 0.496 / 0.530 V on write DQ (slow / typ / fast), i.e. 20-45 mV
+  above VDDQ in the fast corner and 7-8 mV above the card's VDDQ minimum in the typical one.
+- JESD209-5C Table 416 allows 0.3 V and 0.1 V-ns of overshoot beyond VDDQ. The amplitude stays inside 0.3 V everywhere (CA peak 0.688 V in the
+  fast corner) and the transient part alone stays inside 0.1 V-ns (CA fast 0.097). **Read literally, the area allowance is exceeded in the fast
+  corner** (CA 0.19, WCK 0.38, write DQ 1.4 V-ns per event) only because of the standing level.
+- The **SK hynix input limits** beyond JEDEC are not known (no data sheet in the repository). Antmicro's own hardware runs at this level and
+  higher (section 16), which is the evidence that it works, not a guarantee for this part. **To be watched at bring-up** (section 8, item 40).
+
+**Divider values** (driver 34.9 / 29.3 / 25.1 ohm slow / typ / fast, VCCO 1.14 / 1.20 / 1.26 V, 1 % resistors; min / nominal / max;
+computed by `scripts/build_netlist.py`, `analysis.dividers` and `analysis.level_policy`, and re-derived by `scripts/check_netlist.py`):
 
 | Net | Series / shunt | DC level at the ball | Pin current nom / max | Limits |
 |---|---|---|---|---|
-| CA0-6, CK legs | 91 / 68 ohm | 0.378 / 0.418 / 0.468 V | 6.2 / 6.9 mA | target <= 0.47 V (JEDEC VDDQ min), hard limit the card's VDDQ min 0.485 V (section 4); boot needs >= 0.351 V (default VREF 0.256 V max + 95 mV) |
-| CS0 | 33 / 100 ohm | 0.640 / 0.710 / 0.797 V | 7.1 / 8.0 mA | Vref_CS = VDD2H/3 = 0.35 V; ViHPD >= 0.55 V; <= VDD2H + 0.2 V |
+| CA0-6, CK legs | 75 / 75 ohm | 0.458 / 0.502 / 0.545 V | 6.7 / 7.3 mA | 0.50 V +/-15 mV typical: +2.0 mV; fast corner 4.9 mV under the 0.55 V maximum and 57.5 mV above the card's VDDQ minimum (deliberate); boot needs >= 0.351 V (default VREF 0.256 V max + 95 mV): 106.8 mV above |
+| CS0 | 33 / 100 ohm | 0.675 / 0.739 / 0.802 V | 7.4 / 8.0 mA | Vref_CS = VDD2H/3 = 0.35 V; ViHPD >= 0.55 V; <= VDD2H + 0.2 V |
 
-- The review's starting point 82 / 68 ohm reaches 0.492 V in the fastest corner; 91 / 68 keeps the DC level of
-  every corner at or below 0.468 V. With the fastest IBIS driver (25.1 ohm instead of 26) it is 0.4706 V, still
-  14 mV under the card's own VDDQ minimum.
-- First-incident level at the open ball is 0.98-1.12 x the DC level over the driver range (it equals the DC level
-  only for a 39 ohm driver). Fast corner: 0.525 V for one host round trip (1.1 ns), 0.56 V peak at the die, that
-  is 43-76 mV and 0.02-0.04 V-ns above the card's VDDQ, inside J Table 416 (0.3 V, 0.1 V-ns).
-- Eye at the die in the audit simulation (1.6 Gb/s, linear driver, socket and package guesses): 2.3-2.7 x the
-  155 mV mask height, 4.6-4.9 x tCIVW. Crosstalk and the real socket are not in it (section 8).
-- CK differential swing 0.67-0.86 V p-p at 800 MHz (>= 0.35 V), slew 3.2-5.9 V/ns, crossing at half the level.
-- After boot train VREF(CA) (MR12, about 0.21 V); the boot default 0.25 V is only good at low rate.
-- FPGA: SSTL12 / DIFF_SSTL12, RDRV_40_40, FAST. All pins <= 8 mA (absolute maximum 20 mA, DS925).
+- **The driver.** The resistance figures are those of the Vivado 2026.1 IBIS model `HP_SSTL12_F_OUT40`, i.e. HP-bank SSTL12, SLEW FAST,
+  `OUTPUT_IMPEDANCE RDRV_40_40`, no DCI: 34.9 / 29.3 / 25.1 ohm slow / typ / fast. The merged system simulation uses the same model (its
+  typical driver behaves as 1.196 V behind 31.4 ohm, which is why it gives 0.495 V where this table gives 0.502 V). Earlier
+  revisions of this text assumed 26 / 36 / 44 ohm, a range drawn to cover a DCI driver as well (DS925: 36-44 ohm); that assumption is withdrawn.
+- **DCI: the prohibition is dropped as a level argument, the enforcement stays.** With 75 / 56 ohm a DCI driver was forbidden because the
+  slow corner came within 10 mV of the boot floor. Recomputed for 75 / 75 ohm the slow corner is 0.458 V with the supported driver
+  (106.8 mV above the floor), 0.436 V (85.3 mV) with a 40 ohm DCI driver at its DS925 limit of 44 ohm, 0.441 V (89.9 mV) with RDRV_48_48
+  (IBIS 42 ohm slow) and 0.417 V (66.4 mV) with a 48 ohm DCI driver (52.8 ohm): none is near the floor. A weaker driver does put the level
+  under the 0.50 V target (nominal 0.474 / 0.487 / 0.455 V) and none was simulated, so SSTL12 / DIFF_SSTL12, SLEW FAST, RDRV_40_40
+  without DCI remains the only supported setting. The constraint generator writes it on the ten command pins and refuses anything else; its
+  `--check` reads the XDC back and fails on any other standard, slew, drive or a DCI attribute on a command port (section 7).
+- **Why 75 / 75.** It gives 0.50 V with the same series value as before (only the nine shunts R111-R117, R119, R120 change, 56 -> 75 ohm, on
+  their 0201 lands) and it is matched to the line again. Simulated against the board before it (75 / 56): worst CA net at the DRAM pin
+  +72 / +66 / +73 mV typ / slow / fast against +69 / +60 / +63 mV. Antmicro's literal 100 / 100 ohm gives 0.517 V and only +27 / +28 / +22 mV
+  here, because its 58 ohm back impedance moves the eye against CK; 82 / 82 ohm is 3 mV closer to 0.500 V and 8-17 mV worse (section 16).
+- **CS keeps 33 / 100 ohm**, the one divider that does not follow Antmicro's level, for a clear reason: CS is sampled against a fixed
+  Vref_CS = VDD2H / 3 = 0.35 V and must exceed 0.55 V to leave power-down. Simulated at 75 / 75 ohm it sits at 0.456 / 0.494 / 0.531 V, under
+  0.55 V in every corner, and fails its own mask (-9 mV typ, -43 mV slow against +194 / +126 mV as built). Its 0.73 V swing costs the CA
+  lines nothing measurable (worst CA margin +72 mV typ with either CS divider): the coupling is made before the divider, where CS swings
+  1.2 V in both cases (section 16).
+- History of the values: the review's starting point 82 / 68 ohm; 91 / 68 as first built (0.395 / 0.433 / 0.471 V); 75 / 56 after the merged
+  system simulation (0.381 / 0.419 / 0.457 V, 14-20 mV more mask margin than 91 / 68); 75 / 75 now. Every simulated divider value other
+  than 91 / 68 is a circuit correction on the solved model, not a new field solve (section 16).
+- First-incident level at the open ball is 1.05-1.12 x the DC level over the driver range (0.479 / 0.546 / 0.611 V slow / typ / fast).
+  Fast corner: 0.611 V for one host round trip (1.1 ns), 123 mV above the card's VDDQ minimum, inside the amplitude allowance of J Table 416
+  (0.3 V). The merged simulation of this set has at most 0.688 V / -0.106 V at the pin (fast corner).
+- Eye and clock as simulated on the merged model: section 16 (CA at the DRAM pin +59 .. +73 mV of mask margin; CK swing 1.06 V p-p at the
+  pin; **CK slew at the pin 1.80-2.11 V/ns typ and 1.73-2.03 slow, starting below the 2 V/ns minimum**, 5.9-7.8 V/ns at the die).
+- VREF(CA): the simulation centres the CA eye at 215 / 235 / 253 mV (slow / typ / fast; allowed 75-350 mV). Start with MR12 0x4A (47.0 % of
+  VDDQ = 0.235 V) and train; the boot default (50 % = 0.25 V) is now close to it.
+- FPGA: SSTL12 / DIFF_SSTL12, RDRV_40_40, FAST, no DCI. All pins <= 8.1 mA (absolute maximum 20 mA, DS925).
+- **Current.** The dividers are fed from the bank's VCCO on the host through the signal fingers, not from the card's 1.2 V feed (section 4,
+  whose budget and drop do not change). Typical, IBIS driver: 6.7 mA per high CA / CK / WCK pin, 7.4 mA for CS, 5.0 mA per high write DQ.
+  Commands, seven CA and one CK leg high: 53.5 mA (59.9 mA with 75 / 56). Writes, eight DQ and one WCK leg high: 46.8 mA (29.3 mA with
+  240 / 150 and WCK 91 / 68). Everything high in the worst corner: 117 mA. No signal contact carries more than 8.1 mA (limit 500 mA); no
+  0201 dissipates more than 6.5 mW (rating 50 mW).
 
 
 **RESET_n** (finger 232, AP11, bank 66 byte group T0L, LVCMOS12; a back-side finger with the VSS fingers 230 / 234 beside it on the back; the DDR4
@@ -253,7 +313,7 @@ crosses no high-speed wire and never touches In3).
 
 **Fingers** (bank 64). The write DQ sit on the eight fingers above the comb (section 14): a comb on one layer is planar for one order only, the lowest
 F.Cu line takes the westmost column, so the finger of a bit follows from the order in which the balls leave the BGA corner. The series resistor is
-on the finger's face; the 150 ohm shunt sits back to back with it on the other face.
+on the finger's face; the 100 ohm shunt sits back to back with it on the other face.
 
 | Finger | Side | FPGA ball | Byte group | Net | U1 ball | F.Cu level y | Column x | Series / shunt | Host + pkg ps | Card ps | Total ps | To centre ps |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|
@@ -278,7 +338,7 @@ is +/-10 ps). A comb has no knob (section 14.3); the FPGA closes it with a per-b
 |---|---|
 | 2.70-4.68 | finger stub on the finger's face: 0.15 mm from the finger through the row of the finger vias (to y = 3.45), 0.20 mm from there, one 45-degree run onto the pad; 2.1-2.4 mm |
 | 4.05 | GND via of the shunt, south of the row, in a lane no finger stub uses, 0.20 mm or more from the stubs on both faces: DQ4 has its own (36.65), DQ1 / DQ0, DQ3 / DQ2 and DQ6 / DQ7 share one per pair (x 40.0, 41.6, 42.925); the one of DQ5 stands at (38.65, 4.68), above the end of the key slot |
-| 5.00 | 240 ohm series resistor on the finger's face and 150 ohm shunt on the other face, back to back (lands y 4.45-5.55: all sixteen within 5.55 mm of the card edge) |
+| 5.00 | 110 ohm series resistor on the finger's face and 100 ohm shunt on the other face, back to back (lands y 4.45-5.55: all sixteen within 5.55 mm of the card edge) |
 | 6.00 | node via = **the T**: plain 0.40 / 0.20 via on the column axis, its pad 0.25 mm from the lands. The F.Cu tooth comes straight down the column axis into it, the In3 read branch leaves it, and the two 0.20 mm links (0.68 mm) go south to the two resistors |
 
 Nothing stands north of the node row in the DQ columns, and no wire runs between two columns on F.Cu or B.Cu. The read branch is described in
@@ -286,22 +346,31 @@ section 14.
 
 | Net | Series / shunt | Level at the ball | Pin current | Limits |
 |---|---|---|---|---|
-| DQ0-7 write | 240 / 150 ohm | 0.389 / 0.423 / 0.460 V | 2.8 / 3.1 mA | <= VDDQ(min) 0.47 V; VREF(DQ) = 0.21 V (MR14, max 0.225 V) |
-| WCK legs | 91 / 68 ohm | 0.378 / 0.418 / 0.468 V | 6.2 / 6.9 mA | >= 0.30 V p-p differential |
+| DQ0-7 write | 110 / 100 ohm | 0.461 / 0.501 / 0.542 V | 5.0 / 5.4 mA | 0.50 V +/-15 mV typical: +1.5 mV; fast corner 8.5 mV under the 0.55 V maximum and 53.9 mV above the card's VDDQ minimum (deliberate, section 1); VREF(DQ) starts at 0.225 V (MR14 0x46) |
+| WCK legs | 75 / 75 ohm | 0.458 / 0.502 / 0.545 V | 6.7 / 7.3 mA | >= 0.30 V p-p differential; each leg 0.50 V +/-15 mV typical, fast corner 4.9 mV under the 0.55 V maximum |
 
-- The shunt is fixed by the read level (section 3); 240 ohm is then the smallest E24 series value that keeps the
-  fastest corner below 0.47 V (200 ohm gives 0.508 V).
-- **Write speed.** Node source resistance 150 || (240 + 36) = 97 ohm into about 27 pF (read branch 4.8 pF: up to 24.2 mm of
+- **Both follow the 0.50 V policy of section 1** (the user's decision): WCK went from 91 / 68 to 75 / 75 ohm (four parts, R209, R210, R219,
+  R220), the write DQ from 240 / 150 to 110 / 100 ohm (sixteen parts, R201-R208 and R211-R218), all on their 0201 lands. Simulated static
+  highs (slow / typ / fast, nominal resistors): write DQ 0.461 / 0.496 / 0.530 V, WCK 0.457 / 0.496 / 0.533 V. Before: 0.398 / 0.429 / 0.461 V
+  and 0.395 / 0.433 / 0.471 V in this table.
+- The shunt is also the read load (section 3): lowering it from 150 to 100 ohm for the write level costs about 40 mV of read level.
+  110 ohm is the E24 series value that puts the level on 0.50 V with it (back impedance 100 || (110 + 39) = 59.8 ohm).
+- **VREF(DQ).** The write eye is centred at about 248 mV. The simulation took 225 mV as the highest setting and evaluated every write margin
+  there, 20 mV off centre: +144 / +142 / +146 mV typ / slow / fast (section 16). Start with **MR14 0x46** (45.0 % of VDDQ = 0.225 V).
+  J **Table 91 note 4** gives 225 mV as the ceiling only for WCK above 1600 MHz and allows 350 mV at or below 1600 MHz; this card writes
+  with WCK at 50 MHz, so training may raise the code toward the centre (0x4F = 49.5 % = 0.247 V). No margin was simulated above 225 mV.
+- **Write speed.** Node source resistance 100 || (110 + 29.3) = 58 ohm into about 27 pF (read branch 4.8 pF: up to 24.2 mm of
   In3 and 9.4 mm of finger track, on the node directly; host read line 11.3 pF, FPGA package
-  and pad 6.3 pF, line, ball and die 4.5 pF): tau 2.6 ns, 10-90 % about 5.8 ns (worst net, DQ4).
-  At 100 Mb/s, the design target, the audit simulation gives 0.35-0.43 V high and 5.6-7.6 ns of eye at the die
-  with about 4 % ISI (JEDEC has no minimum DQ input slew). 200 Mb/s is not supported by this node.
-- With the 40 ohm WCK ODT that command-bus training forces, WCK is 0.34 V p-p and about 2 V/ns in the slowest
-  driver corner: at the JEDEC minimum. CBT is not needed for this card; do not rely on it.
-- The write pin is Hi-Z during reads (driving it low would cost 36 mV of read level).
+  and pad 6.3 pF, line, ball and die 4.5 pF): tau 1.6 ns, 10-90 % about 3.5 ns (worst net, DQ4). It was 96 ohm and 2.6 ns with 240 / 150 ohm.
+  At 100 Mb/s, the design target and the only data rate simulated, the merged simulation gives an eye 438 / 407 / 467 mV high at the pin
+  (typ / slow / fast) and the level is flat 2.5 ns before the sampling instant (JEDEC has no minimum DQ input slew). The node no longer
+  limits writes to 100 Mb/s by itself; no higher rate was simulated and none is claimed.
+- With the 40 ohm WCK ODT that command-bus training forces, WCK is 0.41 V p-p in the slowest driver corner (JEDEC minimum 0.30 V).
+  CBT is not needed for this card; do not rely on it.
+- The write pin is Hi-Z during reads (driving it low would cost about 60 mV of read level).
 
-**WCK.** Fingers 137 / 139 are on the front; each leg has a column on F.Cu: 91 ohm series resistor
-(y = 5.00), node via (6.00), 68 ohm shunt (7.00), the links 0.20 mm wide like those of the DQ columns. The GND vias of the two shunts
+**WCK.** Fingers 137 / 139 are on the front; each leg has a column on F.Cu: 75 ohm series resistor
+(y = 5.00), node via (6.00), 75 ohm shunt (7.00), the links 0.20 mm wide like those of the DQ columns. The GND vias of the two shunts
 (y = 7.90) are mirror images about the axis of the B.Cu pair, 0.55 mm on either side of it (0.20 mm from each leg). The B.Cu pair
 leaves the via-in-pads of D5 / E4 on the one diagonal of via-free balls (D3 - C2 - B1, south of the VDD1 ball C1 and its capacitor),
 runs east as the lowest lane (y 9.95 / 10.15) and turns south into its two columns: WCK_N goes straight into its node via, WCK_P
@@ -338,19 +407,39 @@ to the data either: it arrives 30.3 ps after the centre of the group, 26.6 ps be
 
 DQ avoids the host-coupled strobe pairs (a data edge would couple into its own reference); RDQS takes one of them (DQS6: 219 / 221,
 T1U, a QBC pair, routed as a 6.5 mil pair on the ZCU104).
-Vivado accepts `IBUFDS_DPHY` / MIPI_DPHY_DCI and `IBUFDS` / SLVS_400_18 (no differential termination) on
+**The supported read receiver is `IBUFDS_DPHY` with MIPI_DPHY_DCI (no differential termination), and no other.** Vivado accepts it on
 these bank-66 pins, through bitstream, with the final pin set of fingers 182 ... 232 (Vivado 2026.1 pin check: section 8, item 31).
+*SLVS_400_18 on a plain `IBUFDS` was offered as a fall-back receiver until the merged system simulation and is dropped* (decision of the
+user, "Do both"): it needs 140 mV of differential, and at the default reference the simulation gives +25 / -13 / +34 mV of mask margin
+typ / slow / fast against +95 / +57 / +104 mV for MIPI_DPHY_DCI (section 16). Vivado's acceptance of the standard on these pins (legality
+only) stays on record in `design/gateware/vivado_pincheck/` (cases M2, N4); the override XDC is no longer generated.
 
-**Levels.** Read high = VDDQ x Rload / (Rpu + Rload) with the 150 ohm shunt as the only DC load. Reference 0.195 V.
+**Levels.** Read high = VDDQ x Rload / (Rpu + Rload) with the 100 ohm shunt as the only DC load (150 ohm until the 0.50 V divider set: the
+read level is about 40 mV lower than it was). Reference 0.175 V, the centre of the simulated eye in the typical corner.
 
-| Basis | Read high | VID (one) | VICM (one) | Margins: VICM <= 330 / pin <= 460 / SLVS VID >= 140 mV |
+| Basis | Read high | VID (one) | VICM (one) | Margins: VICM <= 330 / pin <= 460 / VID >= 70 mV |
 |---|---|---|---|---|
-| LPDDR4X IBIS proxies, 0.766-0.792 x VDDQ | 0.374 / 0.386 / 0.405 V | +179 to +210 mV | 284-300 mV | +30 / +55 / +39 mV |
-| J Table 472, un-terminated pull-up 28-52 ohm (the specification bound) | 0.362 / 0.394 / 0.431 V | +167 to +236 mV | 278-313 mV | +17 / +29 / +27 mV |
+| LPDDR4X IBIS proxies (0.766-0.792 x VDDQ into 150 ohm, taken as a pull-up of 39-46 ohm) | 0.334 / 0.346 / 0.367 V | +159 to +192 mV | 255-271 mV | +59 / +93 / +89 mV |
+| J Table 472, un-terminated pull-up 28-52 ohm (the specification bound) | 0.321 / 0.357 / 0.400 V | +146 to +225 mV | 248-288 mV | +43 / +60 / +76 mV |
 
-Zero state: P 0 V, N 0.195 V, VID -195 mV, VICM 97.5 mV (>= 70 mV: +27 mV; SLVS VID: +55 mV).
-If the measured high level is above 0.42 V, keep VREF_RD at or below 0.20 V (half the level would leave only
-7 mV of VICM margin). Requires MR17 OP[2:0] = 110b (pull-up strength defined), MR3 PDDS 40 ohm, ZQ calibrated.
+Zero state: P 0 V, N 0.175 V, VID -175 mV, VICM 87.5 mV (>= 70 mV: +17.5 mV).
+**Reference rule (section 16): measure the read high level and set VREF_RD to half of it, never above 0.21 V and never below 0.14 V** (the
+common mode of a zero is VREF_RD / 2 and must stay at or above 70 mV). The merged simulation centres the eye at 156 / 175 / 198 mV
+(slow / typ / fast) with +65 / +89 / +113 mV of margin.
+
+**Power-up: no reference, no reads.** R332 is NOT FITTED (below), so nothing but the DAC drives the bus. With the DAC unprogrammed its
+output is Hi-Z (factory default, DAC53401 data sheet 8.3.1; GENERAL_CONFIG resets to DAC_PDN = 10) and **VREF_RD is 0 V** through R333:
+a zero has no differential (P 0 V, N 0 V) and the common mode is 0 V, outside the receiver's window. **So reads do not work until the
+gateware has written the DAC over I2C, or until the DAC's non-volatile default has been programmed once on that board.** Both sequences
+are below and in `design/gateware/BRINGUP.md` section 4; the bring-up order puts the DAC write before the first read. This is the price
+of the user's decision ("Make the range of vref go down to 0" - "Drop the VDDQ pull-up"): with R332 fitted the bus stood at 0.174 V
+without any I2C traffic (about +47 / +88 / +89 mV of estimated margin slow / typ / fast), with a floor of 0.129 V.
+
+At the set value (0.175 V, the simulated centre of the typical eye) and at the centres of the other corners the margins are the simulated
+ones: +89 / +65 / +113 mV typ / slow / fast (section 16). VREF_RD no longer follows VDDQ at all: the read high level moves with VDDQ
+(+/-2.4 % on the card, +/-4.2 mV of half the level), the reference does not (with R332 it followed with a factor of 0.26).
+
+Requires MR17 OP[2:0] = 110b (pull-up strength defined), MR3 PDDS 40 ohm, ZQ calibrated.
 The pin sees the same static levels as the node: the read branch carries no DC current and no series resistor (the ten
 22 ohm resistors R301-R308, R311, R312 were removed on the user's remark, section 10). What that leaves is an open FPGA end
 for 1-2 ns after each edge (line simulation `scripts/read_linesim.py`, lossless, re-run by `check_netlist.py`; mean
@@ -358,32 +447,65 @@ lengths of the eight nets in the first rows, every net with its own lengths in t
 
 | DRAM driver (pull-up / pull-down) | Peak at the pin | Minimum at the pin | Outside the MIPI HS window -40..460 mV, per edge | From the final level after 5 ns / 8 ns |
 |---|---|---|---|---|
-| 40 ohm setting, 30 % strong (28 ohm, the JEDEC bound) | 0.539 V | -0.122 V | 1.6 ns above, 1.6 ns below | 5 / 9 mV |
-| 40 ohm setting, nominal | 0.445 V | -0.056 V | never above, 0.3 ns below | 17 / 10 mV |
-| 40 ohm setting, 30 % weak (52 ohm) | 0.379 V | -0.015 V | none | 23 / 13 mV |
-| 48 ohm setting, strong / nominal | 0.491 / 0.399 V | -0.087 / -0.027 V | 0.5 + 1.3 ns / none | 12 / 9 mV, 22 / 12 mV |
-| 60 ohm setting, strong / nominal | 0.433 / 0.345 V | -0.048 / +0.004 V | 0.2 ns below / none | 19 / 11 mV, 26 / 15 mV |
-| for comparison, with the 22 ohm series resistors that were removed (worst corner) | 0.429 V | -0.012 V | none | |
-| every net with its own lengths, strong corner (line 123-171 ps, read branch 80-228 ps) | 0.522-0.549 V | -0.105 to -0.131 V | up to 1.7 ns | 6 / 11 mV |
+| 40 ohm setting, 30 % strong (28 ohm, the JEDEC bound) | 0.510 V | -0.120 V | 0.5 ns above, 1.5 ns below | 9 / 3 mV |
+| 40 ohm setting, nominal | 0.417 V | -0.061 V | never above, 0.2 ns below | 5 / 4 mV |
+| 40 ohm setting, 30 % weak (52 ohm) | 0.352 V | -0.025 V | none | 12 / 6 mV |
+| 48 ohm setting, strong / nominal | 0.462 / 0.371 V | -0.088 / -0.035 V | 0.1 + 0.5 ns / none | 2 / 3 mV, 10 / 5 mV |
+| 60 ohm setting, strong / nominal | 0.404 / 0.319 V | -0.053 / -0.009 V | 0.2 ns below / none | 6 / 4 mV, 15 / 7 mV |
+| for comparison, with the 22 ohm series resistors that were removed (worst corner) | 0.389 V | +0.002 V | none | |
+| every net with its own lengths, strong corner (line 123-171 ps, read branch 80-228 ps) | 0.486-0.522 V | -0.096 to -0.133 V | up to 1.6 ns | 11 / 7 mV |
 
 The recommended range of the pin is -0.20 .. 1.40 V (DS925, HP bank at 1.2 V; absolute -0.55 .. 1.75 V): the worst
-excursion (-0.131 V, on DQ4, whose read branch is the longest: 228 ps) is 69 mV inside it. The single-ended window of the MIPI HS receiver (-40 .. 460 mV) is exceeded for up to
-1.6 ns per edge with a strong driver and for 0.3 ns (undershoot only) with a nominal one; with the 22 ohm resistors it never was.
+excursion (-0.133 V, on DQ4, whose read branch is the longest: 228 ps) is 67 mV inside it. The single-ended window of the MIPI HS receiver (-40 .. 460 mV) is exceeded for up to
+1.5 ns per edge with a strong driver and for 0.2 ns (undershoot only) with a nominal one; with the 22 ohm resistors it never was.
 That margin is what the removal gives up. At 100 Mb/s the sample falls 5 ns or more after the edge, where the pin is
-within 26 mV of its final level in every corner (the slow tail is the write-side host line charging through 240 ohm).
+within 15 mV of its final level in every corner (the slow tail is the write-side host line charging through 110 ohm).
 If the bench shows the receiver to mind the excursion, the damping is a gateware change:
-MR3 drive strength 48 or 60 ohm, or the MR17 pull-up code, at the price of read level (60 ohm nominal: 0.357 V high).
+MR3 drive strength 48 or 60 ohm, or the MR17 pull-up code, at the price of read level (60 ohm nominal: 0.312 V high).
 
-**Reference network.** VREF_RD has three branches: DAC_OUT 300 ohm, VDDQ 300 ohm, GND 180 ohm, plus 1 uF.
-- DAC output Hi-Z (factory default, DAC53401 data sheet 8.3.1): 0.4996 x 180 / 480 = **0.187 V**, 112 ohm source. Reads work before any I2C traffic.
-- DAC active: V = 0.2727 x Vdac + 0.136 V, 82 ohm source. Internal reference x1.5 (1.815 V full scale): 0.136-0.631 V
-  in 0.48 mV steps; code 121 gives 0.195 V. It cannot go below 0.136 V (the 0.14 V floor of the receiver) and, even
-  if set to the VDD reference at full scale (3.3 V), stays at 1.04 V, inside the FPGA's input range.
-- Worst-case pin leakage (8 x 15 uA) moves it 10 mV.
-- All three branches are DC paths and each needs its copper: the DAC branch (U5 - DAC_OUT - R331) and the GND
-  branch are routed with the data side, R333 and the 1 uF C331 each on a 0.8 mm link to its own GND via
-  ((62.00, 12.75) and (61.00, 8.20), solid in In1 / In2 / In4, no thermal spoke of a pour); the VDDQ branch (R332
-  pad 1) is fed on F.Cu from the VDDQ test pad TP3 (0.25 mm track, section 15); gate 7 checks that it is connected.
+**Reference network.** DAC_OUT - 300 ohm (Ra, R331) - VREF_RD - 160 ohm (Rc, R333) - GND, plus 1 uF and the eight 100 nF. **R332 is NOT FITTED**
+(Rb, 300 ohm from VDDQ to the bus: DNP in the schematic, the board, the BOM and the placement files; its lands stay). R333 (Rc) is 160 ohm
+(180 ohm in the first builds). Computed by `scripts/build_netlist.py` (`analysis.reference`, `analysis.read.power_up`) and re-derived by
+`check_netlist.py`; in brackets the figures with R332 fitted.
+- **Why R332 is left out.** The pull-up to VDDQ gave the bus its power-up default and, with it, a floor: the DAC could not bring VREF_RD
+  under 0.129 V. The user asked for a range down to 0 V and chose to drop the pull-up. The cost is the power-up behaviour above.
+- DAC output Hi-Z (factory default): **0 V**, 160 ohm to GND (0.1738 V, 104.3 ohm).
+- DAC active: **V = 0.3478 x Vdac**, no offset (V = 0.2581 x Vdac + 0.1289 V), 104.3 ohm source (77.4). Internal reference x1.5 (1.815 V full
+  scale; VOUT = code / 1024 x 1.815 V): **0 .. 0.631 V** in 0.617 mV steps (with R332: 0.129 to 0.597 V, 0.457 mV). **code 284 gives 0.175 V**, the
+  starting value (DAC_DATA register 0x0470); codes 253 / 284 / 321 for the simulated centres 0.156 / 0.175 / 0.198 V. The codes of earlier
+  notes (80, then 101, for 0.175 V) no longer apply.
+- **Codes below 228 (0.14 V) are reachable and not usable for reads with this receiver**: the common mode of a zero is VREF_RD / 2 and the
+  MIPI D-PHY HS receiver needs 70 mV. The window for reads is codes 228 .. 340 (0.14 .. 0.21 V); the rest of the range is there for
+  experiments (another receiver standard, margining), which is what the user asked for.
+- **A wrong code cannot hurt the FPGA.** Full scale on the internal reference: 0.631 V. If the DAC is set to the VDD reference by mistake
+  (REF_EN = 0) at full scale: 1.148 V, and 1.205 V at 3.3 V + 5 % (it was 0.98 / 1.03 V), under the 1.40 V recommended maximum of the pins
+  (DS925); the reference reaches them through 39 ohm.
+- Worst-case pin leakage (8 x 15 uA) moves the bus 12.5 mV with the DAC active (9.3 mV). Static error budget: leakage 12.5 mV, DAC and
+  resistors 2.4 mV, VDDQ term gone: 14.9 mV (16 mV in the simulation record).
+- DAC noise and code glitches reach the bus attenuated by 0.348 instead of 0.258, behind the pole of 104 ohm and 1.8 uF (0.85 kHz).
+  The N-branch noise of section 16 was simulated with an 82 ohm source; it was not re-simulated.
+- **The DAC's load is unchanged in kind:** it drives 300 + 160 = 460 ohm to GND (3.9 mA at full scale, 1.1 mA at the set point; with R332
+  it saw 300 + (300 || 160) ohm), and the 1 uF + 8 x 100 nF stay behind the 300 ohm of R331 (the data sheet allows 1 nF directly at OUT).
+  The bus settles with 0.19 ms; wait 1 ms after the write.
+- **I2C, set point** (address 0x48 behind the ZCU104 switch 0x74 port 7; 16-bit registers, MSB first; DAC53401 data sheet
+  `references/parts/TI_DAC53401.txt` 8.6):
+
+      WRITE DAC_DATA (0x21) = 0x0470          code 284 << 2 (bits 11:2): VREF_RD = 0.175 V
+      WRITE GENERAL_CONFIG (0xD1) = 0x01E4    DAC_PDN = 00 (power up), REF_EN = 1, DAC_SPAN = 00 (gain 1.5), SLEW_RATE = 1111
+
+- **I2C, store as the power-up default, once per board** (data sheet 8.3.3, Table 1, 8.6.4, and the pseudocode of 9.2.1.2):
+
+      the two writes above
+      WRITE TRIGGER (0xD3) = 0x0010           NVM_PROG = 1 (self-resetting): DAC_DATA and GENERAL_CONFIG go to the NVM
+      wait until STATUS (0xD0) bit 13 NVM_BUSY = 0   (EEPROM write 5 / 10 / 15 ms); no access to a DAC register meanwhile
+      power-cycle and check TP4 = 0.175 V without any I2C traffic
+
+  A board stored this way reads without I2C traffic; the gateware should still write the DAC, because a board that was not stored does
+  not. NVM endurance 20000 cycles. (Table 1 of the data sheet lists DAC_DATA under 10h; the register map and the pseudocode use 21h.)
+- The DAC branch (U5 - DAC_OUT - R331) and the GND branch are routed with the data side, R333 and the 1 uF C331 each on a 0.8 mm link to
+  its own GND via ((62.00, 12.75) and (61.00, 8.20), solid in In1 / In2 / In4, no thermal spoke of a pour). **Copper now unused, left in
+  place:** the lands of R332 and the 0.25 mm F.Cu track that feeds its pad 1 from the VDDQ test pad TP3 (19 mm, section 15); gate 7 still
+  checks that it is connected. Fitting 300 ohm on R332 restores the 0.174 V default and the 0.129-0.597 V range.
 - Each N finger: stub -> 39 ohm -> VREF_RD with 100 nF to GND beside the resistor. The 39 ohm matches the host line, so
   anything coupled onto the open-ended N line is absorbed after one transit instead of resonating near 370 MHz.
   N lines are never routed across the card.
@@ -429,7 +551,7 @@ via, 0.20 mm wide (45.6 ohm) all the way into the finger. The tracks of fingers 
 (0.15 mm); that of 212 leaves its axis above the row and that of 215 keeps its step (above). Seven of the eight read fingers are
 on B.Cu; their tracks pass the front-side N networks on the other face. No read finger track crosses an In3 read line (section 14).
 
-**RDQS.** True differential, no reference: each leg 150 ohm to GND, no series part (VID +/-0.386 V,
+**RDQS.** True differential, no reference: each leg 150 ohm to GND (not changed with the DQ shunt), no series part (VID +/-0.386 V,
 VICM 0.193 V while the DRAM drives). Needs MR20 OP[1:0] = 10b. It tells on the bench whether a
 read problem is the receiver or the reference. When the DRAM does not drive, both legs sit at 0 V, outside the
 receiver's window: the receiver output is valid only inside the read burst and is gated with the read-enable window.
@@ -474,7 +596,9 @@ from any other In3 copper.
 **Why the N fingers carry 39 ohm + 100 nF at the fingers instead of going straight to the DAC.** An N line of the host is about 73 mm of 39 ohm
 line that ends open at the FPGA pin. Tied directly to a far reference it would be an unterminated stub that rings near 370 MHz with everything
 coupled onto it; the 39 ohm at the finger absorbs that after one transit, and the 100 nF beside it makes the reference local to each pair, so
-the eight N pins do not share return current through a long reference track. The DAC then only sets the DC level.
+the eight N pins do not share return current through a long reference track. The DAC then only sets the DC level, through the 300 / 160 ohm
+divider that scales its 1.815 V range to 0 .. 0.63 V, keeps a wrong code under the pin limit and isolates its output from the 1.8 uF of the bus.
+There is no divider from VDDQ any more (R332 not fitted): the level is the DAC's alone.
 
 **Why only the command bundle has serpentines.** It is the only group that is delay-matched on the card (section 1). The data groups are
 closed per bit in the FPGA, by the user's decisions (section 10), so their wires are as short and as straight as the form allows; the one
@@ -513,6 +637,7 @@ other tuning feature of the board is the skew bump of RDQS_P beside U1.
 - **Power-up against J Table 19 / 20.** VDD1 starts when 3.3 V and 1.2 V are both present (100 us), VDD2H ramps
   for 3.3 ms behind it (VDD1 > VDD2H holds from the first 300 mV), VDDQ starts when VDD2H is above 90 %
   (VDD2L > VDDQ - 0.2 V holds). All rails in range about 5 ms after the first one moves (tINIT0 <= 20 ms).
+  The read reference is not a rail and does not come up by itself: VREF_RD is 0 V until the DAC is written (section 3).
   Any host rail order works: nothing starts until both host rails are up. On the ZCU104 one signal
   (UTIL_5V0_PGOOD) releases 3.3 V, 2.5 V and 1.2 V together and their order is set by PMIC firmware, which is
   why the card does not depend on it.
@@ -607,8 +732,8 @@ the In3 command bundle 15 times in plan view. What the guidance says:
   of that device without a connection; for DDR4 it says "DQ[15:8] can be left floating" and ties only the unused strobe pair to its inactive levels.
 - **Micron TN-40-40** (DDR4 point to point, Table 11): unused DQ "can be floated". Only TN-46-14 (DDR1, 2008) asks for pull-downs.
 - The card already relied on it: all 16 DQ, both DMI and both RDQS of channel B, and RDQS1 of channel A, are open.
-- A mode register is not needed: DQ ODT (MR11) would hold the open balls at VSS during writes but would also load DQ0-7 (write high 0.42 V
-  falls to about 0.30 V): not used.
+- A mode register is not needed: DQ ODT (MR11) would hold the open balls at VSS during writes but would also load DQ0-7 (write high 0.50 V
+  falls to about 0.40 V with 240 ohm): not used.
 
 So there are no arrays, no escapes and no GND vias for them; the eight balls are listed in `no_connect` with the reason, and the command bundle is
 crossed 15 times instead of 30. **R404 / R405 stay** (WCK1_t low, WCK1_c high through 10 k each): WCK1 is an input-only differential clock whose
@@ -709,7 +834,7 @@ All supply balls were checked ball by ball against the upstream schematic export
 | command in3 tuning | 15.5-24.8 | 7.75-11.5 | In3 | length tuning of CA / CS: parallel shifts and bumps (continues 0.2 mm under the U1 outline) |
 | U1 | 14.525-26.925 | 11.5-26.5 | F, In3, B | U1, via-in-pads, In3 command bundle; byte-0 corner: the eight F.Cu necks, the WCK pair on B.Cu (diagonal D3 - C2 - B1), the RDQS pair on In3 (row channel B / C); decoupling on B.Cu |
 | write field wck | 34.2-36.85 | 4-8.2 | F, B | WCK columns: R209, R210 (series), node vias, R219, R220 (shunts), their GND vias; B.Cu: the last 2 mm of the pair |
-| write field dq | 36.85-44.3 | 4-6.6 | F, B | DQ columns: R201..R208 (240R, on the finger's face) and R211..R218 (150R, back to back on the other face), the eight node vias (the T) at y = 6.00, the shunt GND vias south of the row, three return vias |
+| write field dq | 36.85-44.3 | 4-6.6 | F, B | DQ columns: R201..R208 (series, on the finger's face) and R211..R218 (shunt, back to back on the other face), the eight node vias (the T) at y = 6.00, the shunt GND vias south of the row, three return vias |
 | dq teeth f cu | 36.85-44.3 | 6.6-10.4 | F | the eight teeth of the comb, straight down the column axes |
 | dq lines f cu | 26.925-44.3 | 10.4-16.6 | F | the eight DQ lines at 0.55 mm pitch and their one parallel 45-degree fan |
 | wck run b cu | 26.925-36.85 | 8.2-10.5 | B | WCK pair running east as the lowest lane, turning south into its columns |
@@ -737,11 +862,11 @@ All supply balls were checked ball by ball against the upstream schematic export
 
 **The one place for the gateware is `design/gateware/`** (written by `scripts/gen_gateware.py` at every build from `design/netlist.json` and
 `design/gateware_deskew.json`): `PINMAP.md` / `pinmap.csv` (every FPGA pin with finger, net, ball, bank, nibble, standard), `lpddr5_testbed_zcu104.xdc`
-(+ `_rx_slvs.xdc` for the fall-back receiver), `lpddr5_testbed_pins.vh` (polarities and per-bit delays), `BRINGUP.md` (pin states, reset timing, the
+(the command pins in it are enforced: SSTL12 / DIFF_SSTL12, SLEW FAST, RDRV_40_40, no DCI), `lpddr5_testbed_pins.vh` (polarities, per-bit delays, the command ODELAY starting values), `BRINGUP.md` (pin states, reset timing, the
 mode-register writes byte by byte, the DAC, the receiver, what to measure first) and `vivado_pincheck/` (a top level on the real pins and its Vivado
 2026.1 results). This section states what the hardware assumes; the files carry the detail.
 
-- **Clock plan.** WCK is tied to CK at 2:1 (MR18 OP[7] = 1, the reset default) or 4:1. The data target is 100 Mb/s (set by the 2.6 ns write node,
+- **Clock plan.** WCK is tied to CK at 2:1 (MR18 OP[7] = 1, the reset default) or 4:1. The data target is 100 Mb/s (the design target and the only data rate simulated,
   section 2), i.e. WCK = 50 MHz: **every READ and WRITE runs at CK = 25 MHz (2:1) or 12.5 MHz (4:1)**; tCK(avg) may be as long as 200 ns. **CK = 800 MHz
   (1.6 Gb/s on CA) is for command-only traffic**, the purpose of the card. The controller changes the clock frequency between the command stream
   and any read or write (clock change, J 7.6.7, or frequency set points, J 7.6.3), each set point with its own latencies (MR1 / MR2), VREF (MR12 /
@@ -752,19 +877,32 @@ mode-register writes byte by byte, the DAC, the receiver, what to measure first)
 - Mode registers (whole bytes in `BRINGUP.md`): MR13 = A0h: OP[7] = 1 (single VDD2 rail), OP[5] = 1 (data mask off), OP[4] = 0 (DMI behaviour mode 1:
   mode 2 with data mask on would drive DMI into the strap during READ DQ CALIBRATION, J Table 234); MR17 = 3Eh: OP[2:0] = 110b (pull-up strength
   defined) with OP[5:3] = 111b (CK / CS / CA termination off); MR3 PDDS = 40 ohm; MR11 = 00h and MR18 OP[2:0] = 000b (all DRAM ODT off: defaults,
-  written explicitly); MR20 OP[1:0] = 10b; MR12 / MR14 VREF trained (about 42 %, 0.21 V).
+  written explicitly); MR20 OP[1:0] = 10b; VREF: MR12 0x4A (47.0 %, 0.235 V) and MR14 0x46 (45.0 %, 0.225 V; section 2) as starting codes, then trained.
 - Never used, because DMI is strapped to VSS: READ FIFO, read DBI, link ECC, read data copy, MASKED WRITE, CBT
   mode 2. READ DQ CALIBRATION is fine (DMI driver off in mode 1).
 - Read pins input-only in the XDC; `IBUFDS_DPHY` with `IOSTANDARD = "MIPI_DPHY_DCI"` on the instance,
-  `DIFF_TERM = "FALSE"`, `HSRX_DISABLE = 0`, `LPRX_DISABLE = 1`. VREF_RD at or below 0.20 V if the read high level is above 0.42 V.
+  `DIFF_TERM = "FALSE"`, `HSRX_DISABLE = 0`, `LPRX_DISABLE = 1`: the only supported receiver (no SLVS_400_18 fall-back, section 3).
+  VREF_RD: half the measured read high level, never above 0.21 V and never below 0.14 V; starting value 0.175 V (DAC code 284). **VREF_RD is
+  0 V until the DAC is written (R332 not fitted, section 3): the gateware writes DAC_DATA (0x21) = 0x0470 and GENERAL_CONFIG (0xD1) = 0x01E4 and
+  waits 1 ms before the first READ or MRR**, unless the DAC's NVM default was stored on that board; it should write it in either case. Codes below 228
+  (0.14 V) are not usable for reads.
 - The RDQS receiver output is valid only inside the read burst: gate it with the read-enable window.
 - All divider-driven pins low until the rails are up; write DQ pins Hi-Z during reads. No power-good of the card reaches the FPGA (it would cost a
   finger, a level shift from 3.3 V and a route across the read end), so "until the rails are up" is a fixed wait: the card's rails are in range about
   5 ms after the host rails, long before configuration ends; then RESET_n low for at least 200 us, CS low 10 ns before and 2 ms after RESET_n rises
   (J Table 20).
-- Option: RDRV_48_48 on the command pins (IBIS 30 / 35 / 42 ohm) matches the 39 ohm host line better than
-  RDRV_40_40 and still gives 0.386 / 0.420 / 0.453 V.
-- Static skew left by the +/-5 ps knowledge of the host is removed per bit with ODELAY / IDELAY.
+- **Command pins: SSTL12 / DIFF_SSTL12, SLEW FAST, `OUTPUT_IMPEDANCE RDRV_40_40`, no DCI, and nothing else** (section 1: the driver that the
+  0.50 V level and every simulated margin were obtained with). `scripts/gen_gateware.py` refuses to write another setting for the ten command ports, and
+  `gen_gateware.py --check` (a gate of the build) reads the XDC on disk back and fails on any other standard, slew or drive, on a DCI
+  attribute, and on a left-over SLVS override file. The option RDRV_48_48 that earlier revisions offered stays withdrawn (it was not simulated; the boot floor
+  no longer forbids it, section 1).
+- **Levels above VDDQ.** CA, CK, WCK and write DQ are 0.50 V typical and rest above the card's VDDQ in the fast corner (section 1). Keep idle
+  lines low where the protocol allows (CA low when idle, write DQ Hi-Z or low outside write bursts), so that the standing level is there only while a line is in use.
+- **Command ODELAY starting values** (merged system simulation, section 16): the socket delays the front-side fingers 17 ps more than the
+  back-side ones, which the card's match (641.77 ps on all ten nets) does not contain. Start with CA5 +27, CA0 +20, CA3 +20, CA1 +12,
+  CA4 +7, CA6 +3, CA2 0 ps; CS and CK 0 (`CA_ODELAY_START_PS` in `lpddr5_testbed_pins.vh`, table in `BRINGUP.md` section 8). They are
+  training values, not constants.
+- Static skew left by the +/-5 ps knowledge of the host is removed per bit with ODELAY / IDELAY, together with the above.
 - **Pin map of the data byte** (`design/gateware_deskew.json` carries it with the delays; the command pins are unchanged):
 
   | Bit | Write finger | FPGA ball (bank 64) | Byte group | Output delay ps | Read finger P / N | FPGA ball P (bank 66) | Byte group | Read total ps | To the strobe ps | Input delay ps |
@@ -815,11 +953,11 @@ mode-register writes byte by byte, the DAC, the receiver, what to measure first)
 - RESET_n is the only output in bank 66 (LVCMOS12 DRIVE 8, static, AP11, byte group T0L): Vivado accepts it beside the eight MIPI_DPHY_DCI read pairs and
   the strobe of that bank (Vivado 2026.1 pin check, section 8, item 31). The default 12 mA drive is rejected in an HP bank.
 - CK_t is on AM21, whose second function is SMBALERT: an ordinary I/O after configuration; before it, the pin could at most move the CK_t divider
-  node between 0 V and 0.42 V while the DRAM is in reset.
+  node between 0 V and 0.50 V while the DRAM is in reset.
 - Tool versions: `IDELAYCTRL` needs `SIM_DEVICE = "ULTRASCALE_PLUS"` in Vivado 2026.1 (2023.1 wants "ULTRASCALE"); keep the `IOSTANDARD` attribute
   on every `IBUFDS_DPHY` instance (2023.1 refuses the bitstream without it).
-- The reference DAC is on the PS I2C1 bus behind the switch at 0x74, port 7 (also reachable from PL pins N12 / P12); reads work without it at the
-  0.187 V default.
+- The reference DAC is on the PS I2C1 bus behind the switch at 0x74, port 7 (also reachable from PL pins N12 / P12); **no read works before the DAC has been
+  written through it** (or its NVM default stored once): the I2C path is part of the read path at start-up.
 
 ## 8. Open risks, and what to measure first
 
@@ -827,37 +965,44 @@ mode-register writes byte by byte, the DAC, the receiver, what to measure first)
 
 The order below is the order of `design/gateware/BRINGUP.md` section 7, which gives the expected value of every step.
 
-1. **Rails** on TP1 .. TP5 and the host 1.2 V at the card under load (items 10, 11 below), before U1 is trusted with anything.
-2. **A static high at a divider node** (command, CS, write DQ): gives the real driver resistance (item 2).
+1. **Rails** on TP1 .. TP5 and the host 1.2 V at the card under load (items 10, 11 below), before U1 is trusted with anything. TP4 (VREF_RD) reads 0 V
+   until the DAC is written: **write the DAC now** (section 3) and check 0.175 V on TP4. It must precede every read.
+2. **A static high at a divider node** (command, CS, write DQ): gives the real driver resistance (item 2) and, with VDDQ on its test pad, how far
+   the line rests above VDDQ (item 40): the cost of the 0.50 V level.
 3. **Termination really off** on the read pins: under 1 mV across a 39 ohm N resistor (item 7).
 4. **RESET_n levels**, then the first mode-register read at the boot clock.
-5. **Read high level** into 150 ohm and its dependence on MR17 / MR3 (item 5); then the **VREF_RD sweep** against bit errors at 100 Mb/s with the
-   MIPI receiver and with the SLVS fall-back (item 6): this is the test of the pseudo-differential read scheme.
+5. **Read high level** into 100 ohm and its dependence on MR17 / MR3 (item 5); set VREF_RD to half of it; then the **VREF_RD sweep** against
+   bit errors at 100 Mb/s with the MIPI receiver (item 6): this is the test of the pseudo-differential read scheme.
 6. **A read finger with an active probe** for the three drive strengths (item 29): the open FPGA end rings for 1-2 ns per edge.
 7. **The unused half of the die and the idle channel B** (items 8, 9): supply currents and read stability.
-8. **The command eye at 1.6 Gb/s**, the purpose of the card (items 3, 4, 18): per-bit ODELAY and MR12 sweep against command errors; TDR of CA2
-   against CA0 at the fingers of a bare card checks the on-card match.
+8. **The command eye at 1.6 Gb/s**, the purpose of the card (items 3, 4, 18): per-bit ODELAY (starting values: section 7) and MR12 sweep
+   against command errors; TDR of CA2 against CA0 at the fingers of a bare card checks the on-card match.
+9. **The CK slew at the DRAM pin** (item 38): the one requirement the merged simulation does not meet at the ball (it does at the die).
+10. **Levels against VDDQ** with lines held high and held low: supply currents (item 40); then VrefDQ (item 41).
 
 Before ordering boards: obtain the SK hynix data sheet or package outline (item 1), agree the stackup, the finished thickness over the fingers and
-the via-in-pad process with the fab (items 14, 19, 27, 35), and decide the points of section 15.6 that were left to the user.
+the via-in-pad process with the fab (items 14, 19, 27, 35), and decide the points of section 15.6 that were left to the user
+and the revision label (item 43).
 
 ### 8.2 Assumptions that need bench or simulation confirmation
 
 1. **Part.** No data sheet of H58G56BK7BX068N is in the repository and none was found in public: body size, ball
    map, rank count, CS ODT and IDD are taken from JEDEC and Micron. CS1 is tied low, which covers a two-rank
    part. Obtain the SK hynix data sheet or package outline before ordering boards.
-2. **Driver resistance** 26-44 ohm (IBIS 25-35 ohm for "40 ohm", DS925 36-44 ohm). Measure a static high
-   at a divider node; all limits hold over the whole range.
-3. **Command eye at 1.6 Gb/s** with the real IBIS driver, the socket (HFSS: G-S-G contacts, finger, first via), the
-   divider column (stub, 0201 parts, node via and its fence via: ten signal vias in a row at 0.8 mm pitch with the nearest
-   GND via 1.70 mm away, probably the largest coupling term on the card) and the In3 bundle in the BGA via field. The
-   linear model gives 2.3 x mask height; crosstalk and the socket are not in it.
+2. **Driver resistance** 25.1 / 29.3 / 34.9 ohm fast / typ / slow (IBIS `HP_SSTL12_F_OUT40`: SSTL12 FAST RDRV_40_40 without DCI, the
+   driver the merged simulation uses). Measure a static high at a divider node. The level policy of section 1 is stated for that range; a
+   DCI driver or a weaker setting lowers the level under the 0.50 V target and was not simulated, which is why the constraint generator enforces the setting.
+3. **Command eye at 1.6 Gb/s**: simulated on the merged model with the real IBIS driver, the HFSS socket blocks and both boards
+   (section 16): the CA and CS masks pass at the DRAM pin in every corner (+59 mV at worst with the 0.50 V divider set as built; +37 mV with the 91 / 68 of the first build). What
+   remains for the bench: the DRAM pin and package are behavioural models, the FPGA rail noise is an upper bound, and the pin plane is not
+   fully converged at 5 GHz.
 4. **Unterminated CA / CK at 800 MHz.** If the eye needs it, CA ODT (MR11 / MR17) is a gateware change; it lowers
-   the level (240 ohm: 0.35 V).
-5. **Read high level** of the real LPDDR5 into 150 ohm (proxies 0.386 V, JEDEC bound 0.362-0.431 V) and its
+   the level (240 ohm: 0.42 V).
+5. **Read high level** of the real LPDDR5 into 100 ohm (proxies 0.346 V, JEDEC bound 0.321-0.400 V) and its
    dependence on MR17.
-6. **MIPI / SLVS receiver with one static leg**: 200 mV common-mode step per edge, input offset, FPGA package
-   P-to-N coupling. Sweep VREF_RD against bit errors at 100 Mb/s.
+6. **MIPI receiver with one static leg**: 200 mV common-mode step per edge, input offset, FPGA package
+   P-to-N coupling. Sweep VREF_RD against bit errors at 100 Mb/s. The merged simulation passes with +95 / +57 / +104 mV; the P pin leaves
+   the HS window for 1-2 ns after each edge and is inside it when sampled (section 16). SLVS_400_18 is not a supported alternative.
 7. **Termination really off** with `DIFF_TERM = FALSE`: under 1 mV across a 39 ohm N resistor with P at 0 V.
 8. **WCK1 static** while WCK0 toggles, and DQ8-15 left open, on a x16 die: JEDEC is silent; open DQ of an unused byte is what UG583 draws for
    LPDDR4 (section 5). Watch the VDDQ / VDD2H current and read stability; the pads of the eight balls are not reachable after assembly.
@@ -878,7 +1023,7 @@ the via-in-pad process with the fab (items 14, 19, 27, 35), and decide the point
     The power nets, the slow nets and the power pours under U1 are real copper since stage s50 (section 15), measured by gate 9.
 16. **Capacitor DC-bias figures** are typical values; the file `references/parts/Samsung_CL05A475MP5NRNC_dcbias.json`
     is an error page, not data.
-17. **Write settling** with the read branch (up to 24.2 mm of In3 and 9.4 mm of finger track, directly on the node) and the 73 mm host read line on the node (tau 2.6 ns): decides
+17. **Write settling** with the read branch (up to 24.2 mm of In3 and 9.4 mm of finger track, directly on the node) and the 73 mm host read line on the node (tau 1.6 ns with 110 / 100 ohm; 2.6 ns before): decides
     the maximum write rate, not function at 100 Mb/s.
 18. **Bend model of the command bus** (section 13): HFSS of one ideal trace between two solid planes, per feature.
     Not in it: the perforated planes under U1 (CA / CS only, the CK corridor is solid), the neighbouring traces of
@@ -888,8 +1033,10 @@ the via-in-pad process with the fab (items 14, 19, 27, 35), and decide the point
     picosecond on the card, not to the 0.01 ps of the table, and the +/-5 ps of the host figures dominates in any
     case. A bench check is possible: TDR of CA2 against CA0 at the fingers of a bare card.
 19. **Unused inner pads removed** on the U1 via-in-pads (B3 / C4 keep a 0.35 mm pad on In3), the command fence vias, the
-    node vias of the data side (the eight DQ ones keep their In3 pad, where the read branch starts; the ten command node vias keep every pad),
+    node vias of the data side (the eight DQ ones keep their In3 pad, where the read branch starts),
     the shunt GND vias, the read, return, bus, finger and power-stage vias: standard practice, but confirm with the fab that the via-in-pad process does not require them.
+    **Not removed: the ten node vias of the command dividers keep the pad on every layer** (stage s20 as simulated in HFSS; section 6, section 11,
+    Appendix B and fab note 7 say the same, and the board has them).
     The 0.35 mm pad on a 0.15 mm hole is the board's minimum annular ring (0.10 mm).
 20. **Write deskew rests on the delay model** (section 14). The write group is closed in the FPGA with delays computed
     from: the F.Cu lines at 6.01 ps/mm, the 0.09 mm necks at 5.94 ps/mm between BGA lands (0.6-5.3 mm per net, the lands
@@ -936,7 +1083,7 @@ the via-in-pad process with the fab (items 14, 19, 27, 35), and decide the point
     (In4) is 0.36 mm away, so the coupling is that of a trace over one near plane: the field calculation of the
     verification gave a backward coefficient of 2.8 % per neighbour at 0.50 mm pitch and 1-2 % at 0.55-0.65 mm, against
     0.4 % in the command bundle. It is backward only (forward crosstalk is nil in stripline): it travels to the DRAM end,
-    meets the node there (150 ohm in parallel with the line and the driver, about 30 ohm against 45.6 ohm: a fifth comes
+    meets the node there (100 ohm in parallel with the line and the driver, about 28 ohm against 45.6 ohm: a quarter comes
     back, inverted), so the FPGA end sees a few mV, and at 100 Mb/s all of it has settled long before the sample.
     Not simulated in the time domain.
 27. **In3 lines beside foreign vias.** An In3 read line passes the In3 pad of the read via of another bit at 0.275 mm
@@ -962,8 +1109,9 @@ the via-in-pad process with the fab (items 14, 19, 27, 35), and decide the point
 31. **Vivado pin check with the final pin set: done in Vivado 2026.1, legality only** (`design/gateware/vivado_pincheck/`, summaries with every
     message in `results/`). v2026.1, xczu7ev-ffvc1156-2-e, synthesis through `write_bitstream` on the real pins: command bank 65 T0 as native
     `TX_BITSLICE` x10 with a PLL (1.6 Gb/s, CK 800 MHz), write bank 64 `OSERDESE3` -> `ODELAYE3` -> `OBUFT` per DQ and WCK inverted, read bank 66
-    eight `IBUFDS_DPHY` (MIPI_DPHY_DCI) and RDQS -> `IDELAYE3` -> `ISERDESE3`, RESET_n LVCMOS12 on AP11. With `IBUFDS_DPHY` and with the SLVS_400_18
-    fall-back: 0 errors, 0 critical warnings, bitstream written, setup slack 0.297 ns; no `INTERNAL_VREF`, no `DCI_CASCADE`, no card pin on a VRP
+    eight `IBUFDS_DPHY` (MIPI_DPHY_DCI) and RDQS -> `IDELAYE3` -> `ISERDESE3`, RESET_n LVCMOS12 on AP11. With `IBUFDS_DPHY` (and, as history,
+    with SLVS_400_18 on `IBUFDS`, which was the fall-back receiver then and is no longer supported: section 3; the two SLVS cases now read
+    `vivado_pincheck/legacy_rx_slvs_400_18.xdc`): 0 errors, 0 critical warnings, bitstream written, setup slack 0.297 ns; no `INTERNAL_VREF`, no `DCI_CASCADE`, no card pin on a VRP
     pin. What it shows: the command bus at 1.6 Gb/s needs native mode (component mode
     violates the `OSERDESE3` minimum period at 800 MHz); RDQS cannot clock through an IDELAYE3 or a BUFG without `CLOCK_DEDICATED_ROUTE FALSE` (QBC
     pin); two tool differences (IDELAYCTRL `SIM_DEVICE`, the `IBUFDS_DPHY` instance attribute), section 7. It says nothing about levels or timing
@@ -986,7 +1134,33 @@ the via-in-pad process with the fab (items 14, 19, 27, 35), and decide the point
     traces with In4 between; In3 refers to In2 (0.11 mm) and In4 (0.36 mm), both unbroken there except for the antipads of the via field.
 37. **Socket model.** The HFSS model of the socket launch of the command bus is built from the drawings of the socket; a STEP file of the Foxconn
     DDR4 socket that the user mentioned was not found on this machine. The result of that run (command-bus launch and eye) is reported separately
-    and is not part of this file.
+    and is not part of this file. The merged system simulation (section 16) replaces that run: five socket blocks from the real artwork of both
+    boards; the contact shapes are still assumed (no LOTES drawing).
+38. **CK slew at the DRAM pin** (section 16): 1.80-2.11 V/ns typ and 1.73-2.03 slow with the 0.50 V divider set (fast 1.84-2.18) against the
+    JEDEC minimum of 2 V/ns; 5.9-7.8 V/ns at the die. It is low only at the ball: a ledge at the crossing made by the reflection from the
+    un-terminated die, whose length is twice the assumed package delay (59 ps). JEDEC places the requirement at the input receiver, where the
+    slew is ample. With a package delay of 53 ps or less (typ; 50 ps slow) the board meets 2 V/ns at the ball too. Nothing that is free fixes
+    it: CK ODT and a resistor across the pair make it worse. Fallback, **unverified**: 22R / 27R on the two CK legs (four values; outside the
+    range in which the divider equivalent was checked; needs a re-extraction of the launch block). **Not closed: a bring-up item.**
+39. **Every divider value but 91 / 68 and 240 / 150 ohm is a circuit correction in the simulation, not a field re-solve** (section 16): the HFSS
+    blocks were solved with the resistors of the first build. Command block: size of the change to 75 / 75 ohm 0.060 of S, residual of the
+    equivalent 0.022 up to 2.4 GHz (through path 0.007). Write block (110 / 100 ohm, WCK 75 / 75): rebuilt around a T-model, identity residual
+    0.011 to 1 GHz and 0.028 to 2.4 GHz (2-3 mV of write margin), non-passive above 4 GHz and clipped; the least certain of the changes. The
+    static levels of sections 1 and 2 do not depend on it; expect about +/-5 mV on the simulated margins.
+40. **Levels above VDDQ in the fast corner** (section 1; the cost of the user's 0.50 V decision). CA, CK, WCK and write DQ rest up to
+    57.5 mV above the card's VDDQ minimum in the stacked fast corner (simulated, nominal resistors: 20-45 mV), and read literally the
+    overshoot-area allowance of J Table 416 is exceeded there. The SK hynix input limits are unknown. On the bench: measure a static high at
+    a shunt resistor and VDDQ at its test pad; compare the VDDQ and VDD2H currents with lines held high and held low; keep idle lines low.
+    If the bench shows trouble, the remedy is a value change of the shunts (back toward 56 / 68 ohm and 150 ohm), not a layout change.
+41. **VrefDQ.** The write eye is centred at about 248 mV; every simulated write margin is at 225 mV (+142 mV or more). Whether to stop at
+    225 mV (MR14 0x46) or train to the centre (J Table 91 note 4 allows 350 mV at this WCK frequency) is for the bench.
+42. **Read reference: no power-up default.** R332 is NOT FITTED (the user's decision for a range down to 0 V), so VREF_RD is 0 V and reads
+    do not work until the DAC is written or its NVM default has been stored once per board (section 3). Open for the bench: that the I2C
+    path (PS I2C1 or PL pins N12 / P12, switch 0x74 port 7) is up before the first read in every start-up flow; whether to store the NVM
+    default on every board at test; the N-branch noise with the 104 ohm source and the 0.348 DAC attenuation (simulated with 82 ohm and
+    0.273); the leakage shift of 12.5 mV. Codes below 228 are reachable and not usable for reads. Fitting R332 undoes the change.
+43. **Revision.** The legend still reads R0.2 and `meta.revision` is 0.2 although the divider values changed twice since the first build:
+    the revision label is an open question with the user and was deliberately not changed.
 
 ## 9. Files, and how to rebuild
 
@@ -1018,7 +1192,7 @@ conventions, the verification result and the SHA-256 of the board file the packa
 |---|---|
 | `design/netlist.json` | the design: parts and pads, 260 fingers, groups with per-net delay targets, stackup, rules (with the reason of every rule change), floorplan (regions, placements, vias, every wire of the data side as a centre line, crossing budget), level analysis, BOM |
 | `design/impedance_results.json` | field-solver tables, including the outer-layer copper / mask corners |
-| `design/ref/` | host pin map, host + package delays, U1 ball reference (inputs of the checker); HFSS evidence: the tuning features of the command bus and `hfss_ca0_data_corner.json` (CA0 beside the RDQS escape) |
+| `design/ref/` | host pin map, host + package delays, U1 ball reference (inputs of the checker); HFSS evidence: the tuning features of the command bus and `hfss_ca0_data_corner.json` (CA0 beside the RDQS escape); `system_simulation.json`: the headline results of the merged system simulation (section 16), read by the generator into `analysis.system_simulation` |
 | `scripts/build_netlist.py` | writes the netlist |
 | `scripts/check_netlist.py` | verifies it (connectivity, bank plan, levels, power, geometry of the fields and pairs, regions, this file's key numbers) |
 | `scripts/impedance.py` | 2-D field solver |
@@ -1030,7 +1204,7 @@ conventions, the verification result and the SHA-256 of the board file the packa
 | `design/gateware_deskew.json` | per-bit output delays that close the write group, per-bit input delays that close the read group, the offset of the strobe, pin map and pair polarities; written by gate 7 of `check_pcb.py` from the delays measured on the board |
 | `scripts/pcb/build.sh` | the one command that builds everything (above): spec (`build_netlist.py`, `check_netlist.py`) -> schematic (`gen_schematic.py`) -> board stages -> gates (`check_netlist.py`, `check_schematic.py --pdf doc/lpddr5-testbed.pdf`, `check_pcb.py`) -> gateware hand-off (`gen_gateware.py`, then `--check`).; with `--fab` also `make_fab.py` |
 | `scripts/pcb/` | the board stages and gates: `s00_board.py` (board, rules, footprints incl. test pads and fiducials, fabrication notes, drill / place origin), `s10_escape.py` (U1 fan-out, field vias, finger vias), `s20_cmd.py` (command bus: finger stubs, divider links, In3 bundle, CK pair, tuning features), `s30_data.py` (the data side: every centre line of `floorplan.data.wires`), `s50_power.py` (power and slow nets, the power pours under U1: `floorplan.power`; no ground pour, no stitching), `s90_zones.py` (planes), then `check_pcb.py` (gates 1-5 board, 6 command bus, 7 data side, 8 crossing budget, 9 power: connectivity, DC budget with the In2 island, layer-hop rule, power pours, command stub ends, GND pad audit, no open via at a solder land, outer-layer copper coverage; 6 and 7 measure every net on the board; gate 2 is KiCad's DRC with all severities and its own schematic parity, and fails if the schematic is missing); `crossings.py` (plan-view crossings, parallel overlap and wires through resistor groups, on the board or on a plan), `rehearse.py` (draws every planned centre line of the floorplan that is not routed yet on a copy of the board, runs the DRC and eleven negative tests of the spacing and pair rules), `render.py`, `common.py` |
-| `scripts/gen_gateware.py`, `design/gateware/` | the gateware hand-off (section 7): XDC, Verilog header, pin map, bring-up notes, the Vivado pin check and its results; written from `design/netlist.json` and `design/gateware_deskew.json` at every build, `--check` fails if a file on disk is stale |
+| `scripts/gen_gateware.py`, `design/gateware/` | the gateware hand-off (section 7): XDC, Verilog header, pin map, bring-up notes, the Vivado pin check and its results; written from `design/netlist.json` and `design/gateware_deskew.json` at every build, `--check` fails if a file on disk is stale, if a command port of the XDC is not SSTL12 / DIFF_SSTL12 FAST RDRV_40_40 without DCI, or if the dropped SLVS override XDC exists |
 | `scripts/gen_footprints.py`, `scripts/check_footprints.py` | project footprints and their checks |
 | `lib/lpddr5_testbed.pretty/` | `DDR4_SODIMM_260_Edge`, `BGA-315_12.4x15mm_P0.8x0.7mm`, `MLF-6-1EP_2x2mm_P0.65mm_EP0.8x1.4mm`, `Fiducial_1mm_Mask2mm`. Every other footprint (0201 / 0402 / 0603, WSON-8, VSON-10, TSOT-23-5, test pad) is the stock KiCad footprint of that name, read from the installed library (`/usr/share/kicad/footprints`) |
 | `scripts/gen_schematic.py` (with `scripts/kisch.py`) | writes the schematic from the netlist: the root sheet and six sub-sheets, `lib/lpddr5_testbed.kicad_sym`, `sym-lib-table`, `design/erc_settings.json` |
@@ -1051,8 +1225,8 @@ which they came. Quotes are verbatim. "Met" is said only where a gate measures i
 
 | Rule (verbatim) | How it is met | Where |
 |---|---|---|
-| "We want to achieve the highest level of signal integrity for the command bus, NOT reads and writes." | The command bus has the fastest bank, its own layer between two ground planes with a reserved zone, one byte group, a straight 11 mm run, source termination within 2 % of the line, and is matched from the FPGA die pad to the ball with a bend model calibrated in HFSS: 641.77 ps on all ten nets. Every conflict between the buses was decided for it (the VDD2H neck, the unused-byte escapes, the In3 pad of ball C4). It is still crossed 15 times in plan view, all inside or at U1, by wires on other layers | 1, 12, 13 |
-| "Writes and commands are sent with resisitive divider level shifters, while reads are directly wired to the zcu104 with a pseudo-differential scheme where N pins are wired to a DAC maintaining ~half the swing voltage." | 40 divider resistors (0201) at the fingers; DQx is one net from the ball to the read finger with no part in it; the N pin of each read pair sits on VREF_RD through 39 ohm + 100 nF; VREF_RD is 0.187 V without any I2C traffic and 0.136 .. 0.631 V with the DAC53401 (read high about 0.39 V) | 1, 2, 3 |
+| "We want to achieve the highest level of signal integrity for the command bus, NOT reads and writes." | The command bus has the fastest bank, its own layer between two ground planes with a reserved zone, one byte group, a straight 11 mm run, source termination at the divider (75 / 75 ohm, back impedance 45.2 ohm against the 45.6 ohm line; sections 1, 16), and is matched from the FPGA die pad to the ball with a bend model calibrated in HFSS: 641.77 ps on all ten nets. Every conflict between the buses was decided for it (the VDD2H neck, the unused-byte escapes, the In3 pad of ball C4). It is still crossed 15 times in plan view, all inside or at U1, by wires on other layers | 1, 12, 13 |
+| "Writes and commands are sent with resisitive divider level shifters, while reads are directly wired to the zcu104 with a pseudo-differential scheme where N pins are wired to a DAC maintaining ~half the swing voltage." | 40 divider resistors (0201) at the fingers; DQx is one net from the ball to the read finger with no part in it; the N pin of each read pair sits on VREF_RD through 39 ohm + 100 nF; VREF_RD is set by the DAC53401, 0 .. 0.631 V, and is 0 V until the DAC is written (the pull-up that gave a default without I2C traffic, R332, is not fitted by the user's later decision, row 18; read high about 0.35 V, starting value 0.175 V) | 1, 2, 3 |
 | "Choose the assignment of banks to read, write, and command duty by minimizing the routing delay for the command bus." | Commands on bank 65 (host + package median 527.7 ps against 610.4 and 601.6 ps for banks 64 and 66), byte group T0 directly under U1; writes on bank 64, reads on bank 66 (the user's bank plan) | 1 |
 | "Keep the same layer organization as the antmicro board. Make it as a minimal as possible overall. Keep the same routing conventions, the same stackup." | Same six layers with the same roles and materials; the two cores are 0.36 instead of 0.40 mm for the DDR4 finger thickness (allowed by the user: "only change thickness if necessary to be compatible with DDR4 sodimm standard"). In1 / In2 / In4 carry no track; no ground flood on the outer layers. What follows the upstream board and what deviates: section 11 | 6, 11 |
 | "Do not overlap wires in high speed groups." | Read as a same-layer rule, as on the upstream board: no two wires of a group cross or overlap on one layer (gates 6, 7: 0). Through the board they do cross, at 45 or 90 degrees, 52 times among the data wires, which is the lower bound of this topology; parallel overlap of two different data wires on two layers is 1.06 mm in all. **This reading is ours and needs the user's confirmation** | 12 |
@@ -1091,6 +1265,10 @@ which they came. Quotes are verbatim. "Met" is said only where a gate measures i
 | - | "there's also a single line that goes from red quickly to teal in the right side of the chip. why?" (recorded in the final fix pass) | RESET_n again: one via is the minimum. All on F.Cu is closed by the 1.2 V strip, its arm and the DQ comb; all on B.Cu from a via in ball H1 would have to cross the VDDQ and VDD1 rails on their own layer | 15.3 |
 | - | Where is the 1.8 V pour (recorded in the final fix pass) | There is none: VDD1 (26 mA) is plain track, as on the upstream board; it changes layer once, at ball W1 | 15.2 |
 | 14 | "Somewhere on this machine is step file of a ddr4 socket from Foxconn. Find it, copy it to references/, and use it in the HFSS model of the socket" | **Open:** the file was not found in any readable location; the user has been asked for the path. The socket model of the command-bus simulation is built from the drawings | 8 item 37 |
+| 15 | Asked after the merged system simulation: "Change CA and CK dividers to 75R/56R? ... Drop SLVS as the fallback receiver?" - "Do both" | CA0-6 and both CK legs 75 / 56 ohm (18 parts, value only; no track, via, zone or footprint moved; WCK stayed 91 / 68 then, CS 33 / 100; the values were superseded by row 16). Level analysis redone with the IBIS driver figures; the command pins are enforced as SSTL12 FAST RDRV_40_40 without DCI. SLVS_400_18 removed as a receiver: no override XDC, no fall-back in the pin files and bring-up notes; MIPI_DPHY_DCI is the only supported read receiver | 1, 3, 7, 16 |
+| 16 | After the Antmicro comparison: "In general, we should only deviate from antmicro if there's a very clear reason to do so." / "Design the dividers so they give 0.50 typical like the antmicro ones" / "Simulate these new dividers and generate new eyes." | CA0-6 and CK 75 / 75 ohm (nine shunts), WCK 75 / 75 ohm (four parts), write DQ 110 / 100 ohm (sixteen parts): 29 resistors, value only; no track, via, zone or footprint moved. CS keeps 33 / 100 ohm (a 0.50 V CS fails its own mask and the power-down-exit level: the clear reason). The 0.47 V level rule is replaced by 0.50 V +/-15 mV typical, at most 0.55 V in the fast corner: a deliberate departure, with the lines above VDDQ in the fast corner (section 1). Simulated on the merged model with new eyes (section 16) | 1, 2, 3, 8, 16 |
+| 17 | Asked after the 0.50 V set: "Change the default-reference resistor R333 from 180R to 160R?" - "Do 1." | R333 (Rc of the VREF_RD network) 160 ohm: one part, value only, same 0402 land; no track, via, zone or footprint moved. Unprogrammed default 0.1738 V instead of 0.187 V, on the centre of the read eye with the 100 ohm load; DAC transfer, range (0.129-0.597 V), step and codes recomputed (code 101 for 0.175 V) | 3, 7, 8, 16 |
+| 18 | "Make the range of vref go down to 0"; of four ways offered: "Drop the VDDQ pull-up" | R332 is NOT FITTED (DNP in the schematic, on the board, in the BOM, absent from the placement files, marked on the assembly drawing); its footprint and all copper stay, nothing moved. V = 0.3478 x Vdac, 0 .. 0.631 V, code 284 for 0.175 V; a wrong code stays under 1.21 V. Cost, stated in sections 3, 7, 8 and in BRINGUP.md: VREF_RD is 0 V and reads do not work until the DAC is written or its NVM default stored once per board | 3, 7, 8, 16 |
 
 ## 11. Comparison with the Antmicro LPDDR5 testbed
 
@@ -1107,8 +1285,8 @@ tester). Its figures were measured on the pristine board file; it has no spacing
 | Geometry | single-ended 0.15 mm, pairs 0.10 / 0.10 mm, 0.09 mm necks in the BGA, DQ bundle pitch 0.55 mm, pairs >= 0.87 mm from other signals | the same widths and bundle pitch; pairs >= 0.80 mm by rule (0.825 .. 0.975 mm as built) |
 | Angles | 0 / 45 / 90 / 135 degrees only; arcs only as rounded corners of tuning meanders | the same |
 | BGA fan-out | via-in-pad 0.40 / 0.15 for inner signals and power, outer DQ rows leave on F.Cu without a via, no dog-bones | the same (via-in-pad on every supply ball and every routed inner signal ball) |
-| Dividers | at the connector end, series part and shunt part back to back on the two faces | the same, in 0201 |
-| Reads | direct, no part in the path, on a second finger per DQ; reference from an I2C DAC | the same; the DAC is on the card |
+| Dividers | at the connector end, series part and shunt part back to back on the two faces; equal values, about 0.5 V at the ball | the same, in 0201; 0.50 V typical at the ball with 75 / 75 and 110 / 100 ohm (CS excepted, section 11.2) |
+| Reads | direct, no part in the path, on a second finger per DQ; reference from an I2C DAC | the same; the DAC is on the card and, as upstream, the reference exists only once the DAC has been written |
 | Decoupling | 4.7 uF 0402 on B.Cu under the BGA on the via-in-pad power vias | the same value and place (24 instead of 38: one rail and one channel less) |
 | WCK | B.Cu pair from via-in-pads | the same |
 
@@ -1119,7 +1297,7 @@ tester). Its figures were measured on the pristine board file; it has no spacing
 | Form factor and host | DDR5 SO-DIMM (262 fingers, 69.6 x 40 mm), tester with 1.1 V banks | DDR4 SO-DIMM (260 fingers, 69.6 x 30.0 mm), ZCU104 socket at 1.2 V | the brief |
 | Scope | two channels, four bytes | channel A, byte 0, rank 0 | the brief |
 | Core thickness | 0.40 mm (1.272 mm at the fingers) | 0.36 mm (1.192 mm, 1.20 with gold) | DDR4 finger thickness 1.20 +/-0.10 mm; allowed by the user |
-| Divider values | 100 / 100 ohm on every driven signal | 91 / 68 (CA, CK, WCK), 33 / 100 (CS), 240 / 150 (DQ) | 1.2 V banks instead of 1.1 V and a level limit of 0.47 V at the ball; back impedance equal to the line; the DQ shunt is the read load |
+| Divider values | 100 / 100 ohm on every driven signal | 75 / 75 (CA, CK, WCK), 110 / 100 (DQ): Antmicro's level (0.50 V typical at the ball) and its equal-value style, by the user's decision; 33 / 100 on CS | the level follows Antmicro; the values differ from 100 / 100 because that pair gives 0.517 V with this FPGA driver and a 58 ohm back impedance that costs the CA eye 45 mV of margin against CK (+27 against +72 mV, section 16), while 75 / 75 is matched to the 45.6 ohm line; the DQ shunt is also the read load. CS deviates for a clear reason: at 0.50 V it fails against Vref_CS = VDD2H / 3 and stays under the 0.55 V power-down-exit level |
 | Divider parts | 4 x 0402 arrays at 0.50 mm pitch, discrete 0402 | discrete 0201 at 0.8 mm pitch | arrays do not fit eight columns between the key and finger 161; one column per ball-field channel on the command side |
 | Reads | plain single-ended inputs against VREF | pseudo-differential: DQ on the P pin of a pair, N pin on VREF_RD with 39 ohm + 100 nF | the brief |
 | Command bus | F.Cu and In3 mixed, 1-3 vias per net, 107 mm of it at 0.09 mm, matched to 0.8-2.5 mm of length | In3 only at 0.15 mm, exactly two vias per net, one trace per ball-column channel, matched by electrical length (HFSS bend model) to 0.0 ps | the priority bus of the brief |
@@ -1375,7 +1553,7 @@ Each DQ is a tooth of a comb. From the ball to the fingers:
 | line | F.Cu, 0.15 mm | east on its own level: DQ4 and DQ5 leave the land field southward and run at y = 10.75 / 11.30; the six others leave eastward at y = 13.60 ... 16.35, pitch 0.55 mm (gap 0.40 mm) |
 | fan | F.Cu | one 45-degree run per line, all parallel, down to y = 10.40 (10.95 for DQ5) on the axis of its column; the lowest line takes the westmost column, so nothing crosses |
 | tooth | F.Cu | straight down the column axis into the node via at y = 6.00; teeth 0.8 mm apart (1.35 mm across the key) |
-| **the T** | via 0.40 / 0.20 | the node via. Here the line from the ball, the In3 read branch and both divider resistors meet. 0.68 mm south of it, back to back on the two faces: the 240 ohm on the write finger's face (then the finger stub, 2.1-2.4 mm) and the 150 ohm on the other face (then its GND via) |
+| **the T** | via 0.40 / 0.20 | the node via. Here the line from the ball, the In3 read branch and both divider resistors meet. 0.68 mm south of it, back to back on the two faces: the 110 ohm on the write finger's face (then the finger stub, 2.1-2.4 mm) and the 100 ohm on the other face (then its GND via) |
 | read branch | In3, 0.15 mm | leaves the node via on one 45-degree run into the lane 0.40 mm east of the column axis, runs north in the lane to its level (y = 6.00 for the east column, +0.55 per column westward, 9.85 for DQ4), then east under the teeth of the columns east of it, all crossings at 90 degrees |
 | bundle and ramp | In3 | eight lines at 0.55 mm pitch (gap 0.40 mm); east of the comb (x 43.7 ... 47.5) the whole bundle climbs one 45-degree ramp (2.20 mm of rise, the same for every line: none is raised above its place) and each line runs east on the level of its read via. The lowest level is y = 8.20: a read via cannot stand lower, its pad has to keep 0.90 mm from the VREF_RD bus on F.Cu |
 | read via | via 0.40 / 0.20 | on the level of its line, above its read finger. **The read fingers are taken in the order of the bundle**: the lowest line (DQ7) ends first, on the westmost finger (182); every higher line passes 0.55 mm north of the vias below it and ends further east, the top line (DQ4) on finger 215. The eight read vias form a regular staircase, 0.55 mm per step, from (48.675, 8.20) to (57.100, 12.05). GND return vias: 0.64 mm to the south-east of the read via (the next line passes north of it), to the south-west where the next finger track or the RDQS drop takes that spot; six return vias serve the eight read vias (those of DQ0 / DQ1 and of DQ5 / DQ4 stand between the two read vias, 0.56-0.72 mm from each) |
@@ -1385,7 +1563,7 @@ The west column carries the lowest F.Cu line and the highest In3 line, so the F.
 nest into each other. There is no part and no via north of the node row in the DQ columns, no wire between two columns on
 F.Cu or B.Cu, and no wire that enters a resistor from the side.
 
-| Net | Ball | F.Cu level y | Column x | T (node via) | T to the 240 ohm land | T to the 150 ohm land | In3 beside its own tooth mm | In3 level in the field / at the read via | Read via | Read finger | GND via nearest the T / the read via mm |
+| Net | Ball | F.Cu level y | Column x | T (node via) | T to the series (110 ohm) land | T to the shunt (100 ohm) land | In3 beside its own tooth mm | In3 level in the field / at the read via | Read via | Read finger | GND via nearest the T / the read via mm |
 |---|---|---|---|---|---|---|---|---|---|---|---|
 | DQ4 | B5 | 10.75 | 37.250 | (37.250, 6.00) | 0.68 mm (R205, F) | 1.84 mm (R215, B) | 3.15 | 9.85 / 12.05 | (57.100, 12.05) | 215 (F) | 0.63 / 0.64 |
 | DQ5 | C6 | 11.30 | 38.050 | (38.050, 6.00) | 1.84 mm (R206, B) | 0.68 mm (R216, F) | 2.60 | 9.30 / 11.50 | (55.940, 11.50) | 212 | 0.85 / 0.72 |
@@ -1643,7 +1821,8 @@ are in section 11.4.
 - U3 and U4 on the back (section 8, item 32); the VDDQ lane is 21.7 mm long because U4 stands where its three inputs come to the back.
 - The VDD1 link on F.Cu around the north and west of U1 (32 mm of perimeter track) feeds two balls.
 - The enclave A3 / B2 / C3 / D4 of VDDQ hangs on one 0.20 mm F.Cu strap (0.9 mm) besides its own capacitor C415.
-- The 3.3 V trunk and the VDDQ track to R332 are long thin L-shaped tracks across the open north-east quarter (54 mm and 19 mm).
+- The 3.3 V trunk and the VDDQ track to R332 are long thin L-shaped tracks across the open north-east quarter (54 mm and 19 mm). With R332 not
+  fitted the VDDQ track ends on an empty land and carries nothing; it is left in place so that the part can be fitted.
 - **Layer changes of supply and static nets that remain** (the gate counts a via-in-pad of U1 as the ball itself, so it does not flag them):
   - *VDDQ enclave:* B.Cu pour - ball D4 - 0.9 mm F.Cu strap - ball E5 - B.Cu pour. The WCK pair on B.Cu cuts the four balls A3, B2, C3, D4 off from the
     rest of the rail; the only B.Cu path around the ball end of the pair runs up the column 5|6 channel, under CA1 for 0.7 mm and across CA0. The strap
@@ -1672,6 +1851,237 @@ are in section 11.4.
   reference is complete on the Fab layers and in the assembly drawings. The finger-number labels are 2.2 .. 2.6 mm inboard of the fingers they name.
 - The SK hynix data sheet is missing (section 8, item 1): at a 1.3 mm body the front face would exceed the 1.20 mm per-face figure by 0.1 mm.
 
+## 16. Merged system simulation (ZCU104 + socket + card) and what followed from it
+
+Headline results only; the numbers are kept in `design/ref/system_simulation.json` (and from there in `design/netlist.json`,
+`analysis.system_simulation`). The simulation files are not in the repository: they are on the simulation server under `~/lpddr5_sys/stage3/`
+(`deliver/REPORT.md`, `results.json`, tables, 122 eye figures, scripts; inspectable SIwave / AEDT / Nexxim projects in `inspect/`); the HFSS
+blocks under `~/lpddr5_sys/stage2/hfss/`, the merge under `~/lpddr5_sys/stage2_merge/`.
+
+**What was modelled.** The ZCU104 from the Xilinx ODB++ (16 layers, fabricated line widths); the socket region as five HFSS blocks cut from
+the real artwork of both boards with the contacts and housing as solids (A command, fingers 60-90; B write, 129-176; C read, 176-226; D reset,
+226-238; E I2C / 3.3 V, 247-260); this card from its IPC-2581 export. The three are merged in one SIwave project (179 ports, DC to 5 GHz in
+5 MHz steps) that agrees with the plain cascade per wire (command <= 0.0026, write <= 0.0014, read <= 0.0045 of S to 5 GHz). Eyes are
+stand-alone Nexxim transients on that model (98 runs) with the Vivado 2026.1 IBIS buffers on the coupled Vivado package model and
+behavioural LPDDR5 pins. Corners: typ / slow / fast = IBIS typ / min / max at VCCO 1.20 / 1.14 / 1.26 V, DRAM read high 0.386 / 0.353 /
+0.423 V. Modes: command stream at 1.6 Gb/s; writes and reads at 100 Mb/s; and both data modes with the command bus at full rate and injected
+noise (pessimistic supersets that this controller cannot produce). **The card simulated in this first part is the first build: CA / CK and WCK
+dividers 91 / 68 ohm, write DQ 240 / 150 ohm. The board as built now (the 0.50 V divider set) is in the part *Follow-up studies* below, with its own
+verdict tables.**
+
+**Verdict per net class (first build).** Mask margin in mV at the receiver's sampling instant, worst net ("best" = with the delay adjustment that training
+reaches); negative = violation.
+
+| Class, plane, requirement | typ | slow | fast | slow + pessimistic DRAM package | Verdict |
+|---|---|---|---|---|---|
+| CA at the DRAM pin, 1.6 Gb/s (155 mV x 112.5 / 187.5 ps) | +47 (best +53), eye 271 mV x 467 ps | +42 (+47) | +47 (+53) | +37 (+51) | pass |
+| CA at the die | +45 (+66) | +39 (+57) | +45 (+70) | +37 (+54) | pass |
+| CA at the pin while data runs | +38 / +40 | +36 / +38 | | | pass |
+| CS at the pin (180 mV x 275 / 375 ps) | +193 | +135 | +216 | +129 | pass |
+| CK swing at the pin (>= 0.35 V p-p); Vix ratio (<= 25 %) | 0.91 V; 5.3 % | 0.80 V; 5.3 % | 1.01 V; 5.6 % | 0.76 V; 5.2 % | pass |
+| **CK slew at the pin (2-14 V/ns)** | **1.67-1.94** | **1.59-1.85** | 1.73-2.02 | 1.80-2.12 | **fails in typ and slow** |
+| CK slew at the die | 4.8-6.5 | 4.1-5.6 | 5.5-7.4 | 3.3-4.7 | pass |
+| write DQ at the DRAM pin, 100 Mb/s (100 mV), at tWCK2DQI 300 / 900 ps | +80 / +82 (best +128) | +67 / +72 (+114) | +118 / +105 (+141) | +67 / +72 | pass |
+| write DQ with commands at full rate | +65 / +76 | +55 / +68 | | | pass |
+| WCK at the DRAM pin (>= 0.30 V, 2-14 V/ns, Vix <= 20 %) | 1.03 V, 3.7-3.9 V/ns, 4.3 % | 0.86 V, 3.2-3.3, 6.0 % | 1.19 V, 4.2-4.4, 3.3 % | | pass |
+| read DQ (P - N) at the FPGA die, MIPI_DPHY_DCI (VID >= 70 mV) | +95 (best +99), eye 338 mV | +57 (+61) | +104 (+107) | +57 | pass |
+| read DQ with commands at full rate, MIPI_DPHY_DCI | +86 | +47 | | | pass |
+| **read DQ, SLVS_400_18 (VID >= 140 mV), VREF_RD 0.195 V** | +25 | **-13** | +34 | **-13** | **fails in the slow corner** |
+| read common mode when sampled (70-330 mV) | 95-290 | 95-273 | 98-311 | | pass, 19 mV to the limit (fast) |
+| read P pin over the whole UI (HS window -40 .. 460 mV) | -53 / 418 | -37 / 362 | -76 / 538 | | outside for 1-2 ns after each edge, inside when sampled |
+| RDQS at the FPGA die (VID >= 70 mV) | +294 | +255 | +318 | | pass |
+| RESET_n at the DRAM (0.85-1.25 V) | 1.04-1.06 V | 0.96-1.00 V | 1.10-1.11 V | | pass |
+
+Static highs at the DRAM pin with the real driver (91 / 68, nominal resistors; slow / typ / fast): CA / CK 0.394 / 0.427 / 0.458 V, CS
+0.667 / 0.727 / 0.783 V, write DQ 0.399 / 0.426 / 0.452 V, WCK 0.395 / 0.428 / 0.460 V. The IBIS driver is 34.9 / 29.3 / 25.1 ohm
+slow / typ / fast, not the 44 / 36 / 26 ohm this document assumed before (section 1).
+
+**The two failures.**
+
+1. **CK slew at the DRAM pin: 1.59-1.94 V/ns in slow and typ against 2 V/ns.** The cause is the unterminated pin behind the package
+   inductance (a ledge at the crossing), not the driver (fast corner 1.73-2.02), not the divider values, not jitter and not the model band
+   (1.68 / 1.70 / 1.78 V/ns at 5 / 4 / 3 GHz). At the die the slew is 3.3-7.4 V/ns. The figure depends on the assumed DRAM package
+   (2.8 nH / 1.25 pF) and **must be measured** (section 8, item 38). Open.
+2. **SLVS_400_18 as read receiver: -13 mV in the slow corner** at the default reference (the weak-driver read high of 0.353 V leaves 127 mV of
+   differential against the 140 mV the standard needs). Closed by decision: SLVS_400_18 is no longer supported (section 3).
+
+**75 / 56 against 91 / 68 on CA and CK.** Worst CA net at the pin: typ +50 -> +70 mV (eye height 258 -> 308 mV), slow +46 -> +60 mV, fast
++71 mV with 75 / 56; at the die typ +48 -> +80 mV. Static CA high 0.427 -> 0.413 V typ, 0.394 -> 0.379 V slow, 0.445 V fast. CK slew at the
+die 4.9 -> 5.3 V/ns, **at the pin unchanged**; CS unchanged. An improvement, not a repair: 91 / 68 also passes. Evidence: Nexxim on cascade
+models with the command block changed by an equivalent two-port, **not a new field solve** (section 8, item 39). Adopted then; superseded by the 0.50 V divider set (below, and section 1).
+
+**The N branches (the eight reference pins of the read pairs at the FPGA die).** Noise in the read mode: 17-27 mV pk-pk over the whole unit
+interval, but **2.0-3.3 mV pk-pk (0.33-0.58 mV rms) inside the sampling window**, where the receiver looks. By source: the pair's own P wire
+20 mV at the edge and 1.2 mV in the window (P / N coupling of the FPGA package), the seven neighbours 13.5 / 1.2 mV (made in the socket),
+RDQS 3.6 / 0.8 mV; the reference network, the DAC and the shared VREF_RD bus contribute less than 0.01 mV in band. It costs 0.1-1.0 mV of
+mask margin (1-11 mV in the pessimistic superset with full-rate commands, whose FPGA rail noise is an upper bound). Level 194-196 mV at
+the value set then, 0.195 V; static error budget 16 mV. **Verdict: acceptable**: at most 1 mV of +95 mV (typ) / +57 mV (slow) over the 70 mV sensitivity
+of MIPI_DPHY_DCI; with the 16 mV static budget +41 mV remain in the slow corner. What limits the read is the reference *level*, not the noise;
+39 ohm + 100 nF need no change.
+
+**VREF_RD (first build, 150 ohm read load).** Measure the read high level and set VREF_RD to half of it, never above 0.21 V. Slow corner: 0.172 V gives +80 mV instead of
++57 mV; fast corner: 0.212 V gives +121 mV with the common mode 11 mV inside its limit; without any I2C traffic (0.187 V) the typical corner
+is unchanged (+96 mV).
+
+**Front / back skew: 17 ps.** The card is matched (641.77 ps on all ten nets), the socket is not: fingers on the front of the card arrive
+later than those on the back. Eye centre minus CK crossing at the DRAM pin: CA0 +2, CA3 +2, CA5 -5 ps (back); CA1 +10, CA2 +22, CA4 +15,
+CA6 +19 ps (front). **ODELAY starting values: CA5 +27, CA0 +20, CA3 +20, CA1 +12, CA4 +7, CA6 +3, CA2 0 ps.** They are training values,
+not constants (they rest on assumed contact shapes); they are in the gateware hand-over (`lpddr5_testbed_pins.vh`, `BRINGUP.md` section 8).
+Earlier text of this document treated the host figures (+/-5 ps) as the only static skew of the command bus; the socket's term is larger.
+CS launched on the CA edges passes with +193 mV; launching it half a UI later centres it.
+
+**Write group: the return goes through the 1.2 V fingers.** The socket has no ground finger between 107 and 167, so the write wires return
+through the 1.2 V fingers and the card's capacitors. At 100 Mb/s this costs 5-25 mV of a margin above +90 mV: eight DQ switching in the same
+direction +109 / +96 mV against +115 / +100 mV for independent data; a quiet DQ among seven switching ones sees at most 92 mV pk-pk over the
+unit interval and 37-56 mV in the latch window, 75 mV or more from the mask. The DQ-to-DQ crosstalk sums to half of the wire's own through at
+1 GHz (supply resonance 0.75-1.05 GHz), but nothing of that band is left when the DRAM latches; no sensitivity case goes below +74 mV.
+Mitigation is timing (launch DQ so that the DRAM latches 7-9.5 ns after the DQ edge: +128 .. +141 mV); SLEW SLOW on the write pins is not
+needed.
+
+### Follow-up studies and the 0.50 V divider set (the board as built now)
+
+Three studies followed the stage-3 report, on the same model and pipeline. Their files are on the simulation server under
+`~/lpddr5_sys/stage3/deliver/` (`antmicro_compare/`, `div_100_100/`, `div_0v50/`, `ck_slew/`); the numbers below are in
+`design/ref/system_simulation.json` (`follow_up_studies`, `dividers_0v50`, `divider_changes_are_circuit_corrections`).
+
+**Every divider change is a circuit correction, not a field re-solve.** The HFSS blocks were solved once, with the resistors of the first
+build inside: block A (command) with 91 / 68 ohm, block B (write) with 240 / 150 ohm and WCK 91 / 68 ohm. Every other value in this section
+was put in by a correction on the ports of those blocks. Residuals: command block, checked against a solve with explicit resistor ports
+(S-parameter magnitude to 2.4 GHz, size of the change / residual of the equivalent): 75 / 75 ohm 0.060 / 0.022 (through path 0.007),
+75 / 56 ohm 0.085 / 0.013, 100 / 100 ohm 0.134 / 0.011, 82 / 82 ohm 0.053 / 0.019; checked up to a 2.4x change of the series value. Write
+block (no resistor-port solve exists): rebuilt around a T-model of each divider; with unchanged values the rebuild differs from the solved
+block by 0.011 to 1 GHz, 0.028 to 2.4 GHz and 0.068 to 5 GHz (2-3 mV of write margin, 1 mV of read margin); with 110 / 100 ohm and WCK
+75 / 75 it was non-passive above 4 GHz and clipped (change at most 0.043 above 4 GHz, 0.0005 below; DC exact). The write-divider change is the
+least certain: the same ladder on the command-launch solve leaves 0.05 on the through path to 2.4 GHz, not quantified in the eye. Expect
+about +/-5 mV on the margins from the equivalent itself.
+
+**(i) Antmicro reference comparison.** The Antmicro lpddr5-testbed on its sodimm-ddr5-tester (Kintex-7, DDR5 SO-DIMM socket, 100 / 100 ohm
+dividers) through the same pipeline, masks and stimulus (42 runs; its system model is a cascade, its merged solve is not passive).
+
+| Class | Antmicro pair, this card's rates | Antmicro pair, its own rates | Antmicro boards with the Zynq buffer (hypothetical) | This card, 91 / 68 | This card, 75 / 56 |
+|---|---|---|---|---|---|
+| CA at the DRAM pin, typ / slow / fast, mV | -66 (best +28) / -78 / +74 | +186 at 120 Mb/s | +106 / +94 (eye 420 mV x 495 ps) | +47 / +42 / +47 | +70 / +60 / +71 |
+| CS at the pin, mV | -52 / -90 / -10 | +101 | +4 / -39 | +193 / +135 / +216 | +191 / +128 / +217 |
+| CK slew at the pin, V/ns; Vix | 2.4-2.9; 12 % | 1.73-1.77; 24.8 % | 2.4-3.3; 5.7 % | 1.6-2.0; 5 % | 1.6-2.1 |
+| write DQ, 100 Mb/s, mV | +162 / +164, eye 540 mV | 480 Mb/s: +5 / +18 / -4 at the best instant | +156 / +163 | +80 / +82 | same |
+| read DQ, 100 Mb/s, mV | single-ended +-100 mV: +64 / +45 / +85 | 480 Mb/s: -18 / -40 / -13 | | P - N, MIPI_DPHY_DCI: +95 / +57 / +104 | same |
+| static high at the pin, slow / typ / fast | CA, CK, WCK 0.495 / 0.543 / 0.583 V; write DQ 0.513 / 0.558 / 0.595 V; RESET_n up to 1.26 V | | | CA 0.394 / 0.427 / 0.458 V | CA 0.379 / 0.413 / 0.445 V |
+| spread of the seven CA eye centres | 60 ps | 56 ps | 51 ps | 27 ps (17 ps front / back) | 23 ps |
+
+Reading: at 1.6 Gb/s the Antmicro pair fails on its FPGA buffer (HSUL_12, slow slew: 0.3 ns edge), not on its boards or socket; with the
+same driver its eye is larger in millivolts only because its level is higher (0.54 V against 0.43 V; relative to the level the eyes are
+alike, 0.77 against 0.68-0.75). Its CS, on the same 100 / 100 ohm, has only +4 mV even with the fast buffer; its command group is not
+length-matched; its read crosstalk is twice this card's (11 % against 5.7 %: DDR5 pin pattern). Not like for like: the Kintex-7 IBIS is
+not power-aware, both sockets use assumed contact shapes, the reference blocks missed the HFSS target. **What the user drew from it: the
+level of the reference works on real hardware, so the card should not deviate from it without a clear reason.**
+
+**(ii) The 100R / 100R what-if and the 0.50 V set.** Antmicro's literal 100 / 100 ohm on this board gives 0.480 / 0.517 / 0.553 V and
+**+27 / +28 / +22 mV** of CA margin at the pin (typ / slow / fast; +20 / +25 / +10 mV at the die), about a third of the board then: its
+back impedance is 58 ohm against the 45.6 ohm line, and the eye moves 66-93 ps against CK (the margin at the best position is still
++59 .. +70 mV). Not taken. The set that follows Antmicro's level and keeps the match was designed and simulated instead (model `D50_hiz`,
+43 runs): **CA0-6 and CK 75 / 75 ohm, WCK 75 / 75 ohm, write DQ 110 / 100 ohm, CS unchanged 33 / 100 ohm.** It is on the board now.
+
+Static highs at the DRAM pin (slow / typ / fast, real driver, nominal resistors): CA / CK **0.456 / 0.495 / 0.532 V**, write DQ
+**0.461 / 0.496 / 0.530 V**, WCK 0.457 / 0.496 / 0.533 V, CS 0.669 / 0.728 / 0.785 V. With 1 % parts the typical level is 0.490-0.501 V.
+Variants not built: 82 / 82 ohm (0.502 V typ, CA margin 8-17 mV worse), 75 / 76.8 and 78.7 / 78.7 ohm (E96, not simulated).
+
+Verdict tables for the set on the board. Margins as above; "before" is the board with 75 / 56, WCK 91 / 68, DQ 240 / 150 ohm.
+
+| Commands, 1.6 Gb/s | typ | slow | fast | slow + pessimistic DRAM package | Before (typ / slow / fast) | Verdict |
+|---|---|---|---|---|---|---|
+| CA at the DRAM pin, mV (best position) | +72 (+83), eye 302 mV x 501 ps | +66 (+73) | +73 (+87) | +59 (+75) | +69 / +60 / +63 | pass |
+| CA at the die, mV | +66 (+91) | +67 | +66 | | +80 / +72 / +86 | pass; lower at the sampling instant because the eye sits later against CK |
+| CA at the pin while data runs, mV | +67 (read) / +70 (write) | | | | +70 / +67 | pass |
+| VREF(CA) that centres the eye, mV (75-350) | 235 | 215 | 253 | | 195 / 178 / 195 | MR12 0x4A, then train |
+| CS at the pin, mV | +194 | +126 | +216 | | +190 / +135 / +218 | pass |
+| CK at the pin: swing; Vix | 1.06 V; 4 % | | | | 1.03 V; 5 % | pass |
+| **CK slew at the pin (2-14 V/ns)** | **1.80-2.11** | **1.73-2.03** | 1.84-2.18 | 2.06-2.47 | 1.67-2.00 / 1.61-1.91 / 1.72-2.09 | **starts below 2 V/ns in every corner; study (iii)** |
+| CK slew at the die, V/ns | 5.9-7.8 | | | | 5.3-7.0 | pass |
+
+| Writes, 100 Mb/s | typ | slow | fast | Before (typ / slow / fast) | Verdict |
+|---|---|---|---|---|---|
+| DQ eye height at the pin, mV | 438 | 407 | 467 | 381 / 353 / 335 | |
+| DQ margin at the WCK crossing, VrefDQ 225 mV, mV | +144 | +142 | +146 | +81 / +68 / +90 | pass |
+| DQ margin 300 / 900 ps later; best position; everything active, mV | +141 / +137; +171; +137 | | | +80 / +82; +128; +70 | pass |
+| VrefDQ used / wanted, mV | 225 / about 248 | | | 218 / 218 | 20 mV off centre; J Table 91 note 4 allows the centre at this WCK frequency, not simulated |
+| Node time constant; back impedance | 1.62 ns; 59.8 ohm | | | 2.63 ns; 97.6 ohm | |
+| Quiet DQ among seven, pk-pk in the latch window (whole UI), mV | 16.7 (94) | | | 36.9 (80) | |
+| WCK at the pin: swing, slew, Vix | 1.15 V, 4.24-4.32 V/ns, 4.0 % | 3.66-3.72 V/ns | 4.75-4.84 V/ns | 1.03 V, 3.74-3.88 V/ns, 4.3 % | pass |
+
+| Reads, 100 Mb/s, P - N at the FPGA die, MIPI_DPHY_DCI | typ | slow | fast | Before (typ / slow / fast) | Verdict |
+|---|---|---|---|---|---|
+| Eye height, mV | 322 | 273 | 375 | 338 / 297 / 382 | about 40 mV less level |
+| Margin with VREF_RD re-centred, mV | +89 | +65 | +113 | +95 / +80 / +121 | pass |
+| Margin at VREF_RD 0.187 V (the default of the network as simulated, Rc = 180 ohm), mV | +77 | not run (about +34 estimated) | not run (about +102) | | led to R333 = 160 ohm |
+| Unprogrammed state as built (R332 not fitted): VREF_RD 0 V | no read | no read | no read | | the DAC must be written first (section 3) |
+| VREF_RD that centres the eye, mV | 175 | 156 | 198 | 195 / 173 / 211 | DAC code 284 / 253 / 321; the DAC reaches it (0 .. 0.631 V) |
+| Peak at the P pin, mV | 386 | 319 | 506 | 424 / 370 / 538 | |
+| Common mode at the receiver, mV (70-330) | 86-262 | 77-233 | 98-300 | 95-292 (typ) | pass, 7 mV to the lower limit (slow) |
+| Margin against SLVS_400_18, mV | +19 | -5 | +43 | +25 / -13 / +34 | not a supported receiver |
+| Everything active: height / margin, mV | 310 / +84 | | | 328 / +86 | pass |
+| N-branch noise in the window, pk-pk / rms, mV (alone; everything active) | 2.6 / 0.38; 29.0 / 4.17 | | | 3.3 / 0.58; 28.9 / 4.87 | margin lost 0.9 / 8.8 mV |
+| RDQS margin over 70 mV (loads unchanged, 150 ohm), mV | +312 | +275 | +335 | +294 / +255 / +318 | pass |
+
+Levels against VDDQ and J Table 416 (0.3 V and 0.1 V-ns beyond VDDQ; "standing" = DC level above VDDQ for as long as the line is high,
+"transient" = ringing above the higher of the DC level and VDDQ):
+
+| Group | Corner | DC high, V | Standing above VDDQ 0.500 V (0.488 V) | Peak, V | Total above 0.500 V per event: V / V-ns | Transient only: V / V-ns | Share of time above 0.500 V |
+|---|---|---|---|---|---|---|---|
+| CA | slow / typ / fast | 0.456 / 0.495 / 0.532 | none / none (7 mV) / **32 mV (44 mV)** | 0.546 / 0.618 / 0.688 | 0.046, 0.009 / 0.118, 0.059 / 0.188, **0.19** | fast 0.157 / 0.097 | 1 / 20 / 35 % |
+| CK legs | typ / fast | 0.495 / 0.532 | none / 32 mV | 0.568 / 0.621 | 0.068, 0.005 / 0.121, 0.020 | fast 0.089 / 0.007 | 1 / 11 % |
+| write DQ | slow / typ / fast | 0.461 / 0.496 / 0.530 | none / none (8 mV) / **30 mV (42 mV)** | 0.498 / 0.540 / 0.579 | none / 0.040, 0.011 / 0.079, **1.4** | fast 0.049 / 0.020 | 0 / 11 / 52 % |
+| WCK legs | typ / fast | 0.496 / 0.533 | none / 33 mV | 0.562 / 0.610 | 0.062, 0.019 / 0.110, **0.38** | fast 0.077 / 0.057 | 12 / 48 % |
+| for comparison: CA with 75 / 56 | typ / fast | 0.413 / 0.445 | none | 0.520 / 0.589 | 0.020, 0.001 / 0.089, 0.022 | same | 0 / 5 % |
+
+The amplitude is inside 0.3 V everywhere and the transient part alone is inside 0.1 V-ns everywhere (CA fast 0.097). Read literally the area
+allowance is exceeded in the fast corner on CA, write DQ and WCK, only because the line rests above VDDQ. Undershoot is unchanged (at most
+0.11 V, 0.068 V-ns). **This is the cost of the 0.50 V decision; the SK hynix input limits are unknown; it is a bring-up item** (section 1;
+section 8, item 40).
+
+Currents (typical, from the host bank's VCCO through the signal fingers): 6.6 mA per high CA pin, 53 mA for seven CA and one CK leg
+(59 mA before); 4.97 mA per high write DQ, 46 mA for eight DQ and one WCK leg (29 mA before). The corner analysis of sections 1 and 2 gives
+53.5 mA and 46.8 mA.
+
+**What the large CS swing costs the CA lines** (typ and slow; CS 33 / 100 ohm as built against a hypothetical 75 / 75 ohm): nothing
+measurable. Worst CA margin +72 mV typ with either (+66 / +65 mV slow). CS at 75 / 75 ohm would sit at 0.456 / 0.494 / 0.531 V, under the
+0.55 V power-down-exit level in every corner, and fail its own mask (-9 mV typ, -43 mV slow against +194 / +126 mV). The noise CS puts on
+its neighbour CA2 (42 mV pk-pk; 47 mV with 75 / 75) is made before the divider, mainly in the FPGA package (CA2 on ball AN19 beside CS on
+AM19) and then in the socket block, where CS swings 1.2 V in both cases; the card adds almost nothing. CA2's jitter rises from 95 to about
+120 ps pk-pk when CS toggles; its margin does not drop. CS keeps 33 / 100 ohm.
+
+**(iii) CK slew at the DRAM pin.** Baseline 75 / 56 ohm: 1.67-2.00 V/ns typ, 1.61-1.91 slow, 1.72-2.09 fast against 2-14 V/ns; with the
+0.50 V set 1.80-2.11 / 1.73-2.03 / 1.84-2.18 (+0.12 V/ns from the larger swing, same ledge).
+
+- **It is low only at the ball.** At the die, where the receiver is, the slew is 5.3-7.0 / 4.5-6.0 / 6.0-8.0 V/ns (5.9-7.8 typ with the
+  0.50 V set). All edges are monotonic at both planes.
+- **Mechanism.** The first wave that reaches the ball is about 55 % of the step; the rest arrives when the reflection from the un-terminated
+  die comes back, twice the package delay later (2 x 59 ps, assumed). That makes a ledge about 70 ps long in the middle of the +/-145 mV
+  window in which JEDEC measures the slew, so the 290 mV take 144-176 ps instead of the 145 ps that 2 V/ns allows.
+- **Where JEDEC places the requirement.** JESD209-5C 12.2.1: the input voltage has to satisfy Vindiff_CK "at input receiver"; Tables 417-422
+  carry no "at the pin" note (the CA Table 466 does). Read literally the requirement is at the input receiver, where the board has
+  4.5-8.0 V/ns.
+- **Package-delay threshold: 53 ps.** With a ball-to-die delay of 53 ps or less (typ; 50 ps slow) the board as it is meets 2 V/ns at the ball;
+  the model assumes 59 ps (2.8 nH / 1.25 pF). The real delay of this DRAM package is not known.
+- **Nothing that is free fixes it.** DRAM CK ODT (240 / 120 ohm: 1.57-1.90 / 1.46-1.82 V/ns) and a resistor across the pair at the balls
+  (1.44-1.86 V/ns) cut the swing and leave the ledge: worse. More swing gives +0.05 .. +0.18 V/ns; two buffers in parallel +0.11 V/ns
+  (no spare pins); pre-emphasis could not be simulated (no model).
+- **Fallback, unverified: 22R / 27R on the two CK legs** (four resistor values, no copper): 3.81-6.69 V/ns typ on every edge, 1.73-5.39
+  slow (99 % of the edges), 4.83-7.96 fast. It over-drives the line (peaks 0.67 / 0.77 V on a leg, 27 mV from the 0.3 V amplitude limit in
+  the fast corner), costs 7.5 mA, and the CK launch must move by 80-110 ps (CA margin +1 mV unmoved, +86 mV at the best position). The
+  divider equivalent is used there at a 4.1x change of the series value, outside the 2.4x range in which it was checked, and the model was
+  non-passive above 4.5 GHz: a re-extraction of the launch block is needed before committing to it.
+- **Status: a bring-up item** (section 8, item 38). Nothing was changed on the board for it.
+
+**Assumptions that carry the result.**
+
+1. DRAM pins, package and drivers are behavioural (no vendor IBIS): the CK slew at the pin, the pin-plane CA eye and the read levels depend on them.
+2. Socket contact shapes (no drawing of the LOTES part): the front / back skew and the echo phase.
+3. FPGA rail noise: the Vivado IBIS package as delivered has no die decoupling (an upper bound, used in every corner table).
+4. Launch phases of CA / CK, CS, WCK / DQ and the read capture instant; the jitter split; the injected noise and the DRAM core current.
+5. Nothing between 0 Hz and 5 MHz is solved; the mask shape between tIVW1 and tIVW2 and the 1.86 ns read window are assumed.
+6. HFSS convergence: block A ended at delta-S 0.0101 (target 0.01), block B at 0.021 (target 0.02); bound -12 .. -19 mV on the command margin,
+   -2 .. -16 mV on the write margin. The pin plane of the command bus is not fully converged at 5 GHz (2-4 mV of margin). No verdict changes.
+
 ## Appendix A. History
 
 Kept short on purpose; the sections above describe the board, not how it got there.
@@ -1689,6 +2099,10 @@ Kept short on purpose; the sections above describe the board, not how it got the
 | Power stage (s50) | 1.2 V strip instead of a pour; U3 / U4 on the back; RESET_n on B.Cu to finger 232 with one via; no outer ground flood, no stitching grid; the layer-hop rule | a corridor pour; RESET_n with a hop on In3 to finger 229; two board-wide GND floods with 53 stitching vias |
 | Final review and fix pass | RDQS on In3 down to a via pair above its fingers (before: a via pair at x = 49 and 20 mm on F.Cu, 17.8 ps earlier); pull-down arrays RN401 / RN402 of the unused byte removed (command bundle 30 -> 15 crossings); VDD1 west rail on F.Cu (one layer change); the eight exposed-pad vias filled and capped; six fiducials; mask strip to y = 2.75; drill / place origin; fab notes 6-13; one-command build on a clean tree; gateware hand-off with the Vivado 2026.1 pin check | |
 | Release | `scripts/make_fab.py`, `scripts/check_fab.py`, `fab/`; this file restructured; `doc/img/` | |
+| Merged system simulation; user: "Do both" | CA / CK dividers 75 / 56 ohm (value only, no copper moved); driver figures from the IBIS model, command pins enforced without DCI; MIPI_DPHY_DCI the only read receiver; command ODELAY starting values; section 16 | 91 / 68 ohm on CA / CK; driver assumed 26 / 36 / 44 ohm; SLVS_400_18 as a fall-back receiver with its override XDC; RDRV_48_48 as an option |
+| Antmicro comparison, 100R / 100R what-if, CK slew study; user: follow Antmicro unless there is a very clear reason not to | the 0.50 V divider set: CA / CK / WCK 75 / 75 ohm, write DQ 110 / 100 ohm, CS kept at 33 / 100 (value only, no copper moved); level policy 0.50 V +/-15 mV typical, at most 0.55 V in the fast corner; VREF_RD starting value 0.175 V, MR12 0x4A, MR14 0x46; the prohibition of DCI dropped as a level argument; section 16 | 75 / 56 on CA / CK, 91 / 68 on WCK, 240 / 150 on DQ; the rule that every level stays under 0.47 V; VREF_RD 0.195 V; write node tau 2.6 ns |
+| User: "Do 1." (R333 180R -> 160R) | read reference default 0.1738 V, on the centre of the read eye with the 100 ohm load (value only, no copper moved); DAC code 101 for 0.175 V | Rc 180 ohm, default 0.187 V (about +34 mV in the slow corner), code 80 |
+| User: "Make the range of vref go down to 0" - "Drop the VDDQ pull-up" | R332 not fitted (DNP; footprint and copper kept): VREF_RD = 0.3478 x Vdac, 0 .. 0.631 V, code 284 for 0.175 V; the DAC write (or its NVM default) is a precondition of every read | the 0.174 V power-up default, the 0.129 V floor, code 101; reads without any I2C traffic |
 
 ## Appendix B. Review findings that were checked and not changed
 

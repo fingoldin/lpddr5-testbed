@@ -1,6 +1,6 @@
 {
  "board": "lpddr5-testbed.kicad_pcb",
- "board_sha256": "ad7fe7fb7fc2977633b94e019d2710f937414a46d8ac770d9c7f32a83e93a95c",
+ "board_sha256": "fd5863eec97e7c07b665ff7d598775961a8ed86e63fe5c887b74f703cac9cccd",
  "pixels_per_mm": 80.0,
  "gerber_counts": {
   "F.Cu": {
@@ -292,11 +292,11 @@
   "npth_holes_on_board": 2
  },
  "position": {
-  "top": 59,
+  "top": 58,
   "bottom": 60
  },
  "bom": {
-  "lines": 27,
+  "lines": 28,
   "parts": 119,
   "top": 59,
   "bottom": 60
@@ -574,25 +574,25 @@
   },
   {
    "group": "position",
-   "check": "lpddr5-testbed-top.pos.csv: one row per placed part of that face (fingers, test pads and fiducials excluded)",
+   "check": "lpddr5-testbed-top.pos.csv: one row per placed part of that face (fingers, test pads, fiducials and DNP parts excluded)",
    "ok": true,
-   "detail": "59 rows, 59 parts on the board"
+   "detail": "58 rows, 58 parts on the board"
   },
   {
    "group": "position",
    "check": "lpddr5-testbed-top.pos.csv: X / Y = footprint position in the card frame (origin lower-left corner seen from the front, y up, x not mirrored), side column 'top'",
    "ok": true,
-   "detail": "59 rows"
+   "detail": "58 rows"
   },
   {
    "group": "position",
    "check": "lpddr5-testbed-top.pos.csv: Rot = KiCad orientation; every numbered pad lands where 'counter-clockwise seen from the front' puts it",
    "ok": true,
-   "detail": "59 parts"
+   "detail": "58 parts"
   },
   {
    "group": "position",
-   "check": "lpddr5-testbed-bottom.pos.csv: one row per placed part of that face (fingers, test pads and fiducials excluded)",
+   "check": "lpddr5-testbed-bottom.pos.csv: one row per placed part of that face (fingers, test pads, fiducials and DNP parts excluded)",
    "ok": true,
    "detail": "60 rows, 60 parts on the board"
   },
@@ -618,25 +618,25 @@
    "group": "bom",
    "check": "BOM: every line agrees with the board (value, footprint, manufacturer, MPN, DNP, quantity, side counts)",
    "ok": true,
-   "detail": "27 lines"
+   "detail": "28 lines"
   },
   {
    "group": "bom",
    "check": "BOM: every BOM part of the board is listed exactly once; nothing else is",
    "ok": true,
-   "detail": "119 references in 27 lines; board 119 (59 top, 60 bottom)"
+   "detail": "119 references in 28 lines; board 119 (59 top, 60 bottom)"
   },
   {
    "group": "bom",
    "check": "BOM: lines and quantities equal design/netlist.json (bom_summary)",
    "ok": true,
-   "detail": "27 lines, 119 parts, 0 DNP"
+   "detail": "28 lines, 119 parts, 1 DNP"
   },
   {
    "group": "bom",
-   "check": "position files and BOM list the same parts",
+   "check": "position files list exactly the fitted BOM parts; the DNP parts are in the BOM on DNP lines of their own and in no position file",
    "ok": true,
-   "detail": "119 / 119"
+   "detail": "118 fitted / 118 placed; DNP: ['R332']"
   },
   {
    "group": "bom",
@@ -654,7 +654,7 @@
    "group": "board",
    "check": "the board file is unchanged by the verification",
    "ok": true,
-   "detail": "ad7fe7fb7fc2977633b94e019d2710f937414a46d8ac770d9c7f32a83e93a95c"
+   "detail": "fd5863eec97e7c07b665ff7d598775961a8ed86e63fe5c887b74f703cac9cccd"
   }
  ],
  "passed": 56,

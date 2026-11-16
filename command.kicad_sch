@@ -290,7 +290,7 @@
 		)
 		(uuid "03172c46-0594-5a8a-bba7-6b717e97b94b")
 	)
-	(text "Corners: FPGA driver 26 / 36 / 44 ohm, VCCO 1.14 / 1.20 / 1.26 V, resistors 1 %.\n\nCA0-6, CK_P, CK_N:  91 R / 68 R   0.378 / 0.418 / 0.468 V   pin current 6.9 mA max\n    back impedance 44.6 ohm into the 45.6 ohm In3 line; limit: DC level <= 0.47 V target, <= 0.488 V\n        (card VDDQ min) hard; >= 0.351 V at boot (default VREF(CA) 0.256 V max + 0.095 V)\n\nCS0:  33 R / 100 R   0.640 / 0.710 / 0.797 V   pin current 8.0 mA max\n    limit: 0.55 V (ViHPD) .. VDD2H + 0.2 V; Vref_CS = VDD2H / 3 = 0.35 V\n\nFPGA: SSTL12 / DIFF_SSTL12, RDRV_40_40, FAST.\nCK_P on finger 76 (P pin), CK_N on finger 74 (N pin); finger 75 between them stays open.\nAll 10 nets are delay matched FPGA die pad to ball within +/-2 ps (CK_P to CK_N +/-1 ps)\non In3 between two ground planes; see design/DESIGN.md section 1."
+	(text "Corners: FPGA driver 34.9 / 29.3 / 25.1 ohm (slow / typ / fast), VCCO 1.14 / 1.20 / 1.26 V, resistors 1\n    %.\n\nCA0-6, CK_P, CK_N:  75 R / 75 R   0.458 / 0.502 / 0.545 V   pin current 7.3 mA max\n    back impedance 45.2 ohm into the 45.6 ohm In3 line; limit: DC level 0.50 V +/-15 mV typical, <= 0.55\n        V in the stacked fast corner (above the card's VDDQ: deliberate, analysis.level_policy); >=\n        0.351 V at boot (default VREF(CA) 0.256 V max + 0.095 V)\n\nCS0:  33 R / 100 R   0.675 / 0.739 / 0.802 V   pin current 8.0 mA max\n    limit: 0.55 V (ViHPD) .. VDD2H + 0.2 V; Vref_CS = VDD2H / 3 = 0.35 V\n\nFPGA: SSTL12 / DIFF_SSTL12, RDRV_40_40, FAST.\nCK_P on finger 76 (P pin), CK_N on finger 74 (N pin); finger 75 between them stays open.\nAll 10 nets are delay matched FPGA die pad to ball within +/-2 ps (CK_P to CK_N +/-1 ps)\non In3 between two ground planes; see design/DESIGN.md section 1."
 		(exclude_from_sim no)
 		(at 259.08 49.53 0)
 		(effects
@@ -1366,7 +1366,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "68R"
+		(property "Value" "75R"
 			(at 187.32 120.58 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -1399,7 +1399,7 @@
 				)
 			)
 		)
-		(property "Description" "CA4 shunt to GND at the divider node, resistor 68R 1 % 0201"
+		(property "Description" "CA4 shunt to GND at the divider node, resistor 75R 1 % 0201"
 			(at 185.42 119.38 0)
 			(hide yes)
 			(show_name no)
@@ -1410,7 +1410,7 @@
 				)
 			)
 		)
-		(property "MPN" "RC0201FR-0768RL"
+		(property "MPN" "RC0201FR-0775RL"
 			(at 185.42 119.38 0)
 			(hide yes)
 			(show_name no)
@@ -1469,7 +1469,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "68R"
+		(property "Value" "75R"
 			(at 187.32 90.1 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -1502,7 +1502,7 @@
 				)
 			)
 		)
-		(property "Description" "CA3 shunt to GND at the divider node, resistor 68R 1 % 0201"
+		(property "Description" "CA3 shunt to GND at the divider node, resistor 75R 1 % 0201"
 			(at 185.42 88.9 0)
 			(hide yes)
 			(show_name no)
@@ -1513,7 +1513,7 @@
 				)
 			)
 		)
-		(property "MPN" "RC0201FR-0768RL"
+		(property "MPN" "RC0201FR-0775RL"
 			(at 185.42 88.9 0)
 			(hide yes)
 			(show_name no)
@@ -1572,7 +1572,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "68R"
+		(property "Value" "75R"
 			(at 73.02 181.54 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -1605,7 +1605,7 @@
 				)
 			)
 		)
-		(property "Description" "CA1 shunt to GND at the divider node, resistor 68R 1 % 0201"
+		(property "Description" "CA1 shunt to GND at the divider node, resistor 75R 1 % 0201"
 			(at 71.12 180.34 0)
 			(hide yes)
 			(show_name no)
@@ -1616,7 +1616,7 @@
 				)
 			)
 		)
-		(property "MPN" "RC0201FR-0768RL"
+		(property "MPN" "RC0201FR-0775RL"
 			(at 71.12 180.34 0)
 			(hide yes)
 			(show_name no)
@@ -1852,7 +1852,7 @@
 				)
 			)
 		)
-		(property "Value" "91R"
+		(property "Value" "75R"
 			(at 175.26 175.12 90)
 			(show_name no)
 			(do_not_autoplace no)
@@ -1884,7 +1884,7 @@
 				)
 			)
 		)
-		(property "Description" "CA6 series (finger side of the divider), resistor 91R 1 % 0201"
+		(property "Description" "CA6 series (finger side of the divider), resistor 75R 1 % 0201"
 			(at 175.26 172.72 0)
 			(hide yes)
 			(show_name no)
@@ -1895,7 +1895,7 @@
 				)
 			)
 		)
-		(property "MPN" "RC0201FR-0791RL"
+		(property "MPN" "RC0201FR-0775RL"
 			(at 175.26 172.72 0)
 			(hide yes)
 			(show_name no)
@@ -1953,7 +1953,7 @@
 				)
 			)
 		)
-		(property "Value" "91R"
+		(property "Value" "75R"
 			(at 175.26 53.2 90)
 			(show_name no)
 			(do_not_autoplace no)
@@ -1985,7 +1985,7 @@
 				)
 			)
 		)
-		(property "Description" "CA2 series (finger side of the divider), resistor 91R 1 % 0201"
+		(property "Description" "CA2 series (finger side of the divider), resistor 75R 1 % 0201"
 			(at 175.26 50.8 0)
 			(hide yes)
 			(show_name no)
@@ -1996,7 +1996,7 @@
 				)
 			)
 		)
-		(property "MPN" "RC0201FR-0791RL"
+		(property "MPN" "RC0201FR-0775RL"
 			(at 175.26 50.8 0)
 			(hide yes)
 			(show_name no)
@@ -2055,7 +2055,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "68R"
+		(property "Value" "75R"
 			(at 187.32 181.54 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -2088,7 +2088,7 @@
 				)
 			)
 		)
-		(property "Description" "CA6 shunt to GND at the divider node, resistor 68R 1 % 0201"
+		(property "Description" "CA6 shunt to GND at the divider node, resistor 75R 1 % 0201"
 			(at 185.42 180.34 0)
 			(hide yes)
 			(show_name no)
@@ -2099,7 +2099,7 @@
 				)
 			)
 		)
-		(property "MPN" "RC0201FR-0768RL"
+		(property "MPN" "RC0201FR-0775RL"
 			(at 185.42 180.34 0)
 			(hide yes)
 			(show_name no)
@@ -2158,7 +2158,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "68R"
+		(property "Value" "75R"
 			(at 187.32 151.06 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -2191,7 +2191,7 @@
 				)
 			)
 		)
-		(property "Description" "CA5 shunt to GND at the divider node, resistor 68R 1 % 0201"
+		(property "Description" "CA5 shunt to GND at the divider node, resistor 75R 1 % 0201"
 			(at 185.42 149.86 0)
 			(hide yes)
 			(show_name no)
@@ -2202,7 +2202,7 @@
 				)
 			)
 		)
-		(property "MPN" "RC0201FR-0768RL"
+		(property "MPN" "RC0201FR-0775RL"
 			(at 185.42 149.86 0)
 			(hide yes)
 			(show_name no)
@@ -2261,7 +2261,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "68R"
+		(property "Value" "75R"
 			(at 187.32 59.62 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -2294,7 +2294,7 @@
 				)
 			)
 		)
-		(property "Description" "CA2 shunt to GND at the divider node, resistor 68R 1 % 0201"
+		(property "Description" "CA2 shunt to GND at the divider node, resistor 75R 1 % 0201"
 			(at 185.42 58.42 0)
 			(hide yes)
 			(show_name no)
@@ -2305,7 +2305,7 @@
 				)
 			)
 		)
-		(property "MPN" "RC0201FR-0768RL"
+		(property "MPN" "RC0201FR-0775RL"
 			(at 185.42 58.42 0)
 			(hide yes)
 			(show_name no)
@@ -2517,7 +2517,7 @@
 				)
 			)
 		)
-		(property "Value" "91R"
+		(property "Value" "75R"
 			(at 60.96 83.68 90)
 			(show_name no)
 			(do_not_autoplace no)
@@ -2549,7 +2549,7 @@
 				)
 			)
 		)
-		(property "Description" "CK_N series (finger side of the divider), resistor 91R 1 % 0201"
+		(property "Description" "CK_N series (finger side of the divider), resistor 75R 1 % 0201"
 			(at 60.96 81.28 0)
 			(hide yes)
 			(show_name no)
@@ -2560,7 +2560,7 @@
 				)
 			)
 		)
-		(property "MPN" "RC0201FR-0791RL"
+		(property "MPN" "RC0201FR-0775RL"
 			(at 60.96 81.28 0)
 			(hide yes)
 			(show_name no)
@@ -2618,7 +2618,7 @@
 				)
 			)
 		)
-		(property "Value" "91R"
+		(property "Value" "75R"
 			(at 175.26 144.64 90)
 			(show_name no)
 			(do_not_autoplace no)
@@ -2650,7 +2650,7 @@
 				)
 			)
 		)
-		(property "Description" "CA5 series (finger side of the divider), resistor 91R 1 % 0201"
+		(property "Description" "CA5 series (finger side of the divider), resistor 75R 1 % 0201"
 			(at 175.26 142.24 0)
 			(hide yes)
 			(show_name no)
@@ -2661,7 +2661,7 @@
 				)
 			)
 		)
-		(property "MPN" "RC0201FR-0791RL"
+		(property "MPN" "RC0201FR-0775RL"
 			(at 175.26 142.24 0)
 			(hide yes)
 			(show_name no)
@@ -2720,7 +2720,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "68R"
+		(property "Value" "75R"
 			(at 73.02 151.06 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -2753,7 +2753,7 @@
 				)
 			)
 		)
-		(property "Description" "CA0 shunt to GND at the divider node, resistor 68R 1 % 0201"
+		(property "Description" "CA0 shunt to GND at the divider node, resistor 75R 1 % 0201"
 			(at 71.12 149.86 0)
 			(hide yes)
 			(show_name no)
@@ -2764,7 +2764,7 @@
 				)
 			)
 		)
-		(property "MPN" "RC0201FR-0768RL"
+		(property "MPN" "RC0201FR-0775RL"
 			(at 71.12 149.86 0)
 			(hide yes)
 			(show_name no)
@@ -2900,7 +2900,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "68R"
+		(property "Value" "75R"
 			(at 73.02 90.1 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -2933,7 +2933,7 @@
 				)
 			)
 		)
-		(property "Description" "CK_N shunt to GND at the divider node, resistor 68R 1 % 0201"
+		(property "Description" "CK_N shunt to GND at the divider node, resistor 75R 1 % 0201"
 			(at 71.12 88.9 0)
 			(hide yes)
 			(show_name no)
@@ -2944,7 +2944,7 @@
 				)
 			)
 		)
-		(property "MPN" "RC0201FR-0768RL"
+		(property "MPN" "RC0201FR-0775RL"
 			(at 71.12 88.9 0)
 			(hide yes)
 			(show_name no)
@@ -3002,7 +3002,7 @@
 				)
 			)
 		)
-		(property "Value" "91R"
+		(property "Value" "75R"
 			(at 60.96 53.2 90)
 			(show_name no)
 			(do_not_autoplace no)
@@ -3034,7 +3034,7 @@
 				)
 			)
 		)
-		(property "Description" "CK_P series (finger side of the divider), resistor 91R 1 % 0201"
+		(property "Description" "CK_P series (finger side of the divider), resistor 75R 1 % 0201"
 			(at 60.96 50.8 0)
 			(hide yes)
 			(show_name no)
@@ -3045,7 +3045,7 @@
 				)
 			)
 		)
-		(property "MPN" "RC0201FR-0791RL"
+		(property "MPN" "RC0201FR-0775RL"
 			(at 60.96 50.8 0)
 			(hide yes)
 			(show_name no)
@@ -3104,7 +3104,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "68R"
+		(property "Value" "75R"
 			(at 73.02 59.62 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -3137,7 +3137,7 @@
 				)
 			)
 		)
-		(property "Description" "CK_P shunt to GND at the divider node, resistor 68R 1 % 0201"
+		(property "Description" "CK_P shunt to GND at the divider node, resistor 75R 1 % 0201"
 			(at 71.12 58.42 0)
 			(hide yes)
 			(show_name no)
@@ -3148,7 +3148,7 @@
 				)
 			)
 		)
-		(property "MPN" "RC0201FR-0768RL"
+		(property "MPN" "RC0201FR-0775RL"
 			(at 71.12 58.42 0)
 			(hide yes)
 			(show_name no)
@@ -3463,7 +3463,7 @@
 				)
 			)
 		)
-		(property "Value" "91R"
+		(property "Value" "75R"
 			(at 175.26 83.68 90)
 			(show_name no)
 			(do_not_autoplace no)
@@ -3495,7 +3495,7 @@
 				)
 			)
 		)
-		(property "Description" "CA3 series (finger side of the divider), resistor 91R 1 % 0201"
+		(property "Description" "CA3 series (finger side of the divider), resistor 75R 1 % 0201"
 			(at 175.26 81.28 0)
 			(hide yes)
 			(show_name no)
@@ -3506,7 +3506,7 @@
 				)
 			)
 		)
-		(property "MPN" "RC0201FR-0791RL"
+		(property "MPN" "RC0201FR-0775RL"
 			(at 175.26 81.28 0)
 			(hide yes)
 			(show_name no)
@@ -3564,7 +3564,7 @@
 				)
 			)
 		)
-		(property "Value" "91R"
+		(property "Value" "75R"
 			(at 60.96 144.64 90)
 			(show_name no)
 			(do_not_autoplace no)
@@ -3596,7 +3596,7 @@
 				)
 			)
 		)
-		(property "Description" "CA0 series (finger side of the divider), resistor 91R 1 % 0201"
+		(property "Description" "CA0 series (finger side of the divider), resistor 75R 1 % 0201"
 			(at 60.96 142.24 0)
 			(hide yes)
 			(show_name no)
@@ -3607,7 +3607,7 @@
 				)
 			)
 		)
-		(property "MPN" "RC0201FR-0791RL"
+		(property "MPN" "RC0201FR-0775RL"
 			(at 60.96 142.24 0)
 			(hide yes)
 			(show_name no)
@@ -3742,7 +3742,7 @@
 				)
 			)
 		)
-		(property "Value" "91R"
+		(property "Value" "75R"
 			(at 175.26 114.16 90)
 			(show_name no)
 			(do_not_autoplace no)
@@ -3774,7 +3774,7 @@
 				)
 			)
 		)
-		(property "Description" "CA4 series (finger side of the divider), resistor 91R 1 % 0201"
+		(property "Description" "CA4 series (finger side of the divider), resistor 75R 1 % 0201"
 			(at 175.26 111.76 0)
 			(hide yes)
 			(show_name no)
@@ -3785,7 +3785,7 @@
 				)
 			)
 		)
-		(property "MPN" "RC0201FR-0791RL"
+		(property "MPN" "RC0201FR-0775RL"
 			(at 175.26 111.76 0)
 			(hide yes)
 			(show_name no)
@@ -3843,7 +3843,7 @@
 				)
 			)
 		)
-		(property "Value" "91R"
+		(property "Value" "75R"
 			(at 60.96 175.12 90)
 			(show_name no)
 			(do_not_autoplace no)
@@ -3875,7 +3875,7 @@
 				)
 			)
 		)
-		(property "Description" "CA1 series (finger side of the divider), resistor 91R 1 % 0201"
+		(property "Description" "CA1 series (finger side of the divider), resistor 75R 1 % 0201"
 			(at 60.96 172.72 0)
 			(hide yes)
 			(show_name no)
@@ -3886,7 +3886,7 @@
 				)
 			)
 		)
-		(property "MPN" "RC0201FR-0791RL"
+		(property "MPN" "RC0201FR-0775RL"
 			(at 60.96 172.72 0)
 			(hide yes)
 			(show_name no)

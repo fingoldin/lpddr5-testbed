@@ -14,6 +14,20 @@ localparam integer RDQS_IDELAY_PS = 0;
 localparam integer RDQ_AFTER_RDQS_PS = 27;  // 26.56 ps
 // WCK arrives this long after the latest write DQ (negative: before), FPGA die pad to ball
 localparam integer WCK_AFTER_LATEST_WDQ_PS = -17;  // -17.0 ps
+// command: ODELAY STARTING VALUES of ca[i] against the front / back skew of the socket (17 ps front minus back in the
+// merged system simulation; the card itself is matched).  Training values, NOT constants: CA5 +27, CA0 +20, CA3 +20, CA1 +12, CA4 +7, CA6 +3, CA2 +0.
+// cs0 and the CK pair: 0.  (index i at bits 16*i +: 16)
+localparam [7*16-1:0] CA_ODELAY_START_PS = {16'd3, 16'd27, 16'd7, 16'd20, 16'd0, 16'd12, 16'd20};
 // reference DAC (DAC53401 at I2C 0x48 behind the ZCU104 I2C1 switch 0x74 port 7)
 localparam [6:0] VREF_DAC_I2C_ADDR = 7'h48;
-localparam integer VREF_DAC_CODE_DEFAULT = 121;  // 0.195 V on VREF_RD
+// VREF_RD = code x 0.617 mV (R332 not fitted: no offset, range 0 .. 0.631 V).  VREF_RD IS 0 V UNTIL THE DAC IS WRITTEN:
+// write DAC_DATA (0x21) = code << 2, then GENERAL_CONFIG (0xD1) = 0x01E4, BEFORE the first READ or MRR (BRINGUP.md section 4).
+localparam integer VREF_DAC_CODE_DEFAULT = 284;  // 0.175 V on VREF_RD
+localparam integer VREF_DAC_CODE_MIN = 228;  // 0.14 V: below it the D-PHY receiver has no common mode for a zero (reachable, not usable)
+localparam integer VREF_DAC_CODE_MAX = 340;  // 0.21 V: highest recommended reference
+localparam [15:0] VREF_DAC_DATA_DEFAULT = 16'h0470;  // DAC_DATA register value for the default code
+localparam [15:0] VREF_DAC_GENERAL_CONFIG = 16'h01E4;  // power up, internal reference, gain 1.5, no slew
+// VREF mode-register starting codes for the 0.50 V divider levels (BRINGUP.md section 3); starting values, then train
+localparam [6:0] MR12_VREF_CA_START = 7'h4A;  // 47.0 % of VDDQ = 0.235 V; simulated eye centres 215 / 235 / 253 mV slow / typ / fast
+localparam [6:0] MR14_VREF_DQ_START = 7'h46;  // 45.0 % of VDDQ = 0.225 V, the simulated point; the eye centre is about 248 mV
+//   (J table 91 note 4: 225 mV is the VrefDQ ceiling only for WCK above 1600 MHz, 350 mV at or below it; nothing was simulated above 225 mV)

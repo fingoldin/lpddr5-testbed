@@ -11,12 +11,23 @@
 ##
 ## Banks 64 / 65 / 66 are HP banks at VCCO = 1.2 V on the ZCU104 (fixed by the board).  No INTERNAL_VREF and no
 ## DCI_CASCADE constraint is needed (no VREF-referenced input and no DCI output in this file).
+##
+## COMMAND PINS: SSTL12 / DIFF_SSTL12, SLEW FAST, OUTPUT_IMPEDANCE RDRV_40_40, NO DCI.  The card's command dividers
+## (75 ohm / 75 ohm) give 0.50 V typical at the DRAM with exactly this driver, and every simulated margin was obtained with it.
+## A DCI or weaker driver lowers the level (40 ohm DCI 0.47 V, 48 ohm DCI 0.45 V nominal; still 85 / 66 mV over the boot floor
+## of 0.351 V in the slow corner) and was not simulated: not supported (design/DESIGN.md section 1).
+## scripts/gen_gateware.py --check fails if a command port in this file carries anything else.
+##
+## LEVELS: CA, CK, WCK and write DQ are about 0.50 V typical at the DRAM (the user's decision: as on the Antmicro design).  In the
+## fast corner they rest above the card's VDDQ: see design/gateware/BRINGUP.md section 2 and design/DESIGN.md section 1.
 
 ## ------------------------------------------------------------------------------------------------------------
 ## COMMAND bus: CA0-6, CS0, CK  (bank 65, byte group T0)
-## FPGA outputs at 1.2 V into the card's dividers (CA / CK 91 + 68 ohm, CS 33 + 100 ohm).
+## FPGA outputs at 1.2 V into the card's dividers (CA / CK 75 + 75 ohm, CS 33 + 100 ohm).
 ## Delay-matched on the card, die pad to ball; CK is not inverted (CK_t on the P pin).
-## Source of the standards: design/DESIGN.md section 1 (SSTL12 / DIFF_SSTL12, RDRV_40_40, FAST).
+## Source of the standards: design/DESIGN.md section 1 (SSTL12 / DIFF_SSTL12, RDRV_40_40, FAST, no DCI): REQUIRED,
+## see the head of this file.  Per-pin ODELAY starting values for the front / back skew of the socket:
+## lpddr5_testbed_pins.vh (CA_ODELAY_START_PS), PINMAP.md.
 ## ------------------------------------------------------------------------------------------------------------
 set_property PACKAGE_PIN AN22 [get_ports {ca[0]}]        ;# finger 84 (B) DQ27 | CA0_F -> CA0 (U1.G4) | bank 65 T0U N8 (bitslice 2) | IO_L5P_T0U_N8_AD14P_65 | matched on the card (641.77 ps die pad to ball, +/-2.0 ps)
 set_property PACKAGE_PIN AP23 [get_ports {ca[1]}]        ;# finger 83 (F) DQ26 | CA1_F -> CA1 (U1.H5) | bank 65 T0U N9 (bitslice 3) | IO_L5N_T0U_N9_AD14N_65 | matched on the card (641.77 ps die pad to ball, +/-2.0 ps)
@@ -44,7 +55,7 @@ set_property SLEW SLOW [get_ports {cmd_open_low}]
 
 ## ------------------------------------------------------------------------------------------------------------
 ## WRITE: DQ0-7 outputs, WCK  (bank 64)
-## FPGA outputs at 1.2 V into the dividers (DQ 240 + 150 ohm, WCK 91 + 68 ohm).  wdq[*] must be Hi-Z during reads
+## FPGA outputs at 1.2 V into the dividers (DQ 110 + 100 ohm, WCK 75 + 75 ohm).  wdq[*] must be Hi-Z during reads
 ## (OBUFT): a driven-low write pin costs 36 mV of read level (design/DESIGN.md section 2).
 ## NOT delay-matched on the card: one ODELAYE3 per pin, values in lpddr5_testbed_pins.vh / PINMAP.md.
 ## WCK is INVERTED: wck_p (the FPGA P pin) carries WCK_c, wck_n carries WCK_t: drive the pair with inverted data.
@@ -68,7 +79,7 @@ set_property SLEW FAST [get_ports {wck_n wck_p}]
 
 ## ------------------------------------------------------------------------------------------------------------
 ## READ: DQ0-7 pseudo-differential, RDQS true differential  (bank 66)
-## rdq_p[i] = DQi straight from the DRAM ball (150 ohm to GND on the card), rdq_n[i] = the static reference VREF_RD
+## rdq_p[i] = DQi straight from the DRAM ball (100 ohm to GND on the card), rdq_n[i] = the static reference VREF_RD
 ## through 39 ohm (DAC53401, see the I2C note at the end).  Input-only: never drive these pins.
 ## Receiver: IBUFDS_DPHY with IOSTANDARD = "MIPI_DPHY_DCI" ALSO AS AN ATTRIBUTE ON THE INSTANCE (without it Vivado
 ## 2023.1 fails write_bitstream with DRC AVAL-252; Vivado 2026.1 takes the standard from the port),
@@ -77,7 +88,8 @@ set_property SLEW FAST [get_ports {wck_n wck_p}]
 ## because one leg of every data pair is a DC reference.
 ## NOT delay-matched on the card: one IDELAYE3 per pair, values in lpddr5_testbed_pins.vh / PINMAP.md.
 ## RDQS is INVERTED: rdqs_p (the FPGA P pin) carries RDQS_c, rdqs_n carries RDQS_t: invert after the receiver.
-## Fall-back receiver: read lpddr5_testbed_zcu104_rx_slvs.xdc after this file (SLVS_400_18 on plain IBUFDS).
+## This is the ONLY supported read receiver.  SLVS_400_18 on plain IBUFDS is NOT supported (it was a fall-back until the
+## merged system simulation: -13 mV of margin in the slow corner; design/DESIGN.md section 16).
 ## ------------------------------------------------------------------------------------------------------------
 set_property PACKAGE_PIN AH11 [get_ports {rdq_p[0]}]     ;# finger 204 (B) DQ47 | DQ0 (U1.D1) | bank 66 T2L N2 (bitslice 2) GC | IO_L14P_T2L_N2_GC_66 | not matched on the card: total 896.87 ps, -26.24 ps to the strobe
 set_property PACKAGE_PIN AJ11 [get_ports {rdq_n[0]}]     ;# finger 203 (F) DQ46 | VREF_N0 | bank 66 T2L N3 (bitslice 3) GC | IO_L14N_T2L_N3_GC_66 | static reference of rdq_p[0]; never driven by the FPGA

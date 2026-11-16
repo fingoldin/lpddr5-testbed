@@ -1,0 +1,721 @@
+{
+ "what": "Merged system simulation of the ZCU104 + DDR4 SO-DIMM socket + this card: headline results kept with the design. Transcribed from the stage-3 report (REPORT.md, results.json), the HFSS block manifest and the merge README; read by scripts/build_netlist.py into netlist.json analysis.system_simulation. Since then extended with three follow-up studies and the 0.50 V divider set now on the board (dividers_0v50, follow_up_studies).",
+ "date": "2026-11-12",
+ "files": {
+  "server": "~/lpddr5_sys/stage3/ on the simulation server (deliver/REPORT.md, results.json, tables/, eyes/, scenarios/, scripts/; inspectable models in inspect/)",
+  "hfss_blocks": "~/lpddr5_sys/stage2/hfss/deliver/manifest.json",
+  "merge": "~/lpddr5_sys/stage2_merge/deliver/README.md",
+  "in_repository": "none: the simulation files are not in the repository"
+ },
+ "board_simulated": "the card as built at the time: CA / CK dividers 91R / 68R. The 75R / 56R result is an equivalent (a correction two-port on the card ports of block A, fitted to an earlier field solve with resistor ports; residual 0.013 of S to 2.4 GHz against a change of 0.085), not a new field solve",
+ "model": {
+  "host": "ZCU104 from the Xilinx ODB++ (16 layers, fabricated line widths)",
+  "socket": "five HFSS blocks cut from the real artwork of both boards with the socket contacts and housing as solids: A command (fingers 60-90, 23 ports), B write (129-176, 48 ports), C read (176-226, 38 ports), D reset (226-238, 7 ports), E I2C / 3.3 V (247-260, 10 ports)",
+  "card": "this card from its IPC-2581 export (6 layers)",
+  "merge": "one SIwave project (host + card + block components), 179 ports, 0 - 5 GHz in 5 MHz steps with the true static row; merged against the plain cascade per wire to 5 GHz: command <= 0.0026, write DQ <= 0.0014, read <= 0.0045, WCK <= 0.0060, RESET_n 0.039",
+  "circuit": "stand-alone Nexxim transients on the 75-port model; Vivado 2026.1 IBIS buffers (HP_SSTL12_F_OUT40, HP_MIPI_DPHY_DCI_F_OUT48 as receiver, HP_LVCMOS12_S_8) on the coupled Vivado package model; behavioural LPDDR5 pins (assumed)",
+  "band_ghz": [
+   0,
+   5
+  ],
+  "runs": "98 Nexxim runs, 0 failed",
+  "corners": "typ / slow / fast = IBIS typ / min / max, VCCO 1.20 / 1.14 / 1.26 V, DRAM read high 0.386 / 0.353 / 0.423 V into 150 ohm; 'paired' = pessimistic DRAM package coupling (assumed)",
+  "modes": "M1 command stream 1.6 Gb/s; M2 writes 100 Mb/s; M3 reads 100 Mb/s; M4R / M4W = data plus the command bus at full rate plus injected noise (pessimistic supersets that this controller cannot produce)",
+  "hfss_convergence": "block A last delta-S 0.0101 (target 0.01), block B 0.021 (target 0.02): not met; C, D, E met. Bound: command margin -12 .. -19 mV, write margin -2 .. -16 mV"
+ },
+ "fpga_driver_ibis_ohm": {
+  "model": "HP_SSTL12_F_OUT40 (SSTL12, SLEW FAST, RDRV_40_40, no DCI)",
+  "slow": 34.9,
+  "typ": 29.3,
+  "fast": 25.1
+ },
+ "margin_definition": "mask margin in mV at the receiver's sampling instant (smallest vertical distance between the JEDEC mask and the folded waveform; negative = violation), worst net of the class; 'best' = with the delay adjustment that training reaches",
+ "verdict": [
+  {
+   "cls": "CA at the DRAM pin, 1.6 Gb/s (mask 155 mV x 112.5 / 187.5 ps)",
+   "typ": "+47 (best +53), height 271 mV, width 467 ps",
+   "slow": "+42 (+47)",
+   "fast": "+47 (+53)",
+   "slow_paired": "+37 (+51)",
+   "verdict": "pass"
+  },
+  {
+   "cls": "CA at the die",
+   "typ": "+45 (+66)",
+   "slow": "+39 (+57)",
+   "fast": "+45 (+70)",
+   "slow_paired": "+37 (+54)",
+   "verdict": "pass"
+  },
+  {
+   "cls": "CA at the pin while data runs (M4R / M4W)",
+   "typ": "+38 / +40",
+   "slow": "+36 / +38",
+   "fast": "",
+   "slow_paired": "",
+   "verdict": "pass"
+  },
+  {
+   "cls": "CS at the pin (mask 180 mV x 275 / 375 ps)",
+   "typ": "+193",
+   "slow": "+135",
+   "fast": "+216",
+   "slow_paired": "+129",
+   "verdict": "pass"
+  },
+  {
+   "cls": "CK swing at the pin (>= 0.35 V p-p)",
+   "typ": "0.91 V",
+   "slow": "0.80 V",
+   "fast": "1.01 V",
+   "slow_paired": "0.76 V",
+   "verdict": "pass"
+  },
+  {
+   "cls": "CK Vix ratio at the pin (<= 25 %)",
+   "typ": "5.3 %",
+   "slow": "5.3 %",
+   "fast": "5.6 %",
+   "slow_paired": "5.2 %",
+   "verdict": "pass"
+  },
+  {
+   "cls": "CK slew at the pin (2 - 14 V/ns)",
+   "typ": "1.67 - 1.94 V/ns",
+   "slow": "1.59 - 1.85",
+   "fast": "1.73 - 2.02",
+   "slow_paired": "1.80 - 2.12",
+   "verdict": "FAIL: below the 2 V/ns minimum in typ and slow"
+  },
+  {
+   "cls": "CK slew at the die",
+   "typ": "4.8 - 6.5 V/ns",
+   "slow": "4.1 - 5.6",
+   "fast": "5.5 - 7.4",
+   "slow_paired": "3.3 - 4.7",
+   "verdict": "pass"
+  },
+  {
+   "cls": "write DQ at the DRAM pin, 100 Mb/s (mask 100 mV), at tWCK2DQI 300 / 900 ps",
+   "typ": "+80 / +82 (best +128)",
+   "slow": "+67 / +72 (+114)",
+   "fast": "+118 / +105 (+141)",
+   "slow_paired": "+67 / +72",
+   "verdict": "pass"
+  },
+  {
+   "cls": "write DQ with commands at full rate (M4W)",
+   "typ": "+65 / +76 (+119)",
+   "slow": "+55 / +68 (+109)",
+   "fast": "",
+   "slow_paired": "",
+   "verdict": "pass"
+  },
+  {
+   "cls": "WCK at the DRAM pin (>= 0.30 V, 2 - 14 V/ns, Vix <= 20 %)",
+   "typ": "1.03 V, 3.7 - 3.9 V/ns, 4.3 %",
+   "slow": "0.86 V, 3.2 - 3.3, 6.0 %",
+   "fast": "1.19 V, 4.2 - 4.4, 3.3 %",
+   "slow_paired": "",
+   "verdict": "pass"
+  },
+  {
+   "cls": "read DQ (P - N) at the FPGA die, 100 Mb/s, MIPI_DPHY_DCI (VID >= 70 mV)",
+   "typ": "+95 (best +99), eye 338 mV",
+   "slow": "+57 (+61)",
+   "fast": "+104 (+107)",
+   "slow_paired": "+57",
+   "verdict": "pass"
+  },
+  {
+   "cls": "read DQ with commands at full rate (M4R), MIPI_DPHY_DCI",
+   "typ": "+86",
+   "slow": "+47",
+   "fast": "",
+   "slow_paired": "",
+   "verdict": "pass"
+  },
+  {
+   "cls": "read DQ, SLVS_400_18 (VID >= 140 mV), VREF_RD 0.195 V",
+   "typ": "+25",
+   "slow": "-13",
+   "fast": "+34",
+   "slow_paired": "-13",
+   "verdict": "FAIL in the slow corner: SLVS_400_18 is no longer a supported receiver"
+  },
+  {
+   "cls": "read common mode at the sampling instant (70 - 330 mV)",
+   "typ": "95 - 290 mV",
+   "slow": "95 - 273",
+   "fast": "98 - 311",
+   "slow_paired": "",
+   "verdict": "pass, 19 mV to the upper limit in the fast corner"
+  },
+  {
+   "cls": "read P pin over the whole UI (HS window -40 .. 460 mV)",
+   "typ": "-53 / 418 mV",
+   "slow": "-37 / 362",
+   "fast": "-76 / 538",
+   "slow_paired": "",
+   "verdict": "outside the window for 1 - 2 ns after each edge, inside it at the sampling instant"
+  },
+  {
+   "cls": "RDQS at the FPGA die (VID >= 70 mV)",
+   "typ": "+294, VICM 189 mV",
+   "slow": "+255, 169 mV",
+   "fast": "+318, 213 mV",
+   "slow_paired": "",
+   "verdict": "pass"
+  },
+  {
+   "cls": "RESET_n at the DRAM (0.85 .. 1.25 V)",
+   "typ": "1.04 - 1.06 V",
+   "slow": "0.96 - 1.00 V",
+   "fast": "1.10 - 1.11 V",
+   "slow_paired": "",
+   "verdict": "pass (lowest instantaneous level 0.90 V)"
+  }
+ ],
+ "static_high_at_the_dram_pin_v": {
+  "note": "slow / typ / fast with the real driver, 91R / 68R as simulated, nominal resistors",
+  "CA_CK": [
+   0.394,
+   0.427,
+   0.458
+  ],
+  "CS": [
+   0.667,
+   0.727,
+   0.783
+  ],
+  "write_DQ": [
+   0.399,
+   0.426,
+   0.452
+  ],
+  "WCK": [
+   0.395,
+   0.428,
+   0.46
+  ],
+  "RESET_n": [
+   0.99,
+   1.049,
+   1.106
+  ],
+  "CA_overshoot_undershoot_v": [
+   0.589,
+   -0.093
+  ]
+ },
+ "failures": {
+  "ck_slew_at_the_pin": {
+   "result_v_per_ns": "1.59 - 1.94 in slow and typ (fast 1.73 - 2.02) against the 2 V/ns minimum; 3.3 - 7.4 V/ns at the die",
+   "cause": "the unterminated pin behind the assumed DRAM package inductance (2.8 nH / 1.25 pF), a ledge at the crossing; not the driver, not the divider values (unchanged with 75R / 56R), not the model band (1.68 / 1.70 / 1.78 V/ns at 5 / 4 / 3 GHz), not jitter",
+   "status": "open: depends on the assumed DRAM package and must be measured on the bench"
+  },
+  "slvs_400_18": {
+   "result_mV": "+25 / -13 / +34 typ / slow / fast at VREF_RD 0.195 V (M4R: +16 / -23)",
+   "cause": "in the weak-driver corner (read high 0.353 V) the high state has only 127 mV of differential against the 140 mV the standard needs",
+   "status": "closed by decision: SLVS_400_18 dropped as a fall-back receiver; MIPI_DPHY_DCI is the only supported read receiver"
+  }
+ },
+ "divider_75r_56r_against_91r_68r": {
+  "evidence": "Nexxim on cascade models; block A changed by the equivalent two-port (post-processed)",
+  "ca_pin_margin_mV": {
+   "typ": [
+    50,
+    70
+   ],
+   "slow": [
+    46,
+    60
+   ],
+   "fast_75_56": 71
+  },
+  "ca_die_margin_typ_mV": [
+   48,
+   80
+  ],
+  "ca_pin_height_typ_mV": [
+   258,
+   308
+  ],
+  "ca_static_high_v": {
+   "typ": [
+    0.427,
+    0.413
+   ],
+   "slow": [
+    0.394,
+    0.379
+   ],
+   "fast_75_56": 0.445
+  },
+  "ck_slew_die_v_per_ns": [
+   4.9,
+   5.3
+  ],
+  "ck_slew_pin": "unchanged (1.6 - 2.0 V/ns)",
+  "cs": "unchanged",
+  "verdict": "an improvement of 14 - 20 mV at the pin, not a repair: 91R / 68R also passes"
+ },
+ "n_branch": {
+  "noise_at_the_fpga_die_mV": {
+   "reads_typ_whole_ui": "17.0 - 26.7 pk-pk, 1.2 - 1.8 rms",
+   "reads_typ_in_the_sampling_window": "2.0 - 3.3 pk-pk, 0.33 - 0.58 rms",
+   "m4r_typ_whole_ui": "29.7 - 44.4 pk-pk",
+   "m4r_typ_in_the_window": "22.4 - 28.9 pk-pk (upper bound: FPGA rail noise as delivered by the IBIS package; 1.5 - 9.3 with 2 nF of die decoupling per bank)"
+  },
+  "sources": "own P wire 20.4 mV pk-pk at the edge, 1.2 mV in the window (FPGA package P / N coupling); the seven neighbours 13.5 / 1.2 mV (made in the socket); RDQS 3.6 / 0.8; the reference network, DAC and shared VREF_RD bus below 0.01 mV in band",
+  "cost_in_mask_margin_mV": {
+   "reads": "0.1 - 1.0",
+   "m4r": "1 - 11 (<= 5 with 2 nF)"
+  },
+  "level_mV": "194 - 196 at the set value 0.195 V; static error budget 16 mV (pin leakage 10, VDDQ 3.3, DAC and resistors 2.4)",
+  "verdict": "acceptable: 2 - 3 mV pk-pk when the receiver samples, at most 1 mV of +95 mV (typ) / +57 mV (slow) over the 70 mV sensitivity of MIPI_DPHY_DCI; with the 16 mV static budget +41 mV remain in the slow corner. What limits is the reference LEVEL, not the noise",
+  "values_39r_100n": "no change needed"
+ },
+ "vref_rd": {
+  "rule": "measure the read high level, set VREF_RD to half of it, keep it <= 0.21 V",
+  "examples": {
+   "slow": "read high 0.353 V -> VREF_RD 0.172 V: +80 mV (MIPI_DPHY_DCI) instead of +57 mV",
+   "fast": "0.212 V: +121 mV, common mode 319 mV (11 mV inside)",
+   "no_i2c": "DAC Hi-Z, 0.187 V: typical corner unchanged (+96 mV)"
+  }
+ },
+ "front_back_skew": {
+  "eye_centre_minus_ck_crossing_at_the_pin_ps": {
+   "CA0": 2,
+   "CA3": 2,
+   "CA5": -5,
+   "CA1": 10,
+   "CA2": 22,
+   "CA4": 15,
+   "CA6": 19
+  },
+  "front_minus_back_ps": 17,
+  "back_fingers": [
+   "CA0",
+   "CA3",
+   "CA5"
+  ],
+  "front_fingers": [
+   "CA1",
+   "CA2",
+   "CA4",
+   "CA6"
+  ],
+  "cause": "front-side fingers arrive later through the socket (contact points 0.84 / 1.85 mm); the card's own match (641.77 ps on all ten nets) does not contain it",
+  "odelay_start_ps": {
+   "CA5": 27,
+   "CA0": 20,
+   "CA3": 20,
+   "CA1": 12,
+   "CA4": 7,
+   "CA6": 3,
+   "CA2": 0
+  },
+  "odelay_note": "starting values for training, not constants; from the final model, typ. An earlier run with CK +15 ps and CS +3 ps brought the centres within 1.3 .. 5.2 ps with margins unchanged within 6 mV",
+  "cs": "launched on the CA edges the CS eye centre is 288 - 301 ps before the rising CK crossing (margin +193 mV); half a UI later centres it; either is acceptable"
+ },
+ "write_return_path": {
+  "finding": "block B has no ground finger between 107 and 167: the write wires return through the 1.2 V fingers and the card's capacitors",
+  "effect_mV": "eight DQ switching together: margin +115 / +100 (independent) -> +109 / +96 (all the same direction); a quiet DQ among seven sees <= 92 mV pk-pk over the UI, 37 - 56 mV in the latch window, >= 75 mV from the mask",
+  "crosstalk": "the seven other DQ sum to 0.13 at 1 GHz where the own through is 0.26 (supply resonance 0.75 - 1.05 GHz); at 100 Mb/s nothing of it is left at the latch instant; no sensitivity case goes below +74 mV",
+  "mitigation": "timing: launch DQ so that the DRAM latches 7 - 9.5 ns after the DQ edge (margin +128 .. +141 mV instead of +80 .. +118). SLEW SLOW on the write pins is not needed and not recommended"
+ },
+ "assumptions": [
+  "DRAM pins, package and drivers are behavioural (no vendor IBIS): the CK slew at the pin, the pin-plane CA eye and the read levels depend on them",
+  "socket contact shapes (no LOTES drawing; Foxconn-based parametric model): front / back skew and echo phase",
+  "FPGA rail noise: the Vivado IBIS package as delivered has no die decoupling (upper bound); 2 nF per bank is assumed for the lower case",
+  "launch phases CA / CK, CS, WCK / DQ and the read capture instant; the split of the jitter bounds; injected noise amplitudes and the DRAM core current",
+  "nothing between 0 Hz and 5 MHz is solved: slow supply and reference effects are analytic",
+  "the mask shape between tIVW1 and tIVW2 (hexagon) and the 1.86 ns read window",
+  "the pin plane of the command bus is not fully converged at 5 GHz: +-12 mV of eye height, 2 - 4 mV of margin, no change of verdict"
+ ],
+ "board_now": "CA0-6 and CK 75R / 75R, WCK 75R / 75R, write DQ 110R / 100R, CS 33R / 100R (the 0.50 V set, dividers_0v50). The keys above this one (verdict, static_high_at_the_dram_pin_v, failures, divider_75r_56r_against_91r_68r, n_branch, vref_rd, write_return_path) are the stage-3 record of the board as it was then (91R / 68R and 75R / 56R on CA / CK, WCK 91R / 68R, DQ 240R / 150R) and are kept as history; front_back_skew and its ODELAY starting values come from that model too and were not re-derived for the 0.50 V set",
+ "dividers_0v50": {
+  "decision": "user: 'In general, we should only deviate from antmicro if there's a very clear reason to do so.' / 'Design the dividers so they give 0.50 typical like the antmicro ones' / 'Simulate these new dividers and generate new eyes.'",
+  "set": {
+   "CA0-6_and_CK": "75R / 75R (only the nine shunts change, 56R -> 75R)",
+   "WCK": "75R / 75R (from 91R / 68R)",
+   "write_DQ": "110R / 100R (from 240R / 150R); the shunt is also the read load",
+   "CS": "33R / 100R, unchanged"
+  },
+  "source": "~/lpddr5_sys/stage3/deliver/div_0v50/ (DIV0V50.md, div050_tables.md, cs_crosstalk.md, eyes/, figures/); model D50_hiz, all five 3D blocks, divider equivalents; 43 Nexxim runs",
+  "evidence": "Nexxim transients on the system model; the dividers are changed by a circuit correction on the solved blocks (divider_changes_are_circuit_corrections), not by a field re-solve",
+  "static_high_at_the_dram_pin_v": {
+   "note": "slow / typ / fast, real driver, nominal resistors, DC of the transient",
+   "CA_CK": [
+    0.456,
+    0.495,
+    0.532
+   ],
+   "write_DQ": [
+    0.461,
+    0.496,
+    0.53
+   ],
+   "WCK": [
+    0.457,
+    0.496,
+    0.533
+   ],
+   "CS": [
+    0.669,
+    0.728,
+    0.785
+   ],
+   "RESET_n": [
+    0.992,
+    1.05,
+    1.108
+   ]
+  },
+  "typ_with_1pct_parts_v": {
+   "CA_CK_WCK": [
+    0.49,
+    0.499
+   ],
+   "write_DQ": [
+    0.49,
+    0.501
+   ]
+  },
+  "back_impedance_ohm": {
+   "CA_CK_WCK": "44-45 (line 45.6)",
+   "write_DQ": 60
+  },
+  "ca_peak_fast_v": [
+   0.688,
+   -0.106
+  ],
+  "commands": {
+   "ca_pin_margin_mV": {
+    "typ": "+72 (best +83); was +69 (+83) with 75R / 56R",
+    "slow": "+66 (+73); was +60 (+63)",
+    "fast": "+73 (+87); was +63 (+81)",
+    "slow_paired": "+59 (+75); was +56 (+70)"
+   },
+   "ca_pin_eye_typ": "302 mV x 501 ps (was 317 x 504)",
+   "ca_die_margin_typ_slow_fast_mV": "+66 / +67 / +66 (was +80 / +72 / +86: the eye sits later against CK; at the best position +91 against +84 typ)",
+   "ca_pin_margin_with_data_running_typ_mV": "+67 (read) / +70 (write)",
+   "vref_ca_needed_slow_typ_fast_mV": [
+    215,
+    235,
+    253
+   ],
+   "vref_ca_range_mV": [
+    75,
+    350
+   ],
+   "cs_pin_margin_typ_slow_fast_mV": [
+    194,
+    126,
+    216
+   ],
+   "ck_pin_slew_v_per_ns": {
+    "typ": "1.80-2.11",
+    "slow": "1.73-2.03",
+    "fast": "1.84-2.18",
+    "slow_paired": "2.06-2.47",
+    "limit": "2-14"
+   },
+   "ck_die_slew_typ_v_per_ns": "5.9-7.8",
+   "ck_pin_swing_v_vix_pct_typ": "1.06 / 4",
+   "verdict": "pass on every mask; CK slew at the ball still starts below 2 V/ns (+0.12 V/ns from the larger swing; the ledge is unchanged, follow_up_studies.ck_slew)"
+  },
+  "writes": {
+   "dq_eye_height_typ_slow_fast_mV": [
+    438,
+    407,
+    467
+   ],
+   "dq_eye_height_before_typ_slow_fast_mV": [
+    381,
+    353,
+    335
+   ],
+   "dq_margin_at_wck_crossing_typ_slow_fast_mV": [
+    144,
+    142,
+    146
+   ],
+   "dq_margin_before_typ_slow_fast_mV": [
+    81,
+    68,
+    90
+   ],
+   "dq_margin_300_900ps_later_typ_mV": [
+    141,
+    137
+   ],
+   "dq_margin_best_position_typ_mV": 171,
+   "dq_margin_everything_active_typ_mV": 137,
+   "vref_dq_used_mV": 225,
+   "vref_dq_wanted_mV": 248,
+   "vref_dq_note": "the simulation took 225 mV as the top of the MR14 range and evaluated there, 20 mV off the centre of the eye. JESD209-5C Table 91 note 4 gives 225 mV as the ceiling for WCK above 1600 MHz and 350 mV at or below 1600 MHz, so the centre is reachable on this card; no run was made above 225 mV",
+   "node_time_constant_ns": {
+    "now": 1.62,
+    "before": 2.63
+   },
+   "back_impedance_ohm": {
+    "now": 59.8,
+    "before": 97.6
+   },
+   "quiet_dq_among_seven_pk_pk_mV": "16.7 in the latch window (94 over the whole UI); before 36.9 (80)",
+   "wck_pin_typ": "swing 1.15 V, slew 4.24-4.32 V/ns, Vix 4.0 % (before 1.03 V, 3.74-3.88 V/ns, 4.3 %)",
+   "wck_pin_slew_slow_fast_v_per_ns": "3.66-3.72 / 4.75-4.84",
+   "verdict": "pass; the margin nearly doubles"
+  },
+  "reads": {
+   "load": "the 100 ohm shunt (150 ohm before); RDQS loads unchanged at 150 ohm",
+   "eye_height_typ_slow_fast_mV": [
+    322,
+    273,
+    375
+   ],
+   "eye_height_before_typ_slow_fast_mV": [
+    338,
+    297,
+    382
+   ],
+   "margin_recentred_typ_slow_fast_mV": [
+    89,
+    65,
+    113
+   ],
+   "margin_before_recentred_typ_slow_fast_mV": [
+    95,
+    80,
+    121
+   ],
+   "margin_at_default_0p187_typ_mV": 77,
+   "margin_at_default_slow_fast": "not run",
+   "vref_rd_centre_slow_typ_fast_mV": [
+    156,
+    175,
+    198
+   ],
+   "vref_rd_centre_before_mV": [
+    173,
+    195,
+    211
+   ],
+   "peak_at_the_p_pin_typ_slow_fast_mV": [
+    386,
+    319,
+    506
+   ],
+   "common_mode_at_the_receiver_mV": {
+    "typ": "86-262",
+    "slow": "77-233",
+    "fast": "98-300",
+    "window": "70-330"
+   },
+   "margin_slvs_typ_slow_fast_mV": [
+    19,
+    -5,
+    43
+   ],
+   "everything_active_typ": "height 310 mV, margin +84 mV (before 328 / +86)",
+   "n_branch_noise_typ_mV": "2.6 pk-pk / 0.38 rms in the window, read alone; 29.0 / 4.17 with everything active; margin lost 0.9 / 8.8",
+   "rdqs_margin_over_70mV_slow_typ_fast_mV": [
+    275,
+    312,
+    335
+   ],
+   "verdict": "pass with MIPI_DPHY_DCI; about 40 mV less read level, 6 mV less margin typ and 15 mV less in the slow corner once VREF_RD is re-centred",
+   "after_the_simulation": "the simulated reference network was 300R (DAC) / 300R (VDDQ) / 180R (GND): default 0.187 V, source 82 ohm. On the board now, by two later decisions of the user: R333 = 160R and R332 (the VDDQ leg) NOT FITTED. VREF_RD = 0.3478 x Vdac, 0 .. 0.631 V, 0 V until the DAC is written, source 104 ohm. The simulated margins hold at the simulated reference values once the DAC is set to them; the N-branch noise with the 104 ohm source was not re-simulated; no run exists with the reference at 0 V (reads do not work there)"
+  },
+  "levels_against_vddq": {
+   "allowance": "JESD209-5C Table 416: 0.3 V and 0.1 V-ns beyond VDDQ. 'standing' = DC level above VDDQ for as long as the line is high; 'transient' = ringing above max(DC level, VDDQ)",
+   "standing_above_vddq_0p500_v_mV": {
+    "CA_fast": 32,
+    "CK_fast": 32,
+    "write_DQ_fast": 30,
+    "WCK_fast": 33,
+    "typ_and_slow": "none against 0.500 V; typ is 7-8 mV above the card's 0.488 V minimum"
+   },
+   "standing_above_vddq_0p488_v_fast_mV": {
+    "CA": 44,
+    "write_DQ": 42
+   },
+   "peak_v": {
+    "CA_slow_typ_fast": [
+     0.546,
+     0.618,
+     0.688
+    ],
+    "CK_leg_typ_fast": [
+     0.568,
+     0.621
+    ],
+    "write_DQ_slow_typ_fast": [
+     0.498,
+     0.54,
+     0.579
+    ],
+    "WCK_leg_typ_fast": [
+     0.562,
+     0.61
+    ]
+   },
+   "total_above_0p500_v_per_event": {
+    "CA": "0.046 V, 0.009 V-ns slow; 0.118, 0.059 typ; 0.188, 0.19 fast",
+    "CK_leg": "0.068, 0.005 typ; 0.121, 0.020 fast",
+    "write_DQ": "none slow; 0.040, 0.011 typ; 0.079, 1.4 fast",
+    "WCK_leg": "0.062, 0.019 typ; 0.110, 0.38 fast"
+   },
+   "transient_only": {
+    "CA_fast": "0.157 V, 0.097 V-ns",
+    "CK_leg_fast": "0.089, 0.007",
+    "write_DQ_fast": "0.049, 0.020",
+    "WCK_leg_fast": "0.077, 0.057"
+   },
+   "share_of_time_above_0p500_v": "CA 1 / 20 / 35 % slow / typ / fast; write DQ 0 / 11 / 52 %; WCK legs 12 / 48 % typ / fast; CK legs 1 / 11 %",
+   "undershoot": "unchanged: at most 0.11 V and 0.068 V-ns",
+   "reading": "amplitude inside 0.3 V everywhere; the transient part alone inside 0.1 V-ns everywhere (CA fast 0.097); read literally the area allowance is exceeded in the fast corner on CA (0.19 V-ns), write DQ (1.4) and WCK (0.38) only because the line rests above VDDQ"
+  },
+  "currents_typ_mA": {
+   "per_high_ca_pin": 6.6,
+   "command_7ca_one_ck_leg": 53,
+   "command_before": 59,
+   "per_high_dq_pin": 4.97,
+   "write_8dq_one_wck_leg": 46,
+   "write_before": 29,
+   "path": "host bank VCCO through the signal fingers; not the card's 1.2 V feed"
+  },
+  "cs": {
+   "question": "what the large CS swing costs the CA lines; CS 33R / 100R as designed against a hypothetical 75R / 75R (typ and slow; fast not run)",
+   "level_33r_100r_v": [
+    0.669,
+    0.728,
+    0.785
+   ],
+   "level_75r_75r_v": [
+    0.456,
+    0.494,
+    0.531
+   ],
+   "worst_ca_margin_typ_mV": {
+    "cs_33r_100r": 72,
+    "cs_75r_75r": 72
+   },
+   "worst_ca_margin_slow_mV": {
+    "cs_33r_100r": 66,
+    "cs_75r_75r": 65
+   },
+   "own_margin_33r_100r_typ_slow_mV": [
+    194,
+    126
+   ],
+   "own_margin_75r_75r_typ_slow_mV": [
+    -9,
+    -43
+   ],
+   "noise_on_ca2_pk_pk_typ_mV": {
+    "cs_33r_100r": 42,
+    "cs_75r_75r": 47
+   },
+   "ca2_jitter_pk_pk_ps": "about 120 with CS toggling, 95 with CS held; its margin does not drop",
+   "where_it_is_made": "before the divider, where CS swings 1.2 V in both cases: mainly the FPGA package (CA2 on ball AN19 beside CS on AM19), then the socket block; the card adds almost nothing",
+   "verdict": "CS at 0.73 V costs the CA lines nothing measurable; a 0.50 V CS fails its own mask (Vref_CS fixed at VDD2H / 3 = 0.35 V) and sits under the 0.55 V power-down-exit level in every corner: CS keeps 33R / 100R"
+  },
+  "variants_not_built": {
+   "82r_82r": "0.464 / 0.502 / 0.539 V; 3 mV closer to 0.500 V but CA pin margin +57 / +58 / +56 mV (8-17 mV worse)",
+   "75r_76r8_and_78r7_78r7_E96": "0.501 / 0.499 V typ, not simulated",
+   "dq_107r_100r_E96": "0.502 V typ, not simulated"
+  },
+  "not_done": "slow and fast corners at the default VREF_RD; fast corner of the CS crosstalk cases; everything-active only in typ; no field re-solve"
+ },
+ "follow_up_studies": {
+  "antmicro_reference_comparison": {
+   "source": "~/lpddr5_sys/stage3/deliver/antmicro_compare/COMPARE.md, compare_tables.md (42 Nexxim runs, 0 failed)",
+   "what": "the Antmicro lpddr5-testbed on its sodimm-ddr5-tester (Kintex-7 XC7K160T, DDR5 SO-DIMM socket, 100R / 100R dividers) through the same pipeline, masks, planes and stimulus; its system model is a cascade (its merged solve is not passive)",
+   "ca_pin_margin_typ_slow_fast_mV": {
+    "antmicro_at_1p6_gbps": "-66 (best +28) / -78 / +74: fails typ and slow",
+    "antmicro_at_its_own_120_mbps": "+186",
+    "antmicro_boards_with_the_zynq_buffer_hypothetical": "+106 / +94 (420 mV x 495 ps)",
+    "this_card_91r_68r": "+47 / +42 / +47",
+    "this_card_75r_56r": "+70 / +60 / +71"
+   },
+   "cause": "the Kintex-7 HSUL_12 SLEW SLOW buffer (0.3 ns edge, 4.68 pF), not the boards or the socket; the larger eye in mV with the same driver is the higher level (0.54 V against 0.43 V), the eye relative to the level is alike (0.77 against 0.68-0.75)",
+   "antmicro_static_high_slow_typ_fast_v": {
+    "CA_CK_WCK": [
+     0.495,
+     0.543,
+     0.583
+    ],
+    "write_DQ": [
+     0.513,
+     0.558,
+     0.595
+    ],
+    "RESET_n": [
+     1.14,
+     1.2,
+     1.26
+    ]
+   },
+   "cs": "Antmicro uses 100R / 100R on CS too (0.54 V against Vref_CS 0.35 V): +4 mV even with the fast buffer; this card's 33R / 100R gives +193 mV",
+   "ck_pin": "Antmicro at 800 MHz 2.4-2.9 V/ns (twice the swing per leg), at its own 60 MHz 1.73-1.77 V/ns and Vix 24.8 %; this card 1.6-2.0 V/ns, Vix 5 %",
+   "writes_100_mbps_mV": "Antmicro +162 / +164 (height 540 mV) against +80 / +82 here with 240R / 150R; at its own 480 Mb/s +5 / +18 / -4 at the best instant",
+   "reads_100_mbps_mV": "Antmicro single-ended against VREF +-100 mV: +64 / +45 / +85; this card P - N with MIPI_DPHY_DCI: +95 / +57 / +104 (150 ohm load)",
+   "read_crosstalk": "11 % in the reference against 5.7 % here (DDR5 pin pattern: two signal contacts between grounds)",
+   "command_skew_ps": "51-60 between the CA eye centres in the reference (not length-matched) against 19-27 here",
+   "not_like_for_like": "Kintex-7 IBIS is not power-aware (ideal rail); socket contact shapes assumed for both; reference blocks A / B missed the HFSS target (0.025 / 0.036 against 0.02)"
+  },
+  "div_100_100_what_if": {
+   "source": "~/lpddr5_sys/stage3/deliver/div_100_100/DIV100.md, div100_tables.md",
+   "what": "Antmicro's literal 100R / 100R on this board: case 1 CA / CK only, case 2 also write DQ and WCK",
+   "static_high_slow_typ_fast_v": [
+    0.48,
+    0.517,
+    0.553
+   ],
+   "ca_pin_margin_typ_slow_fast_mV": "+27 (best +69) / +28 (+59) / +22 (+70): about half of 91R / 68R and a third of 75R / 56R; the loss is a shift of the eye against CK (best position 66-93 ps late), not eye closure",
+   "ca_die_margin_typ_slow_fast_mV": "+20 / +25 / +10",
+   "cs_pin_margin_typ_slow_mV": "+126 / +69",
+   "back_impedance_ohm": 58.2,
+   "ck_pin_slew_typ_v_per_ns": "1.78-2.07",
+   "ca_overshoot_above_0p5_v": "0.137 V / 0.095 V-ns typ; 0.209 V / 0.35 V-ns fast",
+   "write_dq_margin_typ_slow_fast_mV": "+142 / +139 / +144 (VrefDQ 225 mV, wanted about 259 mV)",
+   "read_margin_recentred_typ_slow_fast_mV": "+91 / +67 / +114",
+   "verdict": "not taken: the divider is no longer matched to the 45.6 ohm line, so the CA eye moves against CK. The 0.50 V set (75R / 75R) keeps the match and gives +72 mV where 100R / 100R gives +27 mV, at a level 22 mV lower"
+  },
+  "ck_slew": {
+   "source": "~/lpddr5_sys/stage3/deliver/ck_slew/CK_SLEW.md, ck_tables.md (baseline 75R / 56R; with the 0.50 V set the pin slew is 0.12 V/ns higher, same ledge)",
+   "finding": "low only at the ball: 1.67-2.00 V/ns typ, 1.61-1.91 slow, 1.72-2.09 fast against 2-14; at the die, where the receiver is, 5.3-7.0 / 4.5-6.0 / 6.0-8.0 V/ns. With the 0.50 V set 1.80-2.11 / 1.73-2.03 / 1.84-2.18 at the ball, 5.9-7.8 at the die (typ)",
+   "mechanism": "a ledge at the zero crossing made by the reflection from the un-terminated die: the first wave is about 55 % of the step, the rest arrives twice the package delay later (2 x 59 ps, assumed). The ledge sits inside the +-145 mV measuring window; all edges are monotonic at both planes",
+   "where_jedec_places_it": "JESD209-5C 12.2.1: the input voltage has to satisfy Vindiff_CK 'at input receiver'; Tables 417-422 carry no 'at the pin' note (the CA table 466 does). Read literally the requirement is at the receiver, where the slew is 4.5-8.0 V/ns",
+   "package_delay_threshold_ps": {
+    "typ": 53,
+    "slow": 50,
+    "model_assumed": 59
+   },
+   "what_does_not_help": "nothing that is free: DRAM CK ODT (240 / 120 ohm: 1.57-1.90 / 1.46-1.82 V/ns) and a resistor across the pair (1.44-1.86) cut the swing and leave the ledge; more swing gives +0.05 .. +0.18 V/ns; two buffers in parallel +0.11 (no spare pins); pre-emphasis could not be simulated",
+   "fallback_unverified": "CK legs 22R / 27R (four resistor values): 3.81-6.69 V/ns typ (every edge), 1.73-5.39 slow (99 % of the edges), 4.83-7.96 fast; peaks 0.67 / 0.77 V on a leg (27 mV from the 0.3 V amplitude limit in the fast corner), +7.5 mA, and the CK launch must move by 80-110 ps (CA margin +1 mV unmoved, +86 mV at the best position). The divider equivalent is used at a 4.1x change of the series value, outside the range in which it was checked (2.4x); the model was non-passive above 4.5 GHz and clipped. A re-extraction of the launch block is needed before committing",
+   "status": "bring-up item: measure the CK edge at the ball / estimate the package delay; nothing changed on the board"
+  }
+ },
+ "divider_changes_are_circuit_corrections": {
+  "statement": "the HFSS blocks were solved once, with the resistors of the board as it was then: block A (command) with 91R / 68R, block B (write) with 240R / 150R and WCK 91R / 68R. Every divider value simulated since (75R / 56R, 100R / 100R, 75R / 75R, 82R / 82R, 110R / 100R, the CK-only dividers) is a circuit correction on the ports of those blocks, not a field re-solve",
+  "command_block_residual": {
+   "method": "correction two-port, checked against a solve with explicit resistor ports; S-parameter magnitude up to 2.4 GHz: size of the change / residual of the equivalent",
+   "75r_75r": "0.060 / 0.022 (through path 0.007)",
+   "75r_56r": "0.085 / 0.013",
+   "100r_100r": "0.134 / 0.011",
+   "82r_82r": "0.053 / 0.019",
+   "checked_range": "up to a 2.4x change of the series value (residual 0.069 on a change of 0.31)"
+  },
+  "write_block_residual": {
+   "method": "no resistor-port solve exists: the block is rebuilt around a T-model of each divider",
+   "identity_test": "rebuilt with unchanged values against the solved block: 0.011 to 1 GHz, 0.028 to 2.4 GHz, 0.068 to 5 GHz; 2-3 mV of write margin, 1 mV of read margin",
+   "110r_100r_wck_75r_75r": "non-passive above 4 GHz, clipped (change at most 0.043 above 4 GHz, 0.0005 below); DC exact",
+   "least_certain": "the same ladder tried on the command-launch solve for 240R / 150R -> 110R / 100R leaves 0.05 on the through path up to 2.4 GHz (0.35 at 5 GHz); not quantified in the eye. Write and read data live below 1 GHz, where the error is smallest"
+  },
+  "expect": "about +-5 mV on the margins from the equivalent itself"
+ }
+}

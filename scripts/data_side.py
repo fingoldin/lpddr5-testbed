@@ -10,7 +10,7 @@ Topology ("T at the divider", comb form; DESIGN.md section 14):
                                                                                         |
        read finger - finger track (own face) - read via - In3 line  ------------  NODE VIA = the T   (y = 6.00)
                                               (on its level)  (lane, level, ramp)       |  |
-                                                                 240R in line on the finger's face   150R back to back
+                                                                 series R in line on the finger's face   shunt R back to back
                                                                  (lands y 4.68 / 5.32)               on the other face
                                                                           |                               |
                                                                      write finger                 GND via south of the row
@@ -722,7 +722,7 @@ def build(hp, fx, ball_xy, td, bend, z):
         ser, sh = "R%d" % (201 + i), "R%d" % (211 + i)
         part(ser, "R0201", lay, x, Y_SER, n + "_WF", n, True, "wr_dq")
         part(sh, "R0201", oth, x, Y_SER, "GND", n, False, "wr_dq")
-        via(n, x, Y_NODE, "node via = the T: F.Cu tooth, In3 read branch, 240R on %s, 150R on %s" % (lay, oth), "WR",
+        via(n, x, Y_NODE, "node via = the T: F.Cu tooth, In3 read branch, series resistor on %s, shunt on %s" % (lay, oth), "WR",
             unused_inner_pads="removed")
         neck, wide = write_stub(f, n, fx)
         wire(n + "_WF", lay, W_STUB_NECK, neck, "finger stub, through the finger-via row", "WR")

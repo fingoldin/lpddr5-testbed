@@ -948,7 +948,8 @@ def sheet_read():
 
     note(sh,
          "VREF_RD network:  %s\n"
-         "  DAC output Hi-Z (factory default):  %.3f V, %.0f ohm source: reads work before any I2C traffic\n"
+         "  DAC output Hi-Z (factory default):  %.3f V (%.0f ohm to GND): READS DO NOT WORK until the DAC is written\n"
+         "  (I2C at every start, or its NVM default programmed once per board).  R332 is NOT FITTED (DNP).\n"
          "  DAC active:  %s  (%.3f .. %.3f V, %.2f mV / LSB, code %d = %.3f V)\n"
          "  %s\n\n"
          "Read levels (%d R shunt on sheet Write is the only DC load; no series resistor):\n"
@@ -961,7 +962,7 @@ def sheet_read():
          % (ref["network"].replace(" ;", ";"),
             ref["dac_high_z_v"], ref["dac_high_z_source_ohm"], ref["dac_active"],
             ref["range_internal_ref_x1p5_v"][0], ref["range_internal_ref_x1p5_v"][1], ref["lsb_mV"],
-            ref["dac_code_for_0p195_v"], rd["reference_v"], rd["reference_rule"].split("; the DAC covers")[0],
+            ref["dac_code_for_reference_v"], rd["reference_v"], rd["reference_rule"].split("; the DAC covers")[0],
             rd["load_ohm"],
             rd["read_high_v"][0], rd["read_high_v"][1], rd["read_high_v"][2],
             rd["read_high_jedec_bound_v"][0], rd["read_high_jedec_bound_v"][2], rd["reference_v"],

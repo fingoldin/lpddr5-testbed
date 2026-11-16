@@ -17,15 +17,17 @@ Every statement carries its source: **D n** = `design/DESIGN.md` section n; **N*
   both host rails are up; all rails are in range about 5 ms after the first one moves; any host rail order works (D 4).
 - No power-good or enable signal of the card reaches the FPGA, and no FPGA pin can switch a rail (D 4: "Nothing else is on
   the enable net"; N `fingers`: no finger carries PG or an enable).
-- While the FPGA is unconfigured every divider node is held at 0 V by its shunt (CA / CK / WCK 68 ohm, CS 100 ohm, DQ 150 ohm)
+- While the FPGA is unconfigured every divider node is held at 0 V by its shunt (CA / CK 75 ohm, WCK 75 ohm, CS 100 ohm, DQ 100 ohm)
   and RESET_n is held low by 1 k: with a 100 uA configuration pull-up the ball sits at 0.11 V (limit 0.21 V) (D 1).
-- VREF_RD is 0.187 V with the DAC output Hi-Z, its factory default: reads work before any I2C traffic (D 3; N `analysis.reference`).
+- **VREF_RD is 0 V with the DAC output Hi-Z, its factory default: reads do NOT work before the DAC has been written** (I2C at every
+  start, or its non-volatile default programmed once per board; section 4). R332, the pull-up of the bus to VDDQ, is not fitted
+  (D 3; N `analysis.reference`, `analysis.read.power_up`).
 
 ## 1. Pin states from configuration until the rails are known to be up
 
 1. Drive every divider-driven pin low: `ca[6:0]`, `cs0`, both CK legs, both WCK legs, `wdq[7:0]`, and keep `reset_n` low
-   (D 7: "All divider-driven pins low until the rails are up"). Reason: a high FPGA output puts 0.378 / 0.418 / 0.468 V on a CA ball and
-   0.640 / 0.710 / 0.797 V on CS; JEDEC wants DQ, WCK, CK and CA between VSS and VDDQ during the ramp and CS at or below ViLPD (J 4.1.1 step 2).
+   (D 7: "All divider-driven pins low until the rails are up"). Reason: a high FPGA output puts 0.458 / 0.502 / 0.545 V on a CA ball and
+   0.675 / 0.739 / 0.802 V on CS; JEDEC wants DQ, WCK, CK and CA between VSS and VDDQ during the ramp and CS at or below ViLPD (J 4.1.1 step 2).
 2. Drive `cmd_open_low` (finger 75, AP19) low for good: the finger is open on the card and lies between the CK fingers (D 1).
 3. The read pins are inputs only; never enable an output buffer on `rdq_p / rdq_n / rdqs_p / rdqs_n` (D 7).
 4. How long to wait: the card gives no signal. The rails follow the host rails within about 5 ms (D 4) and the host rails are
@@ -46,8 +48,20 @@ Every statement carries its source: **D n** = `design/DESIGN.md` section n; **N*
 | 8 | boot clock: tCKb >= 18 ns is what the DRAM guarantees (55 MHz); faster is system dependent | - | J table 20 notes |
 | 9 | the initial ZQ calibration runs by itself after `reset_n` goes high (ZQ = 240 ohm to VDDQ, R401); issue ZQCal Latch, then wait tZQLAT = max(30 ns, 4 nCK) | - | J 4.1.1 step 7, D 5 |
 
-- Levels during boot: with the default VREF(CA) of 50 % of VDDQ a CA high needs >= 0.351 V; the divider gives 0.378 / 0.418 / 0.468 V (D 1).
-- CS is sampled against VDD2H / 3 = 0.35 V; the CS divider gives 0.640 / 0.710 / 0.797 V (D 1).
+- Levels during boot: with the default VREF(CA) of 50 % of VDDQ a CA high needs >= 0.351 V; the 75 / 75 ohm divider gives 0.458 / 0.502 / 0.545 V
+  (106.8 mV over the floor in the slowest corner) with the required driver: **SSTL12 / DIFF_SSTL12, SLEW FAST, RDRV_40_40, no DCI**
+  (IBIS 25.1 / 29.3 / 34.9 ohm fast / typ / slow). The boot floor no longer forbids another driver (a 40 ohm DCI driver at its DS925 limit leaves
+  85.3 mV, RDRV_48_48 89.9 mV, a 48 ohm DCI driver 66.4 mV), but a weaker driver puts the level under the 0.50 V target (0.47 / 0.49 / 0.45 V
+  nominal) and was not simulated: RDRV_40_40 without DCI stays the only supported setting (D 1; N `analysis.dividers.CA0-6.other_drivers`).
+- **Levels above VDDQ (the user's decision; D 1, D 16; N `analysis.level_policy`).** CA, CK, WCK and write DQ are designed for
+  0.50 V +/-15 mV typical at the DRAM, as on the Antmicro design, and at most 0.55 V in the stacked fast corner. The merged system simulation
+  gives 0.456 / 0.495 / 0.532 V on CA / CK and 0.461 / 0.496 / 0.530 V on write DQ (slow / typ / fast, nominal resistors); the card's VDDQ is 0.488 .. 0.512 V. So in the fast
+  corner a high line RESTS 20-45 mV above VDDQ for as long as it is high (computed with 1 % resistors: up to 57.5 mV above the card's
+  VDDQ minimum). The overshoot amplitude stays inside the 0.3 V of JESD209-5C Table 416 and the transient-only area inside 0.1 V-ns
+  (CA fast: 0.097), but read literally the area allowance is exceeded in the fast corner because of the standing level. The input limits of
+  the SK hynix part beyond JEDEC are not known. **Watch at bring-up:** measure the static highs (section 7 item 2) and VDDQ; keep idle
+  lines low where the protocol allows (CA idle low, DQ Hi-Z or low outside write bursts); watch the VDDQ current for a rise when lines are held high.
+- CS is sampled against VDD2H / 3 = 0.35 V; the CS divider gives 0.675 / 0.739 / 0.802 V (D 1).
 - The 1 k on RESET_n and the 100 ohm series part are on the card; the FPGA pin needs no pull.
 
 ## 3. Mode-register writes
@@ -59,44 +73,71 @@ given alone and the register is to be read back first (MRR) and modified.
 | # | Register | Field = value | Byte | Why | Source |
 |---|---|---|---|---|---|
 | 1 | MR13 | OP[7] = 1 (single 1.05 V VDD2 rail); OP[5] = 1 (data mask off); OP[6] = 0 (CBT mode 1); OP[4] = 0 (DMI output behaviour mode 1: with mode 2 and data mask on the DRAM would drive DMI during READ DQ CALIBRATION into the strap, J table 234) | 0xA0 | The VDD2L balls are tied to VDD2H: write it first, right after MRW becomes possible and before any CBT. DMI0 is strapped to VSS, so the DRAM must not expect a mask and MASKED WRITE is never issued. CBT mode 2 needs DMI0 as an input. | D 4, D 5, D 7; J table 18 note 1, J figure 13 note 3, J table 89 |
-| 2 | MR17 | OP[2:0] = 110b (SoC ODT code RZQ/6); OP[3] = OP[4] = OP[5] = 1 (CK, CS, CA termination disabled) | 0x3E | With DQ termination off this field sets the pull-up strength of the DRAM driver: it defines the read high level (0.374 / 0.386 / 0.405 V into the 150 ohm load). CA / CK / CS are unterminated on purpose: the dividers source-match the lines. | D 3 ("Requires MR17 OP[2:0] = 110b"), D 7; J table 99 note 6 |
-| 3 | MR3 | OP[2:0] = 110b (PDDS 40 ohm, the default); OP[7:6] = 00 (write and read DBI off) | read-modify-write | Pull-down strength for the read low; DBI stays off because DMI is strapped. If the receiver minds the 1-2 ns of ringing after an edge, use 48 or 60 ohm (101b / 100b) and re-centre VREF_RD (60 ohm nominal: 0.357 V high). | D 3, D 7; J table 68 |
-| 4 | MR11 | OP[2:0] = 000 (DQ ODT off), OP[3] = 0, OP[6:4] = 000 (CA ODT off) | 0x00 (default) | All DRAM ODT off: the 150 ohm shunt is the only DC load of a DQ; a DQ ODT would pull the write level down. | D 7 ("all DRAM ODT off"); J table 84 |
-| 5 | MR18 | OP[2:0] = 000 (WCK ODT off, default); OP[7] = 1 (CKR 2:1, default) | default | WCK reaches 0.378 / 0.418 / 0.468 V per leg only without termination; with 40 ohm it is 0.34 V p-p, the JEDEC minimum. | D 2; J table 101 |
-| 6 | MR20 | OP[1:0] = 10b (RDQS_t and RDQS_c both enabled); OP[3:2] = 00 (differential WCK) | 0x02 | The card receives RDQS as a true differential pair, 150 ohm to GND on each leg. With the default 01b RDQS_c stays Hi-Z and sits at 0 V. | D 3 ("Needs MR20 OP[1:0] = 10b"), D 7; J table 105 |
-| 7 | MR12 | OP[6:0] = 1000000b (VREF(CA) 42.0 % of VDDQ = 0.21 V); OP[7] = 0 | 0x40, then train | Half of the CA high level (0.378 / 0.418 / 0.468 V). The boot default (50 % = 0.25 V) is only good at low rate. | D 1, D 7; J table 87 |
-| 8 | MR14 | OP[6:0] = 1000000b (VREF(DQ[7:0]) 42.0 % = 0.21 V); OP[7] = 0 | 0x40, then train | Half of the write level (0.389 / 0.423 / 0.460 V); must stay at or below 0.225 V. | D 2, D 7; J table 91 / 92 |
+| 2 | MR17 | OP[2:0] = 110b (SoC ODT code RZQ/6); OP[3] = OP[4] = OP[5] = 1 (CK, CS, CA termination disabled) | 0x3E | With DQ termination off this field sets the pull-up strength of the DRAM driver: it defines the read high level (0.334 / 0.346 / 0.367 V into the 100 ohm load). CA / CK / CS are unterminated on purpose: the dividers source-match the lines. | D 3 ("Requires MR17 OP[2:0] = 110b"), D 7; J table 99 note 6 |
+| 3 | MR3 | OP[2:0] = 110b (PDDS 40 ohm, the default); OP[7:6] = 00 (write and read DBI off) | read-modify-write | Pull-down strength for the read low; DBI stays off because DMI is strapped. If the receiver minds the 1-2 ns of ringing after an edge, use 48 or 60 ohm (101b / 100b) and re-centre VREF_RD (60 ohm nominal: 0.312 V high). | D 3, D 7; J table 68 |
+| 4 | MR11 | OP[2:0] = 000 (DQ ODT off), OP[3] = 0, OP[6:4] = 000 (CA ODT off) | 0x00 (default) | All DRAM ODT off: the 100 ohm shunt is the only DC load of a DQ; a DQ ODT would pull the write level down. | D 7 ("all DRAM ODT off"); J table 84 |
+| 5 | MR18 | OP[2:0] = 000 (WCK ODT off, default); OP[7] = 1 (CKR 2:1, default) | default | WCK reaches 0.458 / 0.502 / 0.545 V per leg only without termination; with 40 ohm it is 0.41 V p-p in the worst case (JEDEC minimum 0.30 V). | D 2; J table 101 |
+| 6 | MR20 | OP[1:0] = 10b (RDQS_t and RDQS_c both enabled); OP[3:2] = 00 (differential WCK) | 0x02 | The card receives RDQS as a true differential pair, 150 ohm to GND on each leg (unchanged by the 0.50 V divider set). With the default 01b RDQS_c stays Hi-Z and sits at 0 V. | D 3 ("Needs MR20 OP[1:0] = 10b"), D 7; J table 105 |
+| 7 | MR12 | OP[6:0] = 1001010b (VREF(CA) 47.0 % of VDDQ = 0.235 V); OP[7] = 0 | 0x4A, then train | The CA level is 0.458 / 0.502 / 0.545 V; the merged system simulation centres the CA eye at 215 / 235 / 253 mV (slow / typ / fast; allowed 75-350 mV). The boot default (50 % = 0.25 V) is now close to it. | D 1, D 7, D 16; J table 87 |
+| 8 | MR14 | OP[6:0] = 1000110b (VREF(DQ[7:0]) 45.0 % = 0.225 V); OP[7] = 0 | 0x46, then train upward | The write level is 0.461 / 0.501 / 0.542 V and the eye is centred at about 248 mV. The simulation evaluated every write margin at 225 mV (+144 / +142 / +146 mV typ / slow / fast): start there. J table 91 note 4 gives 225 mV as the ceiling only for WCK above 1600 MHz and allows 350 mV at or below it, so training may go up to the centre (0x4F (49.5 % = 0.2473 V)); no margin was simulated above 225 mV. | D 2, D 7, D 16; J table 91 / 92 |
 
 - **Never use**, because DMI is strapped to VSS: READ FIFO, read DBI, link ECC, read data copy, MASKED WRITE, CBT mode 2.
   READ DQ CALIBRATION is fine (D 5, D 7). JEDEC's DQ training flow names RD FIFO / WT FIFO (J 4.1.1 step 9): use READ DQ CALIBRATION
   and plain WRITE / READ instead.
-- **Command-bus training is not needed and must not be relied on**: it forces a 40 ohm WCK ODT, which leaves WCK at the JEDEC
-  minimum in the slowest driver corner (D 2). The command bus is matched on the card; VREF(CA) is set by MR12 directly.
+- **Command-bus training is not needed and must not be relied on**: it forces a 40 ohm WCK ODT, which cuts WCK to 0.41 V p-p
+  in the slowest driver corner (D 2). The command bus is matched on the card; VREF(CA) is set by MR12 directly.
 - **CA ODT stays off.** If the 800 MHz eye needs it, it is a gateware change (MR11 OP[6:4] with MR17 OP[5] / OP[3] = 0); it lowers
-  the CA level (240 ohm: 0.35 V) (D 8 item 4).
+  the CA level (240 ohm: 0.42 V) (D 8 item 4).
 - **Clock plan (D 7).** WCK is tied to CK at 2:1 (MR18 OP[7] = 1, the reset default) or 4:1 (OP[7] = 0). The data target of this card is
-  100 Mb/s (set by the 2.6 ns write node, D 2): WCK = 50 MHz, so **CK = 25 MHz at 2:1 or 12.5 MHz at 4:1 for every READ and WRITE**
+  100 Mb/s (the design target and the only data rate simulated, D 2): WCK = 50 MHz, so **CK = 25 MHz at 2:1 or 12.5 MHz at 4:1 for every READ and WRITE**
   (tCK(avg) may be as long as 200 ns, J table 15.1). **CK = 800 MHz (1.6 Gb/s on CA) is for command-only traffic**, the purpose of the card.
   The controller therefore changes the clock frequency between the command stream and any read or write: stop or slow CK with the
   clock-change procedure (J 7.6.7) or switch frequency set points (FSP, J 7.6.3), each set point with its own MR1 / MR2 latencies,
   MR12 / MR14 VREF and MR11 / MR17 / MR18 termination codes. JEDEC defaults after reset are WL = 4, RL = 6, nWR = 5, CKR 2:1, set point 0
   (J table 18); the latencies per set point are for the controller to choose **[no value prescribed by D]**.
-- Option on the FPGA side: `OUTPUT_IMPEDANCE RDRV_48_48` on the command pins matches the 39 ohm host line better than RDRV_40_40
-  and still gives 0.386 / 0.420 / 0.453 V (D 7).
+- FPGA side of the command pins: SSTL12 / DIFF_SSTL12, SLEW FAST, `OUTPUT_IMPEDANCE RDRV_40_40`, no DCI, and no other setting
+  (section 2; D 1, D 7). `RDRV_48_48`, offered as an option with the first 91 / 68 ohm dividers, is withdrawn.
 
 ## 4. The reference DAC (VREF_RD, the N leg of every read pair)
 
-- Network: DAC_OUT -300R- VREF_RD ; VDDQ -300R- VREF_RD ; VREF_RD -180R- GND ; 1 uF + 8 x 100 nF on the bus (N `analysis.reference.network`).
+- Network: DAC_OUT -300R- VREF_RD ; VREF_RD -160R- GND ; 1 uF + 8 x 100 nF on the bus ; R332 (300R, VDDQ to VREF_RD) NOT FITTED (N `analysis.reference.network`).
 - DAC53401 U5, I2C address 0x48 (A0 to AGND); broadcast address 0x47 (D 3; TI table 11 / 12).
 - Bus: card fingers 253 (SCL) / 254 (SDA) -> ZCU104 I2C1 switch TCA9548A U34, address 0x74, port 7 (UG1267 table 3-16). The bus is
   PS I2C1 (MIO16 / MIO17) and is also wired to PL bank 87 (N12 = PL_I2C1_SCL_LS, P12 = PL_I2C1_SDA_LS) through a level shifter
   (UG1267 figure 3-12; XTP484). Select port 7 on the switch, then address 0x48. The control byte of the switch is not in the
   repository **[no source]** (TCA9548A: one bit per port, port 7 = 0x80).
-- **Default, no I2C traffic:** DAC output Hi-Z -> VREF_RD = 0.1873 V from VDDQ through 300 / 180 ohm, source 112.5 ohm (N).
-- **Active:** V = 0.2727 x Vdac + 0.1363 V, source 81.8 ohm. With the internal reference at gain 1.5 (1.21 V x 1.5 = 1.815 V full scale, 10 bits):
-  VREF_RD = 0.1363 V + code x 0.484 mV, range 0.136 .. 0.631 V (N; TI 8.3.1.1.2).
-- **Target: code 121 = 0.195 V** (N `analysis.reference.dac_code_for_0p195_v`, `analysis.read.reference_v`).
-- Registers (16-bit, TI 8.6): `DAC_DATA` (0x21) = code << 2 (bits 11:2, left aligned): code 121 -> 0x01E4. `GENERAL_CONFIG` (0xD1):
+- **R332 (300 ohm, VDDQ to VREF_RD) is NOT FITTED** (the user's decision: the range of VREF_RD goes down to 0 V). Its lands and the VDDQ
+  track to it stay on the card, unused.
+- **Default, no I2C traffic: DAC output Hi-Z (TI 8.3.1, DAC_PDN reset value 10) -> VREF_RD = 0 V** through R333 (160 ohm to GND).
+  **Reads do not work in this state** (no differential for a zero, common mode 0 V). Either write the DAC at every start, before the
+  first READ or MRR, or program its non-volatile default once per board (both below). With R332 fitted the bus stood at 0.174 V.
+- **Active:** V = 0.3478 x Vdac (no offset; it was V = 0.2581 x Vdac + 0.1289 V), source 104.3 ohm (77.4). With the internal reference at gain 1.5 (1.21 V x 1.5 = 1.815 V
+  full scale, 10 bits): VREF_RD = code x 0.617 mV, range 0 .. 0.631 V (N; TI 8.3.1.1.2). VREF_RD no longer follows VDDQ at all.
+- **Target: code 284 = 0.175 V** (N `analysis.reference.dac_code_for_reference_v`, `analysis.read.reference_v`): the centre of the read eye in the
+  typical corner of the merged system simulation with the 100 ohm read load. Centres per corner: slow 0.156 V (code 253), typ 0.175 V (code 284),
+  fast 0.198 V (code 321). (With R332 fitted the code for 0.175 V was 101: codes of earlier notes do not apply.)
+- **Codes below 228 (0.14 V) are reachable and NOT usable for reads**: the common mode of a zero is VREF_RD / 2 and the D-PHY receiver
+  needs 70 mV. Usable window for reads: codes 228 .. 340 (0.14 .. 0.21 V).
+- **A wrong code cannot hurt the FPGA:** full scale on the internal reference gives 0.631 V; with the VDD reference selected by mistake
+  (REF_EN = 0, 3.3 V) 1.148 V, 1.205 V at 3.3 V + 5 %: under the 1.40 V recommended maximum of the pins (DS925).
+- Static errors: pin leakage (8 x 15 uA) moves the bus 12.5 mV with the DAC active (9.3 mV before); DAC noise reaches the bus x 0.348
+  (x 0.258 before), behind 1.8 uF. The DAC drives 300 ohm + 160 ohm = 460 ohm to GND (3.9 mA at full scale, 1.09 mA at the set point); the 1 uF + 8 x 100 nF stay behind the 300 ohm of R331, as before (data sheet: capacitive load directly at OUT <= 1 nF; short-circuit current 25 mA at 2.7 V).
+- **I2C sequence, set point** (TI 8.6; 16-bit registers, MSB first; write DAC_DATA first so that the output starts at the target):
+
+      WRITE DAC_DATA (0x21) = 0x0470      code 284 << 2 (bits 11:2): VREF_RD = 0.175 V
+      WRITE GENERAL_CONFIG (0xD1) = 0x01E4      DAC_PDN = 00 (power up), REF_EN = 1 (internal 1.21 V), DAC_SPAN = 00 (gain 1.5), SLEW_RATE = 1111 (no slew)
+
+  Then wait 0.9 ms (5 time constants of the bus) before the first read.
+- **I2C sequence, store as the power-up default (once per board; TI 8.3.3, table 1, 8.6.4, 9.2.1.2):**
+
+      the two writes of set_point
+      WRITE TRIGGER (0xD3) = 0x0010      NVM_PROG = 1 (self-resetting): DAC_DATA and GENERAL_CONFIG go to the NVM
+      wait until STATUS (0xD0) bit 13 NVM_BUSY = 0 (EEPROM write 5 / 10 / 15 ms min / typ / max); no write and no read of a DAC register while it is 1
+      power-cycle and check: OUT is driven without any I2C traffic (TP4 = 0.175 V)
+
+  Endurance 20000 cycles (-40 .. 85 C), retention 50 years at 25 C; Table 1 lists DAC_DATA under address 10h while the register map and the pseudocode use 21h: 21h is used here. Undo: WRITE TRIGGER (0xD3) = 0x0200 (DEVICE_CONFIG_RESET: all registers to the factory values), then NVM_PROG again.
+  A board whose DAC was stored this way reads without I2C traffic; a board that was not, does not: the gateware should write the DAC anyway.
+- Registers (16-bit, TI 8.6): `DAC_DATA` (0x21) = code << 2 (bits 11:2, left aligned): code 284 -> 0x0470. `GENERAL_CONFIG` (0xD1):
   DAC_PDN[4:3] = 00 (power up; reset value 10 = Hi-Z), REF_EN[2] = 1 (internal reference), DAC_SPAN[1:0] = 00 (gain 1.5),
   SLEW_RATE[8:5] = 1111 (no slew, the reset value) -> 0x01E4 (reset value 0x01F0). Write DAC_DATA first, then GENERAL_CONFIG, so that
   the output starts at the target **[order: suggestion, no source]**. Nothing is stored in the DAC's NVM by these writes.
@@ -104,22 +145,24 @@ given alone and the register is to be read back first (MRR) and modified.
 
   | Code | VREF_RD |
   |---|---|
-  | 0 | 0.136 V |
-  | 60 | 0.165 V |
-  | 90 | 0.180 V |
-  | 121 (target) | 0.195 V |
-  | 150 | 0.209 V |
-  | 180 | 0.223 V |
-  | 210 | 0.238 V |
-  | 240 | 0.252 V |
-  | 300 | 0.281 V |
-  | 400 | 0.330 V |
+  | 0 (not usable for reads) | 0.000 V |
+  | 100 (not usable for reads) | 0.062 V |
+  | 228 (lowest usable) | 0.141 V |
+  | 253 | 0.156 V |
+  | 284 (target) | 0.175 V |
+  | 300 | 0.185 V |
+  | 321 | 0.198 V |
+  | 340 (highest recommended) | 0.210 V |
+  | 400 | 0.247 V |
+  | 500 | 0.308 V |
+  | 700 | 0.432 V |
   | 1023 | 0.631 V |
 
 - Limits of the sweep: the receiver needs VICM = (pin + VREF_RD) / 2 <= 0.33 V and >= 0.07 V. With the pin at 0 V the common
-  mode is VREF_RD / 2: 0.0975 V at the target. **Keep VREF_RD at or below 0.20 V if the measured read high level is above
-  0.42 V** (D 3, N `analysis.read.reference_rule`). The network cannot go below 0.136 V and, misprogrammed to the VDD reference
-  at full scale, stays at 1.04 V, inside the FPGA's input range (D 3).
+  mode is VREF_RD / 2: 0.0875 V at the target. **Rule (D 16): measure the read high level and set VREF_RD to half of it, never
+  above 0.21 V and never below 0.14 V (VICM of a zero)** (D 3, N `analysis.read.reference_rule`).
+  In the merged system simulation the eye is centred at 156 / 175 / 198 mV (slow / typ / fast), with +89 / +65 / +113 mV of margin (typ / slow / fast).
+  The network now goes down to 0 V; settings below 0.14 V are for experiments with another receiver, not for reads with `IBUFDS_DPHY`.
 
 ## 5. Per-bit delays
 
@@ -153,25 +196,32 @@ items 20, 23). Source: K (written by gate 7 of `scripts/pcb/check_pcb.py` at eve
 - Polarity: CK is not inverted; WCK is INVERTED on the host pair; RDQS is INVERTED on the host pair (D 7, N `groups`).
 - The RDQS receiver output is valid only inside a read burst (both legs sit at 0 V otherwise): gate it with the read-enable
   window (D 3, D 7).
-- `wdq[*]` Hi-Z during reads (D 2, D 7). Write rate: 100 Mb/s is the design target; the write node has tau 2.6 ns and does not
-  support 200 Mb/s (D 2). At 100 Mb/s sample reads in the second half of the unit interval (D 7).
+- `wdq[*]` Hi-Z during reads (D 2, D 7). Write rate: 100 Mb/s is the design target and the only rate simulated; the write node has tau 1.6 ns
+  (it was 2.6 ns with 240 / 150 ohm); no higher rate is claimed (D 2). At 100 Mb/s sample reads in the second half of the unit interval (D 7).
 
 ## 6. The receiver
 
-| | First choice | Fall-back |
-|---|---|---|
-| Primitive | `IBUFDS_DPHY`, HS path (`HSRX_O`), `HSRX_DISABLE = 0`, `LPRX_DISABLE = 1`, LP outputs open | plain `IBUFDS` |
-| Standard | `MIPI_DPHY_DCI`, in the XDC **and** as the `IOSTANDARD` attribute of the instance | `SLVS_400_18` (`lpddr5_testbed_zcu104_rx_slvs.xdc`) |
-| Termination | `DIFF_TERM = "FALSE"` (`DIFF_TERM_ADV TERM_NONE`) | `DIFF_TERM_ADV TERM_NONE` |
-| Window | VID >= 0.07 V, VICM 0.07 .. 0.33 V, pin -0.04 .. 0.46 V | VID 0.14 .. 0.45 V, VICM 0.07 .. 0.33 V |
-| Static one (min / nom / max) | VID 0.179 / 0.191 / 0.210 V, VICM 0.284 / 0.290 / 0.300 V | same signal |
-| Static zero | VID -0.195 V, VICM 0.0975 V | same signal |
-| Margin at the JEDEC bound of the read level | VICM to 0.33 V: 17 mV; pin to 0.46 V: 29 mV; zero-state VICM to 0.07 V: 27.5 mV | VID to 0.14 V: 27 mV |
+**One supported receiver.** There is no fall-back.
 
-Source: N `analysis.read`, D 3. No termination in either case: one leg of every data pair is a DC reference, and a 100 ohm
+| | Receiver |
+|---|---|
+| Primitive | `IBUFDS_DPHY`, HS path (`HSRX_O`), `HSRX_DISABLE = 0`, `LPRX_DISABLE = 1`, LP outputs open |
+| Standard | `MIPI_DPHY_DCI`, in the XDC **and** as the `IOSTANDARD` attribute of the instance |
+| Termination | `DIFF_TERM = "FALSE"` (`DIFF_TERM_ADV TERM_NONE`) |
+| Window | VID >= 0.07 V, VICM 0.07 .. 0.33 V, pin -0.04 .. 0.46 V |
+| Static one (min / nom / max) | VID 0.159 / 0.171 / 0.192 V, VICM 0.255 / 0.260 / 0.271 V |
+| Static zero | VID -0.175 V, VICM 0.0875 V |
+| Margin at the JEDEC bound of the read level | VID to 0.07 V: 76 mV; VICM to 0.33 V: 42 mV; pin to 0.46 V: 60 mV; zero-state VICM to 0.07 V: 17.5 mV |
+
+Source: N `analysis.read`, D 3. No termination: one leg of every data pair is a DC reference, and a 100 ohm
 differential termination would load the read level. Whether a D-PHY HS receiver works with one static leg (200 mV common-mode
-step per edge) is an open bench question (D 8 item 6); that is why the fall-back exists and why RDQS is a true pair: it tells
-on the bench whether a read problem is the receiver or the reference (D 3).
+step per edge) remains a bench question (D 8 item 6); the merged system simulation passes it with +89 / +65 / +113 mV of margin
+typ / slow / fast with VREF_RD re-centred (D 16). RDQS is a true pair: it tells on the bench whether a read problem is the receiver or the reference (D 3).
+
+**Why SLVS_400_18 is no longer offered** (it was the fall-back receiver, on a plain `IBUFDS`): it needs VID >= 140 mV, and the merged
+system simulation gives +19 / -5 / +43 mV of margin typ / slow / fast with VREF_RD re-centred, a failure in the slow corner (D 16;
+N `analysis.read.receiver`). The override XDC is gone from this folder. The Vivado cases M2 / N4 below stay as a record of what the
+tool accepts; they use `vivado_pincheck/legacy_rx_slvs_400_18.xdc`, which exists for that purpose only.
 
 **Vivado legality of this pin plan (V).** Legality only: Vivado knows nothing about levels.
 
@@ -179,8 +229,8 @@ on the bench whether a read problem is the receiver or the reference (D 3).
 |---|---|---|---|---|---|---|---|
 | M1_dphy_native16 | 2026.1 | first-choice receiver (IBUFDS_DPHY, MIPI_DPHY_DCI), native TX_BITSLICE command bus at 1.6 Gb/s | passes through write_bitstream | 0 | 0 | 0.297 | 0.098 |
 | M1_dphy_native16_vivado2023 | 2023.1 | M1 in Vivado 2023.1 (IDELAYCTRL SIM_DEVICE = ULTRASCALE) | passes through write_bitstream | 0 | 0 | 0.113 | 0.098 |
-| M2_slvs_native16 | 2026.1 | fall-back receiver (IBUFDS, SLVS_400_18), the rest as M1 | passes through write_bitstream | 0 | 0 | 0.297 | 0.098 |
-| M2_slvs_native16_vivado2023 | 2023.1 | M2 in Vivado 2023.1 (IDELAYCTRL SIM_DEVICE = ULTRASCALE) | passes through write_bitstream | 0 | 0 | 0.113 | 0.098 |
+| M2_slvs_native16 | 2026.1 | history: IBUFDS / SLVS_400_18 (NOT a supported receiver any more), the rest as M1 | passes through write_bitstream | 0 | 0 | 0.297 | 0.098 |
+| M2_slvs_native16_vivado2023 | 2023.1 | history: M2 in Vivado 2023.1 (IDELAYCTRL SIM_DEVICE = ULTRASCALE) | passes through write_bitstream | 0 | 0 | 0.113 | 0.098 |
 | M3_dphy_native16_guard_obuf | 2026.1 | as M1, the open finger 75 as a plain OBUF inside the native nibble | passes through write_bitstream | 0 | 0 | 0.297 | 0.098 |
 | M4_dphy_comp_1200 | 2026.1 | as M1, command bus on OSERDESE3 with a 600 MHz bit clock (1.2 Gb/s) | passes through write_bitstream | 0 | 0 | 0.213 | 0.066 |
 | M5_dphy_comp_1600 | 2026.1 | as M1, command bus on OSERDESE3 with an 800 MHz bit clock (1.6 Gb/s) | passes through write_bitstream | 0 | 0 | 0.097 | -0.350 |
@@ -213,27 +263,70 @@ What the check establishes for the gateware (V):
 - `IDELAYCTRL`: `SIM_DEVICE = "ULTRASCALE_PLUS"` for Vivado 2026.1, `"ULTRASCALE"` for Vivado 2023.1; each release refuses the
   bitstream for the other value (DRC ADEF-911).
 - `IBUFDS_DPHY`: keep `IOSTANDARD = "MIPI_DPHY_DCI"` on the instance. Vivado 2023.1 refuses the bitstream without it (DRC
-  AVAL-252, case N3 in 2023.1); Vivado 2026.1 accepts the standard from the XDC alone. The primitive cannot be used with
-  SLVS_400_18: the fall-back needs a plain `IBUFDS`.
+  AVAL-252, case N3 in 2023.1); Vivado 2026.1 accepts the standard from the XDC alone. (History: the primitive cannot be used
+  with SLVS_400_18, case N4.)
 - No `INTERNAL_VREF`, no `DCI_CASCADE`; the VRP pins of the three banks stay free. The ZCU104 system clock CLK_300 (AH18 / AH17)
   lies in the write bank, in the nibble of WCK; that is accepted.
 
 ## 7. What to measure first (D 8)
 
-1. **Rails** on TP1 (VDD1 1.764 / 1.800 / 1.836 V), TP2 (VDD2H 1.032 / 1.048 / 1.064 V), TP3 (VDDQ 0.488 / 0.500 / 0.512 V), TP4 (VREF_RD 0.187 V with the DAC untouched), TP5 (GND); the
+1. **Rails** on TP1 (VDD1 1.764 / 1.800 / 1.836 V), TP2 (VDD2H 1.032 / 1.048 / 1.064 V), TP3 (VDDQ 0.488 / 0.500 / 0.512 V), TP4 (VREF_RD 0 V with the DAC untouched, 0.175 V after the DAC
+   write of section 4: do that write now, it must precede every read), TP5 (GND); the
    host 1.2 V at the card under load (>= 1.12 V for 0.52 A) (D 4, D 8 item 10).
-2. **A static high at a divider node** with the FPGA driving one command pin high: expect 0.378 / 0.418 / 0.468 V on CA, 0.640 / 0.710 / 0.797 V on CS, 0.389 / 0.423 / 0.460 V
+2. **A static high at a divider node** with the FPGA driving one command pin high: expect 0.458 / 0.502 / 0.545 V on CA, 0.675 / 0.739 / 0.802 V on CS, 0.461 / 0.501 / 0.542 V
    on a write DQ. It gives the real driver resistance (D 8 item 2). No test pads on signal nets: probe at the shunt resistor.
 3. **Termination really off:** under 1 mV across a 39 ohm N resistor with the P pin at 0 V (D 8 item 7).
 4. **RESET_n** low 0 V / high 0.959 / 1.034 / 1.121 V at R403 before releasing reset for real (D 1).
-5. **First MRR** at the boot clock (MR8 or any register with a known value) through the RDQS-independent path: sample the eight read
+5. **Write the reference DAC** (section 4) if not done at step 1 and check TP4 = 0.175 V: without it VREF_RD is 0 V and no read works.
+   **First MRR** at the boot clock (MR8 or any register with a known value) through the RDQS-independent path: sample the eight read
    pairs with the system clock and look for the value **[choice of register: no source]**.
-6. **Read high level** of this DRAM into 150 ohm (proxies 0.386 V nominal, JEDEC bound 0.362 .. 0.431 V) and how it moves with MR17 / MR3
-   (D 8 item 5). If it is above 0.42 V keep VREF_RD at or below 0.20 V.
-7. **VREF_RD sweep against bit errors at 100 Mb/s**, with `IBUFDS_DPHY` first, then with the SLVS fall-back (D 8 item 6).
+6. **Read high level** of this DRAM into 100 ohm (proxies 0.346 V nominal, JEDEC bound 0.321 .. 0.400 V) and how it moves with MR17 / MR3
+   (D 8 item 5). **Set VREF_RD to half of the measured level**, not above 0.21 V and not below 0.14 V (D 16).
+7. **VREF_RD sweep against bit errors at 100 Mb/s** with `IBUFDS_DPHY` (D 8 item 6).
 8. **A read finger with an active probe at 100 Mb/s** for the three drive strengths (40 / 48 / 60 ohm): the open FPGA end overshoots
-   for 1-2 ns per edge (0.549 V / -0.131 V in the strong corner) (D 3, D 8 item 29).
+   for 1-2 ns per edge (0.522 V / -0.133 V in the strong corner) (D 3, D 8 item 29).
 9. **The unused half of the x16 die** (DQ8-15 and RDQS1 of channel A are open balls, WCK1 is held at its static level by two 10 k) and the
    idle channel-B die with a single VDD2 rail: JEDEC is silent; watch VDDQ / VDD2H current and read stability (D 5, D 8 items 8, 9).
 10. **Command eye at 1.6 Gb/s** (800 MHz CK): the goal of the card. Sweep the per-bit output delay of each CA pin and the MR12 code
     against command errors; TDR of CA2 against CA0 at the fingers of a bare card checks the on-card match (D 8 items 3, 4, 18).
+    Start the sweep from the values of section 8.
+11. **CK slew at the DRAM pin** (differential, at the CK balls or as close as a probe gets): the merged system simulation gives
+    1.80-2.11 V/ns typ and 1.73-2.03 slow against the JEDEC minimum of 2 V/ns (at the die 5.9-7.8 V/ns typ). The slew is low only at the ball: a ledge
+    at the crossing made by the reflection from the un-terminated die; JEDEC places the requirement at the input receiver. It rests on an
+    assumed DRAM package delay of 59 ps: at 53 ps or less (typ; 50 slow) the board meets 2 V/ns at the ball. Nothing free fixes it (CK ODT
+    and a resistor across the pair make it worse). Unverified fallback, a value change of the four CK resistors: 22R / 27R (D 16, D 8 item 38).
+12. **Static levels against VDDQ** (the cost of the 0.50 V level, section 2): with a pin held high, measure the node at the shunt and VDDQ at TP3;
+    expect the node within 15 mV of 0.50 V typical and up to 0.55 V in the fast corner, above VDDQ (0.488 .. 0.512 V). Watch the VDDQ and
+    VDD2H current with lines held high against lines held low (D 1, D 16).
+
+## 8. Starting values from the merged system simulation (D 16)
+
+ZCU104 + socket + card in one model (N `analysis.system_simulation`, `design/ref/system_simulation.json`). All of these are
+**starting values for training, not constants**.
+
+- **Command ODELAY against the front / back skew of the socket** (17 ps front minus back; the card's own match does not contain it):
+
+  | Pin | Finger side | Eye centre minus CK crossing at the DRAM pin, ps | ODELAY start value, ps |
+  |---|---|---|---|
+  | `ca[5]` CA5 | back | -5 | 27 |
+  | `ca[0]` CA0 | back | +2 | 20 |
+  | `ca[3]` CA3 | back | +2 | 20 |
+  | `ca[1]` CA1 | front | +10 | 12 |
+  | `ca[4]` CA4 | front | +15 | 7 |
+  | `ca[6]` CA6 | front | +19 | 3 |
+  | `ca[2]` CA2 | front | +22 | 0 |
+  | `cs0`, CK | | | 0 |
+
+  `CA_ODELAY_START_PS` in `lpddr5_testbed_pins.vh` carries the same numbers. Starting values for training, not constants; from the final model, typ. An earlier run with CK +15 ps and CS +3 ps brought the centres within 1.3 .. 5.2 ps with margins unchanged within 6 mV.
+- **CS phase:** launched on the CA edges the CS eye centre is 288 - 301 ps before the rising CK crossing (margin +193 mV); half a UI later centres it; either is acceptable.
+  The ODELAY values and the CS phase come from the stage-3 model (first build, CA / CK 91 / 68 ohm) and were not re-derived for the 0.50 V
+  divider set. The per-bit differences are made in the socket and hold; the common position of the CA eye against CK moved with the
+  dividers (CA margin +72 (best +83) typ at the DRAM pin, CS +194 mV): train the common CA / CK phase.
+- **VREF(CA):** MR12 0x4A (47.0 % = 0.235 V); the simulated eye centres are 215 / 235 / 253 mV slow / typ / fast (section 3).
+- **VREF(DQ):** MR14 0x46 (45.0 % = 0.225 V), the simulated point (+144 / +142 / +146 mV typ / slow / fast); the eye centre is at about 248 mV, reachable
+  by training (J table 91 note 4), not simulated (section 3).
+- **VREF_RD:** DAC code 284 = 0.175 V; centres 156 / 175 / 198 mV slow / typ / fast; measure the read high level and set VREF_RD to half of it, between
+  0.14 V and 0.21 V (section 4).
+- **Write launch:** with the 0.50 V set the DQ margin is +144 / +142 / +146 mV typ / slow / fast at the WCK crossing and +141 / +137 mV 300 / 900 ps later;
+  the node settles in 1.6 ns, so the launch phase is no longer critical. SLEW SLOW on the write pins is not needed and not recommended.
+- **Driver:** the levels and margins of the simulation are with SSTL12 FAST RDRV_40_40 without DCI and all DRAM ODT off (sections 2, 3).
